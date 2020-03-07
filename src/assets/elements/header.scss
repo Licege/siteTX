@@ -1,0 +1,30 @@
+.header {
+  &-navbar {
+    width: 980px;
+    font-family: Forum, serif;
+    font-size: 22px;
+    line-height: 44px;
+    padding: 0 10px;
+    color: #FFFFFF;
+  }
+
+  li {
+    cursor: auto;
+  }
+
+  ul {
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+    white-space: nowrap;
+  }
+
+  a {
+    text-decoration: none;
+    color: #FFFFFF;
+  }
+
+  &:hover, &:visited {
+    text-decoration: none;
+  }
+}

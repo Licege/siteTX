@@ -1,0 +1,41 @@
+@font-face {
+  font-family: Forum;
+  src: url("../../static/fonts/forum.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+.app-wrapper {
+  margin: 0 auto;
+  width: 100%;
+  min-height: 100vh;
+}
+.app-wrapper-content {
+  background-color: sandybrown;
+}
+
+.header-navbar {
+  width: 980px;
+  font-family: Forum, serif;
+  font-size: 22px;
+  line-height: 44px;
+  padding: 0 10px;
+  color: #FFFFFF;
+}
+.header li {
+  cursor: auto;
+}
+.header ul {
+  display: flex;
+  justify-content: space-evenly;
+  list-style: none;
+  white-space: nowrap;
+}
+.header a {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+.header:hover, .header:visited {
+  text-decoration: none;
+}
+
+/*# sourceMappingURL=main.css.map */
