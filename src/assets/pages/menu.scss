@@ -1,0 +1,27 @@
+.menu {
+  display: flex;
+
+  &-categories {
+    margin-right: 32px;
+
+    &-item {
+      display: block;
+      font-size: 18px;
+
+      &.-active {
+        color: gold;
+      }
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+
+  &-content {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+}

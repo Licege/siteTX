@@ -2,9 +2,11 @@ import {applyMiddleware, combineReducers, compose, createStore} from "redux";
 import thunkMiddleWare from "redux-thunk";
 import contactsReducer from "./contacts-reducer";
 import menuReducer from "./menu-reducer";
+import vacanciesReducer from "./vacancies-reducer";
 
 let rootReducer = combineReducers({
     menuPage: menuReducer,
+    vacanciesPage: vacanciesReducer,
     contacts: contactsReducer
 });
 

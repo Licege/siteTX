@@ -1,4 +1,4 @@
-import {category, dish} from "../types/types";
+import {categoryType, dishType} from "../types/types";
 import {menuAPI} from "../api/api";
 
 const GET_MENU = 'GET_MENU';
@@ -29,20 +29,20 @@ const menuReducer = (state = initialState, action: any): InitialStateType => {
 
 type GetMenuACType = {
     type: typeof GET_MENU,
-    menu: Array<dish>
+    menu: Array<dishType>
 }
 type GetDishACType = {
     type: typeof GET_DISH,
-    dish: dish
+    dish: dishType
 }
 type GetCategoriesACType = {
     type: typeof GET_CATEGORIES,
-    categories: Array<category>
+    categories: Array<categoryType>
 }
 
-const getMenuAC = (menu: Array<dish>): GetMenuACType => ({type: GET_MENU, menu});
-const getDishAC = (dish: dish): GetDishACType => ({type: GET_DISH, dish});
-const getCategoriesACType = (categories: Array<category>): GetCategoriesACType => ({type: GET_CATEGORIES, categories});
+const getMenuAC = (menu: Array<dishType>): GetMenuACType => ({type: GET_MENU, menu});
+const getDishAC = (dish: dishType): GetDishACType => ({type: GET_DISH, dish});
+const getCategoriesACType = (categories: Array<categoryType>): GetCategoriesACType => ({type: GET_CATEGORIES, categories});
 
 export const getCategories = () => async(dispatch: any) => {
     let response = await menuAPI.getCategories();

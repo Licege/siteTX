@@ -9,7 +9,7 @@ export type contactsType = {
     tw: string | null
 }
 
-export type dish = {
+export type dishType = {
     id: number,
     title: string,
     description: string | null,
@@ -19,7 +19,18 @@ export type dish = {
     url: string | null
 }
 
-export type category = {
+export type categoryType = {
     id: number,
-    title: string
+    title: string,
+    title_en: string
+}
+
+export type vacancyType = {
+    id: number,
+    title: string,
+    requirements: string | null,
+    description: string | null,
+    salary_from: number | null,
+    salary_to: number | null,
+    url: string | null
 }

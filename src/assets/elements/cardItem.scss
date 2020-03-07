@@ -1,0 +1,21 @@
+.card_item {
+  width: 300px;
+  margin: 0 24px 24px 0;
+  letter-spacing: 1px;
+
+  &-img {
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+  }
+
+  &-title {
+    text-align: center;
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 24px;
+    height: 48px;
+    background-color: sandybrown;
+    color: saddlebrown;
+  }
+}

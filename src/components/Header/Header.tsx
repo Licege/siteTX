@@ -12,22 +12,22 @@ const Header: React.FC<PropsType> = () => {
             <div className='header-navbar'>
                 <ul>
                     <li>
-                        <NavLink to='/'>ГЛАВНАЯ</NavLink>
+                        <NavLink exact activeClassName='-active' className='header-navbar-item' to='/'>ГЛАВНАЯ</NavLink>
                     </li>
                     <li>
-                        <NavLink to='/menu'>МЕНЮ</NavLink>
+                        <NavLink activeClassName='-active' className='header-navbar-item' to='/menu'>МЕНЮ</NavLink>
                     </li>
                     <li>
-                        <NavLink to='/news'>СОБЫТИЯ</NavLink>
+                        <NavLink activeClassName='-active' className='header-navbar-item' to='/news'>СОБЫТИЯ</NavLink>
                     </li>
                     <li>
-                        <NavLink to='/order'>ЗАКАЗ СТОЛОВ</NavLink>
+                        <NavLink activeClassName='-active' className='header-navbar-item' to='/order'>ЗАКАЗ СТОЛОВ</NavLink>
                     </li>
                     <li>
-                        <NavLink to='/contacts'>О НАС</NavLink>
+                        <NavLink activeClassName='-active' className='header-navbar-item' to='/contacts'>О НАС</NavLink>
                     </li>
                     <li>
-                        <NavLink to='/gallery'>ФОТОГАЛЕРЕЯ</NavLink>
+                        <NavLink activeClassName='-active' className='header-navbar-item' to='/gallery'>ФОТОГАЛЕРЕЯ</NavLink>
                     </li>
                 </ul>
             </div>

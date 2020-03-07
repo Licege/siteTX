@@ -1,11 +1,20 @@
 .header {
   &-navbar {
-    width: 980px;
+    display: block;
+    margin: 0 auto;
+    width: 920px;
     font-family: Forum, serif;
     font-size: 22px;
     line-height: 44px;
     padding: 0 10px;
     color: #FFFFFF;
+
+    &-item {
+
+      &.-active {
+        color: gold;
+      }
+    }
   }
 
   li {

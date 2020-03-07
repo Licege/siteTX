@@ -1,5 +1,5 @@
 import React from 'react';
-import {category, dish} from "../../types/types";
+import {categoryType, dishType} from "../../types/types";
 import {AppStateType} from "../../redux/redux-store";
 import {getCategories, getDish, getMenu} from "../../redux/menu-reducer";
 import {connect} from "react-redux";
@@ -7,9 +7,9 @@ import {compose} from "redux";
 import Menu from "./Menu";
 
 type MapStatePropsType = {
-    dish: dish | null,
-    menu: Array<dish>,
-    categories: Array<category>
+    dish: dishType | null,
+    menu: Array<dishType>,
+    categories: Array<categoryType>
 }
 type MapDispatchPropsType = {
     getDish: (id: number) => void,

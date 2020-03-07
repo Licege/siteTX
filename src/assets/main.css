@@ -1,41 +1,17 @@
-@font-face {
-  font-family: Forum;
-  src: url("../../static/fonts/forum.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-.app-wrapper {
-  margin: 0 auto;
-  width: 100%;
-  min-height: 100vh;
-}
-.app-wrapper-content {
-  background-color: sandybrown;
-}
+/* Error: Can't find stylesheet to import.
+ *   ,
+ * 4 | @import "~bootstrap/scss/bootstrap";
+ *   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *   '
+ *   c:\users\pc\desktop\сайт\сайт\site\src\assets\main.scss 4:9  root stylesheet */
 
-.header-navbar {
-  width: 980px;
-  font-family: Forum, serif;
-  font-size: 22px;
-  line-height: 44px;
-  padding: 0 10px;
-  color: #FFFFFF;
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Can't find stylesheet to import.\a   \2577 \a 4 \2502  @import \"~bootstrap/scss/bootstrap\";\d\a   \2502          ^^^^^^^^^^^^^^^^^^^^^^^^^^^\a   \2575 \a   c:\\users\\pc\\desktop\\\441 \430 \439 \442 \\\441 \430 \439 \442 \\site\\src\\assets\\main.scss 4:9  root stylesheet";
 }
-.header li {
-  cursor: auto;
-}
-.header ul {
-  display: flex;
-  justify-content: space-evenly;
-  list-style: none;
-  white-space: nowrap;
-}
-.header a {
-  text-decoration: none;
-  color: #FFFFFF;
-}
-.header:hover, .header:visited {
-  text-decoration: none;
-}
-
-/*# sourceMappingURL=main.css.map */
