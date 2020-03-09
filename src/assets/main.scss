@@ -2,12 +2,15 @@
 @import "variables/bootstrap-variables";
 
 @import "~bootstrap/scss/bootstrap";
+@import "~react-image-gallery/styles/scss/image-gallery";
 
 @import "app";
 
 @import "./elements/header";
 @import "./elements/footer";
 @import "./elements/cardItem";
+@import "./elements/cardNews";
 
 @import "./pages/page";
 @import "./pages/menu";
+@import "./pages/vacancies";

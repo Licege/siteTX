@@ -34,3 +34,24 @@ export type vacancyType = {
     salary_to: number | null,
     url: string | null
 }
+
+export type imageForGalleryType = {
+    original: string,
+    thumbnail: string
+}
+
+export type orderType = {
+    id: number,
+    label: string,
+    content: string,
+    create_at: string,
+    url: string | null
+}
+
+export type newsType = {
+    id: number,
+    label: string,
+    content: string,
+    create_at: number,
+    url: string | null
+}

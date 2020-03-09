@@ -3,10 +3,12 @@ import thunkMiddleWare from "redux-thunk";
 import contactsReducer from "./contacts-reducer";
 import menuReducer from "./menu-reducer";
 import vacanciesReducer from "./vacancies-reducer";
+import NewsReducer from "./news-reducer";
 
 let rootReducer = combineReducers({
     menuPage: menuReducer,
     vacanciesPage: vacanciesReducer,
+    newsPage: NewsReducer,
     contacts: contactsReducer
 });
 

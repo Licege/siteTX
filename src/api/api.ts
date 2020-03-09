@@ -1,5 +1,5 @@
 import axios from "axios";
-import {categoryType, contactsType, dishType, vacancyType} from "../types/types";
+import {categoryType, contactsType, dishType, orderType, vacancyType} from "../types/types";
 
 const baseURL = 'http://localhost:9090/api';
 
@@ -42,3 +42,26 @@ export const vacanciesAPI = {
     }
 };
 
+export const orderAPI = {
+    postOrder (order: orderType) {
+        return axios.post(baseURL + `/orders/`, order)
+            .then(response => {
+                return response.data;
+            })
+    }
+};
+
+export const newsAPI = {
+    getNews () {
+        return axios.get(baseURL + `/news/`)
+            .then(response => {
+                return response.data;
+            })
+    },
+    getNewsById (id: number) {
+        return axios.get(baseURL + `/news/${id}`)
+            .then(response => {
+                return response.data;
+            })
+    }
+};

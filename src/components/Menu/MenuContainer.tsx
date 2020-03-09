@@ -22,8 +22,6 @@ class MenuContainer extends React.Component<PropsType> {
     componentDidMount(): void {
         if (!this.props.categories.length) this.props.getCategories();
         if (!this.props.menu.length) this.props.getMenu();
-        console.log(this.props.categories);
-        console.log(this.props.menu)
     }
 
     render() {

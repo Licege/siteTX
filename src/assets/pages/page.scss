@@ -1,4 +1,8 @@
 .page {
+  display: block;
+  margin: 0 auto;
+  width: 90%;
+
   &-title {
     text-align: center;
   }

@@ -1,0 +1,51 @@
+.card_news {
+  position: relative;
+  padding: 12px;
+
+  &-content {
+    display: flex;
+
+    &-info {
+      width: 100%;
+
+      &-header {
+        border-bottom: 1px solid saddlebrown;
+
+        &-title {
+          font-size: 1.3em;
+          text-transform: uppercase;
+          color: saddlebrown;
+        }
+
+        a:hover {
+          text-decoration: none;
+          color: saddlebrown;
+        }
+      }
+
+      &-description {
+
+      }
+
+      &-link {
+        position: absolute;
+        right: 16px;
+        bottom: 16px;
+
+        a {
+          font-size: 1.2em;
+          color: sandybrown;
+        }
+
+        &:hover {
+          color: sandybrown;
+        }
+      }
+    }
+
+    &-img {
+      width: 300px;
+      height: 200px;
+    }
+  }
+}

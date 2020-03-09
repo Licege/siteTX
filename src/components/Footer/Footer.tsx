@@ -49,6 +49,7 @@ const Footer: React.FC<PropsType>  = ( {contacts} ) => {
                     </div>
                 </div>
             </div>
+            <div>© Три холма 2020</div>
         </div>
     )
 };

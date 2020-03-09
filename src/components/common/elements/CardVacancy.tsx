@@ -14,7 +14,10 @@ const CardVacancy: React.FC<PropsType> = ( {vacancy} ) => {
                 <h3 className='card_item-title'>{vacancy.title}</h3>
                 {vacancy.requirements && <p><b>Требования:</b> {vacancy.requirements}</p> }
                 {vacancy.description && <p><b>Описание:</b> {vacancy.description}</p> }
-                <p>Заработная плата {vacancy.salary_from && <span>от {vacancy.salary_from} до </span>} {vacancy.salary_to && <span>{vacancy.salary_to}</span>}</p>
+                {vacancy.salary_from && vacancy.salary_to
+                    ? <p>Заработная плата от {vacancy.salary_from} до {vacancy.salary_to} ₽</p>
+                    : vacancy.salary_from || vacancy.salary_to
+                        ? <p>Заработная плата: {vacancy.salary_from || vacancy.salary_to} ₽</p> : ''}
             </div>
         </div>
     )

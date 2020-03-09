@@ -13,8 +13,8 @@ const CardDish: React.FC<PropsType> = ( {dish} ) => {
                 <img className='card_item-img' src={dish.url ? dish.url : altImg} alt={dish.title} />
                 <h3 className='card_item-title'>{dish.title}</h3>
                 {dish.description && <p><b>Описание:</b> {dish.description}</p>}
-                {dish.weight && <p><b>Вес:</b> {dish.weight}</p>}
-                {dish.price && <p><b>Цена:</b> {dish.price}</p>}
+                {dish.weight && <p><b>Вес:</b> {dish.weight} г.</p>}
+                {dish.price && <p><b>Цена:</b> {dish.price} ₽</p>}
             </div>
         </div>
     )
