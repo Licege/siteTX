@@ -1,6 +1,6 @@
 import React from 'react';
 import {newsType} from "../../types/types";
-import CardNews from "../common/elements/cardNews";
+import CardNews from "../common/elements/СardNews";
 
 type PropsType = {
     news: Array<newsType>

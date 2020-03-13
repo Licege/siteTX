@@ -9,6 +9,7 @@ import VacanciesContainer from "./components/Vacancancies/VacanciesContainer";
 import GalleryContainer from "./components/Gallery/GalleryContainer";
 import OrderContainer from "./components/Order/OrderContainer";
 import NewsContainer from "./components/News/NewsContainer";
+import HomeContainer from "./components/Home/HomeContainer";
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
                 <div className='app-wrapper-content'>
                     <HeaderContainer />
                     <div className='page'>
+                        <Route exact path='/' component={HomeContainer} />
                         <Route path='/menu' component={MenuContainer} />
                         <Route exact path='/contacts' component={ContactsContainer} />
                         <Route exact path='/vacancies' component={VacanciesContainer} />

@@ -41,11 +41,11 @@ export type imageForGalleryType = {
 }
 
 export type orderType = {
-    id: number,
-    label: string,
-    content: string,
-    create_at: string,
-    url: string | null
+    name: string,
+    surname: string,
+    count: number,
+    comment: string,
+    create_at: number
 }
 
 export type newsType = {
