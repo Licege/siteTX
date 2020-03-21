@@ -5,6 +5,7 @@ import {getCategories, getDish, getMenu} from "../../redux/menu-reducer";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import Menu from "./Menu";
+import {addDishAC} from "../../redux/bucket-reducer";
 
 type MapStatePropsType = {
     dish: dishType | null,
@@ -15,6 +16,7 @@ type MapDispatchPropsType = {
     getDish: (id: number) => void,
     getMenu: () => void,
     getCategories: () => void
+    addDishToBucket: (id: number) => void
 }
 type PropsType = MapStatePropsType & MapDispatchPropsType
 
@@ -24,8 +26,12 @@ class MenuContainer extends React.Component<PropsType> {
         if (!this.props.menu.length) this.props.getMenu();
     }
 
+    addToBucket = (id: number) => {
+        this.props.addDishToBucket(id);
+    };
+
     render() {
-        return <Menu menu={this.props.menu} categories={this.props.categories} />;
+        return <Menu menu={this.props.menu} categories={this.props.categories} addToBucket={this.addToBucket} />;
     }
 }
 
@@ -46,6 +52,9 @@ let mapDispatchToProps = (dispatch: any) => {
         },
         getCategories: () => {
             dispatch(getCategories())
+        },
+        addDishToBucket: (id: number) => {
+            dispatch(addDishAC(id))
         }
     }
 };

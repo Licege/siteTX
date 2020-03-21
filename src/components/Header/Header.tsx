@@ -1,6 +1,7 @@
 import React from 'react';
 import {contactsType} from "../../types/types";
 import {NavLink} from "react-router-dom";
+import ButtonBucket from "../common/elements/ButtonBucket";
 
 type PropsType = {
     contacts: contactsType | null
@@ -31,7 +32,9 @@ const Header: React.FC<PropsType> = () => {
                     </li>
                 </ul>
             </div>
-
+            <div className='header-bucket'>
+                <ButtonBucket/>
+            </div>
         </div>
     )
 };

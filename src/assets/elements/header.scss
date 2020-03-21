@@ -1,4 +1,10 @@
 .header {
+  position: fixed;
+  display: inline-flex;
+  background-color: sandybrown;
+  width: 100%;
+  z-index: 50;
+
   &-navbar {
     display: block;
     margin: 0 auto;
@@ -15,6 +21,10 @@
         color: gold;
       }
     }
+  }
+
+  &-bucket {
+    margin: auto 24px;
   }
 
   li {

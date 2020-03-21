@@ -4,12 +4,14 @@ import contactsReducer from "./contacts-reducer";
 import menuReducer from "./menu-reducer";
 import vacanciesReducer from "./vacancies-reducer";
 import NewsReducer from "./news-reducer";
+import bucketReducer from "./bucket-reducer";
 
 let rootReducer = combineReducers({
     menuPage: menuReducer,
     vacanciesPage: vacanciesReducer,
     newsPage: NewsReducer,
-    contacts: contactsReducer
+    contacts: contactsReducer,
+    bucket: bucketReducer
 });
 
 type RootReducerType = typeof rootReducer;

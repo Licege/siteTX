@@ -14,9 +14,10 @@ export type dishType = {
     title: string,
     description: string | null,
     weight: number | null,
-    price: number | null,
+    price: number,
     category_id: number | null,
-    url: string | null
+    url: string | null,
+    count: number | null
 }
 
 export type categoryType = {
@@ -42,7 +43,8 @@ export type imageForGalleryType = {
 
 export type orderType = {
     name: string,
-    surname: string,
+    phone: string,
+    date: number,
     count: number,
     comment: string,
     create_at: number
@@ -54,4 +56,40 @@ export type newsType = {
     content: string,
     create_at: number,
     url: string | null
+}
+
+export type deliveryType = {
+    id: bigint,
+    name: string,
+    phone: string,
+    email: string | null,
+    payment_type: number,
+    delivery_type: number,
+    cash_change: number | null,
+    address: addressType | null,
+    restaurant_id: number | null,
+    time_delivery: bigint,
+    count_person: number,
+    discount_card: number | null,
+    comment: string | null,
+    dishes: ordersDishType
+}
+
+export type orderDishType = {
+    id: number,
+    count: number
+}
+
+type addressType = {
+    city: number,
+    street: string,
+    porch: string | null,
+    apartment: string,
+    floor: number | null,
+    intercom: string | null
+}
+
+type ordersDishType = {
+    id: number,
+    count: number
 }

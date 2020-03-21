@@ -6,9 +6,10 @@ import {NavLink} from "react-router-dom";
 type PropsType = {
     menu: Array<dishType>,
     categories: Array<categoryType>
+    addToBucket: (id: number) => void
 }
 
-const Menu: React.FC<PropsType> = ( {menu, categories} ) => {
+const Menu: React.FC<PropsType> = ( {menu, categories, addToBucket} ) => {
     return (
         <div className='card'>
             <div className='card-body'>
@@ -22,7 +23,7 @@ const Menu: React.FC<PropsType> = ( {menu, categories} ) => {
                     </div>
                     <div className='menu-content'>
                         {menu.map((dish) =>
-                            <CardDish dish={dish} key={dish.id}/>
+                            <CardDish dish={dish} addToBucket={addToBucket} key={dish.id}/>
                         )}
                     </div>
                 </div>

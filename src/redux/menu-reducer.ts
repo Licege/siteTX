@@ -8,7 +8,7 @@ const GET_CATEGORIES = 'GET_CATEGORIES';
 
 let initialState = {
     dish: null,
-    menu: [],
+    menu: [] as Array<dishType>,
     categories: []
 };
 

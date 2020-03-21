@@ -8,6 +8,8 @@ import Order from "./Order";
 class OrderContainer extends React.Component {
 
     postOrder = (order: orderType) => {
+        let date = { ...order };
+        date.create_at = Date.parse(new Date().toString());
         orderAPI.postOrder(order)
     };
 
