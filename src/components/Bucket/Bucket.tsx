@@ -1,5 +1,6 @@
 import React from 'react';
 import {dishType, orderDishType} from "../../types/types";
+import altImg from "../../static/img/dish.svg";
 
 type PropsType = {
     dishes: Array<dishType>
@@ -22,15 +23,18 @@ const Bucket: React.FC<PropsType> = ( {dishes, order, increaseDish, reduceDish, 
                 </div>
                 <div className='bucket-table'>
                     {dishes.map(dish => (
-                        <div key={dish.id}>
-                            <div className=''>{dish.title}</div>
-                            <div>
-                                <button onClick={e => reduceDish(dish.id)}>-</button>
-                                { order.find(o => o.id === dish.id)?.count }
-                                <button onClick={e => increaseDish(dish.id)}>+</button>
+                        <div className='bucket-table-row' key={dish.id}>
+                            <img className='bucket-table-row-img' src={dish.url ? dish.url : altImg} alt='' />
+                            <div className='bucket-table-row-info'>
+                                <div className=''>{dish.title}</div>
+                                <div>
+                                    <button onClick={e => reduceDish(dish.id)}>-</button>
+                                    { order.find(o => o.id === dish.id)?.count }
+                                    <button onClick={e => increaseDish(dish.id)}>+</button>
+                                </div>
+                                <div>тут будет цена</div>
+                                <button onClick={e => removeDish(dish.id)}>Удалить</button>
                             </div>
-                            <div>тут будет цена</div>
-                            <button onClick={e => removeDish(dish.id)}>Удалить</button>
                         </div>
                     ))}
                     {!!dishes.length && <div>

@@ -1,6 +1,7 @@
 .bucket {
   &-header {
     display: flex;
+    margin-bottom: 48px;
 
     &-item {
       margin-left: 16px;
@@ -8,6 +9,20 @@
   }
 
   &-table {
+    &-row {
+      display: flex;
+      margin-bottom: 24px;
+
+      &-img {
+        width: 80px;
+      }
+
+      &-info {
+        display: flex;
+        padding-bottom: 8px;
+        border-bottom: 1px solid saddlebrown;
+      }
+    }
 
   }
 }
