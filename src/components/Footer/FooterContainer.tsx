@@ -17,7 +17,6 @@ type PropsType = MapStatePropsType & MapDispatchPropsType
 
 class FooterContainer extends React.Component<PropsType> {
     componentDidMount() {
-        console.log(!this.props.contacts)
         if (!this.props.contacts) {
             this.props.getContacts();
         }

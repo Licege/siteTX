@@ -1,22 +1,25 @@
 import React from 'react';
 import {categoryType, dishType} from "../../types/types";
 import {AppStateType} from "../../redux/redux-store";
-import {getCategories, getDish, getMenu} from "../../redux/menu-reducer";
+import {filterMenuAC, getCategories, getDish, getMenu} from "../../redux/menu-reducer";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import Menu from "./Menu";
 import {addDishAC} from "../../redux/bucket-reducer";
 
 type MapStatePropsType = {
-    dish: dishType | null,
+    dish: dishType | {},
     menu: Array<dishType>,
-    categories: Array<categoryType>
+    filteredMenu: Array<dishType>,
+    categories: Array<categoryType>,
+    match?: {params: {id: string}}
 }
 type MapDispatchPropsType = {
     getDish: (id: number) => void,
     getMenu: () => void,
-    getCategories: () => void
-    addDishToBucket: (id: number) => void
+    getCategories: () => void,
+    addDishToBucket: (id: number) => void,
+    filterMenu: (id: number) => void
 }
 type PropsType = MapStatePropsType & MapDispatchPropsType
 
@@ -26,12 +29,26 @@ class MenuContainer extends React.Component<PropsType> {
         if (!this.props.menu.length) this.props.getMenu();
     }
 
+    componentDidUpdate(prevProps: Readonly<MapStatePropsType & MapDispatchPropsType>) {
+        if (this.props.match!.params && this.props.match!.params.id && prevProps.match!.params.id !== this.props.match!.params.id) {
+            this.filterByCategory();
+        }
+        else if (!this.props.match!.params.id && prevProps.match!.params.id) {
+            this.props.getMenu();
+        }
+    }
+
+    filterByCategory = () => {
+        let category_id = this.props.categories.find(c => c.title_en === this.props.match!.params.id)!.id;
+        this.props.filterMenu(category_id);
+    };
+
     addToBucket = (id: number) => {
         this.props.addDishToBucket(id);
     };
 
     render() {
-        return <Menu menu={this.props.menu} categories={this.props.categories} addToBucket={this.addToBucket} />;
+        return <Menu menu={this.props.filteredMenu} categories={this.props.categories} addToBucket={this.addToBucket} />;
     }
 }
 
@@ -39,6 +56,7 @@ let mapStateToProps = (state: AppStateType) => {
     return {
         dish: state.menuPage.dish,
         menu: state.menuPage.menu,
+        filteredMenu: state.menuPage.filteredMenu,
         categories: state.menuPage.categories
     }
 };
@@ -55,6 +73,9 @@ let mapDispatchToProps = (dispatch: any) => {
         },
         addDishToBucket: (id: number) => {
             dispatch(addDishAC(id))
+        },
+        filterMenu: (id: number) => {
+            dispatch(filterMenuAC(id))
         }
     }
 };

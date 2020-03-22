@@ -16,7 +16,6 @@ type PropsType = MapStatePropsType & MapDispatchPropsType
 
 class HeaderContainer extends React.Component<PropsType> {
     componentDidMount(): void {
-        console.log(!this.props.contacts)
         if (!this.props.contacts) {
             this.props.getContacts();
         }
