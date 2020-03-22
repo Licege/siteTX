@@ -1,4 +1,4 @@
-import {dishType, orderDishType} from "../types/types";
+import {orderDishType} from "../types/types";
 
 const ADD_DISH = 'BUCKET/ADD_DISH';
 const INCREASE_DISH = 'BUCKET/INCREASE_DISH';
