@@ -87,6 +87,12 @@ export type deliveryType = {
     totalPrice: number
 }
 
+export type deliverySettingsType = {
+    city_id: number,
+    price_for_delivery: number,
+    free_delivery: number
+}
+
 type addressType = {
     city: number,
     street: string,

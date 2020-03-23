@@ -1,16 +1,19 @@
-import {deliveryType, dishType, orderDishType} from "../types/types";
+import {deliverySettingsType, deliveryType, dishType, orderDishType} from "../types/types";
+import {bucketAPI} from "../api/api";
 
 const ADD_DISH = 'BUCKET/ADD_DISH';
 const INCREASE_DISH = 'BUCKET/INCREASE_DISH';
 const REDUCE_DISH = 'BUCKET/REDUCE_DISH';
 const REMOVE_DISH = 'BUCKET/REMOVE_DISH';
 const CLEAR_BUCKET = 'BUCKET/CLEAR';
+const GET_DELIVERY_SETTINGS = 'BUCKET/GET_DELIVERY_SETTINGS';
 
 let initialState = {
     delivery: {
         order: [] as Array<orderDishType>,
         totalPrice: 0
-    } as deliveryType
+    } as deliveryType,
+    settings: [] as Array<deliverySettingsType>
 };
 
 type initialStateType = typeof initialState;
@@ -82,6 +85,11 @@ const bucketReducer = (state = initialState, action: ActionType): initialStateTy
                 }
             };
 
+        case GET_DELIVERY_SETTINGS:
+            return {
+                ...state, settings: action.settings
+            };
+
         default:
             return state;
     }
@@ -106,12 +114,22 @@ type removeDishACType = {
 type clearBucketACType = {
     type: typeof CLEAR_BUCKET
 }
-type ActionType = addDishACType | increaseDishACType | reduceDishACType | removeDishACType | clearBucketACType
+type getDeliverySettingsACType = {
+    type: typeof GET_DELIVERY_SETTINGS,
+    settings: Array<deliverySettingsType>
+}
+type ActionType = addDishACType | increaseDishACType | reduceDishACType | removeDishACType | clearBucketACType | getDeliverySettingsACType
 
 export const addDishAC = (dish: dishType): addDishACType => ({type: ADD_DISH, dish});
 export const increaseDishAC = (dish: dishType): increaseDishACType => ({type: INCREASE_DISH, dish});
 export const reduceDishAC = (dish: dishType): reduceDishACType => ({type: REDUCE_DISH, dish});
 export const removeDishAC = (id: number): removeDishACType => ({type: REMOVE_DISH, id});
 export const clearBucketAC = (): clearBucketACType => ({type: CLEAR_BUCKET});
+const getDeliverySettingsAC = (settings: Array<deliverySettingsType>): getDeliverySettingsACType => ({type: GET_DELIVERY_SETTINGS, settings});
+
+export const requestDeliverySettings = () => async(dispatch: any) => {
+    let response = await bucketAPI.getDeliverySettings();
+    dispatch(getDeliverySettingsAC(response));
+};
 
 export default bucketReducer;

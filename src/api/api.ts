@@ -65,3 +65,12 @@ export const newsAPI = {
             })
     }
 };
+
+export const bucketAPI = {
+    getDeliverySettings() {
+        return axios.get(baseURL + `/delivery/settings/`)
+            .then(response => {
+                return response.data;
+            })
+    }
+};

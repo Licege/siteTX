@@ -10,9 +10,10 @@ type PropsType = {
     reduceDish: (dish: dishType) => void
     removeDish: (id: number) => void
     clearBucket: () => void
+    priceForDelivery: (city: number | undefined, price: number) => number
 }
 
-const Bucket: React.FC<PropsType> = ( {dishes, delivery, increaseDish, reduceDish, removeDish, clearBucket} ) => {
+const Bucket: React.FC<PropsType> = ( {dishes, delivery, increaseDish, reduceDish, removeDish, clearBucket, priceForDelivery} ) => {
     console.log(delivery.totalPrice)
     console.log(delivery)
     return (
@@ -43,7 +44,9 @@ const Bucket: React.FC<PropsType> = ( {dishes, delivery, increaseDish, reduceDis
                         <button onClick={e => clearBucket()}>Очистить корзину</button>
                     </div>}
                     {!!delivery.order.length && <div>
-                        <span>{delivery.totalPrice}</span>
+                        <div>Сумма заказа: {delivery.totalPrice}</div>
+                        <div>Стоимость доставки: {priceForDelivery(undefined, delivery.totalPrice)}</div>
+                        <div>Итого: {priceForDelivery(undefined, delivery.totalPrice) + delivery.totalPrice}</div>
                     </div>}
                 </div>
             </div>
