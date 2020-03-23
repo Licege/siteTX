@@ -4,7 +4,7 @@ import altImg from "../../../static/img/dish.svg";
 
 type PropsType = {
     dish: dishType
-    addToBucket: (id: number) => void
+    addToBucket: (dish: dishType) => void
 }
 
 const CardDish: React.FC<PropsType> = ( {dish, addToBucket} ) => {
@@ -16,7 +16,7 @@ const CardDish: React.FC<PropsType> = ( {dish, addToBucket} ) => {
                 {dish.description && <p><b>Описание:</b> {dish.description}</p>}
                 {dish.weight && <p><b>Вес:</b> {dish.weight} г.</p>}
                 {dish.price && <p><b>Цена:</b> {dish.price} ₽</p>}
-                <button onClick={e => addToBucket(dish.id)}>Добавить в корзину</button>
+                <button onClick={e => addToBucket(dish)}>Добавить в корзину</button>
             </div>
         </div>
     )

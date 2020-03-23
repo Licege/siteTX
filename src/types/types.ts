@@ -57,7 +57,7 @@ export type newsType = {
     create_at: number,
     url: string | null
 }
-
+/*
 export type deliveryType = {
     id: bigint,
     name: string,
@@ -74,10 +74,17 @@ export type deliveryType = {
     comment: string | null,
     dishes: ordersDishType
 }
+ */
 
 export type orderDishType = {
     id: number,
-    count: number
+    count: number,
+    price: number
+}
+
+export type deliveryType = {
+    order: Array<orderDishType>,
+    totalPrice: number
 }
 
 type addressType = {
@@ -87,9 +94,4 @@ type addressType = {
     apartment: string,
     floor: number | null,
     intercom: string | null
-}
-
-type ordersDishType = {
-    id: number,
-    count: number
 }

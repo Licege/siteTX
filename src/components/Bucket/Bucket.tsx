@@ -1,18 +1,20 @@
 import React from 'react';
-import {dishType, orderDishType} from "../../types/types";
+import {deliveryType, dishType, orderDishType} from "../../types/types";
 import altImg from "../../static/img/dish.svg";
 
 type PropsType = {
     dishes: Array<dishType>
-    order: Array<orderDishType>
+    delivery: deliveryType
 
-    increaseDish: (id: number) => void
-    reduceDish: (id: number) => void
+    increaseDish: (dish: dishType) => void
+    reduceDish: (dish: dishType) => void
     removeDish: (id: number) => void
     clearBucket: () => void
 }
 
-const Bucket: React.FC<PropsType> = ( {dishes, order, increaseDish, reduceDish, removeDish, clearBucket} ) => {
+const Bucket: React.FC<PropsType> = ( {dishes, delivery, increaseDish, reduceDish, removeDish, clearBucket} ) => {
+    console.log(delivery.totalPrice)
+    console.log(delivery)
     return (
         <div className='card'>
             <div className='card-body'>
@@ -28,17 +30,20 @@ const Bucket: React.FC<PropsType> = ( {dishes, order, increaseDish, reduceDish, 
                             <div className='bucket-table-row-info'>
                                 <div className=''>{dish.title}</div>
                                 <div>
-                                    <button onClick={e => reduceDish(dish.id)}>-</button>
-                                    { order.find(o => o.id === dish.id)?.count }
-                                    <button onClick={e => increaseDish(dish.id)}>+</button>
+                                    <button onClick={e => reduceDish(dish)}>-</button>
+                                    { delivery.order.find(o => o.id === dish.id)?.count }
+                                    <button onClick={e => increaseDish(dish)}>+</button>
                                 </div>
-                                <div>тут будет цена</div>
+                                <div>{ delivery.order.find(o => o.id === dish.id)?.price}</div>
                                 <button onClick={e => removeDish(dish.id)}>Удалить</button>
                             </div>
                         </div>
                     ))}
                     {!!dishes.length && <div>
                         <button onClick={e => clearBucket()}>Очистить корзину</button>
+                    </div>}
+                    {!!delivery.order.length && <div>
+                        <span>{delivery.totalPrice}</span>
                     </div>}
                 </div>
             </div>

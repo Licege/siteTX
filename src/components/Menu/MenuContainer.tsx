@@ -18,7 +18,7 @@ type MapDispatchPropsType = {
     getDish: (id: number) => void,
     getMenu: () => void,
     getCategories: () => void,
-    addDishToBucket: (id: number) => void,
+    addDishToBucket: (dish: dishType) => void,
     filterMenu: (id: number) => void
 }
 type PropsType = MapStatePropsType & MapDispatchPropsType
@@ -43,8 +43,8 @@ class MenuContainer extends React.Component<PropsType> {
         this.props.filterMenu(category_id);
     };
 
-    addToBucket = (id: number) => {
-        this.props.addDishToBucket(id);
+    addToBucket = (dish: dishType) => {
+        this.props.addDishToBucket(dish);
     };
 
     render() {
@@ -71,8 +71,8 @@ let mapDispatchToProps = (dispatch: any) => {
         getCategories: () => {
             dispatch(getCategories())
         },
-        addDishToBucket: (id: number) => {
-            dispatch(addDishAC(id))
+        addDishToBucket: (dish: dishType) => {
+            dispatch(addDishAC(dish))
         },
         filterMenu: (id: number) => {
             dispatch(filterMenuAC(id))
