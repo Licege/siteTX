@@ -1,6 +1,13 @@
 .card_news {
   position: relative;
-  padding: 12px;
+  margin: 12px;
+
+  &-date {
+    margin: auto;
+    white-space: nowrap;
+    font-family: fantasy;
+    font-size: 1.4em;
+  }
 
   &-content {
     display: flex;
@@ -48,4 +55,10 @@
       height: 200px;
     }
   }
+}
+
+.card_news:hover {
+  transform: translateY(-5px);
+  transition: 0.2s;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }

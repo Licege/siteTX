@@ -12,7 +12,7 @@ const CardNews: React.FC<PropsType> = ({news} ) => {
         <div className='card_news'>
             <div className='card'>
                 <div className='card-body card_news-content'>
-                    {news.create_at && <div>{tsToDate(news.create_at, "dd MMMM")}</div>}
+                    {news.create_at && <div className='card_news-date'>{tsToDate(news.create_at, "dd MMMM")}</div>}
                     <img className='card_news-content-img' src={news.url ? news.url : altImg} alt='' />
                     <div className='card_news-content-info'>
                         <div className='card_news-content-info-header'>

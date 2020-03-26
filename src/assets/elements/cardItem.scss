@@ -1,6 +1,6 @@
 .card_item {
   width: 300px;
-  margin: 0 24px 24px 0;
+  margin: 0 32px 32px 0;
   letter-spacing: 1px;
 
   &-img {
@@ -18,6 +18,11 @@
     background-color: sandybrown;
     color: saddlebrown;
     border-radius: 8px;
+  }
+
+  &-button {
+    display: block;
+    margin: 32px auto 8px;
   }
 }
 

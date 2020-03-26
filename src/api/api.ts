@@ -72,5 +72,18 @@ export const bucketAPI = {
             .then(response => {
                 return response.data;
             })
+    },
+
+    getDeliveryGlobalSettings() {
+        return axios.get(baseURL + `/delivery/global-settings/`)
+            .then(response => {
+                return response.data;
+            })
+    },
+    updateDeliveryGlobalSettings() {
+        return axios.put(baseURL + `/delivery/global-settings/`)
+            .then(response => {
+                return response.data;
+            })
     }
 };

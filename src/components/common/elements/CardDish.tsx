@@ -1,6 +1,7 @@
 import React from 'react';
 import {dishType} from "../../../types/types";
 import altImg from "../../../static/img/dish.svg";
+import {Button} from "react-bootstrap";
 
 type PropsType = {
     dish: dishType
@@ -16,7 +17,7 @@ const CardDish: React.FC<PropsType> = ( {dish, addToBucket} ) => {
                 {dish.description && <p><b>Описание:</b> {dish.description}</p>}
                 {dish.weight && <p><b>Вес:</b> {dish.weight} г.</p>}
                 {dish.price && <p><b>Цена:</b> {dish.price} ₽</p>}
-                <button onClick={e => addToBucket(dish)}>Добавить в корзину</button>
+                <Button className='card_item-button' variant='primary' onClick={() => addToBucket(dish)}>Добавить в корзину</Button>
             </div>
         </div>
     )
