@@ -4,7 +4,7 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 import {newsType} from "../../types/types";
 import {requestNews} from "../../redux/news-reducer";
-import News from "./News";
+import News from "../../components/News/News";
 
 type MapStateToPropsType = {
     news: Array<newsType>

@@ -1,7 +1,7 @@
 import React from 'react';
 import {AppStateType} from "../../redux/redux-store";
 import {connect} from "react-redux";
-import Bucket from "./Bucket";
+import Bucket from "../../components/Bucket/Bucket";
 import {deliverySettingsType, deliveryType, dishType, orderDishType} from "../../types/types";
 import {
     clearBucketAC,

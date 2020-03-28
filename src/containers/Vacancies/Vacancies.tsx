@@ -4,7 +4,7 @@ import {getVacancies} from "../../redux/vacancies-reducer";
 import {connect} from "react-redux";
 import {compose} from 'redux';
 import {vacancyType} from "../../types/types";
-import Vacancies from "./Vacancies";
+import Vacancies from "../../components/Vacancancies/Vacancies";
 
 type MapStateToPropsType = {
     vacancies: Array<vacancyType>

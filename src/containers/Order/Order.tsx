@@ -1,7 +1,7 @@
 import React from 'react'
 import {orderType} from "../../types/types";
 import {orderAPI} from "../../api/api";
-import Order from "./Order";
+import Order from "../../components/Order/Order";
 
 
 

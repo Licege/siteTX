@@ -1,5 +1,5 @@
 import React from 'react';
-import Home from "./Home";
+import Home from "../../components/Home/Home";
 import {AppStateType} from "../../redux/redux-store";
 import {compose} from 'redux';
 import {connect} from 'react-redux';

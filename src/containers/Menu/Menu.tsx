@@ -4,7 +4,7 @@ import {AppStateType} from "../../redux/redux-store";
 import {filterMenuAC, getCategories, getDish, getMenu} from "../../redux/menu-reducer";
 import {connect} from "react-redux";
 import {compose} from "redux";
-import Menu from "./Menu";
+import Menu from "../../components/Menu/Menu";
 import {addDishAC} from "../../redux/bucket-reducer";
 
 type MapStatePropsType = {

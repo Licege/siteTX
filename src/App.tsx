@@ -1,17 +1,17 @@
 import React from 'react';
 import './assets/main.scss';
-import FooterContainer from "./components/Footer/FooterContainer";
+import FooterContainer from "./containers/Footer/Footer";
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import HeaderContainer from "./components/Header/HeaderContainer";
-import MenuContainer from "./components/Menu/MenuContainer";
-import ContactsContainer from "./components/Contacts/ContactsContainer";
-import VacanciesContainer from "./components/Vacancancies/VacanciesContainer";
-import GalleryContainer from "./components/Gallery/GalleryContainer";
-import OrderContainer from "./components/Order/OrderContainer";
-import NewsContainer from "./components/News/NewsContainer";
-import HomeContainer from "./components/Home/HomeContainer";
+import HeaderContainer from "./containers/Header/Header";
+import MenuContainer from "./containers/Menu/Menu";
+import ContactsContainer from "./containers/Contacts/Contacts";
+import VacanciesContainer from "./containers/Vacancies/Vacancies";
+import GalleryContainer from "./containers/Gallery/Gallery";
+import OrderContainer from "./containers/Order/Order";
+import NewsContainer from "./containers/News/News";
+import HomeContainer from "./containers/Home/Home";
 import ButtonBucket from "./components/common/elements/ButtonBucket";
-import BucketContainer from "./components/Bucket/BucketContainer";
+import BucketContainer from "./containers/Bucket/Bucket";
 
 function App() {
     return (

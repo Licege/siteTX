@@ -4,7 +4,7 @@ import {AppStateType} from "../../redux/redux-store";
 import {getContacts} from "../../redux/contacts-reducer";
 import {compose} from "redux";
 import {connect} from 'react-redux';
-import Header from "./Header";
+import Header from "../../components/Header/Header";
 
 type MapStatePropsType = {
     contacts: contactsType | null

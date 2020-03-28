@@ -3,7 +3,7 @@ import {contactsType} from "../../types/types";
 import {AppStateType} from "../../redux/redux-store";
 import {connect} from "react-redux";
 import {compose} from 'redux';
-import Contacts from "./Contacts";
+import Contacts from "../../components/Contacts/Contacts";
 
 type PropsType = {
     contacts: contactsType | null

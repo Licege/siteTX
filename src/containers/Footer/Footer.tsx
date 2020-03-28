@@ -1,5 +1,5 @@
 import React from 'react';
-import Footer from "./Footer";
+import Footer from "../../components/Footer/Footer";
 import {connect} from "react-redux";
 import {contactsType} from "../../types/types";
 import {compose} from "redux";
