@@ -28,17 +28,23 @@
     }
   }
 
-  &-content {
-    &-title {
+  &-wrapper {
+    width: 100%;
+
+    &-header {
       font-size: 1.4em;
       text-align: center;
     }
 
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    padding: 16px 0 16px 32px;
+    &-content {
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      padding: 16px 0 16px 32px;
+    }
   }
+
+
 
   &-empty {
     margin: 0 auto;

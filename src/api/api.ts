@@ -87,3 +87,12 @@ export const bucketAPI = {
             })
     }
 };
+
+export const cityAPI = {
+    getCities() {
+        return axios.get(baseURL + `/cities/`)
+            .then(response => {
+                return response.data
+            })
+    }
+};

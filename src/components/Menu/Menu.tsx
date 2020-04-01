@@ -23,8 +23,11 @@ const Menu: React.FC<PropsType> = ( {menu, categories, addToBucket} ) => {
                     </div>
 
                     {menu.length ?
-                        <div className='menu-content'>
-                            {menu.map((dish) => <CardDish dish={dish} addToBucket={addToBucket} key={dish.id}/>)}
+                        <div className='menu-wrapper'>
+                            <div className='menu-wrapper-header'><h4>~ Меню ~</h4></div>
+                            <div className='menu-wrapper-content'>
+                                {menu.map((dish) => <CardDish dish={dish} addToBucket={addToBucket} key={dish.id}/>)}
+                            </div>
                         </div>
                         :
                         <div className='menu-empty'>К сожалению, здесь пока ничего нет :(</div>}

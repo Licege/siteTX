@@ -18,7 +18,6 @@ function App() {
         <BrowserRouter>
             <div className='app-wrapper'>
                 <HeaderContainer />
-                <ButtonBucket />
                 <div className='app-wrapper-content'>
                     <div className='page'>
                         <Switch>

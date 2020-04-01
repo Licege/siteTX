@@ -1,8 +1,8 @@
-import {categoryType} from "../types/types";
+import {orderDishType} from "../types/types";
 
-export function getCategoryNameById(categories: Array<categoryType>, id: number): string | undefined {
-    let category = categories.find(category => category.id === id);
-    return category ? category.title : undefined
+export function getTitleById(items: Array<any>, id: number): string | undefined {
+    let title = items.find(item => item.id === id);
+    return title ? title.title : undefined
 }
 
 const arrMonth: Array<string> = [
@@ -38,5 +38,16 @@ export function tsToDate (timestamp: number, type: string): string {
             return dd + ' ' + MMMM;
         default:
             return dd + ':' + MM + ':' + YYYY;
+    }
+}
+
+export function getDishesKey(dishes: Array<orderDishType>, id: number, key: string): number {
+    switch (key) {
+        case 'count':
+            return <number>dishes.find(dish => dish.id === id)?.count
+        case 'price':
+            return <number>dishes.find(dish => dish.id === id)?.price
+        default:
+            return -1
     }
 }

@@ -5,11 +5,12 @@ import menuReducer from "./menu-reducer";
 import vacanciesReducer from "./vacancies-reducer";
 import NewsReducer from "./news-reducer";
 import bucketReducer from "./bucket-reducer";
+import { reducer as formReducer } from 'redux-form'
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 const persistConfig = {
-    key: 'root',
+    key: 'bucket',
     storage,
 };
 
@@ -18,7 +19,8 @@ let rootReducer = combineReducers({
     vacanciesPage: vacanciesReducer,
     newsPage: NewsReducer,
     contacts: contactsReducer,
-    bucket: bucketReducer
+    bucket: bucketReducer,
+    form: formReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

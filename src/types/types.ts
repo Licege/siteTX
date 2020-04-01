@@ -90,7 +90,18 @@ export type deliveryType = {
 export type deliverySettingsType = {
     city_id: number,
     price_for_delivery: number,
-    free_delivery: number
+    free_delivery: number,
+    is_delivery: boolean
+}
+
+export type deliveryGlobalSettingsType = {
+    is_delivery_working: boolean,
+    phone_for_sms: string
+}
+
+export type cityType = {
+    id: number,
+    title: string
 }
 
 type addressType = {

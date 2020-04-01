@@ -1,47 +1,69 @@
 import React from 'react';
-import {deliveryType, dishType, orderDishType} from "../../types/types";
+import {cityType, deliveryGlobalSettingsType, deliverySettingsType, deliveryType, dishType} from "../../types/types";
 import altImg from "../../static/img/dish.svg";
+import {Button} from "react-bootstrap";
+import FormOrder from "./FormOrder";
+import {DeliverySubmitType} from "../../containers/Bucket/Bucket";
+import {getDishesKey} from "../../plugins/helpers";
 
 type PropsType = {
     dishes: Array<dishType>
     delivery: deliveryType
+    settings: Array<deliverySettingsType>
+    global_settings: deliveryGlobalSettingsType
+    cities: Array<cityType>
+    paymentMethod: string
+    deliveryMethod: string
 
-    increaseDish: (dish: dishType) => void
-    reduceDish: (dish: dishType) => void
+    increaseDishCount: (dish: dishType) => void
+    reduceDishCount: (dish: dishType) => void
+    changeDishCount: (dish: dishType, count: number) => void
     removeDish: (id: number) => void
     clearBucket: () => void
     priceForDelivery: (city: number | undefined, price: number) => number
+    choiceDate: (date: Date | null) => void
+    onSubmit: (data: DeliverySubmitType) => void
 }
 
-const Bucket: React.FC<PropsType> = ( {dishes, delivery, increaseDish, reduceDish, removeDish, clearBucket, priceForDelivery} ) => {
-    console.log(delivery.totalPrice)
-    console.log(delivery)
+const Bucket: React.FC<PropsType> = ( props ) => {
+    const {dishes, delivery, settings, global_settings, cities, paymentMethod, deliveryMethod,
+        increaseDishCount, reduceDishCount, changeDishCount, removeDish, clearBucket, priceForDelivery, choiceDate, onSubmit} = props;
+    const test = (dish: dishType) => {
+        return (event: {target: HTMLInputElement; }) => {
+            changeDishCount(dish, parseInt(event.target.value, 10))
+        }
+    }
+
     return (
         <div className='card'>
             <div className='card-body'>
+                {!!delivery.order.length ?
+                <>
                 <div className='bucket-header'>
-                    <div className='bucket-header-item'>Название:</div>
+                    <div className='bucket-header-title'>Название:</div>
                     <div className='bucket-header-item'>Количество:</div>
                     <div className='bucket-header-item'>Стоимость:</div>
                 </div>
                 <div className='bucket-table'>
                     {dishes.map(dish => (
                         <div className='bucket-table-row' key={dish.id}>
-                            <img className='bucket-table-row-img' src={dish.url ? dish.url : altImg} alt='' />
+                            <img className='bucket-table-row-img' src={dish.url ? dish.url : altImg} alt=''/>
                             <div className='bucket-table-row-info'>
-                                <div className=''>{dish.title}</div>
-                                <div>
-                                    <button onClick={e => reduceDish(dish)}>-</button>
-                                    { delivery.order.find(o => o.id === dish.id)?.count }
-                                    <button onClick={e => increaseDish(dish)}>+</button>
+                                <div className='bucket-table-row-info-title'>{dish.title}</div>
+                                <div className='bucket-table-row-info-count'>
+                                    <span className='custom_subtract' onClick={() => reduceDishCount(dish)}/>
+                                    <input onChange={test(dish)} inputMode='numeric' value={getDishesKey(delivery.order, dish.id, 'count')}/>
+                                    <span className='custom_add' onClick={() => increaseDishCount(dish)}/>
                                 </div>
-                                <div>{ delivery.order.find(o => o.id === dish.id)?.price}</div>
-                                <button onClick={e => removeDish(dish.id)}>Удалить</button>
+                                <div
+                                    className='bucket-table-row-info-ceil'>{getDishesKey(delivery.order, dish.id, 'price')}</div>
                             </div>
+                            <div><span className='bucket-table-row-remove custom_close'
+                                       onClick={() => removeDish(dish.id)}/></div>
                         </div>
                     ))}
                     {!!dishes.length && <div>
-                        <button onClick={e => clearBucket()}>Очистить корзину</button>
+                        <Button variant='secondary' onClick={() => clearBucket()}>Очистить корзину</Button>
                     </div>}
                     {!!delivery.order.length && <div>
                         <div>Сумма заказа: {delivery.totalPrice}</div>
@@ -49,6 +71,18 @@ const Bucket: React.FC<PropsType> = ( {dishes, delivery, increaseDish, reduceDis
                         <div>Итого: {priceForDelivery(undefined, delivery.totalPrice) + delivery.totalPrice}</div>
                     </div>}
                 </div>
+
+                <div className='bucket-order'>
+                    <h3 className='bucket-order-title'>Оформление заказа</h3>
+                    <FormOrder settings={settings}
+                               global_settings={global_settings}
+                               cities={cities}
+                               payment_method={paymentMethod}
+                               delivery_method={deliveryMethod}
+                               choiceDate={choiceDate}
+                               onSubmit={onSubmit} />
+                </div>
+                </> : <div>Корзина пуста</div>}
             </div>
         </div>
     )

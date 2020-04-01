@@ -1,6 +1,5 @@
 import React from 'react';
 import {orderType} from "../../types/types";
-import { reduxForm } from "redux-form";
 import MyDateTimePicker from "../common/elements/MyDateTimePicker";
 import Button from "react-bootstrap/Button";
 
