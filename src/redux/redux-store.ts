@@ -12,6 +12,7 @@ import storage from 'redux-persist/lib/storage';
 const persistConfig = {
     key: 'bucket',
     storage,
+    whitelist: ['bucket']
 };
 
 let rootReducer = combineReducers({

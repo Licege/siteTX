@@ -11,20 +11,21 @@ type PropsType = {
 
 const Menu: React.FC<PropsType> = ( {menu, categories, addToBucket} ) => {
     return (
-        <div className='card'>
-            <div className='card-body'>
+
                 <div className='menu'>
                     <div className='menu-categories'>
                         <div className='menu-categories-title'>Категории</div>
-                        {categories.map((category) =>
-                            <NavLink activeClassName='-active' className='menu-categories-item'
-                                     to={'/menu/' + category.title_en} key={category.id}>{category.title}</NavLink>
-                        )}
+                        <div className='menu-categories-content'>
+                            {categories.map((category) =>
+                                <NavLink activeClassName='-active' className='menu-categories-content-item'
+                                         to={'/menu/' + category.title_en} key={category.id}>{category.title}</NavLink>
+                            )}
+                        </div>
                     </div>
 
                     {menu.length ?
                         <div className='menu-wrapper'>
-                            <div className='menu-wrapper-header'><h4>~ Меню ~</h4></div>
+                            <div className='menu-wrapper-header'>~ Меню ~</div>
                             <div className='menu-wrapper-content'>
                                 {menu.map((dish) => <CardDish dish={dish} addToBucket={addToBucket} key={dish.id}/>)}
                             </div>
@@ -32,8 +33,6 @@ const Menu: React.FC<PropsType> = ( {menu, categories, addToBucket} ) => {
                         :
                         <div className='menu-empty'>К сожалению, здесь пока ничего нет :(</div>}
                 </div>
-            </div>
-        </div>
     )
 };
 

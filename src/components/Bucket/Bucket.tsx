@@ -17,22 +17,17 @@ type PropsType = {
 
     increaseDishCount: (dish: dishType) => void
     reduceDishCount: (dish: dishType) => void
-    changeDishCount: (dish: dishType, count: number) => void
     removeDish: (id: number) => void
     clearBucket: () => void
     priceForDelivery: (city: number | undefined, price: number) => number
     choiceDate: (date: Date | null) => void
     onSubmit: (data: DeliverySubmitType) => void
+    onChange: (dish: dishType) => ((event: {target: HTMLInputElement; }) => void)
 }
 
 const Bucket: React.FC<PropsType> = ( props ) => {
     const {dishes, delivery, settings, global_settings, cities, paymentMethod, deliveryMethod,
-        increaseDishCount, reduceDishCount, changeDishCount, removeDish, clearBucket, priceForDelivery, choiceDate, onSubmit} = props;
-    const test = (dish: dishType) => {
-        return (event: {target: HTMLInputElement; }) => {
-            changeDishCount(dish, parseInt(event.target.value, 10))
-        }
-    }
+        increaseDishCount, reduceDishCount, removeDish, clearBucket, priceForDelivery, choiceDate, onSubmit, onChange} = props;
 
     return (
         <div className='card'>
@@ -52,11 +47,11 @@ const Bucket: React.FC<PropsType> = ( props ) => {
                                 <div className='bucket-table-row-info-title'>{dish.title}</div>
                                 <div className='bucket-table-row-info-count'>
                                     <span className='custom_subtract' onClick={() => reduceDishCount(dish)}/>
-                                    <input onChange={test(dish)} inputMode='numeric' value={getDishesKey(delivery.order, dish.id, 'count')}/>
+                                    <input className='bucket-table-row-info-count-input' onChange={onChange(dish)} inputMode='numeric' value={getDishesKey(delivery.order, dish.id, 'count')}/>
                                     <span className='custom_add' onClick={() => increaseDishCount(dish)}/>
                                 </div>
                                 <div
-                                    className='bucket-table-row-info-ceil'>{getDishesKey(delivery.order, dish.id, 'price')}</div>
+                                    className='bucket-table-row-info-ceil'>{getDishesKey(delivery.order, dish.id, 'price') + ' ₽'}</div>
                             </div>
                             <div><span className='bucket-table-row-remove custom_close'
                                        onClick={() => removeDish(dish.id)}/></div>
@@ -66,9 +61,9 @@ const Bucket: React.FC<PropsType> = ( props ) => {
                         <Button variant='secondary' onClick={() => clearBucket()}>Очистить корзину</Button>
                     </div>}
                     {!!delivery.order.length && <div>
-                        <div>Сумма заказа: {delivery.totalPrice}</div>
-                        <div>Стоимость доставки: {priceForDelivery(undefined, delivery.totalPrice)}</div>
-                        <div>Итого: {priceForDelivery(undefined, delivery.totalPrice) + delivery.totalPrice}</div>
+                        <div>Сумма заказа: {delivery.totalPrice} ₽</div>
+                        <div>Стоимость доставки: {priceForDelivery(undefined, delivery.totalPrice)} ₽</div>
+                        <div>Итого: {priceForDelivery(undefined, delivery.totalPrice) + delivery.totalPrice} ₽</div>
                     </div>}
                 </div>
 

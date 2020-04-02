@@ -1,9 +1,16 @@
 .page {
   display: block;
   margin: 60px auto 0;
-  width: 90%;
+  min-height: calc(100vh - 245px);
+  background-color: #fff;
+  //width: 90%;
 
   &-title {
     text-align: center;
+  }
+
+  @include media-breakpoint-down(lg) {
+    margin: 60px 0 0;
+    width: 100%;
   }
 }

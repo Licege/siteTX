@@ -32,7 +32,7 @@
         justify-content: center;
         width: calc(100% - 120px);
         padding-bottom: 8px;
-        border-bottom: 1px solid saddlebrown;
+        border-bottom: 1px solid $brand-brown;
 
         &-title {
           width: 40%;
@@ -40,6 +40,15 @@
 
         &-count {
           display: flex;
+
+          &-input {
+            width: 30px;
+            border-radius: 50%;
+            border-color: $brand-brown;
+            border-style: solid;
+            text-align: center;
+            outline: none;
+          }
         }
 
         &-ceil {

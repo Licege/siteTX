@@ -12,6 +12,7 @@ const Home: React.FC<PropsType> = () => {
                 <div>
                     Акции
                 </div>
+                <div className='burger -active'><span/></div>
             </div>
         </div>
     )

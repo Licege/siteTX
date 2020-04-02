@@ -12,7 +12,7 @@ import {
     requestDeliverySettings, requestGlobalDeliverySettings
 } from "../../redux/bucket-reducer";
 import {formValueSelector} from "redux-form";
-import {number} from "prop-types";
+import {getMenu} from "../../redux/menu-reducer";
 
 export interface DeliverySubmitType {
     surname: string
@@ -52,6 +52,7 @@ type MapStatePropsType = {
     isDeliveryMethod: string
 }
 type MapDispatchPropsType = {
+    getDishes: () => void
     getSettings: () => void
     getGlobalSettings: () => void
     increaseDishCount: (dish: dishType) => void
@@ -63,17 +64,61 @@ type MapDispatchPropsType = {
 }
 type PropsType = MapStatePropsType & MapDispatchPropsType
 
-class BucketContainer extends React.Component<PropsType> {
+type StateType = {
+    test_payment_method: string
+    test_delivery_method: string
+    deliveryPrice: number
+    totalPrice: number
+}
+
+class BucketContainer extends React.Component<PropsType, StateType> {
+    constructor(props: PropsType) {
+        super(props)
+        this.state = {
+            test_payment_method: 'cash',
+            test_delivery_method: 'home',
+            deliveryPrice: this.priceForDelivery(undefined, this.props.delivery.totalPrice),
+            totalPrice: this.priceForDelivery(undefined, this.props.delivery.totalPrice) + this.props.delivery.totalPrice
+        }
+    }
+
     componentDidMount(): void {
         if (!this.props.settings.length) this.props.getSettings();
         if (!Object.keys(this.props.global_settings).length) this.props.getGlobalSettings();
         if (!this.props.cities.length) this.props.getCities();
+        if (!this.props.dishes.length) this.props.getDishes();
+    }
+/*
+    componentDidUpdate(prevProps: Readonly<MapStatePropsType & MapDispatchPropsType>, prevState: Readonly<StateType>, snapshot?: any): void {
+        if (this.props.address && prevProps.address) {
+            if (prevProps.address.city !== this.props.address.city) {
+                this.setState({deliveryPrice: this.priceForDelivery(this.props.address.city, this.props.delivery.totalPrice)})
+                this.setState({totalPrice: this.state.deliveryPrice + this.props.delivery.totalPrice})
+            }
+            if (prevState.totalPrice !== this.props.delivery.totalPrice) {
+                this.setState({totalPrice: this.props.delivery.totalPrice + this.state.deliveryPrice})
+            }
+
+        }
+        console.log(prevState)
+        console.log(prevProps)
+    }*/
+
+    componentWillUnmount(): void {
     }
 
     priceForDelivery = (city = 1, price: number): number => {
         let settings = this.props.settings.find(s => s.city_id = city)!;
         return price < settings.free_delivery ? settings.price_for_delivery : 0;
     };
+
+    onChange = (dish: dishType) => {
+        return (event: {target: HTMLInputElement; }) => {
+            let value = event.target.value
+            if (value === '') value = '1'
+            this.props.changeDishCount(dish, parseInt(value, 10))
+        }
+    }
 
     choiceDate(date: Date | null) {
         console.log(date ? Date.parse(date.toString()) : null) //to timestamp
@@ -86,12 +131,12 @@ class BucketContainer extends React.Component<PropsType> {
     render() {
         let test_payment_method = 'cash';
         let test_delivery_method = 'home';
+        console.log(this.state.totalPrice)
 
         return <Bucket dishes={this.props.dishes}
                        delivery={this.props.delivery}
                        increaseDishCount={this.props.increaseDishCount}
                        reduceDishCount={this.props.reduceDishCount}
-                       changeDishCount={this.props.changeDishCount}
                        removeDish={this.props.removeDish}
                        clearBucket={this.props.clearBucket}
                        priceForDelivery={this.priceForDelivery}
@@ -101,7 +146,8 @@ class BucketContainer extends React.Component<PropsType> {
                        paymentMethod={test_payment_method}
                        deliveryMethod={test_delivery_method}
                        choiceDate={this.choiceDate}
-                       onSubmit={this.onSubmit} />
+                       onSubmit={this.onSubmit}
+                       onChange={this.onChange} />
     }
 }
 
@@ -119,6 +165,9 @@ let mapStateToProps = (state : AppStateType) => {
 
 let mapDispatchToProps = (dispatch: any) => {
     return {
+        getDishes: () => {
+            dispatch(getMenu());
+        },
         getSettings: () => {
             dispatch(requestDeliverySettings())
         },
