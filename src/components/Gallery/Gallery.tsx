@@ -8,12 +8,10 @@ type PropsType = {
 
 const Gallery: React.FC<PropsType> = ( {images} ) => {
     return (
-        <div className='card'>
-            <div className='card-body'>
-                <h4 className='page-title'>~ Галлерея ~</h4>
+        <div className='page-container'>
+                <h4 className='page-container-title'>~ Галлерея ~</h4>
                 <ImageGallery items={images} />
             </div>
-        </div>
     )
 };
 

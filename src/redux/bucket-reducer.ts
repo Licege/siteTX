@@ -3,7 +3,7 @@ import {
     deliveryGlobalSettingsType,
     deliverySettingsType,
     deliveryType,
-    dishType,
+    dishType, IDeliveryPost,
     orderDishType
 } from "../types/types";
 import {bucketAPI, cityAPI} from "../api/api";
@@ -20,11 +20,12 @@ const GET_DELIVERY_SETTINGS = 'BUCKET/GET_DELIVERY_SETTINGS';
 const GET_DELIVERY_GLOBAL_SETTINGS = 'BUCKET/GET_DELIVERY_GLOBAL_SETTINGS';
 
 const GET_CITIES = 'BUCKET/GET_CITIES';
+const SET_CITY = 'BUCKET/SET_CITY';
 
 let initialState = {
     delivery: {
         order: [] as Array<orderDishType>,
-        totalPrice: 0
+        total_price: 0
     } as deliveryType,
     settings: [] as Array<deliverySettingsType>,
     global_settings: {} as deliveryGlobalSettingsType,
@@ -34,7 +35,6 @@ let initialState = {
 type initialStateType = typeof initialState;
 
 const bucketReducer = (state = initialState, action: ActionType): initialStateType => {
-    let order = [];
     let count = 0;
 
     switch(action.type) {
@@ -51,7 +51,7 @@ const bucketReducer = (state = initialState, action: ActionType): initialStateTy
                                 price: action.dish.price * (order.count + 1)
                             } : order))
                         : [...state.delivery.order, {id: action.dish.id, count: 1, price: action.dish.price}],
-                    totalPrice: state.delivery.totalPrice + action.dish.price,
+                    total_price: state.delivery.total_price + action.dish.price,
                 }
             };
 
@@ -65,7 +65,7 @@ const bucketReducer = (state = initialState, action: ActionType): initialStateTy
                             count: order.count + 1,
                             price: order.price + action.dish.price
                         } : order),
-                    totalPrice: state.delivery.totalPrice + action.dish.price
+                    total_price: state.delivery.total_price + action.dish.price
                 }
             };
 
@@ -81,7 +81,7 @@ const bucketReducer = (state = initialState, action: ActionType): initialStateTy
                             count: order.count - 1,
                             price: order.price - action.dish.price
                         } : order),
-                    totalPrice: state.delivery.totalPrice - action.dish.price
+                    total_price: state.delivery.total_price - action.dish.price
                 }
             };
 
@@ -95,9 +95,9 @@ const bucketReducer = (state = initialState, action: ActionType): initialStateTy
                         count: action.count,
                         price: action.dish.price * action.count
                     } : order),
-                    totalPrice: action.count > count
-                        ? state.delivery.totalPrice + (action.count - 1 - count) * action.dish.price
-                        : state.delivery.totalPrice - (count - action.count + 1) * action.dish.price
+                    total_price: action.count > count
+                        ? state.delivery.total_price + (action.count - 1 - count) * action.dish.price
+                        : state.delivery.total_price - (count - action.count + 1) * action.dish.price
                 }
             };
 
@@ -106,7 +106,7 @@ const bucketReducer = (state = initialState, action: ActionType): initialStateTy
                 ...state,
                 delivery: {
                     order: state.delivery.order.filter(dish => dish.id !== action.id),
-                    totalPrice: state.delivery.totalPrice - state.delivery.order.find(dish => dish.id === action.id)!.price
+                    total_price: state.delivery.total_price - state.delivery.order.find(dish => dish.id === action.id)!.price
                 } };
 
         case CLEAR_BUCKET:
@@ -114,7 +114,7 @@ const bucketReducer = (state = initialState, action: ActionType): initialStateTy
                 ...state,
                 delivery: {
                     order: [],
-                    totalPrice: 0
+                    total_price: 0
                 }
             };
 
@@ -171,6 +171,7 @@ type getCitiesACType = {
     type: typeof GET_CITIES,
     cities: Array<cityType>
 }
+
 type ActionType = addDishACType | increaseDishCountACType | reduceDishCountACType | changeDishCountACType
     | removeDishACType | clearBucketACType | getDeliverySettingsACType | getDeliveryGlobalSettingsACType | getCitiesACType
 
@@ -185,18 +186,22 @@ const getDeliveryGlobalSettingsAC = (settings: deliveryGlobalSettingsType): getD
 const getCitiesAC = (cities: Array<cityType>): getCitiesACType => ({type: GET_CITIES, cities});
 
 export const requestDeliverySettings = () => async(dispatch: any) => {
-    let response = await bucketAPI.getDeliverySettings();
-    dispatch(getDeliverySettingsAC(response));
+    let response = await bucketAPI.getDeliverySettings()
+    dispatch(getDeliverySettingsAC(response))
 };
 
 export const requestGlobalDeliverySettings = () => async(dispatch: any) => {
-    let response = await bucketAPI.getDeliveryGlobalSettings();
+    let response = await bucketAPI.getDeliveryGlobalSettings()
     dispatch(getDeliveryGlobalSettingsAC(response))
 };
 
 export const requestCities = () => async(dispatch: any) => {
-    let response = await cityAPI.getCities();
+    let response = await cityAPI.getCities()
     dispatch(getCitiesAC(response))
 };
+
+export const postOrder = (order: IDeliveryPost) => async(dispatch: any) => {
+    let response = await bucketAPI.postOrder(order)
+}
 
 export default bucketReducer;

@@ -11,7 +11,6 @@ type PropsType = {
 
 const Menu: React.FC<PropsType> = ( {menu, categories, addToBucket} ) => {
     return (
-
                 <div className='menu'>
                     <div className='menu-categories'>
                         <div className='menu-categories-title'>Категории</div>

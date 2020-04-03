@@ -2,44 +2,25 @@ import React from 'react';
 import {AppStateType} from "../../redux/redux-store";
 import {connect} from "react-redux";
 import Bucket from "../../components/Bucket/Bucket";
-import {cityType, deliveryGlobalSettingsType, deliverySettingsType, deliveryType, dishType} from "../../types/types";
+import {
+    addressType,
+    cityType,
+    deliveryGlobalSettingsType,
+    deliverySettingsType,
+    deliveryType,
+    dishType,
+    IDeliveryPost
+} from "../../types/types";
 import {
     changeDishCountAC,
     clearBucketAC,
     increaseDishCountAC,
     reduceDishCountAC,
     removeDishAC, requestCities,
-    requestDeliverySettings, requestGlobalDeliverySettings
+    requestDeliverySettings, requestGlobalDeliverySettings, postOrder
 } from "../../redux/bucket-reducer";
 import {formValueSelector} from "redux-form";
 import {getMenu} from "../../redux/menu-reducer";
-
-export interface DeliverySubmitType {
-    surname: string
-    phone: string
-    email: string | null
-    payment_method: string
-    odd_money: string | null
-    delivery_method: string
-    street: string
-    house: string
-    flat: string | null
-    intercom: string | null
-    floor: string | null
-    //datetime: Date
-    count_person: string | null
-    comment: string | null
-    rule: boolean
-}
-
-type addressType = {
-    city: number,
-    street: string
-    house: string
-    flat: string | null
-    intercom: string | null
-    floor: string | null
-}
 
 type MapStatePropsType = {
     dishes: Array<dishType>
@@ -61,6 +42,7 @@ type MapDispatchPropsType = {
     removeDish: (id: number) => void
     clearBucket: () => void
     getCities: () => void
+    postOrder: (order: IDeliveryPost) => void
 }
 type PropsType = MapStatePropsType & MapDispatchPropsType
 
@@ -68,7 +50,7 @@ type StateType = {
     test_payment_method: string
     test_delivery_method: string
     deliveryPrice: number
-    totalPrice: number
+    orderPrice: number
 }
 
 class BucketContainer extends React.Component<PropsType, StateType> {
@@ -77,8 +59,8 @@ class BucketContainer extends React.Component<PropsType, StateType> {
         this.state = {
             test_payment_method: 'cash',
             test_delivery_method: 'home',
-            deliveryPrice: this.priceForDelivery(undefined, this.props.delivery.totalPrice),
-            totalPrice: this.priceForDelivery(undefined, this.props.delivery.totalPrice) + this.props.delivery.totalPrice
+            deliveryPrice: this.priceForDelivery(undefined, this.props.delivery.total_price),
+            orderPrice: this.props.delivery.total_price
         }
     }
 
@@ -88,23 +70,12 @@ class BucketContainer extends React.Component<PropsType, StateType> {
         if (!this.props.cities.length) this.props.getCities();
         if (!this.props.dishes.length) this.props.getDishes();
     }
-/*
-    componentDidUpdate(prevProps: Readonly<MapStatePropsType & MapDispatchPropsType>, prevState: Readonly<StateType>, snapshot?: any): void {
-        if (this.props.address && prevProps.address) {
-            if (prevProps.address.city !== this.props.address.city) {
-                this.setState({deliveryPrice: this.priceForDelivery(this.props.address.city, this.props.delivery.totalPrice)})
-                this.setState({totalPrice: this.state.deliveryPrice + this.props.delivery.totalPrice})
-            }
-            if (prevState.totalPrice !== this.props.delivery.totalPrice) {
-                this.setState({totalPrice: this.props.delivery.totalPrice + this.state.deliveryPrice})
-            }
 
+    componentDidUpdate(prevProps: Readonly<MapStatePropsType & MapDispatchPropsType>, prevState: Readonly<StateType>): void {
+        if (prevProps.address && this.props.address && prevProps.delivery.total_price !== this.props.delivery.total_price) {
+            this.setState({deliveryPrice: this.priceForDelivery(this.props.address.city, this.props.delivery.total_price)})
+            this.setState({orderPrice: this.props.delivery.total_price})
         }
-        console.log(prevState)
-        console.log(prevProps)
-    }*/
-
-    componentWillUnmount(): void {
     }
 
     priceForDelivery = (city = 1, price: number): number => {
@@ -124,17 +95,20 @@ class BucketContainer extends React.Component<PropsType, StateType> {
         console.log(date ? Date.parse(date.toString()) : null) //to timestamp
     }
 
-    onSubmit(data: DeliverySubmitType) {
-        console.log(data);
+    onSubmit = (data: IDeliveryPost) => {
+        let post = {...data,
+            delivery: {...this.props.delivery, delivery_price: this.state.deliveryPrice},
+            create_at:  Date.parse(new Date().toString())
+        }
+        console.log(post);
+        this.props.postOrder(post)
     }
 
     render() {
-        let test_payment_method = 'cash';
-        let test_delivery_method = 'home';
-        console.log(this.state.totalPrice)
-
         return <Bucket dishes={this.props.dishes}
                        delivery={this.props.delivery}
+                       deliveryPrice={this.state.deliveryPrice}
+                       orderPrice={this.state.orderPrice}
                        increaseDishCount={this.props.increaseDishCount}
                        reduceDishCount={this.props.reduceDishCount}
                        removeDish={this.props.removeDish}
@@ -143,8 +117,8 @@ class BucketContainer extends React.Component<PropsType, StateType> {
                        settings={this.props.settings}
                        global_settings={this.props.global_settings}
                        cities={this.props.cities}
-                       paymentMethod={test_payment_method}
-                       deliveryMethod={test_delivery_method}
+                       paymentMethod={this.state.test_payment_method}
+                       deliveryMethod={this.state.test_delivery_method}
                        choiceDate={this.choiceDate}
                        onSubmit={this.onSubmit}
                        onChange={this.onChange} />
@@ -191,6 +165,9 @@ let mapDispatchToProps = (dispatch: any) => {
         },
         getCities: () => {
             dispatch(requestCities())
+        },
+        postOrder: (order: IDeliveryPost) => {
+            dispatch(postOrder(order))
         }
     }
 };

@@ -5,8 +5,12 @@
   background-color: #fff;
   //width: 90%;
 
-  &-title {
-    text-align: center;
+  &-container {
+    padding: 1.25rem;
+
+    &-title {
+      text-align: center;
+    }
   }
 
   @include media-breakpoint-down(lg) {

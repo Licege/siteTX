@@ -2,9 +2,8 @@ import React from 'react';
 import {reduxForm, Field, InjectedFormProps, FormSection, formValueSelector} from 'redux-form';
 import MyDateTimePicker from "../common/elements/MyDateTimePicker";
 import {Button} from "react-bootstrap";
-import {DeliverySubmitType} from "../../containers/Bucket/Bucket";
 import {connect} from 'react-redux';
-import {cityType, deliveryGlobalSettingsType, deliverySettingsType} from "../../types/types";
+import {cityType, deliveryGlobalSettingsType, deliverySettingsType, IDeliveryPost} from "../../types/types";
 import {getTitleById} from "../../plugins/helpers";
 
 
@@ -26,17 +25,19 @@ interface IMapStateToProps {
     enableReinitialize: boolean
 }
 
-const FormOrder: React.FC<InjectedFormProps<DeliverySubmitType & IMapStateToProps> & PropsType> = ( props ) => {
+const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & PropsType> = (props ) => {
     const {handleSubmit, settings, global_settings, cities, payment_method, delivery_method, choiceDate} = props;
+    let defaultDate = new Date(); defaultDate.setHours(defaultDate.getHours() + 2)
+
     return (
         <form onSubmit={handleSubmit}>
             <div>
                 <label>Ваше имя:</label>
-                <Field name='surname' type='text'  component='input' />
+                <Field name='surname' type='text'  component='input' required />
             </div>
            <div>
                <label>Контактный телефон:</label>
-               <Field name='phone' type='text' component='input' />
+               <Field name='phone' type='text' component='input' required />
            </div>
             <div>
                 <label>E-mail:</label>
@@ -68,12 +69,12 @@ const FormOrder: React.FC<InjectedFormProps<DeliverySubmitType & IMapStateToProp
                 <label>Выберите способ доставки:</label>
                 <div>
                     <label>
-                        <Field name='delivery_method' type='radio' component='input' value='home' disabled={!global_settings.is_delivery_working} /> На дом
+                        <Field name='delivery_type' type='radio' component='input' value='home' disabled={!global_settings.is_delivery_working} /> На дом
                     </label>
                 </div>
                 <div>
                     <label>
-                        <Field name='delivery_method' type='radio' component='input' value='restaurant' /> Самовывоз из ресторана
+                        <Field name='delivery_type' type='radio' component='input' value='restaurant' /> Самовывоз из ресторана
                     </label>
                 </div>
             </div>
@@ -82,7 +83,7 @@ const FormOrder: React.FC<InjectedFormProps<DeliverySubmitType & IMapStateToProp
                 <FormSection name='address'>
                     <div>
                         <label>Город:</label>
-                        <Field name='city' component='select'>
+                        <Field name='city' component='select' required>
                             {settings.map(s => (
                                 s.is_delivery && <option value={s.city_id} key={s.city_id}>{getTitleById(cities, s.city_id)}</option>
                             ))}
@@ -90,11 +91,11 @@ const FormOrder: React.FC<InjectedFormProps<DeliverySubmitType & IMapStateToProp
                     </div>
                     <div>
                         <label>Улица:</label>
-                        <Field name='street' type='text' component='input' />
+                        <Field name='street' type='text' component='input' required />
                     </div>
                     <div>
                         <label>Дом:</label>
-                        <Field name='house' type='text' component='input' />
+                        <Field name='house' type='text' component='input' required />
                     </div>
                     <div>
                         <label>Квартира:</label>
@@ -112,12 +113,11 @@ const FormOrder: React.FC<InjectedFormProps<DeliverySubmitType & IMapStateToProp
                 :
                 <div>
                     <label>Выберите адрес ресторана:</label>
-
                 </div>
             }
             <div>
                 <label>Время доставки:</label>
-                {/*<Field name='datetime' component={MyDateTimePicker} choiceDate={choiceDate} />*/}
+                <Field name='datetime' component={MyDateTimePicker} choiceDate={choiceDate} defautDate={defaultDate} />
             </div>
             <div>
                 <label>Количество персон:</label>
@@ -129,7 +129,7 @@ const FormOrder: React.FC<InjectedFormProps<DeliverySubmitType & IMapStateToProp
             </div>
             <div>
                 <label>
-                    <Field name='rule' type='checkbox' component='input' /> Я согласен на обработку своих персональных данных и принимаю условия Политики конфиденциальности и Пользовательского соглашения
+                    <Field name='rule_agree' type='checkbox' component='input' /> Я согласен на обработку своих персональных данных и принимаю условия Политики конфиденциальности и Пользовательского соглашения
                 </label>
             </div>
             <Button variant='primary' type='submit'>Оформить заказ</Button>
@@ -137,11 +137,11 @@ const FormOrder: React.FC<InjectedFormProps<DeliverySubmitType & IMapStateToProp
     )
 };
 
-let ReduxFormOrder = reduxForm<DeliverySubmitType & IMapStateToProps, PropsType>({
+let ReduxFormOrder = reduxForm<IDeliveryPost & IMapStateToProps, PropsType>({
     form: 'bucketOrderForm',
     initialValues: {
-        payment_method: 'cash',
-        delivery_method: 'home',
+        payment_type: 'cash',
+        delivery_type: 'home',
         address: {
             city: 1
         }
@@ -152,6 +152,6 @@ let ReduxFormOrder = reduxForm<DeliverySubmitType & IMapStateToProps, PropsType>
 const selector = formValueSelector('bucketOrderForm');
 export default connect(
     state => {
-        return selector(state, 'payment_method', 'delivery_method')
+        return selector(state, 'payment_type', 'delivery_type')
     }
 )(ReduxFormOrder);

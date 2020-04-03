@@ -84,7 +84,7 @@ export type orderDishType = {
 
 export type deliveryType = {
     order: Array<orderDishType>,
-    totalPrice: number
+    total_price: number
 }
 
 export type deliverySettingsType = {
@@ -92,6 +92,34 @@ export type deliverySettingsType = {
     price_for_delivery: number,
     free_delivery: number,
     is_delivery: boolean
+}
+
+export interface IDeliveryPost {
+    surname: string
+    phone: string
+    email: string | null
+    payment_type: string
+    odd_money: string | null
+    delivery_type: string
+    address: addressType
+    restaurant_id: number
+    time_delivery: number
+    discount_card?: number
+    create_at: number,
+    status: number,
+    payment_status: number,
+    count_person: string | null
+    comment: string | null
+    rule_agree: boolean
+}
+
+export type addressType = {
+    city: number,
+    street?: string
+    house?: string
+    flat?: string | undefined
+    intercom?: string | undefined
+    floor?: string | undefined
 }
 
 export type deliveryGlobalSettingsType = {
@@ -102,13 +130,4 @@ export type deliveryGlobalSettingsType = {
 export type cityType = {
     id: number,
     title: string
-}
-
-type addressType = {
-    city: number,
-    street: string,
-    porch: string | null,
-    apartment: string,
-    floor: number | null,
-    intercom: string | null
 }
