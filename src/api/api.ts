@@ -1,5 +1,5 @@
 import axios from "axios";
-import {categoryType, contactsType, dishType, orderType, vacancyType} from "../types/types";
+import {categoryType, contactsType, dishType, IDeliveryPost, orderType, vacancyType} from "../types/types";
 
 const baseURL = 'http://localhost:9090/api';
 
@@ -84,6 +84,12 @@ export const bucketAPI = {
         return axios.put(baseURL + `/delivery/global-settings/`)
             .then(response => {
                 return response.data;
+            })
+    },
+    postOrder(order: IDeliveryPost) {
+        return axios.post(baseURL + `/delivery/`, order)
+            .then(response => {
+                return response
             })
     }
 };

@@ -1,0 +1,53 @@
+.burger {
+  display: block;
+  position: relative;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: sandybrown;
+  cursor: pointer;
+
+  span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -1px; // - половина высоты
+    margin-left: -10px; // - половина ширины
+    height: 2px;
+    width: 20px;
+    background-color: $brand-brown;
+
+    &:before, &:after {
+      display: block;
+      position: absolute;
+      content: '';
+      width: 20px;
+      height: 2px;
+      background-color: $brand-brown;
+      transition: 0.2s;
+    }
+
+    &:before {
+      transform: translateY(-5px);
+    }
+
+    &:after {
+      transform: translateY(5px);
+    }
+  }
+
+  &.-active {
+    span {
+      height: 0;
+
+      &:before {
+        transform: rotate(45deg);
+      }
+
+      &:after {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+}

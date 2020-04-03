@@ -8,13 +8,11 @@ type PropsType = {
 
 const News: React.FC<PropsType> = ( {news} ) => {
     return (
-        <div className='card'>
-            <div className='card-body'>
-                <h4 className='page-title'>~ Новости ~</h4>
-                {news.map(n =>
-                    <CardNews news={n} key={n.id}/>
-                )}
-            </div>
+        <div className='page-container'>
+            <h4 className='page-container-title'>~ Новости ~</h4>
+            {news.map(n =>
+                <CardNews news={n} key={n.id}/>
+            )}
         </div>
     )
 };

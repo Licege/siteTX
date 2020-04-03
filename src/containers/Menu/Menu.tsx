@@ -33,9 +33,10 @@ class MenuContainer extends React.Component<PropsType> {
         if (this.props.match!.params && this.props.match!.params.id && prevProps.match!.params.id !== this.props.match!.params.id) {
             this.filterByCategory();
         }
+        /*
         else if (!this.props.match!.params.id && prevProps.match!.params.id) {
             this.props.getMenu();
-        }
+        }*/
     }
 
     filterByCategory = () => {
