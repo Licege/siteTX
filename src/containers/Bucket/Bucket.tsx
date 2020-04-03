@@ -100,7 +100,6 @@ class BucketContainer extends React.Component<PropsType, StateType> {
             delivery: {...this.props.delivery, delivery_price: this.state.deliveryPrice},
             create_at:  Date.parse(new Date().toString())
         }
-        console.log(post);
         this.props.postOrder(post)
     }
 

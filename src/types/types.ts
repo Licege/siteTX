@@ -99,16 +99,15 @@ export interface IDeliveryPost {
     phone: string
     email: string | null
     payment_type: string
-    odd_money: string | null
+    odd_money: number | null
     delivery_type: string
     address: addressType
     restaurant_id: number
     time_delivery: number
     discount_card?: number
     create_at: number,
-    status: number,
     payment_status: number,
-    count_person: string | null
+    count_person: number | null
     comment: string | null
     rule_agree: boolean
 }

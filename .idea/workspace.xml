@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="47fafb2a-478f-42fb-b581-f9a6a12c16fc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/pages/page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/pages/page.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Bucket/Bucket.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Bucket/Bucket.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Bucket/FormOrder.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Bucket/FormOrder.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Contacts/Contacts.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Contacts/Contacts.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Gallery/Gallery.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Gallery/Gallery.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Home/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Home/Home.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Menu/Menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Menu/Menu.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/News/News.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/News/News.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Order/Order.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Order/Order.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/elements/MyDateTimePicker.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/elements/MyDateTimePicker.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/Bucket/Bucket.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Bucket/Bucket.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/bucket-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/bucket-reducer.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/types/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/types.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -32,8 +20,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/containers/Bucket/Bucket.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="36" column="27" lean-forward="true" selection-start-line="36" selection-start-column="27" selection-end-line="36" selection-end-column="27" />
+            <state relative-caret-position="289">
+              <caret line="97" column="32" selection-start-line="97" selection-start-column="32" selection-end-line="97" selection-end-column="32" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
                 <element signature="n#!!block;n#StateType#0" />
@@ -43,9 +31,23 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/types/types.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="223">
+              <caret line="96" column="17" selection-start-line="96" selection-start-column="17" selection-end-line="96" selection-end-column="17" />
+              <folding>
+                <element signature="n#!!block;n#contactsType#0" />
+                <element signature="n#!!block;n#vacancyType#0" />
+                <element signature="n#!!block;n#newsType#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Bucket/Bucket.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1088">
+            <state relative-caret-position="-782">
               <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
             </state>
           </provider>
@@ -54,30 +56,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/Bucket/FormOrder.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1594">
-              <caret line="139" column="38" lean-forward="true" selection-start-line="139" selection-start-column="38" selection-end-line="139" selection-end-column="38" />
+            <state relative-caret-position="286">
+              <caret line="83" column="25" lean-forward="true" selection-start-line="83" selection-start-column="25" selection-end-line="83" selection-end-column="25" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/redux/bucket-reducer.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-28">
-              <caret line="116" column="27" selection-start-line="116" selection-start-column="27" selection-end-line="116" selection-end-column="27" />
-              <folding>
-                <element signature="n#!!block;n#addDishACType#0" />
-                <element signature="n#!!block;n#increaseDishCountACType#0" />
-                <element signature="n#!!block;n#reduceDishCountACType#0" />
-                <element signature="n#!!block;n#changeDishCountACType#0" />
-                <element signature="n#!!block;n#removeDishACType#0" />
-                <element signature="n#!!block;n#clearBucketACType#0" />
-                <element signature="n#!!block;n#getDeliverySettingsACType#0" />
-                <element signature="n#!!block;n#getDeliveryGlobalSettingsACType#0" />
-                <element signature="n#!!block;n#getCitiesACType#0" />
               </folding>
             </state>
           </provider>
@@ -168,15 +150,15 @@
         <option value="$PROJECT_DIR$/src/api/api.ts" />
         <option value="$PROJECT_DIR$/src/components/Bucket/Bucket.tsx" />
         <option value="$PROJECT_DIR$/src/redux/bucket-reducer.ts" />
+        <option value="$PROJECT_DIR$/src/types/types.ts" />
         <option value="$PROJECT_DIR$/src/containers/Bucket/Bucket.tsx" />
         <option value="$PROJECT_DIR$/src/components/Bucket/FormOrder.tsx" />
-        <option value="$PROJECT_DIR$/src/types/types.ts" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="3" />
-    <option name="y" value="81" />
+    <option name="x" value="86" />
+    <option name="y" value="77" />
     <option name="width" value="1692" />
     <option name="height" value="1037" />
   </component>
@@ -357,17 +339,38 @@
       <workItem from="1585771150649" duration="11535000" />
       <workItem from="1585818380593" duration="18704000" />
       <workItem from="1585849361668" duration="12383000" />
-      <workItem from="1585899672324" duration="19012000" />
+      <workItem from="1585899672324" duration="22047000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="324845000" />
+    <option name="totallyTimeSpent" value="327880000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="3" y="65" width="1353" height="829" extended-state="1" />
+    <frame x="69" y="62" width="1353" height="829" extended-state="0" />
     <editor active="true" />
     <layout>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49676025" weight="0.21580547" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="npm" order="2" sideWeight="0.50323975" side_tool="true" weight="0.1992032" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.21520804" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="TypeScript" order="9" weight="0.3294964" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.19109195" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+    <layout-to-restore>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49676025" visible="true" weight="0.21580547" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" sideWeight="0.50323975" side_tool="true" weight="0.1992032" />
@@ -384,27 +387,6 @@
       <window_info anchor="bottom" id="TypeScript" order="9" weight="0.3294964" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.19109195" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49676025" visible="true" weight="0.2013289" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="npm" order="2" sideWeight="0.50323975" side_tool="true" weight="0.1992032" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.21551724" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="TypeScript" order="9" weight="0.3294964" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.3347701" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -787,28 +769,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/bucket-reducer.ts">
+    <entry file="file://$PROJECT_DIR$/src/components/Bucket/Bucket.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-28">
-          <caret line="116" column="27" selection-start-line="116" selection-start-column="27" selection-end-line="116" selection-end-column="27" />
-          <folding>
-            <element signature="n#!!block;n#addDishACType#0" />
-            <element signature="n#!!block;n#increaseDishCountACType#0" />
-            <element signature="n#!!block;n#reduceDishCountACType#0" />
-            <element signature="n#!!block;n#changeDishCountACType#0" />
-            <element signature="n#!!block;n#removeDishACType#0" />
-            <element signature="n#!!block;n#clearBucketACType#0" />
-            <element signature="n#!!block;n#getDeliverySettingsACType#0" />
-            <element signature="n#!!block;n#getDeliveryGlobalSettingsACType#0" />
-            <element signature="n#!!block;n#getCitiesACType#0" />
-          </folding>
+        <state relative-caret-position="-782">
+          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/Bucket/Bucket.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="36" column="27" lean-forward="true" selection-start-line="36" selection-start-column="27" selection-end-line="36" selection-end-column="27" />
+        <state relative-caret-position="289">
+          <caret line="97" column="32" selection-start-line="97" selection-start-column="32" selection-end-line="97" selection-end-column="32" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
             <element signature="n#!!block;n#StateType#0" />
@@ -818,8 +789,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/types/types.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="110" column="31" lean-forward="true" selection-start-line="110" selection-start-column="31" selection-end-line="110" selection-end-column="31" />
+        <state relative-caret-position="223">
+          <caret line="96" column="17" selection-start-line="96" selection-start-column="17" selection-end-line="96" selection-end-column="17" />
           <folding>
             <element signature="n#!!block;n#contactsType#0" />
             <element signature="n#!!block;n#vacancyType#0" />
@@ -828,17 +799,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Bucket/Bucket.tsx">
+    <entry file="file://$PROJECT_DIR$/src/redux/bucket-reducer.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1088">
-          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+        <state relative-caret-position="96">
+          <caret line="163" column="30" lean-forward="true" selection-start-line="163" selection-start-column="30" selection-end-line="163" selection-end-column="30" />
+          <folding>
+            <element signature="n#!!block;n#addDishACType#0" />
+            <element signature="n#!!block;n#increaseDishCountACType#0" />
+            <element signature="n#!!block;n#reduceDishCountACType#0" />
+            <element signature="n#!!block;n#changeDishCountACType#0" />
+            <element signature="n#!!block;n#removeDishACType#0" />
+            <element signature="n#!!block;n#clearBucketACType#0" />
+            <element signature="n#!!block;n#getDeliveryGlobalSettingsACType#0" />
+            <element signature="n#!!block;n#getCitiesACType#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Bucket/FormOrder.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1594">
-          <caret line="139" column="38" lean-forward="true" selection-start-line="139" selection-start-column="38" selection-end-line="139" selection-end-column="38" />
+        <state relative-caret-position="286">
+          <caret line="83" column="25" lean-forward="true" selection-start-line="83" selection-start-column="25" selection-end-line="83" selection-end-column="25" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>

@@ -47,7 +47,7 @@ const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & 
                 <label>Выберите способ оплаты:</label>
                 <div>
                     <label>
-                        <Field name='payment_method' type='radio' component='input' value='cash' /> Наличными
+                        <Field name='payment_type' type='radio' component='input' value='cash' /> Наличными
                     </label>
                     {payment_method === 'cash' && <div>
                         <label>Сдача с:</label>
@@ -56,12 +56,12 @@ const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & 
                 </div>
                 <div>
                     <label>
-                        <Field name='payment_method' type='radio' component='input' value='cashless_payment' /> Безналичный расчет курьеру
+                        <Field name='payment_type' type='radio' component='input' value='cashless_payment' /> Безналичный расчет курьеру
                     </label>
                 </div>
                 <div>
                     <label>
-                        <Field name='payment_method' type='radio' component='input' value='cashless_payment_online' /> Безналичный расчет on-line
+                        <Field name='payment_type' type='radio' component='input' value='cashless_payment_online' /> Безналичный расчет on-line
                     </label>
                 </div>
             </div>
@@ -83,7 +83,7 @@ const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & 
                 <FormSection name='address'>
                     <div>
                         <label>Город:</label>
-                        <Field name='city' component='select' required>
+                        <Field name='city' component='select' type='number' parse={(value: string) => Number(value)} required>
                             {settings.map(s => (
                                 s.is_delivery && <option value={s.city_id} key={s.city_id}>{getTitleById(cities, s.city_id)}</option>
                             ))}
@@ -121,7 +121,7 @@ const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & 
             </div>
             <div>
                 <label>Количество персон:</label>
-                <Field name='count_person' type='text' component='input' />
+                <Field name='count_person' type='text' parse={(value: string) => Number(value)} component='input' />
             </div>
             <div>
                 <label>Пожелания к заказу</label>
@@ -129,7 +129,7 @@ const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & 
             </div>
             <div>
                 <label>
-                    <Field name='rule_agree' type='checkbox' component='input' /> Я согласен на обработку своих персональных данных и принимаю условия Политики конфиденциальности и Пользовательского соглашения
+                    <Field name='rule_agree' type='checkbox' component='input' required /> Я согласен на обработку своих персональных данных и принимаю условия Политики конфиденциальности и Пользовательского соглашения
                 </label>
             </div>
             <Button variant='primary' type='submit'>Оформить заказ</Button>
