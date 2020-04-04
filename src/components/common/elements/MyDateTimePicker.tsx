@@ -34,7 +34,8 @@ const MyDateTimePicker: React.FC<PropsType> = ( {choiceDate, defaultDate} ) => {
                     timeFormat='p'
                     dateFormat="d MMMM p"
                     showTimeSelect
-                    isClearable />
+                    isClearable
+                    className='form-control' />
     )
 };
 

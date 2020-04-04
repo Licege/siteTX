@@ -33,15 +33,15 @@ const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & 
         <form onSubmit={handleSubmit}>
             <div>
                 <label>Ваше имя:</label>
-                <Field name='surname' type='text'  component='input' required />
+                <Field name='surname' type='text' className='form-control' component='input' required />
             </div>
            <div>
                <label>Контактный телефон:</label>
-               <Field name='phone' type='text' component='input' required />
+               <Field name='phone' type='text' className='form-control' component='input' required />
            </div>
             <div>
                 <label>E-mail:</label>
-                <Field name='email' type='text' component='input' />
+                <Field name='email' type='text' className='form-control' component='input' />
             </div>
             <div>
                 <label>Выберите способ оплаты:</label>
@@ -51,7 +51,7 @@ const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & 
                     </label>
                     {payment_method === 'cash' && <div>
                         <label>Сдача с:</label>
-                        <Field name='odd_money' type='text' component='input' />
+                        <Field name='odd_money' type='text' className='form-control' component='input' />
                     </div>}
                 </div>
                 <div>
@@ -91,23 +91,23 @@ const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & 
                     </div>
                     <div>
                         <label>Улица:</label>
-                        <Field name='street' type='text' component='input' required />
+                        <Field name='street' type='text' className='form-control' component='input' required />
                     </div>
                     <div>
                         <label>Дом:</label>
-                        <Field name='house' type='text' component='input' required />
+                        <Field name='house' type='text' className='form-control' component='input' required />
                     </div>
                     <div>
                         <label>Квартира:</label>
-                        <Field name='flat' type='text' component='input' />
+                        <Field name='flat' type='text' className='form-control' component='input' />
                     </div>
                     <div>
                         <label>Домофон:</label>
-                        <Field name='intercom' type='text' component='input' />
+                        <Field name='intercom' type='text' className='form-control' component='input' />
                     </div>
                     <div>
                         <label>Этаж:</label>
-                        <Field name='floor' type='text' component='input' />
+                        <Field name='floor' type='text' className='form-control' component='input' />
                     </div>
                 </FormSection>
                 :
@@ -121,11 +121,11 @@ const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & 
             </div>
             <div>
                 <label>Количество персон:</label>
-                <Field name='count_person' type='text' parse={(value: string) => Number(value)} component='input' />
+                <Field name='count_person' type='text' className='form-control' parse={(value: string) => Number(value)} component='input' />
             </div>
             <div>
                 <label>Пожелания к заказу</label>
-                <Field name='comment' type='text' component='textarea' />
+                <Field name='comment' type='text' className='form-control' component='textarea' />
             </div>
             <div>
                 <label>

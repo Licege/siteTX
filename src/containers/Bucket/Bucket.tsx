@@ -79,8 +79,10 @@ class BucketContainer extends React.Component<PropsType, StateType> {
     }
 
     priceForDelivery = (city = 1, price: number): number => {
-        let settings = this.props.settings.find(s => s.city_id = city)!;
-        return price < settings.free_delivery ? settings.price_for_delivery : 0;
+        if (this.props.settings.length) {
+            let settings = this.props.settings.find(s => s.city_id = city)!;
+            return price < settings.free_delivery ? settings.price_for_delivery : 0;
+        } else return 0
     };
 
     onChange = (dish: dishType) => {

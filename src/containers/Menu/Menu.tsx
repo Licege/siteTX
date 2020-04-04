@@ -39,6 +39,10 @@ class MenuContainer extends React.Component<PropsType> {
         }*/
     }
 
+    onScroll = (event: React.UIEvent<HTMLElement>) => {
+        console.log(window.pageYOffset)
+    }
+
     filterByCategory = () => {
         let category_id = this.props.categories.find(c => c.title_en === this.props.match!.params.id)!.id;
         this.props.filterMenu(category_id);
@@ -49,7 +53,7 @@ class MenuContainer extends React.Component<PropsType> {
     };
 
     render() {
-        return <Menu menu={this.props.filteredMenu} categories={this.props.categories} addToBucket={this.addToBucket} />;
+        return <Menu menu={this.props.filteredMenu} categories={this.props.categories} addToBucket={this.addToBucket} onScroll={this.onScroll} />;
     }
 }
 

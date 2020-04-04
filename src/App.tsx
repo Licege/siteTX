@@ -10,7 +10,6 @@ import GalleryContainer from "./containers/Gallery/Gallery";
 import OrderContainer from "./containers/Order/Order";
 import NewsContainer from "./containers/News/News";
 import HomeContainer from "./containers/Home/Home";
-import ButtonBucket from "./components/common/elements/ButtonBucket";
 import BucketContainer from "./containers/Bucket/Bucket";
 
 function App() {

@@ -1,17 +1,19 @@
 .menu {
   display: flex;
-  height: calc(100vh - 245px);
-  padding: 32px 0 0 16px;
+  position: relative;
+  //height: calc(100vh - 245px);
+  padding: 8px 0 0 16px;
   background-color: #fff;
 
   &-categories {
     //padding-right: 32px;
+    position: fixed;
     border-right-style: inset;
     height: calc(100vh - 287px);
-    width: 350px;
+    width: 250px;
 
     &-title {
-      width: 240px;
+      width: 180px;
       font-size: 1.4em;
       font-family: fantasy;
       text-align: center;
@@ -39,35 +41,22 @@
       }
 
       &:hover {
-        overflow-y: scroll;
+        overflow: auto;
+        overflow-x: hidden!important;
       }
     }
 
     a {
       text-decoration: none;
     }
-/*
-    ::-webkit-scrollbar {
-      width: 12px;
-    }
-
-    ::-webkit-scrollbar-track {
-      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-      border-radius: 10px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      border-radius: 10px;
-      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
-    }
- */
   }
 
   &-wrapper {
+    padding-left: 250px;
     width: 100%;
-    height: calc(100vh - 287px);
-    overflow-y: scroll;
-    overflow-x: hidden;
+    //height: calc(100vh - 287px);
+    //overflow-y: scroll;
+    //overflow-x: hidden;
 
     &-header {
       font-size: 1.6em;
@@ -78,7 +67,7 @@
 
     &-content {
       display: grid;
-      grid-template-columns: repeat(auto-fill,minmax(330px,1fr));
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
       padding: 0 32px;
     }
   }
