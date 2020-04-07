@@ -7,16 +7,21 @@ import {BrowserRouter} from 'react-router-dom';
 import {Provider} from "react-redux";
 import {store, persistor} from "./redux/redux-store";
 import {PersistGate} from "redux-persist/integration/react";
+import DateFnsUtils from '@date-io/date-fns';
+import {MuiPickersUtilsProvider} from "@material-ui/pickers";
+import {ru} from "date-fns/locale";
 
 let rerenderEntireTree = () => {
     ReactDOM.render(
-        <BrowserRouter>
-            <Provider store={store}>
-                <PersistGate loading={null} persistor={persistor}>
-                    <App/>
-                </PersistGate>
-            </Provider>
-        </BrowserRouter>, document.getElementById('root'));
+        <MuiPickersUtilsProvider utils={DateFnsUtils} locale={ru}>
+            <BrowserRouter>
+                <Provider store={store}>
+                    <PersistGate loading={null} persistor={persistor}>
+                        <App/>
+                    </PersistGate>
+                </Provider>
+            </BrowserRouter>
+        </MuiPickersUtilsProvider>, document.getElementById('root'));
 };
 
 rerenderEntireTree();

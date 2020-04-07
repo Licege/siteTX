@@ -1,5 +1,5 @@
 import axios from "axios";
-import {categoryType, contactsType, dishType, IDeliveryPost, orderType, vacancyType} from "../types/types";
+import {categoryType, contactsType, dishType, IDeliveryPost, IOrder, IReview, vacancyType} from "../types/types";
 
 const baseURL = 'http://localhost:9090/api';
 
@@ -43,7 +43,7 @@ export const vacanciesAPI = {
 };
 
 export const orderAPI = {
-    postOrder (order: orderType) {
+    postOrder (order: IOrder) {
         return axios.post(baseURL + `/orders/`, order)
             .then(response => {
                 return response.data;
@@ -102,3 +102,18 @@ export const cityAPI = {
             })
     }
 };
+
+export const reviewsAPI = {
+    getReviews() {
+        return axios.get(baseURL + `/reviews/`)
+            .then(response => {
+                return response
+            })
+    },
+    postReview(review: IReview) {
+        return axios.post(baseURL + `/reviews/`, review)
+            .then(response => {
+                return response
+            })
+    }
+}

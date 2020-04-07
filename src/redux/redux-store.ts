@@ -8,6 +8,7 @@ import bucketReducer from "./bucket-reducer";
 import { reducer as formReducer } from 'redux-form'
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import reviewsReducer from "./reviews-reducer";
 
 const persistConfig = {
     key: 'bucket',
@@ -21,6 +22,7 @@ let rootReducer = combineReducers({
     newsPage: NewsReducer,
     contacts: contactsReducer,
     bucket: bucketReducer,
+    reviewsPage: reviewsReducer,
     form: formReducer
 });
 

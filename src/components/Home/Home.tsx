@@ -3,6 +3,8 @@ import React from 'react';
 type PropsType = {}
 
 const Home: React.FC<PropsType> = () => {
+    let url = "http://navse360.ru/onlyTour/4421"
+
     return (
         <div className='page-container'>
             <div>
@@ -18,6 +20,7 @@ const Home: React.FC<PropsType> = () => {
                 Акции
             </div>
             <div className='burger -active'><span/></div>
+
         </div>
     )
 };

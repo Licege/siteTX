@@ -1,10 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {reduxForm, Field, InjectedFormProps, FormSection, formValueSelector} from 'redux-form';
 import MyDateTimePicker from "../common/elements/MyDateTimePicker";
-import {Button} from "react-bootstrap";
 import {connect} from 'react-redux';
 import {cityType, deliveryGlobalSettingsType, deliverySettingsType, IDeliveryPost} from "../../types/types";
 import {getTitleById} from "../../plugins/helpers";
+import renderTextField from "../common/elements/RenderTextField";
+import validate from './Validate';
+import {FormControl, FormHelperText, InputLabel, RadioGroup, Radio, Button} from "@material-ui/core";
+import Select from "@material-ui/core/Select";
+import renderCheckbox from "../common/elements/RenderCheckbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import MyReactDateTimePicker from "../common/elements/MyReactDateTimePicker";
 
 
 interface PropsType {
@@ -25,89 +31,96 @@ interface IMapStateToProps {
     enableReinitialize: boolean
 }
 
-const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & PropsType> = (props ) => {
+const renderFromHelper = ({ touched, error }: any) => {
+    if (!(touched && error)) {
+        return
+    } else {
+        return <FormHelperText>{touched && error}</FormHelperText>
+    }
+}
+
+const renderSelectField = ({ input, label, meta: { touched, error }, children, ...custom }: any): any => (
+    <FormControl error={touched && error}>
+        <InputLabel htmlFor="city">Город</InputLabel>
+        <Select native {...input} {...custom} inputProps={{name: 'city', id: 'city-bucket'}}>
+            {children}
+        </Select>
+        {renderFromHelper({ touched, error })}
+    </FormControl>
+)
+
+const radioButton = ({ input, ...rest }: any) => (
+    <FormControl>
+        <RadioGroup {...input} {...rest} />
+    </FormControl>
+)
+
+
+
+const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & PropsType> = ( props ) => {
     const {handleSubmit, settings, global_settings, cities, payment_method, delivery_method, choiceDate} = props;
     let defaultDate = new Date(); defaultDate.setHours(defaultDate.getHours() + 2)
+
+    console.log(delivery_method)
+    console.log(payment_method)
 
     return (
         <form onSubmit={handleSubmit}>
             <div>
-                <label>Ваше имя:</label>
-                <Field name='surname' type='text' className='form-control' component='input' required />
+                <Field name='surname' component={renderTextField} label='Ваше имя:' placeholder='Введите имя' />
             </div>
            <div>
-               <label>Контактный телефон:</label>
-               <Field name='phone' type='text' className='form-control' component='input' required />
+               <Field name='phone' component={renderTextField} label='Контактный телефон' placeholder='Введите телефон' />
            </div>
             <div>
-                <label>E-mail:</label>
-                <Field name='email' type='text' className='form-control' component='input' />
+                <Field name='email' component={renderTextField} label='E-mail' placeholder='Введите e-mail' />
             </div>
             <div>
-                <label>Выберите способ оплаты:</label>
                 <div>
-                    <label>
-                        <Field name='payment_type' type='radio' component='input' value='cash' /> Наличными
-                    </label>
-                    {payment_method === 'cash' && <div>
-                        <label>Сдача с:</label>
-                        <Field name='odd_money' type='text' className='form-control' component='input' />
-                    </div>}
+                    <label>Выберите способ оплаты:</label>
                 </div>
-                <div>
-                    <label>
-                        <Field name='payment_type' type='radio' component='input' value='cashless_payment' /> Безналичный расчет курьеру
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <Field name='payment_type' type='radio' component='input' value='cashless_payment_online' /> Безналичный расчет on-line
-                    </label>
-                </div>
+                <Field name='payment_type' component={radioButton}>
+                    <FormControlLabel value='cash' control={<Radio />} label='Наличными' />
+                    <FormControlLabel value='cashless_payment' control={<Radio />} label='Безналичный расчет курьеру' />
+                    <FormControlLabel value='cashless_payment_online' control={<Radio />} label='Безналичный расчет' />
+                </Field>
+                {payment_method === 'cash' && <div>
+                    <Field name='odd_money' component={renderTextField} label='Сдача' placeholder='Сдача с' />
+                </div>}
             </div>
             <div>
-                <label>Выберите способ доставки:</label>
                 <div>
-                    <label>
-                        <Field name='delivery_type' type='radio' component='input' value='home' disabled={!global_settings.is_delivery_working} /> На дом
-                    </label>
+                    <label>Выберите способ доставки:</label>
                 </div>
-                <div>
-                    <label>
-                        <Field name='delivery_type' type='radio' component='input' value='restaurant' /> Самовывоз из ресторана
-                    </label>
-                </div>
+                <Field name='delivery_type' component={radioButton}>
+                    <FormControlLabel value='home' control={<Radio />} label='На дом' />
+                    <FormControlLabel value='restaurant' control={<Radio />} label='Самовывоз из ресторана' />
+                </Field>
             </div>
             {delivery_method === 'home'
                 ?
                 <FormSection name='address'>
                     <div>
-                        <label>Город:</label>
-                        <Field name='city' component='select' type='number' parse={(value: string) => Number(value)} required>
+                        <Field name='city' component={renderSelectField} label='Город'>
                             {settings.map(s => (
                                 s.is_delivery && <option value={s.city_id} key={s.city_id}>{getTitleById(cities, s.city_id)}</option>
                             ))}
                         </Field>
                     </div>
                     <div>
-                        <label>Улица:</label>
-                        <Field name='street' type='text' className='form-control' component='input' required />
+                        <Field name='street' component={renderTextField} label='Улица' placeholder='Введите название улицы' />
                     </div>
                     <div>
-                        <label>Дом:</label>
-                        <Field name='house' type='text' className='form-control' component='input' required />
+                        <Field name='house' component={renderTextField} label='Дом' placeholder='Введите номер дома' />
                     </div>
                     <div>
-                        <label>Квартира:</label>
-                        <Field name='flat' type='text' className='form-control' component='input' />
+                        <Field name='flat' component={renderTextField} label='Квартира' placeholder='Введите номер' />
                     </div>
                     <div>
-                        <label>Домофон:</label>
-                        <Field name='intercom' type='text' className='form-control' component='input' />
+                        <Field name='intercom' component={renderTextField} label='Домофон' placeholder='Введите код' />
                     </div>
                     <div>
-                        <label>Этаж:</label>
-                        <Field name='floor' type='text' className='form-control' component='input' />
+                        <Field name='floor' component={renderTextField} label='Этаж' placeholder='Этаж' />
                     </div>
                 </FormSection>
                 :
@@ -116,23 +129,33 @@ const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & 
                 </div>
             }
             <div>
-                <label>Время доставки:</label>
-                <Field name='datetime' component={MyDateTimePicker} choiceDate={choiceDate} defautDate={defaultDate} />
+                {/*<label>Время доставки:</label>
+                <Field name='datetime' component={MyDateTimePicker} choiceDate={choiceDate} defautDate={defaultDate} />*/}
+                <Field name='datetime' component={MyReactDateTimePicker} placeholder='Выберите дату и время' />
             </div>
             <div>
-                <label>Количество персон:</label>
-                <Field name='count_person' type='text' className='form-control' parse={(value: string) => Number(value)} component='input' />
+                <Field name='count_person'
+                       parse={(value: string) => value != '' ? Number(value) : ''}
+                       type='number'
+                       component={renderTextField}
+                       label='Количество персон'
+                       placeholder='Количество персон' />
             </div>
             <div>
-                <label>Пожелания к заказу</label>
-                <Field name='comment' type='text' className='form-control' component='textarea' />
+                <Field name='comment'
+                       component={renderTextField}
+                       label='Пожелания к заказу'
+                       placeholder='Опишите ваши пожелания'
+                       multiline
+                       rowsMax="6"
+                       margin="normal"/>
             </div>
             <div>
-                <label>
-                    <Field name='rule_agree' type='checkbox' component='input' required /> Я согласен на обработку своих персональных данных и принимаю условия Политики конфиденциальности и Пользовательского соглашения
-                </label>
+                <Field name='rule_agree'
+                       component={renderCheckbox}
+                       label='Я согласен на обработку своих персональных данных и принимаю условия Политики конфиденциальности и Пользовательского соглашения' />
             </div>
-            <Button variant='primary' type='submit'>Оформить заказ</Button>
+            <Button variant='contained' color='primary' type='submit'>Оформить заказ</Button>
         </form>
     )
 };
@@ -146,6 +169,7 @@ let ReduxFormOrder = reduxForm<IDeliveryPost & IMapStateToProps, PropsType>({
             city: 1
         }
     },
+    validate,
     enableReinitialize: true
 })(FormOrder);
 

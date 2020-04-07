@@ -8,9 +8,9 @@ import {
     IDeliveryPost
 } from "../../types/types";
 import altImg from "../../static/img/dish.svg";
-import {Button} from "react-bootstrap";
 import FormOrder from "./FormOrder";
 import {getDishesKey} from "../../plugins/helpers";
+import {Button} from '@material-ui/core';
 
 type PropsType = {
     dishes: Array<dishType>
@@ -27,7 +27,6 @@ type PropsType = {
     reduceDishCount: (dish: dishType) => void
     removeDish: (id: number) => void
     clearBucket: () => void
-    priceForDelivery: (city: number | undefined, price: number) => number
     choiceDate: (date: Date | null) => void
     onSubmit: (data: IDeliveryPost) => void
     onChange: (dish: dishType) => ((event: {target: HTMLInputElement; }) => void)
@@ -35,7 +34,7 @@ type PropsType = {
 
 const Bucket: React.FC<PropsType> = ( props ) => {
     const {dishes, delivery, deliveryPrice, orderPrice, settings, global_settings, cities, paymentMethod, deliveryMethod,
-        increaseDishCount, reduceDishCount, removeDish, clearBucket, priceForDelivery, choiceDate, onSubmit, onChange} = props;
+        increaseDishCount, reduceDishCount, removeDish, clearBucket, choiceDate, onSubmit, onChange} = props;
 
     return (
         <div className='page-container'>
@@ -49,7 +48,7 @@ const Bucket: React.FC<PropsType> = ( props ) => {
                     <div className='bucket-table'>
                         {dishes.map(dish => (
                             <div className='bucket-table-row' key={dish.id}>
-                                <img className='bucket-table-row-img' src={dish.url ? dish.url : altImg} alt=''/>
+                                <img className='bucket-table-row-img' src={dish.file.id !== 0 ? dish.file.url : altImg} alt=''/>
                                 <div className='bucket-table-row-info'>
                                     <div className='bucket-table-row-info-title'>{dish.title}</div>
                                     <div className='bucket-table-row-info-count'>
@@ -67,7 +66,7 @@ const Bucket: React.FC<PropsType> = ( props ) => {
                             </div>
                         ))}
                         {!!dishes.length && <div>
-                            <Button variant='secondary' onClick={() => clearBucket()}>Очистить корзину</Button>
+                            <Button variant='contained' color='secondary' onClick={() => clearBucket()}>Очистить корзину</Button>
                         </div>}
                         {!!delivery.order.length && <div>
                             <div>Сумма заказа: {orderPrice} ₽</div>

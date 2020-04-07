@@ -7,9 +7,10 @@
     letter-spacing: 1px;
 
     &-img {
-      width: 80%;
-      display: block;
-      margin: 0 auto;
+      background-position: 50%;
+      background-repeat: no-repeat;
+      height: 200px;
+      width: 100%;
     }
 
     &-title {
@@ -38,7 +39,7 @@
       padding: 10px 20px;
       bottom: 20px;
       left: 50%;
-      margin-left: -95px;
+      margin-left: -120px;
       //margin: 32px auto 8px;
     }
 

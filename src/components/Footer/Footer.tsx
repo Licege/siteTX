@@ -45,6 +45,7 @@ const Footer: React.FC<PropsType>  = ( {contacts} ) => {
                         <NavLink activeClassName='-active' className='footer-navbar-item' to='/vacancies'>Вакансии</NavLink>
                         <NavLink activeClassName='-active' className='footer-navbar-item' to='/news'>Новости</NavLink>
                         <NavLink activeClassName='-active' className='footer-navbar-item' to='/gallery'>Фотогалерея</NavLink>
+                        <NavLink activeClassName='-active' className='footer-navbar-item' to='/reviews'>Отзывы</NavLink>
                     </div>
                 </div>
             </div>

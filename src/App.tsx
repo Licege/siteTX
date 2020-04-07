@@ -11,6 +11,7 @@ import OrderContainer from "./containers/Order/Order";
 import NewsContainer from "./containers/News/News";
 import HomeContainer from "./containers/Home/Home";
 import BucketContainer from "./containers/Bucket/Bucket";
+import ReviewsContainer from "./containers/Reviews/Reviews";
 
 function App() {
     return (
@@ -28,6 +29,7 @@ function App() {
                             <Route exact path='/order' component={OrderContainer} />
                             <Route exact path='/news' component={NewsContainer} />
                             <Route exact path='/bucket' component={BucketContainer} />
+                            <Route exact path='/reviews' component={ReviewsContainer} />
                         </Switch>
                     </div>
                 </div>

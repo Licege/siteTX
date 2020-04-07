@@ -29,8 +29,8 @@ type MapStatePropsType = {
     global_settings: deliveryGlobalSettingsType
     cities: Array<cityType>
     address: addressType
-    isPaymentMethod: string
-    isDeliveryMethod: string
+    paymentType: string
+    deliveryType: string
 }
 type MapDispatchPropsType = {
     getDishes: () => void
@@ -47,8 +47,6 @@ type MapDispatchPropsType = {
 type PropsType = MapStatePropsType & MapDispatchPropsType
 
 type StateType = {
-    test_payment_method: string
-    test_delivery_method: string
     deliveryPrice: number
     orderPrice: number
 }
@@ -57,8 +55,6 @@ class BucketContainer extends React.Component<PropsType, StateType> {
     constructor(props: PropsType) {
         super(props)
         this.state = {
-            test_payment_method: 'cash',
-            test_delivery_method: 'home',
             deliveryPrice: this.priceForDelivery(undefined, this.props.delivery.total_price),
             orderPrice: this.props.delivery.total_price
         }
@@ -76,10 +72,14 @@ class BucketContainer extends React.Component<PropsType, StateType> {
             this.setState({deliveryPrice: this.priceForDelivery(this.props.address.city, this.props.delivery.total_price)})
             this.setState({orderPrice: this.props.delivery.total_price})
         }
+        if (prevProps.deliveryType && this.props.address && prevProps.deliveryType !== this.props.deliveryType) {
+            this.setState({deliveryPrice: this.priceForDelivery(this.props.address.city, this.props.delivery.total_price)})
+        }
     }
 
     priceForDelivery = (city = 1, price: number): number => {
-        if (this.props.settings.length) {
+        console.log(this.props.deliveryType === 'restaurant')
+        if (this.props.settings.length && this.props.deliveryType !== 'restaurant') {
             let settings = this.props.settings.find(s => s.city_id = city)!;
             return price < settings.free_delivery ? settings.price_for_delivery : 0;
         } else return 0
@@ -114,12 +114,11 @@ class BucketContainer extends React.Component<PropsType, StateType> {
                        reduceDishCount={this.props.reduceDishCount}
                        removeDish={this.props.removeDish}
                        clearBucket={this.props.clearBucket}
-                       priceForDelivery={this.priceForDelivery}
                        settings={this.props.settings}
                        global_settings={this.props.global_settings}
                        cities={this.props.cities}
-                       paymentMethod={this.state.test_payment_method}
-                       deliveryMethod={this.state.test_delivery_method}
+                       paymentMethod={this.props.paymentType}
+                       deliveryMethod={this.props.deliveryType}
                        choiceDate={this.choiceDate}
                        onSubmit={this.onSubmit}
                        onChange={this.onChange} />
@@ -134,7 +133,9 @@ let mapStateToProps = (state : AppStateType) => {
         settings: state.bucket.settings,
         global_settings: state.bucket.global_settings,
         cities: state.bucket.cities,
-        address: selector(state, 'address')
+        address: selector(state, 'address'),
+        paymentType: selector(state, 'payment_type'),
+        deliveryType: selector(state, 'delivery_type')
     }
 };
 

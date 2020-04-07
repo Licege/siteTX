@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import DatePicker from 'react-datepicker'
 import {addDays} from "date-fns";
-//import 'moment/locale/ru';
 
 import "react-datepicker/dist/react-datepicker.css";
 import {ru} from "date-fns/locale";

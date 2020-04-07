@@ -1,16 +1,18 @@
 import React from 'react'
-import {orderType} from "../../types/types";
 import {orderAPI} from "../../api/api";
 import Order from "../../components/Order/Order";
+import {IOrder} from "../../types/types";
 
 
 
 class OrderContainer extends React.Component {
 
-    postOrder = (order: orderType) => {
+    onSubmit = (order: IOrder) => {
+        console.log(order)
+        /*
         let date = { ...order };
         date.create_at = Date.parse(new Date().toString());
-        orderAPI.postOrder(order)
+        orderAPI.postOrder(order)*/
     };
 
     choiceDate(date: Date | null) {
@@ -18,7 +20,7 @@ class OrderContainer extends React.Component {
     }
 
     render() {
-        return <Order postOrder={this.postOrder} choiceDate={this.choiceDate} />;
+        return <Order onSubmit={this.onSubmit} />;
     }
 }
 

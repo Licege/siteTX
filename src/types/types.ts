@@ -9,20 +9,25 @@ export type contactsType = {
     tw: string | null
 }
 
+export type fileType = {
+    id: number
+    url: string
+}
+
 export type dishType = {
-    id: number,
-    title: string,
-    description: string | null,
-    weight: number | null,
-    price: number,
-    category_id: number | null,
-    url: string | null,
+    id: number
+    title: string
+    description: string | null
+    weight: number | null
+    price: number
+    category_id: number | null
     count: number | null
+    file: fileType
 }
 
 export type categoryType = {
-    id: number,
-    title: string,
+    id: number
+    title: string
     title_en: string
 }
 
@@ -37,17 +42,27 @@ export type vacancyType = {
 }
 
 export type imageForGalleryType = {
-    original: string,
+    original: string
     thumbnail: string
 }
 
-export type orderType = {
-    name: string,
-    phone: string,
-    date: number,
-    count: number,
-    comment: string,
+export interface IOrder {
+    surname: string
+    phone: string
+    datetime: string | Date
+    count: string
+    comment: string
+}
+
+export interface IReview {
+    forename: string
+    surname: string
+    phone: string
+    rating: number
+    description: string
+    rule_agree: boolean
     create_at: number
+    status?: number
 }
 
 export type newsType = {
@@ -130,3 +145,4 @@ export type cityType = {
     id: number,
     title: string
 }
+

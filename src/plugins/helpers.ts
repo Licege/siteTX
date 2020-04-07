@@ -1,5 +1,7 @@
 import {orderDishType} from "../types/types";
 
+export const isIos = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+
 export function getTitleById(items: Array<any>, id: number): string | undefined {
     let title = items.find(item => item.id === id);
     return title ? title.title : undefined
