@@ -3,7 +3,6 @@
   margin: 60px auto 0;
   min-height: calc(100vh - 245px);
   background-color: #fff;
-  //width: 90%;
 
   &-container {
     padding: 1.25rem;
@@ -12,11 +11,4 @@
       text-align: center;
     }
   }
-/*
-  @include media-breakpoint-down(lg) {
-    margin: 60px 0 0;
-    width: 100%;
-  }
-
- */
 }

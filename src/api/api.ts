@@ -19,8 +19,14 @@ export const menuAPI = {
                 return response.data;
             })
     },
+    getMenuByCategory(category: string) {
+        return axios.get<Array<dishType>>(baseURL + `/menu/category/${category}`)
+            .then(respose => {
+                return respose
+            })
+    },
     getDish(id: number) {
-        return axios.get<dishType>(baseURL + `/menu/${id}`)
+        return axios.get<dishType>(baseURL + `/menu/dish/${id}`)
             .then(response => {
                 return response.data;
             })

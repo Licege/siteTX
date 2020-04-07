@@ -53,3 +53,10 @@ export function getDishesKey(dishes: Array<orderDishType>, id: number, key: stri
             return -1
     }
 }
+
+export function cropText(text: string, limit = 100): string {
+    if (text.length > limit) {
+        text = text.slice(0, limit) + '...'
+    }
+    return text
+}

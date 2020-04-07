@@ -2,6 +2,7 @@ import React from 'react';
 import {contactsType} from "../../types/types";
 import {NavLink} from "react-router-dom";
 import ButtonBucket from "../common/elements/ButtonBucket";
+import logo from "../../static/img/logo.png";
 
 type PropsType = {
     contacts: contactsType | null
@@ -10,6 +11,8 @@ type PropsType = {
 const Header: React.FC<PropsType> = () => {
     return (
         <div className='header'>
+            <div className='burger'><span/></div>
+            <img className='header-logo' src={logo} />
             <div className='header-navbar'>
                 <ul>
                     <li>

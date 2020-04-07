@@ -15,22 +15,27 @@
 
     &-title {
       text-align: center;
-      padding: 10px;
       margin: 8px 0;
       color: $brand-brown;
       border-radius: 8px;
     }
 
     &-describe {
-      margin-bottom: 1.6rem;
+      height: 100px;
+      overflow: hidden;
     }
 
-    &-weight {
-      margin-bottom: 0.5rem;
-    }
+    &-info {
+      position: absolute;
+      top: 75%;
 
-    &-price {
-      margin-bottom: 0.5rem;
+      &-weight {
+        margin-bottom: 0.5rem;
+      }
+
+      &-price {
+        margin-bottom: 0.5rem;
+      }
     }
 
     &-button {

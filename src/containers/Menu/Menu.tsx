@@ -1,7 +1,7 @@
 import React from 'react';
 import {categoryType, dishType} from "../../types/types";
 import {AppStateType} from "../../redux/redux-store";
-import {filterMenuAC, getCategories, getDish, getMenu} from "../../redux/menu-reducer";
+import {getCategories, getDish, getMenu, getMenuByCategory} from "../../redux/menu-reducer";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import Menu from "../../components/Menu/Menu";
@@ -10,7 +10,6 @@ import {addDishAC} from "../../redux/bucket-reducer";
 type MapStatePropsType = {
     dish: dishType | {},
     menu: Array<dishType>,
-    filteredMenu: Array<dishType>,
     categories: Array<categoryType>,
     match?: {params: {id: string}}
 }
@@ -18,42 +17,37 @@ type MapDispatchPropsType = {
     getDish: (id: number) => void,
     getMenu: () => void,
     getCategories: () => void,
-    addDishToBucket: (dish: dishType) => void,
-    filterMenu: (id: number) => void
+    getMenuByCategory: (category: string) => void,
+    addDishToBucket: (dish: dishType) => void
 }
 type PropsType = MapStatePropsType & MapDispatchPropsType
 
 class MenuContainer extends React.Component<PropsType> {
     componentDidMount(): void {
         if (!this.props.categories.length) this.props.getCategories();
-        if (!this.props.menu.length) this.props.getMenu();
+        if (!this.props.match!.params.id) {
+            this.props.getMenu();
+        } else {
+            this.props.getMenuByCategory(this.props.match!.params.id)
+        }
     }
 
     componentDidUpdate(prevProps: Readonly<MapStatePropsType & MapDispatchPropsType>) {
         if (this.props.match!.params && this.props.match!.params.id && prevProps.match!.params.id !== this.props.match!.params.id) {
-            this.filterByCategory();
+            this.props.getMenuByCategory(this.props.match!.params.id)
         }
-        /*
-        else if (!this.props.match!.params.id && prevProps.match!.params.id) {
-            this.props.getMenu();
-        }*/
     }
 
     onScroll = (event: React.UIEvent<HTMLElement>) => {
         console.log(window.pageYOffset)
     }
 
-    filterByCategory = () => {
-        let category_id = this.props.categories.find(c => c.title_en === this.props.match!.params.id)!.id;
-        this.props.filterMenu(category_id);
-    };
-
     addToBucket = (dish: dishType) => {
         this.props.addDishToBucket(dish);
     };
 
     render() {
-        return <Menu menu={this.props.filteredMenu} categories={this.props.categories} addToBucket={this.addToBucket} onScroll={this.onScroll} />;
+        return <Menu menu={this.props.menu} categories={this.props.categories} addToBucket={this.addToBucket} onScroll={this.onScroll} />;
     }
 }
 
@@ -61,7 +55,6 @@ let mapStateToProps = (state: AppStateType) => {
     return {
         dish: state.menuPage.dish,
         menu: state.menuPage.menu,
-        filteredMenu: state.menuPage.filteredMenu,
         categories: state.menuPage.categories
     }
 };
@@ -76,11 +69,11 @@ let mapDispatchToProps = (dispatch: any) => {
         getCategories: () => {
             dispatch(getCategories())
         },
+        getMenuByCategory: (category: string) => {
+            dispatch(getMenuByCategory(category))
+        },
         addDishToBucket: (dish: dishType) => {
             dispatch(addDishAC(dish))
-        },
-        filterMenu: (id: number) => {
-            dispatch(filterMenuAC(id))
         }
     }
 };
