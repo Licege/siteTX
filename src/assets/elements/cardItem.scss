@@ -1,58 +1,57 @@
 .card_item {
-  &-wrapper {
-    position: relative;
-    width: 90%;
-    height: 560px;
-    margin: 0 auto 32px;
-    letter-spacing: 1px;
+  position: relative;
+  width: 90%;
+  height: 560px;
+  margin: 0 auto 32px;
+  letter-spacing: 1px;
+  max-width: 360px;
 
-    &-img {
-      background-position: 50%;
-      background-repeat: no-repeat;
-      height: 200px;
-      width: 100%;
+  &-img {
+    background-position: 50%;
+    background-repeat: no-repeat;
+    height: 200px;
+    width: 100%;
+  }
+
+  &-title {
+    text-align: center;
+    margin: 8px 0;
+    color: $brand-brown;
+    border-radius: 8px;
+  }
+
+  &-describe {
+    height: 100px;
+    overflow: hidden;
+  }
+
+  &-info {
+    position: absolute;
+    top: 75%;
+
+    &-weight {
+      margin-bottom: 0.5rem;
     }
 
-    &-title {
-      text-align: center;
-      margin: 8px 0;
-      color: $brand-brown;
-      border-radius: 8px;
+    &-price {
+      margin-bottom: 0.5rem;
     }
+  }
 
-    &-describe {
-      height: 100px;
-      overflow: hidden;
-    }
+  &-button {
+    display: block;
+    position: absolute;
+    padding: 10px 20px;
+    bottom: 20px;
+    left: 50%;
+    margin-left: -120px;
+    //margin: 32px auto 8px;
+  }
 
-    &-info {
-      position: absolute;
-      top: 75%;
-
-      &-weight {
-        margin-bottom: 0.5rem;
-      }
-
-      &-price {
-        margin-bottom: 0.5rem;
-      }
-    }
-
-    &-button {
-      display: block;
-      position: absolute;
-      padding: 10px 20px;
-      bottom: 20px;
-      left: 50%;
-      margin-left: -120px;
-      //margin: 32px auto 8px;
-    }
-
-    &:hover {
-      //transform: translateY(-5px);
-      transform: scale(1.05);
-      transition: 0.2s;
-      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-    }
+  &:hover {
+    //transform: translateY(-5px);
+    transform: scale(1.05);
+    transition: 0.2s;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
 }

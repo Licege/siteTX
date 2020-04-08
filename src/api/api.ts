@@ -1,5 +1,14 @@
 import axios from "axios";
-import {categoryType, contactsType, dishType, IDeliveryPost, IOrder, IReview, vacancyType} from "../types/types";
+import {
+    categoryType,
+    contactsType,
+    dishType,
+    IDeliveryPost,
+    IOrder,
+    IReview,
+    resumeType,
+    vacancyType
+} from "../types/types";
 
 const baseURL = 'http://localhost:9090/api';
 
@@ -44,6 +53,12 @@ export const vacanciesAPI = {
         return axios.get<Array<vacancyType>>(baseURL + `/vacancy/`)
             .then(response => {
                 return response.data;
+            })
+    },
+    postResume(resume: resumeType) {
+        return axios.post<resumeType>(baseURL + `/resume/`, resume)
+            .then(response => {
+                return response
             })
     }
 };

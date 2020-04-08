@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -9,7 +9,6 @@ import renderTextField from "../common/elements/RenderTextField";
 import {TransitionProps} from '@material-ui/core/transitions/transition';
 import Slide from '@material-ui/core/Slide/Slide';
 import {createStyles, Theme} from "@material-ui/core";
-import Rating from '@material-ui/lab/Rating';
 import renderCheckbox from "../common/elements/RenderCheckbox";
 import validate from "./Validate";
 import {IReview} from "../../types/types";

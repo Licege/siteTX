@@ -60,3 +60,7 @@ export function cropText(text: string, limit = 100): string {
     }
     return text
 }
+
+export function dateFormParse(date: Date | null): number {
+    return date ? Date.parse(date.toString()) : 0
+}

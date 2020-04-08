@@ -1,18 +1,21 @@
 import React from 'react';
-import {contactsType} from "../../types/types";
+import FormContacts from './FormContacts'
+import {contactsType, reviewType} from "../../types/types";
 
 type PropsType = {
     contacts: contactsType | null
+
+    postForm: (data: reviewType) => void
 }
 
-const Contacts: React.FC<PropsType> = ({contacts} ) => {
+const Contacts: React.FC<PropsType> = ({contacts, postForm} ) => {
     return (
         <div className='page-container'>
             <h3>О нас</h3>
             <p>*Раздел "о нас"*</p>
             <h3>Свяжитесь с нами</h3>
             <p>С удовольствием ответим на все вопросы, просто заполните форму:</p>
-            <div>*Тут должна быть форма*</div>
+            <FormContacts onSubmit={postForm} />
         </div>
     )
 };

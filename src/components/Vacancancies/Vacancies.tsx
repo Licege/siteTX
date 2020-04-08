@@ -8,16 +8,12 @@ type PropsType = {
 
 const Vacancies: React.FC<PropsType> = ( {vacancies} ) => {
     return (
-        <div className='page'>
-            <div className='card'>
-                <div className='card-body'>
-                    <h4 className='page-title'>~ Вакансии ~</h4>
-                    <div className='vacancies-content'>
-                        {vacancies.map(vacancy =>
-                            <CardVacancy vacancy={vacancy} key={vacancy.id}/>
-                        )}
-                    </div>
-                </div>
+        <div className='page-container'>
+            <h4 className='page-container-title'>~ Вакансии ~</h4>
+            <div className='vacancies-container'>
+                {vacancies.map(vacancy =>
+                    <CardVacancy vacancy={vacancy} key={vacancy.id}/>
+                )}
             </div>
         </div>
     )

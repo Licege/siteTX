@@ -1,0 +1,51 @@
+.mobile_menu {
+  position: fixed;
+  top: 60px;
+  height: calc(100vh - 60px);
+  width: 100%;
+  background-color: saddlebrown;
+  overflow: auto;
+
+  &-wrapper {
+    position: relative;
+
+    &-close {
+      display: none;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+
+      @include media-breakpoint-up(lg) {
+        display: block;
+      }
+    }
+
+    &-border {
+      display: block;
+      margin-left: -40px;
+      border: 2px outset;
+    }
+
+    ul {
+      display: block;
+
+      li {
+        padding: 20px 10px;
+        font-size: 18px;
+
+        &:nth-last-child(1) {
+          margin-bottom: 30px;
+        }
+        a {
+          &:hover {
+            color: gold;
+            transition: 0.3s;
+          }
+        }
+      }
+    }
+  }
+
+
+}

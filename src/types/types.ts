@@ -9,6 +9,14 @@ export type contactsType = {
     tw: string | null
 }
 
+export type reviewType = {
+    id: number,
+    name: string,
+    phone: string,
+    comment: string,
+    create_at: number
+}
+
 export type fileType = {
     id: number
     url: string
@@ -39,6 +47,20 @@ export type vacancyType = {
     salary_from: number | null,
     salary_to: number | null,
     url: string | null
+}
+
+export type resumeType = {
+    name: string
+    surname: string
+    patronymic: string
+    education: string
+    experience: string
+    date_birth: number
+    address: string
+    phone: string
+    email: string
+    vacancy_id: number
+    create_at: number
 }
 
 export type imageForGalleryType = {

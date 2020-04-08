@@ -12,6 +12,7 @@ import NewsContainer from "./containers/News/News";
 import HomeContainer from "./containers/Home/Home";
 import BucketContainer from "./containers/Bucket/Bucket";
 import ReviewsContainer from "./containers/Reviews/Reviews";
+import ResumeContainer from "./containers/Vacancies/Resume/Resume"
 
 function App() {
     return (
@@ -30,6 +31,7 @@ function App() {
                             <Route exact path='/news' component={NewsContainer} />
                             <Route exact path='/bucket' component={BucketContainer} />
                             <Route exact path='/reviews' component={ReviewsContainer} />
+                            <Route exact path='/resume/:id' component={ResumeContainer} />
                         </Switch>
                     </div>
                 </div>

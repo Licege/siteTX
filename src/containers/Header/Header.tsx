@@ -1,41 +1,39 @@
 import React from 'react';
-import {contactsType} from "../../types/types";
+import {categoryType, contactsType} from "../../types/types";
 import {AppStateType} from "../../redux/redux-store";
-import {getContacts} from "../../redux/contacts-reducer";
 import {compose} from "redux";
 import {connect} from 'react-redux';
 import Header from "../../components/Header/Header";
+import {getCategories} from "../../redux/menu-reducer";
 
 type MapStatePropsType = {
-    contacts: contactsType | null
+    categories: Array<categoryType>
 }
 type MapDispatchPropsType = {
-    getContacts: () => void
+    getCategories: () => void
 }
 type PropsType = MapStatePropsType & MapDispatchPropsType
 
 class HeaderContainer extends React.Component<PropsType> {
     componentDidMount(): void {
-        if (!this.props.contacts) {
-            this.props.getContacts();
-        }
+        if (!this.props.categories.length) this.props.getCategories();
     }
 
     render() {
-        return <Header contacts={this.props.contacts} />
+        return <Header categories={this.props.categories} />
     }
 }
 
 let mapStateToProps = (state: AppStateType) => {
     return {
-        contacts: state.contacts.contacts
+        categories: state.menuPage.categories
     }
 };
 
 let mapDispatchToProps = (dispatch: any) => {
     return {
-        getContacts: () => {
-            dispatch(getContacts())
+        getCategories: () => {
+            dispatch(getCategories())
         }
     }
 };

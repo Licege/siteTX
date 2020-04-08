@@ -17,8 +17,8 @@ type PropsType = MapStateToPropsType & MapDispatchToPropsType
 class VacanciesContainer extends React.Component<PropsType> {
     componentDidMount(): void {
         if (!this.props.vacancies.length) this.props.getVacancies();
-        console.log(this.props.vacancies)
     }
+
 
     render() {
         return <Vacancies vacancies={this.props.vacancies} />;

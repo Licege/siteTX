@@ -1,7 +1,7 @@
 .vacancies {
-  &-content {
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+
+  &-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   }
 }
