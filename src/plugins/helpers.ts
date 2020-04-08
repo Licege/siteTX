@@ -64,3 +64,7 @@ export function cropText(text: string, limit = 100): string {
 export function dateFormParse(date: Date | null): number {
     return date ? Date.parse(date.toString()) : 0
 }
+
+export function toggleScroll(value: boolean): void {
+    value ? document.body.classList.remove('scroll_block') : document.body.classList.add('scroll_block')
+}

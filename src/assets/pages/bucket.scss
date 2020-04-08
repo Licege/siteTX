@@ -40,6 +40,8 @@
 
         &-count {
           display: flex;
+          max-height: 30px;
+          max-width: 90px;
 
           &-input {
             width: 30px;
@@ -75,18 +77,138 @@
 .shopping_cart {
   position: relative;
 
-  span {
+  &-wrapper {
+    margin-bottom: 20px;
+    border-bottom: 2px dashed #f9f9f9;
+  }
+
+  &-bucket {
+    cursor: pointer;
+
+    &-count {
+      position: absolute;
+      top: 85%;
+      left: 85%;
+      width: 20px;
+      height: 20px;
+      color: white;
+      background-color: gold;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 1.3;
+      white-space: nowrap;
+      z-index: 10;
+    }
+  }
+
+  &-info {
+    min-height: 180px;
+    min-width: 570px;
+    background-color: sandybrown;
     position: absolute;
-    top: 85%;
-    left: 85%;
-    width: 20px;
-    height: 20px;
-    color: white;
-    background-color: gold;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 1.3;
-    white-space: nowrap;
+    top: 60px;
+    right: 0;
+    //visibility: hidden;
+    opacity: 0;
+    display: none;
+    padding: 24px;
+    border-radius: 5px;
+    transition: 0.5s;
+
+    &.-active {
+      //visibility: visible;
+      opacity: 1;
+      display: block;
+    }
+
+    &-content {
+      margin-bottom: 20px;
+      border-bottom: 2px dashed #f9f9f9;
+
+      &-list {
+        margin-bottom: 20px;
+        max-height: 360px;
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        &-item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding-bottom: 8px;
+
+          &-title {
+            width: 40%;
+            overflow: hidden;
+          }
+
+          &-count {
+            display: flex;
+            width: 30%;
+            height: 100%;
+            max-width: 90px;
+
+            &-input {
+              width: 30px;
+              height: 30px;
+              border-radius: 50%;
+              border-color: $brand-brown;
+              border-style: solid;
+              text-align: center;
+              outline: none;
+            }
+          }
+
+          &-price {
+            width: 20%;
+            margin: auto;
+            text-align: center;
+          }
+
+          &-remover {
+            width: 10%;
+          }
+        }
+      }
+    }
+
+    &-footer {
+      display: flex;
+
+      &-price {
+        width: 50%;
+        font-size: 1.2rem;
+      }
+
+      &-button {
+        width: 50%;
+        display: flex;
+        justify-content: space-evenly;
+      }
+    }
+
+    @include media-breakpoint-down(sm) {
+      min-width: 300px;
+      background-color: #428bca;
+      right: -50%;
+      width: 80%;
+      padding: 16px 8px;
+
+      &-footer {
+        display: block;
+
+        &-price {
+          width: auto;
+          text-align: center;
+          font-size: 1.4rem;
+          margin-bottom: 8px;
+        }
+
+        &-button {
+          width: auto;
+        }
+      }
+    }
   }
 
   img {

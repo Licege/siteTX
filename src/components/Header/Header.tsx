@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {categoryType} from "../../types/types";
 import {Link, NavLink} from "react-router-dom";
-import ButtonBucket from "../common/elements/ButtonBucket";
+import ButtonBucket from "../Bucket/ButtonBucket";
 import logo from "../../static/img/logo.png";
 import MobileMenu from "../common/elements/MobileMenu";
 
