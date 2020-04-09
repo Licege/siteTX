@@ -33,7 +33,6 @@ type MapStatePropsType = {
     deliveryType: string
 }
 type MapDispatchPropsType = {
-    getDishes: () => void
     getSettings: () => void
     getGlobalSettings: () => void
     increaseDishCount: (dish: dishType) => void
@@ -64,7 +63,6 @@ class BucketContainer extends React.Component<PropsType, StateType> {
         if (!this.props.settings.length) this.props.getSettings();
         if (!Object.keys(this.props.global_settings).length) this.props.getGlobalSettings();
         if (!this.props.cities.length) this.props.getCities();
-        if (!this.props.dishes.length) this.props.getDishes();
     }
 
     componentDidUpdate(prevProps: Readonly<MapStatePropsType & MapDispatchPropsType>, prevState: Readonly<StateType>): void {
@@ -128,7 +126,7 @@ class BucketContainer extends React.Component<PropsType, StateType> {
 let mapStateToProps = (state : AppStateType) => {
     const selector = formValueSelector('bucketOrderForm');
     return {
-        dishes: state.menuPage.menu.filter(dish => state.bucket.delivery.order.find(order => order.id === dish.id) ),
+        dishes: state.bucket.orderedDishes,
         delivery: state.bucket.delivery,
         settings: state.bucket.settings,
         global_settings: state.bucket.global_settings,
@@ -141,9 +139,6 @@ let mapStateToProps = (state : AppStateType) => {
 
 let mapDispatchToProps = (dispatch: any) => {
     return {
-        getDishes: () => {
-            dispatch(getMenu());
-        },
         getSettings: () => {
             dispatch(requestDeliverySettings())
         },

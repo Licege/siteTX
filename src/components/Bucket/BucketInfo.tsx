@@ -28,15 +28,9 @@ const BucketInfo: React.FC<IProps> = ( {isOpen, toggle} ) => {
     const removeDish = useCallback((id: number) => {
         dispatch(removeDishAC(id))
     }, [])
-    const getDishes = useCallback(() => {
-        dispatch(getMenu())
-    }, [])
 
-    useEffect(() => {
-        getDishes()
-    }, [])
     const orders = useSelector((state: AppStateType) => state.bucket.delivery.order)
-    const dishes = useSelector((state: AppStateType) => (state.menuPage.menu.filter(dish => state.bucket.delivery.order.find(order => order.id === dish.id) )))
+    const dishes = useSelector((state: AppStateType) => state.bucket.orderedDishes)
 
     const onChange = (dish: dishType) => {
         return (event: {target: HTMLInputElement; }) => {

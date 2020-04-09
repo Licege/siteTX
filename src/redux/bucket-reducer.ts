@@ -29,6 +29,7 @@ let initialState = {
     } as deliveryType,
     settings: [] as Array<deliverySettingsType>,
     global_settings: {} as deliveryGlobalSettingsType,
+    orderedDishes: [] as Array<dishType>,
     cities: [] as Array<cityType>
 };
 
@@ -39,11 +40,12 @@ const bucketReducer = (state = initialState, action: ActionType): initialStateTy
 
     switch(action.type) {
         case ADD_DISH:
-            let index = state.delivery.order.findIndex(item => item.id === action.dish.id);
+            let indexInDelivery = state.delivery.order.findIndex(item => item.id === action.dish.id);
+            let indexInOrderedDishes = state.orderedDishes.findIndex(dish => dish.id === action.dish.id);
             return {
                 ...state,
                 delivery: {
-                    order: index !== -1 ?
+                    order: indexInDelivery !== -1 ?
                         state.delivery.order.map(order =>
                             (order.id === action.dish.id ? {
                                 id: order.id,
@@ -52,7 +54,8 @@ const bucketReducer = (state = initialState, action: ActionType): initialStateTy
                             } : order))
                         : [...state.delivery.order, {id: action.dish.id, count: 1, price: action.dish.price}],
                     total_price: state.delivery.total_price + action.dish.price,
-                }
+                },
+                orderedDishes: indexInOrderedDishes === -1 ? [...state.orderedDishes, action.dish] : state.orderedDishes
             };
 
         case INCREASE_DISH_COUNT:
@@ -82,7 +85,8 @@ const bucketReducer = (state = initialState, action: ActionType): initialStateTy
                             price: order.price - action.dish.price
                         } : order),
                     total_price: state.delivery.total_price - action.dish.price
-                }
+                },
+                orderedDishes: count === 0 ? state.orderedDishes.filter(dish => dish.id !== action.dish.id) : state.orderedDishes
             };
 
         case CHANGE_DISH_COUNT:
@@ -107,7 +111,8 @@ const bucketReducer = (state = initialState, action: ActionType): initialStateTy
                 delivery: {
                     order: state.delivery.order.filter(dish => dish.id !== action.id),
                     total_price: state.delivery.total_price - state.delivery.order.find(dish => dish.id === action.id)!.price
-                } };
+                },
+                orderedDishes: state.orderedDishes.filter(dish => dish.id !== action.id) };
 
         case CLEAR_BUCKET:
             return {
@@ -115,7 +120,8 @@ const bucketReducer = (state = initialState, action: ActionType): initialStateTy
                 delivery: {
                     order: [],
                     total_price: 0
-                }
+                },
+                orderedDishes: []
             };
 
         case GET_DELIVERY_SETTINGS:
