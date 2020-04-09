@@ -73,10 +73,10 @@ export const orderAPI = {
 };
 
 export const newsAPI = {
-    getNews () {
-        return axios.get(baseURL + `/news/`)
+    getNews (page = 1) {
+        return axios.get(baseURL + `/news/?page=${page}`)
             .then(response => {
-                return response.data;
+                return response;
             })
     },
     getNewsById (id: number) {

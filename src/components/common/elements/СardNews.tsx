@@ -13,12 +13,12 @@ const CardNews: React.FC<PropsType> = ({news} ) => {
             <div className='card'>
                 <div className='card-body card_news-content'>
                     {news.create_at && <div className='card_news-date'>{tsToDate(news.create_at, "dd MMMM")}</div>}
-                    <img className='card_news-content-img' src={news.url ? news.url : altImg} alt='' />
+                    <img className='card_news-content-img' src={news.file.id !== 0 ? news.file.url : altImg} alt='' />
                     <div className='card_news-content-info'>
                         <div className='card_news-content-info-header'>
-                            {news.label && <a href='#' className='card_news-content-info-header-title'>{news.label}</a>}
+                            {news.title && <a href='#' className='card_news-content-info-header-title'>{news.title}</a>}
                         </div>
-                        {news.content && <div className='card_news-content-info-description'>{news.content}</div>}
+                        {news.description && <div className='card_news-content-info-description'>{news.description}</div>}
                         <div className='card_news-content-info-link'>
                             <a href='#'>Подробнее...</a>
                         </div>

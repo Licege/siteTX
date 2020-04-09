@@ -88,12 +88,14 @@ export interface IReview {
 }
 
 export type newsType = {
-    id: number,
-    label: string,
-    content: string,
+    id: number
+    title: string
+    description: string
     create_at: number,
-    url: string | null
+    short_description: string
+    file: fileType
 }
+
 /*
 export type deliveryType = {
     id: bigint,
