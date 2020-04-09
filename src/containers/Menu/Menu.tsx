@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {compose} from "redux";
 import Menu from "../../components/Menu/Menu";
 import {addDishAC} from "../../redux/bucket-reducer";
+import {scrollHeight} from "../../plugins/helpers";
 
 type MapStatePropsType = {
     dish: dishType | {},
@@ -30,16 +31,34 @@ class MenuContainer extends React.Component<PropsType> {
         } else {
             this.props.getMenuByCategory(this.props.match!.params.id)
         }
+        window.addEventListener("scroll", this.onScroll)
+    }
+
+    componentWillUnmount(): void {
+        window.removeEventListener("scroll", this.onScroll)
     }
 
     componentDidUpdate(prevProps: Readonly<MapStatePropsType & MapDispatchPropsType>) {
         if (this.props.match!.params && this.props.match!.params.id && prevProps.match!.params.id !== this.props.match!.params.id) {
             this.props.getMenuByCategory(this.props.match!.params.id)
+        } else
+        if (!this.props.match!.params.id && prevProps.match!.params.id) {
+            this.props.getMenu();
         }
     }
 
-    onScroll = (event: React.UIEvent<HTMLElement>) => {
-        console.log(window.pageYOffset)
+    onScroll = () => {
+        let limit = scrollHeight() - document.documentElement.clientHeight - 220 //220 - высота футера
+        let navbar = document.getElementById('menu-categories-navbar')!
+
+        if (window.pageYOffset > limit) {
+            navbar.classList.add('-fixed')
+            navbar.style.top = limit.toString()+'px'
+        }
+       else if (document.getElementById('menu-categories-navbar')!.classList.contains('-fixed')) {
+            navbar.classList.remove('-fixed')
+            navbar.style.top = 'auto'
+        }
     }
 
     addToBucket = (dish: dishType) => {
@@ -47,7 +66,7 @@ class MenuContainer extends React.Component<PropsType> {
     };
 
     render() {
-        return <Menu menu={this.props.menu} categories={this.props.categories} addToBucket={this.addToBucket} onScroll={this.onScroll} />;
+        return <Menu menu={this.props.menu} categories={this.props.categories} addToBucket={this.addToBucket} />;
     }
 }
 

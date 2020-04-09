@@ -108,7 +108,6 @@
     position: absolute;
     top: 60px;
     right: 0;
-    //visibility: hidden;
     opacity: 0;
     display: none;
     padding: 24px;
@@ -116,7 +115,6 @@
     transition: 0.5s;
 
     &.-active {
-      //visibility: visible;
       opacity: 1;
       display: block;
     }
@@ -189,7 +187,6 @@
 
     @include media-breakpoint-down(sm) {
       min-width: 300px;
-      background-color: #428bca;
       right: -50%;
       width: 80%;
       padding: 16px 8px;

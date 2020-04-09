@@ -7,7 +7,7 @@
   &-categories {
     position: fixed;
     border-right-style: inset;
-    height: calc(100vh - 287px);
+    height: calc(100vh - 87px);
     width: 250px;
 
     &-title {
@@ -20,7 +20,7 @@
     }
 
     &-content {
-      height: calc(100vh - 313px - 37px);
+      height: calc(100vh - 113px - 37px);
       overflow: hidden;
 
       &-item {
@@ -49,6 +49,10 @@
 
     a {
       text-decoration: none;
+    }
+
+    &.-fixed {
+      position: absolute;
     }
 
     @include media-breakpoint-down(md) {

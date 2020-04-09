@@ -68,3 +68,11 @@ export function dateFormParse(date: Date | null): number {
 export function toggleScroll(value: boolean): void {
     value ? document.body.classList.remove('scroll_block') : document.body.classList.add('scroll_block')
 }
+
+export function scrollHeight() {
+    return Math.max(
+        document.body.scrollHeight, document.documentElement.scrollHeight,
+        document.body.offsetHeight, document.documentElement.offsetHeight,
+        document.body.clientHeight, document.documentElement.clientHeight
+    )
+}
