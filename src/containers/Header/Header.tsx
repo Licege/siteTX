@@ -1,5 +1,5 @@
 import React from 'react';
-import {categoryType, contactsType} from "../../types/types";
+import {categoryType} from "../../types/types";
 import {AppStateType} from "../../redux/redux-store";
 import {compose} from "redux";
 import {connect} from 'react-redux';

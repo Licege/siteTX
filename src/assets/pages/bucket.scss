@@ -30,6 +30,7 @@
       &-info {
         display: flex;
         justify-content: center;
+        align-items: center;
         width: calc(100% - 120px);
         padding-bottom: 8px;
         border-bottom: 1px solid $brand-brown;
@@ -70,6 +71,40 @@
   &-order {
     &-title {
       text-align: center;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    &-header {
+      padding-left: 0;
+
+      &-title {
+        width: 40%;
+      }
+      &-item {
+        width: auto;
+
+        &:nth-last-child(2) {
+          margin-right: 20px;
+        }
+      }
+    }
+
+    &-table {
+      &-row {
+        &-img {
+          width: 50px;
+          margin-right: 8px;
+        }
+
+        &-info {
+          width: 100%;
+        }
+
+        &-remove {
+          margin: 0;
+        }
+      }
     }
   }
 }

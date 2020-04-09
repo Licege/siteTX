@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {reduxForm, Field, InjectedFormProps, FormSection, formValueSelector} from 'redux-form';
 import {connect} from 'react-redux';
 import {cityType, deliveryGlobalSettingsType, deliverySettingsType, IDeliveryPost} from "../../types/types";
@@ -57,7 +57,7 @@ const radioButton = ({ input, ...rest }: any) => (
 
 
 const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & PropsType> = ( props ) => {
-    const {handleSubmit, settings, global_settings, cities, payment_method, delivery_method, choiceDate} = props;
+    const {handleSubmit, settings, global_settings, cities, payment_method, delivery_method} = props;
     let defaultDate = new Date(); defaultDate.setHours(defaultDate.getHours() + 2)
 
     return (
@@ -131,7 +131,7 @@ const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & 
             </div>
             <div>
                 <Field name='count_person'
-                       parse={(value: string) => value != '' ? Number(value) : ''}
+                       parse={(value: string) => value !== '' ? Number(value) : ''}
                        type='number'
                        component={renderTextField}
                        label='Количество персон'

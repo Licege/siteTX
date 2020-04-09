@@ -1,17 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 import DatePicker from 'react-datepicker'
-import {addDays, isSameDay, startOfToday} from "date-fns";
+import {addDays} from "date-fns";
 
 import "react-datepicker/dist/react-datepicker.css";
 import {ru} from "date-fns/locale";
-import FormHelperText from '@material-ui/core/FormHelperText';
 
-/*
-type PropsType = {
-    choiceDate: (date: Date) => void
-    defaultDate?: Date
-}
- */
 
 interface IProps {
     input: any
@@ -22,8 +15,6 @@ interface IProps {
 
 const MyReactDateTimePicker: React.FC<IProps> = ({ input: {value, onChange, ...inputProps}, placeholder, meta: {touched, error} }) => {
     const now = new Date()
-    let todayPlus2 = now.setHours(new Date().getHours() + 1)
-    let todayPlus10 = now.setHours(new Date().getHours() + 10)
 
     let handlerChange = (date: any) => {
         filterDateTime(date)

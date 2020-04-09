@@ -1,12 +1,7 @@
-import React, {useCallback, useState} from 'react';
-import {NavLink} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
+import React, {useState} from 'react';
+import {useSelector} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import shopping_cart from "../../static/img/shopping-cart.png";
-import Button from '@material-ui/core/Button';
-import {getDishesKey} from "../../plugins/helpers";
-import {changeDishCountAC, increaseDishCountAC, reduceDishCountAC} from "../../redux/bucket-reducer";
-import {dishType} from "../../types/types";
 import BucketInfo from "./BucketInfo";
 
 const ButtonBucket = () => {

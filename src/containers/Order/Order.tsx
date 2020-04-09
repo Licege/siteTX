@@ -1,5 +1,4 @@
 import React from 'react'
-import {orderAPI} from "../../api/api";
 import Order from "../../components/Order/Order";
 import {IOrder} from "../../types/types";
 

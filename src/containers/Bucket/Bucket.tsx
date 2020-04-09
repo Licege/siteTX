@@ -20,7 +20,6 @@ import {
     requestDeliverySettings, requestGlobalDeliverySettings, postOrder
 } from "../../redux/bucket-reducer";
 import {formValueSelector} from "redux-form";
-import {getMenu} from "../../redux/menu-reducer";
 
 type MapStatePropsType = {
     dishes: Array<dishType>

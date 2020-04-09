@@ -2,7 +2,6 @@ import React from 'react'
 import {IReview} from "../../types/types";
 import {Button} from "@material-ui/core";
 import ModalForm from "./ModalForm"
-import CustomModal from "../common/elements/CustomModal";
 
 interface IProps {
     reviews: IReview[]

@@ -46,9 +46,9 @@ export function tsToDate (timestamp: number, type: string): string {
 export function getDishesKey(dishes: Array<orderDishType>, id: number, key: string): number {
     switch (key) {
         case 'count':
-            return <number>dishes.find(dish => dish.id === id)?.count
+            return dishes.find(dish => dish.id === id)?.count as number
         case 'price':
-            return <number>dishes.find(dish => dish.id === id)?.price
+            return dishes.find(dish => dish.id === id)?.price as number
         default:
             return -1
     }

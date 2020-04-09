@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react'
+import React, {useCallback} from 'react'
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {dishType} from "../../types/types";
@@ -6,7 +6,6 @@ import {changeDishCountAC, increaseDishCountAC, reduceDishCountAC, removeDishAC}
 import {getDishesKey} from "../../plugins/helpers";
 import {NavLink} from "react-router-dom";
 import Button from "@material-ui/core/Button";
-import {getMenu} from "../../redux/menu-reducer";
 
 interface IProps {
     isOpen: boolean
@@ -14,23 +13,22 @@ interface IProps {
 }
 
 const BucketInfo: React.FC<IProps> = ( {isOpen, toggle} ) => {
+    const orders = useSelector((state: AppStateType) => state.bucket.delivery.order)
+    const dishes = useSelector((state: AppStateType) => state.bucket.orderedDishes)
     const dispatch = useDispatch()
 
     const reduceDishCount = useCallback((dish: dishType) => {
         dispatch(reduceDishCountAC(dish))
-    }, [])
+    }, [dispatch])
     const changeDishCount = useCallback((dish: dishType, count: number) => {
         dispatch(changeDishCountAC(dish, count))
-    }, [])
+    }, [dispatch])
     const increaseDishCount = useCallback((dish: dishType) => {
         dispatch(increaseDishCountAC(dish))
-    }, [])
+    }, [dispatch])
     const removeDish = useCallback((id: number) => {
         dispatch(removeDishAC(id))
-    }, [])
-
-    const orders = useSelector((state: AppStateType) => state.bucket.delivery.order)
-    const dishes = useSelector((state: AppStateType) => state.bucket.orderedDishes)
+    }, [dispatch])
 
     const onChange = (dish: dishType) => {
         return (event: {target: HTMLInputElement; }) => {

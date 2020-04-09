@@ -1,21 +1,13 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {InjectedFormProps, reduxForm, Field} from "redux-form";
 import renderTextField from "../common/elements/RenderTextField";
 import {FormControl, FormHelperText, InputLabel, Button} from "@material-ui/core";
 import Select from "@material-ui/core/Select/Select";
 import validate from './Validate';
-import DateTimeField from "../common/elements/MaterialDateTimePicker";
 import {IOrder} from "../../types/types";
 import MyReactDateTimePicker from "../common/elements/MyReactDateTimePicker";
-/*
-interface IMapStateToProps {
 
-}
 
-interface IProps {
-
-}
-*/
 const renderFromHelper = ({ touched, error }: any) => {
     if (!(touched && error)) {
         return
