@@ -48,7 +48,7 @@ class MenuContainer extends React.Component<PropsType> {
     }
 
     onScroll = () => {
-        let limit = scrollHeight() - document.documentElement.clientHeight - 220 //220 - высота футера
+        let limit = scrollHeight() - document.documentElement.clientHeight - document.getElementById('footer')!.offsetHeight
         let navbar = document.getElementById('menu-categories-navbar')!
 
         if (window.pageYOffset > limit) {

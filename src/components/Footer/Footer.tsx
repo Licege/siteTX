@@ -17,7 +17,7 @@ type PropsType = {
 
 const Footer: React.FC<PropsType>  = ( {contacts} ) => {
     return (
-        <div className='footer card-body'>
+        <div className='footer card-body' id='footer'>
             <div className='row'>
                 <div className='col'>
                     <span className='footer-title'>Часы работы</span>

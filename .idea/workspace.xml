@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="53810b5e-301b-438f-be4a-2ec89597c8cd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/pages/bucket.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/pages/bucket.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/pages/menu.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/pages/menu.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Menu/Menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Menu/Menu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer/Footer.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/Menu/Menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Menu/Menu.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/plugins/helpers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/plugins/helpers.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -23,10 +19,22 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/containers/Menu/Menu.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+            <state relative-caret-position="225">
+              <caret line="47" column="5" lean-forward="true" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Footer/Footer.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="17" column="45" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -129,7 +137,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/components/Bucket/Validate.tsx" />
         <option value="$PROJECT_DIR$/src/components/Reviews/Validate.tsx" />
         <option value="$PROJECT_DIR$/src/components/Reviews/Reviews.tsx" />
         <option value="$PROJECT_DIR$/src/containers/Reviews/Reviews.tsx" />
@@ -179,6 +186,7 @@
         <option value="$PROJECT_DIR$/src/plugins/helpers.ts" />
         <option value="$PROJECT_DIR$/src/components/Menu/Menu.tsx" />
         <option value="$PROJECT_DIR$/src/assets/pages/menu.scss" />
+        <option value="$PROJECT_DIR$/src/components/Footer/Footer.tsx" />
         <option value="$PROJECT_DIR$/src/containers/Menu/Menu.tsx" />
       </list>
     </option>
@@ -261,7 +269,7 @@
               <item name="site" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Menu" type="462c0819:PsiDirectoryNode" />
+              <item name="Footer" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="site" type="b2602c69:ProjectViewProjectNode" />
@@ -274,7 +282,7 @@
               <item name="site" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="containers" type="462c0819:PsiDirectoryNode" />
-              <item name="Menu" type="462c0819:PsiDirectoryNode" />
+              <item name="Footer" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="site" type="b2602c69:ProjectViewProjectNode" />
@@ -405,24 +413,24 @@
       <workItem from="1586335669016" duration="29271000" />
       <workItem from="1586370252535" duration="1479000" />
       <workItem from="1586373835299" duration="8188000" />
-      <workItem from="1586418880191" duration="3502000" />
+      <workItem from="1586418880191" duration="4027000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="476188000" />
+    <option name="totallyTimeSpent" value="476713000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="4" y="56" width="1480" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49676025" visible="true" weight="0.20928621" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49676025" visible="true" weight="0.20928621" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" sideWeight="0.50323975" side_tool="true" weight="0.1992032" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.18862276" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.18862276" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -467,13 +475,6 @@
     </ignored-roots>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/assets/elements/header.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="42" column="6" lean-forward="true" selection-start-line="42" selection-start-column="6" selection-end-line="42" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/redux/contacts-reducer.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="395">
@@ -880,10 +881,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Footer/Footer.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="17" column="45" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/Menu/Menu.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+        <state relative-caret-position="225">
+          <caret line="47" column="5" lean-forward="true" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
