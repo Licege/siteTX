@@ -1,4 +1,5 @@
 import {orderDishType} from "../types/types";
+import {serverUrl} from "../api/api";
 
 export const isIos = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
 
@@ -43,7 +44,7 @@ export function tsToDate (timestamp: number, type: string): string {
     }
 }
 
-export function getDishesKey(dishes: Array<orderDishType>, id: number, key: string): number {
+export function getDishesKey(dishes: Array<orderDishType>, id: string, key: string): number {
     switch (key) {
         case 'count':
             return dishes.find(dish => dish.id === id)?.count as number
@@ -75,4 +76,8 @@ export function scrollHeight() {
         document.body.offsetHeight, document.documentElement.offsetHeight,
         document.body.clientHeight, document.documentElement.clientHeight
     )
+}
+
+export function fullLink(link: string): string {
+    return serverUrl + link.replace('\\', '/')
 }

@@ -17,11 +17,11 @@ const MobileMenu = ({categories, toggle}: IProps) => {
                 <img src={closeImg} className='mobile_menu-wrapper-close' onClick={toggle} alt='Закрыть' />
                 <ul>
                     {categories.map(category => (
-                        <li key={category.id}>
+                        <li key={category._id}>
                             <NavLink activeClassName='-active'
                                      onClick={toggle}
                                      to={'/menu/' + category.title_en}
-                                     key={category.id}>
+                                     key={category._id}>
                                 {category.title}
                             </NavLink>
                         </li>

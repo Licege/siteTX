@@ -23,18 +23,18 @@ export type fileType = {
 }
 
 export type dishType = {
-    id: number
+    _id: string
     title: string
     description: string | null
     weight: number | null
-    price: number
+    cost: number
     category_id: number | null
     count: number | null
-    file: fileType
+    imageSrc: string | null
 }
 
 export type categoryType = {
-    id: number
+    _id: string
     title: string
     title_en: string
 }
@@ -88,7 +88,7 @@ export interface IReview {
 }
 
 export type newsType = {
-    id: number
+    _id: string
     title: string
     description: string
     create_at: number,
@@ -116,7 +116,8 @@ export type deliveryType = {
  */
 
 export type orderDishType = {
-    id: number,
+    id: string,
+    title: string,
     count: number,
     price: number
 }
@@ -127,7 +128,8 @@ export type deliveryType = {
 }
 
 export type deliverySettingsType = {
-    city_id: number,
+    _id: string,
+    city: string,
     price_for_delivery: number,
     free_delivery: number,
     is_delivery: boolean
@@ -152,7 +154,7 @@ export interface IDeliveryPost {
 }
 
 export type addressType = {
-    city: number,
+    city: string,
     street?: string
     house?: string
     flat?: string | undefined

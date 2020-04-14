@@ -27,7 +27,7 @@ export const getContactsAC = (contacts: contactsType):getContactsACType => ({typ
 
 export const getContacts = () => async(dispatch: any) => {
     let response = await contactsAPI.getContacts();
-    dispatch(getContactsAC(response));
+    dispatch(getContactsAC(response.data));
 };
 
 export default contactsReducer;

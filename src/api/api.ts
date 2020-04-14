@@ -10,13 +10,14 @@ import {
     vacancyType
 } from "../types/types";
 
-const baseURL = 'http://localhost:9090/api';
+export const serverUrl = 'http://localhost:9090/'
+const baseURL = serverUrl + 'api';
 
 export const contactsAPI = {
     getContacts() {
         return axios.get<contactsType>(baseURL + `/contacts/`)
             .then(response => {
-                return response.data;
+                return response;
             })
     }
 };
@@ -29,7 +30,7 @@ export const menuAPI = {
             })
     },
     getMenuByCategory(category: string) {
-        return axios.get<Array<dishType>>(baseURL + `/menu/category/${category}`)
+        return axios.get<Array<dishType>>(baseURL + `/menu/${category}`,)
             .then(respose => {
                 return respose
             })
@@ -89,20 +90,14 @@ export const newsAPI = {
 
 export const bucketAPI = {
     getDeliverySettings() {
-        return axios.get(baseURL + `/delivery/settings/`)
+        return axios.get(baseURL + `/delivery-settings/common/`)
             .then(response => {
                 return response.data;
             })
     },
 
     getDeliveryGlobalSettings() {
-        return axios.get(baseURL + `/delivery/global-settings/`)
-            .then(response => {
-                return response.data;
-            })
-    },
-    updateDeliveryGlobalSettings() {
-        return axios.put(baseURL + `/delivery/global-settings/`)
+        return axios.get(baseURL + `/delivery-settings/global/`)
             .then(response => {
                 return response.data;
             })

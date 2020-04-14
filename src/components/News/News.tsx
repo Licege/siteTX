@@ -14,11 +14,11 @@ const News: React.FC<PropsType> = ( {news, totalCount, onPageCount} ) => {
     return (
         <div className='page-container'>
             <h4 className='page-container-title'>~ Новости ~</h4>
-            {news.map(item =>
-                <CardNews news={item} key={item.id}/>
+            {news && news.map(item =>
+                <CardNews news={item} key={item._id}/>
             )}
 
-            <Paginator totalItemsCount={totalCount} onChange={onPageCount} />
+            {news && <Paginator totalItemsCount={totalCount} onChange={onPageCount} />}
         </div>
     )
 };

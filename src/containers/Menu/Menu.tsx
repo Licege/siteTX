@@ -39,6 +39,10 @@ class MenuContainer extends React.Component<PropsType> {
     }
 
     componentDidUpdate(prevProps: Readonly<MapStatePropsType & MapDispatchPropsType>) {
+        if (!prevProps.categories && this.props.categories.length) {
+            let category_id = this.props.categories.find(category => category.title_en === this.props.match!.params.id)!._id
+            this.props.getMenuByCategory(category_id)
+        }
         if (this.props.match!.params && this.props.match!.params.id && prevProps.match!.params.id !== this.props.match!.params.id) {
             this.props.getMenuByCategory(this.props.match!.params.id)
         } else

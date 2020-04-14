@@ -37,7 +37,7 @@ type MapDispatchPropsType = {
     increaseDishCount: (dish: dishType) => void
     reduceDishCount: (dish: dishType) => void
     changeDishCount: (dish: dishType, count: number) => void
-    removeDish: (id: number) => void
+    removeDish: (id: string) => void
     clearBucket: () => void
     getCities: () => void
     postOrder: (order: IDeliveryPost) => void
@@ -53,7 +53,7 @@ class BucketContainer extends React.Component<PropsType, StateType> {
     constructor(props: PropsType) {
         super(props)
         this.state = {
-            deliveryPrice: this.priceForDelivery(undefined, this.props.delivery.total_price),
+            deliveryPrice: this.priceForDelivery('Калининград', this.props.delivery.total_price),
             orderPrice: this.props.delivery.total_price
         }
     }
@@ -74,10 +74,11 @@ class BucketContainer extends React.Component<PropsType, StateType> {
         }
     }
 
-    priceForDelivery = (city = 1, price: number): number => {
+    priceForDelivery = (city: string, price: number): number => {
         console.log(this.props.deliveryType === 'restaurant')
         if (this.props.settings.length && this.props.deliveryType !== 'restaurant') {
-            let settings = this.props.settings.find(s => s.city_id = city)!;
+            let settings = this.props.settings.find(s => s.city === city)!;
+            console.log(settings);
             return price < settings.free_delivery ? settings.price_for_delivery : 0;
         } else return 0
     };
@@ -153,7 +154,7 @@ let mapDispatchToProps = (dispatch: any) => {
         changeDishCount: (dish: dishType, count: number) => {
             dispatch(changeDishCountAC(dish, count))
         },
-        removeDish: (id: number) => {
+        removeDish: (id: string) => {
             dispatch(removeDishAC(id))
         },
         clearBucket: () => {

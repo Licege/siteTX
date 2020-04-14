@@ -9,7 +9,7 @@ import {
 } from "../../types/types";
 import altImg from "../../static/img/dish.svg";
 import FormOrder from "./FormOrder";
-import {getDishesKey} from "../../plugins/helpers";
+import {fullLink, getDishesKey} from "../../plugins/helpers";
 import {Button} from '@material-ui/core';
 
 type PropsType = {
@@ -25,7 +25,7 @@ type PropsType = {
 
     increaseDishCount: (dish: dishType) => void
     reduceDishCount: (dish: dishType) => void
-    removeDish: (id: number) => void
+    removeDish: (id: string) => void
     clearBucket: () => void
     choiceDate: (date: Date | null) => void
     onSubmit: (data: IDeliveryPost) => void
@@ -47,22 +47,22 @@ const Bucket: React.FC<PropsType> = ( props ) => {
                     </div>
                     <div className='bucket-table'>
                         {dishes.map(dish => (
-                            <div className='bucket-table-row' key={dish.id}>
-                                <img className='bucket-table-row-img' src={dish.file.id !== 0 ? dish.file.url : altImg} alt=''/>
+                            <div className='bucket-table-row' key={dish._id}>
+                                <img className='bucket-table-row-img' src={dish.imageSrc ? fullLink(dish.imageSrc) : altImg} alt=''/>
                                 <div className='bucket-table-row-info'>
                                     <div className='bucket-table-row-info-title'>{dish.title}</div>
                                     <div className='bucket-table-row-info-count'>
                                         <span className='custom_subtract' onClick={() => reduceDishCount(dish)}/>
                                         <input className='bucket-table-row-info-count-input' onChange={onChange(dish)}
                                                inputMode='numeric'
-                                               value={getDishesKey(delivery.order, dish.id, 'count')}/>
+                                               value={getDishesKey(delivery.order, dish._id, 'count')}/>
                                         <span className='custom_add' onClick={() => increaseDishCount(dish)}/>
                                     </div>
                                     <div
-                                        className='bucket-table-row-info-ceil'>{getDishesKey(delivery.order, dish.id, 'price') + ' ₽'}</div>
+                                        className='bucket-table-row-info-ceil'>{getDishesKey(delivery.order, dish._id, 'price') * getDishesKey(delivery.order, dish._id, 'count') + ' ₽'}</div>
                                 </div>
                                 <div><span className='bucket-table-row-remove custom_close'
-                                           onClick={() => removeDish(dish.id)}/></div>
+                                           onClick={() => removeDish(dish._id)}/></div>
                             </div>
                         ))}
                         {!!dishes.length && <div>

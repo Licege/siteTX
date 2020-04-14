@@ -11,6 +11,7 @@ type PropsType = {
 }
 
 const Menu: React.FC<PropsType> = ( {menu, categories, addToBucket} ) => {
+    console.log(menu);
     return (
                 <div className='menu'>
                     <div className='menu-categories' id='menu-categories-navbar'>
@@ -18,7 +19,7 @@ const Menu: React.FC<PropsType> = ( {menu, categories, addToBucket} ) => {
                         <div className='menu-categories-content'>
                             {categories.map((category) =>
                                 <NavLink activeClassName='-active' className='menu-categories-content-item'
-                                         to={'/menu/' + category.title_en} key={category.id}>{category.title}</NavLink>
+                                         to={'/menu/' + category.title_en} key={category._id}>{category.title}</NavLink>
                             )}
                         </div>
                     </div>
@@ -27,7 +28,7 @@ const Menu: React.FC<PropsType> = ( {menu, categories, addToBucket} ) => {
                         <div className='menu-wrapper'>
                             <div className='menu-wrapper-header'>~ Меню ~</div>
                             <div className='menu-wrapper-content'>
-                                {menu.map((dish) => <CardDish dish={dish} addToBucket={addToBucket} key={dish.id}/>)}
+                                {menu.map((dish) => <CardDish dish={dish} addToBucket={addToBucket} key={dish._id}/>)}
                             </div>
                         </div>
                         :

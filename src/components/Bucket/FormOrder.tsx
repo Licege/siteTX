@@ -25,7 +25,7 @@ interface PropsType {
 interface IMapStateToProps {
     form: string
     address: {
-        city: number
+        city: string
     }
     enableReinitialize: boolean
 }
@@ -99,7 +99,7 @@ const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & 
                     <div>
                         <Field name='city' component={renderSelectField} label='Город'>
                             {settings.map(s => (
-                                s.is_delivery && <option value={s.city_id} key={s.city_id}>{getTitleById(cities, s.city_id)}</option>
+                                s.is_delivery && <option value={s.city} key={s._id}>{s.city}</option>
                             ))}
                         </Field>
                     </div>
@@ -162,7 +162,7 @@ let ReduxFormOrder = reduxForm<IDeliveryPost & IMapStateToProps, PropsType>({
         payment_type: 'cash',
         delivery_type: 'home',
         address: {
-            city: 1
+            city: 'Калининград'
         }
     },
     validate,
