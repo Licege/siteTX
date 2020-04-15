@@ -59,7 +59,7 @@ const Bucket: React.FC<PropsType> = ( props ) => {
                                         <span className='custom_add' onClick={() => increaseDishCount(dish)}/>
                                     </div>
                                     <div
-                                        className='bucket-table-row-info-ceil'>{getDishesKey(delivery.order, dish._id, 'price') * getDishesKey(delivery.order, dish._id, 'count') + ' ₽'}</div>
+                                        className='bucket-table-row-info-ceil'>{getDishesKey(delivery.order, dish._id, 'cost') * getDishesKey(delivery.order, dish._id, 'count') + ' ₽'}</div>
                                 </div>
                                 <div><span className='bucket-table-row-remove custom_close'
                                            onClick={() => removeDish(dish._id)}/></div>

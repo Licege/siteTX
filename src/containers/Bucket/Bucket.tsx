@@ -97,8 +97,9 @@ class BucketContainer extends React.Component<PropsType, StateType> {
 
     onSubmit = (data: IDeliveryPost) => {
         let post = {...data,
-            delivery: {...this.props.delivery, delivery_price: this.state.deliveryPrice},
-            create_at:  Date.parse(new Date().toString())
+            list: this.props.delivery.order,
+            delivery_cost: this.state.deliveryPrice,
+            total_price: this.props.delivery.total_price
         }
         this.props.postOrder(post)
     }

@@ -41,7 +41,7 @@ const bucketReducer = (state = initialState, action: ActionType): initialStateTy
 
     switch(action.type) {
         case ADD_DISH:
-            let indexInDelivery = state.delivery.order.findIndex(item => item.id === action.dish._id);
+            let indexInDelivery = state.delivery.order.findIndex(item => item.dish_id === action.dish._id);
             let indexInOrderedDishes = state.orderedDishes.findIndex(dish => dish._id === action.dish._id);
 
             console.log(action)
@@ -50,13 +50,13 @@ const bucketReducer = (state = initialState, action: ActionType): initialStateTy
                 delivery: {
                     order: indexInDelivery !== -1 ?
                         state.delivery.order.map(order =>
-                            (order.id === action.dish._id ? {
-                                id: order.id,
+                            (order.dish_id === action.dish._id ? {
+                                dish_id: order.dish_id,
                                 title: order.title,
                                 count: order.count + 1,
-                                price: action.dish.cost
+                                cost: action.dish.cost
                             } : order))
-                        : [...state.delivery.order, {id: action.dish._id, title: action.dish.title, count: 1, price: action.dish.cost}],
+                        : [...state.delivery.order, {dish_id: action.dish._id, title: action.dish.title, count: 1, cost: action.dish.cost}],
                     total_price: state.delivery.total_price + action.dish.cost,
                 },
                 orderedDishes: indexInOrderedDishes === -1 ? [...state.orderedDishes, action.dish] : state.orderedDishes
@@ -67,11 +67,11 @@ const bucketReducer = (state = initialState, action: ActionType): initialStateTy
                 ...state,
                 delivery: {
                     order: state.delivery.order.map(order =>
-                        (order.id === action.dish._id) ? {
-                            id: order.id,
+                        (order.dish_id === action.dish._id) ? {
+                            dish_id: order.dish_id,
                             title: order.title,
                             count: order.count + 1,
-                            price: action.dish.cost
+                            cost: action.dish.cost
                         } : order),
                     total_price: state.delivery.total_price + action.dish.cost
                 }
@@ -83,12 +83,12 @@ const bucketReducer = (state = initialState, action: ActionType): initialStateTy
                 ...state,
                 delivery: {
                     order: count === 0
-                        ? state.delivery.order.filter(dish => dish.id !== action.dish._id)
-                        : state.delivery.order.map(order => (order.id === action.dish._id) ? {
-                            id: order.id,
+                        ? state.delivery.order.filter(dish => dish.dish_id !== action.dish._id)
+                        : state.delivery.order.map(order => (order.dish_id === action.dish._id) ? {
+                            dish_id: order.dish_id,
                             title: order.title,
                             count: order.count - 1,
-                            price: action.dish.cost
+                            cost: action.dish.cost
                         } : order),
                     total_price: state.delivery.total_price - action.dish.cost
                 },
@@ -100,11 +100,11 @@ const bucketReducer = (state = initialState, action: ActionType): initialStateTy
             return {
                 ...state,
                 delivery: {
-                    order: state.delivery.order.map(order => (order.id === action.dish._id) ? {
-                        id: order.id,
+                    order: state.delivery.order.map(order => (order.dish_id === action.dish._id) ? {
+                        dish_id: order.dish_id,
                         title: order.title,
                         count: action.count,
-                        price: action.dish.cost
+                        cost: action.dish.cost
                     } : order),
                     total_price: action.count > count
                         ? state.delivery.total_price + (action.count - 1 - count) * action.dish.cost
@@ -113,12 +113,12 @@ const bucketReducer = (state = initialState, action: ActionType): initialStateTy
             };
 
         case REMOVE_DISH:
-            const orderItem = state.delivery.order.find(dish => dish.id === action.id)!
+            const orderItem = state.delivery.order.find(dish => dish.dish_id === action.id)!
             return {
                 ...state,
                 delivery: {
-                    order: state.delivery.order.filter(order => order.id !== action.id),
-                    total_price: state.delivery.total_price - orderItem.price * orderItem.count
+                    order: state.delivery.order.filter(order => order.dish_id !== action.id),
+                    total_price: state.delivery.total_price - orderItem.cost * orderItem.count
                 },
                 orderedDishes: state.orderedDishes.filter(dish => dish._id !== action.id) };
 

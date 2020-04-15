@@ -62,7 +62,7 @@ const BucketInfo: React.FC<IProps> = ( {isOpen, toggle} ) => {
             </div>
             <div className='shopping_cart-info-footer'>
                 <div className='shopping_cart-info-footer-price'>
-                    Сумма: {orders.reduce((acc, order) => acc + order.price * order.count, 0)} ₽
+                    Сумма: {orders.reduce((acc, order) => acc + order.cost * order.count, 0)} ₽
                 </div>
                 <NavLink className='shopping_cart-info-footer-button' exact to='/bucket'>
                     <Button variant='contained' color='primary' onClick={toggle}>Оформить заказ</Button>

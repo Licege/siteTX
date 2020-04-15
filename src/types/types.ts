@@ -116,10 +116,10 @@ export type deliveryType = {
  */
 
 export type orderDishType = {
-    id: string,
+    dish_id: string,
     title: string,
     count: number,
-    price: number
+    cost: number
 }
 
 export type deliveryType = {
@@ -146,7 +146,7 @@ export interface IDeliveryPost {
     restaurant_id: number
     time_delivery: number
     discount_card?: number
-    create_at: number,
+    create_at: Date,
     payment_status: number,
     count_person: number | null
     comment: string | null
