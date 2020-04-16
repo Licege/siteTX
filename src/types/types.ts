@@ -91,29 +91,10 @@ export type newsType = {
     _id: string
     title: string
     description: string
-    create_at: number,
+    create_at: Date,
     short_description: string
-    file: fileType
+    imageSrc: string
 }
-
-/*
-export type deliveryType = {
-    id: bigint,
-    name: string,
-    phone: string,
-    email: string | null,
-    payment_type: number,
-    delivery_type: number,
-    cash_change: number | null,
-    address: addressType | null,
-    restaurant_id: number | null,
-    time_delivery: bigint,
-    count_person: number,
-    discount_card: number | null,
-    comment: string | null,
-    dishes: ordersDishType
-}
- */
 
 export type orderDishType = {
     dish_id: string,
@@ -166,9 +147,3 @@ export type deliveryGlobalSettingsType = {
     is_delivery_working: boolean,
     phone_for_sms: string
 }
-
-export type cityType = {
-    id: number,
-    title: string
-}
-

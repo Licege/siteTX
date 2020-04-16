@@ -15,7 +15,7 @@ type InitialStateType = typeof initialState;
 const NewsReducer = (state = initialState, action: ActionType): InitialStateType => {
     switch(action.type) {
         case GET_NEWS:
-            return { ...state, news: action.news, totalCount: action.totalCount };
+            return { ...state, news: action.news, totalCount: action.total_count };
         case GET_CURRENT_NEWS:
             return { ...state, currentNews: action.currentNews };
         default:
@@ -31,22 +31,22 @@ type getCurrentNewsACType = {
 type getNewsACType = {
     type: typeof GET_NEWS,
     news: Array<newsType>
-    totalCount: number
+    total_count: number
 }
 
 type ActionType = getNewsACType & getCurrentNewsACType
 
-const getNewsAC = (news: Array<newsType>, totalCount: number): getNewsACType => ({type: GET_NEWS, news, totalCount});
+const getNewsAC = (news: Array<newsType>, total_count: number): getNewsACType => ({type: GET_NEWS, news, total_count});
 const getCurrentNewsAC = (currentNews: newsType): getCurrentNewsACType => ({type: GET_CURRENT_NEWS, currentNews});
 
 export const requestNews = (page?: number | undefined) => async (dispatch: any) => {
     let response = await newsAPI.getNews(page);
-    dispatch(getNewsAC(response.data.news_list, response.data.total_count))
+    dispatch(getNewsAC(response.data.news, response.data.total_count))
 };
 
 export const requestCurrentNews = (id: number) => async (dispatch: any) => {
     let response = await newsAPI.getNewsById(id);
-    dispatch(getCurrentNewsAC(response));
+    dispatch(getCurrentNewsAC(response.data));
 };
 
 export default NewsReducer;

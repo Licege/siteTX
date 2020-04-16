@@ -1,8 +1,7 @@
 import React from 'react';
 import {reduxForm, Field, InjectedFormProps, FormSection, formValueSelector} from 'redux-form';
 import {connect} from 'react-redux';
-import {cityType, deliveryGlobalSettingsType, deliverySettingsType, IDeliveryPost} from "../../types/types";
-import {getTitleById} from "../../plugins/helpers";
+import {deliveryGlobalSettingsType, deliverySettingsType, IDeliveryPost} from "../../types/types";
 import renderTextField from "../common/elements/RenderTextField";
 import validate from './Validate';
 import {FormControl, FormHelperText, InputLabel, RadioGroup, Radio, Button} from "@material-ui/core";
@@ -13,7 +12,6 @@ import MyReactDateTimePicker from "../common/elements/MyReactDateTimePicker";
 
 
 interface PropsType {
-    cities: Array<cityType>
     settings: Array<deliverySettingsType>
     global_settings: deliveryGlobalSettingsType
     payment_method: string
@@ -57,7 +55,7 @@ const radioButton = ({ input, ...rest }: any) => (
 
 
 const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & PropsType> = ( props ) => {
-    const {handleSubmit, settings, global_settings, cities, payment_method, delivery_method} = props;
+    const {handleSubmit, settings, global_settings, payment_method, delivery_method} = props;
     let defaultDate = new Date(); defaultDate.setHours(defaultDate.getHours() + 2)
 
     return (

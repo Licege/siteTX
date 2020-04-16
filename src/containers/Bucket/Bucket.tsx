@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 import Bucket from "../../components/Bucket/Bucket";
 import {
     addressType,
-    cityType,
     deliveryGlobalSettingsType,
     deliverySettingsType,
     deliveryType,
@@ -16,7 +15,7 @@ import {
     clearBucketAC,
     increaseDishCountAC,
     reduceDishCountAC,
-    removeDishAC, requestCities,
+    removeDishAC,
     requestDeliverySettings, requestGlobalDeliverySettings, postOrder
 } from "../../redux/bucket-reducer";
 import {formValueSelector} from "redux-form";
@@ -26,7 +25,6 @@ type MapStatePropsType = {
     delivery: deliveryType
     settings: Array<deliverySettingsType>
     global_settings: deliveryGlobalSettingsType
-    cities: Array<cityType>
     address: addressType
     paymentType: string
     deliveryType: string
@@ -39,7 +37,6 @@ type MapDispatchPropsType = {
     changeDishCount: (dish: dishType, count: number) => void
     removeDish: (id: string) => void
     clearBucket: () => void
-    getCities: () => void
     postOrder: (order: IDeliveryPost) => void
 }
 type PropsType = MapStatePropsType & MapDispatchPropsType
@@ -61,7 +58,6 @@ class BucketContainer extends React.Component<PropsType, StateType> {
     componentDidMount(): void {
         if (!this.props.settings.length) this.props.getSettings();
         if (!Object.keys(this.props.global_settings).length) this.props.getGlobalSettings();
-        if (!this.props.cities.length) this.props.getCities();
     }
 
     componentDidUpdate(prevProps: Readonly<MapStatePropsType & MapDispatchPropsType>, prevState: Readonly<StateType>): void {
@@ -106,21 +102,20 @@ class BucketContainer extends React.Component<PropsType, StateType> {
 
     render() {
         return <Bucket dishes={this.props.dishes}
-                       delivery={this.props.delivery}
-                       deliveryPrice={this.state.deliveryPrice}
-                       orderPrice={this.state.orderPrice}
-                       increaseDishCount={this.props.increaseDishCount}
-                       reduceDishCount={this.props.reduceDishCount}
-                       removeDish={this.props.removeDish}
-                       clearBucket={this.props.clearBucket}
-                       settings={this.props.settings}
-                       global_settings={this.props.global_settings}
-                       cities={this.props.cities}
-                       paymentMethod={this.props.paymentType}
-                       deliveryMethod={this.props.deliveryType}
-                       choiceDate={this.choiceDate}
-                       onSubmit={this.onSubmit}
-                       onChange={this.onChange} />
+                                                   delivery={this.props.delivery}
+                                                   deliveryPrice={this.state.deliveryPrice}
+                                                   orderPrice={this.state.orderPrice}
+                                                   increaseDishCount={this.props.increaseDishCount}
+                                                   reduceDishCount={this.props.reduceDishCount}
+                                                   removeDish={this.props.removeDish}
+                                                   clearBucket={this.props.clearBucket}
+                                                   settings={this.props.settings}
+                                                   global_settings={this.props.global_settings}
+                                                   paymentMethod={this.props.paymentType}
+                                                   deliveryMethod={this.props.deliveryType}
+                                                   choiceDate={this.choiceDate}
+                                                   onSubmit={this.onSubmit}
+                                                   onChange={this.onChange} />
     }
 }
 
@@ -131,7 +126,7 @@ let mapStateToProps = (state : AppStateType) => {
         delivery: state.bucket.delivery,
         settings: state.bucket.settings,
         global_settings: state.bucket.global_settings,
-        cities: state.bucket.cities,
+        isDeliveryPosted: state.bucket.isDeliveryPosted,
         address: selector(state, 'address'),
         paymentType: selector(state, 'payment_type'),
         deliveryType: selector(state, 'delivery_type')
@@ -160,9 +155,6 @@ let mapDispatchToProps = (dispatch: any) => {
         },
         clearBucket: () => {
             dispatch(clearBucketAC())
-        },
-        getCities: () => {
-            dispatch(requestCities())
         },
         postOrder: (order: IDeliveryPost) => {
             dispatch(postOrder(order))

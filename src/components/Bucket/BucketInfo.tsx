@@ -53,7 +53,7 @@ const BucketInfo: React.FC<IProps> = ( {isOpen, toggle} ) => {
                                    value={getDishesKey(orders, dish._id, 'count')}/>
                             <span className='custom_add' onClick={() => increaseDishCount(dish)}/>
                         </div>
-                        <div  className='shopping_cart-info-content-list-item-price'>{getDishesKey(orders, dish._id, 'price') * getDishesKey(orders, dish._id, 'count') + ' ₽'}</div>
+                        <div  className='shopping_cart-info-content-list-item-price'>{getDishesKey(orders, dish._id, 'cost') * getDishesKey(orders, dish._id, 'count') + ' ₽'}</div>
                         <div  className='shopping_cart-info-content-list-item-remove'><span className='custom_close'
                                    onClick={() => removeDish(dish._id)}/></div>
                     </div>

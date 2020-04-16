@@ -17,7 +17,7 @@ export const contactsAPI = {
     getContacts() {
         return axios.get<contactsType>(baseURL + `/contacts/`)
             .then(response => {
-                return response;
+                return response
             })
     }
 };
@@ -26,7 +26,7 @@ export const menuAPI = {
     getMenu() {
         return axios.get<Array<dishType>>(baseURL + `/menu/`)
             .then(response => {
-                return response.data;
+                return response
             })
     },
     getMenuByCategory(category: string) {
@@ -38,13 +38,13 @@ export const menuAPI = {
     getDish(id: number) {
         return axios.get<dishType>(baseURL + `/menu/dish/${id}`)
             .then(response => {
-                return response.data;
+                return response
             })
     },
     getCategories() {
         return axios.get<Array<categoryType>>(baseURL + `/categories/`)
             .then(response => {
-                return response.data;
+                return response
             })
     }
 };
@@ -53,7 +53,7 @@ export const vacanciesAPI = {
     getVacancies() {
         return axios.get<Array<vacancyType>>(baseURL + `/vacancy/`)
             .then(response => {
-                return response.data;
+                return response
             })
     },
     postResume(resume: resumeType) {
@@ -68,7 +68,7 @@ export const orderAPI = {
     postOrder (order: IOrder) {
         return axios.post(baseURL + `/orders/`, order)
             .then(response => {
-                return response.data;
+                return response
             })
     }
 };
@@ -77,13 +77,13 @@ export const newsAPI = {
     getNews (page = 1) {
         return axios.get(baseURL + `/news/?page=${page}`)
             .then(response => {
-                return response;
+                return response
             })
     },
     getNewsById (id: number) {
         return axios.get(baseURL + `/news/${id}`)
             .then(response => {
-                return response.data;
+                return response
             })
     }
 };
@@ -92,29 +92,20 @@ export const bucketAPI = {
     getDeliverySettings() {
         return axios.get(baseURL + `/delivery-settings/common/`)
             .then(response => {
-                return response.data;
+                return response
             })
     },
 
     getDeliveryGlobalSettings() {
         return axios.get(baseURL + `/delivery-settings/global/`)
             .then(response => {
-                return response.data;
+                return response
             })
     },
     postOrder(order: IDeliveryPost) {
         return axios.post(baseURL + `/delivery/`, order)
             .then(response => {
                 return response
-            })
-    }
-};
-
-export const cityAPI = {
-    getCities() {
-        return axios.get(baseURL + `/cities/`)
-            .then(response => {
-                return response.data
             })
     }
 };

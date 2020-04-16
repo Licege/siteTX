@@ -1,12 +1,11 @@
 import {
-    cityType,
     deliveryGlobalSettingsType,
     deliverySettingsType,
     deliveryType,
     dishType, IDeliveryPost,
     orderDishType
 } from "../types/types";
-import {bucketAPI, cityAPI} from "../api/api";
+import {bucketAPI} from "../api/api";
 import {getDishesKey} from "../plugins/helpers";
 
 const ADD_DISH = 'BUCKET/ADD_DISH';
@@ -15,12 +14,10 @@ const REDUCE_DISH_COUNT = 'BUCKET/REDUCE_DISH_COUNT';
 const CHANGE_DISH_COUNT = 'BUCKET/CHANGE_DISH_COUNT';
 const REMOVE_DISH = 'BUCKET/REMOVE_DISH';
 const CLEAR_BUCKET = 'BUCKET/CLEAR';
+const DELIVERY_POSTED = 'BUCKET/DELIVERY_POSTED'
 
 const GET_DELIVERY_SETTINGS = 'BUCKET/GET_DELIVERY_SETTINGS';
 const GET_DELIVERY_GLOBAL_SETTINGS = 'BUCKET/GET_DELIVERY_GLOBAL_SETTINGS';
-
-const GET_CITIES = 'BUCKET/GET_CITIES';
-const SET_CITY = 'BUCKET/SET_CITY';
 
 let initialState = {
     delivery: {
@@ -30,8 +27,8 @@ let initialState = {
     settings: [] as Array<deliverySettingsType>,
     global_settings: {} as deliveryGlobalSettingsType,
     orderedDishes: [] as Array<dishType>,
-    cities: [] as Array<cityType>,
     deliveryPrice: 0 as number,
+    isDeliveryPosted: false
 };
 
 type initialStateType = typeof initialState;
@@ -44,7 +41,6 @@ const bucketReducer = (state = initialState, action: ActionType): initialStateTy
             let indexInDelivery = state.delivery.order.findIndex(item => item.dish_id === action.dish._id);
             let indexInOrderedDishes = state.orderedDishes.findIndex(dish => dish._id === action.dish._id);
 
-            console.log(action)
             return {
                 ...state,
                 delivery: {
@@ -140,10 +136,6 @@ const bucketReducer = (state = initialState, action: ActionType): initialStateTy
             return {
                 ...state, global_settings: action.settings
             };
-        case GET_CITIES:
-            return {
-                ...state, cities: action.cities
-            };
         default:
             return state;
     }
@@ -181,41 +173,40 @@ type getDeliveryGlobalSettingsACType = {
     type: typeof GET_DELIVERY_GLOBAL_SETTINGS,
     settings: deliveryGlobalSettingsType
 }
-type getCitiesACType = {
-    type: typeof GET_CITIES,
-    cities: Array<cityType>
+type changeDeliveryPostedACType = {
+    type: typeof DELIVERY_POSTED,
+    status: boolean
 }
 
 type ActionType = addDishACType | increaseDishCountACType | reduceDishCountACType | changeDishCountACType
-    | removeDishACType | clearBucketACType | getDeliverySettingsACType | getDeliveryGlobalSettingsACType | getCitiesACType
+    | removeDishACType | clearBucketACType | getDeliverySettingsACType | getDeliveryGlobalSettingsACType | changeDeliveryPostedACType
 
 export const addDishAC = (dish: dishType): addDishACType => ({type: ADD_DISH, dish});
 export const increaseDishCountAC = (dish: dishType): increaseDishCountACType => ({type: INCREASE_DISH_COUNT, dish});
 export const reduceDishCountAC = (dish: dishType): reduceDishCountACType => ({type: REDUCE_DISH_COUNT, dish});
 export const removeDishAC = (id: string): removeDishACType => ({type: REMOVE_DISH, id});
-export const changeDishCountAC = (dish: dishType, count: number): changeDishCountACType => ({type: CHANGE_DISH_COUNT, dish, count})
+export const changeDishCountAC = (dish: dishType, count: number): changeDishCountACType => ({type: CHANGE_DISH_COUNT, dish, count});
 export const clearBucketAC = (): clearBucketACType => ({type: CLEAR_BUCKET});
+export const changeDeliveryPostedAC = (status: boolean): changeDeliveryPostedACType => ({type: DELIVERY_POSTED, status});
 const getDeliverySettingsAC = (settings: Array<deliverySettingsType>): getDeliverySettingsACType => ({type: GET_DELIVERY_SETTINGS, settings});
 const getDeliveryGlobalSettingsAC = (settings: deliveryGlobalSettingsType): getDeliveryGlobalSettingsACType => ({type: GET_DELIVERY_GLOBAL_SETTINGS, settings});
-const getCitiesAC = (cities: Array<cityType>): getCitiesACType => ({type: GET_CITIES, cities});
 
 export const requestDeliverySettings = () => async(dispatch: any) => {
     let response = await bucketAPI.getDeliverySettings()
-    dispatch(getDeliverySettingsAC(response))
+    dispatch(getDeliverySettingsAC(response.data))
 };
 
 export const requestGlobalDeliverySettings = () => async(dispatch: any) => {
     let response = await bucketAPI.getDeliveryGlobalSettings()
-    dispatch(getDeliveryGlobalSettingsAC(response))
-};
-
-export const requestCities = () => async(dispatch: any) => {
-    let response = await cityAPI.getCities()
-    dispatch(getCitiesAC(response))
+    dispatch(getDeliveryGlobalSettingsAC(response.data))
 };
 
 export const postOrder = (order: IDeliveryPost) => async(dispatch: any) => {
     let response = await bucketAPI.postOrder(order)
+    if (response.status === 201) {
+        dispatch(changeDeliveryPostedAC(true))
+        dispatch(clearBucketAC())
+    }
 }
 
 export default bucketReducer;

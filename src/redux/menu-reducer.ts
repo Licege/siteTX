@@ -57,12 +57,12 @@ const getCategoriesACType = (categories: Array<categoryType>): GetCategoriesACTy
 
 export const getCategories = () => async(dispatch: any) => {
     let response = await menuAPI.getCategories();
-    dispatch(getCategoriesACType(response));
+    dispatch(getCategoriesACType(response.data));
 };
 
 export const getMenu = () => async(dispatch: any) => {
     let response = await menuAPI.getMenu();
-    dispatch(getMenuAC(response));
+    dispatch(getMenuAC(response.data));
 };
 
 export const getMenuByCategory = (category: string) => async(dispatch: any) => {
@@ -74,7 +74,7 @@ export const getMenuByCategory = (category: string) => async(dispatch: any) => {
 
 export const getDish = (id: number) => async(dispatch: any) => {
     let response = await menuAPI.getDish(id);
-    dispatch(getDishAC(response));
+    dispatch(getDishAC(response.data));
 };
 
 export default menuReducer;

@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-    cityType,
     deliveryGlobalSettingsType,
     deliverySettingsType,
     deliveryType,
@@ -19,7 +18,6 @@ type PropsType = {
     orderPrice: number
     settings: Array<deliverySettingsType>
     global_settings: deliveryGlobalSettingsType
-    cities: Array<cityType>
     paymentMethod: string
     deliveryMethod: string
 
@@ -33,7 +31,7 @@ type PropsType = {
 }
 
 const Bucket: React.FC<PropsType> = ( props ) => {
-    const {dishes, delivery, deliveryPrice, orderPrice, settings, global_settings, cities, paymentMethod, deliveryMethod,
+    const {dishes, delivery, deliveryPrice, orderPrice, settings, global_settings, paymentMethod, deliveryMethod,
         increaseDishCount, reduceDishCount, removeDish, clearBucket, choiceDate, onSubmit, onChange} = props;
 
     return (
@@ -79,7 +77,6 @@ const Bucket: React.FC<PropsType> = ( props ) => {
                         <h3 className='bucket-order-title'>Оформление заказа</h3>
                         <FormOrder settings={settings}
                                    global_settings={global_settings}
-                                   cities={cities}
                                    payment_method={paymentMethod}
                                    delivery_method={deliveryMethod}
                                    choiceDate={choiceDate}
