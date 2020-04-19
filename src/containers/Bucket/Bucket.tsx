@@ -68,6 +68,9 @@ class BucketContainer extends React.Component<PropsType, StateType> {
         if (prevProps.deliveryType && this.props.address && prevProps.deliveryType !== this.props.deliveryType) {
             this.setState({deliveryPrice: this.priceForDelivery(this.props.address.city, this.props.delivery.total_price)})
         }
+        if (prevProps.address && this.props.address && this.props.address.city !== prevProps.address.city) {
+            this.setState({deliveryPrice: this.priceForDelivery(this.props.address.city, this.props.delivery.total_price)})
+        }
     }
 
     priceForDelivery = (city: string, price: number): number => {

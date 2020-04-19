@@ -1,6 +1,6 @@
 import React from 'react';
 import {newsType} from "../../types/types";
-import CardNews from "../common/elements/СardNews";
+import CardNews from "../common/elements/CardNews";
 import Paginator from "../common/elements/Paginator";
 
 type PropsType = {

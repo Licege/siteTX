@@ -1,7 +1,7 @@
 import React from 'react';
 import './assets/main.scss';
-import FooterContainer from "./containers/Footer/Footer";
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import FooterContainer from "./containers/Footer/Footer";
 import HeaderContainer from "./containers/Header/Header";
 import MenuContainer from "./containers/Menu/Menu";
 import ContactsContainer from "./containers/Contacts/Contacts";
@@ -9,6 +9,7 @@ import VacanciesContainer from "./containers/Vacancies/Vacancies";
 import GalleryContainer from "./containers/Gallery/Gallery";
 import OrderContainer from "./containers/Order/Order";
 import NewsContainer from "./containers/News/News";
+import NewsByIdContainer from "./containers/News/NewsById";
 import HomeContainer from "./containers/Home/Home";
 import BucketContainer from "./containers/Bucket/Bucket";
 import ReviewsContainer from "./containers/Reviews/Reviews";
@@ -29,6 +30,7 @@ function App() {
                             <Route exact path='/gallery' component={GalleryContainer} />
                             <Route exact path='/order' component={OrderContainer} />
                             <Route exact path='/news' component={NewsContainer} />
+                            <Route exact path='/news/:id' component={NewsByIdContainer} />
                             <Route exact path='/bucket' component={BucketContainer} />
                             <Route exact path='/reviews' component={ReviewsContainer} />
                             <Route exact path='/resume/:id' component={ResumeContainer} />

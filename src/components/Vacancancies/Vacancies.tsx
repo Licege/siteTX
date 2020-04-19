@@ -12,7 +12,7 @@ const Vacancies: React.FC<PropsType> = ( {vacancies} ) => {
             <h4 className='page-container-title'>~ Вакансии ~</h4>
             <div className='vacancies-container'>
                 {vacancies.map(vacancy =>
-                    <CardVacancy vacancy={vacancy} key={vacancy.id}/>
+                    <CardVacancy vacancy={vacancy} key={vacancy._id}/>
                 )}
             </div>
         </div>

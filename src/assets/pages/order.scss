@@ -1,3 +1,4 @@
+/*
 .order {
   display: block;
 
@@ -15,5 +16,14 @@
   textarea {
     display: block;
     resize: none;
+  }
+}*/
+
+.order {
+  display: flex;
+
+  &-img {
+    width: 45%;
+    margin: 20px 40px;
   }
 }

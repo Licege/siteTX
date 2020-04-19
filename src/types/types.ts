@@ -40,13 +40,13 @@ export type categoryType = {
 }
 
 export type vacancyType = {
-    id: number,
+    _id: string,
     title: string,
     requirements: string | null,
     description: string | null,
     salary_from: number | null,
     salary_to: number | null,
-    url: string | null
+    imageSrc: string | null
 }
 
 export type resumeType = {
@@ -69,10 +69,10 @@ export type imageForGalleryType = {
 }
 
 export interface IOrder {
-    surname: string
+    name: string
     phone: string
-    datetime: string | Date
-    count: string
+    order_date: Date | string
+    count_person: number
     comment: string
 }
 
@@ -125,7 +125,7 @@ export interface IDeliveryPost {
     delivery_type: string
     address: addressType
     restaurant_id: number
-    time_delivery: number
+    time_delivery: Date
     discount_card?: number
     create_at: Date,
     payment_status: number,
