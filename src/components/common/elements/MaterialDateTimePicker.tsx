@@ -3,10 +3,12 @@ import {KeyboardDateTimePicker} from "@material-ui/pickers";
 
 const DateTimeField = ( props: any ) => {
     const {
-        meta: { submitting, error, touched },
+        meta: { error, touched },
         input: { onBlur, value, ...inputProps },
         ...others
     } = props
+
+    const today = new Date()
 
     const onChange = (date: any) => {
         Date.parse(date) ? inputProps.onChange(date.toISOString()) : inputProps.onChange(null)
@@ -22,8 +24,9 @@ const DateTimeField = ( props: any ) => {
                 onBlur={() => onBlur(value ? new Date(value).toISOString() : null)}
                 error={error && touched}
                 disablePast
-                maxDate={new Date()}
+                maxDate={today.setDate(today.getDate() + 30)}
                 ampm={false}
+                minutesStep={5}
                 onChange={onChange} />
     )
 }

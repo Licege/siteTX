@@ -51,7 +51,7 @@ export const menuAPI = {
 
 export const vacanciesAPI = {
     getVacancies() {
-        return axios.get<Array<vacancyType>>(baseURL + `/vacancy/`)
+        return axios.get<Array<vacancyType>>(baseURL + `/vacancies/`)
             .then(response => {
                 return response
             })
@@ -80,7 +80,7 @@ export const newsAPI = {
                 return response
             })
     },
-    getNewsById (id: number) {
+    getNewsById (id: string) {
         return axios.get(baseURL + `/news/${id}`)
             .then(response => {
                 return response
@@ -109,6 +109,15 @@ export const bucketAPI = {
             })
     }
 };
+
+export const ordersAPI = {
+    postOrder(order: IOrder) {
+        return axios.post(baseURL + `/order/`, order)
+            .then(response => {
+                return response
+            })
+    }
+}
 
 export const reviewsAPI = {
     getReviews() {

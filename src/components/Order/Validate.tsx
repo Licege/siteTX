@@ -1,7 +1,7 @@
 const Validate = (values: any) => {
     const errors = {} as any
     const requiredFields = [
-        'surname',
+        'name',
         'phone',
         'datetime'
     ]

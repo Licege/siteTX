@@ -8,7 +8,7 @@ import {FormControl, FormHelperText, InputLabel, RadioGroup, Radio, Button} from
 import Select from "@material-ui/core/Select";
 import renderCheckbox from "../common/elements/RenderCheckbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import MyReactDateTimePicker from "../common/elements/MyReactDateTimePicker";
+import DateTimeField from "../common/elements/MaterialDateTimePicker";
 
 
 interface PropsType {
@@ -25,6 +25,7 @@ interface IMapStateToProps {
     address: {
         city: string
     }
+    time_delivery: Date
     enableReinitialize: boolean
 }
 
@@ -125,7 +126,8 @@ const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & 
             <div>
                 {/*<label>Время доставки:</label>
                 <Field name='datetime' component={MyDateTimePicker} choiceDate={choiceDate} defautDate={defaultDate} />*/}
-                <Field name='datetime' component={MyReactDateTimePicker} placeholder='Выберите дату и время' />
+                {/*<Field name='datetime' component={MyReactDateTimePicker} placeholder='Выберите дату и время' />*/}
+                <Field name='time_delivery' component={DateTimeField} />
             </div>
             <div>
                 <Field name='count_person'
@@ -161,7 +163,8 @@ let ReduxFormOrder = reduxForm<IDeliveryPost & IMapStateToProps, PropsType>({
         delivery_type: 'home',
         address: {
             city: 'Калининград'
-        }
+        },
+        time_delivery: new Date(new Date().setMilliseconds(60 * 60 * 1000))
     },
     validate,
     enableReinitialize: true

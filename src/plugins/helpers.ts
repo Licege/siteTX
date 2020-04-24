@@ -23,7 +23,7 @@ const arrMonth: Array<string> = [
     'Декабря'
 ];
 
-export function tsToDate (timestamp: number, type: string): string {
+export function tsToDate (timestamp: Date | number, type: string): string {
     let date: Date = new Date(timestamp);
     let hh: number = date.getHours();
     let mm: number = date.getMinutes();

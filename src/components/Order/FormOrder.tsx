@@ -5,7 +5,7 @@ import {FormControl, FormHelperText, InputLabel, Button} from "@material-ui/core
 import Select from "@material-ui/core/Select/Select";
 import validate from './Validate';
 import {IOrder} from "../../types/types";
-import MyReactDateTimePicker from "../common/elements/MyReactDateTimePicker";
+import DateTimeField from "../common/elements/MaterialDateTimePicker";
 
 
 const renderFromHelper = ({ touched, error }: any) => {
@@ -27,21 +27,20 @@ const renderSelectField = ({ input, label, meta: { touched, error }, children, .
 )
 
 const FormOrder: React.FC<InjectedFormProps> = ({ handleSubmit }) => {
-
     return (
         <form onSubmit={handleSubmit}>
-
             <div>
-                <Field name='surname' component={renderTextField} label='Ваше имя:' placeholder='Введите имя:' />
+                <Field name='name' component={renderTextField} label='Ваше имя:' placeholder='Введите имя:' />
             </div>
             <div>
                 <Field name='phone' component={renderTextField} label='Контактный телефон' placeholder='Введите телефон' />
             </div>
             <div>
-                <Field name='datetime' component={MyReactDateTimePicker} />
+                {/*<Field name='datetime' component={MyReactDateTimePicker} parse={(value: Date) => value.toISOString()} />*/}
+                <Field name='order_date' component={DateTimeField} />
             </div>
             <div>
-                <Field name='count' component={renderSelectField} label='Количество гостей'>
+                <Field name='count_person' component={renderSelectField} label='Количество гостей'>
                     <option value={1}>1</option>
                     <option value={2}>2</option>
                 </Field>
@@ -51,13 +50,12 @@ const FormOrder: React.FC<InjectedFormProps> = ({ handleSubmit }) => {
                        component={renderTextField}
                        label='Пожелания:'
                        multiline
-                       rowsMax="6"
-                       margin="normal" />
+                       rowsMax='6'
+                       margin='normal' />
             </div>
             <div>
-                <Button variant='contained' color='primary' type='submit'>Заказать</Button>
+                <Button variant='contained' color='primary' type='submit'>Забронировать стол</Button>
             </div>
-
         </form>
     )
 };
@@ -65,7 +63,7 @@ const FormOrder: React.FC<InjectedFormProps> = ({ handleSubmit }) => {
 let ReduxFormOrder = reduxForm<IOrder>({
     form: 'orderForm',
     initialValues: {
-        datetime: new Date()
+        order_date: new Date(new Date().setMilliseconds(2 * 60 * 60 * 1000))
     },
     validate,
     enableReinitialize: true})(FormOrder);

@@ -1,8 +1,27 @@
 .news {
-  &-paginator {
-    ul {
-      justify-content: center;
+  display: flex;
+  min-height: calc(100vh - 308px);
+
+  &-image {
+    width: 45%;
+    height: 100%;
+  }
+
+  &-wrapper {
+    position: relative;
+    padding-bottom: 40px;
+    padding-left: 16px;
+    width: 55%;
+
+    &-title {
+      text-align: center;
     }
 
+    &-action {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
   }
+
 }

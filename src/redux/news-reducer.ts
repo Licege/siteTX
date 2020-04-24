@@ -44,7 +44,7 @@ export const requestNews = (page?: number | undefined) => async (dispatch: any) 
     dispatch(getNewsAC(response.data.news, response.data.total_count))
 };
 
-export const requestCurrentNews = (id: number) => async (dispatch: any) => {
+export const requestCurrentNews = (id: string) => async (dispatch: any) => {
     let response = await newsAPI.getNewsById(id);
     dispatch(getCurrentNewsAC(response.data));
 };
