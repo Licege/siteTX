@@ -30,7 +30,7 @@ export const menuAPI = {
             })
     },
     getMenuByCategory(category: string) {
-        return axios.get<Array<dishType>>(baseURL + `/menu/${category}`,)
+        return axios.get<Array<dishType>>(baseURL + `/menu/${category}`)
             .then(respose => {
                 return respose
             })

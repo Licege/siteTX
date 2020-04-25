@@ -4,11 +4,21 @@ import {connect} from 'react-redux';
 import {deliveryGlobalSettingsType, deliverySettingsType, IDeliveryPost} from "../../types/types";
 import renderTextField from "../common/elements/RenderTextField";
 import validate from './Validate';
-import {FormControl, FormHelperText, InputLabel, RadioGroup, Radio, Button} from "@material-ui/core";
+import {
+    FormControl,
+    FormHelperText,
+    InputLabel,
+    RadioGroup,
+    Radio,
+    Button,
+    Theme,
+    createStyles
+} from "@material-ui/core";
 import Select from "@material-ui/core/Select";
 import renderCheckbox from "../common/elements/RenderCheckbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import DateTimeField from "../common/elements/MaterialDateTimePicker";
+import {makeStyles} from "@material-ui/core/styles";
 
 
 interface PropsType {
@@ -53,14 +63,25 @@ const radioButton = ({ input, ...rest }: any) => (
     </FormControl>
 )
 
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            '& .MuiFormControl-root': {
+                margin: theme.spacing(1),
+                width: '220px',
+            },
+        },
+    }),
+);
 
 
 const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & PropsType> = ( props ) => {
     const {handleSubmit, settings, global_settings, payment_method, delivery_method} = props;
     let defaultDate = new Date(); defaultDate.setHours(defaultDate.getHours() + 2)
+    const classes = useStyles()
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={classes.root}>
             <div>
                 <Field name='surname' component={renderTextField} label='Ваше имя:' placeholder='Введите имя' />
             </div>

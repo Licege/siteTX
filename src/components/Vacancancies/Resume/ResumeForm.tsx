@@ -1,18 +1,32 @@
 import React from 'react'
 import {InjectedFormProps, reduxForm, Field} from "redux-form";
 import renderTextField from "../../common/elements/RenderTextField";
-import {Button} from "@material-ui/core";
-import MyReactDateTimePicker from "../../common/elements/MyReactDateTimePicker";
+import {Button, createStyles, Theme} from "@material-ui/core";
 import {vacancyType} from "../../../types/types";
 import {dateFormParse} from "../../../plugins/helpers";
+import {makeStyles} from "@material-ui/core/styles";
+import BirthdayPicker from "../../common/elements/BirthdayPicker";
 
 interface IProps {
     vacancies: Array<vacancyType>
 }
 
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            '& .MuiFormControl-root': {
+                margin: theme.spacing(1),
+                width: '220px',
+            },
+        },
+    }),
+);
+
 const ResumeForm: React.FC<InjectedFormProps & IProps> = ( {handleSubmit} ) => {
+    const classes = useStyles()
+
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={classes.root}>
             <div>
                 <Field name='surname' component={renderTextField} label='Фамилия*' placeholder='Введите фамилию' />
             </div>
@@ -27,7 +41,7 @@ const ResumeForm: React.FC<InjectedFormProps & IProps> = ( {handleSubmit} ) => {
             </div>
             {/*Подумать насчет мест работы и опыта*/}
             <div>
-                <Field name='date_birth' component={MyReactDateTimePicker} label='Дата рождения*' placeholder='Укажите дату рождения' parse={dateFormParse} />
+                <Field name='date_birth' component={BirthdayPicker} label='Дата рождения*' placeholder='Укажите дату рождения' parse={dateFormParse} />
             </div>
             <div>
                 <Field name='address' component={renderTextField} label='Адрес' placeholder='Укажите адрес' multiline rowsMax={6} />

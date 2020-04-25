@@ -1,11 +1,12 @@
 import React from 'react';
 import {InjectedFormProps, reduxForm, Field} from "redux-form";
 import renderTextField from "../common/elements/RenderTextField";
-import {FormControl, FormHelperText, InputLabel, Button} from "@material-ui/core";
+import {FormControl, FormHelperText, InputLabel, Button, Theme, createStyles} from "@material-ui/core";
 import Select from "@material-ui/core/Select/Select";
 import validate from './Validate';
 import {IOrder} from "../../types/types";
 import DateTimeField from "../common/elements/MaterialDateTimePicker";
+import {makeStyles} from "@material-ui/core/styles";
 
 
 const renderFromHelper = ({ touched, error }: any) => {
@@ -26,9 +27,22 @@ const renderSelectField = ({ input, label, meta: { touched, error }, children, .
     </FormControl>
 )
 
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            '& .MuiFormControl-root': {
+                margin: theme.spacing(1),
+                width: '200px',
+            },
+        },
+    }),
+);
+
 const FormOrder: React.FC<InjectedFormProps> = ({ handleSubmit }) => {
+    const classes = useStyles()
+
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={classes.root}>
             <div>
                 <Field name='name' component={renderTextField} label='Ваше имя:' placeholder='Введите имя:' />
             </div>

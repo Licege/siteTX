@@ -11,6 +11,7 @@ import Slide from '@material-ui/core/Slide/Slide';
 import renderCheckbox from "../common/elements/RenderCheckbox";
 import validate from "./Validate";
 import {IReview} from "../../types/types";
+import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 
 interface IProps {
     isOpen: boolean
@@ -27,13 +28,26 @@ const Transition = React.forwardRef(function Transition(
     ref: React.Ref<unknown>,
 ) {
     return <Slide direction="up" ref={ref} {...props} />;
-});
+})
+
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            '& .MuiFormControl-root': {
+                margin: theme.spacing(1),
+                width: '200px',
+            },
+        },
+    }),
+)
 
 const ModalForm: React.FC<InjectedFormProps & IProps> = ( {isOpen, handleClose, handleSubmit} ) => {
+    const classes = useStyles()
+
     return (
         <Dialog open={isOpen} onClose={handleClose} TransitionComponent={Transition}>
             <DialogTitle>Новый отзыв</DialogTitle>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className={classes.root}>
                 <DialogContent>
                     <div>
                         <Field name='surname' component={renderTextField} placeholder='Введите фамилию'/>

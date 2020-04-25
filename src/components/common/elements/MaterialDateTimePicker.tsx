@@ -19,7 +19,7 @@ const DateTimeField = ( props: any ) => {
                 {...inputProps}
                 {...others}
                 variant="inline"
-                format="HH:mm dd/MM/yyy"
+                format="HH:mm dd/MM/yyyy"
                 value={value ? new Date(value) : null}
                 onBlur={() => onBlur(value ? new Date(value).toISOString() : null)}
                 error={error && touched}
