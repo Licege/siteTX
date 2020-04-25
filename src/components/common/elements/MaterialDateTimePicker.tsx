@@ -1,5 +1,16 @@
 import React from 'react'
 import {KeyboardDateTimePicker} from "@material-ui/pickers";
+import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            '& .MuiButtonBase-root': {
+                outline: 'none',
+            },
+        },
+    }),
+);
 
 const DateTimeField = ( props: any ) => {
     const {
@@ -14,10 +25,13 @@ const DateTimeField = ( props: any ) => {
         Date.parse(date) ? inputProps.onChange(date.toISOString()) : inputProps.onChange(null)
     }
 
+    const classes = useStyles()
+
     return (
             <KeyboardDateTimePicker
                 {...inputProps}
                 {...others}
+                className={classes.root}
                 variant="inline"
                 format="HH:mm dd/MM/yyyy"
                 value={value ? new Date(value) : null}

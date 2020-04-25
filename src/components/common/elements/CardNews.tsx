@@ -20,7 +20,7 @@ const CardNews: React.FC<PropsType> = ({news} ) => {
                         <div className='card_news-content-info-header'>
                             {news.title && <a href='#' className='card_news-content-info-header-title'>{news.title}</a>}
                         </div>
-                        {news.description && <div className='card_news-content-info-description'>{news.description}</div>}
+                        {news.short_description && <div className='card_news-content-info-description'>{news.short_description}</div>}
                         <div className='card_news-content-info-link'>
                             <Link to={'/news/'+news._id} >Подробнее...</Link>
                         </div>

@@ -1,11 +1,22 @@
 import React from 'react'
 import {KeyboardDatePicker} from "@material-ui/pickers";
 import {ru} from "date-fns/locale";
+import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            '& .MuiButtonBase-root': {
+                outline: 'none',
+            },
+        },
+    }),
+);
 
 const BirthdayPicker = (props: any) => {
     const {
-        meta: { error, touched },
-        input: { onBlur, value, ...inputProps },
+        meta: {error, touched},
+        input: {onBlur, value, ...inputProps},
         ...others
     } = props
 
@@ -13,9 +24,12 @@ const BirthdayPicker = (props: any) => {
         Date.parse(date) ? inputProps.onChange(date.toISOString()) : inputProps.onChange(null)
     }
 
+    const classes = useStyles()
+
     return (
         <KeyboardDatePicker  {...inputProps}
                              {...others}
+                             className={classes.root}
                              variant="inline"
                              format="dd/MM/yyyy"
                              openTo="year"
@@ -26,7 +40,7 @@ const BirthdayPicker = (props: any) => {
                              locale={ru}
                              disableFuture
                              autoOk
-                             onChange={onChange} />
+                             onChange={onChange}/>
     )
 }
 
