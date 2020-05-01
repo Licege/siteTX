@@ -127,8 +127,8 @@ export interface IDeliveryPost {
     restaurant_id: number
     time_delivery: Date
     discount_card?: number
-    create_at: Date,
-    payment_status: number,
+    create_at: Date
+    payment_status: number
     count_person: number | null
     comment: string | null
     rule_agree: boolean
@@ -144,6 +144,9 @@ export type addressType = {
 }
 
 export type deliveryGlobalSettingsType = {
-    is_delivery_working: boolean,
+    is_delivery_working: boolean
     phone_for_sms: string
+    payment_type_cash: boolean
+    payment_type_cashless: boolean
+    payment_type_online: boolean
 }

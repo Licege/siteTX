@@ -1,8 +1,13 @@
 import React from 'react';
+import {newsType} from "../../types/types";
+import CustomSlider from "../common/elements/CustomSlider";
+import Loader from "../common/elements/Loader";
 
-type PropsType = {}
+type PropsType = {
+    news: Array<newsType>
+}
 
-const Home: React.FC<PropsType> = () => {
+const Home: React.FC<PropsType> = ({news}) => {
     let url = "http://navse360.ru/onlyTour/4421"
 
     return (
@@ -19,7 +24,21 @@ const Home: React.FC<PropsType> = () => {
             <div>
                 Акции
             </div>
-
+            <div>
+                <CustomSlider items={news} />
+            </div>
+            <div>
+                Наше меню
+            </div>
+            <div>
+                Доставка
+            </div>
+            <div>
+                Карта
+            </div>
+            <div>
+                <Loader />
+            </div>
         </div>
     )
 };

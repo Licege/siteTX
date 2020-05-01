@@ -96,9 +96,9 @@ const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & 
                     <label>Выберите способ оплаты:</label>
                 </div>
                 <Field name='payment_type' component={radioButton}>
-                    <FormControlLabel value='cash' control={<Radio />} label='Наличными' />
-                    <FormControlLabel value='cashless_payment' control={<Radio />} label='Безналичный расчет курьеру' />
-                    <FormControlLabel value='cashless_payment_online' control={<Radio />} label='Безналичный расчет' />
+                    {global_settings.payment_type_cash && <FormControlLabel value='cash' control={<Radio />} label='Наличными' />}
+                    {global_settings.payment_type_cashless && <FormControlLabel value='cashless_payment' control={<Radio />} label='Безналичный расчет курьеру' />}
+                    {global_settings.payment_type_online && <FormControlLabel value='cashless_payment_online' control={<Radio />} label='Безналичный расчет' />}
                 </Field>
                 {payment_method === 'cash' && <div>
                     <Field name='odd_money' component={renderTextField} label='Сдача' placeholder='Сдача с' />
@@ -109,7 +109,7 @@ const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & 
                     <label>Выберите способ доставки:</label>
                 </div>
                 <Field name='delivery_type' component={radioButton}>
-                    <FormControlLabel value='home' control={<Radio />} label='На дом' />
+                    {global_settings.is_delivery_working && <FormControlLabel value='home' control={<Radio />} label='На дом' />}
                     <FormControlLabel value='restaurant' control={<Radio />} label='Самовывоз из ресторана' />
                 </Field>
             </div>

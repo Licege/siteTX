@@ -44,6 +44,9 @@ const Header: React.FC<PropsType> = ({categories}) => {
                     </li>
                 </ul>
             </div>
+            <div>
+
+            </div>
             <div className='header-bucket'>
                 <ButtonBucket/>
             </div>

@@ -12,6 +12,7 @@ import renderCheckbox from "../common/elements/RenderCheckbox";
 import validate from "./Validate";
 import {IReview} from "../../types/types";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
+import renderRatingField from "../common/elements/RenderRating";
 
 interface IProps {
     isOpen: boolean
@@ -60,6 +61,9 @@ const ModalForm: React.FC<InjectedFormProps & IProps> = ( {isOpen, handleClose, 
                         <Field name='description' component={renderTextField} multiline placeholder='Ваш отзыв'/>
                     </div>
                     <div>
+                        <Field name='rating' type='number' component={renderRatingField} sizeStar={25} />
+                    </div>
+                    <div>
                         <input name='photo' type='file'/>
                     </div>
                     <div>
@@ -79,6 +83,9 @@ const ModalForm: React.FC<InjectedFormProps & IProps> = ( {isOpen, handleClose, 
 let ModalReduxForm = reduxForm<IReview & IMapStateToProps, IProps>({
     form: 'modal-create-reviews',
     validate,
+    initialValues: {
+        rating: 3
+    },
     enableReinitialize: true}) (ModalForm)
 
 export default ModalReduxForm;
