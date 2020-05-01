@@ -5,8 +5,9 @@ interface IProps {
     value?: number,
     size?: number
     countStars?: number
+    disabled?: boolean
 
-    onChange: (value: number) => void
+    onChange?: (value: number) => void
 }
 
 interface IState {
@@ -17,24 +18,24 @@ interface IState {
 class Rating extends React.PureComponent<IProps, IState> {
     constructor(props: IProps) {
         super(props)
-        console.log(props.onChange);
         this.state = {
             value: props.value || 3,
             hover: null
         }
-        //this.props.onChange.bind(this)
     }
 
     onChange = (value: number) => {
         return () => {
-            this.props.onChange(value)
-            this.setState({value})
+            if (!this.props.disabled) {
+                this.props.onChange && this.props.onChange(value)
+                this.setState({value})
+            }
         }
     }
 
     changeFocus = (value: number | null) => {
         return () => {
-            this.setState({hover: value})
+            !this.props.disabled && this.setState({hover: value})
         }
     }
 

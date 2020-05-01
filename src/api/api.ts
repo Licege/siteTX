@@ -1,5 +1,6 @@
 import axios from "axios";
 import {
+    authProfileType,
     categoryType,
     contactsType,
     dishType,
@@ -12,6 +13,21 @@ import {
 
 export const serverUrl = 'http://localhost:9090/'
 const baseURL = serverUrl + 'api';
+
+export const authAPI = {
+    login(profile: authProfileType) {
+        return axios.post(baseURL + `/auth/login/`, profile)
+            .then(response => {
+                return response
+            })
+    },
+    registration(profile: authProfileType) {
+        return axios.post(baseURL + `/auth/registration/`, profile)
+            .then(response => {
+                return response
+            })
+    }
+}
 
 export const contactsAPI = {
     getContacts() {

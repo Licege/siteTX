@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import Rating from './Rating'
 
 interface IProps {
@@ -8,11 +8,12 @@ interface IProps {
     }
     countStars?: number
     sizeStar?: number
+    disabled?: boolean
 }
 
-const renderRatingField: React.FC<IProps> = ( {input: { value, onChange }, countStars, sizeStar} ) => (
+const renderRatingField: React.FC<IProps> = ( {input: { value, onChange }, countStars, sizeStar, disabled} ) => (
         <div>
-            <Rating value={value} countStars={countStars} size={sizeStar} onChange={onChange} />
+            <Rating value={value} countStars={countStars} size={sizeStar} onChange={onChange} disabled={disabled} />
         </div>
 )
 

@@ -4,6 +4,7 @@ import {Link, NavLink} from "react-router-dom";
 import ButtonBucket from "../Bucket/ButtonBucket";
 import logo from "../../static/img/logo.png";
 import MobileMenu from "../common/elements/MobileMenu";
+import AuthButton from "../Auth/AuthButton";
 
 type PropsType = {
     categories: Array<categoryType>
@@ -39,15 +40,14 @@ const Header: React.FC<PropsType> = ({categories}) => {
                     <li>
                         <NavLink activeClassName='-active' className='header-navbar-item' to='/contacts'>О НАС</NavLink>
                     </li>
-                    <li>
-                        <NavLink activeClassName='-active' className='header-navbar-item' to='/gallery'>ФОТОГАЛЕРЕЯ</NavLink>
-                    </li>
                 </ul>
             </div>
-            <div>
 
-            </div>
-            <div className='header-bucket'>
+            <div className='header-action'>
+                <div className='mr-3'>
+                    <AuthButton/>
+                </div>
+
                 <ButtonBucket/>
             </div>
         </div>

@@ -1,19 +1,39 @@
+export type authProfileType = {
+    email: string
+    password: string
+}
+
+export type authRegProfileType = {
+    email: string
+    password: string
+    surname?: string
+    forename: string
+    patronymic?: string
+    phone: string
+
+}
+
+export type authTokenType = {
+    accessToken: string
+    refreshToken: string
+}
+
 export type contactsType = {
-    phone: string | null,
-    address: string | null,
-    vk: string | null,
-    fb: string | null,
-    tg: string | null,
-    inst: string | null,
-    google: string | null,
+    phone: string | null
+    address: string | null
+    vk: string | null
+    fb: string | null
+    tg: string | null
+    inst: string | null
+    google: string | null
     tw: string | null
 }
 
 export type reviewType = {
-    id: number,
-    name: string,
-    phone: string,
-    comment: string,
+    id: number
+    name: string
+    phone: string
+    comment: string
     create_at: number
 }
 
@@ -40,12 +60,12 @@ export type categoryType = {
 }
 
 export type vacancyType = {
-    _id: string,
-    title: string,
-    requirements: string | null,
-    description: string | null,
-    salary_from: number | null,
-    salary_to: number | null,
+    _id: string
+    title: string
+    requirements: string | null
+    description: string | null
+    salary_from: number | null
+    salary_to: number | null
     imageSrc: string | null
 }
 
@@ -91,28 +111,28 @@ export type newsType = {
     _id: string
     title: string
     description: string
-    create_at: Date,
+    create_at: Date
     short_description: string
     imageSrc: string
 }
 
 export type orderDishType = {
-    dish_id: string,
-    title: string,
-    count: number,
+    dish_id: string
+    title: string
+    count: number
     cost: number
 }
 
 export type deliveryType = {
-    order: Array<orderDishType>,
+    order: Array<orderDishType>
     total_price: number
 }
 
 export type deliverySettingsType = {
-    _id: string,
-    city: string,
-    price_for_delivery: number,
-    free_delivery: number,
+    _id: string
+    city: string
+    price_for_delivery: number
+    free_delivery: number
     is_delivery: boolean
 }
 
@@ -135,7 +155,7 @@ export interface IDeliveryPost {
 }
 
 export type addressType = {
-    city: string,
+    city: string
     street?: string
     house?: string
     flat?: string | undefined

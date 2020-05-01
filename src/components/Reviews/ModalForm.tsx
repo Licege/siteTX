@@ -61,7 +61,7 @@ const ModalForm: React.FC<InjectedFormProps & IProps> = ( {isOpen, handleClose, 
                         <Field name='description' component={renderTextField} multiline placeholder='Ваш отзыв'/>
                     </div>
                     <div>
-                        <Field name='rating' type='number' component={renderRatingField} sizeStar={25} />
+                        <Field name='rating' component={renderRatingField} type='number' sizeStar={25} />
                     </div>
                     <div>
                         <input name='photo' type='file'/>

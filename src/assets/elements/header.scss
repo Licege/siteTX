@@ -19,7 +19,7 @@
     font-family: Forum, serif;
     font-size: 22px;
     line-height: 44px;
-    padding: 0 80px 0 10px;
+    padding: 0 240px 0 10px;
     color: #FFFFFF;
 
     &-item {
@@ -34,9 +34,10 @@
     }
   }
 
-  &-bucket {
+  &-action {
     position: fixed;
     right: 30px;
+    display: flex;
     //margin: auto 24px;
   }
 
