@@ -4,7 +4,7 @@ import {AppStateType} from "../../redux/redux-store";
 import AuthModal from './AuthModal';
 import {Button} from "@material-ui/core";
 import {authProfileType, authRegProfileType} from "../../types/types";
-import {registration, login} from "../../redux/auth-reducer";
+import {registration, login, logoutAC} from "../../redux/auth-reducer";
 
 
 const AuthButton = () => {
@@ -13,19 +13,25 @@ const AuthButton = () => {
     const loginFunc = useCallback((profile: authProfileType) => {
         dispatch(login(profile))
     }, [])
+    const logoutFunc = useCallback(() => {
+        dispatch(logoutAC())
+    }, [])
     const registrationFunc = useCallback((profile: authRegProfileType) => {
         dispatch(registration(profile))
     }, [])
     const [isOpen, setIsOpen] = useState(false)
 
-    const singUpSubmit = (profile: authProfileType) => {
-        console.log(profile);
-        //loginFunc(profile)
+    const signUpSubmit = (profile: authProfileType) => {
+        loginFunc(profile)
+    }
+
+    const signOutSubmit = () => {
+        logoutFunc()
+        setIsOpen(false)
     }
 
     const registrationSubmit = (profile: authRegProfileType) => {
-        console.log(profile)
-        //registrationFunc(profile)
+        registrationFunc(profile)
     }
 
     const toggle = () => {
@@ -34,11 +40,14 @@ const AuthButton = () => {
 
     return (
         isAuthenticated
-            ? <div>ПРофайл</div>
+            ?
+            <div>
+                <Button variant='contained' onClick={signOutSubmit}>Выйти</Button>
+            </div>
             :
             <div>
                 <Button variant='contained' onClick={toggle}>Авторизация</Button>
-                <AuthModal isOpen={isOpen} onClose={toggle} signUpSubmit={singUpSubmit} registrationSubmit={registrationSubmit} />
+                <AuthModal isOpen={isOpen} onClose={toggle} signUpSubmit={signUpSubmit} registrationSubmit={registrationSubmit} />
             </div>
     )
 }

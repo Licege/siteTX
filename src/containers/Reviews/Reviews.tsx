@@ -8,6 +8,7 @@ import Reviews from "../../components/Reviews/Reviews";
 
 type MapStatePropsType = {
     reviews: Array<IReview>
+    isAuthenticated: boolean
 }
 type MapDispatchPropsType = {
     getReviews: () => void
@@ -47,14 +48,15 @@ class ReviewsContainer extends React.Component<PropsType, StateType> {
 
     render() {
         return (
-            <Reviews reviews={this.props.reviews} isOpen={this.state.open} toggleModal={this.toggle} onSubmit={this.onSubmit} />
+            <Reviews reviews={this.props.reviews} isAuthenticated={this.props.isAuthenticated} isOpen={this.state.open} toggleModal={this.toggle} onSubmit={this.onSubmit} />
         )
     }
 }
 
 let mapStateToProps = (state: AppStateType) => {
     return {
-        reviews: state.reviewsPage.reviews.filter(review => review.status !== 0)
+        reviews: state.reviewsPage.reviews.filter(review => review.status !== 0),
+        isAuthenticated: state.authPage.isAuthenticated
     }
 }
 

@@ -2,6 +2,7 @@ import React from 'react'
 import {InjectedFormProps, Field, reduxForm} from "redux-form";
 import renderTextField from "../common/elements/RenderTextField";
 import {Button} from '@material-ui/core';
+import validate from './RegistrationValidate';
 import {authRegProfileType} from "../../types/types";
 
 
@@ -20,6 +21,6 @@ const Registration: React.FC<InjectedFormProps> = ({handleSubmit}) => {
     )
 }
 
-let registrationForm = reduxForm<authRegProfileType>({form: 'registrationForm'})(Registration)
+let registrationForm = reduxForm<authRegProfileType>({form: 'registrationForm', validate})(Registration)
 
 export default registrationForm;
