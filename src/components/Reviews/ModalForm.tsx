@@ -50,13 +50,13 @@ const ModalForm: React.FC<InjectedFormProps & IProps> = ( {isOpen, handleClose, 
             <DialogTitle>Новый отзыв</DialogTitle>
             <form onSubmit={handleSubmit} className={classes.root}>
                 <DialogContent>
-                    <div>
+                    {/*<div>
                         <Field name='surname' component={renderTextField} placeholder='Введите фамилию'/>
                     </div>
                         <Field name='forename' component={renderTextField} placeholder='Введите имя'/>
                     <div>
                         <Field name='phone' component={renderTextField} placeholder='Контактный телефон'/>
-                    </div>
+                    </div>*/}
                     <div>
                         <Field name='description' component={renderTextField} multiline placeholder='Ваш отзыв'/>
                     </div>

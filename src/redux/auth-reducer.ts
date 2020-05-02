@@ -8,7 +8,7 @@ const LOGOUT = 'AUTH/LOGOUT'
 let initialState = {
     accessToken: localStorage.getItem('accessToken'),
     refreshToken: localStorage.getItem('refreshToken'),
-    isAuthenticated: false
+    isAuthenticated: !!localStorage.getItem('accessToken')
 }
 
 const authReducer = (state = initialState, action: actionType) => {
@@ -56,6 +56,10 @@ export const registration = (profile: authProfileType) => async (dispatch: any) 
 export const login = (profile: authProfileType) => async (dispatch: any) => {
     let response = await authAPI.login(profile)
     dispatch(loginAC(response.data))
+}
+
+export const refresh = () => async (dispatch: any) => {
+   await authAPI.refresh()
 }
 
 export default authReducer;

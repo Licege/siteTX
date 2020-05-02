@@ -42,7 +42,7 @@ class ReviewsContainer extends React.Component<PropsType, StateType> {
             status: 0
         }
         console.log(post)
-        //this.props.postReview(post)
+        this.props.postReview(post)
     }
 
 
