@@ -1,0 +1,55 @@
+.Home {
+
+  .Section {
+    &-about {
+
+    }
+
+    &-menu {
+      padding: 20px;
+      border: 1px dashed $brand-brown;
+
+      &-header {
+
+      }
+
+    }
+
+    &-delivery {
+
+    }
+
+    &-promo {
+
+    }
+
+    &-map {
+
+    }
+  }
+
+
+  .Link-Button {
+    text-align: center;
+
+    button {
+      display: block;
+      margin: 0 auto;
+      color: $brand-brown;
+      font-weight: 600;
+      border-color: $brand-brown;
+      border-radius: 50px;
+      transition: .4s;
+
+      &:hover {
+        color: #f9f9f9;
+        background-color: $brand-brown;
+      }
+    }
+
+    a {
+      display: inline-block;
+      text-decoration: none;
+    }
+  }
+}

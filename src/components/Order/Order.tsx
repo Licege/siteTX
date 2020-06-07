@@ -13,7 +13,7 @@ const Order: React.FC<PropsType> = ( {onSubmit} ) => {
         <div className='page-container'>
             <h4 className='page-container-title'>~ Бронирование столов ~</h4>
             <div className='order'>
-                <img src={img} className='order-img' />
+                <img src={img} className='order-img' alt='' />
                 <div>
                     <p>Описание тут</p>
                     <OrderForm onSubmit={onSubmit} />

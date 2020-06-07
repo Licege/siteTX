@@ -12,13 +12,13 @@ const AuthButton = () => {
     const dispatch = useDispatch()
     const loginFunc = useCallback((profile: authProfileType) => {
         dispatch(login(profile))
-    }, [])
+    }, [dispatch])
     const logoutFunc = useCallback(() => {
         dispatch(logoutAC())
-    }, [])
+    }, [dispatch])
     const registrationFunc = useCallback((profile: authRegProfileType) => {
         dispatch(registration(profile))
-    }, [])
+    }, [dispatch])
     const [isOpen, setIsOpen] = useState(false)
 
     const signUpSubmit = (profile: authProfileType) => {
@@ -46,7 +46,7 @@ const AuthButton = () => {
             </div>
             :
             <div>
-                <Button variant='contained' onClick={toggle}>Авторизация</Button>
+                <Button variant='outlined' onClick={toggle}>Войти</Button>
                 <AuthModal isOpen={isOpen} onClose={toggle} signUpSubmit={signUpSubmit} registrationSubmit={registrationSubmit} />
             </div>
     )

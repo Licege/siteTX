@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import './assets/main.scss';
-import {BrowserRouter, Route, Switch, withRouter} from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import FooterContainer from "./containers/Footer/Footer";
 import HeaderContainer from "./containers/Header/Header";
 import MenuContainer from "./containers/Menu/Menu";
@@ -46,6 +46,7 @@ class App extends React.Component<IProps> {
                                 <Route exact path='/bucket' component={BucketContainer} />
                                 <Route exact path='/reviews' component={ReviewsContainer} />
                                 <Route exact path='/resume/:id' component={ResumeContainer} />
+                                <Route render={() => <h1 className='text-center'>Не найдено</h1>} />
                             </Switch>
                         </div>
                     </div>

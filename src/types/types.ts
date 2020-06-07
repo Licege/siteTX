@@ -18,6 +18,16 @@ export type authTokenType = {
     refreshToken: string
 }
 
+export type promoType = {
+    _id: string
+    title: string
+    short_description: string
+    description: string
+    status: number
+    show: boolean
+    imageSrc: string
+}
+
 export type contactsType = {
     phone: string | null
     address: string | null
@@ -35,11 +45,6 @@ export type reviewType = {
     phone: string
     comment: string
     create_at: number
-}
-
-export type fileType = {
-    id: number
-    url: string
 }
 
 export type dishType = {
@@ -166,6 +171,7 @@ export type addressType = {
 export type deliveryGlobalSettingsType = {
     is_delivery_working: boolean
     phone_for_sms: string
+    sale_for_pickup: number
     payment_type_cash: boolean
     payment_type_cashless: boolean
     payment_type_online: boolean

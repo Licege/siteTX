@@ -44,7 +44,7 @@ const Header: React.FC<PropsType> = ({categories}) => {
             </div>
 
             <div className='header-action'>
-                <div className='mr-3'>
+                <div className='header-action-button'>
                     <AuthButton/>
                 </div>
 

@@ -11,7 +11,7 @@ let initialState = {
 const reviewsReducer = (state = initialState, action: actionType) => {
     switch(action.type) {
         case GET_REVIEWS:
-            return { ...state }
+            return { ...state, reviews: action.reviews }
         case POST_REVIEW:
             return { ...state }
         default:

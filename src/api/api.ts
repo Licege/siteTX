@@ -6,13 +6,13 @@ import {
     dishType,
     IDeliveryPost,
     IOrder,
-    IReview,
+    IReview, promoType,
     resumeType,
     vacancyType
 } from "../types/types";
 
 export const serverUrl = 'http://localhost:9090/'
-const baseURL = serverUrl + 'api';
+const baseURL = serverUrl + 'api/public';
 const apiUserRequest = axios.create({
     baseURL,
     headers: {
@@ -27,7 +27,7 @@ apiUserRequest.interceptors.response.use(function (response) {
     const originalRequest = error.config;
 
     if (error.response.status === 401 && !originalRequest._retry) {
-
+        debugger
         originalRequest._retry = true;
 
         const refreshToken = window.localStorage.getItem('refreshToken');
@@ -113,6 +113,21 @@ export const menuAPI = {
     }
 };
 
+export const promoAPI = {
+    getPromos() {
+        return axios.get<Array<promoType>>(baseURL + `/promos/`)
+            .then(response => {
+                return response
+            })
+    },
+    getPromoById(id: number) {
+        return axios.get<promoType>(baseURL + `/promos/${id}`)
+            .then(response => {
+                return response
+            })
+    }
+}
+
 export const vacanciesAPI = {
     getVacancies() {
         return axios.get<Array<vacancyType>>(baseURL + `/vacancies/`)
@@ -185,15 +200,17 @@ export const ordersAPI = {
 
 export const reviewsAPI = {
     getReviews() {
-        return axios.get(baseURL + `/reviews/public/`)
+        return axios.get(baseURL + `/reviews/`)
             .then(response => {
                 return response
             })
     },
     postReview(review: IReview) {
+        console.log('3123')
         return apiUserRequest.post(`/reviews/`, review)
             .then(response => {
                 return response
             })
+            .catch(e => console.log(e))
     }
 }

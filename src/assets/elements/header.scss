@@ -38,7 +38,13 @@
     position: fixed;
     right: 30px;
     display: flex;
-    //margin: auto 24px;
+
+    &-button {
+      height: 60px;
+      margin-right: 1rem;
+      display: flex;
+      align-items: center;
+    }
   }
 
   li {

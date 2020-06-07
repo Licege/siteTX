@@ -15,6 +15,7 @@ type PropsType = {
     dishes: Array<dishType>
     delivery: deliveryType
     deliveryPrice: number
+    saleForPickup: number
     orderPrice: number
     settings: Array<deliverySettingsType>
     global_settings: deliveryGlobalSettingsType
@@ -25,14 +26,18 @@ type PropsType = {
     reduceDishCount: (dish: dishType) => void
     removeDish: (id: string) => void
     clearBucket: () => void
-    choiceDate: (date: Date | null) => void
     onSubmit: (data: IDeliveryPost) => void
-    onChange: (dish: dishType) => ((event: {target: HTMLInputElement; }) => void)
+    onChange: (dish: dishType) => ((event: { target: HTMLInputElement; }) => void)
 }
 
-const Bucket: React.FC<PropsType> = ( props ) => {
-    const {dishes, delivery, deliveryPrice, orderPrice, settings, global_settings, paymentMethod, deliveryMethod,
-        increaseDishCount, reduceDishCount, removeDish, clearBucket, choiceDate, onSubmit, onChange} = props;
+const Bucket: React.FC<PropsType> = (props) => {
+    const {
+        dishes, delivery, deliveryPrice, orderPrice, settings, global_settings, paymentMethod, deliveryMethod,
+        increaseDishCount, reduceDishCount, removeDish, clearBucket, onSubmit, onChange, saleForPickup
+    } = props;
+
+    const sale = (orderPrice + deliveryPrice) * saleForPickup / 100
+    const price = orderPrice + deliveryPrice - sale
 
     return (
         <div className='page-container'>
@@ -46,7 +51,8 @@ const Bucket: React.FC<PropsType> = ( props ) => {
                     <div className='bucket-table'>
                         {dishes.map(dish => (
                             <div className='bucket-table-row' key={dish._id}>
-                                <img className='bucket-table-row-img' src={dish.imageSrc ? fullLink(dish.imageSrc) : altImg} alt=''/>
+                                <img className='bucket-table-row-img'
+                                     src={dish.imageSrc ? fullLink(dish.imageSrc) : altImg} alt=''/>
                                 <div className='bucket-table-row-info'>
                                     <div className='bucket-table-row-info-title'>{dish.title}</div>
                                     <div className='bucket-table-row-info-count'>
@@ -64,12 +70,19 @@ const Bucket: React.FC<PropsType> = ( props ) => {
                             </div>
                         ))}
                         {!!dishes.length && <div>
-                            <Button variant='contained' color='secondary' onClick={() => clearBucket()}>Очистить корзину</Button>
+                            <Button variant='contained' color='secondary' onClick={() => clearBucket()}>Очистить
+                                корзину</Button>
                         </div>}
                         {!!delivery.order.length && <div>
                             <div>Сумма заказа: {orderPrice} ₽</div>
-                            <div>Стоимость доставки: {deliveryPrice} ₽</div>
-                            <div>Итого: {orderPrice + deliveryPrice} ₽</div>
+                            <div>
+                                {
+                                    saleForPickup === 0
+                                        ? `Стоимость доставки: ${deliveryPrice} ₽`
+                                        : `Скидка за самовывоз: ${sale} ₽ (${saleForPickup})%`
+                                }
+                            </div>
+                            <div>Итого: {price} ₽</div>
                         </div>}
                     </div>
 
@@ -79,7 +92,6 @@ const Bucket: React.FC<PropsType> = ( props ) => {
                                    global_settings={global_settings}
                                    payment_method={paymentMethod}
                                    delivery_method={deliveryMethod}
-                                   choiceDate={choiceDate}
                                    onSubmit={onSubmit}/>
                     </div>
                 </> : <div>Корзина пуста</div>}

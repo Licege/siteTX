@@ -1,6 +1,5 @@
 import React from 'react';
 import {AppStateType} from "../../redux/redux-store";
-import {compose} from "redux";
 import {connect} from "react-redux";
 import {newsType} from "../../types/types";
 import {requestNews} from "../../redux/news-reducer";
@@ -26,7 +25,12 @@ class NewsContainer extends React.Component<PropsType> {
     }
 
     render () {
-        return <News news={this.props.news} totalCount={this.props.totalCount} onPageCount={this.onPageChange} />
+        console.log(this.props)
+        return <News
+                    news={this.props.news}
+                    totalCount={this.props.totalCount}
+                    onPageCount={this.onPageChange}
+                />
     }
 }
 
@@ -45,4 +49,4 @@ let mapDispatchToProps = (dispatch: any) => {
     }
 };
 
-export default compose(connect(mapStateToProps, mapDispatchToProps)) (NewsContainer);
+export default connect(mapStateToProps, mapDispatchToProps) (NewsContainer);

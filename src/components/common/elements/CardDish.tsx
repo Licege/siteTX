@@ -28,8 +28,9 @@ const CardDish: React.FC<PropsType> = ( {dish, addToBucket} ) => {
                 </div>
 
                 <div className='card_item-button'>
-                    <Button variant='contained' color='primary' onClick={() => addToBucket(dish)}>Добавить в
-                        корзину</Button>
+                    <Button variant='contained' color='primary' onClick={() => addToBucket(dish)}>
+                        Добавить в корзину
+                    </Button>
                 </div>
             </div>
         </div>

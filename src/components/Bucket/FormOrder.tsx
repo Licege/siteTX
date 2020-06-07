@@ -26,8 +26,6 @@ interface PropsType {
     global_settings: deliveryGlobalSettingsType
     payment_method: string
     delivery_method: string
-
-    choiceDate: (date: Date | null) => void
 }
 
 interface IMapStateToProps {
@@ -145,9 +143,6 @@ const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & 
                 </div>
             }
             <div>
-                {/*<label>Время доставки:</label>
-                <Field name='datetime' component={MyDateTimePicker} choiceDate={choiceDate} defautDate={defaultDate} />*/}
-                {/*<Field name='datetime' component={MyReactDateTimePicker} placeholder='Выберите дату и время' />*/}
                 <Field name='time_delivery' component={DateTimeField} />
             </div>
             <div>

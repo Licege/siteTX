@@ -1,21 +1,16 @@
-import React from 'react'
+import React, {ReactNode} from 'react'
 import Slider from 'react-slick'
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-interface Slide {
-    _id: string
-    imageSrc?: String
-}
-
 interface IProps {
-    items: Array<Slide>
+    children: ReactNode,
 }
 
 export default class CustomSlider extends React.PureComponent<IProps> {
     render() {
-        const items = this.props.items
+        const {children} = this.props
         const settings = {
             dots: true,
             infinite: true,
@@ -56,11 +51,7 @@ export default class CustomSlider extends React.PureComponent<IProps> {
         }
 
         return (<Slider {...settings}>
-            {items.map(item => (
-                <div key={item._id}>
-                    <h2>123</h2>
-                </div>
-            )) }
+            {children}
         </Slider>)
     }
 }
