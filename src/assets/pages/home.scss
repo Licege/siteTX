@@ -1,34 +1,5 @@
 .Home {
 
-  .Section {
-    &-about {
-
-    }
-
-    &-menu {
-      padding: 20px;
-      border: 1px dashed $brand-brown;
-
-      &-header {
-
-      }
-
-    }
-
-    &-delivery {
-
-    }
-
-    &-promo {
-
-    }
-
-    &-map {
-
-    }
-  }
-
-
   .Link-Button {
     text-align: center;
 
@@ -50,6 +21,99 @@
     a {
       display: inline-block;
       text-decoration: none;
+    }
+  }
+
+  .Section {
+    &-about {
+      padding: 20px;
+      border: 1px dashed $brand-brown;
+      display: flex;
+
+      &-image {
+        float: left;
+        padding-right: 20px;
+      }
+
+      &-block {
+        float: right;
+
+        &-header {
+          font-size: 1.5rem;
+          font-weight: 600;
+          color: $brand-brown;
+          text-transform: uppercase;
+          text-align: center;
+          margin-bottom: 20px;
+        }
+
+        &-info {
+          font-size: 1rem;
+          margin-bottom: 30px;
+        }
+      }
+    }
+
+    &-menu {
+      padding: 20px;
+      border: 1px dashed $brand-brown;
+
+      &-header {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: $brand-brown;
+        text-transform: uppercase;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      &-info {
+        font-size: 1rem;
+        color: $brand-grey;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+    }
+
+    &-delivery {
+      padding: 20px;
+      border: 1px dashed $brand-brown;
+
+      &-header {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: $brand-brown;
+        text-transform: uppercase;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+    }
+
+    &-promo {
+      padding: 20px;
+      border: 1px dashed $brand-brown;
+
+      &-header {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: $brand-brown;
+        text-transform: uppercase;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      &-info {
+        font-size: 1rem;
+        color: $brand-grey;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+    }
+
+    &-map {
+
     }
   }
 }

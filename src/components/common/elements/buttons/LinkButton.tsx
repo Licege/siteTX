@@ -5,12 +5,15 @@ import {Button} from "@material-ui/core";
 interface IProps {
     to: string
     label: String
+    className?: String
+    variant?: 'text' | 'contained' | undefined
+    color?: 'default' | 'inherit' | 'primary' | 'secondary'
 }
 
-const LinkButton: React.FC<IProps> = ({to, label}) => (
-    <div className='Link-Button'>
+const LinkButton: React.FC<IProps> = ({to, label, className, variant, color}) => (
+    <div className={className ? `Link-Button ${className}` : 'Link-Button'}>
         <Link to={to}>
-            <Button variant="outlined">
+            <Button variant={variant ? variant : 'outlined'} color={color}>
                 {label}
             </Button>
         </Link>

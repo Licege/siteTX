@@ -10,6 +10,7 @@ import altImg from "../../static/img/dish.svg";
 import FormOrder from "./FormOrder";
 import {fullLink, getDishesKey} from "../../plugins/helpers";
 import {Button} from '@material-ui/core';
+import LinkButton from "../common/elements/buttons/LinkButton";
 
 type PropsType = {
     dishes: Array<dishType>
@@ -72,6 +73,7 @@ const Bucket: React.FC<PropsType> = (props) => {
                         {!!dishes.length && <div>
                             <Button variant='contained' color='secondary' onClick={() => clearBucket()}>Очистить
                                 корзину</Button>
+                            <LinkButton to='/menu' label='Дозаказать' variant='contained' color='secondary' />
                         </div>}
                         {!!delivery.order.length && <div>
                             <div>Сумма заказа: {orderPrice} ₽</div>

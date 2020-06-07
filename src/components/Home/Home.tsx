@@ -16,10 +16,10 @@ const Home: React.FC<PropsType> = ({news, menu}) => {
     // let url = "http://navse360.ru/onlyTour/4421"
 
     return (
-        <div className='Home page-container'>
+        <div className='Home'>
             <SectionAbout/>
-            <SectionPromo/>
             <SectionMenu menu={menu}/>
+            <SectionPromo/>
             <SectionDelivery/>
             <SectionMap/>
             <div>
