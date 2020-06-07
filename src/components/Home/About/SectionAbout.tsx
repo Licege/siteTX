@@ -2,7 +2,6 @@ import React from 'react'
 import LinkButton from "../../common/elements/buttons/LinkButton";
 
 interface IProps {
-
 }
 
 const SectionAbout: React.FC<IProps> = () => (

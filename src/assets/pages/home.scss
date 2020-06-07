@@ -31,12 +31,15 @@
       display: flex;
 
       &-image {
-        float: left;
-        padding-right: 20px;
+        margin: 20px;
+        background-image: url("../../static/img/meat.jpg");
+        width: 320px;
+        height: 320px;
       }
 
       &-block {
         float: right;
+        width: calc(100% - 350px);
 
         &-header {
           font-size: 1.5rem;
@@ -50,6 +53,19 @@
         &-info {
           font-size: 1rem;
           margin-bottom: 30px;
+        }
+      }
+
+      @include media-breakpoint-down(xsm) {
+        display: block;
+
+        &-image {
+          margin: 0 auto;
+        }
+
+        &-block {
+          float: none;
+          width: 100%;
         }
       }
     }
@@ -86,7 +102,29 @@
         color: $brand-brown;
         text-transform: uppercase;
         text-align: center;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
+      }
+
+      &-info {
+        font-size: 1rem;
+        color: $brand-grey;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      &-order {
+        text-align: center;
+
+        &-phone {
+          font-weight: 700;
+          color: $brand-blue;
+          text-decoration: underline;
+        }
+
+        &-link {
+          font-weight: 600;
+          text-decoration: none;
+        }
       }
     }
 

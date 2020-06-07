@@ -4,7 +4,7 @@ import {contactsAPI} from "../api/api";
 const GET_CONTACTS = 'GET_CONTACTS';
 
 let initialState = {
-    contacts: null as contactsType | null
+    contacts: {} as contactsType
 };
 
 type initialStateType = typeof initialState;

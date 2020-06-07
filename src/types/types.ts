@@ -29,14 +29,14 @@ export type promoType = {
 }
 
 export type contactsType = {
-    phone: string | null
-    address: string | null
-    vk: string | null
-    fb: string | null
-    tg: string | null
-    inst: string | null
-    google: string | null
-    tw: string | null
+    phone: string
+    address: string
+    vk: string
+    fb: string
+    tg: string
+    inst: string
+    google: string
+    tw: string
 }
 
 export type reviewType = {
