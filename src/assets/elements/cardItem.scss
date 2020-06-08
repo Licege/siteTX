@@ -1,16 +1,22 @@
 .card_item {
   position: relative;
   width: 90%;
-  height: 560px;
+  min-height: 300px;
+  max-height: 560px;
   margin: 0 auto 32px;
   letter-spacing: 1px;
   max-width: 360px;
+
+  &__wrapper {
+    margin-bottom: 80px;
+  }
 
   &-img {
     background-position: 50%;
     background-repeat: no-repeat;
     height: 200px;
     width: 100%;
+    cursor: pointer;
   }
 
   &-title {
@@ -44,8 +50,13 @@
     padding: 10px 20px;
     bottom: 20px;
     left: 50%;
-    margin-left: -120px;
+    margin-left: -80px;
     //margin: 32px auto 8px;
+
+    button {
+      height: 35px;
+      width: 120px;
+    }
   }
 
   &:hover {

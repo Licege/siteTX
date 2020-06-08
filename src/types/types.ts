@@ -55,7 +55,7 @@ export type dishType = {
     cost: number
     category_id: number | null
     count: number | null
-    imageSrc: string | null
+    imageSrc: string
 }
 
 export type categoryType = {

@@ -5,13 +5,14 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 interface IProps {
-    children: ReactNode,
+    settings?: Object
+    children: ReactNode
 }
 
 export default class CustomSlider extends React.PureComponent<IProps> {
     render() {
-        const {children} = this.props
-        const settings = {
+        const {settings, children} = this.props
+        const defaultSettings = {
             dots: true,
             infinite: true,
             speed: 1000,
@@ -50,7 +51,9 @@ export default class CustomSlider extends React.PureComponent<IProps> {
             ]
         }
 
-        return (<Slider {...settings}>
+        const resSettings = Object.assign(defaultSettings, settings)
+
+        return (<Slider {...resSettings}>
             {children}
         </Slider>)
     }
