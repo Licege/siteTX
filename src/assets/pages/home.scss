@@ -33,6 +33,7 @@
       &-image {
         margin: 20px;
         background-image: url("../../static/img/meat.jpg");
+        border-radius: 5px;
         width: 320px;
         height: 320px;
       }
@@ -114,7 +115,6 @@
         font-size: 1rem;
         color: $brand-grey;
         text-align: center;
-        margin-bottom: 30px;
       }
 
       &-order {
@@ -131,6 +131,32 @@
           text-decoration: none;
         }
       }
+
+      &-wrapper {
+        display: flex;
+
+        &__image {
+          margin: 20px;
+          background-image: url("../../static/img/packet-delivery.jpg");
+          border-radius: 5px;
+          width: 320px;
+          height: 320px;
+        }
+
+        &__block {
+          display: grid;
+          grid-template-rows: repeat(2, 1fr);
+          grid-template-columns: repeat(3, 1fr);
+          margin-top: 20px;
+
+          &-item {
+            text-align: center;
+            margin: auto;
+          }
+        }
+      }
+
+
     }
 
     &-promo {

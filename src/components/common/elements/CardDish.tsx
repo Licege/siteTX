@@ -9,9 +9,10 @@ type PropsType = {
     dish: dishType
     addToBucket: (dish: dishType) => void
     showDescription?: boolean
+    shortCard?: boolean
 }
 
-const CardDish: React.FC<PropsType> = ({dish, addToBucket, showDescription = true}) => {
+const CardDish: React.FC<PropsType> = ({dish, addToBucket, showDescription = true, shortCard}) => {
     const style = {
         backgroundImage: `url(${dish.imageSrc ? fullLink(dish.imageSrc) : altImg})`,
         backgroundSize: "cover"
@@ -21,9 +22,9 @@ const CardDish: React.FC<PropsType> = ({dish, addToBucket, showDescription = tru
 
     return (
         <>
-            <div className='card card_item'>
+            <div className={'card card_item' + (shortCard ? ' -short' : '')}>
+                <div className='card_item-img' style={style} onClick={() => setOpen(true)} />
                 <div className='card_item__wrapper'>
-                    <div className='card_item-img' style={style} onClick={() => setOpen(true)} />
                     <div className='card-body pt-0'>
                         <h3 className='card_item-title'>{dish.title}</h3>
                         {showDescription && dish.description &&
@@ -35,7 +36,7 @@ const CardDish: React.FC<PropsType> = ({dish, addToBucket, showDescription = tru
 
                         <div className='card_item-button'>
                             <Button variant='contained' color='primary' onClick={() => addToBucket(dish)}>
-                                Заказать
+                                {shortCard ? dish.cost +  ' р' : 'Заказать'}
                             </Button>
                         </div>
                     </div>

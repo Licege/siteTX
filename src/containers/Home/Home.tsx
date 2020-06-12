@@ -6,6 +6,7 @@ import {contactsType, dishType, newsType} from '../../types/types';
 import {requestNews} from "../../redux/news-reducer";
 import {getMenu} from "../../redux/menu-reducer";
 import {getContacts} from "../../redux/contacts-reducer";
+import {addDishAC} from "../../redux/bucket-reducer";
 
 type MapStatePropsType = {
     news: Array<newsType>
@@ -16,6 +17,7 @@ type MapDispatchPropsType = {
     getNews: () => void
     getMenu: () => void
     getContacts: () => void
+    addDishToBucket: (dish: dishType) => void
 }
 type PropsType = MapStatePropsType & MapDispatchPropsType;
 
@@ -27,9 +29,9 @@ class HomeContainer extends React.Component<PropsType>{
     }
 
     render() {
-        const {news, menu, contacts} =this.props
+        const {news, menu, contacts, addDishToBucket} =this.props
 
-        return <Home news={news} menu={menu} contacts={contacts}/>
+        return <Home news={news} menu={menu} contacts={contacts} addDishToBucket={addDishToBucket}/>
     }
 }
 
@@ -48,6 +50,9 @@ let mapDispatchToProps = (dispatch: any) => {
         },
         getMenu: () => {
             dispatch(getMenu())
+        },
+        addDishToBucket: (dish: dishType) => {
+            dispatch(addDishAC(dish))
         },
         getContacts: () => {
             dispatch(getContacts())

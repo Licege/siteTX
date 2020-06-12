@@ -65,4 +65,41 @@
     transition: 0.4s;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
+
+  &.-short {
+    display: flex;
+    flex-direction: row;
+    min-width: 280px;
+    min-height: 150px;
+
+    .card_item-img {
+      height: 110px;
+      width: 110px;
+      float: left;
+      margin: auto;
+    }
+
+    .card_item__wrapper {
+      width: calc(100% - 150px);
+      position: relative;
+      float: right;
+    }
+
+    .card_item-title {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    .card_item-describe {
+      display: none;
+    }
+
+    .card_item-info {
+      display: none;
+    }
+
+    .card_item-button {
+      bottom: -50%;
+    }
+  }
 }

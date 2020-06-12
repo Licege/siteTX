@@ -53,7 +53,7 @@ export type dishType = {
     description: string | null
     weight: number | null
     cost: number
-    category_id: number | null
+    category_id: string
     count: number | null
     imageSrc: string
 }

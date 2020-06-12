@@ -6,9 +6,7 @@ interface IProps {
 
 const SectionAbout: React.FC<IProps> = () => (
     <div className='Section-about'>
-        <div className='Section-about-image'>
-            13
-        </div>
+        <div className='Section-about-image' />
         <div className='Section-about-block'>
             <div className='Section-about-block-header'>Добро пожаловать</div>
             <div className='Section-about-block-info'>

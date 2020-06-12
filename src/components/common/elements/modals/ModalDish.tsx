@@ -17,6 +17,7 @@ const ModalDish: React.FC<IProps> = ({dish, addToBucket, open, onClose}) => {
         <Dialog open={open} onClose={onClose} className='modal-dish'>
             <DialogContent>
                 <div className='modal-dish__wrapper'>
+                    <div className='modal-dish__close' onClick={onClose} />
                     <img className='modal-dish__img' src={fullLink(dish.imageSrc)}/>
                     <div className='modal-dish__info'>
                         <div className='modal-dish__title'>{dish.title}</div>

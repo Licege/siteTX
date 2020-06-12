@@ -1,0 +1,19 @@
+import React from 'react'
+import {contactsType} from "../../types/types";
+import CustomMap from "../common/Map/Map";
+
+interface IProps {
+    contacts: contactsType
+}
+
+export const Address: React.FC<IProps> = ({contacts}) => (
+    <>
+        <h3>Мы на карте</h3>
+        {contacts ?
+            <>
+                {contacts.address && <p>{contacts.address}</p>}
+                {contacts.phone && <p><a href={'tel:' + contacts.phone}>{contacts.phone}</a></p>}
+            </>: null}
+        <CustomMap />
+    </>
+)

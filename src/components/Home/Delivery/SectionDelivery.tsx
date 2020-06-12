@@ -16,6 +16,15 @@ const SectionDelivery: React.FC<IProps> = ({contacts}) => (
             или на
             <Link to='/menu' className='Section-delivery-order-link'> сайте</Link>
         </div>
+        <div className='Section-delivery-wrapper'>
+            <div className='Section-delivery-wrapper__image'/>
+            <div className='Section-delivery-wrapper__block'>
+                <div className='Section-delivery-wrapper__block-item'>Минимальная сумма заказа от</div>
+                <div className='Section-delivery-wrapper__block-item'>Бесплатная доставка от</div>
+                <div className='Section-delivery-wrapper__block-item'>Доставка с X до Y</div>
+                <div className='Section-delivery-wrapper__block-item'>Оплата наличными</div>
+            </div>
+        </div>
     </div>
 )
 

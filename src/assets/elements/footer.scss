@@ -4,6 +4,8 @@
 
   &-title {
     text-transform: uppercase;
+    display: block;
+    margin-bottom: 12px;
   }
 
   &-navbar {
@@ -19,6 +21,10 @@
 
   &-icon {
     padding-bottom: 4px;
+  }
+
+  &-address {
+    margin-bottom: 8px;
   }
 
   &-phone {

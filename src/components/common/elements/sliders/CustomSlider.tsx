@@ -22,6 +22,7 @@ export default class CustomSlider extends React.PureComponent<IProps> {
             autoplaySpeed: 10000,
             centerMode: true,
             centerPadding: '60px',
+            pauseOnHover: true,
 
             responsive: [
                 {
