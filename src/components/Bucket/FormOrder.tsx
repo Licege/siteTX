@@ -1,7 +1,7 @@
 import React from 'react';
 import {reduxForm, Field, InjectedFormProps, FormSection, formValueSelector} from 'redux-form';
 import {connect} from 'react-redux';
-import {deliveryGlobalSettingsType, deliverySettingsType, IDeliveryPost} from "../../types/types";
+import {deliveryGlobalSettingsType, deliverySettingsType, deliveryType, IDeliveryPost} from "../../types/types";
 import renderTextField from "../common/elements/RenderTextField";
 import validate from './Validate';
 import {
@@ -27,6 +27,11 @@ interface PropsType {
     payment_method: string
     delivery_method: string
     price: number
+    orderPrice: number
+    delivery: deliveryType
+    deliveryPrice: number
+    saleForPickup: number
+    sale: number
 }
 
 interface IMapStateToProps {
@@ -75,10 +80,13 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & PropsType> = (props) => {
-    const {handleSubmit, settings, global_settings, payment_method, delivery_method, price} = props;
+    const {handleSubmit, settings, global_settings, payment_method, delivery_method, saleForPickup, delivery, deliveryPrice, orderPrice} = props;
     let defaultDate = new Date();
     defaultDate.setHours(defaultDate.getHours() + 2)
     const classes = useStyles()
+
+    const sale = (delivery.total_price + deliveryPrice) * saleForPickup / 100
+    const price = delivery.total_price + deliveryPrice - sale
 
     return (
         <div className='bucket-order'>
@@ -108,8 +116,9 @@ const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & 
                         <FormControlLabel value='cashless_payment_online' control={<Radio/>}
                                           label='Безналичный расчет'/>}
                     </Field>
-                    {payment_method === 'cash' && <div>
-                        <Field name='odd_money' component={renderTextField} label='Сдача' placeholder='Сдача с'/>
+                    {payment_method === 'cash' && <div className='bucket-order__cash'>
+                        Подготовить сдачу с
+                            <Field name='odd_money' component={renderTextField} label='' placeholder='0'/> рублей
                     </div>}
                 </div>
                 <div>
@@ -182,6 +191,19 @@ const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & 
                            component={renderCheckbox}
                            label='Я согласен на обработку своих персональных данных и принимаю условия Политики конфиденциальности и Пользовательского соглашения'/>
                 </div>
+
+                {!!delivery.order.length && <div>
+                    <div>Сумма заказа: {delivery.total_price} ₽</div>
+                    <div>
+                        {
+                            saleForPickup === 0
+                                ? `Стоимость доставки: ${deliveryPrice} ₽`
+                                : `Скидка за самовывоз: ${sale} ₽ (${saleForPickup})%`
+                        }
+                    </div>
+                    <div>Итого: {price} ₽</div>
+                </div>}
+
                 <Button variant='contained' color='primary' type='submit'>Оформить заказ ({price} р.)</Button>
             </form>
         </div>

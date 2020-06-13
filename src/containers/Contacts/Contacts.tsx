@@ -13,6 +13,7 @@ type PropsType = {
 class ContactsContainer extends React.Component<PropsType> {
     componentDidMount(): void {
         if (!Object.keys(this.props.contacts).length) this.props.getContacts();
+        document.title = 'О нас'
     }
 
     postForm = (data: reviewType) => {

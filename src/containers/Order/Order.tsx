@@ -6,6 +6,9 @@ import {orderAPI} from "../../api/api";
 
 
 class OrderContainer extends React.Component {
+    componentDidMount(): void {
+        document.title = 'Заказ столов'
+    }
 
     onSubmit = (order: IOrder) => {
         let date = { ...order };

@@ -28,6 +28,7 @@ class ReviewsContainer extends React.Component<PropsType, StateType> {
 
     componentDidMount(): void {
         if (!this.props.reviews.length) this.props.getReviews();
+        document.title = 'Отзывы'
     }
 
     toggle = () => {

@@ -31,6 +31,7 @@ type MapStatePropsType = {
     address: addressType
     paymentType: string
     deliveryType: string
+    orderStatus: string
 }
 type MapDispatchPropsType = {
     getSettings: () => void
@@ -51,6 +52,8 @@ type StateType = {
     deliveryPrice: number
     saleForPickup: number
     orderPrice: number
+    sale: number
+    price: number
     step: 0 | 1 | 2
 }
 
@@ -61,7 +64,9 @@ class BucketContainer extends React.Component<PropsType, StateType> {
             deliveryPrice: this.priceForDelivery('Калининград', this.props.delivery.total_price),
             saleForPickup: 0,
             orderPrice: this.props.delivery.total_price,
-            step: 0
+            step: 0,
+            sale: 0,
+            price: this.props.delivery.total_price + this.priceForDelivery('Калининград', this.props.delivery.total_price)
         }
     }
 
@@ -70,6 +75,7 @@ class BucketContainer extends React.Component<PropsType, StateType> {
         if (!Object.keys(this.props.global_settings).length) this.props.getGlobalSettings()
         if (!this.props.menu.length) this.props.getMenu()
         if (!this.props.categories.length) this.props.getCategories()
+        document.title = 'Оформление заказа'
     }
 
     componentDidUpdate(prevProps: Readonly<MapStatePropsType & MapDispatchPropsType>, prevState: Readonly<StateType>): void {
@@ -109,17 +115,14 @@ class BucketContainer extends React.Component<PropsType, StateType> {
     }
 
     setStep = (step: 0 | 1 | 2) => {
-        this.setState({step}, () => console.log('step ' + this.state.step))
+        this.setState({step}, () => {
+            if (step !== 2) window.scrollBy(0, -500)
+        })
     }
 
     isDisabled = (step: 0 | 1| 2) => {
-        console.log('this ' +this.state.step)
-        console.log('step ' +step)
-        console.log(this.state.step < step)
-        console.log(' ')
         if (this.state.step === 2 && step === 0 || step === 1) return true
         return this.state.step < step
-
     }
 
     onSubmit = (data: IDeliveryPost) => {
@@ -139,6 +142,7 @@ class BucketContainer extends React.Component<PropsType, StateType> {
             menu,
             categories,
             delivery,
+            orderStatus,
             settings,
             global_settings,
             deliveryType,
@@ -148,7 +152,7 @@ class BucketContainer extends React.Component<PropsType, StateType> {
             removeDish,
             paymentType,
             clearBucket} = this.props
-        let {step, saleForPickup, deliveryPrice, orderPrice} = this.state
+        let {step, saleForPickup, deliveryPrice, orderPrice, sale, price} = this.state
 
         return <Bucket dishes={dishes}
                        menu={menu}
@@ -157,6 +161,7 @@ class BucketContainer extends React.Component<PropsType, StateType> {
                        delivery={delivery}
                        deliveryPrice={deliveryPrice}
                        orderPrice={orderPrice}
+                       orderStatus={orderStatus}
                        saleForPickup={saleForPickup}
                        increaseDishCount={increaseDishCount}
                        reduceDishCount={reduceDishCount}
@@ -167,6 +172,8 @@ class BucketContainer extends React.Component<PropsType, StateType> {
                        paymentMethod={paymentType}
                        deliveryMethod={deliveryType}
                        step={step}
+                       sale={sale}
+                       price={price}
                        onSubmit={this.onSubmit}
                        onChange={this.onChange}
                        setStep={this.setStep}
@@ -184,6 +191,7 @@ let mapStateToProps = (state : AppStateType) => {
         settings: state.bucket.settings,
         global_settings: state.bucket.global_settings,
         isDeliveryPosted: state.bucket.isDeliveryPosted,
+        orderStatus: state.bucket.statusOrder,
         address: selector(state, 'address'),
         paymentType: selector(state, 'payment_type'),
         deliveryType: selector(state, 'delivery_type')

@@ -15,6 +15,7 @@ import LinkButton from "../common/elements/buttons/LinkButton";
 import {Link} from "react-router-dom";
 import {SaucesBlock} from "./SaucesBlock";
 import {ShowOrder} from "./ShowOrder";
+import {FinishOrder} from "./FinishOrder";
 
 type PropsType = {
     dishes: Array<dishType>
@@ -29,6 +30,9 @@ type PropsType = {
     deliveryMethod: string
     categories: Array<categoryType>
     step: 0 | 1 | 2
+    sale: number
+    price: number
+    orderStatus: string
 
     addDishToBucket: (dish: dishType) => void
     increaseDishCount: (dish: dishType) => void
@@ -66,11 +70,9 @@ const StyledBreadcrumb = withStyles((theme: Theme) => ({
 const Bucket: React.FC<PropsType> = (props) => {
     const {
         dishes, menu, step, delivery, deliveryPrice, orderPrice, settings, global_settings, paymentMethod, deliveryMethod, isDisabled,
-        increaseDishCount, reduceDishCount, removeDish, clearBucket, onSubmit, onChange, saleForPickup, addDishToBucket, categories, setStep
+        increaseDishCount, reduceDishCount, removeDish, clearBucket, onSubmit, onChange, saleForPickup, addDishToBucket, categories, setStep,
+        sale, price, orderStatus
     } = props;
-
-    const sale = (orderPrice + deliveryPrice) * saleForPickup / 100
-    const price = orderPrice + deliveryPrice - sale
 
     const sauceCategoryId = categories.find(category => category.title === ('Соус' || 'Соусы'))?._id
     const sauces = menu.filter(dish => dish.category_id === sauceCategoryId)
@@ -101,7 +103,6 @@ const Bucket: React.FC<PropsType> = (props) => {
                                               delivery={delivery}
                                               deliveryPrice={deliveryPrice}
                                               saleForPickup={saleForPickup}
-                                              orderPrice={orderPrice}
                                               sale={sale}
                                               price={price}
                                               addDishToBucket={addDishToBucket}
@@ -117,7 +118,14 @@ const Bucket: React.FC<PropsType> = (props) => {
                                               payment_method={paymentMethod}
                                               delivery_method={deliveryMethod}
                                               price={price}
-                                              onSubmit={onSubmit}/>}
+                                              onSubmit={onSubmit}
+                                              delivery={delivery}
+                                              deliveryPrice={deliveryPrice}
+                                              orderPrice={orderPrice}
+                                              saleForPickup={saleForPickup}
+                                              sale={sale} />}
+
+                    {step === 2 && <FinishOrder orderStatus={orderStatus} />}
 
                     {/*<div className='bucket-header'>
                         <div className='bucket-header-title'>Название:</div>

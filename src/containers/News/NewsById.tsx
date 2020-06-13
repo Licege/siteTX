@@ -20,6 +20,7 @@ class NewsByIdContainer extends React.Component<IStateToProps & IDispatchToProps
     componentDidMount(): void {
         let id = this.props.match.params.id;
         if (!Object.keys(this.props.currentNews).length || this.props.currentNews._id !== id) this.props.getNewsById(id)
+        document.title = 'Новости'
     }
 
     goBack = () => {

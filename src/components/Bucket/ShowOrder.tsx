@@ -15,7 +15,6 @@ type PropsType = {
     delivery: deliveryType
     deliveryPrice: number
     saleForPickup: number
-    orderPrice: number
     sale: number
     price: number
 
@@ -39,12 +38,11 @@ export const ShowOrder: React.FC<PropsType> =
          removeDish,
          clearBucket,
          sauces,
-         addDishToBucket,
-         orderPrice,
          saleForPickup,
          deliveryPrice,
          sale,
          price,
+         addDishToBucket
      }) => (
         <div>
             <div className='bucket-table'>
@@ -80,8 +78,13 @@ export const ShowOrder: React.FC<PropsType> =
 
             <SaucesBlock sauces={sauces} addDishToBucket={addDishToBucket}/>
 
-            {!!delivery.order.length && <div>
-                <div>Сумма заказа: {orderPrice} ₽</div>
+            <div>Сумма заказа: {delivery.total_price} р.*</div>
+            <Button variant='contained' color='primary' onClick={() => setStep(1)}>Оформить заказ</Button>
+
+            <div className='hint'>* - цена представлена без учета доставки</div>
+
+{/*            {!!delivery.order.length && <div>
+                <div>Сумма заказа: {delivery.total_price} ₽</div>
                 <div>
                     {
                         saleForPickup === 0
@@ -91,6 +94,6 @@ export const ShowOrder: React.FC<PropsType> =
                 </div>
                 <div>Итого: {price} ₽</div>
                 <Button variant='contained' color='primary' onClick={() => setStep(1)}>Оформить заказ</Button>
-            </div>}
+            </div>}*/}
         </div>
     )

@@ -16,13 +16,12 @@ type PropsType = {
 }
 
 const Footer: React.FC<PropsType>  = ( {contacts} ) => {
-    console.log(contacts);
     return (
         <div className='footer card-body' id='footer'>
             <div className='row'>
                 <div className='col'>
-                    <span className='footer-title'>Часы работы</span>
-                    <div><img className='footer-icon' src={hours} alt=''/> ПН-ВС: 12:00-01:00</div>
+                    <span className='footer-title'><img className='footer-icon' src={hours} alt=''/> Часы работы</span>
+                    {contacts?.openHours?.map(item => <div>{item}</div>)}
                     <div className='footer-social'>
                         {contacts && contacts.vk ? <a className='footer-social-link' href={contacts.vk} target='_blank' rel="noopener noreferrer"><img src={vk} alt='vk' /></a> : ''}
                         {contacts && contacts.inst ? <a className='footer-social-link' href={contacts.inst} target='_blank' rel="noopener noreferrer"><img src={instagram} alt='instagram' /></a> : ''}

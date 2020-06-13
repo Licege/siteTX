@@ -4,20 +4,21 @@ import {
     deliveryType,
     dishType, IDeliveryPost,
     orderDishType
-} from "../types/types";
-import {bucketAPI} from "../api/api";
-import {getDishesKey} from "../plugins/helpers";
+} from "../types/types"
+import {bucketAPI} from "../api/api"
+import {getDishesKey} from "../plugins/helpers"
 
-const ADD_DISH = 'BUCKET/ADD_DISH';
-const INCREASE_DISH_COUNT = 'BUCKET/INCREASE_DISH_COUNT';
-const REDUCE_DISH_COUNT = 'BUCKET/REDUCE_DISH_COUNT';
-const CHANGE_DISH_COUNT = 'BUCKET/CHANGE_DISH_COUNT';
-const REMOVE_DISH = 'BUCKET/REMOVE_DISH';
-const CLEAR_BUCKET = 'BUCKET/CLEAR';
+const ADD_DISH = 'BUCKET/ADD_DISH'
+const INCREASE_DISH_COUNT = 'BUCKET/INCREASE_DISH_COUNT'
+const REDUCE_DISH_COUNT = 'BUCKET/REDUCE_DISH_COUNT'
+const CHANGE_DISH_COUNT = 'BUCKET/CHANGE_DISH_COUNT'
+const REMOVE_DISH = 'BUCKET/REMOVE_DISH'
+const CLEAR_BUCKET = 'BUCKET/CLEAR'
 const DELIVERY_POSTED = 'BUCKET/DELIVERY_POSTED'
+const ORDER_STATUS = 'BUCKET/ORDER_STATUS'
 
-const GET_DELIVERY_SETTINGS = 'BUCKET/GET_DELIVERY_SETTINGS';
-const GET_DELIVERY_GLOBAL_SETTINGS = 'BUCKET/GET_DELIVERY_GLOBAL_SETTINGS';
+const GET_DELIVERY_SETTINGS = 'BUCKET/GET_DELIVERY_SETTINGS'
+const GET_DELIVERY_GLOBAL_SETTINGS = 'BUCKET/GET_DELIVERY_GLOBAL_SETTINGS'
 
 let initialState = {
     delivery: {
@@ -28,7 +29,8 @@ let initialState = {
     global_settings: {} as deliveryGlobalSettingsType,
     orderedDishes: [] as Array<dishType>,
     deliveryPrice: 0 as number,
-    isDeliveryPosted: false
+    isDeliveryPosted: false,
+    statusOrder: ''
 };
 
 type initialStateType = typeof initialState;
@@ -178,8 +180,13 @@ type changeDeliveryPostedACType = {
     status: boolean
 }
 
+type changeOrderStatusACType = {
+    type: typeof ORDER_STATUS
+    status: string
+}
+
 type ActionType = addDishACType | increaseDishCountACType | reduceDishCountACType | changeDishCountACType
-    | removeDishACType | clearBucketACType | getDeliverySettingsACType | getDeliveryGlobalSettingsACType | changeDeliveryPostedACType
+    | removeDishACType | clearBucketACType | getDeliverySettingsACType | getDeliveryGlobalSettingsACType | changeDeliveryPostedACType | changeOrderStatusACType
 
 export const addDishAC = (dish: dishType): addDishACType => ({type: ADD_DISH, dish});
 export const increaseDishCountAC = (dish: dishType): increaseDishCountACType => ({type: INCREASE_DISH_COUNT, dish});
@@ -188,6 +195,7 @@ export const removeDishAC = (id: string): removeDishACType => ({type: REMOVE_DIS
 export const changeDishCountAC = (dish: dishType, count: number): changeDishCountACType => ({type: CHANGE_DISH_COUNT, dish, count});
 export const clearBucketAC = (): clearBucketACType => ({type: CLEAR_BUCKET});
 export const changeDeliveryPostedAC = (status: boolean): changeDeliveryPostedACType => ({type: DELIVERY_POSTED, status});
+export const changeOrderStatusAC = (status: string): changeOrderStatusACType => ({type: ORDER_STATUS, status});
 const getDeliverySettingsAC = (settings: Array<deliverySettingsType>): getDeliverySettingsACType => ({type: GET_DELIVERY_SETTINGS, settings});
 const getDeliveryGlobalSettingsAC = (settings: deliveryGlobalSettingsType): getDeliveryGlobalSettingsACType => ({type: GET_DELIVERY_GLOBAL_SETTINGS, settings});
 
@@ -203,9 +211,12 @@ export const requestGlobalDeliverySettings = () => async(dispatch: any) => {
 
 export const postOrder = (order: IDeliveryPost) => async(dispatch: any) => {
     let response = await bucketAPI.postOrder(order)
-    if (response.status === 201) {
+    if (response.status === 201 || response.status === 200) {
+        dispatch(changeOrderStatusAC('created'))
         dispatch(changeDeliveryPostedAC(true))
         dispatch(clearBucketAC())
+    } else {
+        dispatch(changeOrderStatusAC('error'))
     }
 }
 

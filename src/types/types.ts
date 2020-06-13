@@ -37,6 +37,7 @@ export type contactsType = {
     inst: string
     google: string
     tw: string
+    openHours: [string]
 }
 
 export type reviewType = {

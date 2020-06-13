@@ -1,7 +1,8 @@
 .header {
   position: fixed;
   display: inline-flex;
-  background-color: sandybrown;
+  // background-color: sandybrown;
+  background: linear-gradient(to top, rgba(0, 0, 0, .0001), rgb(8, 8, 8));
   height: 60px;
   width: 100%;
   z-index: 50;

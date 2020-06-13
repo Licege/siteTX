@@ -31,6 +31,7 @@ class MenuContainer extends React.Component<PropsType> {
         } else {
             this.props.getMenuByCategory(this.props.match!.params.id)
         }
+        document.title = 'Меню'
         window.addEventListener("scroll", this.onScroll)
     }
 

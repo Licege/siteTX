@@ -18,6 +18,7 @@ type PropsType = MapStateToPropsType & MapDispatchPropsType;
 class NewsContainer extends React.Component<PropsType> {
     componentDidMount(): void {
         if (!this.props.news || !this.props.news.length) this.props.getNews();
+        document.title = 'Новости'
     }
 
     onPageChange = (page: number) => {

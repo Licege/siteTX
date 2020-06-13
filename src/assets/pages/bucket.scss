@@ -83,6 +83,20 @@
     &-title {
       text-align: center;
     }
+
+    &__cash {
+      display: flex;
+      align-items: center;
+
+      .MuiFormControl-root {
+        width: 80px!important;
+      }
+
+      .MuiInputBase-input {
+        text-align: center!important;
+        padding-bottom: 0!important;
+      }
+    }
   }
 
   @include media-breakpoint-down(sm) {

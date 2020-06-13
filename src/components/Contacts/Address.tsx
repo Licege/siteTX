@@ -13,6 +13,7 @@ export const Address: React.FC<IProps> = ({contacts}) => (
             <>
                 {contacts.address && <p>{contacts.address}</p>}
                 {contacts.phone && <p><a href={'tel:' + contacts.phone}>{contacts.phone}</a></p>}
+                {contacts.openHours?.map(item => <div>{item}</div>)}
             </>: null}
         <CustomMap />
     </>

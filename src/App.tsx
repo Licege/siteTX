@@ -20,6 +20,8 @@ import {refresh} from "./redux/auth-reducer";
 import {getContacts} from "./redux/contacts-reducer";
 import {contactsType} from "./types/types";
 import {Error404} from "./components/Errors/Error404";
+import BanquetsContainer from "./containers/Banquets/BanquetsContainer";
+import ActionsContainer from "./containers/Actions/ActionsContainer";
 
 interface IProps {
     contacts: contactsType
@@ -55,6 +57,8 @@ class App extends React.Component<IProps> {
                                 <Route exact path='/bucket' component={BucketContainer} />
                                 <Route exact path='/reviews' component={ReviewsContainer} />
                                 <Route exact path='/resume/:id' component={ResumeContainer} />
+                                <Route exact path='/banquets' component={BanquetsContainer} />
+                                <Route exact path='/actions' component={ActionsContainer} />
                                 <Route component={Error404} />
                             </Switch>
                         </div>

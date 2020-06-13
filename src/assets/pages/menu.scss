@@ -3,6 +3,7 @@
   position: relative;
   padding: 8px 0 16px;
   background-color: #fff;
+  margin-top: 60px;
 
   &-categories {
     position: fixed;
@@ -25,9 +26,9 @@
 
       &-item {
         display: block;
-        padding: 20px 10px;
+        padding: 16px;
         font-size: 18px;
-        color: $brand-lightgrey;
+        color: $brand-brown;
 
         &.-active {
           color: gold;
