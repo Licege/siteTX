@@ -16,14 +16,12 @@ type PropsType = {
 }
 
 const Footer: React.FC<PropsType>  = ( {contacts} ) => {
-    console.log(contacts);
     return (
         <div className='footer card-body' id='footer'>
             <div className='row'>
                 <div className='col'>
-                    <span className='footer-title'>Часы работы</span>
-                    <p></p>
-                    <div><img className='footer-icon' src={hours} alt=''/> ПН-ВС: 12:00-01:00</div>
+                    <span className='footer-title'><img className='footer-icon' src={hours} alt=''/> Часы работы</span>
+                    {contacts?.openHours?.map(item => <div>{item}</div>)}
                     <div className='footer-social'>
                         {contacts && contacts.vk ? <a className='footer-social-link' href={contacts.vk} target='_blank' rel="noopener noreferrer"><img src={vk} alt='vk' /></a> : ''}
                         {contacts && contacts.inst ? <a className='footer-social-link' href={contacts.inst} target='_blank' rel="noopener noreferrer"><img src={instagram} alt='instagram' /></a> : ''}
@@ -35,8 +33,15 @@ const Footer: React.FC<PropsType>  = ( {contacts} ) => {
                 </div>
                 <div className='col'>
                     <span className='footer-title'>Адрес</span>
-                    <p></p>
-                    <div><img src={address} alt=''/> {contacts ? contacts.address : ''}</div>
+                    {contacts ?
+                    <div className='footer-address'>
+                            <a
+                                href='https://yandex.ru/maps/22/kaliningrad/?from=api-maps&ll=20.366668%2C54.649906&mode=routes&origin=jsapi_2_1_76&rtext=~54.649946%2C20.366788&rtt=auto&ruri=~&z=17'
+                                target='_blank'
+                            >
+                                <img src={address} alt=''/>{contacts.address}
+                            </a>
+                    </div>: ''}
                     {contacts && contacts.phone ? <a className='footer-phone' href={"tel:"+contacts.phone}><img src={phone} alt='' /> {contacts.phone}</a> : ''}
                 </div>
                 <div className='col'>

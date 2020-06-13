@@ -1,38 +1,49 @@
-import React, {CSSProperties} from 'react';
+import React, {CSSProperties, useState} from 'react';
 import {dishType} from "../../../types/types";
 import altImg from "../../../static/img/dish.svg";
 import Button from '@material-ui/core/Button';
 import {cropText, fullLink} from "../../../plugins/helpers";
+import ModalDish from "./modals/ModalDish";
 
 type PropsType = {
     dish: dishType
     addToBucket: (dish: dishType) => void
+    showDescription?: boolean
+    shortCard?: boolean
 }
 
-const CardDish: React.FC<PropsType> = ( {dish, addToBucket} ) => {
+const CardDish: React.FC<PropsType> = ({dish, addToBucket, showDescription = true, shortCard}) => {
     const style = {
         backgroundImage: `url(${dish.imageSrc ? fullLink(dish.imageSrc) : altImg})`,
         backgroundSize: "cover"
     } as CSSProperties
 
-    return (
-        <div className='card card_item'>
-            <div className='card_item-img' style={style}/>
-            <div className='card-body pt-0'>
-                <h3 className='card_item-title'>{dish.title}</h3>
-                {dish.description &&
-                <p className='card_item-describe'><b>Описание:</b> {cropText(dish.description, 70)}</p>}
-                <div className='card_item-info'>
-                    {dish.weight && <p className='card_item-info-weight'><b>Вес:</b> {dish.weight} г.</p>}
-                    {dish.cost && <p className='card_item-info-price'><b>Цена:</b> {dish.cost} ₽</p>}
-                </div>
+    const [isOpen, setOpen] = useState(false);
 
-                <div className='card_item-button'>
-                    <Button variant='contained' color='primary' onClick={() => addToBucket(dish)}>Добавить в
-                        корзину</Button>
+    return (
+        <>
+            <div className={'card card_item' + (shortCard ? ' -short' : '')}>
+                <div className='card_item-img' style={style} onClick={() => setOpen(true)} />
+                <div className='card_item__wrapper'>
+                    <div className='card-body pt-0'>
+                        <h3 className='card_item-title'>{dish.title}</h3>
+                        {showDescription && dish.description &&
+                        <p className='card_item-describe'><b>Описание:</b> {cropText(dish.description, 70)}</p>}
+                        <div className='card_item-info'>
+                            {dish.weight && <p className='card_item-info-weight'><b>Вес:</b> {dish.weight} г.</p>}
+                            {dish.cost && <p className='card_item-info-price'><b>Цена:</b> {dish.cost} ₽</p>}
+                        </div>
+
+                        <div className='card_item-button'>
+                            <Button variant='contained' color='primary' onClick={() => addToBucket(dish)}>
+                                {shortCard ? dish.cost +  ' р' : 'Заказать'}
+                            </Button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+            <ModalDish dish={dish} open={isOpen} addToBucket={() => addToBucket(dish)} onClose={() => setOpen(false)} />
+        </>
     )
 };
 

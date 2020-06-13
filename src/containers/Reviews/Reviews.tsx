@@ -3,7 +3,6 @@ import {AppStateType} from "../../redux/redux-store";
 import {postReview, requestReviews} from "../../redux/reviews-reducer";
 import {IReview} from '../../types/types';
 import {connect} from "react-redux";
-import {compose} from 'redux';
 import Reviews from "../../components/Reviews/Reviews";
 
 type MapStatePropsType = {
@@ -29,6 +28,7 @@ class ReviewsContainer extends React.Component<PropsType, StateType> {
 
     componentDidMount(): void {
         if (!this.props.reviews.length) this.props.getReviews();
+        document.title = 'Отзывы'
     }
 
     toggle = () => {
@@ -71,4 +71,4 @@ let mapDispatchToProps = (dispatch: any) => {
     }
 }
 
-export default compose(connect(mapStateToProps, mapDispatchToProps)) (ReviewsContainer);
+export default connect(mapStateToProps, mapDispatchToProps) (ReviewsContainer);

@@ -1,22 +1,18 @@
-import React from 'react'
+import React, {ReactNode} from 'react'
 import Slider from 'react-slick'
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-interface Slide {
-    _id: string
-    imageSrc?: String
-}
-
 interface IProps {
-    items: Array<Slide>
+    settings?: Object
+    children: ReactNode
 }
 
 export default class CustomSlider extends React.PureComponent<IProps> {
     render() {
-        const items = this.props.items
-        const settings = {
+        const {settings, children} = this.props
+        const defaultSettings = {
             dots: true,
             infinite: true,
             speed: 1000,
@@ -26,6 +22,7 @@ export default class CustomSlider extends React.PureComponent<IProps> {
             autoplaySpeed: 10000,
             centerMode: true,
             centerPadding: '60px',
+            pauseOnHover: true,
 
             responsive: [
                 {
@@ -55,12 +52,10 @@ export default class CustomSlider extends React.PureComponent<IProps> {
             ]
         }
 
-        return (<Slider {...settings}>
-            {items.map(item => (
-                <div key={item._id}>
-                    <h2>123</h2>
-                </div>
-            )) }
+        const resSettings = Object.assign(defaultSettings, settings)
+
+        return (<Slider {...resSettings}>
+            {children}
         </Slider>)
     }
 }

@@ -1,9 +1,9 @@
 import React from 'react'
 import {InjectedFormProps, reduxForm, Field} from "redux-form";
-import renderTextField from "../common/elements/RenderTextField";
+import renderTextField from "../../common/elements/RenderTextField";
 import validate from './Validate';
 import {Button, createStyles, Theme} from "@material-ui/core";
-import {reviewType} from "../../types/types";
+import {reviewType} from "../../../types/types";
 import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) =>

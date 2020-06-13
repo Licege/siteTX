@@ -1,9 +1,11 @@
 import React from 'react';
-import FormContacts from './FormContacts'
 import {contactsType, reviewType} from "../../types/types";
+import {ConnectWithUs} from "./ConnectWithUs/ConnectWithUs";
+import {Address} from "./Address";
+import {AboutUs} from "./AboutUs";
 
 type PropsType = {
-    contacts: contactsType | null
+    contacts: contactsType
 
     postForm: (data: reviewType) => void
 }
@@ -11,11 +13,9 @@ type PropsType = {
 const Contacts: React.FC<PropsType> = ({contacts, postForm} ) => {
     return (
         <div className='page-container'>
-            <h3>О нас</h3>
-            <p>*Раздел "о нас"*</p>
-            <h3>Свяжитесь с нами</h3>
-            <p>С удовольствием ответим на все вопросы, просто заполните форму:</p>
-            <FormContacts onSubmit={postForm} />
+            <AboutUs />
+            <Address contacts={contacts} />
+            <ConnectWithUs postForm={postForm} />
         </div>
     )
 };

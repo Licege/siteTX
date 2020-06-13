@@ -1,43 +1,32 @@
 import React from 'react';
-import {newsType} from "../../types/types";
-import CustomSlider from "../common/elements/CustomSlider";
+import {contactsType, dishType, newsType} from "../../types/types";
 import Loader from "../common/elements/Loader";
+import SectionMenu from "./Menu/SectionMenu";
+import SectionAbout from "./About/SectionAbout";
+import SectionPromo from "./Promo/SectionPromo";
+import SectionDelivery from "./Delivery/SectionDelivery";
+import SectionMap from "./Map/SectionMap";
 
 type PropsType = {
     news: Array<newsType>
+    menu: Array<dishType>
+    contacts: contactsType
+
+    addDishToBucket: (dish: dishType) => void
 }
 
-const Home: React.FC<PropsType> = ({news}) => {
-    let url = "http://navse360.ru/onlyTour/4421"
+const Home: React.FC<PropsType> = ({news, menu, contacts, addDishToBucket}) => {
+    // let url = "http://navse360.ru/onlyTour/4421"
 
     return (
-        <div className='page-container'>
+        <div className='Home'>
+            <SectionAbout />
+            <SectionMenu menu={menu} addDishToBucket={addDishToBucket} />
+            <SectionPromo />
+            <SectionDelivery contacts={contacts} />
+            <SectionMap />
             <div>
-                Ресторанный комплекс "Три холма" находится вдали от городской суеты, на берегу Голубых озер. С летней
-                веранды ресторана открывается живописный вид на одно из них. Территория украшена цветами и фонтанами.
-                Имеется детская летняя площадка с горками и качелями. В ресторане доступны три зала, идеально подходящих
-                для проведения досуга в спокойной обстановке. Также в отдельном здании имеются два банкетных зала для
-                проведения торжеств. Общая вместимость комплекса "Три холма" составляет 250 персон. Посетителям
-                предлагается обширное и разнообразное меню, которое состоит из блюд европейской, кавказской и
-                азербайджанской кухни.
-            </div>
-            <div>
-                Акции
-            </div>
-            <div>
-                <CustomSlider items={news} />
-            </div>
-            <div>
-                Наше меню
-            </div>
-            <div>
-                Доставка
-            </div>
-            <div>
-                Карта
-            </div>
-            <div>
-                <Loader />
+                <Loader/>
             </div>
         </div>
     )

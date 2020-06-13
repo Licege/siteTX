@@ -1,16 +1,22 @@
 .card_item {
   position: relative;
   width: 90%;
-  height: 560px;
+  min-height: 300px;
+  max-height: 560px;
   margin: 0 auto 32px;
   letter-spacing: 1px;
   max-width: 360px;
+
+  &__wrapper {
+    margin-bottom: 80px;
+  }
 
   &-img {
     background-position: 50%;
     background-repeat: no-repeat;
     height: 200px;
     width: 100%;
+    cursor: pointer;
   }
 
   &-title {
@@ -18,6 +24,7 @@
     margin: 8px 0;
     color: $brand-brown;
     border-radius: 8px;
+    font-family: '1925MyToyPrintDeluxePro-Normal', sans-serif;
   }
 
   &-describe {
@@ -44,14 +51,56 @@
     padding: 10px 20px;
     bottom: 20px;
     left: 50%;
-    margin-left: -120px;
+    margin-left: -80px;
     //margin: 32px auto 8px;
+
+    button {
+      height: 35px;
+      width: 120px;
+    }
   }
 
   &:hover {
     //transform: translateY(-5px);
-    transform: scale(1.05);
-    transition: 0.2s;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    transform: scale(1.01);
+    transition: 0.4s;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  }
+
+  &.-short {
+    display: flex;
+    flex-direction: row;
+    min-width: 280px;
+    min-height: 150px;
+
+    .card_item-img {
+      height: 110px;
+      width: 110px;
+      float: left;
+      margin: auto;
+    }
+
+    .card_item__wrapper {
+      width: calc(100% - 150px);
+      position: relative;
+      float: right;
+    }
+
+    .card_item-title {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    .card_item-describe {
+      display: none;
+    }
+
+    .card_item-info {
+      display: none;
+    }
+
+    .card_item-button {
+      bottom: -50%;
+    }
   }
 }

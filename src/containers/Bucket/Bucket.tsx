@@ -3,7 +3,7 @@ import {AppStateType} from "../../redux/redux-store";
 import {connect} from "react-redux";
 import Bucket from "../../components/Bucket/Bucket";
 import {
-    addressType,
+    addressType, categoryType,
     deliveryGlobalSettingsType,
     deliverySettingsType,
     deliveryType,
@@ -16,21 +16,28 @@ import {
     increaseDishCountAC,
     reduceDishCountAC,
     removeDishAC,
-    requestDeliverySettings, requestGlobalDeliverySettings, postOrder
+    requestDeliverySettings, requestGlobalDeliverySettings, postOrder, addDishAC
 } from "../../redux/bucket-reducer";
 import {formValueSelector} from "redux-form";
+import {getCategories, getMenu} from "../../redux/menu-reducer";
 
 type MapStatePropsType = {
+    menu: Array<dishType>
     dishes: Array<dishType>
+    categories: Array<categoryType>
     delivery: deliveryType
     settings: Array<deliverySettingsType>
     global_settings: deliveryGlobalSettingsType
     address: addressType
     paymentType: string
     deliveryType: string
+    orderStatus: string
 }
 type MapDispatchPropsType = {
     getSettings: () => void
+    getMenu: () => void
+    getCategories: () => void
+    addDishToBucket: (dish: dishType) => void
     getGlobalSettings: () => void
     increaseDishCount: (dish: dishType) => void
     reduceDishCount: (dish: dishType) => void
@@ -43,7 +50,11 @@ type PropsType = MapStatePropsType & MapDispatchPropsType
 
 type StateType = {
     deliveryPrice: number
+    saleForPickup: number
     orderPrice: number
+    sale: number
+    price: number
+    step: 0 | 1 | 2
 }
 
 class BucketContainer extends React.Component<PropsType, StateType> {
@@ -51,16 +62,30 @@ class BucketContainer extends React.Component<PropsType, StateType> {
         super(props)
         this.state = {
             deliveryPrice: this.priceForDelivery('Калининград', this.props.delivery.total_price),
-            orderPrice: this.props.delivery.total_price
+            saleForPickup: 0,
+            orderPrice: this.props.delivery.total_price,
+            step: 0,
+            sale: 0,
+            price: this.props.delivery.total_price + this.priceForDelivery('Калининград', this.props.delivery.total_price)
         }
     }
 
     componentDidMount(): void {
-        if (!this.props.settings.length) this.props.getSettings();
-        if (!Object.keys(this.props.global_settings).length) this.props.getGlobalSettings();
+        if (!this.props.settings.length) this.props.getSettings()
+        if (!Object.keys(this.props.global_settings).length) this.props.getGlobalSettings()
+        if (!this.props.menu.length) this.props.getMenu()
+        if (!this.props.categories.length) this.props.getCategories()
+        document.title = 'Оформление заказа'
     }
 
     componentDidUpdate(prevProps: Readonly<MapStatePropsType & MapDispatchPropsType>, prevState: Readonly<StateType>): void {
+        if (prevProps.global_settings) {
+            if (prevProps.deliveryType !== 'restaurant' && this.props.deliveryType === 'restaurant') {
+                this.setState({saleForPickup: this.props.global_settings.sale_for_pickup})
+            } else if (prevProps.deliveryType === 'restaurant' && this.props.deliveryType !== 'restaurant') {
+                this.setState({saleForPickup: 0})
+            }
+        }
         if (prevProps.address && this.props.address && prevProps.delivery.total_price !== this.props.delivery.total_price) {
             this.setState({deliveryPrice: this.priceForDelivery(this.props.address.city, this.props.delivery.total_price)})
             this.setState({orderPrice: this.props.delivery.total_price})
@@ -76,8 +101,7 @@ class BucketContainer extends React.Component<PropsType, StateType> {
     priceForDelivery = (city: string, price: number): number => {
         console.log(this.props.deliveryType === 'restaurant')
         if (this.props.settings.length && this.props.deliveryType !== 'restaurant') {
-            let settings = this.props.settings.find(s => s.city === city)!;
-            console.log(settings);
+            let settings = this.props.settings.find(s => s.city === city)!
             return price < settings.free_delivery ? settings.price_for_delivery : 0;
         } else return 0
     };
@@ -90,46 +114,84 @@ class BucketContainer extends React.Component<PropsType, StateType> {
         }
     }
 
-    choiceDate(date: Date | null) {
-        console.log(date ? Date.parse(date.toString()) : null) //to timestamp
+    setStep = (step: 0 | 1 | 2) => {
+        this.setState({step}, () => {
+            if (step !== 2) window.scrollBy(0, -500)
+        })
+    }
+
+    isDisabled = (step: 0 | 1| 2) => {
+        if (this.state.step === 2 && step === 0 || step === 1) return true
+        return this.state.step < step
     }
 
     onSubmit = (data: IDeliveryPost) => {
         let post = {...data,
             list: this.props.delivery.order,
             delivery_cost: this.state.deliveryPrice,
+            sale: this.state.saleForPickup,
             total_price: this.props.delivery.total_price
         }
+        this.setStep(2)
         this.props.postOrder(post)
     }
 
     render() {
-        return <Bucket dishes={this.props.dishes}
-                                                   delivery={this.props.delivery}
-                                                   deliveryPrice={this.state.deliveryPrice}
-                                                   orderPrice={this.state.orderPrice}
-                                                   increaseDishCount={this.props.increaseDishCount}
-                                                   reduceDishCount={this.props.reduceDishCount}
-                                                   removeDish={this.props.removeDish}
-                                                   clearBucket={this.props.clearBucket}
-                                                   settings={this.props.settings}
-                                                   global_settings={this.props.global_settings}
-                                                   paymentMethod={this.props.paymentType}
-                                                   deliveryMethod={this.props.deliveryType}
-                                                   choiceDate={this.choiceDate}
-                                                   onSubmit={this.onSubmit}
-                                                   onChange={this.onChange} />
+        let {
+            dishes,
+            menu,
+            categories,
+            delivery,
+            orderStatus,
+            settings,
+            global_settings,
+            deliveryType,
+            addDishToBucket,
+            increaseDishCount,
+            reduceDishCount,
+            removeDish,
+            paymentType,
+            clearBucket} = this.props
+        let {step, saleForPickup, deliveryPrice, orderPrice, sale, price} = this.state
+
+        return <Bucket dishes={dishes}
+                       menu={menu}
+                       categories={categories}
+                       addDishToBucket={addDishToBucket}
+                       delivery={delivery}
+                       deliveryPrice={deliveryPrice}
+                       orderPrice={orderPrice}
+                       orderStatus={orderStatus}
+                       saleForPickup={saleForPickup}
+                       increaseDishCount={increaseDishCount}
+                       reduceDishCount={reduceDishCount}
+                       removeDish={removeDish}
+                       clearBucket={clearBucket}
+                       settings={settings}
+                       global_settings={global_settings}
+                       paymentMethod={paymentType}
+                       deliveryMethod={deliveryType}
+                       step={step}
+                       sale={sale}
+                       price={price}
+                       onSubmit={this.onSubmit}
+                       onChange={this.onChange}
+                       setStep={this.setStep}
+                       isDisabled={this.isDisabled} />
     }
 }
 
 let mapStateToProps = (state : AppStateType) => {
     const selector = formValueSelector('bucketOrderForm');
     return {
+        menu: state.menuPage.menu,
+        categories: state.menuPage.categories,
         dishes: state.bucket.orderedDishes,
         delivery: state.bucket.delivery,
         settings: state.bucket.settings,
         global_settings: state.bucket.global_settings,
         isDeliveryPosted: state.bucket.isDeliveryPosted,
+        orderStatus: state.bucket.statusOrder,
         address: selector(state, 'address'),
         paymentType: selector(state, 'payment_type'),
         deliveryType: selector(state, 'delivery_type')
@@ -161,6 +223,15 @@ let mapDispatchToProps = (dispatch: any) => {
         },
         postOrder: (order: IDeliveryPost) => {
             dispatch(postOrder(order))
+        },
+        getMenu: () => {
+            dispatch(getMenu())
+        },
+        getCategories: () => {
+            dispatch(getCategories())
+        },
+        addDishToBucket: (dish: dishType) => {
+            dispatch(addDishAC(dish))
         }
     }
 };

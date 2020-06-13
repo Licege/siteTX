@@ -9,7 +9,6 @@ interface IProps {
 
 const Paginator: React.FC<IProps> = ({totalItemsCount, pageSize = 10, onChange}) => {
     let pagesCount = Math.ceil(totalItemsCount / pageSize);
-    const portionSize = 10
     const handleChange = (event: ChangeEvent<unknown>, page: number) => {
         onChange(page)
     }

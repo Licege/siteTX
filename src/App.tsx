@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import './assets/main.scss';
-import {BrowserRouter, Route, Switch, withRouter} from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import FooterContainer from "./containers/Footer/Footer";
 import HeaderContainer from "./containers/Header/Header";
 import MenuContainer from "./containers/Menu/Menu";
@@ -17,17 +17,28 @@ import ReviewsContainer from "./containers/Reviews/Reviews";
 import ResumeContainer from "./containers/Vacancies/Resume/Resume"
 import {AppStateType} from "./redux/redux-store";
 import {refresh} from "./redux/auth-reducer";
+import {getContacts} from "./redux/contacts-reducer";
+import {contactsType} from "./types/types";
+import {Error404} from "./components/Errors/Error404";
+import BanquetsContainer from "./containers/Banquets/BanquetsContainer";
+import ActionsContainer from "./containers/Actions/ActionsContainer";
 
 interface IProps {
+    contacts: contactsType
+
     refresh: () => void
+    getContacts: () => void
 }
 
 class App extends React.Component<IProps> {
     componentDidMount(): void {
         if (localStorage.getItem('accessToken') && localStorage.getItem('refreshToken')) this.props.refresh()
+        if (!Object.keys(this.props.contacts).length) this.props.getContacts()
     }
 
     render() {
+        let {contacts} = this.props
+
         return (
             <BrowserRouter>
                 <div className='app-wrapper'>
@@ -46,6 +57,9 @@ class App extends React.Component<IProps> {
                                 <Route exact path='/bucket' component={BucketContainer} />
                                 <Route exact path='/reviews' component={ReviewsContainer} />
                                 <Route exact path='/resume/:id' component={ResumeContainer} />
+                                <Route exact path='/banquets' component={BanquetsContainer} />
+                                <Route exact path='/actions' component={ActionsContainer} />
+                                <Route component={Error404} />
                             </Switch>
                         </div>
                     </div>
@@ -57,13 +71,18 @@ class App extends React.Component<IProps> {
 }
 
 let mapStateToProps = (state: AppStateType) => {
-    return {}
+    return {
+        contacts: state.contacts.contacts
+    }
 }
 
 let mapDispatchToProps = (dispatch: any) => {
     return {
         refresh: () => {
             dispatch(refresh())
+        },
+        getContacts: () => {
+            dispatch(getContacts())
         }
     }
 }

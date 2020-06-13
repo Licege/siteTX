@@ -18,6 +18,10 @@ const images: Array<imageForGalleryType> = [
 ];
 
 class GalleryContainer extends React.Component<PropsType> {
+    componentDidMount(): void {
+        document.title = 'Галерея'
+    }
+
     render() {
         return <Gallery images={images} />;
     }

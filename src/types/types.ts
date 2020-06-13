@@ -18,15 +18,26 @@ export type authTokenType = {
     refreshToken: string
 }
 
+export type promoType = {
+    _id: string
+    title: string
+    short_description: string
+    description: string
+    status: number
+    show: boolean
+    imageSrc: string
+}
+
 export type contactsType = {
-    phone: string | null
-    address: string | null
-    vk: string | null
-    fb: string | null
-    tg: string | null
-    inst: string | null
-    google: string | null
-    tw: string | null
+    phone: string
+    address: string
+    vk: string
+    fb: string
+    tg: string
+    inst: string
+    google: string
+    tw: string
+    openHours: [string]
 }
 
 export type reviewType = {
@@ -37,20 +48,15 @@ export type reviewType = {
     create_at: number
 }
 
-export type fileType = {
-    id: number
-    url: string
-}
-
 export type dishType = {
     _id: string
     title: string
     description: string | null
     weight: number | null
     cost: number
-    category_id: number | null
+    category_id: string
     count: number | null
-    imageSrc: string | null
+    imageSrc: string
 }
 
 export type categoryType = {
@@ -166,6 +172,7 @@ export type addressType = {
 export type deliveryGlobalSettingsType = {
     is_delivery_working: boolean
     phone_for_sms: string
+    sale_for_pickup: number
     payment_type_cash: boolean
     payment_type_cashless: boolean
     payment_type_online: boolean

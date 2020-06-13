@@ -2,18 +2,18 @@ import React from 'react';
 import {contactsType, reviewType} from "../../types/types";
 import {AppStateType} from "../../redux/redux-store";
 import {connect} from "react-redux";
-import {compose} from 'redux';
 import Contacts from "../../components/Contacts/Contacts";
 import {getContacts} from "../../redux/contacts-reducer";
 
 type PropsType = {
-    contacts: contactsType | null
+    contacts: contactsType
     getContacts: () => void
 }
 
 class ContactsContainer extends React.Component<PropsType> {
     componentDidMount(): void {
-        if (!this.props.contacts) this.props.getContacts();
+        if (!Object.keys(this.props.contacts).length) this.props.getContacts();
+        document.title = 'О нас'
     }
 
     postForm = (data: reviewType) => {
@@ -40,4 +40,4 @@ let mapDispatchToProps = (dispatch: any) => {
     }
 }
 
-export default compose(connect(mapStateToProps, mapDispatchToProps)) (ContactsContainer)
+export default connect(mapStateToProps, mapDispatchToProps) (ContactsContainer)

@@ -4,7 +4,6 @@ import {menuAPI} from "../api/api";
 const GET_MENU = 'MENU/GET_MENU';
 const GET_MENU_BY_CATEGORY = 'MENU/GET_MENU_BY_CATEGORY';
 const GET_DISH = 'MENU/GET_DISH';
-const FILTER_MENU = 'MENU/FILTER_MENU';
 const GET_CATEGORIES = 'MENU/GET_CATEGORIES';
 
 

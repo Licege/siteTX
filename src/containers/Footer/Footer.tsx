@@ -2,13 +2,12 @@ import React from 'react';
 import Footer from "../../components/Footer/Footer";
 import {connect} from "react-redux";
 import {contactsType} from "../../types/types";
-import {compose} from "redux";
 import {AppStateType} from "../../redux/redux-store";
 import {getContacts} from "../../redux/contacts-reducer";
 
 
 type MapStatePropsType = {
-    contacts: contactsType | null
+    contacts: contactsType
 }
 type MapDispatchPropsType = {
     getContacts: () => void
@@ -41,4 +40,4 @@ let mapDispatchToProps = (dispatch: any) => {
     }
 };
 
-export default compose(connect(mapStateToProps, mapDispatchToProps)) (FooterContainer);
+export default connect(mapStateToProps, mapDispatchToProps) (FooterContainer);
