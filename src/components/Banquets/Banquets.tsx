@@ -4,7 +4,7 @@ interface IProps {
 
 }
 
-export const Banquets: React.FC<IProps> = ({}) => {
+export const Banquets: React.FC<IProps> = () => {
     return (
         <div className='banquets'>
             <div className='banquets-header'>

@@ -51,7 +51,6 @@ type PropsType = MapStatePropsType & MapDispatchPropsType
 type StateType = {
     deliveryPrice: number
     saleForPickup: number
-    orderPrice: number
     sale: number
     price: number
     step: 0 | 1 | 2
@@ -63,7 +62,6 @@ class BucketContainer extends React.Component<PropsType, StateType> {
         this.state = {
             deliveryPrice: this.priceForDelivery('Калининград', this.props.delivery.total_price),
             saleForPickup: 0,
-            orderPrice: this.props.delivery.total_price,
             step: 0,
             sale: 0,
             price: this.props.delivery.total_price + this.priceForDelivery('Калининград', this.props.delivery.total_price)
@@ -88,7 +86,6 @@ class BucketContainer extends React.Component<PropsType, StateType> {
         }
         if (prevProps.address && this.props.address && prevProps.delivery.total_price !== this.props.delivery.total_price) {
             this.setState({deliveryPrice: this.priceForDelivery(this.props.address.city, this.props.delivery.total_price)})
-            this.setState({orderPrice: this.props.delivery.total_price})
         }
         if (prevProps.deliveryType && this.props.address && prevProps.deliveryType !== this.props.deliveryType) {
             this.setState({deliveryPrice: this.priceForDelivery(this.props.address.city, this.props.delivery.total_price)})
@@ -99,7 +96,6 @@ class BucketContainer extends React.Component<PropsType, StateType> {
     }
 
     priceForDelivery = (city: string, price: number): number => {
-        console.log(this.props.deliveryType === 'restaurant')
         if (this.props.settings.length && this.props.deliveryType !== 'restaurant') {
             let settings = this.props.settings.find(s => s.city === city)!
             return price < settings.free_delivery ? settings.price_for_delivery : 0;
@@ -107,7 +103,7 @@ class BucketContainer extends React.Component<PropsType, StateType> {
     };
 
     onChange = (dish: dishType) => {
-        return (event: {target: HTMLInputElement; }) => {
+        return (event: { target: HTMLInputElement; }) => {
             let value = event.target.value
             if (value === '') value = '1'
             this.props.changeDishCount(dish, parseInt(value, 10))
@@ -120,13 +116,14 @@ class BucketContainer extends React.Component<PropsType, StateType> {
         })
     }
 
-    isDisabled = (step: 0 | 1| 2) => {
-        if (this.state.step === 2 && step === 0 || step === 1) return true
+    isDisabled = (step: 0 | 1 | 2) => {
+        if (this.state.step === 2 && (step === 0 || step === 1)) return true
         return this.state.step < step
     }
 
     onSubmit = (data: IDeliveryPost) => {
-        let post = {...data,
+        let post = {
+            ...data,
             list: this.props.delivery.order,
             delivery_cost: this.state.deliveryPrice,
             sale: this.state.saleForPickup,
@@ -151,8 +148,9 @@ class BucketContainer extends React.Component<PropsType, StateType> {
             reduceDishCount,
             removeDish,
             paymentType,
-            clearBucket} = this.props
-        let {step, saleForPickup, deliveryPrice, orderPrice, sale, price} = this.state
+            clearBucket
+        } = this.props
+        let {step, saleForPickup, deliveryPrice, sale, price} = this.state
 
         return <Bucket dishes={dishes}
                        menu={menu}
@@ -160,7 +158,6 @@ class BucketContainer extends React.Component<PropsType, StateType> {
                        addDishToBucket={addDishToBucket}
                        delivery={delivery}
                        deliveryPrice={deliveryPrice}
-                       orderPrice={orderPrice}
                        orderStatus={orderStatus}
                        saleForPickup={saleForPickup}
                        increaseDishCount={increaseDishCount}
@@ -177,11 +174,11 @@ class BucketContainer extends React.Component<PropsType, StateType> {
                        onSubmit={this.onSubmit}
                        onChange={this.onChange}
                        setStep={this.setStep}
-                       isDisabled={this.isDisabled} />
+                       isDisabled={this.isDisabled}/>
     }
 }
 
-let mapStateToProps = (state : AppStateType) => {
+let mapStateToProps = (state: AppStateType) => {
     const selector = formValueSelector('bucketOrderForm');
     return {
         menu: state.menuPage.menu,
@@ -236,4 +233,4 @@ let mapDispatchToProps = (dispatch: any) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps) (BucketContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(BucketContainer);

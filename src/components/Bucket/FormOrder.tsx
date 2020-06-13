@@ -27,7 +27,6 @@ interface PropsType {
     payment_method: string
     delivery_method: string
     price: number
-    orderPrice: number
     delivery: deliveryType
     deliveryPrice: number
     saleForPickup: number
@@ -80,7 +79,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & PropsType> = (props) => {
-    const {handleSubmit, settings, global_settings, payment_method, delivery_method, saleForPickup, delivery, deliveryPrice, orderPrice} = props;
+    const {handleSubmit, settings, global_settings, payment_method, delivery_method, saleForPickup, delivery, deliveryPrice} = props;
     let defaultDate = new Date();
     defaultDate.setHours(defaultDate.getHours() + 2)
     const classes = useStyles()

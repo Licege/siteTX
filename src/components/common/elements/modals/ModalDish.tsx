@@ -1,6 +1,6 @@
 import React from 'react'
 import {dishType} from "../../../../types/types";
-import {Dialog, DialogActions, DialogContent} from "@material-ui/core";
+import {Dialog, DialogContent} from "@material-ui/core";
 import {fullLink} from "../../../../plugins/helpers";
 import Button from "@material-ui/core/Button";
 
@@ -18,7 +18,7 @@ const ModalDish: React.FC<IProps> = ({dish, addToBucket, open, onClose}) => {
             <DialogContent>
                 <div className='modal-dish__wrapper'>
                     <div className='modal-dish__close' onClick={onClose} />
-                    <img className='modal-dish__img' src={fullLink(dish.imageSrc)}/>
+                    <img className='modal-dish__img' src={fullLink(dish.imageSrc)} alt='' />
                     <div className='modal-dish__info'>
                         <div className='modal-dish__title'>{dish.title}</div>
                         <div className='modal-dish__description'>{dish.description}</div>

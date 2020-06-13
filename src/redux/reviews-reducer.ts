@@ -40,7 +40,7 @@ export const requestReviews = () => async(dispatch: any) => {
 }
 
 export const postReview = (review: IReview) => async(dispatch: any) => {
-    let response = await reviewsAPI.postReview(review)
+    await reviewsAPI.postReview(review)
     dispatch(postReviewAC(review))
 }
 

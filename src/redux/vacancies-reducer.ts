@@ -39,7 +39,7 @@ export const getVacancies = () => async(dispatch: any) => {
 };
 
 export const postResume = (resume: resumeType) => async(dispatch: any) => {
-    let response = await vacanciesAPI.postResume(resume)
+    await vacanciesAPI.postResume(resume)
     dispatch(saveResumeAC(resume))
 }
 

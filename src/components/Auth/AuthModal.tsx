@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
-import {createStyles, Dialog, DialogTitle, Theme, Button, DialogContent} from '@material-ui/core'
-import {makeStyles} from "@material-ui/core/styles";
+import {Dialog, DialogTitle, Button, DialogContent} from '@material-ui/core'
 import {TransitionProps} from "@material-ui/core/transitions";
 import Slide from "@material-ui/core/Slide";
 import Login from './Login'
@@ -14,17 +13,6 @@ interface IProps {
     registrationSubmit: (profile: authRegProfileType) => void
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            '& .MuiFormControl-root': {
-                margin: theme.spacing(1),
-                width: '200px',
-            },
-        },
-    }),
-)
-
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & { children?: React.ReactElement<any, any> },
     ref: React.Ref<unknown>,
@@ -34,7 +22,6 @@ const Transition = React.forwardRef(function Transition(
 
 const AuthModal = ({isOpen, onClose, signUpSubmit, registrationSubmit}: IProps ) => {
     const [signUp, signMode] = useState(true)
-    const classes = useStyles()
 
     const toggle = () => {
         signMode(!signUp)

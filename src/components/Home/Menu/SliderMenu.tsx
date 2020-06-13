@@ -1,4 +1,4 @@
-import React, {ReactNode} from 'react'
+import React from 'react'
 import {dishType} from "../../../types/types";
 import CardDish from "../../common/elements/CardDish";
 import CustomSlider from "../../common/elements/sliders/CustomSlider";

@@ -7,13 +7,9 @@ import {
     dishType,
     IDeliveryPost
 } from "../../types/types";
-import altImg from "../../static/img/dish.svg";
 import FormOrder from "./FormOrder";
-import {fullLink, getDishesKey} from "../../plugins/helpers";
-import {Breadcrumbs, Button, Chip, emphasize, Theme, withStyles} from '@material-ui/core';
-import LinkButton from "../common/elements/buttons/LinkButton";
+import {Breadcrumbs, Chip, Theme, withStyles} from '@material-ui/core';
 import {Link} from "react-router-dom";
-import {SaucesBlock} from "./SaucesBlock";
 import {ShowOrder} from "./ShowOrder";
 import {FinishOrder} from "./FinishOrder";
 
@@ -23,7 +19,6 @@ type PropsType = {
     delivery: deliveryType
     deliveryPrice: number
     saleForPickup: number
-    orderPrice: number
     settings: Array<deliverySettingsType>
     global_settings: deliveryGlobalSettingsType
     paymentMethod: string
@@ -59,17 +54,13 @@ const StyledBreadcrumb = withStyles((theme: Theme) => ({
             textDecoration: 'none',
             backgroundColor: 'white',
             outline: 'none'
-        },
-        '&:active': {
-            // boxShadow: theme.shadows[1],
-            // backgroundColor: emphasize(theme.palette.grey[300], 0.12),
-        },
+        }
     }
 }))(Chip) as typeof Chip;
 
 const Bucket: React.FC<PropsType> = (props) => {
     const {
-        dishes, menu, step, delivery, deliveryPrice, orderPrice, settings, global_settings, paymentMethod, deliveryMethod, isDisabled,
+        dishes, menu, step, delivery, deliveryPrice, settings, global_settings, paymentMethod, deliveryMethod, isDisabled,
         increaseDishCount, reduceDishCount, removeDish, clearBucket, onSubmit, onChange, saleForPickup, addDishToBucket, categories, setStep,
         sale, price, orderStatus
     } = props;
@@ -121,70 +112,10 @@ const Bucket: React.FC<PropsType> = (props) => {
                                               onSubmit={onSubmit}
                                               delivery={delivery}
                                               deliveryPrice={deliveryPrice}
-                                              orderPrice={orderPrice}
                                               saleForPickup={saleForPickup}
                                               sale={sale} />}
 
                     {step === 2 && <FinishOrder orderStatus={orderStatus} />}
-
-                    {/*<div className='bucket-header'>
-                        <div className='bucket-header-title'>Название:</div>
-                        <div className='bucket-header-item'>Количество:</div>
-                        <div className='bucket-header-item'>Стоимость:</div>
-                    </div>*/}
-
-                    {/*<h3>Корзина</h3>
-                    <div className='bucket-table'>
-                        {dishes.map(dish => (
-                            <div className='bucket-table-row' key={dish._id}>
-                                <img className='bucket-table-row-img'
-                                     src={dish.imageSrc ? fullLink(dish.imageSrc) : altImg} alt=''/>
-                                <div className='bucket-table-row-info'>
-                                    <div className='bucket-table-row-info-title'>{dish.title}</div>
-                                    <div className='bucket-table-row-info-count'>
-                                        <span className='custom_subtract' onClick={() => reduceDishCount(dish)}/>
-                                        <input className='bucket-table-row-info-count-input' onChange={onChange(dish)}
-                                               inputMode='numeric'
-                                               value={getDishesKey(delivery.order, dish._id, 'count')}/>
-                                        <span className='custom_add' onClick={() => increaseDishCount(dish)}/>
-                                    </div>
-                                    <div
-                                        className='bucket-table-row-info-ceil'>{getDishesKey(delivery.order, dish._id, 'cost') * getDishesKey(delivery.order, dish._id, 'count') + ' ₽'}</div>
-                                </div>
-                                <div><span className='bucket-table-row-remove custom_close'
-                                           onClick={() => removeDish(dish._id)}/></div>
-                            </div>
-                        ))}
-                        {!!dishes.length && <div>
-                            <Button variant='contained' color='secondary' onClick={() => clearBucket()}>Очистить
-                                корзину</Button>
-                            <LinkButton to='/menu' label='Дозаказать' variant='contained' color='secondary' />
-                        </div>}
-
-                        <SaucesBlock sauces={sauces} addDishToBucket={addDishToBucket} />
-
-                        {!!delivery.order.length && <div>
-                            <div>Сумма заказа: {orderPrice} ₽</div>
-                            <div>
-                                {
-                                    saleForPickup === 0
-                                        ? `Стоимость доставки: ${deliveryPrice} ₽`
-                                        : `Скидка за самовывоз: ${sale} ₽ (${saleForPickup})%`
-                                }
-                            </div>
-                            <div>Итого: {price} ₽</div>
-                            <Button variant='contained' color='primary' onClick={() => setStep(1)}>Оформить заказ</Button>
-                        </div>}
-                    </div>*/}
-
-                    {/*                    <div className='bucket-order'>
-                        <h3 className='bucket-order-title'>Оформление заказа</h3>
-                        <FormOrder settings={settings}
-                                   global_settings={global_settings}
-                                   payment_method={paymentMethod}
-                                   delivery_method={deliveryMethod}
-                                   onSubmit={onSubmit}/>
-                    </div>*/}
 
                 </> : <div>Ваша корзина пуста. Назад в <Link to='/menu'>меню</Link>.</div>}
         </div>

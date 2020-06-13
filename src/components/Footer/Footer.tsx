@@ -12,7 +12,7 @@ import hours from '../../static/img/hours.svg';
 import {NavLink} from "react-router-dom";
 
 type PropsType = {
-    contacts: contactsType | null
+    contacts: contactsType
 }
 
 const Footer: React.FC<PropsType>  = ( {contacts} ) => {
@@ -21,7 +21,7 @@ const Footer: React.FC<PropsType>  = ( {contacts} ) => {
             <div className='row'>
                 <div className='col'>
                     <span className='footer-title'><img className='footer-icon' src={hours} alt=''/> Часы работы</span>
-                    {contacts?.openHours?.map(item => <div>{item}</div>)}
+                    {contacts?.openHours?.map((item, key) => <div key={key}>{item}</div>)}
                     <div className='footer-social'>
                         {contacts && contacts.vk ? <a className='footer-social-link' href={contacts.vk} target='_blank' rel="noopener noreferrer"><img src={vk} alt='vk' /></a> : ''}
                         {contacts && contacts.inst ? <a className='footer-social-link' href={contacts.inst} target='_blank' rel="noopener noreferrer"><img src={instagram} alt='instagram' /></a> : ''}
@@ -38,6 +38,7 @@ const Footer: React.FC<PropsType>  = ( {contacts} ) => {
                             <a
                                 href='https://yandex.ru/maps/22/kaliningrad/?from=api-maps&ll=20.366668%2C54.649906&mode=routes&origin=jsapi_2_1_76&rtext=~54.649946%2C20.366788&rtt=auto&ruri=~&z=17'
                                 target='_blank'
+                                rel="noopener noreferrer"
                             >
                                 <img src={address} alt=''/>{contacts.address}
                             </a>

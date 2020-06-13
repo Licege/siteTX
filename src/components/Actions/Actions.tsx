@@ -4,7 +4,7 @@ interface IProps {
 
 }
 
-export const Actions: React.FC<IProps> = ({}) => {
+export const Actions: React.FC<IProps> = () => {
     return (
         <div className='actions page-container'>
             2

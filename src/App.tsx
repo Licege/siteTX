@@ -37,8 +37,6 @@ class App extends React.Component<IProps> {
     }
 
     render() {
-        let {contacts} = this.props
-
         return (
             <BrowserRouter>
                 <div className='app-wrapper'>
