@@ -7,7 +7,6 @@ export function passwordValidate(value: string){
 
 export function onlyNumber(value: string) {
     let data = value.match(/[^0-9]/)
-    console.log(data)
 
 }
 

@@ -10,6 +10,7 @@ import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import reviewsReducer from "./reviews-reducer";
 import authReducer from "./auth-reducer";
+import promosReducer from "./promos-reducer";
 
 const persistConfig = {
     key: 'bucket',
@@ -25,6 +26,7 @@ let rootReducer = combineReducers({
     contacts: contactsReducer,
     bucket: bucketReducer,
     reviewsPage: reviewsReducer,
+    promosPage: promosReducer,
     form: formReducer
 });
 

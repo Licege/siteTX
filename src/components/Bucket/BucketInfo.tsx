@@ -12,7 +12,7 @@ interface IProps {
     toggle: () => void
 }
 
-const BucketInfo: React.FC<IProps> = ( {isOpen, toggle} ) => {
+const BucketInfo: React.FC<IProps> = ({isOpen, toggle}) => {
     const orders = useSelector((state: AppStateType) => state.bucket.delivery.order)
     const dishes = useSelector((state: AppStateType) => state.bucket.orderedDishes)
     const dispatch = useDispatch()
@@ -31,7 +31,7 @@ const BucketInfo: React.FC<IProps> = ( {isOpen, toggle} ) => {
     }, [dispatch])
 
     const onChange = (dish: dishType) => {
-        return (event: {target: HTMLInputElement; }) => {
+        return (event: { target: HTMLInputElement; }) => {
             let value = event.target.value
             if (value === '') value = '1'
             changeDishCount(dish, parseInt(value, 10))
@@ -40,34 +40,42 @@ const BucketInfo: React.FC<IProps> = ( {isOpen, toggle} ) => {
 
     return (
         <div className={isOpen ? 'shopping_cart-info -active' : 'shopping_cart-info'}>
-            <div className='shopping_cart-info-content'>
-            <div className='shopping_cart-info-content-list'>
-                {dishes.map(dish => (
-                    <div className='shopping_cart-info-content-list-item' key={dish._id}>
-                        <div className='shopping_cart-info-content-list-item-title'>{dish.title}</div>
-                        <div className='shopping_cart-info-content-list-item-count'>
-                            <span className='custom_subtract' onClick={e => reduceDishCount(dish)}/>
-                            <input className='shopping_cart-info-content-list-item-count-input'
-                                   onChange={onChange(dish)}
-                                   inputMode='numeric'
-                                   value={getDishesKey(orders, dish._id, 'count')}/>
-                            <span className='custom_add' onClick={() => increaseDishCount(dish)}/>
-                        </div>
-                        <div  className='shopping_cart-info-content-list-item-price'>{getDishesKey(orders, dish._id, 'cost') * getDishesKey(orders, dish._id, 'count') + ' ₽'}</div>
-                        <div  className='shopping_cart-info-content-list-item-remove'><span className='custom_close'
-                                   onClick={() => removeDish(dish._id)}/></div>
+            {dishes.length
+                ? <>
+                <div className='shopping_cart-info-content'>
+                    <div className='shopping_cart-info-content-list'>
+                        {dishes.map(dish => (
+                            <div className='shopping_cart-info-content-list-item' key={dish._id}>
+                                <div className='shopping_cart-info-content-list-item-title'>{dish.title}</div>
+                                <div className='shopping_cart-info-content-list-item-count'>
+                                    <span className='custom_subtract' onClick={e => reduceDishCount(dish)}/>
+                                    <input className='shopping_cart-info-content-list-item-count-input'
+                                           onChange={onChange(dish)}
+                                           inputMode='numeric'
+                                           value={getDishesKey(orders, dish._id, 'count')}/>
+                                    <span className='custom_add' onClick={() => increaseDishCount(dish)}/>
+                                </div>
+                                <div
+                                    className='shopping_cart-info-content-list-item-price'>{getDishesKey(orders, dish._id, 'cost') * getDishesKey(orders, dish._id, 'count') + ' ₽'}</div>
+                                <div className='shopping_cart-info-content-list-item-remove'><span
+                                    className='custom_close'
+                                    onClick={() => removeDish(dish._id)}/></div>
+                            </div>
+                        ))}
                     </div>
-                ))}
-            </div>
-            </div>
-            <div className='shopping_cart-info-footer'>
-                <div className='shopping_cart-info-footer-price'>
-                    Сумма: {orders.reduce((acc, order) => acc + order.cost * order.count, 0)} ₽
                 </div>
-                <NavLink className='shopping_cart-info-footer-button' exact to='/bucket'>
-                    <Button variant='contained' color='primary' onClick={toggle}>Оформить заказ</Button>
-                </NavLink>
-            </div>
+                <div className='shopping_cart-info-footer'>
+                    <div className='shopping_cart-info-footer-price'>
+                        Сумма: {orders.reduce((acc, order) => acc + order.cost * order.count, 0)} ₽
+                    </div>
+                    <NavLink className='shopping_cart-info-footer-button' exact to='/bucket'>
+                        <Button variant='contained' color='primary' onClick={toggle}>Оформить заказ</Button>
+                    </NavLink>
+                </div>
+            </>
+                : <div>
+                    К сожалению в корзине ничего нет.
+                </div>}
         </div>
     )
 }

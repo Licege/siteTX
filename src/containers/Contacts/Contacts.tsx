@@ -18,7 +18,6 @@ class ContactsContainer extends React.Component<PropsType> {
 
     postForm = (data: reviewType) => {
         data.create_at = Date.parse(new Date().toString())
-        console.log(data)
     }
 
     render() {

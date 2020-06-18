@@ -40,7 +40,7 @@ export const requestPromos = () => async(dispatch: any) => {
     dispatch(getPromosAC(response.data))
 }
 
-export const requestPromoById = (id: number) => async(dispatch: any) => {
+export const requestPromoById = (id: string) => async(dispatch: any) => {
     let response = await promoAPI.getPromoById(id)
     dispatch(getPromoByIdAC(response.data))
 }

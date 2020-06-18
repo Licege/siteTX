@@ -10,7 +10,6 @@ interface IProps {
 }
 
 const MobileMenu = ({categories, toggle}: IProps) => {
-    console.log(categories)
     return (
         <div className='mobile_menu'>
             <div className='mobile_menu-wrapper'>

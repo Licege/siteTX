@@ -14,7 +14,6 @@ type PropsType = {
 }
 
 const Menu: React.FC<PropsType> = ( {menu, categories, order, addToBucket, increaseCountDish, reduceCountDish} ) => {
-    console.log(menu);
     return (
                 <div className='menu'>
                     <div className='menu-categories' id='menu-categories-navbar'>

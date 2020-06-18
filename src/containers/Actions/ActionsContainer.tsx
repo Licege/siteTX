@@ -2,23 +2,38 @@ import React from 'react'
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {Actions} from "../../components/Actions/Actions";
+import {requestPromoById, requestPromos} from "../../redux/promos-reducer";
+import {promoType} from "../../types/types";
 
-class ActionsContainer extends React.Component {
+interface IProps {
+    promos: Array<promoType>
+
+    getPromos: () => void
+}
+
+class ActionsContainer extends React.Component<IProps> {
     componentDidMount(): void {
         document.title = 'Акции'
+        if (!this.props.promos.length) this.props.getPromos()
     }
 
     render() {
-        return <Actions />
+        return <Actions promos={this.props.promos} />
     }
 }
 
 let mapStateToProps = (state: AppStateType) => {
-    return {}
+    return {
+        promos: state.promosPage.promos
+    }
 }
 
 let mapDispatchToProps = (dispatch: any) => {
-    return {}
+    return {
+        getPromos: () => {
+            dispatch(requestPromos())
+        }
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps) (ActionsContainer)

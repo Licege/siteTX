@@ -4,7 +4,6 @@ import altImg from "../../../static/img/dish.svg";
 import Button from '@material-ui/core/Button';
 import {cropText, fullLink} from "../../../plugins/helpers";
 import ModalDish from "./modals/ModalDish";
-import {increaseDishCountAC, reduceDishCountAC} from "../../../redux/bucket-reducer";
 
 type PropsType = {
     dish: dishType
@@ -15,10 +14,6 @@ type PropsType = {
     addToBucket: (dish: dishType) => void
     increaseCountDish?: (dish: dishType) => void
     reduceCountDish?: (dish: dishType) => void
-}
-
-const isAlreadyOrdered = (id: string, order: Array<orderDishType> | undefined) => {
-    return !!order?.find(dish => dish.dish_id === id)
 }
 
 const CardDish: React.FC<PropsType> = ({dish, order, addToBucket, showDescription = true, shortCard, increaseCountDish, reduceCountDish}) => {

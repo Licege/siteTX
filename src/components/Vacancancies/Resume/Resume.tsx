@@ -11,7 +11,6 @@ type IProps = {
 }
 
 const Resume: React.FC<IProps> = ({resume, vacancies, id, postResume}) => {
-    console.log(id)
     return (
         <div className='page-container'>
             <div className='page-container-title'>Резюме</div>

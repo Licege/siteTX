@@ -120,7 +120,7 @@ export const promoAPI = {
                 return response
             })
     },
-    getPromoById(id: number) {
+    getPromoById(id: string) {
         return axios.get<promoType>(baseURL + `/promos/${id}`)
             .then(response => {
                 return response
@@ -206,7 +206,6 @@ export const reviewsAPI = {
             })
     },
     postReview(review: IReview) {
-        console.log('3123')
         return apiUserRequest.post(`/reviews/`, review)
             .then(response => {
                 return response

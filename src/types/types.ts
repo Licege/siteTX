@@ -1,3 +1,5 @@
+import {DetailedHTMLProps, HTMLAttributes} from "react";
+
 export type authProfileType = {
     email: string
     password: string
