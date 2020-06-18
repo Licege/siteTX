@@ -1,17 +1,18 @@
 import React from 'react';
-import {categoryType, dishType} from "../../types/types";
+import {categoryType, deliveryType, dishType} from "../../types/types";
 import {AppStateType} from "../../redux/redux-store";
 import {getCategories, getDish, getMenu, getMenuByCategory} from "../../redux/menu-reducer";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import Menu from "../../components/Menu/Menu";
-import {addDishAC} from "../../redux/bucket-reducer";
+import {addDishAC, increaseDishCountAC, reduceDishCountAC} from "../../redux/bucket-reducer";
 import {scrollHeight} from "../../plugins/helpers";
 
 type MapStatePropsType = {
     dish: dishType | {},
     menu: Array<dishType>,
     categories: Array<categoryType>,
+    delivery: deliveryType,
     match?: {params: {id: string}}
 }
 type MapDispatchPropsType = {
@@ -20,6 +21,8 @@ type MapDispatchPropsType = {
     getCategories: () => void,
     getMenuByCategory: (category: string) => void,
     addDishToBucket: (dish: dishType) => void
+    increaseDishCount: (dish: dishType) => void
+    reduceDishCount: (dish: dishType) => void
 }
 type PropsType = MapStatePropsType & MapDispatchPropsType
 
@@ -70,8 +73,21 @@ class MenuContainer extends React.Component<PropsType> {
         this.props.addDishToBucket(dish);
     };
 
+    increaseCountDish = (dish: dishType) => {
+        this.props.increaseDishCount(dish)
+    }
+
+    reduceCountDish = (dish: dishType) => {
+        this.props.reduceDishCount(dish)
+    }
+
     render() {
-        return <Menu menu={this.props.menu} categories={this.props.categories} addToBucket={this.addToBucket} />;
+        return <Menu menu={this.props.menu}
+                     categories={this.props.categories}
+                     order={this.props.delivery?.order}
+                     addToBucket={this.addToBucket}
+                     increaseCountDish={this.increaseCountDish}
+                     reduceCountDish={this.reduceCountDish} />;
     }
 }
 
@@ -79,7 +95,8 @@ let mapStateToProps = (state: AppStateType) => {
     return {
         dish: state.menuPage.dish,
         menu: state.menuPage.menu,
-        categories: state.menuPage.categories
+        categories: state.menuPage.categories,
+        delivery: state.bucket.delivery
     }
 };
 let mapDispatchToProps = (dispatch: any) => {
@@ -98,6 +115,12 @@ let mapDispatchToProps = (dispatch: any) => {
         },
         addDishToBucket: (dish: dishType) => {
             dispatch(addDishAC(dish))
+        },
+        increaseDishCount: (dish: dishType) => {
+            dispatch(increaseDishCountAC(dish))
+        },
+        reduceDishCount: (dish: dishType) => {
+            dispatch(reduceDishCountAC(dish))
         }
     }
 };

@@ -1,24 +1,35 @@
 import React, {CSSProperties, useState} from 'react';
-import {dishType} from "../../../types/types";
+import {dishType, orderDishType} from "../../../types/types";
 import altImg from "../../../static/img/dish.svg";
 import Button from '@material-ui/core/Button';
 import {cropText, fullLink} from "../../../plugins/helpers";
 import ModalDish from "./modals/ModalDish";
+import {increaseDishCountAC, reduceDishCountAC} from "../../../redux/bucket-reducer";
 
 type PropsType = {
     dish: dishType
-    addToBucket: (dish: dishType) => void
+    order?: Array<orderDishType>
     showDescription?: boolean
     shortCard?: boolean
+
+    addToBucket: (dish: dishType) => void
+    increaseCountDish?: (dish: dishType) => void
+    reduceCountDish?: (dish: dishType) => void
 }
 
-const CardDish: React.FC<PropsType> = ({dish, addToBucket, showDescription = true, shortCard}) => {
+const isAlreadyOrdered = (id: string, order: Array<orderDishType> | undefined) => {
+    return !!order?.find(dish => dish.dish_id === id)
+}
+
+const CardDish: React.FC<PropsType> = ({dish, order, addToBucket, showDescription = true, shortCard, increaseCountDish, reduceCountDish}) => {
     const style = {
         backgroundImage: `url(${dish.imageSrc ? fullLink(dish.imageSrc) : altImg})`,
         backgroundSize: "cover"
     } as CSSProperties
 
     const [isOpen, setOpen] = useState(false);
+
+    const orderedDish = order?.find(d => d.dish_id === dish._id)
 
     return (
         <>
@@ -35,9 +46,19 @@ const CardDish: React.FC<PropsType> = ({dish, addToBucket, showDescription = tru
                         </div>
 
                         <div className='card_item-button'>
-                            <Button variant='contained' color='primary' onClick={() => addToBucket(dish)}>
-                                {shortCard ? dish.cost +  ' р' : 'Заказать'}
-                            </Button>
+                            {!orderedDish || shortCard
+                                ? <Button variant='contained' color='primary' onClick={() => addToBucket(dish)}>
+                                    {shortCard ? dish.cost +  ' р' : 'Заказать'}
+                                </Button>
+                                : <div className='card_item-button__ordered'>
+                                    <Button variant='contained' color='primary' onClick={() => reduceCountDish!(dish)}>
+                                        -
+                                    </Button>
+                                    <span className='value'>{orderedDish?.count}</span>
+                                    <Button variant='contained' color='primary' onClick={() => increaseCountDish!(dish)}>
+                                        +
+                                    </Button>
+                                </div>}
                         </div>
                     </div>
                 </div>

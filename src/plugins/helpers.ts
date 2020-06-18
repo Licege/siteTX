@@ -81,3 +81,21 @@ export function scrollHeight() {
 export function fullLink(link: string): string {
     return serverUrl + link.replace('\\', '/')
 }
+
+function isPunctuationMark(simbol: string): boolean {
+    const punctuationMarks = ['.', ';', '?', ',', '+', '-']
+    punctuationMarks.forEach(mark => {
+        return simbol === mark
+    })
+    return false
+    
+}
+
+export function cropText1(text: string, limit = 100): string {
+    if (text.length < limit) return text
+
+    while (text[limit + 1] !== ' ' || isPunctuationMark(text[limit])) {
+        limit--
+    }
+    return text.slice(0, limit) + '...'
+}

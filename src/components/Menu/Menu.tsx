@@ -1,16 +1,19 @@
 import React from 'react';
-import {categoryType, dishType} from '../../types/types';
+import {categoryType, dishType, orderDishType} from '../../types/types';
 import CardDish from "../common/elements/CardDish";
 import {NavLink} from "react-router-dom";
 
 type PropsType = {
     menu: Array<dishType>,
     categories: Array<categoryType>
+    order: Array<orderDishType>
 
     addToBucket: (dish: dishType) => void
+    increaseCountDish: (dish: dishType) => void
+    reduceCountDish: (dish: dishType) => void
 }
 
-const Menu: React.FC<PropsType> = ( {menu, categories, addToBucket} ) => {
+const Menu: React.FC<PropsType> = ( {menu, categories, order, addToBucket, increaseCountDish, reduceCountDish} ) => {
     console.log(menu);
     return (
                 <div className='menu'>
@@ -28,7 +31,12 @@ const Menu: React.FC<PropsType> = ( {menu, categories, addToBucket} ) => {
                         <div className='menu-wrapper'>
                             <div className='menu-wrapper-header'>~ Меню ~</div>
                             <div className='menu-wrapper-content'>
-                                {menu.map((dish) => <CardDish dish={dish} addToBucket={addToBucket} key={dish._id}/>)}
+                                {menu.map((dish) => <CardDish dish={dish}
+                                                              order={order}
+                                                              addToBucket={addToBucket}
+                                                              increaseCountDish={increaseCountDish}
+                                                              reduceCountDish={reduceCountDish}
+                                                              key={dish._id}/>)}
                             </div>
                         </div>
                         :
