@@ -1,0 +1,35 @@
+.promo {
+  display: flex;
+  margin-top: 60px;
+  padding: 16px 24px 8px;
+
+  &-img {
+    width: 540px;
+    height: 360px;
+  }
+
+  &-title {
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+
+  &-description {
+
+  }
+
+  &-actions {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+
+  &__wrapper {
+    position: relative;
+    width: calc(100% - 360px);
+
+    &-content {
+      margin-bottom: 50px;
+    }
+  }
+}

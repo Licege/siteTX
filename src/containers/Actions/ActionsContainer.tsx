@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {Actions} from "../../components/Actions/Actions";
-import {requestPromoById, requestPromos} from "../../redux/promos-reducer";
+import {requestPromos} from "../../redux/promos-reducer";
 import {promoType} from "../../types/types";
 
 interface IProps {

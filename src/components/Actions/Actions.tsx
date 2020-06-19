@@ -1,5 +1,6 @@
-import React, {DetailedHTMLProps, HTMLAttributes} from 'react'
+import React from 'react'
 import {promoType} from "../../types/types";
+import CardPromo from "../common/elements/CardPromo";
 
 interface IProps {
     promos: Array<promoType>
@@ -9,16 +10,11 @@ interface IProps {
 export const Actions: React.FC<IProps> = (props) => {
     let {promos} = props
     return (
-        <div className='actions page-container'>
-            {promos.map(promo => (
-                promo.show
-                    ? <div key={promo._id}>
-                        <div>{promo.title}</div>
-                        <div>{promo.short_description}</div>
-                        <div dangerouslySetInnerHTML={ {__html: promo.description} }/>
-                    </div>
-                    : null
-            ))}
+        <div className='promos'>
+            <h4 className='promos-title'>~ Акции ~</h4>
+            <div className='promos-wrapper'>
+                {promos.map(promo => <CardPromo promo={promo} key={promo._id} />)}
+            </div>
         </div>
     )
 }

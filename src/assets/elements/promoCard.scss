@@ -1,0 +1,40 @@
+.card_promo {
+  display: flex;
+  flex-direction: row;
+  width: 48%;
+  min-width: 300px;
+  height: 300px;
+  position: relative;
+
+  &-img {
+    width: 48%;
+    height: 100%;
+  }
+
+  &-title {
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+
+  &-description {
+
+  }
+
+  &-actions {
+    position: absolute;
+    bottom: 20px;
+    right: calc(25% - 70px);
+    width: 140px;
+    text-align: center;
+    user-select: none;
+
+    a {
+      color: $brand-brown;
+    }
+  }
+
+  &__wrapper {
+
+  }
+}

@@ -26,7 +26,6 @@ class NewsContainer extends React.Component<PropsType> {
     }
 
     render () {
-        console.log(this.props)
         return <News
                     news={this.props.news}
                     totalCount={this.props.totalCount}

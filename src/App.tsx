@@ -22,6 +22,7 @@ import {contactsType} from "./types/types";
 import {Error404} from "./components/Errors/Error404";
 import BanquetsContainer from "./containers/Banquets/BanquetsContainer";
 import ActionsContainer from "./containers/Actions/ActionsContainer";
+import ActionContainer from "./containers/Actions/ActionContainer";
 
 interface IProps {
     contacts: contactsType
@@ -57,6 +58,7 @@ class App extends React.Component<IProps> {
                                 <Route exact path='/resume/:id' component={ResumeContainer} />
                                 <Route exact path='/banquets' component={BanquetsContainer} />
                                 <Route exact path='/actions' component={ActionsContainer} />
+                                <Route exact path='/actions/:id' component={ActionContainer} />
                                 <Route component={Error404} />
                             </Switch>
                         </div>
