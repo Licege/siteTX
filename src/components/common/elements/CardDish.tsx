@@ -19,7 +19,8 @@ type PropsType = {
 const CardDish: React.FC<PropsType> = ({dish, order, addToBucket, showDescription = true, shortCard, increaseCountDish, reduceCountDish}) => {
     const style = {
         backgroundImage: `url(${dish.imageSrc ? fullLink(dish.imageSrc) : altImg})`,
-        backgroundSize: "cover"
+        backgroundSize: "cover",
+        borderRadius: shortCard ? '4px' : ''
     } as CSSProperties
 
     const [isOpen, setOpen] = useState(false);
@@ -36,8 +37,8 @@ const CardDish: React.FC<PropsType> = ({dish, order, addToBucket, showDescriptio
                         {showDescription && dish.description &&
                         <p className='card_item-describe'><b>Описание:</b> {cropText(dish.description, 70)}</p>}
                         <div className='card_item-info'>
-                            {dish.weight && <p className='card_item-info-weight'><b>Вес:</b> {dish.weight} г.</p>}
-                            {dish.cost && <p className='card_item-info-price'><b>Цена:</b> {dish.cost} ₽</p>}
+                            {dish.cost && <p className='card_item-info-price'>{dish.cost} руб.</p>}
+                            {dish.weight && <p className='card_item-info-weight'>{dish.weight} г.</p>}
                         </div>
 
                         <div className='card_item-button'>

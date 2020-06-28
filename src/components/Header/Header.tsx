@@ -21,7 +21,7 @@ const Header: React.FC<PropsType> = ({categories}) => {
     return (
         <div className='header'>
             <div className={active ? 'burger -active' : 'burger'} onClick={toggle} ><span/></div>
-            {active && <MobileMenu categories={categories} toggle={toggle}/>}
+            <MobileMenu isOpen={active} categories={categories} toggle={toggle}/>
             <Link to="/"><img className='header-logo' src={logo} alt='' /></Link>
             <div className='header-navbar'>
                 <ul>

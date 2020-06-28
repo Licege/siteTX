@@ -5,8 +5,9 @@
   height: 50px;
   width: 50px;
   border-radius: 50%;
-  background-color: lightgrey;
+  background-color: inherit;
   cursor: pointer;
+  z-index: 10;
 
   span {
     position: absolute;
@@ -38,6 +39,8 @@
   }
 
   &.-active {
+    background-color: white;
+
     span {
       height: 0;
 
@@ -49,6 +52,10 @@
         transform: rotate(-45deg);
       }
     }
+
+    &:hover {
+      background-color: white;
+    }
   }
 
   @include media-breakpoint-up(lg) {
@@ -56,6 +63,7 @@
   }
 
   &:hover {
-    background-color: white;
+    transition: .4s;
+    background-color: rgba(0, 0, 0, 0.04);
   }
 }

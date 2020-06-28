@@ -24,7 +24,7 @@ export const SaucesBlock: React.FC<IProps> = ({sauces, addDishToBucket}) => {
                 breakpoint: 1150,
                 settings: {
                     slidesToShow: 2,
-                    initialSlide: 1,
+                    initialSlide: 2,
                     slidesToScroll: 1,
                     dots: false
                 }
@@ -32,7 +32,7 @@ export const SaucesBlock: React.FC<IProps> = ({sauces, addDishToBucket}) => {
             {
                 breakpoint: 600,
                 settings: {
-                    initialSlide: 1,
+                    initialSlide: 2,
                     slidesToShow: 1,
                     slidesToScroll: 1,
                 }
@@ -42,7 +42,7 @@ export const SaucesBlock: React.FC<IProps> = ({sauces, addDishToBucket}) => {
 
     return (
         <div className='mt-5'>
-            <h3 className='mb-3'>Выберите соус</h3>
+            <h3 className='mb-3 pl-3'>Выберите соус</h3>
             <CustomSlider settings={settings}>
                 {sauces.map(sauce => (
                     <CardDish dish={sauce} addToBucket={addDishToBucket} shortCard={true} key={sauce._id} />

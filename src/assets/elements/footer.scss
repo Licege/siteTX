@@ -2,57 +2,58 @@
   flex: 0 0 auto;
   background-color: khaki;
 
-  &-title {
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 12px;
-  }
-
-  &-navbar {
-
-    &-item {
+  &-wrapper {
+    &-title {
+      text-transform: uppercase;
       display: block;
+      margin-bottom: 12px;
+    }
 
-      &.-active {
-        color: gold;
+    &-navbar {
+
+      &-item {
+        display: block;
+
+        &.-active {
+          color: gold;
+        }
       }
     }
-  }
 
-  &-icon {
-    padding-bottom: 4px;
-  }
+    &-icon {
+      padding-bottom: 4px;
+    }
 
-  &-address {
-    margin-bottom: 8px;
-  }
+    &-address {
+      margin-bottom: 8px;
+    }
 
-  &-phone {
-    color: inherit;
-    text-decoration: none;
+    &-phone {
+      color: inherit;
+      text-decoration: none;
 
-    &:hover {
+      &:hover {
+        color: inherit;
+        text-decoration: none;
+      }
+    }
+
+    &-social {
+      padding-top: 32px;
+
+      &-link {
+        margin-right: 8px;
+      }
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    &:hover, &:visited {
       color: inherit;
       text-decoration: none;
     }
   }
-
-  &-social {
-    padding-top: 32px;
-
-    &-link {
-      margin-right: 8px;
-    }
-  }
-
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  &:hover, &:visited {
-    color: inherit;
-    text-decoration: none;
-  }
-
 }

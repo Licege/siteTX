@@ -8,7 +8,7 @@ interface IProps {
     promo: promoType
 }
 
-const CardPromo: React.FC<IProps> = ( {promo} ) =>{
+const CardPromo: React.FC<IProps> = ( {promo} ) => {
     const style = {
         backgroundImage: `url(${promo.imageSrc ? fullLink(promo.imageSrc) : altImg})`,
         backgroundSize: "cover"

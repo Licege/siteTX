@@ -4,14 +4,15 @@ import {NavLink} from "react-router-dom";
 import closeImg from "../../../static/img/close.png"
 
 interface IProps {
+    isOpen: boolean,
     categories: Array<categoryType>
 
     toggle: () => void
 }
 
-const MobileMenu = ({categories, toggle}: IProps) => {
+const MobileMenu = ({isOpen, categories, toggle}: IProps) => {
     return (
-        <div className='mobile_menu'>
+        <div className={'mobile_menu' + (isOpen ? ' -active' : '')}>
             <div className='mobile_menu-wrapper'>
                 <img src={closeImg} className='mobile_menu-wrapper-close' onClick={toggle} alt='Закрыть' />
                 <ul>
