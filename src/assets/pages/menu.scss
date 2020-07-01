@@ -1,12 +1,13 @@
 .menu {
   display: flex;
   position: relative;
-  padding: 8px 0 16px;
+  padding: 0 0 16px;
   background-color: #fff;
   margin-top: 60px;
 
   &-categories {
     position: fixed;
+    padding-top: 8px;
     border-right-style: inset;
     height: calc(100vh - 87px);
     width: 250px;
@@ -63,6 +64,7 @@
 
   &-wrapper {
     padding-left: 250px;
+    padding-top: 8px;
     width: 100%;
 
     &-header {
