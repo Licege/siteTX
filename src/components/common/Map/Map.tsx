@@ -1,6 +1,6 @@
 import React from 'react'
-import {YMaps, Map, Placemark, Clusterer} from "react-yandex-maps";
-import logo from '../../../static/img/round-logo.png'
+import {YMaps, Map, Placemark} from "react-yandex-maps";
+import pointer from '../../../static/img/pointer-map.png'
 
 
 interface IPlacemark {
@@ -13,14 +13,15 @@ interface IPlacemark {
 
 const CustomMap: React.FC = () => {
     let properties = {
-        hintContent: '&lt;img src={logo} /&gt;'
+        hintContent: '&lt;img src={pointer} /&gt;'
     }
 
     let pOptions = {
         iconLayout: 'default#image',
-        iconImageHref: logo,
-        iconImageSize: [50, 50],
-        iconImageOffset: [-24, -40]
+        iconImageHref: pointer,
+        iconImageSize: [70, 100],
+        // iconImageOffset: [-24, -40]
+        iconImageOffset: [-34, -76]
     }
 
     return (
