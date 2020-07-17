@@ -11,7 +11,11 @@ import {
     vacancyType
 } from "../types/types";
 
-export const serverUrl = 'http://localhost:9090/'
+const host = 'http://localhost'
+
+export const WS_BASE = `${host}:9091/`
+
+export const serverUrl = `${host}:9090/`
 const baseURL = serverUrl + 'api/public';
 const apiUserRequest = axios.create({
     baseURL,

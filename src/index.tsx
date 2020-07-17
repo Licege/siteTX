@@ -5,6 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from "react-redux";
+import WebSocketProvider from './middleware/WebSocket'
 import {store, persistor} from "./redux/redux-store";
 import {PersistGate} from "redux-persist/integration/react";
 import DateFnsUtils from '@date-io/date-fns';
@@ -17,7 +18,9 @@ let rerenderEntireTree = () => {
             <BrowserRouter>
                 <Provider store={store}>
                     <PersistGate loading={null} persistor={persistor}>
-                        <App/>
+                        <WebSocketProvider>
+                            <App/>
+                        </WebSocketProvider>
                     </PersistGate>
                 </Provider>
             </BrowserRouter>
