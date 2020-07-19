@@ -1,5 +1,5 @@
 import React from 'react';
-import {AppStateType} from "../../redux/redux-store";
+import {AppStateType, socket} from "../../redux/redux-store";
 import {connect} from "react-redux";
 import Bucket from "../../components/Bucket/Bucket";
 import {
@@ -130,7 +130,8 @@ class BucketContainer extends React.Component<PropsType, StateType> {
             total_price: this.props.delivery.total_price
         }
         this.setStep(2)
-        this.props.postOrder(post)
+        socket.emit('event://send-delivery', JSON.stringify(post))
+        //this.props.postOrder(post)
     }
 
     render() {
@@ -193,7 +194,7 @@ let mapStateToProps = (state: AppStateType) => {
         paymentType: selector(state, 'payment_type'),
         deliveryType: selector(state, 'delivery_type')
     }
-};
+}
 
 let mapDispatchToProps = (dispatch: any) => {
     return {
@@ -231,6 +232,6 @@ let mapDispatchToProps = (dispatch: any) => {
             dispatch(addDishAC(dish))
         }
     }
-};
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(BucketContainer);

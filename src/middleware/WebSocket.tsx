@@ -1,15 +1,12 @@
 import React, {createContext} from 'react'
 import io from 'socket.io-client'
-import {useDispatch} from 'react-redux'
 import {WS_BASE} from '../api/api'
 
-export const WebSocket = createContext(null)
+export const WebSocketContext = createContext('socket')
 
 export default ({children}: any) => {
     let socket: any
     let ws
-
-    const dispatch = useDispatch()
 
     const send = (data: any) => {
         const payload = {
@@ -18,17 +15,16 @@ export default ({children}: any) => {
 
         socket.emit('event://send-delivery', JSON.stringify(payload))
         console.log(payload);
-        //dispatch()
     }
 
     if (!socket) {
         socket = io.connect(WS_BASE)
 
-        socket.on('event://get-delivery', (data: any) => {
-            //const payload = JSON.parse(data)
-            //dispatch()
-            //console.log(payload);
-        })
+        // socket.emit('event://send-delivery', (data: any) => {
+        //     //const payload = JSON.parse(data)
+        //     //dispatch()
+        //     //console.log(payload);
+        // })
 
         ws = {
             socket,
@@ -39,8 +35,8 @@ export default ({children}: any) => {
 
     return (
         // @ts-ignore
-        <WebSocket.Provider value={ws}>
+        <WebSocketContext.Provider value={ws}>
             {children}
-        </WebSocket.Provider>
+        </WebSocketContext.Provider>
     )
 }

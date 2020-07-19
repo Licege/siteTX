@@ -115,9 +115,13 @@ const Bucket: React.FC<PropsType> = (props) => {
                                               saleForPickup={saleForPickup}
                                               sale={sale} />}
 
-                    {step === 2 && <FinishOrder orderStatus={orderStatus} />}
-
-                </> : <div>Ваша корзина пуста. Назад в <Link to='/menu'>меню</Link>.</div>}
+                </> : <>
+                    {step === 2
+                        ? <FinishOrder orderStatus={orderStatus} />
+                        : <div>Ваша корзина пуста. Назад в <Link to='/menu'>меню</Link>.</div>
+                    }
+                </>
+                }
         </div>
     )
 };
