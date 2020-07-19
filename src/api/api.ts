@@ -11,7 +11,7 @@ import {
     vacancyType
 } from "../types/types";
 
-const host = process.env.NODE_ENV === 'production' ? 'http://31.31.201.99' : 'http://localhost'
+const host = process.env.NODE_ENV === 'production' ? '//31.31.201.99' : 'http://localhost'
 
 export const WS_BASE = `${host}:9091/`
 
