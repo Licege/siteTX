@@ -1,6 +1,7 @@
 .header {
   position: fixed;
   display: inline-flex;
+  align-items: center;
   background-color: white;
   // background: linear-gradient(to top, rgba(0, 0, 0, .0001), rgb(8, 8, 8));
   height: 60px;
@@ -72,5 +73,17 @@
 
   &:hover, &:visited {
     text-decoration: none;
+  }
+
+  @include media-breakpoint-down(sm) {
+    &-logo {
+      margin-left: 0;
+    }
+
+    &-action {
+      &-button {
+        margin-right: 8px;
+      }
+    }
   }
 }

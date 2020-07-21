@@ -58,7 +58,7 @@
         }
       }
 
-      @include media-breakpoint-down(xsm) {
+      @include media-breakpoint-down(sm) {
         display: block;
 
         &-image {
@@ -190,6 +190,21 @@
 
     &-map {
 
+    }
+
+
+    @include media-breakpoint-down(sm) {
+      &-about {
+        &-image {
+          width: 264px;
+          height: 264px;
+        }
+      }
+      &-menu {
+        &-slider {
+          max-width: 232px;
+        }
+      }
     }
   }
 }
