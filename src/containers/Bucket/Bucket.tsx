@@ -74,6 +74,7 @@ class BucketContainer extends React.Component<PropsType, StateType> {
         if (!this.props.menu.length) this.props.getMenu()
         if (!this.props.categories.length) this.props.getCategories()
         document.title = 'Оформление заказа'
+        window.scrollTo(0, 0)
     }
 
     componentDidUpdate(prevProps: Readonly<MapStatePropsType & MapDispatchPropsType>, prevState: Readonly<StateType>): void {

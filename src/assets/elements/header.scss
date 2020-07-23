@@ -16,7 +16,8 @@
   }
 
   &-navbar {
-    display: block;
+    display: flex;
+    align-items: center;
     margin: 0 auto;
     width: 100%;
     font-family: Forum, serif;
@@ -32,6 +33,11 @@
       &.-active {
         color: gold;
       }
+    }
+
+    ul {
+      width: 100%;
+      margin-bottom: 0;
     }
 
     @include media-breakpoint-down(md) {

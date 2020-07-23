@@ -35,6 +35,7 @@ class MenuContainer extends React.Component<PropsType> {
             this.props.getMenuByCategory(this.props.match!.params.id)
         }
         document.title = 'Меню'
+        window.scrollTo(0, 0)
         window.addEventListener("scroll", this.onScroll)
     }
 
@@ -51,7 +52,7 @@ class MenuContainer extends React.Component<PropsType> {
             this.props.getMenuByCategory(this.props.match!.params.id)
         } else
         if (!this.props.match!.params.id && prevProps.match!.params.id) {
-            this.props.getMenu();
+            this.props.getMenu()
         }
     }
 

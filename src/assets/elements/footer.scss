@@ -24,6 +24,9 @@
 
   &__info_block {
     grid-area: info;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   &__address_block {
@@ -32,6 +35,7 @@
 
   &__nav_block {
     grid-area: nav;
+    margin: auto;
   }
 
   &__icon {
@@ -45,8 +49,12 @@
     margin-bottom: 12px;
   }
 
+  &__work_time {
+
+  }
+
   &__social {
-    padding-top: 32px;
+    padding-top: 8px;
 
     &-link {
       margin-right: 8px;
@@ -100,8 +108,19 @@
   }
 
   @include media-breakpoint-down(xsm) {
+    padding: 1rem .5rem!important;
+
     &__wrapper {
-      justify-items: center;
+      a {
+        margin-bottom: 8px;
+      }
+    }
+
+    &__info_block,
+    &__nav_block,
+    &__address_block {
+      font-size: 16px;
+      line-height: 18px;
     }
   }
 }

@@ -12,17 +12,21 @@ type PropsType = {
 const CardNews: React.FC<PropsType> = ({news}) => (
     <div className='card_news'>
         <div className='card'>
-            <div className='card-body card_news-content'>
+            <div className='card-body card_news__wrapper'>
                 {news.create_at && <div className='card_news-date'>{tsToDate(news.create_at, 'dd MMMM')}</div>}
-                <img className='card_news-content-img' src={news.imageSrc ? fullLink(news.imageSrc) : altImg} alt=''/>
-                <div className='card_news-content-info'>
-                    <div className='card_news-content-info-header'>
-                        {news.title && <Link to='/' className='card_news-content-info-header-title'>{news.title}</Link>}
-                    </div>
-                    {news.short_description &&
-                    <div className='card_news-content-info-description'>{news.short_description}</div>}
-                    <div className='card_news-content-info-link'>
-                        <Link to={'/news/' + news._id}>Подробнее...</Link>
+                <div className='card_news-content'>
+                    <img className='card_news-content-img' src={news.imageSrc ? fullLink(news.imageSrc) : altImg}
+                         alt=''/>
+                    <div className='card_news-content-info'>
+                        <div className='card_news-content-info-header'>
+                            {news.title &&
+                            <Link to='/' className='card_news-content-info-header-title'>{news.title}</Link>}
+                        </div>
+                        {news.short_description &&
+                        <div className='card_news-content-info-description'>{news.short_description}</div>}
+                        <div className='card_news-content-info-link'>
+                            <Link to={'/news/' + news._id}>Подробнее...</Link>
+                        </div>
                     </div>
                 </div>
             </div>

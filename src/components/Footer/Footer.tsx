@@ -20,9 +20,11 @@ const Footer: React.FC<PropsType> = ({contacts}) => {
         <footer className='footer card-body' id='footer'>
             <div className='footer__wrapper'>
                 <div className='footer__info_block'>
+                    <div className='footer__work_time'>
                         <span className='footer__title'><img className='footer__icon' src={hours}
                                                              alt=''/> Часы работы</span>
                     {contacts?.openHours?.map((item, key) => <div key={key}>{item}</div>)}
+                    </div>
                     <div className='footer__social'>
                         {contacts && contacts.vk ?
                             <a className='footer__social-link' href={contacts.vk} target='_blank'

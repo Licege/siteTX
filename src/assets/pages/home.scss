@@ -131,6 +131,8 @@
           font-weight: 700;
           color: $brand-blue;
           text-decoration: underline;
+          white-space: nowrap;
+          margin-right: 8px;
         }
 
         &-link {

@@ -78,6 +78,19 @@
       justify-content: space-between;
       padding: 0 12px;
     }
+
+    &__arrange {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    &__hint {
+      font-size: 10px;
+      line-height: 14px;
+      text-align: end;
+    }
   }
 
   &-order {
@@ -130,6 +143,11 @@
         &-remove {
           margin: 0;
         }
+      }
+
+      &__price {
+        font-size: 14px;
+        line-height: 16px;
       }
     }
   }
