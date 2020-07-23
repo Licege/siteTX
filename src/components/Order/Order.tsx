@@ -10,16 +10,16 @@ type PropsType = {
 
 const Order: React.FC<PropsType> = ( {onSubmit} ) => {
     return (
-        <div className='page-container'>
+        <main className='page-container'>
             <h4 className='page-container-title'>~ Бронирование столов ~</h4>
             <div className='order'>
-                <img src={img} className='order-img' alt='' />
-                <div>
+                <img src={img} className='order__img' alt='' />
+                <div className='order__content'>
                     <p>Описание тут</p>
                     <OrderForm onSubmit={onSubmit} />
                 </div>
             </div>
-        </div>
+        </main>
     )
 };
 

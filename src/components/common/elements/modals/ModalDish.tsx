@@ -21,7 +21,7 @@ const ModalDish: React.FC<IProps> = ({dish, addToBucket, open, onClose}) => {
                     <img className='modal-dish__img' src={fullLink(dish.imageSrc)} alt='' />
                     <div className='modal-dish__info'>
                         <div className='modal-dish__title'>{dish.title}</div>
-                        <div className='modal-dish__description'>{dish.description}</div>
+                        {dish.description ?<div className='modal-dish__description'>{dish.description}</div> : null}
                         <div className='modal-dish__energy'>
                             <div className='modal-dish__energy-title'>Энергетическая ценность</div>
                             <div className='modal-dish__energy-description'>

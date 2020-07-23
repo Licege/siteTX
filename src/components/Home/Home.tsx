@@ -1,11 +1,10 @@
-import React from 'react';
-import {contactsType, dishType, newsType} from "../../types/types";
-import Loader from "../common/elements/Loader";
-import SectionMenu from "./Menu/SectionMenu";
-import SectionAbout from "./About/SectionAbout";
-import SectionPromo from "./Promo/SectionPromo";
-import SectionDelivery from "./Delivery/SectionDelivery";
-import SectionMap from "./Map/SectionMap";
+import React from 'react'
+import {contactsType, dishType, newsType} from "../../types/types"
+import SectionMenu from "./Menu/SectionMenu"
+import SectionAbout from "./About/SectionAbout"
+import SectionPromo from "./Promo/SectionPromo"
+import SectionDelivery from "./Delivery/SectionDelivery"
+import SectionMap from "./Map/SectionMap"
 
 type PropsType = {
     news: Array<newsType>
@@ -25,9 +24,6 @@ const Home: React.FC<PropsType> = ({news, menu, contacts, addDishToBucket}) => {
             <SectionPromo />
             <SectionDelivery contacts={contacts} />
             <SectionMap />
-            <div>
-                <Loader/>
-            </div>
         </div>
     )
 };

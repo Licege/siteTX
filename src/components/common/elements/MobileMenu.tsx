@@ -13,7 +13,7 @@ interface IProps {
 const MobileMenu = ({isOpen, categories, toggle}: IProps) => {
     return (
         <div className={'mobile_menu' + (isOpen ? ' -active' : '')}>
-            <div className='mobile_menu-wrapper'>
+            <nav className='mobile_menu-wrapper'>
                 <img src={closeImg} className='mobile_menu-wrapper-close' onClick={toggle} alt='Закрыть' />
                 <ul>
                     {categories.map(category => (
@@ -40,7 +40,7 @@ const MobileMenu = ({isOpen, categories, toggle}: IProps) => {
                         <NavLink activeClassName='-active' to='/gallery' onClick={toggle}>ФОТОГАЛЕРЕЯ</NavLink>
                     </li>
                 </ul>
-            </div>
+            </nav>
         </div>
     )
 }

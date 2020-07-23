@@ -47,7 +47,7 @@ class App extends React.Component<IProps> {
                 <div className='app-wrapper'>
                     <HeaderContainer/>
                     <div className='app-wrapper-content'>
-                        <TransitionGroup component='div' className='page'>
+                        <TransitionGroup component='main' className='page'>
                             <CSSTransition timeout={timeout} classNames='card_animation' mountOnEnter unmountOnExit>
                                 <Switch>
                                     <Route exact path='/' component={HomeContainer}/>

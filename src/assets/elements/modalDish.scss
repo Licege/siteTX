@@ -46,7 +46,9 @@
     }
 
     &-description {
-
+      table {
+        width: 100%;
+      }
     }
   }
 
@@ -88,6 +90,34 @@
 
     &:hover {
       opacity: .4;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    &__wrapper {
+      flex-direction: column;
+    }
+
+    &__img {
+      width: 216px;
+      height: 216px;
+    }
+
+    &__title {
+      margin-top: 8px;
+      margin-bottom: 12px;
+    }
+
+    &__info {
+      padding: 0;
+    }
+
+    &__energy {
+      margin-bottom: 8px;
+    }
+
+    &__button {
+      margin-top: 8px;
     }
   }
 }

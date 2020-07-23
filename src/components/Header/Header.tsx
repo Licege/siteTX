@@ -19,11 +19,11 @@ const Header: React.FC<PropsType> = ({categories}) => {
     }
 
     return (
-        <div className='header'>
+        <header className='header'>
             <div className={active ? 'burger -active' : 'burger'} onClick={toggle} ><span/></div>
             <MobileMenu isOpen={active} categories={categories} toggle={toggle}/>
             <Link to="/"><img className='header-logo' src={logo} alt='' /></Link>
-            <div className='header-navbar'>
+            <nav className='header-navbar'>
                 <ul>
                     <li>
                         <NavLink exact activeClassName='-active' className='header-navbar-item' to='/'>ГЛАВНАЯ</NavLink>
@@ -41,7 +41,7 @@ const Header: React.FC<PropsType> = ({categories}) => {
                         <NavLink activeClassName='-active' className='header-navbar-item' to='/contacts'>О НАС</NavLink>
                     </li>
                 </ul>
-            </div>
+            </nav>
 
             <div className='header-action'>
                 <div className='header-action-button'>
@@ -50,7 +50,7 @@ const Header: React.FC<PropsType> = ({categories}) => {
 
                 <ButtonBucket/>
             </div>
-        </div>
+        </header>
     )
 };
 
