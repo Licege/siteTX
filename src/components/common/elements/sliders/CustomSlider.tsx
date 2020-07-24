@@ -43,7 +43,7 @@ export default class CustomSlider extends React.PureComponent<IProps> {
                     }
                 },
                 {
-                    breakpoint: 480,
+                    breakpoint: 540,
                     settings: {
                         slidesToShow: 1,
                         slidesToScroll: 1

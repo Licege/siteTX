@@ -4,9 +4,9 @@
   height: 100%;
   width: 0;
   background-color: #808080;
-  // background-color: saddlebrown;
-  overflow: auto;
-  transition: width .4s ease-out;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: width .3s ease-out;
 
   &.-active {
     width: 100%;

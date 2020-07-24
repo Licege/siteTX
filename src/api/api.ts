@@ -13,7 +13,7 @@ import {
 
 const host = process.env.NODE_ENV === 'production' ? '//31.31.201.99/' : 'http://localhost'
 
-export const WS_BASE = `${host}:9091/`
+export const WS_BASE = process.env.NODE_ENV === 'production' ? '//31.31.201.99:9091/' : `${host}:9091/`
 
 export const serverUrl = process.env.NODE_ENV === 'production' ? host : `${host}:9090/`
 const baseURL = serverUrl + 'api/public';

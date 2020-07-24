@@ -58,7 +58,7 @@
         }
       }
 
-      @include media-breakpoint-down(sm) {
+      @include media-breakpoint-down(xsm) {
         display: block;
 
         &-image {
@@ -194,7 +194,6 @@
 
     }
 
-
     @include media-breakpoint-down(sm) {
       &-about {
         &-image {
@@ -202,9 +201,30 @@
           height: 264px;
         }
       }
+
       &-menu {
         &-slider {
-          max-width: 232px;
+          max-width: 480px;
+        }
+      }
+
+      &-delivery {
+        &-wrapper {
+          flex-direction: column;
+
+          &__image {
+            width: 264px;
+            height: 264px;
+            margin: 12px auto;
+          }
+        }
+      }
+    }
+
+    @include media-breakpoint-down(xsm) {
+      &-menu {
+        &-slider {
+          max-width: 256px;
         }
       }
     }

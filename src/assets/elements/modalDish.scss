@@ -119,5 +119,9 @@
     &__button {
       margin-top: 8px;
     }
+
+    ::-webkit-scrollbar {
+      width: 0;
+    }
   }
 }
