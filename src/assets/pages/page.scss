@@ -1,13 +1,12 @@
 .page {
   display: block;
-  // margin: 60px auto 0;
   min-height: calc(100vh - 268px);
   background-color: #fff;
 
   &-container {
     padding: 0 1.25rem 1.25rem;
     max-width: 1150px;
-    margin: 60px auto 0;
+    margin: 68px auto 0;
 
     &-title {
       text-align: center;

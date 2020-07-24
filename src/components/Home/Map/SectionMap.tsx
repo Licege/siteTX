@@ -7,7 +7,7 @@ interface IProps {
 
 const SectionMap: React.FC<IProps> = () => (
     <div className='Section-map'>
-        <Map/>
+        <Map style={{width: '100%', height: '424px'}} />
     </div>
 )
 
