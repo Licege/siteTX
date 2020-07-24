@@ -8,7 +8,7 @@
     user-select: none;
   }
 
-  @include media-breakpoint-down(sm) {
+  @include media-breakpoint-down(xsm) {
     flex-direction: column;
     margin-bottom: 20px;
 

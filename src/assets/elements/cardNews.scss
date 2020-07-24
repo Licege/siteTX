@@ -4,7 +4,9 @@
   max-width: 1600px;
 
   &-date {
-    margin: auto;
+    width: 120px;
+    text-align: center;
+    margin: auto 0;
     white-space: nowrap;
     font-family: fantasy;
     font-size: 1.4em;
@@ -37,7 +39,7 @@
       }
 
       &-description {
-
+        max-height: 120px;
       }
 
       &-link {
@@ -58,7 +60,7 @@
     }
 
     &-img {
-      width: 30%;
+      width: 200px;
       height: 200px;
       margin-right: 8px;
       border-radius: 3px;
@@ -78,13 +80,27 @@
     }
 
     &-date {
+      width: 100%;
       text-align: end;
     }
 
     &-content {
       &-img {
-        width: 50%;
+        width: 200px;
       }
+    }
+  }
+
+  @include media-breakpoint-down(xsm) {
+    &-content {
+      &-img {
+        width: 140px;
+        height: 140px;
+      }
+    }
+
+    .card-body {
+      padding: 16px;
     }
   }
 }

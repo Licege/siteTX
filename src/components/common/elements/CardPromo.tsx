@@ -11,7 +11,8 @@ interface IProps {
 const CardPromo: React.FC<IProps> = ( {promo} ) => {
     const style = {
         backgroundImage: `url(${promo.imageSrc ? fullLink(promo.imageSrc) : altImg})`,
-        backgroundSize: "cover"
+        backgroundSize: "cover",
+        backgroundPosition: "center"
     } as CSSProperties
 
     return (

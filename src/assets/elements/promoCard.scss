@@ -1,11 +1,9 @@
 .card_promo {
   display: flex;
   flex-direction: row;
-  width: 48%;
   min-width: 300px;
   height: 300px;
   position: relative;
-  margin-right: 16px;
 
   &-img {
     width: 48%;
