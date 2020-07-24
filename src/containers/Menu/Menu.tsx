@@ -64,8 +64,12 @@ class MenuContainer extends React.Component<PropsType> {
             navbar.classList.add('-fixed')
             navbar.style.top = limit.toString()+'px'
         }
-       else if (document.getElementById('menu-categories-navbar')!.classList.contains('-fixed')) {
+        else if (navbar.classList.contains('-fixed')) {
             navbar.classList.remove('-fixed')
+            navbar.style.top = 'auto'
+        }
+
+        if (window.pageYOffset === 0) {
             navbar.style.top = 'auto'
         }
     }
