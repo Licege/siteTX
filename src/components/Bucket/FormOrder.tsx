@@ -19,6 +19,7 @@ import renderCheckbox from "../common/elements/RenderCheckbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import DateTimeField from "../common/elements/MaterialDateTimePicker";
 import {makeStyles} from "@material-ui/core/styles";
+import {scrollToFirstError} from "../../plugins/validate";
 
 
 interface PropsType {
@@ -220,6 +221,7 @@ let ReduxFormOrder = reduxForm<IDeliveryPost & IMapStateToProps, PropsType>({
         time_delivery: new Date(new Date().setMilliseconds(60 * 60 * 1000))
     },
     validate,
+    onSubmitFail: (errors => scrollToFirstError(errors)),
     enableReinitialize: true
 })(FormOrder);
 

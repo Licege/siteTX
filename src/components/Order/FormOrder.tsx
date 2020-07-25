@@ -7,23 +7,24 @@ import validate from './Validate';
 import {IOrder} from "../../types/types";
 import DateTimeField from "../common/elements/MaterialDateTimePicker";
 import {makeStyles} from "@material-ui/core/styles";
+import {scrollToFirstError} from "../../plugins/validate";
 
 
-const renderFromHelper = ({ touched, error }: any) => {
+const renderFromHelper = ({touched, error}: any) => {
     if (!(touched && error)) {
         return
     } else {
-        return <FormHelperText>{touched && error}</FormHelperText>
+        return <FormHelperText component='div'>{touched && error}</FormHelperText>
     }
 }
 
-const renderSelectField = ({ input, label, meta: { touched, error }, children, ...custom }: any): any => (
-    <FormControl error={touched && error}>
+const renderSelectField = ({input, label, meta: {touched, error}, children, ...custom}: any): any => (
+    <FormControl error={touched && error} component='div'>
         <InputLabel htmlFor="count">{label}</InputLabel>
         <Select native {...input} {...custom} inputProps={{name: 'count', id: 'order-count-person'}}>
             {children}
         </Select>
-        {renderFromHelper({ touched, error })}
+        {renderFromHelper({touched, error})}
     </FormControl>
 )
 
@@ -38,20 +39,21 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-const FormOrder: React.FC<InjectedFormProps> = ({ handleSubmit }) => {
+const FormOrder: React.FC<InjectedFormProps> = ({handleSubmit}) => {
     const classes = useStyles()
 
     return (
         <form onSubmit={handleSubmit} className={classes.root}>
             <div>
-                <Field name='name' component={renderTextField} label='Ваше имя:' placeholder='Введите имя:' />
+                <Field name='name' component={renderTextField} label='Ваше имя:' placeholder='Введите имя:'/>
             </div>
             <div>
-                <Field name='phone' component={renderTextField} label='Контактный телефон' placeholder='Введите телефон' />
+                <Field name='phone' component={renderTextField} label='Контактный телефон'
+                       placeholder='Введите телефон'/>
             </div>
             <div>
                 {/*<Field name='datetime' component={MyReactDateTimePicker} parse={(value: Date) => value.toISOString()} />*/}
-                <Field name='order_date' component={DateTimeField} />
+                <Field name='order_date' component={DateTimeField}/>
             </div>
             <div>
                 <Field name='count_person' component={renderSelectField} label='Количество гостей'>
@@ -65,7 +67,7 @@ const FormOrder: React.FC<InjectedFormProps> = ({ handleSubmit }) => {
                        label='Пожелания:'
                        multiline
                        rowsMax='6'
-                       margin='normal' />
+                       margin='normal'/>
             </div>
             <div>
                 <Button variant='contained' color='primary' type='submit'>Забронировать стол</Button>
@@ -80,6 +82,8 @@ let ReduxFormOrder = reduxForm<IOrder>({
         order_date: new Date(new Date().setMilliseconds(2 * 60 * 60 * 1000))
     },
     validate,
-    enableReinitialize: true})(FormOrder);
+    onSubmitFail: (errors => scrollToFirstError(errors)),
+    enableReinitialize: true
+})(FormOrder);
 
 export default ReduxFormOrder;
