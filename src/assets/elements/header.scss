@@ -58,6 +58,10 @@
     }
   }
 
+  &.-active {
+    background-color: grey;
+  }
+
   li {
     cursor: auto;
   }

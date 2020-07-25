@@ -13,7 +13,8 @@ interface IProps {
 export const Action: React.FC<IProps> = ({promo, goBack}) => {
     const style = {
         backgroundImage: `url(${promo.imageSrc ? fullLink(promo.imageSrc) : altImg})`,
-        backgroundSize: "cover"
+        backgroundSize: "cover",
+        backgroundPosition: "center"
     } as CSSProperties
 
     return (

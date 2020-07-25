@@ -19,7 +19,7 @@ const Header: React.FC<PropsType> = ({categories}) => {
     }
 
     return (
-        <header className='header'>
+        <header className={'header' + (active ? ' -active' : '')}>
             <div className={active ? 'burger -active' : 'burger'} onClick={toggle} ><span/></div>
             <MobileMenu isOpen={active} categories={categories} toggle={toggle}/>
             <Link to="/"><img className='header-logo' src={logo} alt='' /></Link>
