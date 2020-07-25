@@ -3,6 +3,7 @@ import io from 'socket.io-client'
 import {WS_BASE} from '../api/api'
 import {useDispatch} from "react-redux";
 import {changeDeliveryPostedAC, changeOrderStatusAC, clearBucketAC} from "../redux/bucket-reducer";
+import {IDeliveryPost} from "../types/types";
 
 export const WebSocketContext = createContext(null)
 let socket: any
@@ -13,6 +14,10 @@ export default ({children}: any) => {
 
     if (!socket) {
         socket = io.connect(WS_BASE)
+    }
+
+    const sendOrderDelivery = (order: IDeliveryPost) => {
+        socket.emit('event://send-delivery', JSON.stringify(order))
     }
 
     socket.on('event://send-delivery:status', (data: string) => {
@@ -34,7 +39,8 @@ export default ({children}: any) => {
     })
 
     ws = {
-        socket
+        socket,
+        sendOrderDelivery
     }
 
 

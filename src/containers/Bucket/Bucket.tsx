@@ -135,8 +135,7 @@ class BucketContainer extends React.Component<PropsType, StateType> {
             total_price: this.props.delivery.total_price
         }
         this.setStep(2)
-        this.context.socket.emit('event://send-delivery', JSON.stringify(post))
-        //this.props.postOrder(post)
+        this.context.sendOrderDelivery(post)
     }
 
     render() {
@@ -157,8 +156,6 @@ class BucketContainer extends React.Component<PropsType, StateType> {
             clearBucket
         } = this.props
         let {step, saleForPickup, deliveryPrice, sale, price} = this.state
-
-        console.log(this.context);
 
         return <Bucket dishes={dishes}
                        menu={menu}
