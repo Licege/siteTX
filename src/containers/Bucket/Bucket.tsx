@@ -1,5 +1,5 @@
 import React from 'react';
-import {AppStateType, socket} from "../../redux/redux-store";
+import {AppStateType} from "../../redux/redux-store";
 import {connect} from "react-redux";
 import Bucket from "../../components/Bucket/Bucket";
 import {
@@ -20,6 +20,7 @@ import {
 } from "../../redux/bucket-reducer";
 import {formValueSelector} from "redux-form";
 import {getCategories, getMenu} from "../../redux/menu-reducer";
+import {WebSocketContext} from "../../socket/WebSocket";
 
 type MapStatePropsType = {
     menu: Array<dishType>
@@ -57,6 +58,9 @@ type StateType = {
 }
 
 class BucketContainer extends React.Component<PropsType, StateType> {
+
+    static contextType = WebSocketContext
+
     constructor(props: PropsType) {
         super(props)
         this.state = {
@@ -131,7 +135,7 @@ class BucketContainer extends React.Component<PropsType, StateType> {
             total_price: this.props.delivery.total_price
         }
         this.setStep(2)
-        socket.emit('event://send-delivery', JSON.stringify(post))
+        this.context.socket.emit('event://send-delivery', JSON.stringify(post))
         //this.props.postOrder(post)
     }
 
@@ -153,6 +157,8 @@ class BucketContainer extends React.Component<PropsType, StateType> {
             clearBucket
         } = this.props
         let {step, saleForPickup, deliveryPrice, sale, price} = this.state
+
+        console.log(this.context);
 
         return <Bucket dishes={dishes}
                        menu={menu}

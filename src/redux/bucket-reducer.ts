@@ -211,6 +211,7 @@ export const requestGlobalDeliverySettings = () => async(dispatch: any) => {
 
 export const postOrder = (order: IDeliveryPost) => async(dispatch: any) => {
     let response = await bucketAPI.postOrder(order)
+    console.log(response);
     if (response.status === 201 || response.status === 200) {
         dispatch(changeOrderStatusAC('created'))
         dispatch(changeDeliveryPostedAC(true))

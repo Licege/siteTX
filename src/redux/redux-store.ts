@@ -1,6 +1,5 @@
 import {applyMiddleware, combineReducers, compose, createStore} from "redux";
 import thunkMiddleWare from "redux-thunk";
-import io from "socket.io-client";
 import contactsReducer from "./contacts-reducer";
 import menuReducer from "./menu-reducer";
 import vacanciesReducer from "./vacancies-reducer";
@@ -12,7 +11,6 @@ import storage from 'redux-persist/lib/storage';
 import reviewsReducer from "./reviews-reducer";
 import authReducer from "./auth-reducer";
 import promosReducer from "./promos-reducer";
-import {WS_BASE} from "../api/api";
 
 const persistConfig = {
     key: 'bucket',
@@ -44,7 +42,7 @@ export const persistor = persistStore(store);
 // @ts-ignore
 window._store_ = store;
 
-export const socket = io.connect(WS_BASE)
+//export const socket = io.connect(WS_BASE)
 
 export default () => {
     return {store, persistor}

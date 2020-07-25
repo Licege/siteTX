@@ -9,6 +9,7 @@ import {store, persistor} from "./redux/redux-store";
 import {PersistGate} from "redux-persist/integration/react";
 import DateFnsUtils from '@date-io/date-fns';
 import {MuiPickersUtilsProvider} from "@material-ui/pickers";
+import WebSocketProvider from './socket/WebSocket'
 import {ru} from "date-fns/locale";
 
 let rerenderEntireTree = () => {
@@ -17,7 +18,9 @@ let rerenderEntireTree = () => {
             <BrowserRouter>
                 <Provider store={store}>
                     <PersistGate loading={null} persistor={persistor}>
-                        <App/>
+                        <WebSocketProvider>
+                            <App/>
+                        </WebSocketProvider>
                     </PersistGate>
                 </Provider>
             </BrowserRouter>
