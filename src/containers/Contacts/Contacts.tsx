@@ -14,6 +14,7 @@ class ContactsContainer extends React.Component<PropsType> {
     componentDidMount(): void {
         if (!Object.keys(this.props.contacts).length) this.props.getContacts();
         document.title = 'О нас'
+        window.scrollTo(0, 0)
     }
 
     postForm = (data: reviewType) => {

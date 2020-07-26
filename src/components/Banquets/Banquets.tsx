@@ -6,7 +6,7 @@ interface IProps {
 
 export const Banquets: React.FC<IProps> = () => {
     return (
-        <div className='banquets'>
+        <main className='banquets'>
             <div className='banquets-header'>
                 <div className='banquets-header__image'>
                     <h3 className='banquets-header__title'>Ваши банкеты у нас</h3>
@@ -14,7 +14,7 @@ export const Banquets: React.FC<IProps> = () => {
 
             </div>
 
-        </div>
+        </main>
 
     )
 }

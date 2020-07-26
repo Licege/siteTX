@@ -21,6 +21,7 @@ class NewsByIdContainer extends React.Component<IStateToProps & IDispatchToProps
         let id = this.props.match.params.id;
         if (!Object.keys(this.props.currentNews).length || this.props.currentNews._id !== id) this.props.getNewsById(id)
         document.title = 'Новости'
+        window.scrollTo(0, 0)
     }
 
     goBack = () => {

@@ -18,6 +18,7 @@ class VacanciesContainer extends React.Component<PropsType> {
     componentDidMount(): void {
         if (!this.props.vacancies.length) this.props.getVacancies();
         document.title = 'Вакансии'
+        window.scrollTo(0, 0)
     }
 
 

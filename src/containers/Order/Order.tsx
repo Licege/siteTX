@@ -8,6 +8,7 @@ import {orderAPI} from "../../api/api";
 class OrderContainer extends React.Component {
     componentDidMount(): void {
         document.title = 'Заказ столов'
+        window.scrollTo(0, 0)
     }
 
     onSubmit = (order: IOrder) => {

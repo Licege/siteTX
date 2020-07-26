@@ -18,6 +18,7 @@ class ActionContainer extends React.Component<IProps & RouteComponentProps> {
         let id = this.props.match.params.id
         this.props.getPromoById(id)
         this.props.promo?.title ? document.title = this.props.promo.title : document.title = 'Акции'
+        window.scrollTo(0, 0)
     }
 
     goBack = () => {

@@ -6,6 +6,7 @@ import {AppStateType} from "../../redux/redux-store";
 class BanquetsContainer extends React.Component {
     componentDidMount(): void {
         document.title = 'Банкеты'
+        window.scrollTo(0, 0)
     }
 
     render() {

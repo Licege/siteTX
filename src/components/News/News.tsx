@@ -13,7 +13,7 @@ type PropsType = {
 
 const News: React.FC<PropsType> = ( {news, totalCount, onPageCount} ) => {
     return (
-        <div className='page-container'>
+        <main className='page-container'>
             <h4 className='page-container-title'>~ Новости ~</h4>
             <TransitionGroup component={null}>
             {news && news.map(item =>
@@ -30,7 +30,7 @@ const News: React.FC<PropsType> = ( {news, totalCount, onPageCount} ) => {
             </TransitionGroup>
 
             {news && <Paginator totalItemsCount={totalCount} onChange={onPageCount} />}
-        </div>
+        </main>
     )
 };
 

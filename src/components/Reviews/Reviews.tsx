@@ -13,8 +13,8 @@ interface IProps {
 
 const Reviews: React.FC<IProps> = ( {isAuthenticated, isOpen, reviews, toggleModal, onSubmit} ) => {
     return (
-        <div className='page-container'>
-            <div className='page-container-title'>Отзывы</div>
+        <main className='page-container'>
+            <h4 className='page-container-title'>~ Отзывы ~</h4>
             <div>
                 <Button variant='contained' color='primary' onClick={toggleModal} disabled={!isAuthenticated}>Оставить отзыв</Button>
                 {!isAuthenticated && <span>Авторизуйтесь, чтобы оставить отзыв.</span>}
@@ -22,7 +22,7 @@ const Reviews: React.FC<IProps> = ( {isAuthenticated, isOpen, reviews, toggleMod
             <div>
                 <ModalForm isOpen={isOpen} handleClose={toggleModal} onSubmit={onSubmit} />
             </div>
-        </div>
+        </main>
     )
 }
 

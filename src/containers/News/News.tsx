@@ -19,6 +19,7 @@ class NewsContainer extends React.Component<PropsType> {
     componentDidMount(): void {
         if (!this.props.news || !this.props.news.length) this.props.getNews();
         document.title = 'Новости'
+        window.scrollTo(0, 0)
     }
 
     onPageChange = (page: number) => {

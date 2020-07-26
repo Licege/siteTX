@@ -20,6 +20,7 @@ const images: Array<imageForGalleryType> = [
 class GalleryContainer extends React.Component<PropsType> {
     componentDidMount(): void {
         document.title = 'Галерея'
+        window.scrollTo(0, 0)
     }
 
     render() {

@@ -12,11 +12,11 @@ type PropsType = {
 
 const Contacts: React.FC<PropsType> = ({contacts, postForm} ) => {
     return (
-        <div className='page-container'>
+        <main className='page-container'>
             <AboutUs />
             <Address contacts={contacts} />
             <ConnectWithUs postForm={postForm} />
-        </div>
+        </main>
     )
 };
 

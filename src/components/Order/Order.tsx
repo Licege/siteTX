@@ -24,7 +24,7 @@ const Order: React.FC<PropsType> = ( {onSubmit} ) => {
             <main className='page-container'>
                 <h4 className='page-container-title'>~ Бронирование столов ~</h4>
                 <div className='order'>
-                    <img src={img} className='order__img' alt='' />
+                    <img src={img} className='order__img' alt='' onLoad={() => console.log('1')} />
                     <div className='order__content'>
                         <p>Описание тут</p>
                         <OrderForm onSubmit={onSubmit} />

@@ -18,13 +18,13 @@ type PropsType = {
 const Home: React.FC<PropsType> = ({news, menu, promos, contacts, addDishToBucket}) => {
     // let url = "http://navse360.ru/onlyTour/4421"
     return (
-        <div className='Home'>
+        <main className='Home'>
             <SectionAbout />
             <SectionMenu menu={menu} addDishToBucket={addDishToBucket} />
             <SectionPromo promos={promos} />
             <SectionDelivery contacts={contacts} />
             <SectionMap />
-        </div>
+        </main>
     )
 };
 

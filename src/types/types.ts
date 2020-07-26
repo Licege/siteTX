@@ -57,7 +57,8 @@ export type dishType = {
     weight: number | null
     cost: number
     category_id: string
-    count: number | null
+    count: number | null,
+    is_delivery: boolean,
     imageSrc: string
 }
 

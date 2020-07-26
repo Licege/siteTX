@@ -69,7 +69,7 @@ const Bucket: React.FC<PropsType> = (props) => {
     const sauces = menu.filter(dish => dish.category_id === sauceCategoryId)
 
     return (
-        <div className='page-container'>
+        <main className='page-container'>
             {!!delivery.order.length ?
                 <>
                     <Breadcrumbs separator='>' component='div' className='breadcrumbs'>
@@ -122,7 +122,7 @@ const Bucket: React.FC<PropsType> = (props) => {
                     }
                 </>
                 }
-        </div>
+        </main>
     )
 };
 

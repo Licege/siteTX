@@ -19,6 +19,10 @@ type MapDispatchPropsType = {
 type PropsType = MapStatePropsType & MapDispatchPropsType
 
 class ResumeContainer extends React.Component<PropsType> {
+    componentDidMount(): void {
+        window.scrollTo(0, 0)
+    }
+
     postResume(data: any) {
         console.log(data)
     }

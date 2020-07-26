@@ -12,12 +12,12 @@ type IProps = {
 
 const Resume: React.FC<IProps> = ({resume, vacancies, id, postResume}) => {
     return (
-        <div className='page-container'>
+        <main className='page-container'>
             <div className='page-container-title'>Резюме</div>
             <div>
                 <ResumeForm onSubmit={postResume} vacancies={vacancies} initialValues={resume} />
             </div>
-        </div>
+        </main>
     )
 }
 

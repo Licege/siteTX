@@ -15,6 +15,7 @@ class ActionsContainer extends React.Component<IProps> {
     componentDidMount(): void {
         document.title = 'Акции'
         if (!this.props.promos.length) this.props.getPromos()
+        window.scrollTo(0, 0)
     }
 
     render() {
