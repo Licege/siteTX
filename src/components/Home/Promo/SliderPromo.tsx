@@ -1,41 +1,32 @@
 import React from 'react'
-import {dishType} from "../../../types/types";
-import CardDish from "../../common/elements/CardDish";
+import {promoType} from "../../../types/types";
 import CustomSlider from "../../common/elements/sliders/CustomSlider";
+import CardPromo from "../../common/elements/CardPromo";
 
 interface IProps {
-    menu: Array<dishType>
-
-    addDishToBucket: (dish: dishType) => void
+    promos: Array<promoType>
 }
 
-const SliderMenu: React.FC<IProps> = ({menu, addDishToBucket}) => {
+const SliderPromo: React.FC<IProps> = ({promos}) => {
     const settings = {
         dots: false,
-        slidesToShow: 5,
+        slidesToShow: 3,
         initialSlide: 1,
         centerMode: false,
         centerPadding: '30px',
 
         responsive: [
             {
-                breakpoint: 1150,
+                breakpoint: 1300,
                 settings: {
-                    slidesToShow: 4,
-                    slidesToScroll: 1,
-                }
-            },
-            {
-                breakpoint: 960,
-                settings: {
-                    slidesToShow: 3,
+                    slidesToShow: 2,
                     slidesToScroll: 1,
                 }
             },
             {
                 breakpoint: 768,
                 settings: {
-                    slidesToShow: 2,
+                    slidesToShow: 1,
                     slidesToScroll: 1,
                 }
             },
@@ -51,14 +42,14 @@ const SliderMenu: React.FC<IProps> = ({menu, addDishToBucket}) => {
 
 
     return (
-        <div className='Section-menu-slider'>
+        <div className='Section-promo-slider'>
             <CustomSlider settings={settings}>
-                {menu.map(dish => (
-                    <CardDish dish={dish} key={dish._id} addToBucket={addDishToBucket} showDescription={false} />
+                {promos.map((promo, key) => (
+                    <CardPromo promo={promo} key={key}/>
                 ))}
             </CustomSlider>
         </div>
     )
 }
 
-export default SliderMenu;
+export default SliderPromo;

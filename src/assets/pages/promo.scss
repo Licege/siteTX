@@ -29,7 +29,8 @@
   &__wrapper {
     position: relative;
     //width: calc(100% - 360px);
-    padding: 0 16px;
+    padding-right: 16px;
+    padding-left: 36px;
 
     &-content {
       margin-bottom: 50px;

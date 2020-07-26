@@ -88,11 +88,12 @@
         font-size: 1rem;
         color: $brand-grey;
         text-align: center;
-        margin-bottom: 30px;
+        margin-bottom: 16px;
       }
 
       &-slider {
-        max-width: 680px;
+        //max-width: 680px;
+        max-width: calc(100vw - 90px);
         margin: 0 auto;
 
         button {
@@ -101,7 +102,6 @@
           }
         }
       }
-
     }
 
     &-delivery {
@@ -182,9 +182,19 @@
         font-size: 1rem;
         color: $brand-grey;
         text-align: center;
-        margin-bottom: 30px;
+        margin-bottom: 16px;
       }
 
+      &-slider {
+        max-width: calc(100vw - 90px);
+        margin: 0 auto 32px;
+
+        button {
+          &:before, &:after {
+            color: $brand-grey;
+          }
+        }
+      }
     }
 
     &-map {

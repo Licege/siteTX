@@ -4,7 +4,6 @@ import {
     Map,
     Placemark,
     FullscreenControl,
-    GeolocationControl,
     TrafficControl,
     TypeSelector,
     ZoomControl
@@ -15,10 +14,6 @@ import pointer from '../../../static/img/pointer-map.png'
 interface IProps {
     style?: CSSProperties
 }
-
-// const CustomPlacemark: React.FC<IPlacemark> = (coords) => {
-//
-// }
 
 const CustomMap: React.FC<IProps> = ({style}) => {
     let properties = {
@@ -46,7 +41,6 @@ const CustomMap: React.FC<IProps> = ({style}) => {
                            properties={properties}
                            options={pOptions}/>
                 <FullscreenControl/>
-                <GeolocationControl/>
                 <TrafficControl/>
                 <ZoomControl/>
                 <TypeSelector/>
