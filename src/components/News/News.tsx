@@ -18,7 +18,7 @@ const News: React.FC<PropsType> = ( {news, totalCount, onPageCount} ) => {
             <TransitionGroup component={null}>
             {news && news.map(item =>
                     <CSSTransition
-                        timeout={3000}
+                        timeout={2000}
                         classNames='card_animation'
                         key={item._id}
                         mountOnEnter

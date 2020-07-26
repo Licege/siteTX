@@ -23,7 +23,6 @@ import {Error404} from "./components/Errors/Error404";
 import BanquetsContainer from "./containers/Banquets/BanquetsContainer";
 import ActionsContainer from "./containers/Actions/ActionsContainer";
 import ActionContainer from "./containers/Actions/ActionContainer";
-import {CSSTransition, TransitionGroup} from "react-transition-group";
 import {compose} from "redux";
 
 interface IProps {
@@ -40,39 +39,34 @@ class App extends React.Component<IProps> {
     }
 
     render() {
-        const timeout = {enter: 800, exit: 400}
 
         return (
             <BrowserRouter>
                 <div className='app-wrapper'>
                     <HeaderContainer/>
                     <div className='app-wrapper-content'>
-                        <TransitionGroup component='main' className='page'>
-                            <CSSTransition timeout={timeout} classNames='card_animation' mountOnEnter unmountOnExit>
-                                <Switch>
-                                    <Route exact path='/' component={HomeContainer}/>
-                                    <Route path='/menu/:id?' component={MenuContainer}/>
-                                    <Route exact path='/contacts' component={ContactsContainer}/>
-                                    <Route exact path='/vacancies' component={VacanciesContainer}/>
-                                    <Route exact path='/gallery' component={GalleryContainer}/>
-                                    <Route exact path='/order' component={OrderContainer}/>
-                                    <Route exact path='/news' component={NewsContainer}/>
-                                    <Route exact path='/news/:id' component={NewsByIdContainer}/>
-                                    <Route exact path='/bucket' component={BucketContainer}/>
-                                    <Route exact path='/reviews' component={ReviewsContainer}/>
-                                    <Route exact path='/resume/:id' component={ResumeContainer}/>
-                                    <Route exact path='/banquets' component={BanquetsContainer}/>
-                                    <Route exact path='/actions' component={ActionsContainer}/>
-                                    <Route exact path='/actions/:id' component={ActionContainer}/>
-                                    <Route component={Error404}/>
-                                </Switch>
-                            </CSSTransition>
-                        </TransitionGroup>
+                        <Switch>
+                            <Route exact path='/' component={HomeContainer}/>
+                            <Route path='/menu/:id?' component={MenuContainer}/>
+                            <Route exact path='/contacts' component={ContactsContainer}/>
+                            <Route exact path='/vacancies' component={VacanciesContainer}/>
+                            <Route exact path='/gallery' component={GalleryContainer}/>
+                            <Route exact path='/order' component={OrderContainer}/>
+                            <Route exact path='/news' component={NewsContainer}/>
+                            <Route exact path='/news/:id' component={NewsByIdContainer}/>
+                            <Route exact path='/bucket' component={BucketContainer}/>
+                            <Route exact path='/reviews' component={ReviewsContainer}/>
+                            <Route exact path='/resume/:id' component={ResumeContainer}/>
+                            <Route exact path='/banquets' component={BanquetsContainer}/>
+                            <Route exact path='/actions' component={ActionsContainer}/>
+                            <Route exact path='/actions/:id' component={ActionContainer}/>
+                            <Route component={Error404}/>
+                        </Switch>
                     </div>
                     <FooterContainer/>
                 </div>
             </BrowserRouter>
-        );
+        )
     }
 }
 

@@ -24,7 +24,7 @@ type PropsType = MapStatePropsType & MapDispatchPropsType;
 class HomeContainer extends React.Component<PropsType>{
     componentDidMount(): void {
         if (!this.props.news.length) this.props.getNews()
-        if (!this.props.menu.length) this.props.getMenu()
+        this.props.getMenu()
         if (!Object.keys(this.props.contacts).length) this.props.getContacts()
         window.scrollTo(0, 0)
         document.title = 'Три Холма'

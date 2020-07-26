@@ -1,4 +1,4 @@
-import {DetailedHTMLProps, HTMLAttributes} from "react";
+import * as H from "history";
 
 export type authProfileType = {
     email: string
@@ -178,4 +178,18 @@ export type deliveryGlobalSettingsType = {
     payment_type_cash: boolean
     payment_type_cashless: boolean
     payment_type_online: boolean
+}
+
+export interface RouteComponentProps<P> {
+    match: match<P>;
+    location: H.Location;
+    history: H.History;
+    staticContext?: any;
+}
+
+export interface match<P> {
+    params: P;
+    isExact: boolean;
+    path: string;
+    url: string;
 }
