@@ -1,8 +1,8 @@
-export default function(values: any): any {
+export default function (values: any): any {
     const errors = {} as any
     const requiredFields = [
         'email',
-        'password'
+        'password',
     ]
 
     requiredFields.forEach(field => {

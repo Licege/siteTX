@@ -1,10 +1,10 @@
-import React from 'react';
-import {AppStateType} from "../../redux/redux-store";
-import {getVacancies} from "../../redux/vacancies-reducer";
-import {connect} from "react-redux";
-import {compose} from 'redux';
-import {vacancyType} from "../../types/types";
-import Vacancies from "../../components/Vacancancies/Vacancies";
+import React from 'react'
+import { AppStateType } from '../../redux/redux-store'
+import { getVacancies } from '../../redux/vacancies-reducer'
+import { connect } from 'react-redux'
+import { compose } from 'redux'
+import { vacancyType } from '../../types/types'
+import Vacancies from '../../components/Vacancancies/Vacancies'
 
 type MapStateToPropsType = {
     vacancies: Array<vacancyType>
@@ -16,28 +16,28 @@ type PropsType = MapStateToPropsType & MapDispatchToPropsType
 
 class VacanciesContainer extends React.Component<PropsType> {
     componentDidMount(): void {
-        if (!this.props.vacancies.length) this.props.getVacancies();
+        if (!this.props.vacancies.length) this.props.getVacancies()
         document.title = 'Вакансии'
         window.scrollTo(0, 0)
     }
 
 
     render() {
-        return <Vacancies vacancies={this.props.vacancies} />;
+        return <Vacancies vacancies={this.props.vacancies}/>
     }
 }
 
-let mapStateToProps = (state: AppStateType) => {
+let mapStateToProps = ( state: AppStateType ) => {
     return {
-        vacancies: state.vacanciesPage.vacancies
+        vacancies: state.vacanciesPage.vacancies,
     }
-} ;
-let mapDispatchToProps = (dispatch: any) => {
+}
+let mapDispatchToProps = ( dispatch: any ) => {
     return {
         getVacancies: () => {
             dispatch(getVacancies())
-        }
+        },
     }
-};
+}
 
-export default compose(connect(mapStateToProps, mapDispatchToProps)) (VacanciesContainer);
+export default compose(connect(mapStateToProps, mapDispatchToProps))(VacanciesContainer)

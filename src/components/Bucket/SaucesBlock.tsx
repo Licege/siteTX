@@ -1,7 +1,7 @@
 import React from 'react'
-import CustomSlider from "../common/elements/sliders/CustomSlider";
-import {dishType} from "../../types/types";
-import CardDish from "../common/elements/CardDish";
+import CustomSlider from '../common/elements/sliders/CustomSlider'
+import {dishType} from '../../types/types'
+import CardDish from '../common/elements/CardDish'
 
 interface IProps {
     sauces: Array<dishType>
@@ -26,8 +26,8 @@ export const SaucesBlock: React.FC<IProps> = ({sauces, addDishToBucket}) => {
                     slidesToShow: 2,
                     initialSlide: 2,
                     slidesToScroll: 1,
-                    dots: false
-                }
+                    dots: false,
+                },
             },
             {
                 breakpoint: 600,
@@ -35,9 +35,9 @@ export const SaucesBlock: React.FC<IProps> = ({sauces, addDishToBucket}) => {
                     initialSlide: 2,
                     slidesToShow: 1,
                     slidesToScroll: 1,
-                }
-            }
-        ]
+                },
+            },
+        ],
     }
 
     return (
@@ -45,8 +45,8 @@ export const SaucesBlock: React.FC<IProps> = ({sauces, addDishToBucket}) => {
             <h3 className='mb-3 pl-3'>Выберите соус</h3>
             <CustomSlider settings={settings}>
                 {sauces.map(sauce => (
-                    <CardDish dish={sauce} addToBucket={addDishToBucket} shortCard={true} key={sauce._id} />
-                ) )}
+                    <CardDish dish={sauce} addToBucket={addDishToBucket} shortCard={true} key={sauce._id}/>
+                ))}
             </CustomSlider>
         </div>
     )

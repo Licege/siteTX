@@ -94,8 +94,7 @@
 
   @include media-breakpoint-down(sm) {
     &__wrapper {
-      grid-template-areas: 'info nav'
-                           'address address';
+      grid-template-areas: 'info nav' 'address address';
       grid-template-columns: 1fr 1fr;
       justify-items: flex-start;
       font-size: 12px;
@@ -108,7 +107,7 @@
   }
 
   @include media-breakpoint-down(md) {
-    padding: 1rem .5rem!important;
+    padding: 1rem .5rem !important;
 
     &__wrapper {
       a {

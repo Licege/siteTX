@@ -1,7 +1,7 @@
 import React from 'react'
-import {createStyles, Modal, Theme} from "@material-ui/core";
-import {makeStyles} from "@material-ui/core/styles";
-import Fade from "@material-ui/core/Fade";
+import { createStyles, Modal, Theme } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
+import Fade from '@material-ui/core/Fade'
 
 interface IProps {
     isOpen: boolean
@@ -9,7 +9,7 @@ interface IProps {
     children: React.ReactElement
 }
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(( theme: Theme ) =>
     createStyles({
         paper: {
             position: 'absolute',
@@ -23,13 +23,13 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-        }
-    })
+        },
+    }),
 )
 
 
 const CustomModal = ( {isOpen, onClose, children}: IProps ) => {
-    const classes = useStyles();
+    const classes = useStyles()
     return (
         <Modal open={isOpen} onClose={onClose} className={classes.modal}>
             <Fade in={isOpen}>
@@ -41,4 +41,4 @@ const CustomModal = ( {isOpen, onClose, children}: IProps ) => {
     )
 }
 
-export default CustomModal;
+export default CustomModal

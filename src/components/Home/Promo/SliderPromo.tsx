@@ -1,13 +1,13 @@
 import React from 'react'
-import {promoType} from "../../../types/types";
-import CustomSlider from "../../common/elements/sliders/CustomSlider";
-import CardPromo from "../../common/elements/CardPromo";
+import { promoType } from '../../../types/types'
+import CustomSlider from '../../common/elements/sliders/CustomSlider'
+import CardPromo from '../../common/elements/CardPromo'
 
 interface IProps {
     promos: Array<promoType>
 }
 
-const SliderPromo: React.FC<IProps> = ({promos}) => {
+const SliderPromo: React.FC<IProps> = ( {promos} ) => {
     const settings = {
         dots: true,
         slidesToShow: 3,
@@ -21,30 +21,30 @@ const SliderPromo: React.FC<IProps> = ({promos}) => {
                 settings: {
                     slidesToShow: 2,
                     slidesToScroll: 1,
-                }
+                },
             },
             {
                 breakpoint: 768,
                 settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1,
-                }
+                },
             },
             {
                 breakpoint: 540,
                 settings: {
                     slidesToShow: 1,
-                    slidesToScroll: 1
-                }
-            }
-        ]
+                    slidesToScroll: 1,
+                },
+            },
+        ],
     }
 
 
     return (
         <div className='Section-promo-slider'>
             <CustomSlider settings={settings}>
-                {promos.map((promo, key) => (
+                {promos.map(( promo, key ) => (
                     <CardPromo promo={promo} key={key}/>
                 ))}
             </CustomSlider>
@@ -52,4 +52,4 @@ const SliderPromo: React.FC<IProps> = ({promos}) => {
     )
 }
 
-export default SliderPromo;
+export default SliderPromo

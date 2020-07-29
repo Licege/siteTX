@@ -1,16 +1,16 @@
-import React from 'react';
-import {InjectedFormProps, reduxForm, Field} from "redux-form";
-import renderTextField from "../common/elements/RenderTextField";
-import {FormControl, FormHelperText, InputLabel, Button, Theme, createStyles} from "@material-ui/core";
-import Select from "@material-ui/core/Select/Select";
-import validate from './Validate';
-import {IOrder} from "../../types/types";
-import DateTimeField from "../common/elements/MaterialDateTimePicker";
-import {makeStyles} from "@material-ui/core/styles";
-import {scrollToFirstError} from "../../plugins/validate";
+import React from 'react'
+import { InjectedFormProps, reduxForm, Field } from 'redux-form'
+import renderTextField from '../common/elements/RenderTextField'
+import { FormControl, FormHelperText, InputLabel, Button, Theme, createStyles } from '@material-ui/core'
+import Select from '@material-ui/core/Select/Select'
+import validate from './Validate'
+import { IOrder } from '../../types/types'
+import DateTimeField from '../common/elements/MaterialDateTimePicker'
+import { makeStyles } from '@material-ui/core/styles'
+import { scrollToFirstError } from '../../plugins/validate'
 
 
-const renderFromHelper = ({touched, error}: any) => {
+const renderFromHelper = ( {touched, error}: any ) => {
     if (!(touched && error)) {
         return
     } else {
@@ -18,7 +18,7 @@ const renderFromHelper = ({touched, error}: any) => {
     }
 }
 
-const renderSelectField = ({input, label, meta: {touched, error}, children, ...custom}: any): any => (
+const renderSelectField = ( {input, label, meta: {touched, error}, children, ...custom}: any ): any => (
     <FormControl error={touched && error} component='div'>
         <InputLabel htmlFor="count">{label}</InputLabel>
         <Select native {...input} {...custom} inputProps={{name: 'count', id: 'order-count-person'}}>
@@ -28,7 +28,7 @@ const renderSelectField = ({input, label, meta: {touched, error}, children, ...c
     </FormControl>
 )
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(( theme: Theme ) =>
     createStyles({
         root: {
             '& .MuiFormControl-root': {
@@ -37,9 +37,9 @@ const useStyles = makeStyles((theme: Theme) =>
             },
         },
     }),
-);
+)
 
-const FormOrder: React.FC<InjectedFormProps> = ({handleSubmit}) => {
+const FormOrder: React.FC<InjectedFormProps> = ( {handleSubmit} ) => {
     const classes = useStyles()
 
     return (
@@ -74,16 +74,16 @@ const FormOrder: React.FC<InjectedFormProps> = ({handleSubmit}) => {
             </div>
         </form>
     )
-};
+}
 
 let ReduxFormOrder = reduxForm<IOrder>({
     form: 'orderForm',
     initialValues: {
-        order_date: new Date(new Date().setMilliseconds(2 * 60 * 60 * 1000))
+        order_date: new Date(new Date().setMilliseconds(2 * 60 * 60 * 1000)),
     },
     validate,
     onSubmitFail: (errors => scrollToFirstError(errors)),
-    enableReinitialize: true
-})(FormOrder);
+    enableReinitialize: true,
+})(FormOrder)
 
-export default ReduxFormOrder;
+export default ReduxFormOrder

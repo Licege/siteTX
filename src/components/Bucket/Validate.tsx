@@ -1,9 +1,9 @@
-export default function(values: any): any {
+export default function (values: any): any {
     const errors = {} as any
     const requiredFields = [
         'surname',
         'phone',
-        'rule_agree'
+        'rule_agree',
     ]
 
     requiredFields.forEach(field => {

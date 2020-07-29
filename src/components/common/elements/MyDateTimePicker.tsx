@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState} from 'react'
 import DatePicker from 'react-datepicker'
-import {addDays} from "date-fns";
+import {addDays} from 'date-fns'
 
-import "react-datepicker/dist/react-datepicker.css";
-import {ru} from "date-fns/locale";
+import 'react-datepicker/dist/react-datepicker.css'
+import {ru} from 'date-fns/locale'
 
 
 type PropsType = {
@@ -11,14 +11,14 @@ type PropsType = {
     defaultDate?: Date
 }
 
-const MyDateTimePicker: React.FC<PropsType> = ( {choiceDate, defaultDate} ) => {
+const MyDateTimePicker: React.FC<PropsType> = ({choiceDate, defaultDate}) => {
     const today = new Date()
     const [startDate, setStartDate] = useState(defaultDate || today)
 
     let handlerChange = (date: any) => {
-        setStartDate(date);
+        setStartDate(date)
         choiceDate(date)
-    };
+    }
 
     return (
         <DatePicker selected={startDate}
@@ -34,9 +34,9 @@ const MyDateTimePicker: React.FC<PropsType> = ( {choiceDate, defaultDate} ) => {
                     dateFormat="d MMMM p"
                     showTimeSelect
                     isClearable
-                    className='form-control' />
+                    className='form-control'/>
     )
-};
+}
 
-export default MyDateTimePicker;
+export default MyDateTimePicker
 

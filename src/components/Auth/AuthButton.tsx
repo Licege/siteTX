@@ -1,10 +1,10 @@
 import React, {useCallback, useState} from 'react'
-import {useDispatch, useSelector} from "react-redux";
-import {AppStateType} from "../../redux/redux-store";
-import AuthModal from './AuthModal';
-import {Button} from "@material-ui/core";
-import {authProfileType, authRegProfileType} from "../../types/types";
-import {registration, login, logoutAC} from "../../redux/auth-reducer";
+import {useDispatch, useSelector} from 'react-redux'
+import {AppStateType} from '../../redux/redux-store'
+import AuthModal from './AuthModal'
+import {Button} from '@material-ui/core'
+import {authProfileType, authRegProfileType} from '../../types/types'
+import {registration, login, logoutAC} from '../../redux/auth-reducer'
 
 
 const AuthButton = () => {
@@ -47,9 +47,10 @@ const AuthButton = () => {
             :
             <div>
                 <Button variant='outlined' onClick={toggle}>Войти</Button>
-                <AuthModal isOpen={isOpen} onClose={toggle} signUpSubmit={signUpSubmit} registrationSubmit={registrationSubmit} />
+                <AuthModal isOpen={isOpen} onClose={toggle} signUpSubmit={signUpSubmit}
+                           registrationSubmit={registrationSubmit}/>
             </div>
     )
 }
 
-export default AuthButton;
+export default AuthButton

@@ -5,7 +5,7 @@ interface IProps {
 }
 
 export const FinishOrder: React.FC<IProps> = ({orderStatus}) => (
-   <div>
+    <div>
         <div>Заказ успешно создан!</div>
         <div>В ближайшее время с Вами свяжется менеджер для уточнения деталей заказа.</div>
     </div>

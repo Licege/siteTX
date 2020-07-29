@@ -1,12 +1,12 @@
 import React from 'react'
-import {IReview} from "../../types/types";
+import { IReview } from '../../types/types'
 
 interface IProps {
     reviews: IReview[]
 }
 
 
-const ReviewsList: React.FC<IProps> = ({reviews}) => (
+const ReviewsList: React.FC<IProps> = ( {reviews} ) => (
     reviews ?
         <div>
             {reviews.map(review => (
@@ -15,4 +15,4 @@ const ReviewsList: React.FC<IProps> = ({reviews}) => (
         </div> : null
 )
 
-export default ReviewsList;
+export default ReviewsList

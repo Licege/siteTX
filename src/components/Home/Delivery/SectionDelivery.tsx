@@ -1,12 +1,12 @@
 import React from 'react'
-import {contactsType} from "../../../types/types";
-import {Link} from "react-router-dom";
+import { contactsType } from '../../../types/types'
+import { Link } from 'react-router-dom'
 
 interface IProps {
     contacts: contactsType
 }
 
-const SectionDelivery: React.FC<IProps> = ({contacts}) => (
+const SectionDelivery: React.FC<IProps> = ( {contacts} ) => (
     <div className='Section-delivery'>
         <div className='Section-delivery-header'>Условия доставки</div>
         <div className='Section-delivery-info'>Все об оплате и получении заказа</div>
@@ -28,4 +28,4 @@ const SectionDelivery: React.FC<IProps> = ({contacts}) => (
     </div>
 )
 
-export default SectionDelivery;
+export default SectionDelivery

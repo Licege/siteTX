@@ -1,26 +1,26 @@
-import React from 'react';
-import {AppStateType} from "../../redux/redux-store";
-import {connect} from "react-redux";
-import Bucket from "../../components/Bucket/Bucket";
+import React from 'react'
+import { AppStateType } from '../../redux/redux-store'
+import { connect } from 'react-redux'
+import Bucket from '../../components/Bucket/Bucket'
 import {
     addressType, categoryType,
     deliveryGlobalSettingsType,
     deliverySettingsType,
     deliveryType,
     dishType,
-    IDeliveryPost
-} from "../../types/types";
+    IDeliveryPost,
+} from '../../types/types'
 import {
     changeDishCountAC,
     clearBucketAC,
     increaseDishCountAC,
     reduceDishCountAC,
     removeDishAC,
-    requestDeliverySettings, requestGlobalDeliverySettings, postOrder, addDishAC
-} from "../../redux/bucket-reducer";
-import {formValueSelector} from "redux-form";
-import {getCategories, getMenu} from "../../redux/menu-reducer";
-import {WebSocketContext} from "../../socket/WebSocket";
+    requestDeliverySettings, requestGlobalDeliverySettings, postOrder, addDishAC,
+} from '../../redux/bucket-reducer'
+import { formValueSelector } from 'redux-form'
+import { getCategories, getMenu } from '../../redux/menu-reducer'
+import { WebSocketContext } from '../../socket/WebSocket'
 
 type MapStatePropsType = {
     menu: Array<dishType>
@@ -38,14 +38,14 @@ type MapDispatchPropsType = {
     getSettings: () => void
     getMenu: () => void
     getCategories: () => void
-    addDishToBucket: (dish: dishType) => void
+    addDishToBucket: ( dish: dishType ) => void
     getGlobalSettings: () => void
-    increaseDishCount: (dish: dishType) => void
-    reduceDishCount: (dish: dishType) => void
-    changeDishCount: (dish: dishType, count: number) => void
-    removeDish: (id: string) => void
+    increaseDishCount: ( dish: dishType ) => void
+    reduceDishCount: ( dish: dishType ) => void
+    changeDishCount: ( dish: dishType, count: number ) => void
+    removeDish: ( id: string ) => void
     clearBucket: () => void
-    postOrder: (order: IDeliveryPost) => void
+    postOrder: ( order: IDeliveryPost ) => void
 }
 type PropsType = MapStatePropsType & MapDispatchPropsType
 
@@ -61,14 +61,14 @@ class BucketContainer extends React.Component<PropsType, StateType> {
 
     static contextType = WebSocketContext
 
-    constructor(props: PropsType) {
+    constructor( props: PropsType ) {
         super(props)
         this.state = {
             deliveryPrice: this.priceForDelivery('Калининград', this.props.delivery.total_price),
             saleForPickup: 0,
             step: 0,
             sale: 0,
-            price: this.props.delivery.total_price + this.priceForDelivery('Калининград', this.props.delivery.total_price)
+            price: this.props.delivery.total_price + this.priceForDelivery('Калининград', this.props.delivery.total_price),
         }
     }
 
@@ -81,7 +81,7 @@ class BucketContainer extends React.Component<PropsType, StateType> {
         window.scrollTo(0, 0)
     }
 
-    componentDidUpdate(prevProps: Readonly<MapStatePropsType & MapDispatchPropsType>, prevState: Readonly<StateType>): void {
+    componentDidUpdate( prevProps: Readonly<MapStatePropsType & MapDispatchPropsType>, prevState: Readonly<StateType> ): void {
         if (prevProps.global_settings) {
             if (prevProps.deliveryType !== 'restaurant' && this.props.deliveryType === 'restaurant') {
                 this.setState({saleForPickup: this.props.global_settings.sale_for_pickup})
@@ -100,39 +100,39 @@ class BucketContainer extends React.Component<PropsType, StateType> {
         }
     }
 
-    priceForDelivery = (city: string, price: number): number => {
+    priceForDelivery = ( city: string, price: number ): number => {
         if (this.props.settings.length && this.props.deliveryType !== 'restaurant') {
             let settings = this.props.settings.find(s => s.city === city)!
-            return price < settings.free_delivery ? settings.price_for_delivery : 0;
+            return price < settings.free_delivery ? settings.price_for_delivery : 0
         } else return 0
-    };
+    }
 
-    onChange = (dish: dishType) => {
-        return (event: { target: HTMLInputElement; }) => {
+    onChange = ( dish: dishType ) => {
+        return ( event: { target: HTMLInputElement; } ) => {
             let value = event.target.value
             if (value === '') value = '1'
             this.props.changeDishCount(dish, parseInt(value, 10))
         }
     }
 
-    setStep = (step: 0 | 1 | 2) => {
+    setStep = ( step: 0 | 1 | 2 ) => {
         this.setState({step}, () => {
             if (step !== 2) window.scrollBy(0, -500)
         })
     }
 
-    isDisabled = (step: 0 | 1 | 2) => {
+    isDisabled = ( step: 0 | 1 | 2 ) => {
         if (this.state.step === 2 && (step === 0 || step === 1)) return true
         return this.state.step < step
     }
 
-    onSubmit = (data: IDeliveryPost) => {
+    onSubmit = ( data: IDeliveryPost ) => {
         let post = {
             ...data,
             list: this.props.delivery.order,
             delivery_cost: this.state.deliveryPrice,
             sale: this.state.saleForPickup,
-            total_price: this.props.delivery.total_price
+            total_price: this.props.delivery.total_price,
         }
         this.setStep(2)
         this.context.sendOrderDelivery(post)
@@ -153,7 +153,7 @@ class BucketContainer extends React.Component<PropsType, StateType> {
             reduceDishCount,
             removeDish,
             paymentType,
-            clearBucket
+            clearBucket,
         } = this.props
         let {step, saleForPickup, deliveryPrice, sale, price} = this.state
 
@@ -183,8 +183,8 @@ class BucketContainer extends React.Component<PropsType, StateType> {
     }
 }
 
-let mapStateToProps = (state: AppStateType) => {
-    const selector = formValueSelector('bucketOrderForm');
+let mapStateToProps = ( state: AppStateType ) => {
+    const selector = formValueSelector('bucketOrderForm')
     return {
         menu: state.menuPage.menu,
         categories: state.menuPage.categories,
@@ -196,11 +196,11 @@ let mapStateToProps = (state: AppStateType) => {
         orderStatus: state.bucket.statusOrder,
         address: selector(state, 'address'),
         paymentType: selector(state, 'payment_type'),
-        deliveryType: selector(state, 'delivery_type')
+        deliveryType: selector(state, 'delivery_type'),
     }
 }
 
-let mapDispatchToProps = (dispatch: any) => {
+let mapDispatchToProps = ( dispatch: any ) => {
     return {
         getSettings: () => {
             dispatch(requestDeliverySettings())
@@ -208,22 +208,22 @@ let mapDispatchToProps = (dispatch: any) => {
         getGlobalSettings: () => {
             dispatch(requestGlobalDeliverySettings())
         },
-        increaseDishCount: (dish: dishType) => {
+        increaseDishCount: ( dish: dishType ) => {
             dispatch(increaseDishCountAC(dish))
         },
-        reduceDishCount: (dish: dishType) => {
+        reduceDishCount: ( dish: dishType ) => {
             dispatch(reduceDishCountAC(dish))
         },
-        changeDishCount: (dish: dishType, count: number) => {
+        changeDishCount: ( dish: dishType, count: number ) => {
             dispatch(changeDishCountAC(dish, count))
         },
-        removeDish: (id: string) => {
+        removeDish: ( id: string ) => {
             dispatch(removeDishAC(id))
         },
         clearBucket: () => {
             dispatch(clearBucketAC())
         },
-        postOrder: (order: IDeliveryPost) => {
+        postOrder: ( order: IDeliveryPost ) => {
             dispatch(postOrder(order))
         },
         getMenu: () => {
@@ -232,10 +232,10 @@ let mapDispatchToProps = (dispatch: any) => {
         getCategories: () => {
             dispatch(getCategories())
         },
-        addDishToBucket: (dish: dishType) => {
+        addDishToBucket: ( dish: dishType ) => {
             dispatch(addDishAC(dish))
-        }
+        },
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BucketContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(BucketContainer)

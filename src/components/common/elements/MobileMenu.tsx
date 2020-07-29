@@ -1,7 +1,7 @@
 import React from 'react'
-import {categoryType} from "../../../types/types";
-import {NavLink} from "react-router-dom";
-import closeImg from "../../../static/img/close.png"
+import { categoryType } from '../../../types/types'
+import { NavLink } from 'react-router-dom'
+import closeImg from '../../../static/img/close.png'
 
 interface IProps {
     isOpen: boolean,
@@ -10,11 +10,11 @@ interface IProps {
     toggle: () => void
 }
 
-const MobileMenu = ({isOpen, categories, toggle}: IProps) => {
+const MobileMenu = ( {isOpen, categories, toggle}: IProps ) => {
     return (
         <div className={'mobile_menu' + (isOpen ? ' -active' : '')}>
             <nav className='mobile_menu-wrapper'>
-                <img src={closeImg} className='mobile_menu-wrapper-close' onClick={toggle} alt='Закрыть' />
+                <img src={closeImg} className='mobile_menu-wrapper-close' onClick={toggle} alt='Закрыть'/>
                 <ul>
                     {categories.map(category => (
                         <li key={category._id}>
@@ -26,7 +26,7 @@ const MobileMenu = ({isOpen, categories, toggle}: IProps) => {
                             </NavLink>
                         </li>
                     ))}
-                    <span className='mobile_menu-wrapper-border' />
+                    <span className='mobile_menu-wrapper-border'/>
                     <li>
                         <NavLink activeClassName='-active' to='/news' onClick={toggle}>СОБЫТИЯ</NavLink>
                     </li>
@@ -45,4 +45,4 @@ const MobileMenu = ({isOpen, categories, toggle}: IProps) => {
     )
 }
 
-export default MobileMenu;
+export default MobileMenu

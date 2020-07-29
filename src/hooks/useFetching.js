@@ -1,7 +1,7 @@
-import {useEffect} from 'react';
-import {useDispatch} from 'react-redux';
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 
-export const useFetching = (actionCreator) => {
+export const useFetching = ( actionCreator ) => {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(actionCreator())

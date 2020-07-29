@@ -1,13 +1,13 @@
 import React from 'react'
-import {fullLink, getDishesKey} from "../../plugins/helpers";
-import altImg from "../../static/img/dish.svg";
-import {Button} from "@material-ui/core";
-import LinkButton from "../common/elements/buttons/LinkButton";
-import {SaucesBlock} from "./SaucesBlock";
+import {fullLink, getDishesKey} from '../../plugins/helpers'
+import altImg from '../../static/img/dish.svg'
+import {Button} from '@material-ui/core'
+import LinkButton from '../common/elements/buttons/LinkButton'
+import {SaucesBlock} from './SaucesBlock'
 import {
     deliveryType,
     dishType,
-} from "../../types/types";
+} from '../../types/types'
 
 type PropsType = {
     dishes: Array<dishType>
@@ -42,11 +42,10 @@ export const ShowOrder: React.FC<PropsType> =
          deliveryPrice,
          sale,
          price,
-         addDishToBucket
+         addDishToBucket,
      }) => (
         <div>
             <div className='bucket-table'>
-                {/*<h3 className='mb-3'>Корзина</h3>*/}
                 {dishes.map(dish => (
                     <div className='bucket-table-row' key={dish._id}>
                         <img className='bucket-table-row-img'

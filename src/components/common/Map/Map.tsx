@@ -1,4 +1,4 @@
-import React, {CSSProperties} from 'react'
+import React, { CSSProperties } from 'react'
 import {
     YMaps,
     Map,
@@ -6,8 +6,8 @@ import {
     FullscreenControl,
     TrafficControl,
     TypeSelector,
-    ZoomControl
-} from "react-yandex-maps";
+    ZoomControl,
+} from 'react-yandex-maps'
 import pointer from '../../../static/img/pointer-map.png'
 
 
@@ -15,9 +15,9 @@ interface IProps {
     style?: CSSProperties
 }
 
-const CustomMap: React.FC<IProps> = ({style}) => {
+const CustomMap: React.FC<IProps> = ( {style} ) => {
     let properties = {
-        hintContent: '&lt;img src={pointer} /&gt;'
+        hintContent: '&lt;img src={pointer} /&gt;',
     }
 
     let pOptions = {
@@ -25,7 +25,7 @@ const CustomMap: React.FC<IProps> = ({style}) => {
         iconImageHref: pointer,
         iconImageSize: [70, 100],
         // iconImageOffset: [-24, -40]
-        iconImageOffset: [-34, -76]
+        iconImageOffset: [-34, -76],
     }
 
     // const style = {width: '100%', height: '424px'}
@@ -35,7 +35,7 @@ const CustomMap: React.FC<IProps> = ({style}) => {
             <Map style={style} defaultState={{
                 center: [54.649906, 20.366676],
                 controls: [],
-                zoom: 17
+                zoom: 17,
             }}>
                 <Placemark defaultGeometry={[54.649946, 20.366788]}
                            properties={properties}
@@ -49,4 +49,4 @@ const CustomMap: React.FC<IProps> = ({style}) => {
     )
 }
 
-export default CustomMap;
+export default CustomMap

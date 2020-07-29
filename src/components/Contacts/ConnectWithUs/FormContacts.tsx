@@ -1,12 +1,12 @@
 import React from 'react'
-import {InjectedFormProps, reduxForm, Field} from "redux-form";
-import renderTextField from "../../common/elements/RenderTextField";
-import validate from './Validate';
-import {Button, createStyles, Theme} from "@material-ui/core";
-import {reviewType} from "../../../types/types";
-import {makeStyles} from "@material-ui/core/styles";
+import { InjectedFormProps, reduxForm, Field } from 'redux-form'
+import renderTextField from '../../common/elements/RenderTextField'
+import validate from './Validate'
+import { Button, createStyles, Theme } from '@material-ui/core'
+import { reviewType } from '../../../types/types'
+import { makeStyles } from '@material-ui/core/styles'
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(( theme: Theme ) =>
     createStyles({
         root: {
             '& .MuiFormControl-root': {
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme: Theme) =>
             },
         },
     }),
-);
+)
 
 const FormContacts: React.FC<InjectedFormProps> = ( {handleSubmit} ) => {
     const classes = useStyles()
@@ -26,13 +26,13 @@ const FormContacts: React.FC<InjectedFormProps> = ( {handleSubmit} ) => {
                 <Field name='name'
                        component={renderTextField}
                        label='Введите имя'
-                       placeholder='Ваше имя' />
+                       placeholder='Ваше имя'/>
             </div>
             <div>
                 <Field name='phone'
                        component={renderTextField}
                        label='Введите телефон'
-                       placeholder='Введите телефон' />
+                       placeholder='Введите телефон'/>
             </div>
             <div>
                 <Field name='comment'
@@ -41,7 +41,7 @@ const FormContacts: React.FC<InjectedFormProps> = ( {handleSubmit} ) => {
                        placeholder='Введите вопрос'
                        multiline
                        rowsMax={10}
-                       margin='normal' />
+                       margin='normal'/>
             </div>
             <Button variant='contained' color='primary' type='submit'>Отправить</Button>
         </form>
@@ -50,7 +50,7 @@ const FormContacts: React.FC<InjectedFormProps> = ( {handleSubmit} ) => {
 
 let reduxFormContacts = reduxForm<reviewType>({
     form: 'contacts-form',
-    validate
-}) (FormContacts)
+    validate,
+})(FormContacts)
 
 export default reduxFormContacts

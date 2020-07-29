@@ -1,8 +1,8 @@
 import React from 'react'
-import {newsType} from "../../types/types";
-import altImg from  "../../static/img/news.jpg";
-import {fullLink} from "../../plugins/helpers";
-import Button from '@material-ui/core/Button';
+import { newsType } from '../../types/types'
+import altImg from '../../static/img/news.jpg'
+import { fullLink } from '../../plugins/helpers'
+import Button from '@material-ui/core/Button'
 
 interface IProps {
     news: newsType
@@ -10,7 +10,7 @@ interface IProps {
     goBack: () => void
 }
 
-const NewsById: React.FC<IProps> = ({news, goBack}) => {
+const NewsById: React.FC<IProps> = ( {news, goBack} ) => {
     return (
         <div className='page-container'>
             <div className='news'>
@@ -28,4 +28,4 @@ const NewsById: React.FC<IProps> = ({news, goBack}) => {
     )
 }
 
-export default NewsById;
+export default NewsById

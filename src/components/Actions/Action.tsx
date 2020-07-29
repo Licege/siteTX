@@ -19,11 +19,11 @@ export const Action: React.FC<IProps> = ({promo, goBack}) => {
 
     return (
         <div className='promo'>
-            <div className='promo-img' style={style} />
+            <div className='promo-img' style={style}/>
             <div className='promo__wrapper'>
                 <div className='promo__wrapper-content'>
                     <div className='promo-title'>{promo.title}</div>
-                    <div className='promo-description' dangerouslySetInnerHTML={ {__html: promo.description} }/>
+                    <div className='promo-description' dangerouslySetInnerHTML={{__html: promo.description}}/>
                     <div className='promo-actions'>
                         <Button variant='outlined' onClick={goBack}>Все акции</Button>
                     </div>

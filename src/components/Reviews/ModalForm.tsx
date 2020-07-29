@@ -1,18 +1,18 @@
 import React from 'react'
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogActions from '@material-ui/core/DialogActions/DialogActions';
-import Button from "@material-ui/core/Button";
-import {reduxForm, Field, InjectedFormProps} from "redux-form";
-import renderTextField from "../common/elements/RenderTextField";
-import {TransitionProps} from '@material-ui/core/transitions/transition';
-import Slide from '@material-ui/core/Slide/Slide';
-import renderCheckbox from "../common/elements/RenderCheckbox";
-import validate from "./Validate";
-import {IReview} from "../../types/types";
-import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
-import renderRatingField from "../common/elements/RenderRating";
+import Dialog from '@material-ui/core/Dialog'
+import DialogTitle from '@material-ui/core/DialogTitle'
+import DialogContent from '@material-ui/core/DialogContent'
+import DialogActions from '@material-ui/core/DialogActions/DialogActions'
+import Button from '@material-ui/core/Button'
+import { reduxForm, Field, InjectedFormProps } from 'redux-form'
+import renderTextField from '../common/elements/RenderTextField'
+import { TransitionProps } from '@material-ui/core/transitions/transition'
+import Slide from '@material-ui/core/Slide/Slide'
+import renderCheckbox from '../common/elements/RenderCheckbox'
+import validate from './Validate'
+import { IReview } from '../../types/types'
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
+import renderRatingField from '../common/elements/RenderRating'
 
 interface IProps {
     isOpen: boolean
@@ -28,10 +28,10 @@ const Transition = React.forwardRef(function Transition(
     props: TransitionProps & { children?: React.ReactElement<any, any> },
     ref: React.Ref<unknown>,
 ) {
-    return <Slide direction="up" ref={ref} {...props} />;
+    return <Slide direction="up" ref={ref} {...props} />
 })
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(( theme: Theme ) =>
     createStyles({
         root: {
             '& .MuiFormControl-root': {
@@ -61,7 +61,7 @@ const ModalForm: React.FC<InjectedFormProps & IProps> = ( {isOpen, handleClose, 
                         <Field name='description' component={renderTextField} multiline placeholder='Ваш отзыв'/>
                     </div>
                     <div>
-                        <Field name='rating' component={renderRatingField} type='number' sizeStar={25} />
+                        <Field name='rating' component={renderRatingField} type='number' sizeStar={25}/>
                     </div>
                     <div>
                         <input name='photo' type='file'/>
@@ -69,7 +69,7 @@ const ModalForm: React.FC<InjectedFormProps & IProps> = ( {isOpen, handleClose, 
                     <div>
                         <Field name='rule_agree'
                                component={renderCheckbox}
-                               label='Соглашаюсь на обработку персональных данных и условия пользовательского соглашения' />
+                               label='Соглашаюсь на обработку персональных данных и условия пользовательского соглашения'/>
                     </div>
                 </DialogContent>
                 <DialogActions>
@@ -84,8 +84,9 @@ let ModalReduxForm = reduxForm<IReview & IMapStateToProps, IProps>({
     form: 'modal-create-reviews',
     validate,
     initialValues: {
-        rating: 3
+        rating: 3,
     },
-    enableReinitialize: true}) (ModalForm)
+    enableReinitialize: true,
+})(ModalForm)
 
-export default ModalReduxForm;
+export default ModalReduxForm

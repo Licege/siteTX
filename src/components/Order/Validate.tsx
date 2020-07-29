@@ -1,9 +1,9 @@
-const Validate = (values: any) => {
+const Validate = ( values: any ) => {
     const errors = {} as any
     const requiredFields = [
         'name',
         'phone',
-        'datetime'
+        'datetime',
     ]
 
     requiredFields.forEach(field => {
@@ -15,4 +15,4 @@ const Validate = (values: any) => {
     return errors
 }
 
-export default Validate;
+export default Validate

@@ -1,14 +1,14 @@
-import React from 'react';
-import {newsType} from "../../types/types";
-import CardNews from "../common/elements/CardNews";
-import Paginator from "../common/elements/Paginator";
-import {CSSTransition, TransitionGroup} from "react-transition-group";
+import React from 'react'
+import { newsType } from '../../types/types'
+import CardNews from '../common/elements/CardNews'
+import Paginator from '../common/elements/Paginator'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 type PropsType = {
     news: Array<newsType>
     totalCount: number
 
-    onPageCount: (page: number) => void
+    onPageCount: ( page: number ) => void
 }
 
 const News: React.FC<PropsType> = ( {news, totalCount, onPageCount} ) => {
@@ -16,7 +16,7 @@ const News: React.FC<PropsType> = ( {news, totalCount, onPageCount} ) => {
         <main className='page-container'>
             <h4 className='page-container-title'>~ Новости ~</h4>
             <TransitionGroup component={null}>
-            {news && news.map(item =>
+                {news && news.map(item =>
                     <CSSTransition
                         timeout={2000}
                         classNames='card_animation'
@@ -24,14 +24,14 @@ const News: React.FC<PropsType> = ( {news, totalCount, onPageCount} ) => {
                         mountOnEnter
                         unmountOnExit
                     >
-                        <CardNews news={item} key={item._id} />
-                    </CSSTransition>
-            )}
+                        <CardNews news={item} key={item._id}/>
+                    </CSSTransition>,
+                )}
             </TransitionGroup>
 
-            {news && <Paginator totalItemsCount={totalCount} onChange={onPageCount} />}
+            {news && <Paginator totalItemsCount={totalCount} onChange={onPageCount}/>}
         </main>
     )
-};
+}
 
-export default News;
+export default News

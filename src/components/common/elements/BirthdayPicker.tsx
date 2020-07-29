@@ -1,9 +1,9 @@
 import React from 'react'
-import {KeyboardDatePicker} from "@material-ui/pickers";
-import {ru} from "date-fns/locale";
-import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
+import { KeyboardDatePicker } from '@material-ui/pickers'
+import { ru } from 'date-fns/locale'
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(( theme: Theme ) =>
     createStyles({
         root: {
             '& .MuiButtonBase-root': {
@@ -11,16 +11,16 @@ const useStyles = makeStyles((theme: Theme) =>
             },
         },
     }),
-);
+)
 
-const BirthdayPicker = (props: any) => {
+const BirthdayPicker = ( props: any ) => {
     const {
         meta: {error, touched},
         input: {onBlur, value, ...inputProps},
         ...others
     } = props
 
-    const onChange = (date: any) => {
+    const onChange = ( date: any ) => {
         Date.parse(date) ? inputProps.onChange(date.toISOString()) : inputProps.onChange(null)
     }
 
@@ -33,7 +33,7 @@ const BirthdayPicker = (props: any) => {
                              variant="inline"
                              format="dd/MM/yyyy"
                              openTo="year"
-                             views={["year", "month", "date"]}
+                             views={['year', 'month', 'date']}
                              value={value ? new Date(value) : null}
                              onBlur={() => onBlur(value ? new Date(value).toISOString() : null)}
                              error={error && touched}
@@ -44,4 +44,4 @@ const BirthdayPicker = (props: any) => {
     )
 }
 
-export default BirthdayPicker;
+export default BirthdayPicker

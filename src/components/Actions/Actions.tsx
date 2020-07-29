@@ -13,7 +13,7 @@ export const Actions: React.FC<IProps> = (props) => {
         <div className='promos'>
             <h4 className='promos-title'>~ Акции ~</h4>
             <div className='promos-wrapper'>
-                {promos.map(promo => <CardPromo promo={promo} key={promo._id} />)}
+                {promos.map(promo => <CardPromo promo={promo} key={promo._id}/>)}
             </div>
         </div>
     )

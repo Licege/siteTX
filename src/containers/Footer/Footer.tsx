@@ -1,9 +1,9 @@
-import React from 'react';
-import Footer from "../../components/Footer/Footer";
-import {connect} from "react-redux";
-import {contactsType} from "../../types/types";
-import {AppStateType} from "../../redux/redux-store";
-import {getContacts} from "../../redux/contacts-reducer";
+import React from 'react'
+import Footer from '../../components/Footer/Footer'
+import { connect } from 'react-redux'
+import { contactsType } from '../../types/types'
+import { AppStateType } from '../../redux/redux-store'
+import { getContacts } from '../../redux/contacts-reducer'
 
 
 type MapStatePropsType = {
@@ -17,27 +17,27 @@ type PropsType = MapStatePropsType & MapDispatchPropsType
 class FooterContainer extends React.Component<PropsType> {
     componentDidMount() {
         if (!this.props.contacts) {
-            this.props.getContacts();
+            this.props.getContacts()
         }
     }
 
     render() {
-        return <Footer contacts={this.props.contacts} />;
+        return <Footer contacts={this.props.contacts}/>
     }
 }
 
-let mapStateToProps = (state: AppStateType) => {
+let mapStateToProps = ( state: AppStateType ) => {
     return {
-        contacts: state.contacts.contacts
+        contacts: state.contacts.contacts,
     }
-};
+}
 
-let mapDispatchToProps = (dispatch: any) => {
+let mapDispatchToProps = ( dispatch: any ) => {
     return {
         getContacts: () => {
-            dispatch(getContacts());
-        }
+            dispatch(getContacts())
+        },
     }
-};
+}
 
-export default connect(mapStateToProps, mapDispatchToProps) (FooterContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(FooterContainer)

@@ -1,13 +1,13 @@
-import React from 'react';
-import {IOrder} from "../../types/types";
+import React from 'react'
+import { IOrder } from '../../types/types'
 import OrderForm from './FormOrder'
 import img from '../../static/img/order_table.png'
-import {CSSTransition} from "react-transition-group"
-import {useHistory} from "react-router";
+import { CSSTransition } from 'react-transition-group'
+import { useHistory } from 'react-router'
 
 
 type PropsType = {
-    onSubmit: (order: IOrder) => void
+    onSubmit: ( order: IOrder ) => void
 }
 
 const Order: React.FC<PropsType> = ( {onSubmit} ) => {
@@ -15,7 +15,7 @@ const Order: React.FC<PropsType> = ( {onSubmit} ) => {
 
     return (
         <CSSTransition
-            timeout={ 2000 }
+            timeout={2000}
             in={history.location.pathname === '/order'}
             classNames='anim'
             mountOnEnter
@@ -24,15 +24,15 @@ const Order: React.FC<PropsType> = ( {onSubmit} ) => {
             <main className='page-container'>
                 <h4 className='page-container-title'>~ Бронирование столов ~</h4>
                 <div className='order'>
-                    <img src={img} className='order__img' alt='' onLoad={() => console.log('1')} />
+                    <img src={img} className='order__img' alt='' onLoad={() => console.log('1')}/>
                     <div className='order__content'>
                         <p>Описание тут</p>
-                        <OrderForm onSubmit={onSubmit} />
+                        <OrderForm onSubmit={onSubmit}/>
                     </div>
                 </div>
             </main>
         </CSSTransition>
     )
-};
+}
 
-export default Order;
+export default Order

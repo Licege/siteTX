@@ -12,6 +12,7 @@
       text-align: center;
     }
   }
+
   @include media-breakpoint-down(xl) {
     &-container {
       max-width: 800px;

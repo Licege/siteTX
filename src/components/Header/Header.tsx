@@ -1,16 +1,16 @@
-import React, {useState} from 'react';
-import {categoryType} from "../../types/types";
-import {Link, NavLink} from "react-router-dom";
-import ButtonBucket from "../Bucket/ButtonBucket";
-import logo from "../../static/img/logo.png";
-import MobileMenu from "../common/elements/MobileMenu";
-import AuthButton from "../Auth/AuthButton";
+import React, { useState } from 'react'
+import { categoryType } from '../../types/types'
+import { Link, NavLink } from 'react-router-dom'
+import ButtonBucket from '../Bucket/ButtonBucket'
+import logo from '../../static/img/logo.png'
+import MobileMenu from '../common/elements/MobileMenu'
+import AuthButton from '../Auth/AuthButton'
 
 type PropsType = {
     categories: Array<categoryType>
 }
 
-const Header: React.FC<PropsType> = ({categories}) => {
+const Header: React.FC<PropsType> = ( {categories} ) => {
     const [active, setActive] = useState(false)
 
     const toggle = () => {
@@ -20,9 +20,9 @@ const Header: React.FC<PropsType> = ({categories}) => {
 
     return (
         <header className={'header' + (active ? ' -active' : '')}>
-            <div className={active ? 'burger -active' : 'burger'} onClick={toggle} ><span/></div>
+            <div className={active ? 'burger -active' : 'burger'} onClick={toggle}><span/></div>
             <MobileMenu isOpen={active} categories={categories} toggle={toggle}/>
-            <Link to="/"><img className='header-logo' src={logo} alt='' /></Link>
+            <Link to="/"><img className='header-logo' src={logo} alt=''/></Link>
             <nav className='header-navbar'>
                 <ul>
                     <li>
@@ -35,7 +35,8 @@ const Header: React.FC<PropsType> = ({categories}) => {
                         <NavLink activeClassName='-active' className='header-navbar-item' to='/news'>СОБЫТИЯ</NavLink>
                     </li>
                     <li>
-                        <NavLink activeClassName='-active' className='header-navbar-item' to='/order'>ЗАКАЗ СТОЛОВ</NavLink>
+                        <NavLink activeClassName='-active' className='header-navbar-item' to='/order'>ЗАКАЗ
+                            СТОЛОВ</NavLink>
                     </li>
                     <li>
                         <NavLink activeClassName='-active' className='header-navbar-item' to='/contacts'>О НАС</NavLink>
@@ -52,6 +53,6 @@ const Header: React.FC<PropsType> = ({categories}) => {
             </div>
         </header>
     )
-};
+}
 
-export default Header;
+export default Header

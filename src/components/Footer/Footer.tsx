@@ -1,21 +1,21 @@
 import React from 'react'
-import {contactsType} from "../../types/types";
-import vk from '../../static/img/vk.svg';
-import instagram from '../../static/img/instagram.svg';
-import fb from '../../static/img/fb.svg';
-import tw from '../../static/img/tw.svg';
-import tg from '../../static/img/tg.svg';
-import gmail from '../../static/img/gmail.svg';
-import phone from '../../static/img/phone.svg';
-import address from '../../static/img/address.svg';
-import hours from '../../static/img/hours.svg';
-import {NavLink} from "react-router-dom";
+import { contactsType } from '../../types/types'
+import vk from '../../static/img/vk.svg'
+import instagram from '../../static/img/instagram.svg'
+import fb from '../../static/img/fb.svg'
+import tw from '../../static/img/tw.svg'
+import tg from '../../static/img/tg.svg'
+import gmail from '../../static/img/gmail.svg'
+import phone from '../../static/img/phone.svg'
+import address from '../../static/img/address.svg'
+import hours from '../../static/img/hours.svg'
+import { NavLink } from 'react-router-dom'
 
 type PropsType = {
     contacts: contactsType
 }
 
-const Footer: React.FC<PropsType> = ({contacts}) => {
+const Footer: React.FC<PropsType> = ( {contacts} ) => {
     return (
         <footer className='footer card-body' id='footer'>
             <div className='footer__wrapper'>
@@ -23,7 +23,7 @@ const Footer: React.FC<PropsType> = ({contacts}) => {
                     <div className='footer__work_time'>
                         <span className='footer__title'><img className='footer__icon' src={hours}
                                                              alt=''/> Часы работы</span>
-                    {contacts?.openHours?.map((item, key) => <div key={key}>{item}</div>)}
+                        {contacts?.openHours?.map(( item, key ) => <div key={key}>{item}</div>)}
                     </div>
                     <div className='footer__social'>
                         {contacts && contacts.vk ?
@@ -59,7 +59,7 @@ const Footer: React.FC<PropsType> = ({contacts}) => {
                             </a>
                         </div> : ''}
                     {contacts && contacts.phone ?
-                        <a className='footer__phone' href={"tel:" + contacts.phone}><img src={phone}
+                        <a className='footer__phone' href={'tel:' + contacts.phone}><img src={phone}
                                                                                          alt=''/> {contacts.phone}
                         </a> : ''}
                 </div>
@@ -83,6 +83,6 @@ const Footer: React.FC<PropsType> = ({contacts}) => {
             <div className='footer__copyright'>© Три холма 2020</div>
         </footer>
     )
-};
+}
 
-export default Footer;
+export default Footer

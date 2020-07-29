@@ -1,17 +1,17 @@
-import React from 'react';
+import React from 'react'
 import {
     categoryType,
     deliveryGlobalSettingsType,
     deliverySettingsType,
     deliveryType,
     dishType,
-    IDeliveryPost
-} from "../../types/types";
-import FormOrder from "./FormOrder";
-import {Breadcrumbs, Chip, Theme, withStyles} from '@material-ui/core';
-import {Link} from "react-router-dom";
-import {ShowOrder} from "./ShowOrder";
-import {FinishOrder} from "./FinishOrder";
+    IDeliveryPost,
+} from '../../types/types'
+import FormOrder from './FormOrder'
+import {Breadcrumbs, Chip, Theme, withStyles} from '@material-ui/core'
+import {Link} from 'react-router-dom'
+import {ShowOrder} from './ShowOrder'
+import {FinishOrder} from './FinishOrder'
 
 type PropsType = {
     dishes: Array<dishType>
@@ -53,17 +53,17 @@ const StyledBreadcrumb = withStyles((theme: Theme) => ({
             color: theme.palette.grey[200],
             textDecoration: 'none',
             backgroundColor: 'white',
-            outline: 'none'
-        }
-    }
-}))(Chip) as typeof Chip;
+            outline: 'none',
+        },
+    },
+}))(Chip) as typeof Chip
 
 const Bucket: React.FC<PropsType> = (props) => {
     const {
         dishes, menu, step, delivery, deliveryPrice, settings, global_settings, paymentMethod, deliveryMethod, isDisabled,
         increaseDishCount, reduceDishCount, removeDish, clearBucket, onSubmit, onChange, saleForPickup, addDishToBucket, categories, setStep,
-        sale, price, orderStatus
-    } = props;
+        sale, price, orderStatus,
+    } = props
 
     const sauceCategoryId = categories.find(category => category.title === ('Соус' || 'Соусы'))?._id
     const sauces = menu.filter(dish => dish.category_id === sauceCategoryId)
@@ -113,17 +113,17 @@ const Bucket: React.FC<PropsType> = (props) => {
                                               delivery={delivery}
                                               deliveryPrice={deliveryPrice}
                                               saleForPickup={saleForPickup}
-                                              sale={sale} />}
+                                              sale={sale}/>}
 
                 </> : <>
                     {step === 2
-                        ? <FinishOrder orderStatus={orderStatus} />
+                        ? <FinishOrder orderStatus={orderStatus}/>
                         : <div>Ваша корзина пуста. Назад в <Link to='/menu'>меню</Link>.</div>
                     }
                 </>
-                }
+            }
         </main>
     )
-};
+}
 
-export default Bucket;
+export default Bucket

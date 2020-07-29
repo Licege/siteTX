@@ -1,12 +1,12 @@
 import React from 'react'
-import LinkButton from "../../common/elements/buttons/LinkButton";
+import LinkButton from '../../common/elements/buttons/LinkButton'
 
 interface IProps {
 }
 
 const SectionAbout: React.FC<IProps> = () => (
     <div className='Section-about'>
-        <div className='Section-about-image' />
+        <div className='Section-about-image'/>
         <div className='Section-about-block'>
             <div className='Section-about-block-header'>Добро пожаловать</div>
             <div className='Section-about-block-info'>
@@ -23,4 +23,4 @@ const SectionAbout: React.FC<IProps> = () => (
     </div>
 )
 
-export default SectionAbout;
+export default SectionAbout

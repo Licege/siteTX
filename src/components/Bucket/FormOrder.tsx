@@ -1,9 +1,9 @@
-import React from 'react';
-import {reduxForm, Field, InjectedFormProps, FormSection, formValueSelector} from 'redux-form';
-import {connect} from 'react-redux';
-import {deliveryGlobalSettingsType, deliverySettingsType, deliveryType, IDeliveryPost} from "../../types/types";
-import renderTextField from "../common/elements/RenderTextField";
-import validate from './Validate';
+import React from 'react'
+import {reduxForm, Field, InjectedFormProps, FormSection, formValueSelector} from 'redux-form'
+import {connect} from 'react-redux'
+import {deliveryGlobalSettingsType, deliverySettingsType, deliveryType, IDeliveryPost} from '../../types/types'
+import renderTextField from '../common/elements/RenderTextField'
+import validate from './Validate'
 import {
     FormControl,
     FormHelperText,
@@ -12,14 +12,14 @@ import {
     Radio,
     Button,
     Theme,
-    createStyles
-} from "@material-ui/core";
-import Select from "@material-ui/core/Select";
-import renderCheckbox from "../common/elements/RenderCheckbox";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import DateTimeField from "../common/elements/MaterialDateTimePicker";
-import {makeStyles} from "@material-ui/core/styles";
-import {scrollToFirstError} from "../../plugins/validate";
+    createStyles,
+} from '@material-ui/core'
+import Select from '@material-ui/core/Select'
+import renderCheckbox from '../common/elements/RenderCheckbox'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import DateTimeField from '../common/elements/MaterialDateTimePicker'
+import {makeStyles} from '@material-ui/core/styles'
+import {scrollToFirstError} from '../../plugins/validate'
 
 
 interface PropsType {
@@ -76,12 +76,12 @@ const useStyles = makeStyles((theme: Theme) =>
             },
         },
     }),
-);
+)
 
 
 const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & PropsType> = (props) => {
-    const {handleSubmit, settings, global_settings, payment_method, delivery_method, saleForPickup, delivery, deliveryPrice} = props;
-    let defaultDate = new Date();
+    const {handleSubmit, settings, global_settings, payment_method, delivery_method, saleForPickup, delivery, deliveryPrice} = props
+    let defaultDate = new Date()
     defaultDate.setHours(defaultDate.getHours() + 2)
     const classes = useStyles()
 
@@ -118,7 +118,7 @@ const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & 
                     </Field>
                     {payment_method === 'cash' && <div className='bucket-order__cash'>
                         Подготовить сдачу с
-                            <Field name='odd_money' component={renderTextField} label='' placeholder='0'/> рублей
+                        <Field name='odd_money' component={renderTextField} label='' placeholder='0'/> рублей
                     </div>}
                 </div>
                 <div>
@@ -208,7 +208,7 @@ const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & 
             </form>
         </div>
     )
-};
+}
 
 let ReduxFormOrder = reduxForm<IDeliveryPost & IMapStateToProps, PropsType>({
     form: 'bucketOrderForm',
@@ -216,18 +216,18 @@ let ReduxFormOrder = reduxForm<IDeliveryPost & IMapStateToProps, PropsType>({
         payment_type: 'cash',
         delivery_type: 'home',
         address: {
-            city: 'Калининград'
+            city: 'Калининград',
         },
-        time_delivery: new Date(new Date().setMilliseconds(60 * 60 * 1000))
+        time_delivery: new Date(new Date().setMilliseconds(60 * 60 * 1000)),
     },
     validate,
     onSubmitFail: (errors => scrollToFirstError(errors)),
-    enableReinitialize: true
-})(FormOrder);
+    enableReinitialize: true,
+})(FormOrder)
 
-const selector = formValueSelector('bucketOrderForm');
+const selector = formValueSelector('bucketOrderForm')
 export default connect(
     state => {
         return selector(state, 'payment_type', 'delivery_type')
-    }
-)(ReduxFormOrder);
+    },
+)(ReduxFormOrder)

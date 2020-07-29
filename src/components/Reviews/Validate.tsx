@@ -1,10 +1,10 @@
-export default function(values: any): any {
+export default function ( values: any ): any {
     const errors = {} as any
     const requiredFields = [
         'forename',
         'surname',
         'phone',
-        'description'
+        'description',
     ]
 
     requiredFields.forEach(field => {

@@ -103,12 +103,12 @@
       align-items: center;
 
       .MuiFormControl-root {
-        width: 80px!important;
+        width: 80px !important;
       }
 
       .MuiInputBase-input {
-        text-align: center!important;
-        padding-bottom: 0!important;
+        text-align: center !important;
+        padding-bottom: 0 !important;
       }
     }
   }
@@ -120,6 +120,7 @@
       &-title {
         width: 40%;
       }
+
       &-item {
         width: auto;
 

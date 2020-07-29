@@ -1,4 +1,4 @@
-export function phoneMask(next: string = '', prev: string = '') {
+export function phoneMask( next: string = '', prev: string = '' ) {
     // if (typeof next != 'string' || typeof prev != 'string') return ''
     if (prev.length === 18 && prev.length <= next.length) return prev
     let str = '',
@@ -13,7 +13,7 @@ export function phoneMask(next: string = '', prev: string = '') {
 
     if (arr.length > 1 && (isNumeric(arr[0] || !isNumeric(arr[1])))) return prev
 
-    arr.forEach((val, i) => {
+    arr.forEach(( val, i ) => {
         switch (true) {
             case i === 0 && !isRemove:
             case i === 0 && nextLength > 4 && isRemove:
@@ -36,7 +36,7 @@ export function phoneMask(next: string = '', prev: string = '') {
                 str += val + '-'
                 break
             default:
-                str += val;
+                str += val
                 break
         }
     })
@@ -44,13 +44,13 @@ export function phoneMask(next: string = '', prev: string = '') {
     return str.slice(0, 18)
 }
 
-export function removePhoneMask(str: string) {
+export function removePhoneMask( str: string ) {
     if (str.indexOf('+7 (') === 0) {
         return str.substr(3).replace(/\s|\W/gi, '')
     }
     return str
 }
 
-export function isNumeric(n: any) {
+export function isNumeric( n: any ) {
     return !isNaN(parseFloat(n)) && isFinite(n)
 }

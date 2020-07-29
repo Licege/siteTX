@@ -1,15 +1,16 @@
-import React, {ChangeEvent} from 'react'
-import {Pagination} from "@material-ui/lab";
+import React, { ChangeEvent } from 'react'
+import { Pagination } from '@material-ui/lab'
+
 interface IProps {
     totalItemsCount: number,
     pageSize?: number
 
-    onChange: (page: number) => void
+    onChange: ( page: number ) => void
 }
 
-const Paginator: React.FC<IProps> = ({totalItemsCount, pageSize = 10, onChange}) => {
-    let pagesCount = Math.ceil(totalItemsCount / pageSize);
-    const handleChange = (event: ChangeEvent<unknown>, page: number) => {
+const Paginator: React.FC<IProps> = ( {totalItemsCount, pageSize = 10, onChange} ) => {
+    let pagesCount = Math.ceil(totalItemsCount / pageSize)
+    const handleChange = ( event: ChangeEvent<unknown>, page: number ) => {
         onChange(page)
     }
 
@@ -22,10 +23,10 @@ const Paginator: React.FC<IProps> = ({totalItemsCount, pageSize = 10, onChange})
                         count={pagesCount}
                         showFirstButton
                         showLastButton
-                        onChange={handleChange} className='news-paginator' />
+                        onChange={handleChange} className='news-paginator'/>
         </div>
 
     )
 }
 
-export default Paginator;
+export default Paginator

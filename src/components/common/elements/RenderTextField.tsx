@@ -1,5 +1,5 @@
-import React from 'react';
-import {TextField} from "@material-ui/core";
+import React from 'react'
+import { TextField } from '@material-ui/core'
 
 interface IProps {
     label: string
@@ -13,13 +13,13 @@ interface IProps {
     custom: any
 }
 
-const renderTextField: React.FC<IProps> = ({
-    label,
-    placeholder,
-    input,
-    meta: { touched, invalid, error },
-    ...custom
-}) => (
+const renderTextField: React.FC<IProps> = ( {
+                                                label,
+                                                placeholder,
+                                                input,
+                                                meta: {touched, invalid, error},
+                                                ...custom
+                                            } ) => (
     <TextField
         label={label}
         placeholder={placeholder}
@@ -29,4 +29,4 @@ const renderTextField: React.FC<IProps> = ({
         {...custom} />
 )
 
-export default renderTextField;
+export default renderTextField

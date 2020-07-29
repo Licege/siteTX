@@ -1,6 +1,6 @@
 import React from 'react'
-import {Link} from "react-router-dom";
-import {Button} from "@material-ui/core";
+import { Link } from 'react-router-dom'
+import { Button } from '@material-ui/core'
 
 interface IProps {
     to: string
@@ -10,7 +10,7 @@ interface IProps {
     color?: 'default' | 'inherit' | 'primary' | 'secondary'
 }
 
-const LinkButton: React.FC<IProps> = ({to, label, className, variant, color}) => (
+const LinkButton: React.FC<IProps> = ( {to, label, className, variant, color} ) => (
     <div className={className ? `Link-Button ${className}` : 'Link-Button'}>
         <Link to={to}>
             <Button variant={variant ? variant : 'outlined'} color={color}>
@@ -20,4 +20,4 @@ const LinkButton: React.FC<IProps> = ({to, label, className, variant, color}) =>
     </div>
 )
 
-export default LinkButton;
+export default LinkButton

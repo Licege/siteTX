@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaStar } from "react-icons/fa";
+import { FaStar } from 'react-icons/fa'
 
 interface IProps {
     value?: number,
@@ -7,7 +7,7 @@ interface IProps {
     countStars?: number
     disabled?: boolean
 
-    onChange?: (value: number) => void
+    onChange?: ( value: number ) => void
 }
 
 interface IState {
@@ -16,15 +16,15 @@ interface IState {
 }
 
 class Rating extends React.PureComponent<IProps, IState> {
-    constructor(props: IProps) {
+    constructor( props: IProps ) {
         super(props)
         this.state = {
             value: props.value || 3,
-            hover: null
+            hover: null,
         }
     }
 
-    onChange = (value: number) => {
+    onChange = ( value: number ) => {
         return () => {
             if (!this.props.disabled) {
                 this.props.onChange && this.props.onChange(value)
@@ -33,7 +33,7 @@ class Rating extends React.PureComponent<IProps, IState> {
         }
     }
 
-    changeFocus = (value: number | null) => {
+    changeFocus = ( value: number | null ) => {
         return () => {
             !this.props.disabled && this.setState({hover: value})
         }
@@ -44,7 +44,7 @@ class Rating extends React.PureComponent<IProps, IState> {
 
         return (
             <div>
-                {[ ...Array(this.props.countStars || 5)].map((star, i) => {
+                {[...Array(this.props.countStars || 5)].map(( star, i ) => {
                     const ratingValue = i + 1
 
                     return (
@@ -69,4 +69,4 @@ class Rating extends React.PureComponent<IProps, IState> {
     }
 }
 
-export default Rating;
+export default Rating

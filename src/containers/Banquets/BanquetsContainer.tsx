@@ -1,7 +1,7 @@
 import React from 'react'
-import {connect} from "react-redux";
-import {Banquets} from "../../components/Banquets/Banquets";
-import {AppStateType} from "../../redux/redux-store";
+import { connect } from 'react-redux'
+import { Banquets } from '../../components/Banquets/Banquets'
+import { AppStateType } from '../../redux/redux-store'
 
 class BanquetsContainer extends React.Component {
     componentDidMount(): void {
@@ -14,12 +14,12 @@ class BanquetsContainer extends React.Component {
     }
 }
 
-let mapStateToProps = (state: AppStateType) => {
+let mapStateToProps = ( state: AppStateType ) => {
     return {}
 }
 
-let mapDispatchToProps = (dispatch: any) => {
+let mapDispatchToProps = ( dispatch: any ) => {
     return {}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (BanquetsContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(BanquetsContainer)

@@ -1,33 +1,33 @@
-import {contactsType} from "../types/types";
-import {contactsAPI} from "../api/api";
+import { contactsType } from '../types/types'
+import { contactsAPI } from '../api/api'
 
-const GET_CONTACTS = 'GET_CONTACTS';
+const GET_CONTACTS = 'GET_CONTACTS'
 
 let initialState = {
-    contacts: {} as contactsType
-};
+    contacts: {} as contactsType,
+}
 
 type initialStateType = typeof initialState;
 
-const contactsReducer = (state = initialState, action: any): initialStateType => {
+const contactsReducer = ( state = initialState, action: any ): initialStateType => {
     switch (action.type) {
         case GET_CONTACTS:
-            return {contacts: action.contacts};
+            return { contacts: action.contacts }
         default:
-            return state;
+            return state
     }
-};
+}
 
 type getContactsACType = {
     type: typeof GET_CONTACTS,
     contacts: contactsType
 }
 
-export const getContactsAC = (contacts: contactsType):getContactsACType => ({type: GET_CONTACTS, contacts});
+export const getContactsAC = ( contacts: contactsType ): getContactsACType => ({ type: GET_CONTACTS, contacts })
 
-export const getContacts = () => async(dispatch: any) => {
-    let response = await contactsAPI.getContacts();
-    dispatch(getContactsAC(response.data));
-};
+export const getContacts = () => async ( dispatch: any ) => {
+    let response = await contactsAPI.getContacts()
+    dispatch(getContactsAC(response.data))
+}
 
-export default contactsReducer;
+export default contactsReducer

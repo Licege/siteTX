@@ -1,4 +1,4 @@
-import * as H from "history";
+import * as H from 'history'
 
 export type authProfileType = {
     email: string
@@ -39,7 +39,7 @@ export type contactsType = {
     inst: string
     google: string
     tw: string
-    openHours: [string]
+    openHours: [ string ]
 }
 
 export type reviewType = {

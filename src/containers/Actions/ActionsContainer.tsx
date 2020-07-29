@@ -1,9 +1,9 @@
 import React from 'react'
-import {connect} from "react-redux";
-import {AppStateType} from "../../redux/redux-store";
-import {Actions} from "../../components/Actions/Actions";
-import {requestPromos} from "../../redux/promos-reducer";
-import {promoType} from "../../types/types";
+import { connect } from 'react-redux'
+import { AppStateType } from '../../redux/redux-store'
+import { Actions } from '../../components/Actions/Actions'
+import { requestPromos } from '../../redux/promos-reducer'
+import { promoType } from '../../types/types'
 
 interface IProps {
     promos: Array<promoType>
@@ -19,22 +19,22 @@ class ActionsContainer extends React.Component<IProps> {
     }
 
     render() {
-        return <Actions promos={this.props.promos} />
+        return <Actions promos={this.props.promos}/>
     }
 }
 
-let mapStateToProps = (state: AppStateType) => {
+let mapStateToProps = ( state: AppStateType ) => {
     return {
-        promos: state.promosPage.promos
+        promos: state.promosPage.promos,
     }
 }
 
-let mapDispatchToProps = (dispatch: any) => {
+let mapDispatchToProps = ( dispatch: any ) => {
     return {
         getPromos: () => {
             dispatch(requestPromos())
-        }
+        },
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (ActionsContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(ActionsContainer)

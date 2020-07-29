@@ -1,29 +1,29 @@
-import React from 'react';
-import {connect} from "react-redux";
-import './assets/main.scss';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import FooterContainer from "./containers/Footer/Footer";
-import HeaderContainer from "./containers/Header/Header";
-import MenuContainer from "./containers/Menu/Menu";
-import ContactsContainer from "./containers/Contacts/Contacts";
-import VacanciesContainer from "./containers/Vacancies/Vacancies";
-import GalleryContainer from "./containers/Gallery/Gallery";
-import OrderContainer from "./containers/Order/Order";
-import NewsContainer from "./containers/News/News";
-import NewsByIdContainer from "./containers/News/NewsById";
-import HomeContainer from "./containers/Home/Home";
-import BucketContainer from "./containers/Bucket/Bucket";
-import ReviewsContainer from "./containers/Reviews/Reviews";
-import ResumeContainer from "./containers/Vacancies/Resume/Resume"
-import {AppStateType} from "./redux/redux-store";
-import {refresh} from "./redux/auth-reducer";
-import {getContacts} from "./redux/contacts-reducer";
-import {contactsType} from "./types/types";
-import {Error404} from "./components/Errors/Error404";
-import BanquetsContainer from "./containers/Banquets/BanquetsContainer";
-import ActionsContainer from "./containers/Actions/ActionsContainer";
-import ActionContainer from "./containers/Actions/ActionContainer";
-import {compose} from "redux";
+import React from 'react'
+import { connect } from 'react-redux'
+import './assets/main.scss'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import FooterContainer from './containers/Footer/Footer'
+import HeaderContainer from './containers/Header/Header'
+import MenuContainer from './containers/Menu/Menu'
+import ContactsContainer from './containers/Contacts/Contacts'
+import VacanciesContainer from './containers/Vacancies/Vacancies'
+import GalleryContainer from './containers/Gallery/Gallery'
+import OrderContainer from './containers/Order/Order'
+import NewsContainer from './containers/News/News'
+import NewsByIdContainer from './containers/News/NewsById'
+import HomeContainer from './containers/Home/Home'
+import BucketContainer from './containers/Bucket/Bucket'
+import ReviewsContainer from './containers/Reviews/Reviews'
+import ResumeContainer from './containers/Vacancies/Resume/Resume'
+import { AppStateType } from './redux/redux-store'
+import { refresh } from './redux/auth-reducer'
+import { getContacts } from './redux/contacts-reducer'
+import { contactsType } from './types/types'
+import { Error404 } from './components/Errors/Error404'
+import BanquetsContainer from './containers/Banquets/BanquetsContainer'
+import ActionsContainer from './containers/Actions/ActionsContainer'
+import ActionContainer from './containers/Actions/ActionContainer'
+import { compose } from 'redux'
 
 interface IProps {
     contacts: contactsType
@@ -70,20 +70,20 @@ class App extends React.Component<IProps> {
     }
 }
 
-let mapStateToProps = (state: AppStateType) => {
+let mapStateToProps = ( state: AppStateType ) => {
     return {
-        contacts: state.contacts.contacts
+        contacts: state.contacts.contacts,
     }
 }
 
-let mapDispatchToProps = (dispatch: any) => {
+let mapDispatchToProps = ( dispatch: any ) => {
     return {
         refresh: () => {
             dispatch(refresh())
         },
         getContacts: () => {
             dispatch(getContacts())
-        }
+        },
     }
 }
 

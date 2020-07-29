@@ -1,16 +1,17 @@
 import React from 'react'
-import {InjectedFormProps, Field, reduxForm} from "redux-form";
-import renderTextField from "../common/elements/RenderTextField";
-import {Button} from "@material-ui/core";
-import validate from './LoginValidate';
-import {authProfileType} from "../../types/types";
+import {InjectedFormProps, Field, reduxForm} from 'redux-form'
+import renderTextField from '../common/elements/RenderTextField'
+import {Button} from '@material-ui/core'
+import validate from './LoginValidate'
+import {authProfileType} from '../../types/types'
 
 
 const Login: React.FC<InjectedFormProps> = ({handleSubmit}) => {
     return (
         <form onSubmit={handleSubmit}>
-            <Field name='email' component={renderTextField} label='E-mail*' placeholder='Введите e-mail' />
-            <Field name='password' component={renderTextField} type='password' label='Пароль*' placeholder='Введите пароль' />
+            <Field name='email' component={renderTextField} label='E-mail*' placeholder='Введите e-mail'/>
+            <Field name='password' component={renderTextField} type='password' label='Пароль*'
+                   placeholder='Введите пароль'/>
             <Button variant='contained' type='submit'>Войти</Button>
         </form>
     )
@@ -18,4 +19,4 @@ const Login: React.FC<InjectedFormProps> = ({handleSubmit}) => {
 
 let loginForm = reduxForm<authProfileType>({form: 'loginForm', validate})(Login)
 
-export default loginForm;
+export default loginForm

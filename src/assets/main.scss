@@ -1,14 +1,10 @@
 @import "variables/fonts";
 @import "variables/bootstrap-variables";
-
 @import "~bootstrap/scss/bootstrap";
 @import "~react-image-gallery/styles/scss/image-gallery";
-
 @import "app";
-
 @import "fonts";
 @import "global";
-
 @import "./elements/loadrer";
 @import "./elements/burgerMenu";
 @import "./elements/header";
@@ -23,7 +19,6 @@
 @import "./elements/modalDish";
 @import "./elements/breadcrumbs";
 @import "./elements/promoCard";
-
 @import "./pages/page";
 @import "./pages/home";
 @import "./pages/menu";

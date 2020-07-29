@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
 import {Dialog, DialogTitle, Button, DialogContent} from '@material-ui/core'
-import {TransitionProps} from "@material-ui/core/transitions";
-import Slide from "@material-ui/core/Slide";
+import {TransitionProps} from '@material-ui/core/transitions'
+import Slide from '@material-ui/core/Slide'
 import Login from './Login'
 import Registration from './Registration'
-import {authProfileType, authRegProfileType} from "../../types/types";
+import {authProfileType, authRegProfileType} from '../../types/types'
 
 interface IProps {
     isOpen: boolean
@@ -17,10 +17,10 @@ const Transition = React.forwardRef(function Transition(
     props: TransitionProps & { children?: React.ReactElement<any, any> },
     ref: React.Ref<unknown>,
 ) {
-    return <Slide direction="up" ref={ref} {...props} />;
+    return <Slide direction="up" ref={ref} {...props} />
 })
 
-const AuthModal = ({isOpen, onClose, signUpSubmit, registrationSubmit}: IProps ) => {
+const AuthModal = ({isOpen, onClose, signUpSubmit, registrationSubmit}: IProps) => {
     const [signUp, signMode] = useState(true)
 
     const toggle = () => {
@@ -33,13 +33,13 @@ const AuthModal = ({isOpen, onClose, signUpSubmit, registrationSubmit}: IProps )
                 ?
                 <>
                     <DialogTitle>Авторизация</DialogTitle>
-                    <DialogContent><Login onSubmit={signUpSubmit} /></DialogContent>
+                    <DialogContent><Login onSubmit={signUpSubmit}/></DialogContent>
                     <Button variant='text' onClick={toggle}>Еще нет аккаунта?</Button>
                 </>
                 :
                 <>
                     <DialogTitle>Регистрация</DialogTitle>
-                    <DialogContent><Registration onSubmit={registrationSubmit} /></DialogContent>
+                    <DialogContent><Registration onSubmit={registrationSubmit}/></DialogContent>
                     <Button variant='text' onClick={toggle}>Уже зарегистрированны?</Button>
                 </>
             }
@@ -47,4 +47,4 @@ const AuthModal = ({isOpen, onClose, signUpSubmit, registrationSubmit}: IProps )
     )
 }
 
-export default AuthModal;
+export default AuthModal

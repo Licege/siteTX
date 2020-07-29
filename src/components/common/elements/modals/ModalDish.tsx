@@ -1,8 +1,8 @@
 import React from 'react'
-import {dishType} from "../../../../types/types";
-import {Dialog, DialogContent} from "@material-ui/core";
-import {fullLink} from "../../../../plugins/helpers";
-import Button from "@material-ui/core/Button";
+import {dishType} from '../../../../types/types'
+import {Dialog, DialogContent} from '@material-ui/core'
+import {fullLink} from '../../../../plugins/helpers'
+import Button from '@material-ui/core/Button'
 
 interface IProps {
     dish: dishType
@@ -17,11 +17,11 @@ const ModalDish: React.FC<IProps> = ({dish, addToBucket, open, onClose}) => {
         <Dialog open={open} onClose={onClose} className='modal-dish'>
             <DialogContent>
                 <div className='modal-dish__wrapper'>
-                    <div className='modal-dish__close' onClick={onClose} />
-                    <img className='modal-dish__img' src={fullLink(dish.imageSrc)} alt='' />
+                    <div className='modal-dish__close' onClick={onClose}/>
+                    <img className='modal-dish__img' src={fullLink(dish.imageSrc)} alt=''/>
                     <div className='modal-dish__info'>
                         <div className='modal-dish__title'>{dish.title}</div>
-                        {dish.description ?<div className='modal-dish__description'>{dish.description}</div> : null}
+                        {dish.description ? <div className='modal-dish__description'>{dish.description}</div> : null}
                         <div className='modal-dish__energy'>
                             <div className='modal-dish__energy-title'>Энергетическая ценность</div>
                             <div className='modal-dish__energy-description'>
