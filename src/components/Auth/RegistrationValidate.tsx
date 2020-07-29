@@ -12,8 +12,10 @@ export default function(values: any): any {
         if (!values[field]) {
             errors[field] = 'Заполните это поле'
         }
-        if (values['password'] && values['confirmPassword'] && values['password'] !== values['currentPassword'] ) {
-            errors[field] = 'Пароли не совпадают'
+        if (values['password'] && values['confirmPassword']
+            && values['password'] != values['confirmPassword'] ) {
+            errors['password'] = 'Пароли не совпадают'
+            errors['confirmPassword'] = 'Пароли не совпадают'
         }
     })
 

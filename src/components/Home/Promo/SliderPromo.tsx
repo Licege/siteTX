@@ -9,7 +9,7 @@ interface IProps {
 
 const SliderPromo: React.FC<IProps> = ({promos}) => {
     const settings = {
-        dots: false,
+        dots: true,
         slidesToShow: 3,
         initialSlide: 1,
         centerMode: false,

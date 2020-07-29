@@ -28,7 +28,7 @@
   .Section {
     &-about {
       padding: 20px;
-      border: 1px dashed $brand-brown;
+      border-bottom: 1px dashed $brand-brown;
       display: flex;
 
       &-image {
@@ -74,7 +74,7 @@
 
     &-menu {
       padding: 20px;
-      border: 1px dashed $brand-brown;
+      border-bottom: 1px dashed $brand-brown;
 
       &-header {
         font-size: 1.5rem;
@@ -106,7 +106,6 @@
 
     &-delivery {
       padding: 20px;
-      border: 1px dashed $brand-brown;
 
       &-header {
         font-size: 1.5rem;
@@ -169,7 +168,7 @@
 
     &-promo {
       padding: 20px;
-      border: 1px dashed $brand-brown;
+      border-bottom: 1px dashed $brand-brown;
 
       &-header {
         font-size: 1.5rem;
