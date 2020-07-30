@@ -18,9 +18,9 @@ type InitialStateType = typeof initialState;
 const menuReducer = ( state = initialState, action: ActionType ): InitialStateType => {
     switch (action.type) {
         case GET_MENU:
-            return { ...state, menu: action.menu.filter(( dish: dishType ) => dish.is_delivery) }
+            return { ...state, menu: action.menu }
         case GET_MENU_BY_CATEGORY:
-            return { ...state, menu: action.menu.filter(( dish: dishType ) => dish.is_delivery) }
+            return { ...state, menu: action.menu }
         case GET_DISH:
             return { ...state, dish: action.dish }
         case GET_CATEGORIES:

@@ -1,18 +1,18 @@
 import React from 'react'
-import {dishType} from '../../../../types/types'
-import {Dialog, DialogContent} from '@material-ui/core'
-import {fullLink} from '../../../../plugins/helpers'
+import { dishType } from '../../../../types/types'
+import { Dialog, DialogContent } from '@material-ui/core'
+import { fullLink } from '../../../../plugins/helpers'
 import Button from '@material-ui/core/Button'
 
 interface IProps {
     dish: dishType
     open: boolean
 
-    addToBucket: (dish: dishType) => void
+    addToBucket: ( dish: dishType ) => void
     onClose: () => void
 }
 
-const ModalDish: React.FC<IProps> = ({dish, addToBucket, open, onClose}) => {
+const ModalDish: React.FC<IProps> = ( { dish, addToBucket, open, onClose } ) => {
     return (
         <Dialog open={open} onClose={onClose} className='modal-dish'>
             <DialogContent>
@@ -52,11 +52,16 @@ const ModalDish: React.FC<IProps> = ({dish, addToBucket, open, onClose}) => {
                             <div className='modal-dish__worth-weight'>{dish.weight} грамм</div>
                         </div>
 
-                        <div className='modal-dish__button'>
-                            <Button variant='contained' color='primary' onClick={() => addToBucket(dish)}>
-                                Заказать
-                            </Button>
-                        </div>
+                        {dish.is_delivery
+                            ? <div className='modal-dish__button'>
+                                <Button variant='contained' color='primary' onClick={() => addToBucket(dish)}>
+                                    Заказать
+                                </Button>
+                            </div>
+                            : <div className='modal-dish__no_delivery'>
+                                Доступно только в ресторане
+                            </div>
+                        }
                     </div>
                 </div>
             </DialogContent>

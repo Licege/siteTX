@@ -75,6 +75,16 @@
     margin-top: 20px;
   }
 
+  &__no_delivery {
+    margin-top: 8px;
+    line-height: 18px;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
   &__close {
     width: 21px;
     height: 21px;
