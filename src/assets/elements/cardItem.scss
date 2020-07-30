@@ -126,12 +126,14 @@
       width: 110px;
       float: left;
       margin: auto;
+      min-height: auto;
     }
 
     .card_item__wrapper {
       width: calc(100% - 150px);
       position: relative;
       float: right;
+      padding-left: 0;
     }
 
     .card_item-title {
@@ -148,6 +150,10 @@
     }
 
     .card_item-button {
+      position: absolute;
+      padding: 10px 20px;
+      left: 50%;
+      margin-left: -90px;
       bottom: -50%;
     }
   }

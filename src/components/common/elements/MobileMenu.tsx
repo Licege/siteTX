@@ -16,6 +16,9 @@ const MobileMenu = ( {isOpen, categories, toggle}: IProps ) => {
             <nav className='mobile_menu-wrapper'>
                 <img src={closeImg} className='mobile_menu-wrapper-close' onClick={toggle} alt='Закрыть'/>
                 <ul>
+                    <li>
+                        <NavLink activeClassName='-active' to='/menu' onClick={toggle}>Все меню</NavLink>
+                    </li>
                     {categories.map(category => (
                         <li key={category._id}>
                             <NavLink activeClassName='-active'

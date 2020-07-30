@@ -11,14 +11,20 @@ interface IProps {
     onSubmit: ( data: IReview ) => void
 }
 
-const Reviews: React.FC<IProps> = ( {isAuthenticated, isOpen, reviews, toggleModal, onSubmit} ) => {
+const Reviews: React.FC<IProps> = ( { isAuthenticated, isOpen, reviews, toggleModal, onSubmit } ) => {
     return (
-        <main className='page-container'>
+        <main className='reviews page-container'>
             <h4 className='page-container-title'>~ Отзывы ~</h4>
-            <div>
+            {reviews.length
+                ? <div className='reviews-empty'>
+                    К сожалению, здесь пока нет ни одного отзыва, но Вы можете стать первым, кто оставит его :)
+                </div>
+                : <div className='reviews-empty'>Отзывы еще не готовы :)</div>
+            }
+            <div className='reviews__action'>
                 <Button variant='contained' color='primary' onClick={toggleModal} disabled={!isAuthenticated}>Оставить
                     отзыв</Button>
-                {!isAuthenticated && <span>Авторизуйтесь, чтобы оставить отзыв.</span>}
+                {!isAuthenticated && <span className='reviews__hint'>Авторизуйтесь, чтобы оставить отзыв.</span>}
             </div>
             <div>
                 <ModalForm isOpen={isOpen} handleClose={toggleModal} onSubmit={onSubmit}/>
