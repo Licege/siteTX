@@ -1,7 +1,7 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import './assets/main.scss'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import React, { useCallback } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useTransition, animated } from 'react-spring/web'
+import {  Route, Switch, useLocation, withRouter } from 'react-router-dom'
 import FooterContainer from './containers/Footer/Footer'
 import HeaderContainer from './containers/Header/Header'
 import MenuContainer from './containers/Menu/Menu'
@@ -16,36 +16,49 @@ import BucketContainer from './containers/Bucket/Bucket'
 import ReviewsContainer from './containers/Reviews/Reviews'
 import ResumeContainer from './containers/Vacancies/Resume/Resume'
 import { AppStateType } from './redux/redux-store'
-import { refresh } from './redux/auth-reducer'
-import { getContacts } from './redux/contacts-reducer'
-import { contactsType } from './types/types'
+import { refresh as refreshAction } from './redux/auth-reducer'
+import { getContacts as getContactsAction } from './redux/contacts-reducer'
 import { Error404 } from './components/Errors/Error404'
 import BanquetsContainer from './containers/Banquets/BanquetsContainer'
 import ActionsContainer from './containers/Actions/ActionsContainer'
 import ActionContainer from './containers/Actions/ActionContainer'
-import { compose } from 'redux'
+import './assets/main.scss'
 
-interface IProps {
-    contacts: contactsType
+const App = () => {
+    const dispatch = useDispatch()
+    const contacts = useSelector(( state: AppStateType ) => state.contacts.contacts)
+    const refresh: any = useCallback(() => dispatch(refreshAction()), [ dispatch ])
+    const getContacts: any = useCallback(() => dispatch(getContactsAction()), [ dispatch ])
 
-    refresh: () => void
-    getContacts: () => void
-}
-
-class App extends React.Component<IProps> {
-    componentDidMount(): void {
-        if (localStorage.getItem('accessToken') && localStorage.getItem('refreshToken')) this.props.refresh()
-        if (!Object.keys(this.props.contacts).length) this.props.getContacts()
+    if (localStorage.getItem('accessToken') && localStorage.getItem('refreshToken')) {
+        refresh()
     }
 
-    render() {
+    if (!Object.keys(contacts).length) getContacts()
 
-        return (
-            <BrowserRouter>
-                <div className='app-wrapper'>
+    let location = useLocation()
+
+    const transitions = useTransition(location, ( location: any ) => location.pathname, {
+        from: {
+            opacity: 0,
+            position: 'absolute',
+            width: '100%',
+            transform: `translate3d(100%, 0, 0)`,
+        },
+        enter: { opacity: 1, transform: 'translate3d(0, 0, 0)' },
+        leave: {
+            opacity: 0,
+            transform: `translate3d(-50%, 0, 0)`,
+        },
+    })
+
+    return (
+        <div className='app-wrapper'>
+            {transitions.map(( { item, props: transition, key } ) => (
+                <animated.div key={key} style={transition}>
                     <HeaderContainer/>
                     <div className='app-wrapper-content'>
-                        <Switch>
+                        <Switch location={item}>
                             <Route exact path='/' component={HomeContainer}/>
                             <Route path='/menu/:id?' component={MenuContainer}/>
                             <Route exact path='/contacts' component={ContactsContainer}/>
@@ -64,27 +77,10 @@ class App extends React.Component<IProps> {
                         </Switch>
                     </div>
                     <FooterContainer/>
-                </div>
-            </BrowserRouter>
-        )
-    }
+                </animated.div>
+            ))}
+        </div>
+    )
 }
 
-let mapStateToProps = ( state: AppStateType ) => {
-    return {
-        contacts: state.contacts.contacts,
-    }
-}
-
-let mapDispatchToProps = ( dispatch: any ) => {
-    return {
-        refresh: () => {
-            dispatch(refresh())
-        },
-        getContacts: () => {
-            dispatch(getContacts())
-        },
-    }
-}
-
-export default compose(connect(mapStateToProps, mapDispatchToProps))(App)
+export default App
