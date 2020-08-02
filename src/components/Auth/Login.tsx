@@ -8,11 +8,18 @@ import {authProfileType} from '../../types/types'
 
 const Login: React.FC<InjectedFormProps> = ({handleSubmit}) => {
     return (
-        <form onSubmit={handleSubmit}>
-            <Field name='email' component={renderTextField} label='E-mail*' placeholder='Введите e-mail'/>
-            <Field name='password' component={renderTextField} type='password' label='Пароль*'
+        <form className='form_login' onSubmit={handleSubmit}>
+            <Field className='form_login__field'
+                   name='email'
+                   component={renderTextField}
+                   label='E-mail*'
+                   placeholder='Введите e-mail'/>
+            <Field className='form_login__field'
+                   name='password'
+                   component={renderTextField}
+                   type='password' label='Пароль*'
                    placeholder='Введите пароль'/>
-            <Button variant='contained' type='submit'>Войти</Button>
+            <Button variant='contained' color='primary' type='submit'>Войти</Button>
         </form>
     )
 }

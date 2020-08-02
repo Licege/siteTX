@@ -188,11 +188,12 @@ const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & 
                 </div>
                 <div>
                     <Field name='rule_agree'
+                           className='bucket-order__polit'
                            component={renderCheckbox}
                            label='Я согласен на обработку своих персональных данных и принимаю условия Политики конфиденциальности и Пользовательского соглашения'/>
                 </div>
 
-                {!!delivery.order.length && <div>
+                {!!delivery.order.length && <div className='bucket-order__total'>
                     <div>Сумма заказа: {delivery.total_price} ₽</div>
                     <div>
                         {
@@ -204,7 +205,7 @@ const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & 
                     <div>Итого: {price} ₽</div>
                 </div>}
 
-                <div className='bucket-order-button'>
+                <div className='bucket-order__button'>
                     <Button variant='contained' color='primary' type='submit'>
                         Оформить заказ ({price} р.)
                     </Button>

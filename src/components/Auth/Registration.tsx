@@ -8,7 +8,7 @@ import {authRegProfileType} from '../../types/types'
 
 const Registration: React.FC<InjectedFormProps> = ({handleSubmit}) => {
     return (
-        <form onSubmit={handleSubmit}>
+        <form className='form_registration' onSubmit={handleSubmit}>
             <Field name='surname' component={renderTextField} label='Фамилия' placeholder='Введите фамилию'/>
             <Field name='forename' component={renderTextField} label='Имя*' placeholder='Введите имя'/>
             <Field name='patronymic' component={renderTextField} label='Отчество' placeholder='Введите отчество'/>
@@ -18,7 +18,7 @@ const Registration: React.FC<InjectedFormProps> = ({handleSubmit}) => {
                    placeholder='Введите пароль'/>
             <Field name='confirmPassword' component={renderTextField} type='password' label='Повторите пароль*'
                    placeholder='Введите пароль'/>
-            <Button variant='contained' type='submit'>Зарегистрироваться</Button>
+            <Button variant='contained' color='primary' type='submit'>Зарегистрироваться</Button>
         </form>
     )
 }

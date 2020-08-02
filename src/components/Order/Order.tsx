@@ -1,7 +1,7 @@
 import React from 'react'
 import { IOrder } from '../../types/types'
 import OrderForm from './FormOrder'
-import img from '../../static/img/order_table.png'
+import img from '../../static/img/order_table.jpg'
 import { CSSTransition } from 'react-transition-group'
 import { useHistory } from 'react-router'
 

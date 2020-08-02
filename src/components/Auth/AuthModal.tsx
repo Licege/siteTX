@@ -32,13 +32,13 @@ const AuthModal = ({isOpen, onClose, signUpSubmit, registrationSubmit}: IProps) 
             {signUp
                 ?
                 <>
-                    <DialogTitle>Авторизация</DialogTitle>
+                    <DialogTitle className='text-center'>Авторизация</DialogTitle>
                     <DialogContent><Login onSubmit={signUpSubmit}/></DialogContent>
                     <Button variant='text' onClick={toggle}>Еще нет аккаунта?</Button>
                 </>
                 :
                 <>
-                    <DialogTitle>Регистрация</DialogTitle>
+                    <DialogTitle className='text-center'>Регистрация</DialogTitle>
                     <DialogContent><Registration onSubmit={registrationSubmit}/></DialogContent>
                     <Button variant='text' onClick={toggle}>Уже зарегистрированны?</Button>
                 </>

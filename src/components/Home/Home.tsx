@@ -22,7 +22,7 @@ const Home: React.FC<PropsType> = ( {news, menu, promos, contacts, addDishToBuck
             <SectionAbout/>
             <SectionMenu menu={menu} addDishToBucket={addDishToBucket}/>
             <SectionPromo promos={promos}/>
-            <SectionDelivery contacts={contacts}/>
+            {/*<SectionDelivery contacts={contacts}/>*/}
             <SectionMap/>
         </main>
     )

@@ -42,11 +42,11 @@ const AuthButton = () => {
         isAuthenticated
             ?
             <div>
-                <Button variant='contained' onClick={signOutSubmit}>Выйти</Button>
+                <Button variant='contained' color='secondary' onClick={signOutSubmit}>Выйти</Button>
             </div>
             :
             <div>
-                <Button variant='outlined' onClick={toggle}>Войти</Button>
+                <Button variant='outlined' color='primary' onClick={toggle}>Войти</Button>
                 <AuthModal isOpen={isOpen} onClose={toggle} signUpSubmit={signUpSubmit}
                            registrationSubmit={registrationSubmit}/>
             </div>
