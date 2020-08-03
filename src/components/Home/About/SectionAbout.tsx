@@ -8,7 +8,7 @@ const SectionAbout: React.FC<IProps> = () => (
     <div className='Section-about'>
         <div className='Section-about-image'/>
         <div className='Section-about-block'>
-            <div className='Section-about-block-header'>Добро пожаловать</div>
+            <h2 className='Section-about-block-header'>Добро пожаловать</h2>
             <div className='Section-about-block-info'>
                 Ресторанный комплекс "Три холма" находится вдали от городской суеты, на берегу Голубых озер. С летней
                 веранды ресторана открывается живописный вид на одно из них. Территория украшена цветами и фонтанами.

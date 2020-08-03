@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTransition, animated } from 'react-spring/web'
-import {  Route, Switch, useLocation, withRouter } from 'react-router-dom'
+import { Route, Switch, useLocation } from 'react-router-dom'
 import FooterContainer from './containers/Footer/Footer'
 import HeaderContainer from './containers/Header/Header'
 import MenuContainer from './containers/Menu/Menu'
@@ -40,24 +40,22 @@ const App = () => {
 
     const transitions = useTransition(location, ( location: any ) => location.pathname, {
         from: {
-            opacity: 0,
+            opacity: 0.4,
             position: 'absolute',
             width: '100%',
-            transform: `translate3d(100%, 0, 0)`,
         },
-        enter: { opacity: 1, transform: 'translate3d(0, 0, 0)' },
+        enter: { opacity: 1 },
         leave: {
             opacity: 0,
-            transform: `translate3d(-50%, 0, 0)`,
         },
     })
 
     return (
         <div className='app-wrapper'>
+            <HeaderContainer/>
             {transitions.map(( { item, props: transition, key } ) => (
                 <animated.div key={key} style={transition}>
-                    <HeaderContainer/>
-                    <div className='app-wrapper-content'>
+                <div className='app-wrapper-content'>
                         <Switch location={item}>
                             <Route exact path='/' component={HomeContainer}/>
                             <Route path='/menu/:id?' component={MenuContainer}/>
@@ -75,8 +73,8 @@ const App = () => {
                             <Route exact path='/actions/:id' component={ActionContainer}/>
                             <Route component={Error404}/>
                         </Switch>
-                    </div>
                     <FooterContainer/>
+                </div>
                 </animated.div>
             ))}
         </div>

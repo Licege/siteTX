@@ -9,7 +9,7 @@ interface IProps {
 
 const SectionPromo: React.FC<IProps> = ( {promos} ) => (
     <div className='Section-promo'>
-        <div className='Section-promo-header'>Наши акции</div>
+        <h2 className='Section-promo-header'>Наши акции</h2>
         <div className='Section-promo-info'>Выгодное предложение для Вас</div>
         <SliderPromo promos={promos}/>
         <LinkButton to='/actions' label='Смотреть все акции'/>

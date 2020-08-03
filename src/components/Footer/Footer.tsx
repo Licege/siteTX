@@ -17,7 +17,7 @@ type PropsType = {
 
 const Footer: React.FC<PropsType> = ( {contacts} ) => {
     return (
-        <footer className='footer card-body' id='footer'>
+        <footer className='footer' id='footer'>
             <div className='footer__wrapper'>
                 <div className='footer__info_block'>
                     <div className='footer__work_time'>
@@ -49,7 +49,7 @@ const Footer: React.FC<PropsType> = ( {contacts} ) => {
                 <div className='footer__address_block'>
                     <span className='footer__title'>Адрес</span>
                     {contacts ?
-                        <div className='footer__address'>
+                        <address className='footer__address'>
                             <a
                                 href='https://yandex.ru/maps/22/kaliningrad/?from=api-maps&ll=20.366668%2C54.649906&mode=routes&origin=jsapi_2_1_76&rtext=~54.649946%2C20.366788&rtt=auto&ruri=~&z=17'
                                 target='_blank'
@@ -57,14 +57,13 @@ const Footer: React.FC<PropsType> = ( {contacts} ) => {
                             >
                                 <img src={address} alt=''/>{contacts.address}
                             </a>
-                        </div> : ''}
+                        </address> : ''}
                     {contacts && contacts.phone ?
-                        <a className='footer__phone' href={'tel:' + contacts.phone}><img src={phone}
-                                                                                         alt=''/> {contacts.phone}
+                        <a className='footer__phone' href={'tel:' + contacts.phone}>
+                            <img src={phone} alt=''/> {contacts.phone}
                         </a> : ''}
                 </div>
-                <div className='footer__nav_block'>
-                    <div className='footer__navbar'>
+                <nav className='footer__nav_block'>
                         <NavLink activeClassName='-active' className='footer__navbar-item'
                                  to='/actions'>Акции</NavLink>
                         <NavLink activeClassName='-active' className='footer__navbar-item'
@@ -77,10 +76,9 @@ const Footer: React.FC<PropsType> = ( {contacts} ) => {
                                  to='/gallery'>Фотогалерея</NavLink>
                         <NavLink activeClassName='-active' className='footer__navbar-item'
                                  to='/reviews'>Отзывы</NavLink>
-                    </div>
-                </div>
+                </nav>
             </div>
-            <div className='footer__copyright'>© Три холма 2020</div>
+            <small className='footer__copyright'>© Три холма 2020</small>
         </footer>
     )
 }

@@ -14,7 +14,7 @@ type PropsType = {
 const News: React.FC<PropsType> = ( {news, totalCount, onPageCount} ) => {
     return (
         <main className='page-container'>
-            <h4 className='page-container-title'>~ Новости ~</h4>
+            <h1 className='page-container-title'>~ Новости ~</h1>
             <TransitionGroup component={null}>
                 {news && news.map(item =>
                     <CSSTransition

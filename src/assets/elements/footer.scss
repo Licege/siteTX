@@ -2,6 +2,7 @@
   flex: 0 0 auto;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
   background-color: khaki;
+  padding: 20px;
   // background: center / cover no-repeat url("../../static/img/background3.svg");
 
   &__wrapper {
@@ -88,6 +89,7 @@
   }
 
   &__copyright {
+    display: block;
     font-size: 12px;
     text-align: center;
   }
@@ -107,7 +109,7 @@
   }
 
   @include media-breakpoint-down(md) {
-    padding: 1rem .5rem !important;
+    padding: 1rem .5rem;
 
     &__wrapper {
       a {

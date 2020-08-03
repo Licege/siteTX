@@ -6,9 +6,12 @@
   min-height: 100vh;
 
   &-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     flex: 1 0 auto;
     overflow-x: hidden;
-    min-height: 464px;
+    min-height: 100vh;
     // background-color: sandybrown;
   }
 }

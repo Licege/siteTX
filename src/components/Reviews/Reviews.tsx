@@ -14,7 +14,7 @@ interface IProps {
 const Reviews: React.FC<IProps> = ( { isAuthenticated, isOpen, reviews, toggleModal, onSubmit } ) => {
     return (
         <main className='reviews page-container'>
-            <h4 className='page-container-title'>~ Отзывы ~</h4>
+            <h1 className='page-container-title'>~ Отзывы ~</h1>
             {reviews.length
                 ? <div className='reviews-empty'>
                     К сожалению, здесь пока нет ни одного отзыва, но Вы можете стать первым, кто оставит его :)

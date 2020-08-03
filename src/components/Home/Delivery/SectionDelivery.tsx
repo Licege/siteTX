@@ -8,7 +8,7 @@ interface IProps {
 
 const SectionDelivery: React.FC<IProps> = ( {contacts} ) => (
     <div className='Section-delivery'>
-        <div className='Section-delivery-header'>Условия доставки</div>
+        <h2 className='Section-delivery-header'>Условия доставки</h2>
         <div className='Section-delivery-info'>Все об оплате и получении заказа</div>
         <div className='Section-delivery-order'>
             Заказ блюд по телефону:

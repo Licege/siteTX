@@ -10,11 +10,11 @@ interface IProps {
 export const Actions: React.FC<IProps> = (props) => {
     let {promos} = props
     return (
-        <div className='promos'>
-            <h4 className='promos-title'>~ Акции ~</h4>
+        <main className='promos'>
+            <h1 className='promos-title'>~ Акции ~</h1>
             <div className='promos-wrapper'>
                 {promos.map(promo => <CardPromo promo={promo} key={promo._id}/>)}
             </div>
-        </div>
+        </main>
     )
 }

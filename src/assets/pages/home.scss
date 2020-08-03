@@ -203,6 +203,12 @@
 
     @include media-breakpoint-down(sm) {
       &-about {
+        &-block {
+          &-header {
+            margin-top: 20px;
+          }
+        }
+
         &-image {
           width: 264px;
           height: 264px;

@@ -11,7 +11,7 @@ interface IProps {
 
 const SectionMenu: React.FC<IProps> = ( {menu, addDishToBucket} ) => (
     <div className='Section-menu'>
-        <div className='Section-menu-header'>Наше меню</div>
+        <h2 className='Section-menu-header'>Наше меню</h2>
         <p className='Section-menu-info'>У нас каждый найдет себе блюдо по вкусу</p>
         <SliderMenu menu={menu} addDishToBucket={addDishToBucket}/>
         <LinkButton to='/menu' label={`Смотреть все меню из ${menu.length} блюд`}/>

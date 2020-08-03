@@ -17,7 +17,7 @@ const Menu: React.FC<PropsType> = ( {menu, categories, order, addToBucket, incre
     return (
         <div className='menu'>
             <div className='menu-categories' id='menu-categories-navbar'>
-                <div className='menu-categories-title'>Категории</div>
+                <h2 className='menu-categories-title'>Категории</h2>
                 <div className='menu-categories-content'>
                     {categories.map(( category ) =>
                         <NavLink activeClassName='-active' className='menu-categories-content-item'
@@ -28,7 +28,7 @@ const Menu: React.FC<PropsType> = ( {menu, categories, order, addToBucket, incre
 
             {menu.length ?
                 <div className='menu-wrapper'>
-                    <div className='menu-wrapper-header'>~ Меню ~</div>
+                    <h1 className='menu-wrapper-header'>~ Меню ~</h1>
                     <div className='menu-wrapper-content'>
                         {menu.map(( dish ) => <CardDish dish={dish}
                                                         order={order}

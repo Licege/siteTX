@@ -22,7 +22,7 @@ const Order: React.FC<PropsType> = ( {onSubmit} ) => {
             unmountOnExit
         >
             <main className='page-container'>
-                <h4 className='page-container-title'>~ Бронирование столов ~</h4>
+                <h1 className='page-container-title'>~ Бронирование столов ~</h1>
                 <div className='order'>
                     <img src={img} className='order__img' alt='' onLoad={() => console.log('1')}/>
                     <div className='order__content'>
