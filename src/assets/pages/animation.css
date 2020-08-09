@@ -1,0 +1,19 @@
+.anim-enter {
+  opacity: 0.1;
+}
+
+.anim-enter.anim-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+
+.anim-leave {
+  opacity: 1;
+}
+
+.anim-leave.anim-leave-active {
+  opacity: 0.1;
+  transition: opacity 300ms ease-in;
+}
+
+/*# sourceMappingURL=animation.css.map */

@@ -1,0 +1,10 @@
+.modal-dish__wrapper {
+  padding: 20px;
+  display: flex;
+}
+.modal-dish__img {
+  width: 600px;
+  height: 400px;
+}
+
+/*# sourceMappingURL=modalDish.css.map */
