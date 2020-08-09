@@ -1,20 +1,39 @@
-import React from 'react'
-import { contactsType, dishType, newsType, promoType } from '../../types/types'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import SectionMenu from './Menu/SectionMenu'
 import SectionAbout from './About/SectionAbout'
 import SectionPromo from './Promo/SectionPromo'
 import SectionMap from './Map/SectionMap'
+import { getNewsSelector } from '../../redux/selectors/news'
+import { getDishesSelector } from '../../redux/selectors/menu'
+import { getPromosSelector } from '../../redux/selectors/promos'
+import { getContactsSelector } from '../../redux/selectors/contacts'
+import { addDishAC } from '../../redux/bucket-reducer'
+import { requestNews } from '../../redux/news-reducer'
+import { getMenu } from '../../redux/menu-reducer'
+import { requestPromos } from '../../redux/promos-reducer'
+import { getContacts } from '../../redux/contacts-reducer'
+import { dishType } from '../../types/types'
 
-type PropsType = {
-    news: Array<newsType>
-    menu: Array<dishType>
-    promos: Array<promoType>
-    contacts: contactsType
+const Home: React.FC = () => {
+    let news = useSelector(getNewsSelector)
+    let menu = useSelector(getDishesSelector)
+    let promos = useSelector(getPromosSelector)
+    let contacts = useSelector(getContactsSelector)
 
-    addDishToBucket: ( dish: dishType ) => void
-}
+    const dispatch = useDispatch()
 
-const Home: React.FC<PropsType> = ( {news, menu, promos, contacts, addDishToBucket} ) => {
+    const addDishToBucket = ( dish: dishType ) => {
+        dispatch(addDishAC(dish))
+    }
+    useEffect(() => {
+        window.scrollTo(0, 0)
+        document.title = 'Три Холма'
+        dispatch(requestNews())
+        dispatch(getMenu())
+        dispatch(requestPromos())
+        dispatch(getContacts())
+    }, [dispatch])
     // let url = "http://navse360.ru/onlyTour/4421"
     return (
         <main className='Home'>

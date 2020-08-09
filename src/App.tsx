@@ -8,7 +8,6 @@ import GalleryContainer from './containers/Gallery/Gallery'
 import OrderContainer from './containers/Order/Order'
 import NewsContainer from './containers/News/News'
 import NewsByIdContainer from './containers/News/NewsById'
-import HomeContainer from './containers/Home/Home'
 import BucketContainer from './containers/Bucket/Bucket'
 import ReviewsContainer from './containers/Reviews/Reviews'
 import ResumeContainer from './containers/Vacancies/Resume/Resume'
@@ -23,6 +22,7 @@ import './assets/main.scss'
 import Contacts from './components/Contacts/Contacts'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
+import Home from './components/Home/Home'
 
 const App = () => {
     const dispatch = useDispatch()
@@ -57,7 +57,7 @@ const App = () => {
                 <animated.div key={key} style={transition}>
                 <div className='app-wrapper-content'>
                         <Switch location={item}>
-                            <Route exact path='/' component={HomeContainer}/>
+                            <Route exact path='/' component={Home}/>
                             <Route path='/menu/:id?' component={MenuContainer}/>
                             <Route exact path='/contacts' component={Contacts}/>
                             <Route exact path='/vacancies' component={VacanciesContainer}/>
