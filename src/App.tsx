@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useTransition, animated } from 'react-spring/web'
+import { animated, useTransition } from 'react-spring/web'
 import { Route, Switch, useLocation } from 'react-router-dom'
 import FooterContainer from './containers/Footer/Footer'
 import HeaderContainer from './containers/Header/Header'
@@ -20,8 +20,8 @@ import { refresh as refreshAction } from './redux/auth-reducer'
 import { getContacts as getContactsAction } from './redux/contacts-reducer'
 import { Error404 } from './components/Errors/Error404'
 import BanquetsContainer from './containers/Banquets/BanquetsContainer'
-import ActionsContainer from './containers/Actions/ActionsContainer'
-import ActionContainer from './containers/Actions/ActionContainer'
+import { Promos } from './components/Promos/Promos'
+import { Promo } from './components/Promos/Promo'
 import './assets/main.scss'
 
 const App = () => {
@@ -69,8 +69,8 @@ const App = () => {
                             <Route exact path='/reviews' component={ReviewsContainer}/>
                             <Route exact path='/resume/:id' component={ResumeContainer}/>
                             <Route exact path='/banquets' component={BanquetsContainer}/>
-                            <Route exact path='/actions' component={ActionsContainer}/>
-                            <Route exact path='/actions/:id' component={ActionContainer}/>
+                            <Route exact path='/actions' component={Promos}/>
+                            <Route exact path='/actions/:id' component={Promo}/>
                             <Route component={Error404}/>
                         </Switch>
                     <FooterContainer/>

@@ -3,7 +3,6 @@ import { categoryType, deliveryType, dishType } from '../../types/types'
 import { AppStateType } from '../../redux/redux-store'
 import { getCategories, getDish, getMenu, getMenuByCategory } from '../../redux/menu-reducer'
 import { connect } from 'react-redux'
-import { compose } from 'redux'
 import Menu from '../../components/Menu/Menu'
 import { addDishAC, increaseDishCountAC, reduceDishCountAC } from '../../redux/bucket-reducer'
 import { scrollHeight } from '../../plugins/helpers'
@@ -128,4 +127,4 @@ let mapDispatchToProps = ( dispatch: any ) => {
     }
 }
 
-export default compose(connect(mapStateToProps, mapDispatchToProps))(MenuContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(MenuContainer)
