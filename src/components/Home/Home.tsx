@@ -3,7 +3,6 @@ import { contactsType, dishType, newsType, promoType } from '../../types/types'
 import SectionMenu from './Menu/SectionMenu'
 import SectionAbout from './About/SectionAbout'
 import SectionPromo from './Promo/SectionPromo'
-import SectionDelivery from './Delivery/SectionDelivery'
 import SectionMap from './Map/SectionMap'
 
 type PropsType = {

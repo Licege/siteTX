@@ -1,5 +1,8 @@
-import React from 'react'
-import { contactsType } from '../../types/types'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom'
+import { getContactsSelector } from '../../redux/selectors/contacts'
+import { getContacts } from '../../redux/contacts-reducer'
 import vk from '../../static/img/vk.svg'
 import instagram from '../../static/img/instagram.svg'
 import fb from '../../static/img/fb.svg'
@@ -9,13 +12,16 @@ import gmail from '../../static/img/gmail.svg'
 import phone from '../../static/img/phone.svg'
 import address from '../../static/img/address.svg'
 import hours from '../../static/img/hours.svg'
-import { NavLink } from 'react-router-dom'
 
-type PropsType = {
-    contacts: contactsType
-}
+const Footer: React.FC = () => {
+    let contacts = useSelector(getContactsSelector)
+    const dispatch = useDispatch()
+    useEffect(() => {
+        if (!Object.keys(contacts).length) {
+            dispatch(getContacts())
+        }
+    }, [dispatch, contacts])
 
-const Footer: React.FC<PropsType> = ( {contacts} ) => {
     return (
         <footer className='footer' id='footer'>
             <div className='footer__wrapper'>

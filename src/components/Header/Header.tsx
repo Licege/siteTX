@@ -1,16 +1,23 @@
-import React, { useState } from 'react'
-import { categoryType } from '../../types/types'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
 import ButtonBucket from '../Bucket/ButtonBucket'
-import logo from '../../static/img/logo.png'
 import MobileMenu from '../common/elements/MobileMenu'
 import AuthButton from '../Auth/AuthButton'
+import { getCategoriesSelector } from '../../redux/selectors/menu'
+import { getCategories } from '../../redux/menu-reducer'
+import logo from '../../static/img/logo.png'
 
-type PropsType = {
-    categories: Array<categoryType>
-}
 
-const Header: React.FC<PropsType> = ( {categories} ) => {
+const Header: React.FC = () => {
+    let categories = useSelector(getCategoriesSelector)
+    const dispatch = useDispatch()
+    useEffect(() => {
+        if (!categories.length) {
+            dispatch(getCategories())
+        }
+    }, [dispatch, categories])
+
     const [active, setActive] = useState(false)
 
     const toggle = () => {

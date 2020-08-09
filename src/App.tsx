@@ -2,8 +2,6 @@ import React, { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { animated, useTransition } from 'react-spring/web'
 import { Route, Switch, useLocation } from 'react-router-dom'
-import FooterContainer from './containers/Footer/Footer'
-import HeaderContainer from './containers/Header/Header'
 import MenuContainer from './containers/Menu/Menu'
 import VacanciesContainer from './containers/Vacancies/Vacancies'
 import GalleryContainer from './containers/Gallery/Gallery'
@@ -23,6 +21,8 @@ import { Promos } from './components/Promos/Promos'
 import { Promo } from './components/Promos/Promo'
 import './assets/main.scss'
 import Contacts from './components/Contacts/Contacts'
+import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
 
 const App = () => {
     const dispatch = useDispatch()
@@ -52,7 +52,7 @@ const App = () => {
 
     return (
         <div className='app-wrapper'>
-            <HeaderContainer/>
+            <Header/>
             {transitions.map(( { item, props: transition, key } ) => (
                 <animated.div key={key} style={transition}>
                 <div className='app-wrapper-content'>
@@ -73,7 +73,7 @@ const App = () => {
                             <Route exact path='/actions/:id' component={Promo}/>
                             <Route component={Error404}/>
                         </Switch>
-                    <FooterContainer/>
+                    <Footer/>
                 </div>
                 </animated.div>
             ))}
