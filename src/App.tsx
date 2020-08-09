@@ -3,19 +3,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { animated, useTransition } from 'react-spring/web'
 import { Route, Switch, useLocation } from 'react-router-dom'
 import MenuContainer from './containers/Menu/Menu'
-import VacanciesContainer from './containers/Vacancies/Vacancies'
-import GalleryContainer from './containers/Gallery/Gallery'
-import OrderContainer from './containers/Order/Order'
-import NewsContainer from './containers/News/News'
-import NewsByIdContainer from './containers/News/NewsById'
 import BucketContainer from './containers/Bucket/Bucket'
-import ReviewsContainer from './containers/Reviews/Reviews'
-import ResumeContainer from './containers/Vacancies/Resume/Resume'
 import { AppStateType } from './redux/redux-store'
 import { refresh as refreshAction } from './redux/auth-reducer'
 import { getContacts as getContactsAction } from './redux/contacts-reducer'
 import { Error404 } from './components/Errors/Error404'
-import BanquetsContainer from './containers/Banquets/BanquetsContainer'
 import { Promos } from './components/Promos/Promos'
 import { Promo } from './components/Promos/Promo'
 import './assets/main.scss'
@@ -23,6 +15,14 @@ import Contacts from './components/Contacts/Contacts'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import Home from './components/Home/Home'
+import News from './components/News/News'
+import NewsById from './components/News/NewsById'
+import { Banquets } from './components/Banquets/Banquets'
+import Order from './components/Order/Order'
+import Gallery from './components/Gallery/Gallery'
+import Reviews from './components/Reviews/Reviews'
+import Vacancies from './components/Vacancancies/Vacancies'
+import Resume from './components/Vacancancies/Resume/Resume'
 
 const App = () => {
     const dispatch = useDispatch()
@@ -60,15 +60,15 @@ const App = () => {
                             <Route exact path='/' component={Home}/>
                             <Route path='/menu/:id?' component={MenuContainer}/>
                             <Route exact path='/contacts' component={Contacts}/>
-                            <Route exact path='/vacancies' component={VacanciesContainer}/>
-                            <Route exact path='/gallery' component={GalleryContainer}/>
-                            <Route exact path='/order' component={OrderContainer}/>
-                            <Route exact path='/news' component={NewsContainer}/>
-                            <Route exact path='/news/:id' component={NewsByIdContainer}/>
+                            <Route exact path='/vacancies' component={Vacancies}/>
+                            <Route exact path='/gallery' component={Gallery}/>
+                            <Route exact path='/order' component={Order}/>
+                            <Route exact path='/news' component={News}/>
+                            <Route exact path='/news/:id' component={NewsById}/>
                             <Route exact path='/bucket' component={BucketContainer}/>
-                            <Route exact path='/reviews' component={ReviewsContainer}/>
-                            <Route exact path='/resume/:id' component={ResumeContainer}/>
-                            <Route exact path='/banquets' component={BanquetsContainer}/>
+                            <Route exact path='/reviews' component={Reviews}/>
+                            <Route exact path='/resume/:id' component={Resume}/>
+                            <Route exact path='/banquets' component={Banquets}/>
                             <Route exact path='/actions' component={Promos}/>
                             <Route exact path='/actions/:id' component={Promo}/>
                             <Route component={Error404}/>

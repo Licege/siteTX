@@ -1,16 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 import ResumeForm from './ResumeForm'
-import { resumeType, vacancyType } from '../../../types/types'
+import { getMyResumeSelector, getVacanciesSelector } from '../../../redux/selectors/vacancies'
 
-type IProps = {
-    resume: resumeType,
-    vacancies: Array<vacancyType>
-    id: string
 
-    postResume: ( data: any ) => void
-}
+const Resume: React.FC = () => {
+    let resume = useSelector(getMyResumeSelector)
+    let vacancies = useSelector(getVacanciesSelector)
+    let { id } = useParams()
 
-const Resume: React.FC<IProps> = ( {resume, vacancies, id, postResume} ) => {
+    useEffect(() => {
+        window.scroll(0, 0)
+    })
+
+    const postResume = ( data: any ) => {
+        console.log(data)
+    }
+
     return (
         <main className='page-container'>
             <div className='page-container-title'>Резюме</div>

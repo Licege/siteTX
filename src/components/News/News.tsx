@@ -1,17 +1,27 @@
-import React from 'react'
-import { newsType } from '../../types/types'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import CardNews from '../common/elements/CardNews'
 import Paginator from '../common/elements/Paginator'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import { getNewsCountSelector, getNewsSelector } from '../../redux/selectors/news'
+import { requestNews } from '../../redux/news-reducer'
 
-type PropsType = {
-    news: Array<newsType>
-    totalCount: number
 
-    onPageCount: ( page: number ) => void
-}
+const News: React.FC = () => {
+    let news = useSelector(getNewsSelector)
+    let totalCount = useSelector(getNewsCountSelector)
+    const dispatch = useDispatch()
 
-const News: React.FC<PropsType> = ( {news, totalCount, onPageCount} ) => {
+    useEffect(() => {
+        document.title = 'Новости'
+        window.scrollTo(0, 0)
+        dispatch(requestNews())
+    }, [dispatch])
+
+    const onPageChange = (page: number) => {
+        dispatch(requestNews(page))
+    }
+
     return (
         <main className='page-container'>
             <h1 className='page-container-title'>~ Новости ~</h1>
@@ -29,7 +39,7 @@ const News: React.FC<PropsType> = ( {news, totalCount, onPageCount} ) => {
                 )}
             </TransitionGroup>
 
-            {news && <Paginator totalItemsCount={totalCount} onChange={onPageCount}/>}
+            {news && <Paginator totalItemsCount={totalCount} onChange={onPageChange}/>}
         </main>
     )
 }

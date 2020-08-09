@@ -5,7 +5,7 @@ const GET_VACANCIES = 'VACANCIES/GET_VACANCIES'
 const SAVE_RESUME = 'VACANCIES/SAVE_RESUME'
 
 let initialState = {
-    vacancies: [],
+    vacancies: [] as Array<vacancyType>,
     resume: {} as resumeType,
 }
 

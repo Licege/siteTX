@@ -1,37 +1,35 @@
-import React from 'react'
+import React, { useLayoutEffect } from 'react'
 import { IOrder } from '../../types/types'
 import OrderForm from './FormOrder'
+import { orderAPI } from '../../api/api'
 import img from '../../static/img/order_table.jpg'
-import { CSSTransition } from 'react-transition-group'
-import { useHistory } from 'react-router'
 
 
-type PropsType = {
-    onSubmit: ( order: IOrder ) => void
-}
+const Order: React.FC = () => {
+    useLayoutEffect(() => {
+        document.title = 'Заказ столов'
+        window.scrollTo(0, 0)
+    }, [])
 
-const Order: React.FC<PropsType> = ( {onSubmit} ) => {
-    let history = useHistory()
+    const onSubmit = ( order: IOrder ) => {
+        let date = {...order}
+        if (typeof date.order_date !== 'string') {
+            date.order_date = date.order_date.toISOString()
+        }
+        orderAPI.postOrder(date)
+    }
 
     return (
-        <CSSTransition
-            timeout={2000}
-            in={history.location.pathname === '/order'}
-            classNames='anim'
-            mountOnEnter
-            unmountOnExit
-        >
-            <main className='page-container'>
-                <h1 className='page-container-title'>~ Бронирование столов ~</h1>
-                <div className='order'>
-                    <img src={img} className='order__img' alt='' onLoad={() => console.log('1')}/>
-                    <div className='order__content'>
-                        <p>Описание тут</p>
-                        <OrderForm onSubmit={onSubmit}/>
-                    </div>
+        <main className='page-container'>
+            <h1 className='page-container-title'>~ Бронирование столов ~</h1>
+            <div className='order'>
+                <img src={img} className='order__img' alt='' onLoad={() => console.log('1')}/>
+                <div className='order__content'>
+                    <p>Описание тут</p>
+                    <OrderForm onSubmit={onSubmit}/>
                 </div>
-            </main>
-        </CSSTransition>
+            </div>
+        </main>
     )
 }
 

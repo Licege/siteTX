@@ -1,12 +1,23 @@
-import React from 'react'
-import { vacancyType } from '../../types/types'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import CardVacancy from '../common/elements/CardVacancy'
+import { getVacanciesSelector } from '../../redux/selectors/vacancies'
+import { getVacancies } from '../../redux/vacancies-reducer'
 
-type PropsType = {
-    vacancies: Array<vacancyType>
-}
 
-const Vacancies: React.FC<PropsType> = ( {vacancies} ) => {
+const Vacancies: React.FC = () => {
+    useEffect(() => {
+        document.title = 'Вакансии'
+        window.scrollTo(0, 0)
+    })
+
+    let vacancies = useSelector(getVacanciesSelector)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getVacancies())
+    }, [dispatch])
+
     return (
         <main className='page-container'>
             <h1 className='page-container-title'>~ Вакансии ~</h1>

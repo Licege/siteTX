@@ -1,17 +1,41 @@
-import React from 'react'
-import { IReview } from '../../types/types'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Button } from '@material-ui/core'
 import ModalForm from './ModalForm'
+import { getReviewsSelector } from '../../redux/selectors/reviews'
+import { getAuthStatus } from '../../redux/selectors/auth'
+import { postReview, requestReviews } from '../../redux/reviews-reducer'
+import { IReview } from '../../types/types'
 
-interface IProps {
-    reviews: IReview[]
-    isAuthenticated: boolean
-    isOpen: boolean
-    toggleModal: () => void
-    onSubmit: ( data: IReview ) => void
-}
 
-const Reviews: React.FC<IProps> = ( { isAuthenticated, isOpen, reviews, toggleModal, onSubmit } ) => {
+const Reviews: React.FC = () => {
+    let [isOpen, setIsOpen] = useState(false)
+    let reviews = useSelector(getReviewsSelector)
+    let isAuthenticated = useSelector(getAuthStatus)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        document.title = 'Отзывы'
+        window.scrollTo(0, 0)
+    })
+
+    useEffect(() => {
+        dispatch(requestReviews())
+    }, [dispatch])
+
+    const toggleModal = () => {
+        setIsOpen(!isOpen)
+    }
+
+    const onSubmit = ( data: IReview ) => {
+        let post = {
+            ...data,
+            create_at: Date.parse(new Date().toString()),
+            status: 0,
+        }
+        dispatch(postReview(post))
+    }
+
     return (
         <main className='reviews page-container'>
             <h1 className='page-container-title'>~ Отзывы ~</h1>
