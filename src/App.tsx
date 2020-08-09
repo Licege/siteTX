@@ -5,7 +5,6 @@ import { Route, Switch, useLocation } from 'react-router-dom'
 import FooterContainer from './containers/Footer/Footer'
 import HeaderContainer from './containers/Header/Header'
 import MenuContainer from './containers/Menu/Menu'
-import ContactsContainer from './containers/Contacts/Contacts'
 import VacanciesContainer from './containers/Vacancies/Vacancies'
 import GalleryContainer from './containers/Gallery/Gallery'
 import OrderContainer from './containers/Order/Order'
@@ -23,6 +22,7 @@ import BanquetsContainer from './containers/Banquets/BanquetsContainer'
 import { Promos } from './components/Promos/Promos'
 import { Promo } from './components/Promos/Promo'
 import './assets/main.scss'
+import Contacts from './components/Contacts/Contacts'
 
 const App = () => {
     const dispatch = useDispatch()
@@ -59,7 +59,7 @@ const App = () => {
                         <Switch location={item}>
                             <Route exact path='/' component={HomeContainer}/>
                             <Route path='/menu/:id?' component={MenuContainer}/>
-                            <Route exact path='/contacts' component={ContactsContainer}/>
+                            <Route exact path='/contacts' component={Contacts}/>
                             <Route exact path='/vacancies' component={VacanciesContainer}/>
                             <Route exact path='/gallery' component={GalleryContainer}/>
                             <Route exact path='/order' component={OrderContainer}/>
