@@ -3,7 +3,8 @@ import { AppStateType } from '../../redux/redux-store'
 import { connect } from 'react-redux'
 import Bucket from '../../components/Bucket/Bucket'
 import {
-    addressType, categoryType,
+    addressType,
+    categoryType,
     deliveryGlobalSettingsType,
     deliverySettingsType,
     deliveryType,
@@ -11,12 +12,15 @@ import {
     IDeliveryPost,
 } from '../../types/types'
 import {
+    addDishAC,
     changeDishCountAC,
     clearBucketAC,
     increaseDishCountAC,
+    postOrder,
     reduceDishCountAC,
     removeDishAC,
-    requestDeliverySettings, requestGlobalDeliverySettings, postOrder, addDishAC,
+    requestDeliverySettings,
+    requestGlobalDeliverySettings,
 } from '../../redux/bucket-reducer'
 import { formValueSelector } from 'redux-form'
 import { getCategories, getMenu } from '../../redux/menu-reducer'

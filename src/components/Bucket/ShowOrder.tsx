@@ -53,17 +53,17 @@ export const ShowOrder: React.FC<PropsType> =
                         <div className='bucket-table-row-info'>
                             <div className='bucket-table-row-info-title'>{dish.title}</div>
                             <div className='bucket-table-row-info-count'>
-                                <span className='custom_subtract' onClick={() => reduceDishCount(dish)}/>
+                                <span className='custom_subtract' onClick={reduceDishCount.bind(null, dish)}/>
                                 <input className='bucket-table-row-info-count-input' onChange={onChange(dish)}
                                        inputMode='numeric'
                                        value={getDishesKey(delivery.order, dish._id, 'count')}/>
-                                <span className='custom_add' onClick={() => increaseDishCount(dish)}/>
+                                <span className='custom_add' onClick={increaseDishCount.bind(null, dish)}/>
                             </div>
                             <div
                                 className='bucket-table-row-info-ceil'>{getDishesKey(delivery.order, dish._id, 'cost') * getDishesKey(delivery.order, dish._id, 'count') + ' ₽'}</div>
                         </div>
                         <div><span className='bucket-table-row-remove custom_close'
-                                   onClick={() => removeDish(dish._id)}/></div>
+                                   onClick={removeDish.bind(null, dish._id)}/></div>
                     </div>
                 ))}
             </div>
