@@ -1,5 +1,6 @@
 import { promoType } from '../types/types'
 import { promoAPI } from '../api/api'
+import { Dispatch } from 'redux'
 
 const GET_PROMOS = 'PROMOS/GET_PROMOS'
 const GET_PROMO_BY_ID = 'PROMOS/GET_PROMOS_BY_ID'
@@ -33,14 +34,14 @@ type getPromoByIdACType = {
 const getPromosAC = ( promos: Array<promoType> ): getPromosACType => ({ type: GET_PROMOS, promos })
 const getPromoByIdAC = ( promo: promoType ): getPromoByIdACType => ({ type: GET_PROMO_BY_ID, promo })
 
-type ActionsType = getPromosACType & getPromoByIdACType
+type ActionsType = getPromosACType | getPromoByIdACType
 
-export const requestPromos = () => async ( dispatch: any ) => {
+export const requestPromos = () => async ( dispatch: Dispatch<ActionsType> ) => {
     let response = await promoAPI.getPromos()
     dispatch(getPromosAC(response.data))
 }
 
-export const requestPromoById = ( id: string ) => async ( dispatch: any ) => {
+export const requestPromoById = ( id: string ) => async ( dispatch: Dispatch<ActionsType> ) => {
     let response = await promoAPI.getPromoById(id)
     dispatch(getPromoByIdAC(response.data))
 }

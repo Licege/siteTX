@@ -1,5 +1,6 @@
 import { newsType } from '../types/types'
 import { newsAPI } from '../api/api'
+import { Dispatch } from 'redux'
 
 const GET_NEWS = 'NEWS/GET_NEWS'
 const GET_CURRENT_NEWS = 'NEWS/GET_CURRENT_NEWS'
@@ -34,7 +35,7 @@ type getNewsACType = {
     total_count: number
 }
 
-type ActionType = getNewsACType & getCurrentNewsACType
+type ActionType = getNewsACType | getCurrentNewsACType
 
 const getNewsAC = ( news: Array<newsType>, total_count: number ): getNewsACType => ({
     type: GET_NEWS,
@@ -43,12 +44,12 @@ const getNewsAC = ( news: Array<newsType>, total_count: number ): getNewsACType 
 })
 const getCurrentNewsAC = ( currentNews: newsType ): getCurrentNewsACType => ({ type: GET_CURRENT_NEWS, currentNews })
 
-export const requestNews = ( page?: number | undefined ) => async ( dispatch: any ) => {
+export const requestNews = ( page?: number | undefined ) => async ( dispatch: Dispatch<ActionType> ) => {
     let response = await newsAPI.getNews(page)
     dispatch(getNewsAC(response.data.news, response.data.total_count))
 }
 
-export const requestCurrentNews = ( id: string ) => async ( dispatch: any ) => {
+export const requestCurrentNews = ( id: string ) => async ( dispatch: Dispatch<ActionType> ) => {
     let response = await newsAPI.getNewsById(id)
     dispatch(getCurrentNewsAC(response.data))
 }

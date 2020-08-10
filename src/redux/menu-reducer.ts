@@ -1,3 +1,4 @@
+import { Dispatch } from 'redux'
 import { categoryType, dishType } from '../types/types'
 import { menuAPI } from '../api/api'
 
@@ -57,24 +58,24 @@ const getCategoriesACType = ( categories: Array<categoryType> ): GetCategoriesAC
     categories,
 })
 
-export const getCategories = () => async ( dispatch: any ) => {
+export const getCategories = () => async ( dispatch: Dispatch<ActionType> ) => {
     let response = await menuAPI.getCategories()
     dispatch(getCategoriesACType(response.data))
 }
 
-export const getMenu = () => async ( dispatch: any ) => {
+export const getMenu = () => async ( dispatch: Dispatch<ActionType> ) => {
     let response = await menuAPI.getMenu()
     dispatch(getMenuAC(response.data))
 }
 
-export const getMenuByCategory = ( category: string ) => async ( dispatch: any ) => {
+export const getMenuByCategory = ( category: string ) => async ( dispatch: Dispatch<ActionType> ) => {
     let response = await menuAPI.getMenuByCategory(category)
     if (!response.data) {
         dispatch(getMenuByCategoryAC([]))
     } else dispatch(getMenuByCategoryAC(response.data))
 }
 
-export const getDish = ( id: number ) => async ( dispatch: any ) => {
+export const getDish = ( id: number ) => async ( dispatch: Dispatch<ActionType> ) => {
     let response = await menuAPI.getDish(id)
     dispatch(getDishAC(response.data))
 }

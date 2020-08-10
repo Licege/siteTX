@@ -42,8 +42,6 @@ export const persistor = persistStore(store)
 // @ts-ignore
 window._store_ = store
 
-//export const socket = io.connect(WS_BASE)
-
 export default () => {
     return { store, persistor }
 };
