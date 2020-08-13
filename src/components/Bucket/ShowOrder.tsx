@@ -23,7 +23,7 @@ type PropsType = {
     reduceDishCount: (dish: dishType) => void
     removeDish: (id: string) => void
     clearBucket: () => void
-    onChange: (dish: dishType) => ((event: { target: HTMLInputElement; }) => void)
+    onChange: (dish: dishType) => ((event: React.ChangeEvent<HTMLInputElement>) => void)
     setStep: (step: 0 | 1 | 2) => void
 }
 

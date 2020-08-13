@@ -31,7 +31,7 @@ const BucketInfo: React.FC<IProps> = ({isOpen, toggle}) => {
     }, [dispatch])
 
     const onChange = (dish: dishType) => {
-        return (event: { target: HTMLInputElement; }) => {
+        return (event: React.ChangeEvent<HTMLInputElement>) => {
             let value = event.target.value
             if (value === '') value = '1'
             changeDishCount(dish, parseInt(value, 10))

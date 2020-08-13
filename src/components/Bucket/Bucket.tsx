@@ -35,7 +35,7 @@ type PropsType = {
     removeDish: (id: string) => void
     clearBucket: () => void
     onSubmit: (data: IDeliveryPost) => void
-    onChange: (dish: dishType) => ((event: { target: HTMLInputElement; }) => void)
+    onChange: (dish: dishType) => ((event: React.ChangeEvent<HTMLInputElement>) => void)
     setStep: (step: 0 | 1 | 2) => void
     isDisabled: (step: 0 | 1 | 2) => boolean
 }
