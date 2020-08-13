@@ -8,6 +8,6 @@ export const getCurrentNewsSelector = (state: AppStateType) => {
     return state.newsPage.currentNews
 }
 
-export const getNewsCountSelector =(state: AppStateType) => {
+export const getNewsCountSelector = (state: AppStateType) => {
     return state.newsPage.totalCount
 }

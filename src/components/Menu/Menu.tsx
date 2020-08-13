@@ -1,9 +1,9 @@
 import React from 'react'
-import { categoryType, dishType, orderDishType } from '../../types/types'
-import CardDish from '../common/elements/CardDish'
 import { NavLink } from 'react-router-dom'
+import CardDish from '../common/elements/CardDish'
+import { categoryType, dishType, orderDishType } from '../../types/types'
 
-type PropsType = {
+interface IProps {
     menu: Array<dishType>,
     categories: Array<categoryType>
     order: Array<orderDishType>
@@ -13,7 +13,24 @@ type PropsType = {
     reduceCountDish: ( dish: dishType ) => void
 }
 
-const Menu: React.FC<PropsType> = ( {menu, categories, order, addToBucket, increaseCountDish, reduceCountDish} ) => {
+type CategoriesFeedType = {
+    categories: Array<categoryType>
+}
+
+const CategoriesFeed = ( { categories }: CategoriesFeedType ): JSX.Element => (
+    <ul className='menu-feed'>
+        {categories.map(category => (
+            <li className='menu-feed-item' key={category._id}>
+                <NavLink to={'/menu/' + category.title_en}
+                >
+                    {category.title}
+                </NavLink>
+            </li>
+        ))}
+    </ul>
+)
+
+const Menu: React.FC<IProps> = ( { menu, categories, order, addToBucket, increaseCountDish, reduceCountDish } ) => {
     return (
         <div className='menu'>
             <div className='menu-categories' id='menu-categories-navbar'>
@@ -28,6 +45,7 @@ const Menu: React.FC<PropsType> = ( {menu, categories, order, addToBucket, incre
 
             {menu.length ?
                 <div className='menu-wrapper'>
+                    <CategoriesFeed categories={categories}/>
                     <h1 className='menu-wrapper-header'>~ Меню ~</h1>
                     <div className='menu-wrapper-content'>
                         {menu.map(( dish ) => <CardDish dish={dish}

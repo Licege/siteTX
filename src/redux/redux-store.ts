@@ -35,8 +35,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer)
 type RootReducerType = typeof rootReducer;
 export type AppStateType = ReturnType<RootReducerType>
 
-// @ts-ignore
-const composeEnhancers = window._REDUX_DEVTOOLS_EXTENSION_COMPOSE_ || compose
+const composeEnhancers = (window as any)._REDUX_DEVTOOLS_EXTENSION_COMPOSE_ || compose
 export const store = createStore(persistedReducer, composeEnhancers(applyMiddleware(thunkMiddleWare)))
 export const persistor = persistStore(store)
 // @ts-ignore

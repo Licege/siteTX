@@ -1,18 +1,18 @@
 import React from 'react'
-import { categoryType, deliveryType, dishType } from '../../types/types'
+import { connect } from 'react-redux'
+import { RouteComponentProps } from 'react-router'
 import { AppStateType } from '../../redux/redux-store'
 import { getCategories, getDish, getMenu, getMenuByCategory } from '../../redux/menu-reducer'
-import { connect } from 'react-redux'
 import Menu from '../../components/Menu/Menu'
 import { addDishAC, increaseDishCountAC, reduceDishCountAC } from '../../redux/bucket-reducer'
 import { scrollHeight } from '../../plugins/helpers'
+import { categoryType, deliveryType, dishType, RouteParams } from '../../types/types'
 
 type MapStatePropsType = {
     dish: dishType | {},
     menu: Array<dishType>,
     categories: Array<categoryType>,
     delivery: deliveryType,
-    match?: { params: { id: string } }
 }
 type MapDispatchPropsType = {
     getDish: ( id: number ) => void,
@@ -23,15 +23,15 @@ type MapDispatchPropsType = {
     increaseDishCount: ( dish: dishType ) => void
     reduceDishCount: ( dish: dishType ) => void
 }
-type PropsType = MapStatePropsType & MapDispatchPropsType
+type PropsType = MapStatePropsType & MapDispatchPropsType & RouteComponentProps<RouteParams>
 
 class MenuContainer extends React.Component<PropsType> {
     componentDidMount(): void {
         if (!this.props.categories.length) this.props.getCategories()
-        if (!this.props.match!.params.id) {
+        if (!this.props.match.params.id) {
             this.props.getMenu()
         } else {
-            this.props.getMenuByCategory(this.props.match!.params.id)
+            this.props.getMenuByCategory(this.props.match.params.id)
         }
         document.title = 'Меню'
         window.scrollTo(0, 0)
@@ -42,14 +42,14 @@ class MenuContainer extends React.Component<PropsType> {
         window.removeEventListener('scroll', this.onScroll)
     }
 
-    componentDidUpdate( prevProps: Readonly<MapStatePropsType & MapDispatchPropsType> ) {
+    componentDidUpdate( prevProps: Readonly<PropsType> ) {
         if (!prevProps.categories && this.props.categories.length) {
-            let category_id = this.props.categories.find(category => category.title_en === this.props.match!.params.id)!._id
+            let category_id = this.props.categories.find(category => category.title_en === this.props.match.params.id)!._id
             this.props.getMenuByCategory(category_id)
         }
-        if (this.props.match!.params && this.props.match!.params.id && prevProps.match!.params.id !== this.props.match!.params.id) {
-            this.props.getMenuByCategory(this.props.match!.params.id)
-        } else if (!this.props.match!.params.id && prevProps.match!.params.id) {
+        if (this.props.match.params && this.props.match.params.id && prevProps.match.params.id !== this.props.match.params.id) {
+            this.props.getMenuByCategory(this.props.match.params.id)
+        } else if (!this.props.match.params.id && prevProps.match.params.id) {
             this.props.getMenu()
         }
     }
