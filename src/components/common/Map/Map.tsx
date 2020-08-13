@@ -24,11 +24,8 @@ const CustomMap: React.FC<IProps> = ( {style} ) => {
         iconLayout: 'default#image',
         iconImageHref: pointer,
         iconImageSize: [70, 100],
-        // iconImageOffset: [-24, -40]
         iconImageOffset: [-34, -76],
     }
-
-    // const style = {width: '100%', height: '424px'}
 
     return (
         <YMaps style={style}>

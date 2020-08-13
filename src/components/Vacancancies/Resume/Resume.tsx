@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
 import ResumeForm from './ResumeForm'
 import { getMyResumeSelector, getVacanciesSelector } from '../../../redux/selectors/vacancies'
 
@@ -8,7 +7,6 @@ import { getMyResumeSelector, getVacanciesSelector } from '../../../redux/select
 const Resume: React.FC = () => {
     let resume = useSelector(getMyResumeSelector)
     let vacancies = useSelector(getVacanciesSelector)
-    let { id } = useParams()
 
     useEffect(() => {
         window.scroll(0, 0)

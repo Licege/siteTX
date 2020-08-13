@@ -70,7 +70,7 @@ const Bucket: React.FC<PropsType> = (props) => {
 
     return (
         <main className='page-container'>
-            {!!delivery.order.length ?
+            {delivery.order.length ?
                 <>
                     <Breadcrumbs separator='>' component='div' className='breadcrumbs'>
                         <StyledBreadcrumb component='a'

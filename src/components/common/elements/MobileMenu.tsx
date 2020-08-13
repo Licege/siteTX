@@ -23,7 +23,7 @@ const MobileMenu = ( {isOpen, categories, toggle}: IProps ) => {
                         <li key={category._id}>
                             <NavLink activeClassName='-active'
                                      onClick={toggle}
-                                     to={'/menu/' + category.title_en}
+                                     to={`/menu/${category.title_en}`}
                                      key={category._id}>
                                 {category.title}
                             </NavLink>

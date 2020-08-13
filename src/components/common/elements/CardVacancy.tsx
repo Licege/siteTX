@@ -9,7 +9,7 @@ type PropsType = {
     vacancy: vacancyType
 }
 
-const CardVacancy: React.FC<PropsType> = ( {vacancy} ) => {
+const CardVacancy: React.FC<PropsType> = ( { vacancy } ) => {
     return (
         <div className='card card_item'>
             <img className='card_item-img' src={vacancy.imageSrc ? fullLink(vacancy.imageSrc) : altImg} alt=''/>

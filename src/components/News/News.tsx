@@ -15,6 +15,9 @@ const News: React.FC = () => {
     useEffect(() => {
         document.title = 'Новости'
         window.scrollTo(0, 0)
+    }, [])
+
+    useEffect(() => {
         dispatch(requestNews())
     }, [dispatch])
 

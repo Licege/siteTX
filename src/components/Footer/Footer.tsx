@@ -22,6 +22,8 @@ const Footer: React.FC = () => {
         }
     }, [dispatch, contacts])
 
+    let date = new Date().getFullYear()
+
     return (
         <footer className='footer' id='footer'>
             <div className='footer__wrapper'>
@@ -84,7 +86,7 @@ const Footer: React.FC = () => {
                                  to='/reviews'>Отзывы</NavLink>
                 </nav>
             </div>
-            <small className='footer__copyright'>© Три холма 2020</small>
+            <small className='footer__copyright'>© Три холма {date}</small>
         </footer>
     )
 }

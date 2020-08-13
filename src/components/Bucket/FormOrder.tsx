@@ -90,7 +90,6 @@ const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & 
 
     return (
         <div className='bucket-order'>
-            {/*<h3 className='bucket-order-title'>Оформление заказа</h3>*/}
             <form onSubmit={handleSubmit} className={classes.root}>
                 <div>
                     <Field name='surname' component={renderTextField} label='Ваше имя:' placeholder='Введите имя'/>
@@ -193,7 +192,7 @@ const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & 
                            label='Я согласен на обработку своих персональных данных и принимаю условия Политики конфиденциальности и Пользовательского соглашения'/>
                 </div>
 
-                {!!delivery.order.length && <div className='bucket-order__total'>
+                {delivery.order.length && <div className='bucket-order__total'>
                     <div>Сумма заказа: {delivery.total_price} ₽</div>
                     <div>
                         {

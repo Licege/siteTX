@@ -85,7 +85,7 @@ class BucketContainer extends React.Component<PropsType, StateType> {
         window.scrollTo(0, 0)
     }
 
-    componentDidUpdate( prevProps: Readonly<MapStatePropsType & MapDispatchPropsType>, prevState: Readonly<StateType> ): void {
+    componentDidUpdate( prevProps: Readonly<PropsType>, prevState: Readonly<StateType> ): void {
         if (prevProps.global_settings) {
             if (prevProps.deliveryType !== 'restaurant' && this.props.deliveryType === 'restaurant') {
                 this.setState({saleForPickup: this.props.global_settings.sale_for_pickup})
@@ -112,7 +112,7 @@ class BucketContainer extends React.Component<PropsType, StateType> {
     }
 
     onChange = ( dish: dishType ) => {
-        return ( event: { target: HTMLInputElement; } ) => {
+        return ( event: React.ChangeEvent<HTMLInputElement> ) => {
             let value = event.target.value
             if (value === '') value = '1'
             this.props.changeDishCount(dish, parseInt(value, 10))

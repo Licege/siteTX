@@ -8,12 +8,16 @@ import { getPromosSelector } from '../../redux/selectors/promos'
 export const Promos: React.FC = () => {
     let promos = useSelector(getPromosSelector)
     const dispatch = useDispatch()
+
     useEffect(() => {
         document.title = 'Акции'
+        window.scroll(0, 0)
+    }, [])
+
+    useEffect(() => {
         if (!promos.length) {
             dispatch(requestPromos())
         }
-        window.scroll(0, 0)
     }, [dispatch, promos.length])
 
 

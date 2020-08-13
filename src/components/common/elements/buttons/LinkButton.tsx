@@ -6,7 +6,7 @@ interface IProps {
     to: string
     label: String
     className?: String
-    variant?: 'text' | 'contained' | undefined
+    variant?: 'text' | 'contained'
     color?: 'default' | 'inherit' | 'primary' | 'secondary'
 }
 

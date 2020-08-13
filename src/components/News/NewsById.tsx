@@ -20,6 +20,9 @@ const NewsById: React.FC = () => {
     useEffect(() => {
         document.title = 'Новости'
         window.scrollTo(0, 0)
+    }, [])
+
+    useEffect(() => {
         dispatch(requestCurrentNews(id))
     }, [dispatch, id])
 

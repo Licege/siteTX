@@ -1,9 +1,9 @@
 import React from 'react'
 import { KeyboardDatePicker } from '@material-ui/pickers'
 import { ru } from 'date-fns/locale'
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
+import { createStyles, makeStyles } from '@material-ui/core/styles'
 
-const useStyles = makeStyles(( theme: Theme ) =>
+const useStyles = makeStyles(() =>
     createStyles({
         root: {
             '& .MuiButtonBase-root': {

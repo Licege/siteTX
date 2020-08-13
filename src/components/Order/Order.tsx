@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react'
+import React, { useEffect } from 'react'
 import { IOrder } from '../../types/types'
 import OrderForm from './FormOrder'
 import { orderAPI } from '../../api/api'
@@ -6,7 +6,7 @@ import img from '../../static/img/order_table.jpg'
 
 
 const Order: React.FC = () => {
-    useLayoutEffect(() => {
+    useEffect(() => {
         document.title = 'Заказ столов'
         window.scrollTo(0, 0)
     }, [])

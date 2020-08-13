@@ -16,14 +16,22 @@ type PropsType = {
     reduceCountDish?: ( dish: dishType ) => void
 }
 
-const CardDish: React.FC<PropsType> = ( { dish, order, addToBucket, showDescription = true, shortCard, increaseCountDish, reduceCountDish } ) => {
+const CardDish: React.FC<PropsType> = ( {
+                                            dish,
+                                            order,
+                                            addToBucket,
+                                            showDescription = true,
+                                            shortCard,
+                                            increaseCountDish,
+                                            reduceCountDish,
+                                        } ) => {
     const style = {
         backgroundImage: `url(${dish.imageSrc ? fullLink(dish.imageSrc) : altImg})`,
         backgroundSize: 'cover',
         borderRadius: shortCard ? '4px' : '',
     } as CSSProperties
 
-    const [isOpen, setOpen] = useState(false)
+    const [ isOpen, setOpen ] = useState(false)
 
     const orderedDish = order?.find(d => d.dish_id === dish._id)
 
@@ -32,38 +40,38 @@ const CardDish: React.FC<PropsType> = ( { dish, order, addToBucket, showDescript
             <div className={'card card_item' + (shortCard ? ' -short' : '')}>
                 <div className='card_item-img' style={style} onClick={() => setOpen(true)}/>
                 <div className='card_item__wrapper'>
-                        <h3 className='card_item-title'>{dish.title}</h3>
-                        {showDescription && dish.description &&
-                        <p className='card_item-describe'><b>Описание:</b> {cropText(dish.description, 70)}</p>}
-                        <div className='card_item-action'>
-                            <div className='card_item-info'>
-                                {dish.cost && <p className='card_item-info-price'>{dish.cost} руб.</p>}
-                                {dish.weight && <p className='card_item-info-weight'>{dish.weight} г.</p>}
-                            </div>
-
-                            {dish.is_delivery
-                                ? <div className='card_item-button'>
-                                    {!orderedDish || shortCard
-                                        ? <Button variant='contained' color='primary' onClick={() => addToBucket(dish)}>
-                                            {shortCard ? dish.cost + ' р' : 'Заказать'}
-                                        </Button>
-                                        : <div className='card_item-button__ordered'>
-                                            <Button variant='contained' color='primary'
-                                                    onClick={() => reduceCountDish!(dish)}>
-                                                -
-                                            </Button>
-                                            <span className='value'>{orderedDish?.count}</span>
-                                            <Button variant='contained' color='primary'
-                                                    onClick={() => increaseCountDish!(dish)}>
-                                                +
-                                            </Button>
-                                        </div>}
-                                </div>
-                                : <div className='card_item-no_delivery'>
-                                    Доступно только в ресторане
-                                </div>
-                            }
+                    <h3 className='card_item-title'>{dish.title}</h3>
+                    {showDescription && dish.description &&
+                    <p className='card_item-describe'><b>Описание:</b> {cropText(dish.description, 70)}</p>}
+                    <div className='card_item-action'>
+                        <div className='card_item-info'>
+                            {dish.cost && <p className='card_item-info-price'>{dish.cost} руб.</p>}
+                            {dish.weight && <p className='card_item-info-weight'>{dish.weight} г.</p>}
                         </div>
+
+                        {dish.is_delivery
+                            ? <div className='card_item-button'>
+                                {!orderedDish || shortCard
+                                    ? <Button variant='contained' color='primary' onClick={() => addToBucket(dish)}>
+                                        {shortCard ? dish.cost + ' р' : 'Заказать'}
+                                    </Button>
+                                    : <div className='card_item-button__ordered'>
+                                        <Button variant='contained' color='primary'
+                                                onClick={() => reduceCountDish!(dish)}>
+                                            -
+                                        </Button>
+                                        <span className='value'>{orderedDish?.count}</span>
+                                        <Button variant='contained' color='primary'
+                                                onClick={() => increaseCountDish!(dish)}>
+                                            +
+                                        </Button>
+                                    </div>}
+                            </div>
+                            : <div className='card_item-no_delivery'>
+                                Доступно только в ресторане
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
             <ModalDish dish={dish} open={isOpen} addToBucket={() => addToBucket(dish)} onClose={() => setOpen(false)}/>
