@@ -1,15 +1,12 @@
 import React from 'react'
-import { InjectedFormProps, reduxForm, Field } from 'redux-form'
+import { Field, InjectedFormProps, reduxForm } from 'redux-form'
 import renderTextField from '../../common/elements/RenderTextField'
 import { Button, createStyles, Theme } from '@material-ui/core'
-import { vacancyType } from '../../../types/types'
+import { resumeType } from '../../../types/types'
 import { dateFormParse } from '../../../plugins/helpers'
 import { makeStyles } from '@material-ui/core/styles'
 import BirthdayPicker from '../../common/elements/BirthdayPicker'
 
-interface IProps {
-    vacancies: Array<vacancyType>
-}
 
 const useStyles = makeStyles(( theme: Theme ) =>
     createStyles({
@@ -22,7 +19,7 @@ const useStyles = makeStyles(( theme: Theme ) =>
     }),
 )
 
-const ResumeForm: React.FC<InjectedFormProps & IProps> = ( {handleSubmit} ) => {
+const ResumeForm: React.FC<InjectedFormProps<resumeType>> = ( {handleSubmit} ) => {
     const classes = useStyles()
 
     return (
@@ -60,7 +57,7 @@ const ResumeForm: React.FC<InjectedFormProps & IProps> = ( {handleSubmit} ) => {
     )
 }
 
-let ReduxResumeForm = reduxForm<{}, IProps>({
+let ReduxResumeForm = reduxForm<resumeType>({
     form: 'resume-form',
     enableReinitialize: true,
 })(ResumeForm)

@@ -9,19 +9,19 @@ import { scrollHeight } from '../../plugins/helpers'
 import { categoryType, deliveryType, dishType, RouteParams } from '../../types/types'
 
 type MapStatePropsType = {
-    dish: dishType | {},
-    menu: Array<dishType>,
-    categories: Array<categoryType>,
-    delivery: deliveryType,
+    readonly dish: dishType | {},
+    readonly menu: Array<dishType>,
+    readonly categories: Array<categoryType>,
+    readonly delivery: deliveryType,
 }
 type MapDispatchPropsType = {
     getDish: ( id: number ) => void,
     getMenu: () => void,
     getCategories: () => void,
     getMenuByCategory: ( category: string ) => void,
-    addDishToBucket: ( dish: dishType ) => void
-    increaseDishCount: ( dish: dishType ) => void
-    reduceDishCount: ( dish: dishType ) => void
+    addDishToBucket: ( dish: dishType ) => void,
+    increaseDishCount: ( dish: dishType ) => void,
+    reduceDishCount: ( dish: dishType ) => void,
 }
 type PropsType = MapStatePropsType & MapDispatchPropsType & RouteComponentProps<RouteParams>
 
@@ -93,7 +93,7 @@ class MenuContainer extends React.Component<PropsType> {
     }
 }
 
-let mapStateToProps = ( state: AppStateType ) => {
+let mapStateToProps = ( state: AppStateType ): MapStatePropsType => {
     return {
         dish: state.menuPage.dish,
         menu: state.menuPage.menu,
@@ -101,7 +101,7 @@ let mapStateToProps = ( state: AppStateType ) => {
         delivery: state.bucket.delivery,
     }
 }
-let mapDispatchToProps = ( dispatch: any ) => {
+let mapDispatchToProps = ( dispatch: any ): MapDispatchPropsType => {
     return {
         getDish: ( id: number ) => {
             dispatch(getDish(id))
@@ -127,4 +127,7 @@ let mapDispatchToProps = ( dispatch: any ) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MenuContainer)
+export default connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(
+    mapStateToProps,
+    mapDispatchToProps
+)(MenuContainer)

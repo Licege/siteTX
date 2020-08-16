@@ -43,6 +43,8 @@ interface IMapStateToProps {
     enableReinitialize: boolean
 }
 
+type FormType = PropsType & InjectedFormProps<IMapStateToProps & IDeliveryPost>
+
 const renderFromHelper = ( { touched, error }: any ) => {
     if (!(touched && error)) {
         return
@@ -78,8 +80,7 @@ const useStyles = makeStyles(( theme: Theme ) =>
     }),
 )
 
-
-const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps> & PropsType> = ( props ) => {
+const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps, PropsType> & PropsType> = ( props ) => {
     const { handleSubmit, settings, global_settings, payment_method, delivery_method, saleForPickup, delivery, deliveryPrice } = props
     let defaultDate = new Date()
     defaultDate.setHours(defaultDate.getHours() + 2)

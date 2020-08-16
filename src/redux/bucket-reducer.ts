@@ -8,6 +8,8 @@ import {
 import { bucketAPI } from '../api/api'
 import { getDishesKey } from '../plugins/helpers'
 import { Dispatch } from 'redux'
+import { ThunkAction } from 'redux-thunk'
+import { AppStateType } from './redux-store'
 
 const ADD_DISH = 'BUCKET/ADD_DISH'
 const INCREASE_DISH_COUNT = 'BUCKET/INCREASE_DISH_COUNT'
@@ -34,9 +36,9 @@ let initialState = {
     statusOrder: '',
 }
 
-type initialStateType = typeof initialState;
+export type InitialState = typeof initialState;
 
-const bucketReducer = ( state = initialState, action: ActionType ): initialStateType => {
+const bucketReducer = ( state = initialState, action: ActionType ): InitialState => {
     let count = 0
 
     switch (action.type) {
@@ -194,7 +196,7 @@ type changeOrderStatusACType = {
     status: string
 }
 
-type ActionType =
+export type ActionType =
     addDishACType
     | increaseDishCountACType
     | reduceDishCountACType
@@ -230,25 +232,33 @@ const getDeliveryGlobalSettingsAC = ( settings: deliveryGlobalSettingsType ): ge
     settings,
 })
 
-export const requestDeliverySettings = () => async ( dispatch: Dispatch<ActionType> ) => {
-    let response = await bucketAPI.getDeliverySettings()
-    dispatch(getDeliverySettingsAC(response.data))
+type DispatchType = Dispatch<ActionType>
+export type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionType>
+
+export const requestDeliverySettings = (): ThunkType => {
+    return async ( dispatch: DispatchType ) => {
+        let response = await bucketAPI.getDeliverySettings()
+        dispatch(getDeliverySettingsAC(response.data))
+    }
+}
+export const requestGlobalDeliverySettings = (): ThunkType => {
+    return async ( dispatch: DispatchType ) => {
+        let response = await bucketAPI.getDeliveryGlobalSettings()
+        dispatch(getDeliveryGlobalSettingsAC(response.data))
+    }
 }
 
-export const requestGlobalDeliverySettings = () => async ( dispatch: Dispatch<ActionType> ) => {
-    let response = await bucketAPI.getDeliveryGlobalSettings()
-    dispatch(getDeliveryGlobalSettingsAC(response.data))
-}
-
-export const postOrder = ( order: IDeliveryPost ) => async ( dispatch: Dispatch<ActionType> ) => {
-    let response = await bucketAPI.postOrder(order)
-    console.log(response)
-    if (response.status === 201 || response.status === 200) {
-        dispatch(changeOrderStatusAC('created'))
-        dispatch(changeDeliveryPostedAC(true))
-        dispatch(clearBucketAC())
-    } else {
-        dispatch(changeOrderStatusAC('error'))
+export const postOrder = ( order: IDeliveryPost ): ThunkType => {
+    return async ( dispatch: DispatchType ) => {
+        let response = await bucketAPI.postOrder(order)
+        console.log(response)
+        if (response.status === 201 || response.status === 200) {
+            dispatch(changeOrderStatusAC('created'))
+            dispatch(changeDeliveryPostedAC(true))
+            dispatch(clearBucketAC())
+        } else {
+            dispatch(changeOrderStatusAC('error'))
+        }
     }
 }
 

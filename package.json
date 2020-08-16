@@ -10,7 +10,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "@types/jest": "^24.9.1",
+    "@types/jest": "^26.0.10",
     "@types/node": "^12.12.34",
     "@types/react": "^16.9.32",
     "@types/react-datepicker": "^2.11.0",
@@ -55,7 +55,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "preinstall": "npx npm-force-resolutions"
+    "preinstall": "npx npm-force-resolutions",
+    "jest": "jest",
+    "jest:watch": "jest --watch",
+    "jest:coverage": "jest --coverage"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -74,9 +77,16 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.2",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.3",
+    "enzyme-to-json": "^3.5.0",
+    "identity-obj-proxy": "^3.0.0",
     "minimist": "^1.2.5"
   },
   "resolutions": {
     "minimist": "^1.2.5"
-  }
+  },
+  "repository": "https://github.com/Licege/siteTX.git",
+  "author": "Mark Turgunbaev <gotica-2@mail.ru>",
+  "license": "MIT"
 }

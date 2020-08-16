@@ -48,7 +48,7 @@ type GetCategoriesACType = {
     categories: Array<categoryType>
 }
 
-type ActionType = GetMenuACType | GetMenuByCategoryACType | GetDishACType | GetCategoriesACType;
+export type ActionType = GetMenuACType | GetMenuByCategoryACType | GetDishACType | GetCategoriesACType;
 
 const getMenuAC = ( menu: Array<dishType> ): GetMenuACType => ({ type: GET_MENU, menu })
 const getMenuByCategoryAC = ( menu: Array<dishType> ): GetMenuByCategoryACType => ({ type: GET_MENU_BY_CATEGORY, menu })

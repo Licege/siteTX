@@ -4,7 +4,7 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogActions from '@material-ui/core/DialogActions/DialogActions'
 import Button from '@material-ui/core/Button'
-import { reduxForm, Field, InjectedFormProps } from 'redux-form'
+import { Field, InjectedFormProps, reduxForm } from 'redux-form'
 import renderTextField from '../common/elements/RenderTextField'
 import { TransitionProps } from '@material-ui/core/transitions/transition'
 import Slide from '@material-ui/core/Slide/Slide'
@@ -42,7 +42,10 @@ const useStyles = makeStyles(( theme: Theme ) =>
     }),
 )
 
-const ModalForm: React.FC<InjectedFormProps & IProps> = ( {isOpen, handleClose, handleSubmit} ) => {
+const ModalForm: React.FC<InjectedFormProps<IReview & IMapStateToProps, IProps> & IProps>
+    = ( {
+            isOpen, handleClose, handleSubmit,
+    } ) => {
     const classes = useStyles()
 
     return (

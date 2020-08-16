@@ -17,7 +17,7 @@ const useStyles = makeStyles(( theme: Theme ) =>
     }),
 )
 
-const FormContacts: React.FC<InjectedFormProps> = ( {handleSubmit} ) => {
+const FormContacts: React.FC<InjectedFormProps<reviewType>> = ( {handleSubmit} ) => {
     const classes = useStyles()
 
     return (

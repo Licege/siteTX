@@ -39,7 +39,7 @@ const useStyles = makeStyles(( theme: Theme ) =>
     }),
 )
 
-const FormOrder: React.FC<InjectedFormProps> = ( {handleSubmit} ) => {
+const FormOrder: React.FC<InjectedFormProps<IOrder>> = ( {handleSubmit} ) => {
     const classes = useStyles()
 
     return (

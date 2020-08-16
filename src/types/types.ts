@@ -1,5 +1,3 @@
-import * as H from 'history'
-
 export type authProfileType = {
     email: string
     password: string
@@ -183,4 +181,15 @@ export type deliveryGlobalSettingsType = {
 
 export type RouteParams = {
     id: string,
+}
+
+export enum ResultCodes {
+    Success = 0,
+    Error = 1
+}
+
+export type ResponseType = {
+    data: any,
+    resultCode: ResultCodes,
+    messages: string[],
 }
