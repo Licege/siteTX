@@ -236,7 +236,7 @@ type DispatchType = Dispatch<ActionType>
 export type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionType>
 
 export const requestDeliverySettings = (): ThunkType => {
-    return async ( dispatch: DispatchType ) => {
+    return async ( dispatch ) => {
         let response = await bucketAPI.getDeliverySettings()
         dispatch(getDeliverySettingsAC(response.data))
     }
