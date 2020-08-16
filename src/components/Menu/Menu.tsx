@@ -7,6 +7,7 @@ interface IProps {
     menu: Array<dishType>,
     categories: Array<categoryType>
     order: Array<orderDishType>
+    mobileMenuStatus: boolean
 
     addToBucket: ( dish: dishType ) => void
     increaseCountDish: ( dish: dishType ) => void
@@ -15,13 +16,16 @@ interface IProps {
 
 type CategoriesFeedType = {
     categories: Array<categoryType>
+    mobileMenuStatus: boolean
 }
 
-const CategoriesFeed = ( { categories }: CategoriesFeedType ): JSX.Element => (
-    <ul className='menu-feed'>
+const CategoriesFeed = ( { categories, mobileMenuStatus }: CategoriesFeedType ): JSX.Element => (
+    <ul className={'menu-feed' + (mobileMenuStatus ? '' : ' -fixed')}>
         {categories.map(category => (
-            <li className='menu-feed-item' key={category._id}>
-                <NavLink to={'/menu/' + category.title_en}
+            <li key={category._id}>
+                <NavLink activeClassName='-active'
+                         className='menu-feed-item'
+                         to={'/menu/' + category.title_en}
                 >
                     {category.title}
                 </NavLink>
@@ -30,7 +34,15 @@ const CategoriesFeed = ( { categories }: CategoriesFeedType ): JSX.Element => (
     </ul>
 )
 
-const Menu: React.FC<IProps> = ( { menu, categories, order, addToBucket, increaseCountDish, reduceCountDish } ) => {
+const Menu: React.FC<IProps> = ( {
+                                     menu,
+                                     categories,
+                                     order,
+                                     mobileMenuStatus,
+                                     addToBucket,
+                                     increaseCountDish,
+                                     reduceCountDish,
+                                 } ) => {
     return (
         <div className='menu'>
             <div className='menu-categories' id='menu-categories-navbar'>
@@ -45,7 +57,7 @@ const Menu: React.FC<IProps> = ( { menu, categories, order, addToBucket, increas
 
             {menu.length ?
                 <div className='menu-wrapper'>
-                    <CategoriesFeed categories={categories}/>
+                    <CategoriesFeed categories={categories} mobileMenuStatus={mobileMenuStatus} />
                     <h1 className='menu-wrapper-header'>~ Меню ~</h1>
                     <div className='menu-wrapper-content'>
                         {menu.map(( dish ) => <CardDish dish={dish}

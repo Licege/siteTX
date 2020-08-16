@@ -13,6 +13,7 @@ type MapStatePropsType = {
     readonly menu: Array<dishType>,
     readonly categories: Array<categoryType>,
     readonly delivery: deliveryType,
+    readonly mobileMenuStatus: boolean,
 }
 type MapDispatchPropsType = {
     getDish: ( id: number ) => void,
@@ -84,9 +85,17 @@ class MenuContainer extends React.Component<PropsType> {
     }
 
     render() {
-        return <Menu menu={this.props.menu}
-                     categories={this.props.categories}
-                     order={this.props.delivery?.order}
+        let {
+            menu,
+            delivery,
+            categories,
+            mobileMenuStatus
+        } = this.props
+
+        return <Menu menu={menu}
+                     categories={categories}
+                     order={delivery?.order}
+                     mobileMenuStatus={mobileMenuStatus}
                      addToBucket={this.addToBucket}
                      increaseCountDish={this.increaseCountDish}
                      reduceCountDish={this.reduceCountDish}/>
@@ -99,6 +108,7 @@ let mapStateToProps = ( state: AppStateType ): MapStatePropsType => {
         menu: state.menuPage.menu,
         categories: state.menuPage.categories,
         delivery: state.bucket.delivery,
+        mobileMenuStatus: state.app.isOpen,
     }
 }
 let mapDispatchToProps = ( dispatch: any ): MapDispatchPropsType => {

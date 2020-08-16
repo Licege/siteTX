@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
 import ButtonBucket from '../Bucket/ButtonBucket'
@@ -7,10 +7,13 @@ import AuthButton from '../Auth/AuthButton'
 import { getCategoriesSelector } from '../../redux/selectors/menu'
 import { getCategories } from '../../redux/menu-reducer'
 import logo from '../../static/img/logo.png'
+import { getMobileMenuStatusSelector } from '../../redux/selectors/app'
+import { toggleMobileMenu } from '../../redux/app-reducer'
 
 
 const Header: React.FC = () => {
     let categories = useSelector(getCategoriesSelector)
+    let isOpenMobileMenu = useSelector(getMobileMenuStatusSelector)
     const dispatch = useDispatch()
     useEffect(() => {
         if (!categories.length) {
@@ -18,17 +21,17 @@ const Header: React.FC = () => {
         }
     }, [dispatch, categories])
 
-    const [active, setActive] = useState(false)
-
     const toggle = () => {
-        setActive(!active)
-        active ? document.body.classList.remove('scroll_block') : document.body.classList.add('scroll_block')
+        dispatch(toggleMobileMenu())
+        isOpenMobileMenu
+            ? document.body.classList.remove('scroll_block')
+            : document.body.classList.add('scroll_block')
     }
 
     return (
-        <header className={'header' + (active ? ' -active' : '')}>
-            <div className={active ? 'burger -active' : 'burger'} onClick={toggle}><span/></div>
-            <MobileMenu isOpen={active} categories={categories} toggle={toggle}/>
+        <header className={'header' + (isOpenMobileMenu ? ' -active' : '')}>
+            <div className={isOpenMobileMenu ? 'burger -active' : 'burger'} onClick={toggle}><span/></div>
+            <MobileMenu isOpen={isOpenMobileMenu} categories={categories} toggle={toggle}/>
             <Link to="/"><img className='header-logo' src={logo} alt=''/></Link>
             <nav className='header-navbar'>
                 <ul>

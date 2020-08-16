@@ -11,6 +11,7 @@ import storage from 'redux-persist/lib/storage'
 import reviewsReducer from './reviews-reducer'
 import authReducer from './auth-reducer'
 import promosReducer from './promos-reducer'
+import appReducer from './app-reducer'
 
 const persistConfig = {
     key: 'bucket',
@@ -27,6 +28,7 @@ let rootReducer = combineReducers({
     bucket: bucketReducer,
     reviewsPage: reviewsReducer,
     promosPage: promosReducer,
+    app: appReducer,
     form: formReducer,
 })
 
