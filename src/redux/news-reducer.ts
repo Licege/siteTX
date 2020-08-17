@@ -1,9 +1,8 @@
 import { newsType } from '../types/types'
 import { newsAPI } from '../api/api'
 import { Dispatch } from 'redux'
+import { InferActionsTypes } from './redux-store'
 
-const GET_NEWS = 'NEWS/GET_NEWS'
-const GET_CURRENT_NEWS = 'NEWS/GET_CURRENT_NEWS'
 
 let initialState = {
     currentNews: {} as newsType,
@@ -13,45 +12,36 @@ let initialState = {
 
 type InitialStateType = typeof initialState;
 
-const NewsReducer = ( state = initialState, action: ActionType ): InitialStateType => {
+const NewsReducer = ( state = initialState, action: ActionsTypes ): InitialStateType => {
     switch (action.type) {
-        case GET_NEWS:
+        case 'NEWS/GET_NEWS':
             return { ...state, news: action.news, totalCount: action.total_count }
-        case GET_CURRENT_NEWS:
+        case 'NEWS/GET_CURRENT_NEWS':
             return { ...state, currentNews: action.currentNews }
         default:
             return state
     }
 }
 
-type getCurrentNewsACType = {
-    type: typeof GET_CURRENT_NEWS,
-    currentNews: newsType
+type ActionsTypes = InferActionsTypes<typeof actions>
+
+const actions = {
+    getNews: ( news: Array<newsType>, total_count: number ) => ({
+        type: 'NEWS/GET_NEWS',
+        news,
+        total_count,
+    } as const),
+    getCurrentNews: ( currentNews: newsType ) => ({ type: 'NEWS/GET_CURRENT_NEWS', currentNews } as const),
 }
 
-type getNewsACType = {
-    type: typeof GET_NEWS,
-    news: Array<newsType>
-    total_count: number
-}
-
-type ActionType = getNewsACType | getCurrentNewsACType
-
-const getNewsAC = ( news: Array<newsType>, total_count: number ): getNewsACType => ({
-    type: GET_NEWS,
-    news,
-    total_count,
-})
-const getCurrentNewsAC = ( currentNews: newsType ): getCurrentNewsACType => ({ type: GET_CURRENT_NEWS, currentNews })
-
-export const requestNews = ( page?: number | undefined ) => async ( dispatch: Dispatch<ActionType> ) => {
+export const requestNews = ( page?: number ) => async ( dispatch: Dispatch<ActionsTypes> ) => {
     let response = await newsAPI.getNews(page)
-    dispatch(getNewsAC(response.data.news, response.data.total_count))
+    dispatch(actions.getNews(response.data.news, response.data.total_count))
 }
 
-export const requestCurrentNews = ( id: string ) => async ( dispatch: Dispatch<ActionType> ) => {
+export const requestCurrentNews = ( id: string ) => async ( dispatch: Dispatch<ActionsTypes> ) => {
     let response = await newsAPI.getNewsById(id)
-    dispatch(getCurrentNewsAC(response.data))
+    dispatch(actions.getCurrentNews(response.data))
 }
 
 export default NewsReducer

@@ -1,8 +1,7 @@
 import { contactsType } from '../types/types'
 import { contactsAPI } from '../api/api'
 import { Dispatch } from 'redux'
-
-const GET_CONTACTS = 'GET_CONTACTS'
+import { InferActionsTypes } from './redux-store'
 
 let initialState = {
     contacts: {} as contactsType,
@@ -10,25 +9,24 @@ let initialState = {
 
 type initialStateType = typeof initialState;
 
-const contactsReducer = ( state = initialState, action: getContactsACType ): initialStateType => {
+const contactsReducer = ( state = initialState, action: ActionsTypes ): initialStateType => {
     switch (action.type) {
-        case GET_CONTACTS:
+        case 'CONTACTS/GET_CONTACTS':
             return { contacts: action.contacts }
         default:
             return state
     }
 }
 
-type getContactsACType = {
-    type: typeof GET_CONTACTS,
-    contacts: contactsType
+type ActionsTypes = InferActionsTypes<typeof actions>
+
+const actions = {
+    getContacts: ( contacts: contactsType ) => ({ type: 'CONTACTS/GET_CONTACTS', contacts } as const),
 }
 
-export const getContactsAC = ( contacts: contactsType ): getContactsACType => ({ type: GET_CONTACTS, contacts })
-
-export const getContacts = () => async ( dispatch: Dispatch<getContactsACType> ) => {
+export const getContacts = () => async ( dispatch: Dispatch<ActionsTypes> ) => {
     let response = await contactsAPI.getContacts()
-    dispatch(getContactsAC(response.data))
+    dispatch(actions.getContacts(response.data))
 }
 
 export default contactsReducer

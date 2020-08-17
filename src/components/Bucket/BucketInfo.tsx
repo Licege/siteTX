@@ -48,18 +48,18 @@ const BucketInfo: React.FC<IProps> = ({isOpen, toggle}) => {
                                 <div className='shopping_cart-info-content-list-item' key={dish._id}>
                                     <div className='shopping_cart-info-content-list-item-title'>{dish.title}</div>
                                     <div className='shopping_cart-info-content-list-item-count'>
-                                        <span className='custom_subtract' onClick={reduceDishCount.bind(null, dish)}/>
+                                        <span className='custom_subtract' onClick={() => reduceDishCount(dish)}/>
                                         <input className='shopping_cart-info-content-list-item-count-input'
                                                onChange={onChange(dish)}
                                                inputMode='numeric'
                                                value={getDishesKey(orders, dish._id, 'count')}/>
-                                        <span className='custom_add' onClick={increaseDishCount.bind(null, dish)}/>
+                                        <span className='custom_add' onClick={() => increaseDishCount(dish)}/>
                                     </div>
                                     <div
                                         className='shopping_cart-info-content-list-item-price'>{getDishesKey(orders, dish._id, 'cost') * getDishesKey(orders, dish._id, 'count') + ' ₽'}</div>
                                     <div className='shopping_cart-info-content-list-item-remove'><span
                                         className='custom_close'
-                                        onClick={removeDish.bind(null, dish._id)}/></div>
+                                        onClick={() => removeDish(dish._id)}/></div>
                                 </div>
                             ))}
                         </div>

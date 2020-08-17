@@ -1,10 +1,7 @@
 import { authProfileType, authTokenType } from '../types/types'
 import { authAPI } from '../api/api'
 import { Dispatch } from 'redux'
-
-const REGISTRATION = 'AUTH/REGISTRATION'
-const LOGIN = 'AUTH/LOGIN'
-const LOGOUT = 'AUTH/LOGOUT'
+import { InferActionsTypes } from './redux-store'
 
 let initialState = {
     accessToken: localStorage.getItem('accessToken'),
@@ -14,16 +11,16 @@ let initialState = {
 
 const authReducer = ( state = initialState, action: ActionType ) => {
     switch (action.type) {
-        case REGISTRATION:
+        case 'AUTH/REGISTRATION':
             return state
-        case LOGIN:
+        case 'AUTH/LOGIN':
             localStorage.setItem('accessToken', action.data.accessToken)
             localStorage.setItem('refreshToken', action.data.refreshToken)
             return {
                 ...state,
                 isAuthenticated: true,
             }
-        case LOGOUT:
+        case 'AUTH/LOGOUT':
             localStorage.clear()
             return { ...state, isAuthenticated: false }
         default:
@@ -31,32 +28,22 @@ const authReducer = ( state = initialState, action: ActionType ) => {
     }
 }
 
-type registrationACType = {
-    type: typeof REGISTRATION
-    data: authTokenType
-}
-type loginACType = {
-    type: typeof LOGIN
-    data: authTokenType
-}
-type logoutACType = {
-    type: typeof LOGOUT
-}
+type ActionType = InferActionsTypes<typeof actions>
 
-type ActionType = registrationACType | loginACType | logoutACType
-
-const registrationAC = ( data: authTokenType ): registrationACType => ({ type: REGISTRATION, data })
-const loginAC = ( data: authTokenType ): loginACType => ({ type: LOGIN, data })
-export const logoutAC = (): logoutACType => ({ type: LOGOUT })
+export const actions = {
+    registration: ( data: authTokenType ) => ({ type: 'AUTH/REGISTRATION', data } as const),
+    login: ( data: authTokenType ) => ({ type: 'AUTH/LOGIN', data } as const),
+    logout: () => ({ type: 'AUTH/LOGOUT' } as const)
+}
 
 export const registration = ( profile: authProfileType ) => async ( dispatch: Dispatch<ActionType> ) => {
     let response = await authAPI.registration(profile)
-    dispatch(registrationAC(response.data))
+    dispatch(actions.registration(response.data))
 }
 
 export const login = ( profile: authProfileType ) => async ( dispatch: Dispatch<ActionType> ) => {
     let response = await authAPI.login(profile)
-    dispatch(loginAC(response.data))
+    dispatch(actions.login(response.data))
 }
 
 export const refresh = () => async ( dispatch: Dispatch<ActionType> ) => {

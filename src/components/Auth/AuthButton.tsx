@@ -4,7 +4,7 @@ import {AppStateType} from '../../redux/redux-store'
 import AuthModal from './AuthModal'
 import {Button} from '@material-ui/core'
 import {authProfileType, authRegProfileType} from '../../types/types'
-import {registration, login, logoutAC} from '../../redux/auth-reducer'
+import {registration, login, actions} from '../../redux/auth-reducer'
 
 
 const AuthButton = () => {
@@ -14,7 +14,7 @@ const AuthButton = () => {
         dispatch(login(profile))
     }, [dispatch])
     const logoutFunc = useCallback(() => {
-        dispatch(logoutAC())
+        dispatch(actions.logout())
     }, [dispatch])
     const registrationFunc = useCallback((profile: authRegProfileType) => {
         dispatch(registration(profile))

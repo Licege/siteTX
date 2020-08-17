@@ -1,9 +1,9 @@
+import { Dispatch } from 'redux'
+import { ThunkAction } from 'redux-thunk'
 import { resumeType, vacancyType } from '../types/types'
 import { vacanciesAPI } from '../api/api'
-import { Dispatch } from 'redux'
+import { AppStateType, InferActionsTypes } from './redux-store'
 
-const GET_VACANCIES = 'VACANCIES/GET_VACANCIES'
-const SAVE_RESUME = 'VACANCIES/SAVE_RESUME'
 
 let initialState = {
     vacancies: [] as Array<vacancyType>,
@@ -12,38 +12,36 @@ let initialState = {
 
 type InitialStateType = typeof initialState;
 
-const vacanciesReducer = ( state = initialState, action: ActionType ): InitialStateType => {
+const vacanciesReducer = ( state = initialState, action: ActionsTypes ): InitialStateType => {
     switch (action.type) {
-        case GET_VACANCIES:
+        case 'VACANCIES/GET_VACANCIES':
             return { ...state, vacancies: action.vacancies }
         default:
             return state
     }
 }
 
-type GetVacanciesACType = {
-    type: typeof GET_VACANCIES
-    vacancies: Array<vacancyType>
+type ActionsTypes = InferActionsTypes<typeof actions>
+
+const actions = {
+    getVacancies: ( vacancies: Array<vacancyType> ) => ({ type: 'VACANCIES/GET_VACANCIES', vacancies } as const),
+    saveResume: ( resume: resumeType ) => ({ type: 'VACANCIES/SAVE_RESUME', resume } as const),
 }
 
-type SaveResumeACType = {
-    type: typeof SAVE_RESUME
-    resume: resumeType
+type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>
+
+export const getVacancies = (): ThunkType => {
+    return async ( dispatch: Dispatch<ActionsTypes> ) => {
+        let response = await vacanciesAPI.getVacancies()
+        dispatch(actions.getVacancies(response.data))
+    }
 }
 
-type ActionType = GetVacanciesACType | SaveResumeACType
-
-const getVacanciesAC = ( vacancies: Array<vacancyType> ): GetVacanciesACType => ({ type: GET_VACANCIES, vacancies })
-const saveResumeAC = ( resume: resumeType ): SaveResumeACType => ({ type: SAVE_RESUME, resume })
-
-export const getVacancies = () => async ( dispatch: Dispatch<ActionType> ) => {
-    let response = await vacanciesAPI.getVacancies()
-    dispatch(getVacanciesAC(response.data))
-}
-
-export const postResume = ( resume: resumeType ) => async ( dispatch: Dispatch<ActionType> ) => {
-    await vacanciesAPI.postResume(resume)
-    dispatch(saveResumeAC(resume))
+export const postResume = ( resume: resumeType ): ThunkType => {
+    return async ( dispatch: Dispatch<ActionsTypes> ) => {
+        await vacanciesAPI.postResume(resume)
+        dispatch(actions.saveResume(resume))
+    }
 }
 
 export default vacanciesReducer

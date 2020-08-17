@@ -1,18 +1,18 @@
 import React from 'react'
-import { reduxForm, Field, InjectedFormProps, FormSection, formValueSelector } from 'redux-form'
+import { Field, FormSection, formValueSelector, InjectedFormProps, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { deliveryGlobalSettingsType, deliverySettingsType, deliveryType, IDeliveryPost } from '../../types/types'
 import renderTextField from '../common/elements/RenderTextField'
 import validate from './Validate'
 import {
+    Button,
+    createStyles,
     FormControl,
     FormHelperText,
     InputLabel,
-    RadioGroup,
     Radio,
-    Button,
+    RadioGroup,
     Theme,
-    createStyles,
 } from '@material-ui/core'
 import Select from '@material-ui/core/Select'
 import renderCheckbox from '../common/elements/RenderCheckbox'
@@ -42,8 +42,6 @@ interface IMapStateToProps {
     time_delivery: Date
     enableReinitialize: boolean
 }
-
-type FormType = PropsType & InjectedFormProps<IMapStateToProps & IDeliveryPost>
 
 const renderFromHelper = ( { touched, error }: any ) => {
     if (!(touched && error)) {
@@ -80,7 +78,9 @@ const useStyles = makeStyles(( theme: Theme ) =>
     }),
 )
 
-const FormOrder: React.FC<InjectedFormProps<IDeliveryPost & IMapStateToProps, PropsType> & PropsType> = ( props ) => {
+type FormType = InjectedFormProps<IMapStateToProps & IDeliveryPost, PropsType> & PropsType
+
+const FormOrder: React.FC<FormType> = ( props ) => {
     const { handleSubmit, settings, global_settings, payment_method, delivery_method, saleForPickup, delivery, deliveryPrice } = props
     let defaultDate = new Date()
     defaultDate.setHours(defaultDate.getHours() + 2)

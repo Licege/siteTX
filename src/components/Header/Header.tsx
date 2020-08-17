@@ -8,7 +8,7 @@ import { getCategoriesSelector } from '../../redux/selectors/menu'
 import { getCategories } from '../../redux/menu-reducer'
 import logo from '../../static/img/logo.png'
 import { getMobileMenuStatusSelector } from '../../redux/selectors/app'
-import { toggleMobileMenu } from '../../redux/app-reducer'
+import { actions } from '../../redux/app-reducer'
 
 
 const Header: React.FC = () => {
@@ -22,7 +22,7 @@ const Header: React.FC = () => {
     }, [dispatch, categories])
 
     const toggle = () => {
-        dispatch(toggleMobileMenu())
+        dispatch(actions.toggleMobileMenu())
         isOpenMobileMenu
             ? document.body.classList.remove('scroll_block')
             : document.body.classList.add('scroll_block')
