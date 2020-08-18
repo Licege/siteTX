@@ -1,7 +1,7 @@
 import { InferActionsTypes } from './redux-store'
 
 let initialState = {
-    isOpen: false
+    isOpen: false,
 }
 
 type InitialState = typeof initialState
@@ -17,7 +17,7 @@ const appReducer = (state = initialState, action: ActionType): InitialState => {
 
 type ActionType = InferActionsTypes<typeof actions>
 export const actions = {
-    toggleMobileMenu: () => ({ type: 'APP/TOGGLE_MOBILE_MENU' } as const)
+    toggleMobileMenu: () => ({ type: 'APP/TOGGLE_MOBILE_MENU' } as const),
 }
 
 export default appReducer

@@ -9,7 +9,7 @@ let initialState = {
     isAuthenticated: !!localStorage.getItem('accessToken'),
 }
 
-const authReducer = ( state = initialState, action: ActionType ) => {
+const authReducer = (state = initialState, action: ActionType) => {
     switch (action.type) {
         case 'AUTH/REGISTRATION':
             return state
@@ -31,22 +31,22 @@ const authReducer = ( state = initialState, action: ActionType ) => {
 type ActionType = InferActionsTypes<typeof actions>
 
 export const actions = {
-    registration: ( data: authTokenType ) => ({ type: 'AUTH/REGISTRATION', data } as const),
-    login: ( data: authTokenType ) => ({ type: 'AUTH/LOGIN', data } as const),
-    logout: () => ({ type: 'AUTH/LOGOUT' } as const)
+    registration: (data: authTokenType) => ({ type: 'AUTH/REGISTRATION', data } as const),
+    login: (data: authTokenType) => ({ type: 'AUTH/LOGIN', data } as const),
+    logout: () => ({ type: 'AUTH/LOGOUT' } as const),
 }
 
-export const registration = ( profile: authProfileType ) => async ( dispatch: Dispatch<ActionType> ) => {
+export const registration = (profile: authProfileType) => async (dispatch: Dispatch<ActionType>) => {
     let response = await authAPI.registration(profile)
     dispatch(actions.registration(response.data))
 }
 
-export const login = ( profile: authProfileType ) => async ( dispatch: Dispatch<ActionType> ) => {
+export const login = (profile: authProfileType) => async (dispatch: Dispatch<ActionType>) => {
     let response = await authAPI.login(profile)
     dispatch(actions.login(response.data))
 }
 
-export const refresh = () => async ( dispatch: Dispatch<ActionType> ) => {
+export const refresh = () => async (dispatch: Dispatch<ActionType>) => {
     await authAPI.refresh()
 }
 

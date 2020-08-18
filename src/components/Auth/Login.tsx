@@ -6,9 +6,9 @@ import validate from './LoginValidate'
 import { authProfileType } from '../../types/types'
 
 
-const Login: React.FC<InjectedFormProps<authProfileType>> = ( {
-      handleSubmit,
-  } ) => {
+const Login: React.FC<InjectedFormProps<authProfileType>> = ({
+                                                                 handleSubmit,
+                                                             }) => {
     return (
         <form className='form_login' onSubmit={handleSubmit}>
             <Field className='form_login__field'

@@ -26,9 +26,9 @@ import Resume from './components/Vacancancies/Resume/Resume'
 
 const App = () => {
     const dispatch = useDispatch()
-    const contacts = useSelector(( state: AppStateType ) => state.contacts.contacts)
-    const refresh: any = useCallback(() => dispatch(refreshAction()), [ dispatch ])
-    const getContacts: any = useCallback(() => dispatch(getContactsAction()), [ dispatch ])
+    const contacts = useSelector((state: AppStateType) => state.contacts.contacts)
+    const refresh: any = useCallback(() => dispatch(refreshAction()), [dispatch])
+    const getContacts: any = useCallback(() => dispatch(getContactsAction()), [dispatch])
 
     if (localStorage.getItem('accessToken') && localStorage.getItem('refreshToken')) {
         refresh()
@@ -38,7 +38,7 @@ const App = () => {
 
     let location = useLocation()
 
-    const transitions = useTransition(location, ( location: any ) => location.pathname, {
+    const transitions = useTransition(location, (location: any) => location.pathname, {
         from: {
             opacity: 0.4,
             position: 'absolute',
@@ -53,9 +53,9 @@ const App = () => {
     return (
         <div className='app-wrapper'>
             <Header/>
-            {transitions.map(( { item, props: transition, key } ) => (
+            {transitions.map(({ item, props: transition, key }) => (
                 <animated.div key={key} style={transition}>
-                <div className='app-wrapper-content'>
+                    <div className='app-wrapper-content'>
                         <Switch location={item}>
                             <Route exact path='/' component={Home}/>
                             <Route path='/menu/:id?' component={MenuContainer}/>
@@ -73,8 +73,8 @@ const App = () => {
                             <Route exact path='/actions/:id' component={Promo}/>
                             <Route component={Error404}/>
                         </Switch>
-                    <Footer/>
-                </div>
+                        <Footer/>
+                    </div>
                 </animated.div>
             ))}
         </div>

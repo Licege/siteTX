@@ -12,7 +12,7 @@ let initialState = {
 
 type InitialStateType = typeof initialState;
 
-const vacanciesReducer = ( state = initialState, action: ActionsTypes ): InitialStateType => {
+const vacanciesReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
         case 'VACANCIES/GET_VACANCIES':
             return { ...state, vacancies: action.vacancies }
@@ -24,21 +24,21 @@ const vacanciesReducer = ( state = initialState, action: ActionsTypes ): Initial
 type ActionsTypes = InferActionsTypes<typeof actions>
 
 const actions = {
-    getVacancies: ( vacancies: Array<vacancyType> ) => ({ type: 'VACANCIES/GET_VACANCIES', vacancies } as const),
-    saveResume: ( resume: resumeType ) => ({ type: 'VACANCIES/SAVE_RESUME', resume } as const),
+    getVacancies: (vacancies: Array<vacancyType>) => ({ type: 'VACANCIES/GET_VACANCIES', vacancies } as const),
+    saveResume: (resume: resumeType) => ({ type: 'VACANCIES/SAVE_RESUME', resume } as const),
 }
 
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>
 
 export const getVacancies = (): ThunkType => {
-    return async ( dispatch: Dispatch<ActionsTypes> ) => {
+    return async (dispatch: Dispatch<ActionsTypes>) => {
         let response = await vacanciesAPI.getVacancies()
         dispatch(actions.getVacancies(response.data))
     }
 }
 
-export const postResume = ( resume: resumeType ): ThunkType => {
-    return async ( dispatch: Dispatch<ActionsTypes> ) => {
+export const postResume = (resume: resumeType): ThunkType => {
+    return async (dispatch: Dispatch<ActionsTypes>) => {
         await vacanciesAPI.postResume(resume)
         dispatch(actions.saveResume(resume))
     }

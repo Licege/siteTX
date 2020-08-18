@@ -1,13 +1,10 @@
 import React from 'react'
-import {fullLink, getDishesKey} from '../../plugins/helpers'
+import { fullLink, getDishesKey } from '../../plugins/helpers'
 import altImg from '../../static/img/dish.svg'
-import {Button} from '@material-ui/core'
+import { Button } from '@material-ui/core'
 import LinkButton from '../common/elements/buttons/LinkButton'
-import {SaucesBlock} from './SaucesBlock'
-import {
-    deliveryType,
-    dishType,
-} from '../../types/types'
+import { SaucesBlock } from './SaucesBlock'
+import { deliveryType, dishType } from '../../types/types'
 
 type PropsType = {
     dishes: Array<dishType>

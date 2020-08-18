@@ -10,7 +10,7 @@ interface IProps {
     color?: 'default' | 'inherit' | 'primary' | 'secondary'
 }
 
-const LinkButton: React.FC<IProps> = ( {to, label, className, variant, color} ) => (
+const LinkButton: React.FC<IProps> = ({ to, label, className, variant, color }) => (
     <div className={className ? `Link-Button ${className}` : 'Link-Button'}>
         <Link to={to}>
             <Button variant={variant ? variant : 'outlined'} color={color}>

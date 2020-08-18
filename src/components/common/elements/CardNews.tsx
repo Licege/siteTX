@@ -9,7 +9,7 @@ type PropsType = {
     news: newsType
 }
 
-const CardNews: React.FC<PropsType> = ( {news} ) => (
+const CardNews: React.FC<PropsType> = ({ news }) => (
     <div className='card_news'>
         <div className='card'>
             <div className='card-body card_news__wrapper'>

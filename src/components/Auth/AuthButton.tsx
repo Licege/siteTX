@@ -1,10 +1,10 @@
-import React, {useCallback, useState} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
-import {AppStateType} from '../../redux/redux-store'
+import React, { useCallback, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppStateType } from '../../redux/redux-store'
 import AuthModal from './AuthModal'
-import {Button} from '@material-ui/core'
-import {authProfileType, authRegProfileType} from '../../types/types'
-import {registration, login, actions} from '../../redux/auth-reducer'
+import { Button } from '@material-ui/core'
+import { authProfileType, authRegProfileType } from '../../types/types'
+import { actions, login, registration } from '../../redux/auth-reducer'
 
 
 const AuthButton = () => {

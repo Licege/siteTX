@@ -1,33 +1,33 @@
-import React, {useCallback} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
-import {AppStateType} from '../../redux/redux-store'
-import {dishType} from '../../types/types'
-import {changeDishCountAC, increaseDishCountAC, reduceDishCountAC, removeDishAC} from '../../redux/bucket-reducer'
-import {getDishesKey} from '../../plugins/helpers'
-import {NavLink} from 'react-router-dom'
+import React, { useCallback } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppStateType } from '../../redux/redux-store'
+import { dishType } from '../../types/types'
+import { getDishesKey } from '../../plugins/helpers'
+import { NavLink } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
+import { actions } from '../../redux/bucket-reducer'
 
 interface IProps {
     isOpen: boolean
     toggle: () => void
 }
 
-const BucketInfo: React.FC<IProps> = ({isOpen, toggle}) => {
+const BucketInfo: React.FC<IProps> = ({ isOpen, toggle }) => {
     const orders = useSelector((state: AppStateType) => state.bucket.delivery.order)
     const dishes = useSelector((state: AppStateType) => state.bucket.orderedDishes)
     const dispatch = useDispatch()
 
     const reduceDishCount = useCallback((dish: dishType) => {
-        dispatch(reduceDishCountAC(dish))
+        dispatch(actions.reduceDishCount(dish))
     }, [dispatch])
     const changeDishCount = useCallback((dish: dishType, count: number) => {
-        dispatch(changeDishCountAC(dish, count))
+        dispatch(actions.changeDishCount(dish, count))
     }, [dispatch])
     const increaseDishCount = useCallback((dish: dishType) => {
-        dispatch(increaseDishCountAC(dish))
+        dispatch(actions.increaseDishCount(dish))
     }, [dispatch])
     const removeDish = useCallback((id: string) => {
-        dispatch(removeDishAC(id))
+        dispatch(actions.removeDish(id))
     }, [dispatch])
 
     const onChange = (dish: dishType) => {

@@ -6,6 +6,53 @@
   margin-top: 60px;
   overflow: hidden;
 
+  &-feed {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 90;
+    list-style: none;
+    overflow-x: auto;
+    height: 50px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid darkgrey;
+    background-color: #fff;
+
+    &-item {
+      margin-right: 16px;
+      margin-bottom: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      user-select: none;
+      color: $brand-brown;
+      text-decoration: none;
+
+      &.-active {
+        border-bottom: 2px solid;
+      }
+
+      &:hover {
+        color: goldenrod;
+        text-decoration: none;
+      }
+    }
+
+    &.-fixed {
+      position: fixed;
+      top: 58px;
+      left: 0;
+      right: 0;
+    }
+
+    &::-webkit-scrollbar {
+      height: 0;
+    }
+
+    @include media-breakpoint-down(md) {
+      display: flex;
+    }
+  }
+
   &-categories {
     position: fixed;
     padding-top: 8px;
@@ -82,6 +129,7 @@
 
     @include media-breakpoint-down(md) {
       padding-left: 0;
+      padding-top: 60px;
     }
   }
 

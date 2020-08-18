@@ -8,10 +8,10 @@ import {
     IDeliveryPost,
 } from '../../types/types'
 import FormOrder from './FormOrder'
-import {Breadcrumbs, Chip, Theme, withStyles} from '@material-ui/core'
-import {Link} from 'react-router-dom'
-import {ShowOrder} from './ShowOrder'
-import {FinishOrder} from './FinishOrder'
+import { Breadcrumbs, Chip, Theme, withStyles } from '@material-ui/core'
+import { Link } from 'react-router-dom'
+import { ShowOrder } from './ShowOrder'
+import { FinishOrder } from './FinishOrder'
 
 type PropsType = {
     dishes: Array<dishType>

@@ -8,13 +8,13 @@ interface IProps {
     promo: promoType
 }
 
-const showMore = ( id: string, history: any ) => {
+const showMore = (id: string, history: any) => {
     return () => {
         return history.push(`/actions/${id}`)
     }
 }
 
-const CardPromo: React.FC<IProps> = ( {promo} ) => {
+const CardPromo: React.FC<IProps> = ({ promo }) => {
     const style = {
         backgroundImage: `url(${promo.imageSrc ? fullLink(promo.imageSrc) : altImg})`,
         backgroundSize: 'cover',

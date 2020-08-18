@@ -43,7 +43,7 @@ interface IMapStateToProps {
     enableReinitialize: boolean
 }
 
-const renderFromHelper = ( { touched, error }: any ) => {
+const renderFromHelper = ({ touched, error }: any) => {
     if (!(touched && error)) {
         return
     } else {
@@ -51,7 +51,7 @@ const renderFromHelper = ( { touched, error }: any ) => {
     }
 }
 
-const renderSelectField = ( { input, label, meta: { touched, error }, children, ...custom }: any ): any => (
+const renderSelectField = ({ input, label, meta: { touched, error }, children, ...custom }: any): any => (
     <FormControl error={touched && error}>
         <InputLabel htmlFor="city">Город</InputLabel>
         <Select native {...input} {...custom} inputProps={{ name: 'city', id: 'city-bucket' }}>
@@ -61,13 +61,13 @@ const renderSelectField = ( { input, label, meta: { touched, error }, children, 
     </FormControl>
 )
 
-const radioButton = ( { input, ...rest }: any ) => (
+const radioButton = ({ input, ...rest }: any) => (
     <FormControl>
         <RadioGroup {...input} {...rest} />
     </FormControl>
 )
 
-const useStyles = makeStyles(( theme: Theme ) =>
+const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             '& .MuiFormControl-root': {
@@ -80,7 +80,7 @@ const useStyles = makeStyles(( theme: Theme ) =>
 
 type FormType = InjectedFormProps<IMapStateToProps & IDeliveryPost, PropsType> & PropsType
 
-const FormOrder: React.FC<FormType> = ( props ) => {
+const FormOrder: React.FC<FormType> = (props) => {
     const { handleSubmit, settings, global_settings, payment_method, delivery_method, saleForPickup, delivery, deliveryPrice } = props
     let defaultDate = new Date()
     defaultDate.setHours(defaultDate.getHours() + 2)
@@ -171,7 +171,7 @@ const FormOrder: React.FC<FormType> = ( props ) => {
                 </div>
                 <div>
                     <Field name='count_person'
-                           parse={( value: string ) => value !== '' ? Number(value) : ''}
+                           parse={(value: string) => value !== '' ? Number(value) : ''}
                            type='number'
                            component={renderTextField}
                            label='Количество персон'

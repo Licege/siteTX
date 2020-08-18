@@ -1,4 +1,4 @@
-import bucketReducer, { addDishAC, InitialState } from '../../../redux/bucket-reducer'
+import bucketReducer, { actions as bucketActions, InitialState } from '../../../redux/bucket-reducer'
 import { dishType } from '../../../types/types'
 
 let state: InitialState
@@ -14,7 +14,7 @@ beforeEach(() => {
                     cost: 250,
                 },
             ],
-            total_price: 500
+            total_price: 500,
         },
         settings: [
             {
@@ -22,15 +22,15 @@ beforeEach(() => {
                 city: 'S1',
                 price_for_delivery: 200,
                 free_delivery: 600,
-                is_delivery: true
+                is_delivery: true,
             },
             {
                 _id: 's2',
                 city: 'S2',
                 price_for_delivery: 300,
                 free_delivery: 900,
-                is_delivery: true
-            }
+                is_delivery: true,
+            },
         ],
         global_settings: {
             is_delivery_working: true,
@@ -38,7 +38,7 @@ beforeEach(() => {
             sale_for_pickup: 500,
             payment_type_cash: true,
             payment_type_cashless: true,
-            payment_type_online: false
+            payment_type_online: false,
         },
         orderedDishes: [
             {
@@ -51,7 +51,7 @@ beforeEach(() => {
                 count: 2,
                 is_delivery: true,
                 imageSrc: 'image',
-            }
+            },
         ],
         deliveryPrice: 0,
         isDeliveryPosted: false,
@@ -69,9 +69,9 @@ test('Test bucket-reducer', () => {
         category_id: 'salad',
         count: 1,
         is_delivery: true,
-        imageSrc: 'image'
+        imageSrc: 'image',
     } as dishType
-    const newState = bucketReducer(state, addDishAC(newDish))
+    const newState = bucketReducer(state, bucketActions.addDish(newDish))
 
     expect(newState.delivery.total_price).toBe(state.delivery.total_price + newDish.cost)
 })

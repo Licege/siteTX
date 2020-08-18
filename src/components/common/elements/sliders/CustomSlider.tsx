@@ -1,4 +1,4 @@
-import React, {ReactNode} from 'react'
+import React, { ReactNode } from 'react'
 import Slider from 'react-slick'
 
 import 'slick-carousel/slick/slick.css'
@@ -11,7 +11,7 @@ interface IProps {
 
 export default class CustomSlider extends React.PureComponent<IProps> {
     render() {
-        const {settings, children} = this.props
+        const { settings, children } = this.props
         const defaultSettings = {
             dots: true,
             infinite: true,

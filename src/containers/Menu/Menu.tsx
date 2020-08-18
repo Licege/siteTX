@@ -4,7 +4,7 @@ import { RouteComponentProps } from 'react-router'
 import { AppStateType } from '../../redux/redux-store'
 import { getCategories, getDish, getMenu, getMenuByCategory } from '../../redux/menu-reducer'
 import Menu from '../../components/Menu/Menu'
-import { addDishAC, increaseDishCountAC, reduceDishCountAC } from '../../redux/bucket-reducer'
+import { actions as bucketActions } from '../../redux/bucket-reducer'
 import { scrollHeight } from '../../plugins/helpers'
 import { categoryType, deliveryType, dishType, RouteParams } from '../../types/types'
 
@@ -16,13 +16,13 @@ type MapStatePropsType = {
     readonly mobileMenuStatus: boolean,
 }
 type MapDispatchPropsType = {
-    getDish: ( id: number ) => void,
+    getDish: (id: number) => void,
     getMenu: () => void,
     getCategories: () => void,
-    getMenuByCategory: ( category: string ) => void,
-    addDishToBucket: ( dish: dishType ) => void,
-    increaseDishCount: ( dish: dishType ) => void,
-    reduceDishCount: ( dish: dishType ) => void,
+    getMenuByCategory: (category: string) => void,
+    addDishToBucket: (dish: dishType) => void,
+    increaseDishCount: (dish: dishType) => void,
+    reduceDishCount: (dish: dishType) => void,
 }
 type PropsType = MapStatePropsType & MapDispatchPropsType & RouteComponentProps<RouteParams>
 
@@ -43,7 +43,7 @@ class MenuContainer extends React.Component<PropsType> {
         window.removeEventListener('scroll', this.onScroll)
     }
 
-    componentDidUpdate( prevProps: Readonly<PropsType> ) {
+    componentDidUpdate(prevProps: Readonly<PropsType>) {
         if (!prevProps.categories && this.props.categories.length) {
             let category_id = this.props.categories.find(category => category.title_en === this.props.match.params.id)!._id
             this.props.getMenuByCategory(category_id)
@@ -72,15 +72,15 @@ class MenuContainer extends React.Component<PropsType> {
         }
     }
 
-    addToBucket = ( dish: dishType ) => {
+    addToBucket = (dish: dishType) => {
         this.props.addDishToBucket(dish)
     }
 
-    increaseCountDish = ( dish: dishType ) => {
+    increaseCountDish = (dish: dishType) => {
         this.props.increaseDishCount(dish)
     }
 
-    reduceCountDish = ( dish: dishType ) => {
+    reduceCountDish = (dish: dishType) => {
         this.props.reduceDishCount(dish)
     }
 
@@ -89,7 +89,7 @@ class MenuContainer extends React.Component<PropsType> {
             menu,
             delivery,
             categories,
-            mobileMenuStatus
+            mobileMenuStatus,
         } = this.props
 
         return <Menu menu={menu}
@@ -102,7 +102,7 @@ class MenuContainer extends React.Component<PropsType> {
     }
 }
 
-let mapStateToProps = ( state: AppStateType ): MapStatePropsType => {
+let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
         dish: state.menuPage.dish,
         menu: state.menuPage.menu,
@@ -111,9 +111,9 @@ let mapStateToProps = ( state: AppStateType ): MapStatePropsType => {
         mobileMenuStatus: state.app.isOpen,
     }
 }
-let mapDispatchToProps = ( dispatch: any ): MapDispatchPropsType => {
+let mapDispatchToProps = (dispatch: any): MapDispatchPropsType => {
     return {
-        getDish: ( id: number ) => {
+        getDish: (id: number) => {
             dispatch(getDish(id))
         },
         getMenu: () => {
@@ -122,22 +122,22 @@ let mapDispatchToProps = ( dispatch: any ): MapDispatchPropsType => {
         getCategories: () => {
             dispatch(getCategories())
         },
-        getMenuByCategory: ( category: string ) => {
+        getMenuByCategory: (category: string) => {
             dispatch(getMenuByCategory(category))
         },
-        addDishToBucket: ( dish: dishType ) => {
-            dispatch(addDishAC(dish))
+        addDishToBucket: (dish: dishType) => {
+            dispatch(bucketActions.addDish(dish))
         },
-        increaseDishCount: ( dish: dishType ) => {
-            dispatch(increaseDishCountAC(dish))
+        increaseDishCount: (dish: dishType) => {
+            dispatch(bucketActions.increaseDishCount(dish))
         },
-        reduceDishCount: ( dish: dishType ) => {
-            dispatch(reduceDishCountAC(dish))
+        reduceDishCount: (dish: dishType) => {
+            dispatch(bucketActions.reduceDishCount(dish))
         },
     }
 }
 
 export default connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(
     mapStateToProps,
-    mapDispatchToProps
+    mapDispatchToProps,
 )(MenuContainer)

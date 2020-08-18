@@ -6,9 +6,9 @@ import validate from './RegistrationValidate'
 import { authRegProfileType } from '../../types/types'
 
 
-const Registration: React.FC<InjectedFormProps<authRegProfileType>> = ( {
-        handleSubmit,
-    } ) => {
+const Registration: React.FC<InjectedFormProps<authRegProfileType>> = ({
+                                                                           handleSubmit,
+                                                                       }) => {
     return (
         <form className='form_registration' onSubmit={handleSubmit}>
             <Field name='surname' component={renderTextField} label='Фамилия' placeholder='Введите фамилию'/>

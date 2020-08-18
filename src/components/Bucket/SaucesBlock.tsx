@@ -1,6 +1,6 @@
 import React from 'react'
 import CustomSlider from '../common/elements/sliders/CustomSlider'
-import {dishType} from '../../types/types'
+import { dishType } from '../../types/types'
 import CardDish from '../common/elements/CardDish'
 
 interface IProps {
@@ -9,7 +9,7 @@ interface IProps {
     addDishToBucket: (dish: dishType) => void
 }
 
-export const SaucesBlock: React.FC<IProps> = ({sauces, addDishToBucket}) => {
+export const SaucesBlock: React.FC<IProps> = ({ sauces, addDishToBucket }) => {
     const settings = {
         dots: false,
         slidesToShow: 3,

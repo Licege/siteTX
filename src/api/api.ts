@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios'
 import {
     authProfileType,
     categoryType,
@@ -6,51 +6,52 @@ import {
     dishType,
     IDeliveryPost,
     IOrder,
-    IReview, promoType,
+    IReview,
+    promoType,
     resumeType,
-    vacancyType
-} from "../types/types";
+    vacancyType,
+} from '../types/types'
 
 //const host = process.env.NODE_ENV === 'production' ? '//31.31.201.99/' : 'http://localhost'
 
 export const WS_BASE = process.env.NODE_ENV === 'production' ? '//server.tri-xolma.ru/' : `http://localhost:9091/`
 
 export const serverUrl = process.env.NODE_ENV === 'production' ? '//api.tri-xolma.ru/' : `http://localhost:9090/`
-const baseURL = serverUrl + 'api/public';
+const baseURL = serverUrl + 'api/public'
 const apiUserRequest = axios.create({
     baseURL,
     headers: {
-        'Authorization': localStorage.getItem('accessToken')
-    }
+        'Authorization': localStorage.getItem('accessToken'),
+    },
 })
 
 apiUserRequest.interceptors.response.use(function (response) {
-    return response;
+    return response
 }, function (error) {
 
-    const originalRequest = error.config;
+    const originalRequest = error.config
 
     if (error.response.status === 401 && !originalRequest._retry) {
         debugger
-        originalRequest._retry = true;
+        originalRequest._retry = true
 
-        const refreshToken = window.localStorage.getItem('refreshToken');
-        return axios.post(baseURL + `/auth/refresh-token/`, {refreshToken})
-            .then(({data}) => {
-                window.localStorage.setItem('accessToken', data.accessToken);
-                window.localStorage.setItem('refreshToken', data.refreshToken);
-                apiUserRequest.defaults.headers['Authorization'] = data.accessToken;
-                originalRequest.headers['Authorization'] = data.accessToken;
-                return apiUserRequest(originalRequest);
+        const refreshToken = window.localStorage.getItem('refreshToken')
+        return axios.post(baseURL + `/auth/refresh-token/`, { refreshToken })
+            .then(({ data }) => {
+                window.localStorage.setItem('accessToken', data.accessToken)
+                window.localStorage.setItem('refreshToken', data.refreshToken)
+                apiUserRequest.defaults.headers['Authorization'] = data.accessToken
+                originalRequest.headers['Authorization'] = data.accessToken
+                return apiUserRequest(originalRequest)
             })
             .catch(error => {
                 window.localStorage.clear()
                 window.location.reload()
-            });
+            })
     }
 
-    return Promise.reject(error);
-});
+    return Promise.reject(error)
+})
 
 export const authAPI = {
     login(profile: authProfileType) {
@@ -66,19 +67,19 @@ export const authAPI = {
             })
     },
     refresh() {
-        const refreshToken = window.localStorage.getItem('refreshToken');
+        const refreshToken = window.localStorage.getItem('refreshToken')
 
-        return axios.post(baseURL + `/auth/refresh-token/`, {refreshToken})
-            .then(({data}) => {
-                window.localStorage.setItem('accessToken', data.accessToken);
-                window.localStorage.setItem('refreshToken', data.refreshToken);
-                apiUserRequest.defaults.headers['Authorization'] = data.accessToken;
+        return axios.post(baseURL + `/auth/refresh-token/`, { refreshToken })
+            .then(({ data }) => {
+                window.localStorage.setItem('accessToken', data.accessToken)
+                window.localStorage.setItem('refreshToken', data.refreshToken)
+                apiUserRequest.defaults.headers['Authorization'] = data.accessToken
             })
             .catch(error => {
                 window.localStorage.clear()
                 window.location.reload()
-            });
-    }
+            })
+    },
 }
 
 export const contactsAPI = {
@@ -87,8 +88,8 @@ export const contactsAPI = {
             .then(response => {
                 return response
             })
-    }
-};
+    },
+}
 
 export const menuAPI = {
     getMenu() {
@@ -114,8 +115,8 @@ export const menuAPI = {
             .then(response => {
                 return response
             })
-    }
-};
+    },
+}
 
 export const promoAPI = {
     getPromos() {
@@ -129,7 +130,7 @@ export const promoAPI = {
             .then(response => {
                 return response
             })
-    }
+    },
 }
 
 export const vacanciesAPI = {
@@ -144,8 +145,8 @@ export const vacanciesAPI = {
             .then(response => {
                 return response
             })
-    }
-};
+    },
+}
 
 export const orderAPI = {
     postOrder(order: IOrder) {
@@ -153,8 +154,8 @@ export const orderAPI = {
             .then(response => {
                 return response
             })
-    }
-};
+    },
+}
 
 export const newsAPI = {
     getNews(page = 1) {
@@ -168,8 +169,8 @@ export const newsAPI = {
             .then(response => {
                 return response
             })
-    }
-};
+    },
+}
 
 export const bucketAPI = {
     getDeliverySettings() {
@@ -190,8 +191,8 @@ export const bucketAPI = {
             .then(response => {
                 return response
             })
-    }
-};
+    },
+}
 
 export const ordersAPI = {
     postOrder(order: IOrder) {
@@ -199,7 +200,7 @@ export const ordersAPI = {
             .then(response => {
                 return response
             })
-    }
+    },
 }
 
 export const reviewsAPI = {
@@ -215,5 +216,5 @@ export const reviewsAPI = {
                 return response
             })
             .catch(e => console.log(e))
-    }
+    },
 }

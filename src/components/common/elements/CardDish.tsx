@@ -11,27 +11,27 @@ type PropsType = {
     showDescription?: boolean
     shortCard?: boolean
 
-    addToBucket: ( dish: dishType ) => void
-    increaseCountDish?: ( dish: dishType ) => void
-    reduceCountDish?: ( dish: dishType ) => void
+    addToBucket: (dish: dishType) => void
+    increaseCountDish?: (dish: dishType) => void
+    reduceCountDish?: (dish: dishType) => void
 }
 
-const CardDish: React.FC<PropsType> = ( {
-                                            dish,
-                                            order,
-                                            addToBucket,
-                                            showDescription = true,
-                                            shortCard,
-                                            increaseCountDish,
-                                            reduceCountDish,
-                                        } ) => {
+const CardDish: React.FC<PropsType> = ({
+                                           dish,
+                                           order,
+                                           addToBucket,
+                                           showDescription = true,
+                                           shortCard,
+                                           increaseCountDish,
+                                           reduceCountDish,
+                                       }) => {
     const style = {
         backgroundImage: `url(${dish.imageSrc ? fullLink(dish.imageSrc) : altImg})`,
         backgroundSize: 'cover',
         borderRadius: shortCard ? '4px' : '',
     } as CSSProperties
 
-    const [ isOpen, setOpen ] = useState(false)
+    const [isOpen, setOpen] = useState(false)
 
     const orderedDish = order?.find(d => d.dish_id === dish._id)
 

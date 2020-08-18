@@ -9,10 +9,10 @@ let initialState = {
 
 type initialStateType = typeof initialState;
 
-const contactsReducer = ( state = initialState, action: ActionsTypes ): initialStateType => {
+const contactsReducer = (state = initialState, action: ActionsTypes): initialStateType => {
     switch (action.type) {
         case 'CONTACTS/GET_CONTACTS':
-            return { contacts: action.contacts }
+            return { ...state, contacts: action.contacts }
         default:
             return state
     }
@@ -21,10 +21,10 @@ const contactsReducer = ( state = initialState, action: ActionsTypes ): initialS
 type ActionsTypes = InferActionsTypes<typeof actions>
 
 const actions = {
-    getContacts: ( contacts: contactsType ) => ({ type: 'CONTACTS/GET_CONTACTS', contacts } as const),
+    getContacts: (contacts: contactsType) => ({ type: 'CONTACTS/GET_CONTACTS', contacts } as const),
 }
 
-export const getContacts = () => async ( dispatch: Dispatch<ActionsTypes> ) => {
+export const getContacts = () => async (dispatch: Dispatch<ActionsTypes>) => {
     let response = await contactsAPI.getContacts()
     dispatch(actions.getContacts(response.data))
 }

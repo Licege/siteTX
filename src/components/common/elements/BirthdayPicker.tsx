@@ -13,14 +13,14 @@ const useStyles = makeStyles(() =>
     }),
 )
 
-const BirthdayPicker = ( props: any ) => {
+const BirthdayPicker = (props: any) => {
     const {
-        meta: {error, touched},
-        input: {onBlur, value, ...inputProps},
+        meta: { error, touched },
+        input: { onBlur, value, ...inputProps },
         ...others
     } = props
 
-    const onChange = ( date: any ) => {
+    const onChange = (date: any) => {
         Date.parse(date) ? inputProps.onChange(date.toISOString()) : inputProps.onChange(null)
     }
 

@@ -1,27 +1,16 @@
+import { ThunkAction } from 'redux-thunk'
 import {
     deliveryGlobalSettingsType,
     deliverySettingsType,
     deliveryType,
-    dishType, IDeliveryPost,
+    dishType,
+    IDeliveryPost,
     orderDishType,
 } from '../types/types'
 import { bucketAPI } from '../api/api'
 import { getDishesKey } from '../plugins/helpers'
-import { Dispatch } from 'redux'
-import { ThunkAction } from 'redux-thunk'
-import { AppStateType } from './redux-store'
+import { AppStateType, InferActionsTypes } from './redux-store'
 
-const ADD_DISH = 'BUCKET/ADD_DISH'
-const INCREASE_DISH_COUNT = 'BUCKET/INCREASE_DISH_COUNT'
-const REDUCE_DISH_COUNT = 'BUCKET/REDUCE_DISH_COUNT'
-const CHANGE_DISH_COUNT = 'BUCKET/CHANGE_DISH_COUNT'
-const REMOVE_DISH = 'BUCKET/REMOVE_DISH'
-const CLEAR_BUCKET = 'BUCKET/CLEAR'
-const DELIVERY_POSTED = 'BUCKET/DELIVERY_POSTED'
-const ORDER_STATUS = 'BUCKET/ORDER_STATUS'
-
-const GET_DELIVERY_SETTINGS = 'BUCKET/GET_DELIVERY_SETTINGS'
-const GET_DELIVERY_GLOBAL_SETTINGS = 'BUCKET/GET_DELIVERY_GLOBAL_SETTINGS'
 
 let initialState = {
     delivery: {
@@ -38,11 +27,11 @@ let initialState = {
 
 export type InitialState = typeof initialState;
 
-const bucketReducer = ( state = initialState, action: ActionType ): InitialState => {
+const bucketReducer = (state = initialState, action: ActionsTypes): InitialState => {
     let count = 0
 
     switch (action.type) {
-        case ADD_DISH:
+        case 'BUCKET/ADD_DISH':
             let indexInDelivery = state.delivery.order.findIndex(item => item.dish_id === action.dish._id)
             let indexInOrderedDishes = state.orderedDishes.findIndex(dish => dish._id === action.dish._id)
 
@@ -57,18 +46,18 @@ const bucketReducer = ( state = initialState, action: ActionType ): InitialState
                                 count: order.count + 1,
                                 cost: action.dish.cost,
                             } : order))
-                        : [ ...state.delivery.order, {
+                        : [...state.delivery.order, {
                             dish_id: action.dish._id,
                             title: action.dish.title,
                             count: 1,
                             cost: action.dish.cost,
-                        } ],
+                        }],
                     total_price: state.delivery.total_price + action.dish.cost,
                 },
-                orderedDishes: indexInOrderedDishes === -1 ? [ ...state.orderedDishes, action.dish ] : state.orderedDishes,
+                orderedDishes: indexInOrderedDishes === -1 ? [...state.orderedDishes, action.dish] : state.orderedDishes,
             }
 
-        case INCREASE_DISH_COUNT:
+        case 'BUCKET/INCREASE_DISH_COUNT':
             return {
                 ...state,
                 delivery: {
@@ -83,7 +72,7 @@ const bucketReducer = ( state = initialState, action: ActionType ): InitialState
                 },
             }
 
-        case REDUCE_DISH_COUNT:
+        case 'BUCKET/REDUCE_DISH_COUNT':
             count = getDishesKey(state.delivery.order, action.dish._id, 'count')
             count = count ? count - 1 : -1
             return {
@@ -102,7 +91,7 @@ const bucketReducer = ( state = initialState, action: ActionType ): InitialState
                 orderedDishes: count === 0 ? state.orderedDishes.filter(dish => dish._id !== action.dish._id) : state.orderedDishes,
             }
 
-        case CHANGE_DISH_COUNT:
+        case 'BUCKET/CHANGE_DISH_COUNT':
             count = getDishesKey(state.delivery.order, action.dish._id, 'count')
             count = count ? count - 1 : -1
             return {
@@ -120,7 +109,7 @@ const bucketReducer = ( state = initialState, action: ActionType ): InitialState
                 },
             }
 
-        case REMOVE_DISH:
+        case 'BUCKET/REMOVE_DISH':
             const orderItem = state.delivery.order.find(dish => dish.dish_id === action.id)!
             return {
                 ...state,
@@ -131,7 +120,7 @@ const bucketReducer = ( state = initialState, action: ActionType ): InitialState
                 orderedDishes: state.orderedDishes.filter(dish => dish._id !== action.id),
             }
 
-        case CLEAR_BUCKET:
+        case 'BUCKET/CLEAR':
             return {
                 ...state,
                 delivery: {
@@ -141,11 +130,11 @@ const bucketReducer = ( state = initialState, action: ActionType ): InitialState
                 orderedDishes: [],
             }
 
-        case GET_DELIVERY_SETTINGS:
+        case 'BUCKET/GET_DELIVERY_SETTINGS':
             return {
                 ...state, settings: action.settings,
             }
-        case GET_DELIVERY_GLOBAL_SETTINGS:
+        case 'BUCKET/GET_DELIVERY_GLOBAL_SETTINGS':
             return {
                 ...state, global_settings: action.settings,
             }
@@ -154,110 +143,58 @@ const bucketReducer = ( state = initialState, action: ActionType ): InitialState
     }
 }
 
-type addDishACType = {
-    type: typeof ADD_DISH,
-    dish: dishType
-}
-type increaseDishCountACType = {
-    type: typeof INCREASE_DISH_COUNT,
-    dish: dishType
-}
-type reduceDishCountACType = {
-    type: typeof REDUCE_DISH_COUNT,
-    dish: dishType
-}
-type changeDishCountACType = {
-    type: typeof CHANGE_DISH_COUNT,
-    dish: dishType
-    count: number
-}
-type removeDishACType = {
-    type: typeof REMOVE_DISH,
-    id: string
-}
-type clearBucketACType = {
-    type: typeof CLEAR_BUCKET
-}
-type getDeliverySettingsACType = {
-    type: typeof GET_DELIVERY_SETTINGS,
-    settings: Array<deliverySettingsType>
-}
-type getDeliveryGlobalSettingsACType = {
-    type: typeof GET_DELIVERY_GLOBAL_SETTINGS,
-    settings: deliveryGlobalSettingsType
-}
-type changeDeliveryPostedACType = {
-    type: typeof DELIVERY_POSTED,
-    status: boolean
+type ActionsTypes = InferActionsTypes<typeof actions>
+
+export const actions = {
+    addDish: (dish: dishType) => ({ type: 'BUCKET/ADD_DISH', dish } as const),
+    increaseDishCount: (dish: dishType) => ({ type: 'BUCKET/INCREASE_DISH_COUNT', dish } as const),
+    reduceDishCount: (dish: dishType) => ({ type: 'BUCKET/REDUCE_DISH_COUNT', dish } as const),
+    removeDish: (id: string) => ({ type: 'BUCKET/REMOVE_DISH', id } as const),
+    changeDishCount: (dish: dishType, count: number) => ({
+        type: 'BUCKET/CHANGE_DISH_COUNT',
+        dish,
+        count,
+    } as const),
+    clearBucket: () => ({ type: 'BUCKET/CLEAR' } as const),
+    changeDeliveryPosted: (status: boolean) => ({
+        type: 'BUCKET/DELIVERY_POSTED',
+        status,
+    } as const),
+    changeOrderStatus: (status: 'created' | 'error') => ({ type: 'BUCKET/ORDER_STATUS', status } as const),
+    getDeliverySettings: (settings: Array<deliverySettingsType>) => ({
+        type: 'BUCKET/GET_DELIVERY_SETTINGS',
+        settings,
+    } as const),
+    getDeliveryGlobalSettings: (settings: deliveryGlobalSettingsType) => ({
+        type: 'BUCKET/GET_DELIVERY_GLOBAL_SETTINGS',
+        settings,
+    } as const),
 }
 
-type changeOrderStatusACType = {
-    type: typeof ORDER_STATUS
-    status: string
-}
-
-export type ActionType =
-    addDishACType
-    | increaseDishCountACType
-    | reduceDishCountACType
-    | changeDishCountACType
-    | removeDishACType
-    | clearBucketACType
-    | getDeliverySettingsACType
-    | getDeliveryGlobalSettingsACType
-    | changeDeliveryPostedACType
-    | changeOrderStatusACType
-
-export const addDishAC = ( dish: dishType ): addDishACType => ({ type: ADD_DISH, dish })
-export const increaseDishCountAC = ( dish: dishType ): increaseDishCountACType => ({ type: INCREASE_DISH_COUNT, dish })
-export const reduceDishCountAC = ( dish: dishType ): reduceDishCountACType => ({ type: REDUCE_DISH_COUNT, dish })
-export const removeDishAC = ( id: string ): removeDishACType => ({ type: REMOVE_DISH, id })
-export const changeDishCountAC = ( dish: dishType, count: number ): changeDishCountACType => ({
-    type: CHANGE_DISH_COUNT,
-    dish,
-    count,
-})
-export const clearBucketAC = (): clearBucketACType => ({ type: CLEAR_BUCKET })
-export const changeDeliveryPostedAC = ( status: boolean ): changeDeliveryPostedACType => ({
-    type: DELIVERY_POSTED,
-    status,
-})
-export const changeOrderStatusAC = ( status: string ): changeOrderStatusACType => ({ type: ORDER_STATUS, status })
-const getDeliverySettingsAC = ( settings: Array<deliverySettingsType> ): getDeliverySettingsACType => ({
-    type: GET_DELIVERY_SETTINGS,
-    settings,
-})
-const getDeliveryGlobalSettingsAC = ( settings: deliveryGlobalSettingsType ): getDeliveryGlobalSettingsACType => ({
-    type: GET_DELIVERY_GLOBAL_SETTINGS,
-    settings,
-})
-
-type DispatchType = Dispatch<ActionType>
-export type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionType>
+export type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>
 
 export const requestDeliverySettings = (): ThunkType => {
-    return async ( dispatch ) => {
+    return async (dispatch) => {
         let response = await bucketAPI.getDeliverySettings()
-        dispatch(getDeliverySettingsAC(response.data))
+        dispatch(actions.getDeliverySettings(response.data))
     }
 }
 export const requestGlobalDeliverySettings = (): ThunkType => {
-    return async ( dispatch: DispatchType ) => {
+    return async (dispatch) => {
         let response = await bucketAPI.getDeliveryGlobalSettings()
-        dispatch(getDeliveryGlobalSettingsAC(response.data))
+        dispatch(actions.getDeliveryGlobalSettings(response.data))
     }
 }
 
-export const postOrder = ( order: IDeliveryPost ): ThunkType => {
-    return async ( dispatch: DispatchType ) => {
+export const postOrder = (order: IDeliveryPost): ThunkType => {
+    return async (dispatch) => {
         let response = await bucketAPI.postOrder(order)
-        console.log(response)
         if (response.status === 201 || response.status === 200) {
-            dispatch(changeOrderStatusAC('created'))
-            dispatch(changeDeliveryPostedAC(true))
-            dispatch(clearBucketAC())
+            dispatch(actions.changeOrderStatus('created'))
+            dispatch(actions.changeDeliveryPosted(true))
+            dispatch(actions.clearBucket())
         } else {
-            dispatch(changeOrderStatusAC('error'))
+            dispatch(actions.changeOrderStatus('error'))
         }
     }
 }

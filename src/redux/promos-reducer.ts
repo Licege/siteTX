@@ -10,7 +10,7 @@ let initialState = {
     currentPromo: {} as promoType,
 }
 
-const promosReducer = ( state = initialState, action: ActionsTypes ) => {
+const promosReducer = (state = initialState, action: ActionsTypes) => {
     switch (action.type) {
         case 'PROMOS/GET_PROMOS':
             return { ...state, promos: action.promos }
@@ -24,20 +24,20 @@ const promosReducer = ( state = initialState, action: ActionsTypes ) => {
 type ActionsTypes = InferActionsTypes<typeof actions>
 
 const actions = {
-    getPromos: ( promos: Array<promoType> ) => ({ type: 'PROMOS/GET_PROMOS', promos } as const),
-    getPromoById: ( promo: promoType ) => ({ type: 'PROMOS/GET_PROMOS_BY_ID', promo } as const),
+    getPromos: (promos: Array<promoType>) => ({ type: 'PROMOS/GET_PROMOS', promos } as const),
+    getPromoById: (promo: promoType) => ({ type: 'PROMOS/GET_PROMOS_BY_ID', promo } as const),
 }
 
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>
 
 export const requestPromos = (): ThunkType => {
-    return async ( dispatch: Dispatch<ActionsTypes> ) => {
+    return async (dispatch: Dispatch<ActionsTypes>) => {
         let response = await promoAPI.getPromos()
         dispatch(actions.getPromos(response.data))
     }
 }
-export const requestPromoById = ( id: string ): ThunkType => {
-    return async ( dispatch: Dispatch<ActionsTypes> ) => {
+export const requestPromoById = (id: string): ThunkType => {
+    return async (dispatch: Dispatch<ActionsTypes>) => {
         let response = await promoAPI.getPromoById(id)
         dispatch(actions.getPromoById(response.data))
     }

@@ -8,11 +8,11 @@ interface IProps {
     dish: dishType
     open: boolean
 
-    addToBucket: ( dish: dishType ) => void
+    addToBucket: (dish: dishType) => void
     onClose: () => void
 }
 
-const ModalDish: React.FC<IProps> = ( { dish, addToBucket, open, onClose } ) => {
+const ModalDish: React.FC<IProps> = ({ dish, addToBucket, open, onClose }) => {
     return (
         <Dialog open={open} onClose={onClose} className='modal-dish'>
             <DialogContent>

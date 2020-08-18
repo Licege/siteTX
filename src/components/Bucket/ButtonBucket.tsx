@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
-import {useSelector} from 'react-redux'
-import {AppStateType} from '../../redux/redux-store'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { AppStateType } from '../../redux/redux-store'
 import shopping_cart from '../../static/img/shopping-cart.png'
 import BucketInfo from './BucketInfo'
 

@@ -8,7 +8,7 @@ import { getNewsSelector } from '../../redux/selectors/news'
 import { getDishesSelector } from '../../redux/selectors/menu'
 import { getPromosSelector } from '../../redux/selectors/promos'
 import { getContactsSelector } from '../../redux/selectors/contacts'
-import { addDishAC } from '../../redux/bucket-reducer'
+import { actions } from '../../redux/bucket-reducer'
 import { requestNews } from '../../redux/news-reducer'
 import { getMenu } from '../../redux/menu-reducer'
 import { requestPromos } from '../../redux/promos-reducer'
@@ -23,8 +23,8 @@ const Home: React.FC = () => {
 
     const dispatch = useDispatch()
 
-    const addDishToBucket = ( dish: dishType ) => {
-        dispatch(addDishAC(dish))
+    const addDishToBucket = (dish: dishType) => {
+        dispatch(actions.addDish(dish))
     }
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -33,7 +33,7 @@ const Home: React.FC = () => {
         dispatch(getMenu())
         dispatch(requestPromos())
         dispatch(getContacts())
-    }, [dispatch])
+    }, [ dispatch ])
     // let url = "http://navse360.ru/onlyTour/4421"
     return (
         <main className='Home'>
