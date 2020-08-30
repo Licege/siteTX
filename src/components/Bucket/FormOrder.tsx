@@ -20,6 +20,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import DateTimeField from '../common/elements/MaterialDateTimePicker'
 import { makeStyles } from '@material-ui/core/styles'
 import { scrollToFirstError } from '../../plugins/validate'
+import { rangeNumbers } from '../../plugins/helpers'
 
 
 interface PropsType {
@@ -172,6 +173,7 @@ const FormOrder: React.FC<FormType> = (props) => {
                 <div>
                     <Field name='count_person'
                            parse={(value: string) => value !== '' ? Number(value) : ''}
+                           normalize={(value: number) => rangeNumbers(value, 0, 20)}
                            type='number'
                            component={renderTextField}
                            label='Количество персон'

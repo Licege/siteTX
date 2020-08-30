@@ -46,9 +46,13 @@ const AuthButton = () => {
             </div>
             :
             <div>
-                <Button variant='outlined' color='primary' onClick={toggle}>Войти</Button>
-                <AuthModal isOpen={isOpen} onClose={toggle} signUpSubmit={signUpSubmit}
-                           registrationSubmit={registrationSubmit}/>
+                <Button variant='outlined' color='primary' onClick={toggle}>
+                    Войти
+                </Button>
+                <AuthModal isOpen={isOpen}
+                           onClose={toggle}
+                           signUpSubmit={signUpSubmit}
+                           registrationSubmit={registrationSubmit} />
             </div>
     )
 }

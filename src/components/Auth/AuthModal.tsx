@@ -28,7 +28,7 @@ const AuthModal = ({ isOpen, onClose, signUpSubmit, registrationSubmit }: IProps
     }
 
     return (
-        <Dialog open={isOpen} onClose={onClose} disableBackdropClick TransitionComponent={Transition}>
+        <Dialog open={isOpen} onClose={onClose} onEscapeKeyDown={onClose} TransitionComponent={Transition}>
             {signUp
                 ?
                 <>

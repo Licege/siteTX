@@ -101,3 +101,12 @@ export function cropText1( text: string, limit = 100 ): string {
     }
     return text.slice(0, limit) + '...'
 }
+
+export function rangeNumbers(value: number, minValue: number, maxValue: number): number {
+    let result = value
+
+    if (value < minValue) return minValue
+    if (value > maxValue) return maxValue
+
+    return result
+}
