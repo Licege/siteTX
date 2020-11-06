@@ -96,8 +96,10 @@ class BucketContainer extends React.Component<PropsType, StateType> {
 
     priceForDelivery = (city: string, price: number): number => {
         if (this.props.settings.length && this.props.deliveryType !== 'restaurant') {
-            let settings = this.props.settings.find(s => s.city === city)!
-            return price < settings.free_delivery ? settings.price_for_delivery : 0
+            let settings = this.props.settings.find(s => s.city === city)
+            if (settings) {
+                return price < settings.free_delivery ? settings.price_for_delivery : 0
+            } else return 0
         } else return 0
     }
 
