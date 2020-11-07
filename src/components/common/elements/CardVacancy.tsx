@@ -21,7 +21,7 @@ const CardVacancy: React.FC<PropsType> = ( { vacancy } ) => {
                     ? <p>Заработная плата от {vacancy.salary_from} до {vacancy.salary_to} ₽</p>
                     : vacancy.salary_from || vacancy.salary_to
                         ? <p>Заработная плата: {vacancy.salary_from || vacancy.salary_to} ₽</p> : ''}
-                <div className='card_item-button'>
+                <div className='card_item-button -auto-width'>
                     <Link to={'/resume/' + vacancy._id}>
                         <Button variant='contained'
                                 color='primary'>

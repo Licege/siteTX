@@ -31,15 +31,19 @@ const AuthModal = ({ isOpen, onClose, signUpSubmit, registrationSubmit }: IProps
         <Dialog open={isOpen} onClose={onClose} onEscapeKeyDown={onClose} TransitionComponent={Transition}>
             {signUp
                 ?
-                <>
+                <div className='modal-auth'>
                     <DialogTitle className='text-center'>Авторизация</DialogTitle>
-                    <DialogContent><Login onSubmit={signUpSubmit}/></DialogContent>
+                    <DialogContent>
+                        <Login onSubmit={signUpSubmit}/>
+                    </DialogContent>
                     <Button variant='text' onClick={toggle}>Еще нет аккаунта?</Button>
-                </>
+                </div>
                 :
                 <>
                     <DialogTitle className='text-center'>Регистрация</DialogTitle>
-                    <DialogContent><Registration onSubmit={registrationSubmit}/></DialogContent>
+                    <DialogContent>
+                        <Registration onSubmit={registrationSubmit}/>
+                    </DialogContent>
                     <Button variant='text' onClick={toggle}>Уже зарегистрированны?</Button>
                 </>
             }

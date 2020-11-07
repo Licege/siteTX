@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react'
+import React, {CSSProperties} from 'react'
 import {
     YMaps,
     Map,
@@ -15,12 +15,19 @@ interface IProps {
     style?: CSSProperties
 }
 
-const CustomMap: React.FC<IProps> = ( {style} ) => {
-    let properties = {
+const setMapBehaviors = (map: any) => {
+    if (map) {
+        map.behaviors.disable('drag')
+        // map.behaviors.disable('scrollZoom')
+    }
+}
+
+const CustomMap: React.FC<IProps> = ({style}) => {
+    const properties = {
         hintContent: '&lt;img src={pointer} /&gt;',
     }
 
-    let pOptions = {
+    const pOptions = {
         iconLayout: 'default#image',
         iconImageHref: pointer,
         iconImageSize: [70, 100],
@@ -28,12 +35,15 @@ const CustomMap: React.FC<IProps> = ( {style} ) => {
     }
 
     return (
-        <YMaps style={style}>
-            <Map style={style} defaultState={{
-                center: [54.649906, 20.366676],
-                controls: [],
-                zoom: 17,
-            }}>
+        <YMaps style={style} query={{lang: 'ru_RU'}}>
+            <Map style={style}
+                 defaultState={{
+                     center: [54.649906, 20.366676],
+                     controls: [],
+                     zoom: 17,
+                 }}
+                 instanceRef={setMapBehaviors}
+            >
                 <Placemark defaultGeometry={[54.649946, 20.366788]}
                            properties={properties}
                            options={pOptions}/>

@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { animated, useTransition } from 'react-spring/web'
-import { Route, Switch, useLocation } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import MenuContainer from './containers/Menu/Menu'
 import BucketContainer from './containers/Bucket/Bucket'
 import { AppStateType } from './redux/redux-store'
@@ -36,47 +35,29 @@ const App = () => {
 
     if (!Object.keys(contacts).length) getContacts()
 
-    let location = useLocation()
-
-    const transitions = useTransition(location, (location: any) => location.pathname, {
-        from: {
-            opacity: 0.4,
-            position: 'absolute',
-            width: '100%',
-        },
-        enter: { opacity: 1 },
-        leave: {
-            opacity: 0,
-        },
-    })
-
     return (
         <div className='app-wrapper'>
             <Header/>
-            {transitions.map(({ item, props: transition, key }) => (
-                <animated.div key={key} style={transition}>
-                    <div className='app-wrapper-content'>
-                        <Switch location={item}>
-                            <Route exact path='/' component={Home}/>
-                            <Route path='/menu/:id?' component={MenuContainer}/>
-                            <Route exact path='/contacts' component={Contacts}/>
-                            <Route exact path='/vacancies' component={Vacancies}/>
-                            <Route exact path='/gallery' component={Gallery}/>
-                            <Route exact path='/order' component={Order}/>
-                            <Route exact path='/news' component={News}/>
-                            <Route exact path='/news/:id' component={NewsById}/>
-                            <Route exact path='/bucket' component={BucketContainer}/>
-                            <Route exact path='/reviews' component={Reviews}/>
-                            <Route exact path='/resume/:id' component={Resume}/>
-                            <Route exact path='/banquets' component={Banquets}/>
-                            <Route exact path='/actions' component={Promos}/>
-                            <Route exact path='/actions/:id' component={Promo}/>
-                            <Route component={Error404}/>
-                        </Switch>
-                        <Footer/>
-                    </div>
-                </animated.div>
-            ))}
+            <div className='app-wrapper-content'>
+                <Switch>
+                    <Route exact path='/' component={Home}/>
+                    <Route path='/menu/:id?' component={MenuContainer}/>
+                    <Route exact path='/contacts' component={Contacts}/>
+                    <Route exact path='/vacancies' component={Vacancies}/>
+                    <Route exact path='/gallery' component={Gallery}/>
+                    <Route exact path='/order' component={Order}/>
+                    <Route exact path='/news' component={News}/>
+                    <Route exact path='/news/:id' component={NewsById}/>
+                    <Route exact path='/bucket' component={BucketContainer}/>
+                    <Route exact path='/reviews' component={Reviews}/>
+                    <Route exact path='/resume/:id' component={Resume}/>
+                    <Route exact path='/banquets' component={Banquets}/>
+                    <Route exact path='/actions' component={Promos}/>
+                    <Route exact path='/actions/:id' component={Promo}/>
+                    <Route component={Error404}/>
+                </Switch>
+                <Footer/>
+            </div>
         </div>
     )
 }

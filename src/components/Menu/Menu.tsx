@@ -2,6 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import CardDish from '../common/elements/CardDish'
 import { categoryType, dishType, orderDishType } from '../../types/types'
+import Sidebar from './sidebar'
 
 interface IProps {
     menu: Array<dishType>,
@@ -45,16 +46,7 @@ const Menu: React.FC<IProps> = ( {
                                  } ) => {
     return (
         <div className='menu'>
-            <div className='menu-categories' id='menu-categories-navbar'>
-                <h2 className='menu-categories-title'>Категории</h2>
-                <div className='menu-categories-content'>
-                    {categories.map(( category ) =>
-                        <NavLink activeClassName='-active' className='menu-categories-content-item'
-                                 to={'/menu/' + category.title_en} key={category._id}>{category.title}</NavLink>,
-                    )}
-                </div>
-            </div>
-
+            <Sidebar categories={categories} />
             {menu.length ?
                 <div className='menu-wrapper'>
                     <CategoriesFeed categories={categories} mobileMenuStatus={mobileMenuStatus} />
