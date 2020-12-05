@@ -3,6 +3,19 @@ export type authProfileType = {
     password: string
 }
 
+export type profileType = {
+    id: number | string
+    email: string
+    avatar: string
+    surname?: string
+    forename?: string
+    patronymic?: string
+    phone?: string
+    birthday?: Date,
+    address?: addressType,
+    regDate: Date
+}
+
 export type authRegProfileType = {
     email: string
     password: string
@@ -10,7 +23,6 @@ export type authRegProfileType = {
     forename: string
     patronymic?: string
     phone: string
-
 }
 
 export type authTokenType = {
@@ -19,9 +31,9 @@ export type authTokenType = {
 }
 
 export type promoType = {
-    _id: string
+    id: number | string
     title: string
-    short_description: string
+    shortDescription: string
     description: string
     status: number
     show: boolean
@@ -41,38 +53,39 @@ export type contactsType = {
 }
 
 export type reviewType = {
-    id: number
+    id: number | string
     name: string
     phone: string
     comment: string
-    create_at: number
+    createdAt: number
 }
 
 export type dishType = {
-    _id: string
+    id: number | string
     title: string
     description: string | null
     weight: number | null
     cost: number
-    category_id: string
+    categoryId: number | string
     count: number | null,
-    is_delivery: boolean,
+    isDelivery: boolean,
     imageSrc: string
 }
 
 export type categoryType = {
-    _id: string
+    id: number | string
     title: string
-    title_en: string
+    titleEn: string
+    isDelivery: boolean
 }
 
 export type vacancyType = {
-    _id: string
+    id: number | string
     title: string
     requirements: string | null
     description: string | null
-    salary_from: number | null
-    salary_to: number | null
+    salaryFrom: number | null
+    salaryTo: number | null
     imageSrc: string | null
 }
 
@@ -82,12 +95,12 @@ export type resumeType = {
     patronymic: string
     education: string
     experience: string
-    date_birth: number
+    dateBirth: number
     address: string
     phone: string
     email: string
-    vacancy_id: number
-    create_at: number
+    vacancyId: number | string
+    createdAt: number
 }
 
 export type imageForGalleryType = {
@@ -98,8 +111,8 @@ export type imageForGalleryType = {
 export interface IOrder {
     name: string
     phone: string
-    order_date: Date | string
-    count_person: number
+    orderDate: Date | string
+    countPerson: number
     comment: string
 }
 
@@ -109,22 +122,22 @@ export interface IReview {
     phone: string
     rating: number
     description: string
-    rule_agree: boolean
-    create_at: number
+    ruleAgree: boolean
+    createdAt: number
     status?: number
 }
 
 export type newsType = {
-    _id: string
+    id: number | string
     title: string
     description: string
-    create_at: Date
-    short_description: string
+    createdAt: Date
+    shortDescription: string
     imageSrc: string
 }
 
 export type orderDishType = {
-    dish_id: string
+    dishId: number | string
     title: string
     count: number
     cost: number
@@ -132,33 +145,33 @@ export type orderDishType = {
 
 export type deliveryType = {
     order: Array<orderDishType>
-    total_price: number
+    totalPrice: number
 }
 
 export type deliverySettingsType = {
-    _id: string
+    id: number | string
     city: string
-    price_for_delivery: number
-    free_delivery: number
-    is_delivery: boolean
+    priceForDelivery: number
+    freeDelivery: number
+    isDelivery: boolean
 }
 
 export interface IDeliveryPost {
     surname: string
     phone: string
     email: string | null
-    payment_type: string
-    odd_money: number | null
-    delivery_type: string
+    paymentType: string
+    oddMoney: number | null
+    deliveryType: string
     address: addressType
-    restaurant_id: number
-    time_delivery: Date
-    discount_card?: number
-    create_at: Date
-    payment_status: number
-    count_person: number | null
+    restaurantId: number | string
+    timeDelivery: Date
+    discountCard?: number
+    createdAt: Date
+    paymentStatus: number
+    countPerson: number | null
     comment: string | null
-    rule_agree: boolean
+    ruleAgree: boolean
 }
 
 export type addressType = {
@@ -171,16 +184,16 @@ export type addressType = {
 }
 
 export type deliveryGlobalSettingsType = {
-    is_delivery_working: boolean
-    phone_for_sms: string
-    sale_for_pickup: number
-    payment_type_cash: boolean
-    payment_type_cashless: boolean
-    payment_type_online: boolean
+    isDeliveryWorking: boolean
+    phone: string
+    saleForPickup: number
+    paymentCash: boolean
+    paymentCashless: boolean
+    paymentOnline: boolean
 }
 
 export type RouteParams = {
-    id: string,
+    id: string
 }
 
 export enum ResultCodes {
@@ -189,7 +202,37 @@ export enum ResultCodes {
 }
 
 export type ResponseType = {
-    data: any,
-    resultCode: ResultCodes,
-    messages: string[],
+    data: any
+    resultCode: ResultCodes
+    messages: string[]
+}
+
+export type ordersListItemType = {
+    dishId: string | number
+    title: string
+    count: number
+    cost: number
+}
+
+export type ordersHistoryType = {
+    id: string | number
+    userId: string | number
+    address: addressType
+    comment: string | undefined
+    countPerson: number
+    deliveryCost: number
+    deliveryType: 'home' | 'restaurant'
+    email: string
+    name: string
+    phone: string
+    oddMoney: number
+    paymentStatus: number
+    paymentType: 'cash' | 'cashless' | 'online'
+    price: number
+    sale: number
+    status: number
+    timeDelivery: string
+    list: ordersListItemType[]
+    createdAt: string
+    updatedAt: string
 }

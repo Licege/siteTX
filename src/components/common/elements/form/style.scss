@@ -1,0 +1,23 @@
+@import "./src/assets/variables/variables";
+
+.field {
+  margin-bottom: 12px;
+
+  &.error {
+    input::placeholder {
+      color: $error;
+    }
+  }
+
+  &__label {
+    margin-bottom: 4px;
+  }
+
+  &__prompt {
+    color: $error;
+  }
+
+  textarea {
+    resize: none;
+  }
+}

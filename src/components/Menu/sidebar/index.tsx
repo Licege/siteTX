@@ -19,7 +19,7 @@ const Sidebar = ({ categories }: IProps) => {
             <div className='menu-categories-content'>
                 {categories.map((category) =>
                     <NavLink activeClassName='-active' className='menu-categories-content-item'
-                             to={'/menu/' + category.title_en} key={category._id}>{category.title}</NavLink>,
+                             to={'/menu/' + category.titleEn} key={category.id}>{category.title}</NavLink>,
                 )}
             </div>
         </div>

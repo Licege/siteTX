@@ -15,7 +15,7 @@
     margin-bottom: 16px;
 
     a {
-      color: inherit;
+      // color: inherit;
       text-decoration: none;
     }
 
@@ -66,12 +66,20 @@
 
   &__address {
     margin-bottom: 8px;
+
+    a {
+      color: #999;
+
+      &:hover {
+        color: #000;
+      }
+    }
   }
 
   &__phone {
-    color: inherit;
     text-decoration: none;
     white-space: nowrap;
+    color: #999;
 
     &:hover {
       color: inherit;
@@ -80,12 +88,16 @@
   }
 
   &__navbar {
-
     &-item {
       display: block;
+      color: #999;
 
       &.-active {
-        color: gold;
+        color: #000;
+      }
+
+      &:hover {
+        color: #000;
       }
     }
   }

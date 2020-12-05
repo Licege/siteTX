@@ -19,7 +19,7 @@ type MapDispatchPropsType = {
     getDish: (id: number) => void,
     getMenu: () => void,
     getCategories: () => void,
-    getMenuByCategory: (category: string) => void,
+    getMenuByCategory: (category: number | string) => void,
     addDishToBucket: (dish: dishType) => void,
     increaseDishCount: (dish: dishType) => void,
     reduceDishCount: (dish: dishType) => void,
@@ -45,8 +45,8 @@ class MenuContainer extends React.Component<PropsType> {
 
     componentDidUpdate(prevProps: Readonly<PropsType>) {
         if (!prevProps.categories && this.props.categories.length) {
-            let category_id = this.props.categories.find(category => category.title_en === this.props.match.params.id)!._id
-            this.props.getMenuByCategory(category_id)
+            const categoryId = this.props.categories.find(category => category.titleEn === this.props.match.params.id)!.id
+            this.props.getMenuByCategory(categoryId)
         }
         if (this.props.match.params && this.props.match.params.id && prevProps.match.params.id !== this.props.match.params.id) {
             this.props.getMenuByCategory(this.props.match.params.id)
@@ -57,18 +57,20 @@ class MenuContainer extends React.Component<PropsType> {
 
     onScroll = () => {
         let limit = scrollHeight() - document.documentElement.clientHeight - document.getElementById('footer')!.offsetHeight
-        let navbar = document.getElementById('menu-categories-navbar')!
+        let navbar = document.getElementById('menu-categories-navbar')
 
-        if (window.pageYOffset > limit) {
-            navbar.classList.add('-fixed')
-            navbar.style.top = limit.toString() + 'px'
-        } else if (navbar.classList.contains('-fixed')) {
-            navbar.classList.remove('-fixed')
-            navbar.style.top = 'auto'
-        }
+        if (navbar) {
+            if (window.pageYOffset > limit) {
+                navbar.classList.add('-fixed')
+                navbar.style.top = limit.toString() + 'px'
+            } else if (navbar.classList.contains('-fixed')) {
+                navbar.classList.remove('-fixed')
+                navbar.style.top = 'auto'
+            }
 
-        if (window.pageYOffset === 0) {
-            navbar.style.top = 'auto'
+            if (window.pageYOffset === 0) {
+                navbar.style.top = 'auto'
+            }
         }
     }
 
@@ -122,8 +124,8 @@ let mapDispatchToProps = (dispatch: any): MapDispatchPropsType => {
         getCategories: () => {
             dispatch(getCategories())
         },
-        getMenuByCategory: (category: string) => {
-            dispatch(getMenuByCategory(category))
+        getMenuByCategory: (categoryId: number | string) => {
+            dispatch(getMenuByCategory(categoryId))
         },
         addDishToBucket: (dish: dishType) => {
             dispatch(bucketActions.addDish(dish))

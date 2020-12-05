@@ -1,5 +1,5 @@
 import React from 'react'
-import Rating from './Rating'
+import Rating from '../Rating'
 import { WrappedFieldProps } from 'redux-form'
 
 interface IProps {

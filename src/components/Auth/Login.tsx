@@ -1,9 +1,9 @@
 import React from 'react'
-import { Field, InjectedFormProps, reduxForm } from 'redux-form'
-import renderTextField from '../common/elements/RenderTextField'
-import { Button } from '@material-ui/core'
+import {Field, InjectedFormProps, reduxForm} from 'redux-form'
+import renderTextField from '../common/elements/form/RenderTextField'
+import {Button} from '@material-ui/core'
 import validate from './LoginValidate'
-import { authProfileType } from '../../types/types'
+import {authProfileType} from '../../types/types'
 
 
 const Login: React.FC<InjectedFormProps<authProfileType>> = ({
@@ -21,11 +21,13 @@ const Login: React.FC<InjectedFormProps<authProfileType>> = ({
                    component={renderTextField}
                    type='password' label='Пароль*'
                    placeholder='Введите пароль'/>
-            <Button variant='contained' color='primary' type='submit'>Войти</Button>
+            <div className='form_login__submit'>
+                <Button variant='contained' color='primary' type='submit'>Войти</Button>
+            </div>
         </form>
     )
 }
 
-let loginForm = reduxForm<authProfileType>({ form: 'loginForm', validate })(Login)
+let loginForm = reduxForm<authProfileType>({form: 'loginForm', validate})(Login)
 
 export default loginForm

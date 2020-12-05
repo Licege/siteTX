@@ -1,26 +1,28 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import {
     categoryType,
     deliveryGlobalSettingsType,
     deliverySettingsType,
     deliveryType,
     dishType,
-    IDeliveryPost,
+    IDeliveryPost, profileType,
 } from '../../types/types'
 import FormOrder from './FormOrder'
 import { Breadcrumbs, Chip, Theme, withStyles } from '@material-ui/core'
-import { Link } from 'react-router-dom'
 import { ShowOrder } from './ShowOrder'
 import { FinishOrder } from './FinishOrder'
+import { getFullName } from '../../plugins/helpers';
 
 type PropsType = {
+    me: profileType
     dishes: Array<dishType>
     menu: Array<dishType>
     delivery: deliveryType
     deliveryPrice: number
     saleForPickup: number
     settings: Array<deliverySettingsType>
-    global_settings: deliveryGlobalSettingsType
+    globalSettings: deliveryGlobalSettingsType
     paymentMethod: string
     deliveryMethod: string
     categories: Array<categoryType>
@@ -32,7 +34,7 @@ type PropsType = {
     addDishToBucket: (dish: dishType) => void
     increaseDishCount: (dish: dishType) => void
     reduceDishCount: (dish: dishType) => void
-    removeDish: (id: string) => void
+    removeDish: (id: number | string) => void
     clearBucket: () => void
     onSubmit: (data: IDeliveryPost) => void
     onChange: (dish: dishType) => ((event: React.ChangeEvent<HTMLInputElement>) => void)
@@ -58,15 +60,42 @@ const StyledBreadcrumb = withStyles((theme: Theme) => ({
     },
 }))(Chip) as typeof Chip
 
+const defaultTimeDelivery = new Date(new Date().setMilliseconds(60 * 60 * 1000))
+
+const getDataFromProfile = (me: profileType) => {
+    if (!me || !Object.keys(me).length) return {}
+    const { surname, forename, patronymic, phone, email } = me
+
+    return {
+        name: getFullName({ surname, forename, patronymic }),
+        phone,
+        email
+    }
+}
+
+const getInitialValues = (me: profileType) => {
+    const initialValues = {
+        paymentType: 'cash',
+        deliveryType: 'home',
+        address: {
+            city: 'Калининград',
+        },
+        timeDelivery: defaultTimeDelivery,
+    }
+
+    return { ...getDataFromProfile(me), ...initialValues }
+}
+
 const Bucket: React.FC<PropsType> = (props) => {
     const {
-        dishes, menu, step, delivery, deliveryPrice, settings, global_settings, paymentMethod, deliveryMethod, isDisabled,
-        increaseDishCount, reduceDishCount, removeDish, clearBucket, onSubmit, onChange, saleForPickup, addDishToBucket, categories, setStep,
-        sale, price, orderStatus,
+        me, dishes, menu, step, delivery, deliveryPrice, settings, globalSettings, paymentMethod, deliveryMethod,
+        isDisabled, increaseDishCount, reduceDishCount, removeDish, clearBucket, onSubmit, onChange, saleForPickup,
+        addDishToBucket, categories, setStep, sale, price, orderStatus,
     } = props
 
-    const sauceCategoryId = categories.find(category => category.title === ('Соус' || 'Соусы'))?._id
-    const sauces = menu.filter(dish => dish.category_id === sauceCategoryId)
+    const sauceCategoryId = categories.find(category => category.title === ('Соус' || 'Соусы'))?.id
+    const sauces = menu.filter(dish => dish.categoryId === sauceCategoryId)
+    const initialValues = getInitialValues(me)
 
     return (
         <main className='page-container'>
@@ -91,6 +120,7 @@ const Bucket: React.FC<PropsType> = (props) => {
 
                     {step === 0 && <ShowOrder dishes={dishes}
                                               sauces={sauces}
+                                              categories={categories}
                                               delivery={delivery}
                                               deliveryPrice={deliveryPrice}
                                               saleForPickup={saleForPickup}
@@ -104,10 +134,11 @@ const Bucket: React.FC<PropsType> = (props) => {
                                               onChange={onChange}
                                               setStep={setStep}/>}
 
-                    {step === 1 && <FormOrder settings={settings}
-                                              global_settings={global_settings}
-                                              payment_method={paymentMethod}
-                                              delivery_method={deliveryMethod}
+                    {step === 1 && <FormOrder initialValues={initialValues}
+                                              settings={settings}
+                                              globalSettings={globalSettings}
+                                              paymentMethod={paymentMethod}
+                                              deliveryMethod={deliveryMethod}
                                               price={price}
                                               onSubmit={onSubmit}
                                               delivery={delivery}

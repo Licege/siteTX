@@ -3,14 +3,14 @@
   position: relative;
   padding: 0 0 16px;
   // background-color: #fff;
-  margin-top: 60px;
+  margin-top: 16px;
   overflow: hidden;
 
   &-feed {
     display: none;
     justify-content: center;
     align-items: center;
-    z-index: 90;
+    z-index: 1;
     list-style: none;
     overflow-x: auto;
     height: 50px;

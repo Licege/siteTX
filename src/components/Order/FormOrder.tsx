@@ -1,6 +1,6 @@
 import React from 'react'
 import { InjectedFormProps, reduxForm, Field } from 'redux-form'
-import renderTextField from '../common/elements/RenderTextField'
+import renderTextField from '../common/elements/form/RenderTextField'
 import { FormControl, FormHelperText, InputLabel, Button, Theme, createStyles } from '@material-ui/core'
 import Select from '@material-ui/core/Select/Select'
 import validate from './Validate'
@@ -53,10 +53,10 @@ const FormOrder: React.FC<InjectedFormProps<IOrder>> = ( {handleSubmit} ) => {
             </div>
             <div>
                 {/*<Field name='datetime' component={MyReactDateTimePicker} parse={(value: Date) => value.toISOString()} />*/}
-                <Field name='order_date' component={DateTimeField}/>
+                <Field name='orderDate' component={DateTimeField}/>
             </div>
             <div>
-                <Field name='count_person' component={renderSelectField} label='Количество гостей'>
+                <Field name='countPerson' component={renderSelectField} label='Количество гостей'>
                     <option value={1}>1</option>
                     <option value={2}>2</option>
                 </Field>
@@ -79,7 +79,7 @@ const FormOrder: React.FC<InjectedFormProps<IOrder>> = ( {handleSubmit} ) => {
 let ReduxFormOrder = reduxForm<IOrder>({
     form: 'orderForm',
     initialValues: {
-        order_date: new Date(new Date().setMilliseconds(2 * 60 * 60 * 1000)),
+        orderDate: new Date(new Date().setMilliseconds(2 * 60 * 60 * 1000)),
     },
     validate,
     onSubmitFail: (errors => scrollToFirstError(errors)),

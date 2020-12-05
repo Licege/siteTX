@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import CardDish from '../common/elements/CardDish'
 import { categoryType, dishType, orderDishType } from '../../types/types'
 import Sidebar from './sidebar'
+import EmptyPage from '../../pages/empyPage';
 
 interface IProps {
     menu: Array<dishType>,
@@ -20,13 +21,13 @@ type CategoriesFeedType = {
     mobileMenuStatus: boolean
 }
 
-const CategoriesFeed = ( { categories, mobileMenuStatus }: CategoriesFeedType ): JSX.Element => (
+const CategoriesFeed = ({ categories, mobileMenuStatus }: CategoriesFeedType): JSX.Element => (
     <ul className={'menu-feed' + (mobileMenuStatus ? '' : ' -fixed')}>
         {categories.map(category => (
-            <li key={category._id}>
+            <li key={category.id}>
                 <NavLink activeClassName='-active'
                          className='menu-feed-item'
-                         to={'/menu/' + category.title_en}
+                         to={'/menu/' + category.titleEn}
                 >
                     {category.title}
                 </NavLink>
@@ -35,7 +36,7 @@ const CategoriesFeed = ( { categories, mobileMenuStatus }: CategoriesFeedType ):
     </ul>
 )
 
-const Menu: React.FC<IProps> = ( {
+const Menu: React.FC<IProps> = ({
                                      menu,
                                      categories,
                                      order,
@@ -43,7 +44,9 @@ const Menu: React.FC<IProps> = ( {
                                      addToBucket,
                                      increaseCountDish,
                                      reduceCountDish,
-                                 } ) => {
+                                 }) => {
+    if (!menu.length) return <EmptyPage />
+
     return (
         <div className='menu'>
             <Sidebar categories={categories} />
@@ -53,11 +56,12 @@ const Menu: React.FC<IProps> = ( {
                     <h1 className='menu-wrapper-header'>~ Меню ~</h1>
                     <div className='menu-wrapper-content'>
                         {menu.map(( dish ) => <CardDish dish={dish}
+                                                        categories={categories}
                                                         order={order}
                                                         addToBucket={addToBucket}
                                                         increaseCountDish={increaseCountDish}
                                                         reduceCountDish={reduceCountDish}
-                                                        key={dish._id}/>)}
+                                                        key={dish.id}/>)}
                     </div>
                 </div>
                 :

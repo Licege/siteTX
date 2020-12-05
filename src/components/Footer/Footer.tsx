@@ -83,7 +83,9 @@ const Footer: React.FC = () => {
                         <NavLink activeClassName='-active' className='footer__navbar-item'
                                  to='/gallery'>Фотогалерея</NavLink>
                         <NavLink activeClassName='-active' className='footer__navbar-item'
-                                 to='/reviews'>Отзывы</NavLink>
+                                 to='/complain'>Ваше мнение</NavLink>
+                        {/*<NavLink activeClassName='-active' className='footer__navbar-item'*/}
+                        {/*         to='/reviews'>Отзывы</NavLink>*/}
                 </nav>
             </div>
             <small className='footer__copyright'>© Три холма {date}</small>

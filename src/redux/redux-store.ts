@@ -12,6 +12,7 @@ import reviewsReducer from './reviews-reducer'
 import authReducer from './auth-reducer'
 import promosReducer from './promos-reducer'
 import appReducer from './app-reducer'
+import profileReducer from './profile-reducer';
 
 const persistConfig = {
     key: 'bucket',
@@ -28,6 +29,7 @@ let rootReducer = combineReducers({
     bucket: bucketReducer,
     reviewsPage: reviewsReducer,
     promosPage: promosReducer,
+    profilePage: profileReducer,
     app: appReducer,
     form: formReducer,
 })
@@ -43,8 +45,6 @@ export type InferActionsTypes<T extends { [key: string]: (...args: any[]) => any
 const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 export const store = createStore(persistedReducer, composeEnhancers(applyMiddleware(thunkMiddleWare)))
 export const persistor = persistStore(store)
-// @ts-ignore
-window._store_ = store
 
 export default () => {
     return { store, persistor }

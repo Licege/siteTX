@@ -6,6 +6,7 @@ import { AboutUs } from './AboutUs'
 import { useDispatch, useSelector } from 'react-redux'
 import { getContactsSelector } from '../../redux/selectors/contacts'
 import { getContacts } from '../../redux/contacts-reducer'
+import './style.scss'
 
 
 const Contacts: React.FC = () => {
@@ -19,14 +20,16 @@ const Contacts: React.FC = () => {
     }, [dispatch])
 
     const postForm = ( data: reviewType ) => {
-        data.create_at = Date.parse(new Date().toString())
+        data.createdAt = Date.parse(new Date().toString())
     }
 
     return (
         <main className='page-container'>
             <AboutUs/>
-            <Address contacts={contacts}/>
-            <ConnectWithUs postForm={postForm}/>
+            <div className='contacts'>
+                <Address contacts={contacts}/>
+                <ConnectWithUs postForm={postForm}/>
+            </div>
         </main>
     )
 }

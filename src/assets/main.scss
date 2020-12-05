@@ -1,5 +1,6 @@
 @import 'variables/fonts';
 @import 'variables/bootstrap-variables';
+@import 'variables/variables';
 @import '~bootstrap/scss/bootstrap';
 @import '~react-image-gallery/styles/scss/image-gallery';
 @import 'app';
@@ -21,6 +22,7 @@
 @import './elements/forms/formLogin';
 @import './elements/forms/formRegistration';
 @import './elements/modals/auth';
+@import './elements/modals/registration';
 @import './pages/page';
 @import './pages/home';
 @import './pages/menu';

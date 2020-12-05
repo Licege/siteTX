@@ -4,11 +4,12 @@ import altImg from '../../static/img/dish.svg'
 import { Button } from '@material-ui/core'
 import LinkButton from '../common/elements/buttons/LinkButton'
 import { SaucesBlock } from './SaucesBlock'
-import { deliveryType, dishType } from '../../types/types'
+import { categoryType, deliveryType, dishType } from '../../types/types'
 
 type PropsType = {
     dishes: Array<dishType>
     sauces: Array<dishType>
+    categories: Array<categoryType>
     delivery: deliveryType
     deliveryPrice: number
     saleForPickup: number
@@ -18,7 +19,7 @@ type PropsType = {
     addDishToBucket: (dish: dishType) => void
     increaseDishCount: (dish: dishType) => void
     reduceDishCount: (dish: dishType) => void
-    removeDish: (id: string) => void
+    removeDish: (id: number | string) => void
     clearBucket: () => void
     onChange: (dish: dishType) => ((event: React.ChangeEvent<HTMLInputElement>) => void)
     setStep: (step: 0 | 1 | 2) => void
@@ -27,6 +28,7 @@ type PropsType = {
 export const ShowOrder: React.FC<PropsType> =
     ({
          dishes,
+         categories,
          setStep,
          reduceDishCount,
          delivery,
@@ -40,7 +42,7 @@ export const ShowOrder: React.FC<PropsType> =
         <div>
             <div className='bucket-table'>
                 {dishes.map(dish => (
-                    <div className='bucket-table-row' key={dish._id}>
+                    <div className='bucket-table-row' key={dish.id}>
                         <img className='bucket-table-row-img'
                              src={dish.imageSrc ? fullLink(dish.imageSrc) : altImg} alt=''/>
                         <div className='bucket-table-row-info'>
@@ -49,14 +51,14 @@ export const ShowOrder: React.FC<PropsType> =
                                 <span className='custom_subtract' onClick={() => reduceDishCount(dish)}/>
                                 <input className='bucket-table-row-info-count-input' onChange={onChange(dish)}
                                        inputMode='numeric'
-                                       value={getDishesKey(delivery.order, dish._id, 'count')}/>
+                                       value={getDishesKey(delivery.order, dish.id, 'count')}/>
                                 <span className='custom_add' onClick={() => increaseDishCount(dish)}/>
                             </div>
                             <div
-                                className='bucket-table-row-info-ceil'>{getDishesKey(delivery.order, dish._id, 'cost') * getDishesKey(delivery.order, dish._id, 'count') + ' ₽'}</div>
+                                className='bucket-table-row-info-ceil'>{getDishesKey(delivery.order, dish.id, 'cost') * getDishesKey(delivery.order, dish.id, 'count') + ' ₽'}</div>
                         </div>
                         <div><span className='bucket-table-row-remove custom_close'
-                                   onClick={() => removeDish(dish._id)}/></div>
+                                   onClick={() => removeDish(dish.id)}/></div>
                     </div>
                 ))}
             </div>
@@ -68,10 +70,10 @@ export const ShowOrder: React.FC<PropsType> =
                 </Button>
             </div>}
 
-            <SaucesBlock sauces={sauces} addDishToBucket={addDishToBucket}/>
+            <SaucesBlock sauces={sauces} categories={categories} addDishToBucket={addDishToBucket}/>
 
             <div className='bucket-table__arrange'>
-                <div className='bucket-table__price'>Сумма заказа: {delivery.total_price} р.*</div>
+                <div className='bucket-table__price'>Сумма заказа: {delivery.totalPrice} р.*</div>
                 <Button variant='contained' color='primary' onClick={() => setStep(1)}>Оформить заказ</Button>
             </div>
             <div className='bucket-table__hint'>* - цена представлена без учета доставки</div>

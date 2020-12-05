@@ -36,16 +36,18 @@ const AuthModal = ({ isOpen, onClose, signUpSubmit, registrationSubmit }: IProps
                     <DialogContent>
                         <Login onSubmit={signUpSubmit}/>
                     </DialogContent>
-                    <Button variant='text' onClick={toggle}>Еще нет аккаунта?</Button>
+                    <div className='d-flex justify-content-center'>
+                        <Button variant='text' onClick={toggle}>Еще нет аккаунта?</Button>
+                    </div>
                 </div>
                 :
-                <>
+                <div className='modal-registration'>
                     <DialogTitle className='text-center'>Регистрация</DialogTitle>
                     <DialogContent>
                         <Registration onSubmit={registrationSubmit}/>
                     </DialogContent>
                     <Button variant='text' onClick={toggle}>Уже зарегистрированны?</Button>
-                </>
+                </div>
             }
         </Dialog>
     )

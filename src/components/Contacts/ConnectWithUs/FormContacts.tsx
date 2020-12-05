@@ -1,6 +1,6 @@
 import React from 'react'
 import { InjectedFormProps, reduxForm, Field } from 'redux-form'
-import renderTextField from '../../common/elements/RenderTextField'
+import renderTextField from '../../common/elements/form/RenderTextField'
 import validate from './Validate'
 import { Button, createStyles, Theme } from '@material-ui/core'
 import { reviewType } from '../../../types/types'
@@ -43,7 +43,9 @@ const FormContacts: React.FC<InjectedFormProps<reviewType>> = ( {handleSubmit} )
                        rowsMax={10}
                        margin='normal'/>
             </div>
-            <Button variant='contained' color='primary' type='submit'>Отправить</Button>
+            <div>
+                <Button variant='contained' color='primary' type='submit'>Отправить</Button>
+            </div>
         </form>
     )
 }

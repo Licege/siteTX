@@ -2,11 +2,16 @@ import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import ResumeForm from './ResumeForm'
 import { getMyResumeSelector, getVacanciesSelector } from '../../../redux/selectors/vacancies'
+import { getMeSelector } from '../../../redux/selectors/profile';
+import { isNil } from '../../../plugins/helpers';
 
 
 const Resume: React.FC = () => {
-    let resume = useSelector(getMyResumeSelector)
-    let vacancies = useSelector(getVacanciesSelector)
+    const me = useSelector(getMeSelector)
+    const resume = useSelector(getMyResumeSelector)
+    const vacancies = useSelector(getVacanciesSelector)
+
+    const initialValues = !isNil(resume) ? resume : me
 
     useEffect(() => {
         window.scroll(0, 0)
@@ -20,7 +25,7 @@ const Resume: React.FC = () => {
         <main className='page-container'>
             <div className='page-container-title'>Резюме</div>
             <div>
-                <ResumeForm onSubmit={postResume} initialValues={resume} vacancies={vacancies} />
+                <ResumeForm onSubmit={postResume} initialValues={initialValues} vacancies={vacancies} />
             </div>
         </main>
     )

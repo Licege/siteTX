@@ -7,7 +7,7 @@ interface IProps {
 }
 
 export const Address: React.FC<IProps> = ( {contacts} ) => (
-    <>
+    <div>
         <h3>Мы на карте</h3>
         {contacts ?
             <>
@@ -16,5 +16,5 @@ export const Address: React.FC<IProps> = ( {contacts} ) => (
                 {contacts.openHours?.map(( item, key ) => <div key={key}>{item}</div>)}
             </> : null}
         <CustomMap/>
-    </>
+    </div>
 )

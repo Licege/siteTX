@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import CardPromo from '../common/elements/CardPromo'
 import { requestPromos } from '../../redux/promos-reducer'
 import { getPromosSelector } from '../../redux/selectors/promos'
+import EmptyPage from '../../pages/empyPage'
 
 
 export const Promos: React.FC = () => {
-    let promos = useSelector(getPromosSelector)
+    const promos = useSelector(getPromosSelector)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -20,12 +21,13 @@ export const Promos: React.FC = () => {
         }
     }, [dispatch, promos.length])
 
+    if (!promos.length) return <EmptyPage />
 
     return (
         <main className='promos'>
             <h1 className='promos-title'>~ Акции ~</h1>
             <div className='promos-wrapper'>
-                {promos.map(promo => <CardPromo promo={promo} key={promo._id}/>)}
+                {promos.map(promo => <CardPromo promo={promo} key={promo.id}/>)}
             </div>
         </main>
     )

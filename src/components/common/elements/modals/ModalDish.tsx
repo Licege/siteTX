@@ -52,7 +52,7 @@ const ModalDish: React.FC<IProps> = ({ dish, addToBucket, open, onClose }) => {
                             <div className='modal-dish__worth-weight'>{dish.weight} грамм</div>
                         </div>
 
-                        {dish.is_delivery
+                        {dish.isDelivery
                             ? <div className='modal-dish__button'>
                                 <Button variant='contained' color='primary' onClick={() => addToBucket(dish)}>
                                     Заказать

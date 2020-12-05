@@ -1,9 +1,9 @@
 export default function (values: any): any {
     const errors = {} as any
     const requiredFields = [
-        'surname',
+        'name',
         'phone',
-        'rule_agree',
+        'ruleAgree',
     ]
 
     requiredFields.forEach(field => {
@@ -12,8 +12,9 @@ export default function (values: any): any {
         }
     })
 
-    if (!values['rule_agree']) {
-        errors['rule_agree'] = 'Для продолжения необходимо принять условия'
+    if (!values['ruleAgree']) {
+        errors['ruleAgree'] = 'Для продолжения необходимо принять условия'
     }
+    console.log(errors);
     return errors
 }

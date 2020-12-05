@@ -6,7 +6,7 @@ import {
     dishType,
     IDeliveryPost,
     IOrder,
-    IReview,
+    IReview, orderDishType, profileType,
     promoType,
     resumeType,
     vacancyType,
@@ -31,12 +31,12 @@ apiUserRequest.interceptors.response.use(function (response) {
 }, function (error) {
 
     const originalRequest = error.config
+    const refreshToken = window.localStorage.getItem('refreshToken')
 
-    if (error.response.status === 401 && !originalRequest._retry) {
-        debugger
+    if (error.response.status === 401 && !originalRequest._retry && refreshToken) {
         originalRequest._retry = true
+        console.log('updToken');
 
-        const refreshToken = window.localStorage.getItem('refreshToken')
         return axios.post(baseURL + `/auth/refresh-token/`, { refreshToken })
             .then(({ data }) => {
                 window.localStorage.setItem('accessToken', data.accessToken)
@@ -46,6 +46,7 @@ apiUserRequest.interceptors.response.use(function (response) {
                 return apiUserRequest(originalRequest)
             })
             .catch(error => {
+                console.log(error);
                 window.localStorage.clear()
                 window.location.reload()
             })
@@ -92,6 +93,17 @@ export const contactsAPI = {
     },
 }
 
+export const profileAPI = {
+    getMe() {
+        return apiUserRequest.get<profileType>(baseURL + `/me`)
+            .then(response => response)
+    },
+    getOrdersHistory() {
+        return apiUserRequest.get<Array<orderDishType>>(baseURL + `/me/orders`)
+            .then(response => response)
+    }
+}
+
 export const menuAPI = {
     getMenu() {
         return axios.get<Array<dishType>>(baseURL + `/menu/`)
@@ -99,10 +111,10 @@ export const menuAPI = {
                 return response
             })
     },
-    getMenuByCategory(category: string) {
-        return axios.get<Array<dishType>>(baseURL + `/menu/${category}`)
-            .then(respose => {
-                return respose
+    getMenuByCategory(categoryId: number | string) {
+        return axios.get<Array<dishType>>(baseURL + `/menu/${categoryId}`)
+            .then(response => {
+                return response
             })
     },
     getDish(id: number) {

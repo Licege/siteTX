@@ -5,6 +5,7 @@ import Paginator from '../common/elements/Paginator'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { getNewsCountSelector, getNewsSelector } from '../../redux/selectors/news'
 import { requestNews } from '../../redux/news-reducer'
+import EmptyPage from '../../pages/empyPage';
 
 
 const News: React.FC = () => {
@@ -25,19 +26,21 @@ const News: React.FC = () => {
         dispatch(requestNews(page))
     }
 
+    if (!news.length) return <EmptyPage />
+
     return (
         <main className='page-container'>
             <h1 className='page-container-title'>~ Новости ~</h1>
             <TransitionGroup component={null}>
-                {news && news.map(item =>
+                {news?.map(item =>
                     <CSSTransition
                         timeout={2000}
                         classNames='card_animation'
-                        key={item._id}
+                        key={item.id}
                         mountOnEnter
                         unmountOnExit
                     >
-                        <CardNews news={item} key={item._id}/>
+                        <CardNews news={item} key={item.id}/>
                     </CSSTransition>,
                 )}
             </TransitionGroup>

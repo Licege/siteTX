@@ -55,9 +55,9 @@ export const getMenu = (): ThunkType => {
     }
 }
 
-export const getMenuByCategory = (category: string): ThunkType => {
+export const getMenuByCategory = (categoryId: number | string): ThunkType => {
     return async (dispatch) => {
-        let response = await menuAPI.getMenuByCategory(category)
+        let response = await menuAPI.getMenuByCategory(categoryId)
         if (!response.data) {
             dispatch(actions.getMenuByCategory([]))
         } else dispatch(actions.getMenuByCategory(response.data))

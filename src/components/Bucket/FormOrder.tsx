@@ -2,7 +2,7 @@ import React from 'react'
 import { Field, FormSection, formValueSelector, InjectedFormProps, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { deliveryGlobalSettingsType, deliverySettingsType, deliveryType, IDeliveryPost } from '../../types/types'
-import renderTextField from '../common/elements/RenderTextField'
+import renderTextField from '../common/elements/form/RenderTextField'
 import validate from './Validate'
 import {
     Button,
@@ -14,8 +14,9 @@ import {
     RadioGroup,
     Theme,
 } from '@material-ui/core'
-import Select from '@material-ui/core/Select'
-import renderCheckbox from '../common/elements/RenderCheckbox'
+import Select from '../common/elements/form/RenderSelect'
+// import Select from '@material-ui/core/Select'
+import renderCheckbox from '../common/elements/form/RenderCheckbox'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import DateTimeField from '../common/elements/MaterialDateTimePicker'
 import { makeStyles } from '@material-ui/core/styles'
@@ -25,9 +26,9 @@ import { rangeNumbers } from '../../plugins/helpers'
 
 interface PropsType {
     settings: Array<deliverySettingsType>
-    global_settings: deliveryGlobalSettingsType
-    payment_method: string
-    delivery_method: string
+    globalSettings: deliveryGlobalSettingsType
+    paymentMethod: string
+    deliveryMethod: string
     price: number
     delivery: deliveryType
     deliveryPrice: number
@@ -40,27 +41,27 @@ interface IMapStateToProps {
     address: {
         city: string
     }
-    time_delivery: Date
+    timeDelivery: Date
     enableReinitialize: boolean
 }
 
-const renderFromHelper = ({ touched, error }: any) => {
-    if (!(touched && error)) {
-        return
-    } else {
-        return <FormHelperText>{touched && error}</FormHelperText>
-    }
-}
+// const renderFromHelper = ({ touched, error }: any) => {
+//     if (!(touched && error)) {
+//         return
+//     } else {
+//         return <FormHelperText>{touched && error}</FormHelperText>
+//     }
+// }
 
-const renderSelectField = ({ input, label, meta: { touched, error }, children, ...custom }: any): any => (
-    <FormControl error={touched && error}>
-        <InputLabel htmlFor="city">Город</InputLabel>
-        <Select native {...input} {...custom} inputProps={{ name: 'city', id: 'city-bucket' }}>
-            {children}
-        </Select>
-        {renderFromHelper({ touched, error })}
-    </FormControl>
-)
+// const renderSelectField = ({ input, label, meta: { touched, error }, children, ...custom }: any): any => (
+//     <FormControl error={touched && error}>
+//         <InputLabel htmlFor="city">Город</InputLabel>
+//         <Select native {...input} {...custom} inputProps={{ name: 'city', id: 'city-bucket' }}>
+//             {children}
+//         </Select>
+//         {renderFromHelper({ touched, error })}
+//     </FormControl>
+// )
 
 const radioButton = ({ input, ...rest }: any) => (
     <FormControl>
@@ -82,65 +83,86 @@ const useStyles = makeStyles((theme: Theme) =>
 type FormType = InjectedFormProps<IMapStateToProps & IDeliveryPost, PropsType> & PropsType
 
 const FormOrder: React.FC<FormType> = (props) => {
-    const { handleSubmit, settings, global_settings, payment_method, delivery_method, saleForPickup, delivery, deliveryPrice } = props
+    const { handleSubmit, settings, globalSettings, paymentMethod, deliveryMethod, saleForPickup, delivery, deliveryPrice } = props
     let defaultDate = new Date()
     defaultDate.setHours(defaultDate.getHours() + 2)
     const classes = useStyles()
 
-    const sale = (delivery.total_price + deliveryPrice) * saleForPickup / 100
-    const price = delivery.total_price + deliveryPrice - sale
+    const sale = (delivery.totalPrice + deliveryPrice) * saleForPickup / 100
+    const price = delivery.totalPrice + deliveryPrice - sale
+
+    const cityOptions = settings.reduce((acc: any, s) => {
+        return s.isDelivery ? [...acc, { value: s.id, label: s.city }] : acc
+    }, [])
 
     return (
         <div className='bucket-order'>
             <form onSubmit={handleSubmit} className={classes.root}>
                 <div>
-                    <Field name='surname' component={renderTextField} label='Ваше имя:' placeholder='Введите имя'/>
+                    <Field name='name'
+                           component={renderTextField}
+                           label='Ваше имя:'
+                           placeholder='Введите имя' />
                 </div>
                 <div>
-                    <Field name='phone' component={renderTextField} label='Контактный телефон'
-                           placeholder='Введите телефон'/>
+                    <Field name='phone'
+                           component={renderTextField}
+                           label='Контактный телефон'
+                           placeholder='Введите телефон' />
                 </div>
                 <div>
-                    <Field name='email' component={renderTextField} label='E-mail' placeholder='Введите e-mail'/>
+                    <Field name='email'
+                           component={renderTextField}
+                           label='E-mail'
+                           placeholder='Введите e-mail' />
                 </div>
                 <div>
                     <div>
                         <label>Выберите способ оплаты:</label>
                     </div>
-                    <Field name='payment_type' component={radioButton}>
-                        {global_settings.payment_type_cash &&
-                        <FormControlLabel value='cash' control={<Radio/>} label='Наличными'/>}
-                        {global_settings.payment_type_cashless &&
-                        <FormControlLabel value='cashless_payment' control={<Radio/>}
-                                          label='Безналичный расчет курьеру'/>}
-                        {global_settings.payment_type_online &&
-                        <FormControlLabel value='cashless_payment_online' control={<Radio/>}
-                                          label='Безналичный расчет'/>}
+                    <Field name='paymentType' component={radioButton}>
+                        {globalSettings.paymentCash &&
+                        <FormControlLabel value='cash'
+                                          control={<Radio/>}
+                                          label='Наличная оплата' />
+                        }
+                        {globalSettings.paymentCashless &&
+                        <FormControlLabel value='cashlessPayment'
+                                          control={<Radio/>}
+                                          label='Безналичный расчет курьеру' />
+                        }
+                        {globalSettings.paymentOnline &&
+                        <FormControlLabel value='cashlessPaymentOnline'
+                                          control={<Radio/>}
+                                          label='Безналичный расчет онлайн' />}
                     </Field>
-                    {payment_method === 'cash' && <div className='bucket-order__cash'>
+                    {paymentMethod === 'cash' && <div className='bucket-order__cash'>
                         Подготовить сдачу с
-                        <Field name='odd_money' component={renderTextField} label='' placeholder='0'/> рублей
+                        <Field name='oddMoney' component={renderTextField} label='' placeholder='0'/> рублей
                     </div>}
                 </div>
                 <div>
                     <div>
                         <label>Выберите способ доставки:</label>
                     </div>
-                    <Field name='delivery_type' component={radioButton}>
-                        {global_settings.is_delivery_working &&
+                    <Field name='deliveryType' component={radioButton}>
+                        {globalSettings.isDeliveryWorking &&
                         <FormControlLabel value='home' control={<Radio/>} label='На дом'/>}
                         <FormControlLabel value='restaurant' control={<Radio/>} label='Самовывоз из ресторана'/>
                     </Field>
                 </div>
-                {delivery_method === 'home'
+                {deliveryMethod === 'home'
                     ?
                     <FormSection name='address'>
+                        {/*<div>*/}
+                        {/*    <Field name='city' component={renderSelectField} label='Город'>*/}
+                        {/*        {settings.map(s => (*/}
+                        {/*            s.isDelivery && <option value={s.city} key={s.id}>{s.city}</option>*/}
+                        {/*        ))}*/}
+                        {/*    </Field>*/}
+                        {/*</div>*/}
                         <div>
-                            <Field name='city' component={renderSelectField} label='Город'>
-                                {settings.map(s => (
-                                    s.is_delivery && <option value={s.city} key={s._id}>{s.city}</option>
-                                ))}
-                            </Field>
+                            <Field name='city' component={Select} label='Город' options={cityOptions} />
                         </div>
                         <div>
                             <Field name='street' component={renderTextField} label='Улица'
@@ -168,10 +190,10 @@ const FormOrder: React.FC<FormType> = (props) => {
                     </div>
                 }
                 <div>
-                    <Field name='time_delivery' component={DateTimeField}/>
+                    <Field name='timeDelivery' component={DateTimeField}/>
                 </div>
                 <div>
-                    <Field name='count_person'
+                    <Field name='countPerson'
                            parse={(value: string) => value !== '' ? Number(value) : ''}
                            normalize={(value: number) => rangeNumbers(value, 0, 20)}
                            type='number'
@@ -182,21 +204,19 @@ const FormOrder: React.FC<FormType> = (props) => {
                 <div>
                     <Field name='comment'
                            component={renderTextField}
+                           as='textarea'
                            label='Пожелания к заказу'
-                           placeholder='Опишите ваши пожелания'
-                           multiline
-                           rowsMax="6"
-                           margin="normal"/>
+                           placeholder='Опишите ваши пожелания' rows={6} />
                 </div>
                 <div>
-                    <Field name='rule_agree'
+                    <Field name='ruleAgree'
                            className='bucket-order__polit'
                            component={renderCheckbox}
                            label='Я согласен на обработку своих персональных данных и принимаю условия Политики конфиденциальности и Пользовательского соглашения'/>
                 </div>
 
                 {delivery.order.length && <div className='bucket-order__total'>
-                    <div>Сумма заказа: {delivery.total_price} ₽</div>
+                    <div>Сумма заказа: {delivery.totalPrice} ₽</div>
                     <div>
                         {
                             saleForPickup === 0
@@ -219,14 +239,6 @@ const FormOrder: React.FC<FormType> = (props) => {
 
 let ReduxFormOrder = reduxForm<IDeliveryPost & IMapStateToProps, PropsType>({
     form: 'bucketOrderForm',
-    initialValues: {
-        payment_type: 'cash',
-        delivery_type: 'home',
-        address: {
-            city: 'Калининград',
-        },
-        time_delivery: new Date(new Date().setMilliseconds(60 * 60 * 1000)),
-    },
     validate,
     onSubmitFail: (errors => scrollToFirstError(errors)),
     enableReinitialize: true,
@@ -235,6 +247,6 @@ let ReduxFormOrder = reduxForm<IDeliveryPost & IMapStateToProps, PropsType>({
 const selector = formValueSelector('bucketOrderForm')
 export default connect(
     state => {
-        return selector(state, 'payment_type', 'delivery_type')
+        return selector(state, 'paymentType', 'deliveryType')
     },
 )(ReduxFormOrder)

@@ -46,7 +46,7 @@ export const login = (profile: authProfileType) => async (dispatch: Dispatch<Act
     dispatch(actions.login(response.data))
 }
 
-export const refresh = () => async (dispatch: Dispatch<ActionType>) => {
+export const refresh = async () => {
     await authAPI.refresh()
 }
 

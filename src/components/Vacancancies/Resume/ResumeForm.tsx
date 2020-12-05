@@ -1,8 +1,8 @@
 import React from 'react'
 import { Field, InjectedFormProps, reduxForm } from 'redux-form'
-import renderTextField from '../../common/elements/RenderTextField'
+import renderTextField from '../../common/elements/form/RenderTextField'
 import { Button, createStyles, Theme } from '@material-ui/core'
-import { resumeType, vacancyType } from '../../../types/types'
+import { profileType, resumeType, vacancyType } from '../../../types/types'
 import { dateFormParse } from '../../../plugins/helpers'
 import { makeStyles } from '@material-ui/core/styles'
 import BirthdayPicker from '../../common/elements/BirthdayPicker'
@@ -23,7 +23,7 @@ type PropsType = {
     vacancies: vacancyType[]
 }
 
-const ResumeForm: React.FC<InjectedFormProps<resumeType, PropsType> & PropsType> = ( {handleSubmit, vacancies} ) => {
+const ResumeForm: React.FC<InjectedFormProps<resumeType | profileType, PropsType> & PropsType> = ( {handleSubmit, vacancies} ) => {
     const classes = useStyles()
 
     return (
@@ -32,7 +32,7 @@ const ResumeForm: React.FC<InjectedFormProps<resumeType, PropsType> & PropsType>
                 <Field name='surname' component={renderTextField} label='Фамилия*' placeholder='Введите фамилию'/>
             </div>
             <div>
-                <Field name='name' component={renderTextField} label='Имя*' placeholder='Введите имя'/>
+                <Field name='forename' component={renderTextField} label='Имя*' placeholder='Введите имя'/>
             </div>
             <div>
                 <Field name='patronymic' component={renderTextField} label='Отчество' placeholder='Введите отчество'/>
@@ -61,7 +61,7 @@ const ResumeForm: React.FC<InjectedFormProps<resumeType, PropsType> & PropsType>
     )
 }
 
-let ReduxResumeForm = reduxForm<resumeType, PropsType>({
+let ReduxResumeForm = reduxForm<resumeType | profileType, PropsType>({
     form: 'resume-form',
     enableReinitialize: true,
 })(ResumeForm)

@@ -7,10 +7,14 @@ interface IProps {
     promos: Array<promoType>
 }
 
-const SliderPromo: React.FC<IProps> = ( {promos} ) => {
+const SliderPromo: React.FC<IProps> = ({ promos }) => {
+    const getCountSlidesToShow = (count: number) => {
+        return count > promos.length ? promos.length : count
+    }
+
     const settings = {
         dots: true,
-        slidesToShow: 3,
+        slidesToShow: getCountSlidesToShow(3),
         initialSlide: 1,
         centerMode: false,
         centerPadding: '30px',
@@ -19,21 +23,21 @@ const SliderPromo: React.FC<IProps> = ( {promos} ) => {
             {
                 breakpoint: 1300,
                 settings: {
-                    slidesToShow: 2,
+                    slidesToShow: getCountSlidesToShow(2),
                     slidesToScroll: 1,
                 },
             },
             {
                 breakpoint: 768,
                 settings: {
-                    slidesToShow: 1,
+                    slidesToShow: getCountSlidesToShow(1),
                     slidesToScroll: 1,
                 },
             },
             {
                 breakpoint: 540,
                 settings: {
-                    slidesToShow: 1,
+                    slidesToShow: getCountSlidesToShow(1),
                     slidesToScroll: 1,
                 },
             },

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import CardVacancy from '../common/elements/CardVacancy'
 import { getVacanciesSelector } from '../../redux/selectors/vacancies'
 import { getVacancies } from '../../redux/vacancies-reducer'
+import EmptyPage from '../../pages/empyPage';
 
 
 const Vacancies: React.FC = () => {
@@ -18,12 +19,14 @@ const Vacancies: React.FC = () => {
         dispatch(getVacancies())
     }, [dispatch])
 
+    if (!vacancies.length) return <EmptyPage />
+
     return (
         <main className='page-container'>
             <h1 className='page-container-title'>~ Вакансии ~</h1>
             <div className='vacancies-container'>
                 {vacancies.map(vacancy =>
-                    <CardVacancy vacancy={vacancy} key={vacancy._id}/>,
+                    <CardVacancy vacancy={vacancy} key={vacancy.id}/>,
                 )}
             </div>
         </main>

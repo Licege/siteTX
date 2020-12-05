@@ -5,7 +5,7 @@ import SectionAbout from './About/SectionAbout'
 import SectionPromo from './Promo/SectionPromo'
 import SectionMap from './Map/SectionMap'
 import { getNewsSelector } from '../../redux/selectors/news'
-import { getDishesSelector } from '../../redux/selectors/menu'
+import { getCategoriesSelector, getDishesSelector } from '../../redux/selectors/menu'
 import { getPromosSelector } from '../../redux/selectors/promos'
 import { getContactsSelector } from '../../redux/selectors/contacts'
 import { actions } from '../../redux/bucket-reducer'
@@ -16,10 +16,11 @@ import { getContacts } from '../../redux/contacts-reducer'
 import { dishType } from '../../types/types'
 
 const Home: React.FC = () => {
-    let news = useSelector(getNewsSelector)
-    let menu = useSelector(getDishesSelector)
-    let promos = useSelector(getPromosSelector)
-    let contacts = useSelector(getContactsSelector)
+    const news = useSelector(getNewsSelector)
+    const menu = useSelector(getDishesSelector)
+    const promos = useSelector(getPromosSelector)
+    const contacts = useSelector(getContactsSelector)
+    const categories = useSelector(getCategoriesSelector)
 
     const dispatch = useDispatch()
 
@@ -38,7 +39,7 @@ const Home: React.FC = () => {
     return (
         <main className='Home'>
             <SectionAbout/>
-            <SectionMenu menu={menu} addDishToBucket={addDishToBucket}/>
+            <SectionMenu menu={menu} categories={categories} addDishToBucket={addDishToBucket}/>
             <SectionPromo promos={promos}/>
             {/*<SectionDelivery contacts={contacts}/>*/}
             <SectionMap/>

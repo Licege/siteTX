@@ -13,8 +13,8 @@ const Order: React.FC = () => {
 
     const onSubmit = ( order: IOrder ) => {
         let date = {...order}
-        if (typeof date.order_date !== 'string') {
-            date.order_date = date.order_date.toISOString()
+        if (typeof date.orderDate !== 'string') {
+            date.orderDate = date.orderDate.toISOString()
         }
         orderAPI.postOrder(date)
     }
@@ -23,7 +23,7 @@ const Order: React.FC = () => {
         <main className='page-container'>
             <h1 className='page-container-title'>~ Бронирование столов ~</h1>
             <div className='order'>
-                <img src={img} className='order__img' alt='' onLoad={() => console.log('1')}/>
+                <img src={img} className='order__img' alt='' />
                 <div className='order__content'>
                     <p>Описание тут</p>
                     <OrderForm onSubmit={onSubmit}/>

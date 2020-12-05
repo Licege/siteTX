@@ -8,7 +8,7 @@ interface IProps {
     promo: promoType
 }
 
-const showMore = (id: string, history: any) => {
+const showMore = (id: number | string, history: any) => {
     return () => {
         return history.push(`/actions/${id}`)
     }
@@ -25,7 +25,7 @@ const CardPromo: React.FC<IProps> = ({ promo }) => {
 
     return (
         <div className='card_promo'>
-            <div className='card_promo-img' style={style} onClick={showMore(promo._id, history)}/>
+            <div className='card_promo-img' style={style} onClick={showMore(promo.id, history)}/>
             {/*<div className='card-body card_promo__wrapper'>*/}
             {/*    <div className='card_promo-title'>{promo.title}</div>*/}
             {/*    <div className='card_promo-description'>{cropText(promo.short_description, 60)}</div>*/}

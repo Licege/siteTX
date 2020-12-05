@@ -1,5 +1,5 @@
 import React, { CSSProperties, useState } from 'react'
-import { dishType, orderDishType } from '../../../types/types'
+import { categoryType, dishType, orderDishType } from '../../../types/types'
 import altImg from '../../../static/img/dish.svg'
 import Button from '@material-ui/core/Button'
 import { cropText, fullLink } from '../../../plugins/helpers'
@@ -7,6 +7,7 @@ import ModalDish from './modals/ModalDish'
 
 type PropsType = {
     dish: dishType
+    categories: Array<categoryType>
     order?: Array<orderDishType>
     showDescription?: boolean
     shortCard?: boolean
@@ -18,12 +19,13 @@ type PropsType = {
 
 const CardDish: React.FC<PropsType> = ({
                                            dish,
+                                           categories,
                                            order,
                                            addToBucket,
                                            showDescription = true,
                                            shortCard,
-                                           increaseCountDish,
-                                           reduceCountDish,
+                                           increaseCountDish = () => {},
+                                           reduceCountDish= () => {},
                                        }) => {
     const style = {
         backgroundImage: `url(${dish.imageSrc ? fullLink(dish.imageSrc) : altImg})`,
@@ -33,7 +35,9 @@ const CardDish: React.FC<PropsType> = ({
 
     const [isOpen, setOpen] = useState(false)
 
-    const orderedDish = order?.find(d => d.dish_id === dish._id)
+    const orderedDish = order?.find(d => d.dishId === dish.id)
+    const category = categories.find(category => category.id === dish.categoryId)
+    const isCategoryDelivery = category?.isDelivery
 
     return (
         <>
@@ -45,11 +49,11 @@ const CardDish: React.FC<PropsType> = ({
                     <p className='card_item-describe'><b>Описание:</b> {cropText(dish.description, 70)}</p>}
                     <div className='card_item-action'>
                         <div className='card_item-info'>
-                            {dish.cost && <p className='card_item-info-price'>{dish.cost} руб.</p>}
-                            {dish.weight && <p className='card_item-info-weight'>{dish.weight} г.</p>}
+                            {dish.cost ? <p className='card_item-info-price'>{dish.cost} руб.</p>: null}
+                            {dish.weight ? <p className='card_item-info-weight'>{dish.weight} г.</p> : null}
                         </div>
 
-                        {dish.is_delivery
+                        {dish.isDelivery && isCategoryDelivery
                             ? <div className='card_item-button'>
                                 {!orderedDish || shortCard
                                     ? <Button variant='contained' color='primary' onClick={() => addToBucket(dish)}>
@@ -57,12 +61,12 @@ const CardDish: React.FC<PropsType> = ({
                                     </Button>
                                     : <div className='card_item-button__ordered'>
                                         <Button variant='contained' color='primary'
-                                                onClick={() => reduceCountDish!(dish)}>
+                                                onClick={() => reduceCountDish(dish)}>
                                             -
                                         </Button>
                                         <span className='value'>{orderedDish?.count}</span>
                                         <Button variant='contained' color='primary'
-                                                onClick={() => increaseCountDish!(dish)}>
+                                                onClick={() => increaseCountDish(dish)}>
                                             +
                                         </Button>
                                     </div>}

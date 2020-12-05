@@ -1,18 +1,23 @@
 import React from 'react'
-import { dishType } from '../../../types/types'
+import { categoryType, dishType } from '../../../types/types'
 import CardDish from '../../common/elements/CardDish'
 import CustomSlider from '../../common/elements/sliders/CustomSlider'
 
 interface IProps {
     menu: Array<dishType>
+    categories: Array<categoryType>
 
-    addDishToBucket: ( dish: dishType ) => void
+    addDishToBucket: (dish: dishType) => void
 }
 
-const SliderMenu: React.FC<IProps> = ( {menu, addDishToBucket} ) => {
+const SliderMenu: React.FC<IProps> = ({ menu, categories, addDishToBucket }) => {
+    const getCountSlidesToShow = (count: number) => {
+        return count > menu.length ? menu.length : count
+    }
+
     const settings = {
         dots: false,
-        slidesToShow: 5,
+        slidesToShow: getCountSlidesToShow(5),
         initialSlide: 1,
         centerMode: false,
         centerPadding: '30px',
@@ -21,28 +26,28 @@ const SliderMenu: React.FC<IProps> = ( {menu, addDishToBucket} ) => {
             {
                 breakpoint: 1150,
                 settings: {
-                    slidesToShow: 4,
+                    slidesToShow: getCountSlidesToShow(4),
                     slidesToScroll: 1,
                 },
             },
             {
                 breakpoint: 960,
                 settings: {
-                    slidesToShow: 3,
+                    slidesToShow: getCountSlidesToShow(3),
                     slidesToScroll: 1,
                 },
             },
             {
                 breakpoint: 768,
                 settings: {
-                    slidesToShow: 2,
+                    slidesToShow: getCountSlidesToShow(2),
                     slidesToScroll: 1,
                 },
             },
             {
                 breakpoint: 540,
                 settings: {
-                    slidesToShow: 1,
+                    slidesToShow: getCountSlidesToShow(1),
                     slidesToScroll: 1,
                 },
             },
@@ -54,7 +59,7 @@ const SliderMenu: React.FC<IProps> = ( {menu, addDishToBucket} ) => {
         <div className='Section-menu-slider'>
             <CustomSlider settings={settings}>
                 {menu.map(dish => (
-                    <CardDish dish={dish} key={dish._id} addToBucket={addDishToBucket} showDescription={false}/>
+                    <CardDish dish={dish} categories={categories} key={dish.id} addToBucket={addDishToBucket} showDescription={false}/>
                 ))}
             </CustomSlider>
         </div>

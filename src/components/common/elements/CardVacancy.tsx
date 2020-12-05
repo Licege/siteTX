@@ -17,12 +17,12 @@ const CardVacancy: React.FC<PropsType> = ( { vacancy } ) => {
                 <h3 className='card_item-title'>{vacancy.title}</h3>
                 {vacancy.requirements && <p><b>Требования:</b> {vacancy.requirements}</p>}
                 {vacancy.description && <p><b>Описание:</b> {vacancy.description}</p>}
-                {vacancy.salary_from && vacancy.salary_to
-                    ? <p>Заработная плата от {vacancy.salary_from} до {vacancy.salary_to} ₽</p>
-                    : vacancy.salary_from || vacancy.salary_to
-                        ? <p>Заработная плата: {vacancy.salary_from || vacancy.salary_to} ₽</p> : ''}
+                {vacancy.salaryFrom && vacancy.salaryTo
+                    ? <p>Заработная плата от {vacancy.salaryFrom} до {vacancy.salaryTo} ₽</p>
+                    : vacancy.salaryFrom || vacancy.salaryTo
+                        ? <p>Заработная плата: {vacancy.salaryFrom || vacancy.salaryTo} ₽</p> : ''}
                 <div className='card_item-button -auto-width'>
-                    <Link to={'/resume/' + vacancy._id}>
+                    <Link to={'/resume/' + vacancy.id}>
                         <Button variant='contained'
                                 color='primary'>
                             Откликнуться

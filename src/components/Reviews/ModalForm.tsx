@@ -1,18 +1,18 @@
 import React from 'react'
+import { Field, InjectedFormProps, reduxForm } from 'redux-form'
 import Dialog from '@material-ui/core/Dialog'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogActions from '@material-ui/core/DialogActions/DialogActions'
 import Button from '@material-ui/core/Button'
-import { Field, InjectedFormProps, reduxForm } from 'redux-form'
-import renderTextField from '../common/elements/RenderTextField'
+import renderTextField from '../common/elements/form/RenderTextField'
 import { TransitionProps } from '@material-ui/core/transitions/transition'
 import Slide from '@material-ui/core/Slide/Slide'
-import renderCheckbox from '../common/elements/RenderCheckbox'
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
+import renderCheckbox from '../common/elements/form/RenderCheckbox'
 import validate from './Validate'
 import { IReview } from '../../types/types'
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import renderRatingField from '../common/elements/RenderRating'
+import renderRatingField from '../common/elements/form/RenderRating'
 
 interface IProps {
     isOpen: boolean
@@ -43,9 +43,11 @@ const useStyles = makeStyles(( theme: Theme ) =>
 )
 
 const ModalForm: React.FC<InjectedFormProps<IReview & IMapStateToProps, IProps> & IProps>
-    = ( {
-            isOpen, handleClose, handleSubmit,
-    } ) => {
+    = ({
+            isOpen,
+           handleClose,
+           handleSubmit,
+    }) => {
     const classes = useStyles()
 
     return (
@@ -63,7 +65,7 @@ const ModalForm: React.FC<InjectedFormProps<IReview & IMapStateToProps, IProps> 
                         <input name='photo' type='file'/>
                     </div>
                     <div>
-                        <Field name='rule_agree'
+                        <Field name='ruleAgree'
                                component={renderCheckbox}
                                label='Соглашаюсь на обработку персональных данных и условия пользовательского соглашения'/>
                     </div>
@@ -76,7 +78,7 @@ const ModalForm: React.FC<InjectedFormProps<IReview & IMapStateToProps, IProps> 
     )
 }
 
-let ModalReduxForm = reduxForm<IReview & IMapStateToProps, IProps>({
+const ModalReduxForm = reduxForm<IReview & IMapStateToProps, IProps>({
     form: 'modal-create-reviews',
     validate,
     initialValues: {

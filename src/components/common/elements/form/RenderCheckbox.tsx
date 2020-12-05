@@ -7,7 +7,7 @@ interface IProps {
     label: string
 }
 
-const renderCheckbox: React.FC<WrappedFieldProps & IProps> = ( {input, label} ) => (
+const renderCheckbox: React.FC<WrappedFieldProps & IProps> = ({ input, label }) => (
     <div>
         <FormControlLabel control={
             <Checkbox
