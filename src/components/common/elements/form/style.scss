@@ -3,6 +3,10 @@
 .field {
   margin-bottom: 12px;
 
+  &__datepicker {
+    width: 100%;
+  }
+
   &.error {
     input::placeholder {
       color: $error;
