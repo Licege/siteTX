@@ -4,24 +4,25 @@ import Select from '../../components/common/elements/form/RenderSelect'
 import Datepicker from '../../components/common/elements/form/RenderDatepicker'
 import TextField from '../../components/common/elements/form/RenderTextField'
 import Button from '@material-ui/core/Button'
+import validate from './Validate'
+import { complainType,  selectOptionsType } from '../../types/types';
 
-const ComplainForm = () => {
-    const complainType = ['Благодарность', 'Качество и вкус блюд', 'Неверный или неполный заказ', 'Обслуживание', 'Долгое ожидание', 'Вопрос по акции', 'Вопрос по доставке', 'Предложения', 'Другое']
-    const options = complainType.map((label, value) => ({label, value}))
+interface PropsType {
+    types: selectOptionsType[]
+}
 
-    const ComplainOptions = () => {
-        return (
-            <div>
-                <div>Тема обращения</div>
-                <Field name='type' component={Select} options={options} defaultValue={options[0]}/>
-            </div>
-        )
-    }
+interface IMapStateToProps {
+    form: string
+    enableReinitialize: boolean
+}
 
+type FormType = InjectedFormProps<IMapStateToProps & complainType, PropsType> & PropsType
+
+const ComplainForm: React.FC<FormType> = ({ types, handleSubmit }) => {
     return (
         <div className='complain-form__container'>
-            <form className='complain-form'>
-                <Field name='type' component={Select} options={options} defaultValue={options[0]} label='Тема обращения'/>
+            <form className='complain-form' onSubmit={handleSubmit}>
+                <Field name='typeId' component={Select} options={types} defaultValue={types[0]} label='Тема обращения'/>
                 <Field name='name' component={TextField} label='Ваше имя'/>
                 <div className='complain-form__row'>
                     <Field name='email' component={TextField} label='Ваш e-mail'/>
@@ -37,8 +38,9 @@ const ComplainForm = () => {
     )
 }
 
-const ComplainReduxForm = reduxForm({
+const ComplainReduxForm = reduxForm<complainType & IMapStateToProps, PropsType>({
     form: 'complain-redux-form',
+    validate,
     enableReinitialize: true
 })(ComplainForm)
 

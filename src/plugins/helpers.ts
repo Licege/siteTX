@@ -101,15 +101,6 @@ function isPunctuationMark( simbol: string ): boolean {
 
 }
 
-export function cropText1( text: string, limit = 100 ): string {
-    if (text.length < limit) return text
-
-    while (text[limit + 1] !== ' ' || isPunctuationMark(text[limit])) {
-        limit--
-    }
-    return text.slice(0, limit) + '...'
-}
-
 export function rangeNumbers(value: number, minValue: number, maxValue: number): number {
     let result = value
 

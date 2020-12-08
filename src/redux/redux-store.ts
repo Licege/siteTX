@@ -1,18 +1,19 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux'
 import thunkMiddleWare from 'redux-thunk'
-import contactsReducer from './contacts-reducer'
-import menuReducer from './menu-reducer'
-import vacanciesReducer from './vacancies-reducer'
-import NewsReducer from './news-reducer'
-import bucketReducer from './bucket-reducer'
+import contactsReducer from './reducers/contacts-reducer'
+import menuReducer from './reducers/menu-reducer'
+import vacanciesReducer from './reducers/vacancies-reducer'
+import NewsReducer from './reducers/news-reducer'
+import bucketReducer from './reducers/bucket-reducer'
 import { reducer as formReducer } from 'redux-form'
 import { persistReducer, persistStore } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import reviewsReducer from './reviews-reducer'
-import authReducer from './auth-reducer'
-import promosReducer from './promos-reducer'
-import appReducer from './app-reducer'
-import profileReducer from './profile-reducer';
+import reviewsReducer from './reducers/reviews-reducer'
+import authReducer from './reducers/auth-reducer'
+import promosReducer from './reducers/promos-reducer'
+import appReducer from './reducers/app-reducer'
+import profileReducer from './reducers/profile-reducer'
+import complainReducer from './reducers/complain-reducer'
 
 const persistConfig = {
     key: 'bucket',
@@ -30,6 +31,7 @@ let rootReducer = combineReducers({
     reviewsPage: reviewsReducer,
     promosPage: promosReducer,
     profilePage: profileReducer,
+    complainPage: complainReducer,
     app: appReducer,
     form: formReducer,
 })

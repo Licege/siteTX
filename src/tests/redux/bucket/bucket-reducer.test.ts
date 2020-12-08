@@ -1,4 +1,4 @@
-import bucketReducer, { actions as bucketActions, InitialState } from '../../../redux/bucket-reducer'
+import bucketReducer, { actions as bucketActions, InitialState } from '../../../redux/reducers/bucket-reducer'
 import { dishType } from '../../../types/types'
 
 let state: InitialState

@@ -5,7 +5,7 @@ import { Address } from './Address'
 import { AboutUs } from './AboutUs'
 import { useDispatch, useSelector } from 'react-redux'
 import { getContactsSelector } from '../../redux/selectors/contacts'
-import { getContacts } from '../../redux/contacts-reducer'
+import { getContacts } from '../../redux/thunks/contacts.thunk'
 import './style.scss'
 
 

@@ -236,3 +236,24 @@ export type ordersHistoryType = {
     createdAt: string
     updatedAt: string
 }
+
+export type complainTypeType = {
+    id: string|number
+    title: string
+}
+
+export type selectOptionsType = {
+    value: string|number
+    label: string
+}
+
+export type complainType = {
+    id?: string|number
+    typeId: string|number
+    userId?: string|number|null
+    name: string
+    email: string
+    phone: string
+    visitDate: Date
+    text: string
+}

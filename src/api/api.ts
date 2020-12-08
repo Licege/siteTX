@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {
     authProfileType,
-    categoryType,
+    categoryType, complainType,
     contactsType,
     dishType,
     IDeliveryPost,
@@ -19,12 +19,17 @@ export const WS_BASE = process.env.NODE_ENV === 'production' ? '//server.tri-xol
 
 export const serverUrl = process.env.NODE_ENV === 'production' ? '//api.tri-xolma.ru/' : `http://${hostname}:9090/`
 const baseURL = serverUrl + 'api/public'
+const apiURL = `${serverUrl}api`
 const apiUserRequest = axios.create({
-    baseURL,
+    baseURL: apiURL,
     headers: {
         'Authorization': localStorage.getItem('accessToken'),
     },
 })
+
+const clearTokenFromAPIRequest = () => {
+    delete apiUserRequest.defaults.headers.common["Authorization"];
+}
 
 apiUserRequest.interceptors.response.use(function (response) {
     return response
@@ -95,11 +100,11 @@ export const contactsAPI = {
 
 export const profileAPI = {
     getMe() {
-        return apiUserRequest.get<profileType>(baseURL + `/me`)
+        return apiUserRequest.get<profileType>(apiURL + `/public/me`)
             .then(response => response)
     },
     getOrdersHistory() {
-        return apiUserRequest.get<Array<orderDishType>>(baseURL + `/me/orders`)
+        return apiUserRequest.get<Array<orderDishType>>(apiURL + `/public/me/orders`)
             .then(response => response)
     }
 }
@@ -224,10 +229,22 @@ export const reviewsAPI = {
             })
     },
     postReview(review: IReview) {
-        return apiUserRequest.post(`/reviews/`, review)
+        return apiUserRequest.post(`/public/reviews/`, review)
             .then(response => {
                 return response
             })
             .catch(e => console.log(e))
     },
+}
+
+export const complainAPI = {
+    async getComplainTypes() {
+        return await axios.get(`${baseURL}/complain-types`)
+    },
+    async postComplainPrivate(complain: complainType) {
+        return await apiUserRequest.post(`${apiURL}/private/complain`, complain)
+    },
+    async postComplainPublic(complain: complainType) {
+        return await axios.post(`${baseURL}/complain`, complain)
+    }
 }

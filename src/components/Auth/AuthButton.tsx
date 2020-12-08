@@ -5,7 +5,7 @@ import { AppStateType } from '../../redux/redux-store'
 import AuthModal from './AuthModal'
 import { Button } from '@material-ui/core'
 import { authProfileType, authRegProfileType } from '../../types/types'
-import { actions, login, registration } from '../../redux/auth-reducer'
+import { login, logout, registration } from '../../redux/thunks/auth.thunk'
 import { Dropdown } from 'react-bootstrap';
 
 
@@ -17,7 +17,7 @@ const AuthButton = () => {
         dispatch(login(profile))
     }, [dispatch])
     const logoutFunc = useCallback(() => {
-        dispatch(actions.logout())
+        dispatch(logout())
     }, [dispatch])
     const registrationFunc = useCallback((profile: authRegProfileType) => {
         dispatch(registration(profile))
@@ -32,7 +32,7 @@ const AuthButton = () => {
         history.push('/me')
     }
 
-    const logout = () => {
+    const logoutHandler = () => {
         logoutFunc()
         setIsOpen(false)
     }
@@ -57,7 +57,7 @@ const AuthButton = () => {
                     <Dropdown.Menu>
                         <Dropdown.Item onClick={goToProfile}>Профиль</Dropdown.Item>
                         <Dropdown.Divider />
-                        <Dropdown.Item onClick={logout}>Выйти</Dropdown.Item>
+                        <Dropdown.Item onClick={logoutHandler}>Выйти</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
             </div>

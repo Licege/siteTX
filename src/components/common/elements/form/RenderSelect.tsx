@@ -1,15 +1,26 @@
-import React from 'react'
+import React, { SelectHTMLAttributes } from 'react'
 import Select from 'react-select'
 
 import './style.scss'
 
 type OptionType = {
     label: string
-    value: string|number
+    value: string | number
 }
 
 interface IProps {
     defaultValue?: OptionType
+    input: {
+        name: string,
+        value: OptionType,
+        onChange: () => void
+    }
+    meta: {
+        touched: boolean
+        invalid: boolean
+        error: string
+    }
+    label?: string
     isDisabled?: boolean
     isLoading?: boolean
     isClearable?: boolean
@@ -20,34 +31,57 @@ interface IProps {
     options: OptionType[]
 }
 
-const renderSelect: React.FC<any> = ({
-                                               options,
-                                               defaultValue,
-                                               input: { name },
-                                               isDisabled = false,
-                                               isLoading = false,
-                                               isClearable = false,
-                                               isRtl = false,
-                                               isSearchable = false,
-                                               label = '',
-                                               className = '',
-                                               placeholder = '',
-                                               ...custom
-                                           }) => (
-    <div className={'field' + (className ? ` ${className}` : '')}>
-        {label ? <label className='field__label' htmlFor={name}>{label}</label> : null}
-        <Select
-            id={name}
-            defaultValue={defaultValue}
-            isDisabled={isDisabled}
-            isLoading={isLoading}
-            isClearable={isClearable}
-            isRtl={isRtl}
-            isSearchable={isSearchable}
-            placeholder={placeholder}
-            options={options}
-            {...custom} />
-    </div>
-)
+class renderSelect extends React.Component<any, any> {
+    constructor(props: any) {
+        super(props)
+
+        this.state = {
+            innerValue: this.props.defaultValue
+        }
+    }
+
+    setValueHandler = (chosenOption: OptionType) => {
+        this.setState({ innerValue: chosenOption })
+        this.props.input.onChange(chosenOption.value)
+    }
+
+    render() {
+        const {
+            defaultValue,
+            className,
+            label,
+            input: { name },
+            isDisabled,
+            isLoading,
+            isClearable,
+            isRtl,
+            isSearchable,
+            placeholder,
+            options,
+            ...custom
+        } = this.props
+
+        const { innerValue } = this.state
+
+        return (
+            <div className={'field' + (className ? ` ${className}` : '')}>
+                {label ? <label className='field__label' htmlFor={name}>{label}</label> : null}
+                <Select
+                    value={innerValue}
+                    onChange={this.setValueHandler}
+                    id={name}
+                    defaultValue={defaultValue}
+                    isDisabled={isDisabled}
+                    isLoading={isLoading}
+                    isClearable={isClearable}
+                    isRtl={isRtl}
+                    isSearchable={isSearchable}
+                    placeholder={placeholder}
+                    options={options}
+                    {...custom} />
+            </div>
+        )
+    }
+}
 
 export default renderSelect

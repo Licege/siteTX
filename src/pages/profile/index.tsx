@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { requestMe } from '../../redux/profile-reducer';
+import { requestMe } from '../../redux/thunks/profile.thunks';
 import { getMeSelector } from '../../redux/selectors/profile';
 import { ProfileInfo } from './ProfileInfo';
 import { Tab, Tabs } from 'react-bootstrap';

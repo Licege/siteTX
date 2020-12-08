@@ -1,18 +1,15 @@
-import { ThunkAction } from 'redux-thunk'
+import { ActionsTypes } from '../actions/bucket.actions'
 import {
     deliveryGlobalSettingsType,
     deliverySettingsType,
     deliveryType,
     dishType,
-    IDeliveryPost,
     orderDishType,
-} from '../types/types'
-import { bucketAPI } from '../api/api'
-import { getDishesKey } from '../plugins/helpers'
-import { AppStateType, InferActionsTypes } from './redux-store'
+} from '../../types/types'
+import { getDishesKey } from '../../plugins/helpers'
 
 
-let initialState = {
+const initialState = {
     delivery: {
         order: [] as Array<orderDishType>,
         totalPrice: 0,
@@ -140,62 +137,6 @@ const bucketReducer = (state = initialState, action: ActionsTypes): InitialState
             }
         default:
             return state
-    }
-}
-
-type ActionsTypes = InferActionsTypes<typeof actions>
-
-export const actions = {
-    addDish: (dish: dishType) => ({ type: 'BUCKET/ADD_DISH', dish } as const),
-    increaseDishCount: (dish: dishType) => ({ type: 'BUCKET/INCREASE_DISH_COUNT', dish } as const),
-    reduceDishCount: (dish: dishType) => ({ type: 'BUCKET/REDUCE_DISH_COUNT', dish } as const),
-    removeDish: (id: number | string) => ({ type: 'BUCKET/REMOVE_DISH', id } as const),
-    changeDishCount: (dish: dishType, count: number) => ({
-        type: 'BUCKET/CHANGE_DISH_COUNT',
-        dish,
-        count,
-    } as const),
-    clearBucket: () => ({ type: 'BUCKET/CLEAR' } as const),
-    changeDeliveryPosted: (status: boolean) => ({
-        type: 'BUCKET/DELIVERY_POSTED',
-        status,
-    } as const),
-    changeOrderStatus: (status: 'created' | 'error') => ({ type: 'BUCKET/ORDER_STATUS', status } as const),
-    getDeliverySettings: (settings: Array<deliverySettingsType>) => ({
-        type: 'BUCKET/GET_DELIVERY_SETTINGS',
-        settings,
-    } as const),
-    getDeliveryGlobalSettings: (settings: deliveryGlobalSettingsType) => ({
-        type: 'BUCKET/GET_DELIVERY_GLOBAL_SETTINGS',
-        settings,
-    } as const),
-}
-
-export type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>
-
-export const requestDeliverySettings = (): ThunkType => {
-    return async (dispatch) => {
-        let response = await bucketAPI.getDeliverySettings()
-        dispatch(actions.getDeliverySettings(response.data))
-    }
-}
-export const requestGlobalDeliverySettings = (): ThunkType => {
-    return async (dispatch) => {
-        let response = await bucketAPI.getDeliveryGlobalSettings()
-        dispatch(actions.getDeliveryGlobalSettings(response.data))
-    }
-}
-
-export const postOrder = (order: IDeliveryPost): ThunkType => {
-    return async (dispatch) => {
-        let response = await bucketAPI.postOrder(order)
-        if (response.status === 201 || response.status === 200) {
-            dispatch(actions.changeOrderStatus('created'))
-            dispatch(actions.changeDeliveryPosted(true))
-            dispatch(actions.clearBucket())
-        } else {
-            dispatch(actions.changeOrderStatus('error'))
-        }
     }
 }
 

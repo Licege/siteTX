@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import CardPromo from '../common/elements/CardPromo'
-import { requestPromos } from '../../redux/promos-reducer'
+import { requestPromos } from '../../redux/thunks/promos.thunk'
 import { getPromosSelector } from '../../redux/selectors/promos'
 import EmptyPage from '../../pages/empyPage'
 

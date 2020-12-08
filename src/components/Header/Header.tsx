@@ -5,10 +5,10 @@ import ButtonBucket from '../Bucket/ButtonBucket'
 import MobileMenu from '../common/elements/MobileMenu'
 import AuthButton from '../Auth/AuthButton'
 import { getCategoriesSelector } from '../../redux/selectors/menu'
-import { getCategories } from '../../redux/menu-reducer'
+import { getCategories } from '../../redux/thunks/menu.thunk'
 import logo from '../../static/img/logo.png'
 import { getMobileMenuStatusSelector } from '../../redux/selectors/app'
-import { actions } from '../../redux/app-reducer'
+import { actions } from '../../redux/reducers/app-reducer'
 
 
 const Header: React.FC = () => {

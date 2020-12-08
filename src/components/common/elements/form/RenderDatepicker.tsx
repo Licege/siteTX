@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { SelectHTMLAttributes, useState } from 'react'
 import Datepicker, { registerLocale } from 'react-datepicker'
 import ru from 'date-fns/locale/ru'
 
@@ -45,7 +45,7 @@ const renderDatepicker: React.FC<IProps> = ({
                                                 excludeTimes = [],
                                                 excludeDates = [],
                                                 timeCaption = 'Время',
-                                                dateFormat= '',
+                                                dateFormat = '',
                                                 filterDate,
                                                 showTimeSelect = false,
                                                 isClearable = false,

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { Button } from '@material-ui/core'
 import { getPromoSelector } from '../../redux/selectors/promos'
-import { requestPromoById } from '../../redux/promos-reducer'
+import { requestPromoById } from '../../redux/thunks/promos.thunk'
 import { fullLink } from '../../plugins/helpers'
 import altImg from '../../static/img/dish.svg'
 

@@ -4,7 +4,7 @@ import { Button } from '@material-ui/core'
 import ModalForm from './ModalForm'
 import { getReviewsSelector } from '../../redux/selectors/reviews'
 import { getAuthStatus } from '../../redux/selectors/auth'
-import { postReview, requestReviews } from '../../redux/reviews-reducer'
+import { postReview, requestReviews } from '../../redux/thunks/reviews.thunk'
 import { IReview } from '../../types/types'
 
 

@@ -4,7 +4,7 @@ import CardNews from '../common/elements/CardNews'
 import Paginator from '../common/elements/Paginator'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { getNewsCountSelector, getNewsSelector } from '../../redux/selectors/news'
-import { requestNews } from '../../redux/news-reducer'
+import { requestNews } from '../../redux/thunks/news.thunk'
 import EmptyPage from '../../pages/empyPage';
 
 

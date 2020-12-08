@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getMyOrdersHistory } from '../../../redux/selectors/profile'
-import { requestOrdersHistory } from '../../../redux/profile-reducer'
+import { requestOrdersHistory } from '../../../redux/thunks/profile.thunks'
 import OrderHistoryCard from './Card/index'
 import './style.scss'
 

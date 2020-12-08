@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import CardVacancy from '../common/elements/CardVacancy'
 import { getVacanciesSelector } from '../../redux/selectors/vacancies'
-import { getVacancies } from '../../redux/vacancies-reducer'
+import { getVacancies } from '../../redux/thunks/vacancies.thunk'
 import EmptyPage from '../../pages/empyPage';
 
 

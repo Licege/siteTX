@@ -11,9 +11,10 @@ import {
     dishType,
     IDeliveryPost, profileType,
 } from '../../types/types'
-import { actions, postOrder, requestDeliverySettings, requestGlobalDeliverySettings } from '../../redux/bucket-reducer'
+import { actions } from '../../redux/actions/bucket.actions'
+import { postOrder, requestDeliverySettings, requestGlobalDeliverySettings } from '../../redux/thunks/bucket.thunk'
 import { formValueSelector } from 'redux-form'
-import { getCategories, getMenu } from '../../redux/menu-reducer'
+import { getCategories, getMenu } from '../../redux/thunks/menu.thunk'
 import { WebSocketContext } from '../../socket/WebSocket'
 
 type MapStatePropsType = {
@@ -130,7 +131,7 @@ class BucketContainer extends React.Component<PropsType, StateType> {
             deliveryCost: this.state.deliveryPrice,
             sale: this.state.saleForPickup,
             totalPrice: this.props.delivery.totalPrice,
-            userId: this.props.me?.id || null
+            userId: this.props.me?.id || null,
         }
         this.setStep(2)
         this.context.sendOrderDelivery(post)
@@ -183,7 +184,7 @@ class BucketContainer extends React.Component<PropsType, StateType> {
     }
 }
 
-let mapStateToProps = (state: AppStateType) => {
+const mapStateToProps = (state: AppStateType) => {
     const selector = formValueSelector('bucketOrderForm')
     return {
         me: state.profilePage.me,
@@ -201,7 +202,7 @@ let mapStateToProps = (state: AppStateType) => {
     }
 }
 
-let mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: any) => {
     return {
         getSettings: () => {
             dispatch(requestDeliverySettings())

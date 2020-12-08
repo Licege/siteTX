@@ -8,14 +8,11 @@ import {
     Button,
     createStyles,
     FormControl,
-    FormHelperText,
-    InputLabel,
     Radio,
     RadioGroup,
     Theme,
 } from '@material-ui/core'
 import Select from '../common/elements/form/RenderSelect'
-// import Select from '@material-ui/core/Select'
 import renderCheckbox from '../common/elements/form/RenderCheckbox'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import DateTimeField from '../common/elements/MaterialDateTimePicker'
@@ -44,24 +41,6 @@ interface IMapStateToProps {
     timeDelivery: Date
     enableReinitialize: boolean
 }
-
-// const renderFromHelper = ({ touched, error }: any) => {
-//     if (!(touched && error)) {
-//         return
-//     } else {
-//         return <FormHelperText>{touched && error}</FormHelperText>
-//     }
-// }
-
-// const renderSelectField = ({ input, label, meta: { touched, error }, children, ...custom }: any): any => (
-//     <FormControl error={touched && error}>
-//         <InputLabel htmlFor="city">Город</InputLabel>
-//         <Select native {...input} {...custom} inputProps={{ name: 'city', id: 'city-bucket' }}>
-//             {children}
-//         </Select>
-//         {renderFromHelper({ touched, error })}
-//     </FormControl>
-// )
 
 const radioButton = ({ input, ...rest }: any) => (
     <FormControl>
@@ -154,15 +133,8 @@ const FormOrder: React.FC<FormType> = (props) => {
                 {deliveryMethod === 'home'
                     ?
                     <FormSection name='address'>
-                        {/*<div>*/}
-                        {/*    <Field name='city' component={renderSelectField} label='Город'>*/}
-                        {/*        {settings.map(s => (*/}
-                        {/*            s.isDelivery && <option value={s.city} key={s.id}>{s.city}</option>*/}
-                        {/*        ))}*/}
-                        {/*    </Field>*/}
-                        {/*</div>*/}
                         <div>
-                            <Field name='city' component={Select} label='Город' options={cityOptions} />
+                            <Field name='city' component={Select} label='Город' options={cityOptions} defaultValue={cityOptions[0]} />
                         </div>
                         <div>
                             <Field name='street' component={renderTextField} label='Улица'
@@ -246,7 +218,5 @@ let ReduxFormOrder = reduxForm<IDeliveryPost & IMapStateToProps, PropsType>({
 
 const selector = formValueSelector('bucketOrderForm')
 export default connect(
-    state => {
-        return selector(state, 'paymentType', 'deliveryType')
-    },
+    state => selector(state, 'paymentType', 'deliveryType')
 )(ReduxFormOrder)

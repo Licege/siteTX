@@ -5,7 +5,7 @@ import { dishType } from '../../types/types'
 import { getDishesKey } from '../../plugins/helpers'
 import { NavLink } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
-import { actions } from '../../redux/bucket-reducer'
+import { actions } from '../../redux/actions/bucket.actions'
 
 interface IProps {
     isOpen: boolean

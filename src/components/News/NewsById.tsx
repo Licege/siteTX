@@ -4,7 +4,7 @@ import { useHistory, useParams } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import { fullLink } from '../../plugins/helpers'
 import { getCurrentNewsSelector } from '../../redux/selectors/news'
-import { requestCurrentNews } from '../../redux/news-reducer'
+import { requestCurrentNews } from '../../redux/thunks/news.thunk'
 import altImg from '../../static/img/news.jpg'
 
 interface IParams {

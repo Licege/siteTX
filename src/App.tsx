@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import MenuContainer from './containers/Menu/Menu'
 import BucketContainer from './containers/Bucket/Bucket'
-import { getContacts as getContactsAction } from './redux/contacts-reducer'
+import { getContacts as getContactsAction } from './redux/thunks/contacts.thunk'
 import { Error404 } from './pages/Errors/Error404'
 import { Promos } from './components/Promos/Promos'
 import { Promo } from './components/Promos/Promo'
@@ -21,7 +21,7 @@ import Reviews from './components/Reviews/Reviews'
 import Vacancies from './components/Vacancancies/Vacancies'
 import Resume from './components/Vacancancies/Resume/Resume'
 import Profile from './pages/profile';
-import { requestMe } from './redux/profile-reducer';
+import { requestMe } from './redux/thunks/profile.thunks';
 import { getMeSelector } from './redux/selectors/profile';
 import { getContactsSelector } from './redux/selectors/contacts';
 import { getAuthStatus } from './redux/selectors/auth';
