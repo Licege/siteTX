@@ -1,4 +1,4 @@
-import { InferActionsTypes } from '../redux-store'
+import { ActionType } from '../actions/app.actions'
 
 let initialState = {
     isOpen: false,
@@ -13,11 +13,6 @@ const appReducer = (state = initialState, action: ActionType): InitialState => {
         default:
             return state
     }
-}
-
-type ActionType = InferActionsTypes<typeof actions>
-export const actions = {
-    toggleMobileMenu: () => ({ type: 'APP/TOGGLE_MOBILE_MENU' } as const),
 }
 
 export default appReducer

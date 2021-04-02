@@ -75,7 +75,7 @@ export const ShowOrder: React.FC<PropsType> =
             <div className='bucket-table__arrange'>
                 <div className='bucket-table__price'>Сумма заказа: {delivery.totalPrice} р.*</div>
                 <Button variant='contained' color='primary' onClick={() => setStep(1)}>Оформить заказ</Button>
+                <div className='bucket-table__hint'>* - цена представлена без учета доставки</div>
             </div>
-            <div className='bucket-table__hint'>* - цена представлена без учета доставки</div>
         </div>
     )

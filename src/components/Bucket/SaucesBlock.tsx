@@ -10,7 +10,7 @@ interface IProps {
     addDishToBucket: (dish: dishType) => void
 }
 
-export const SaucesBlock: React.FC<IProps> = ({ sauces, categories,  addDishToBucket }) => {
+export const SaucesBlock: React.FC<IProps> = ({ sauces = [], categories,  addDishToBucket }) => {
     const settings = {
         dots: false,
         slidesToShow: 3,
@@ -40,6 +40,8 @@ export const SaucesBlock: React.FC<IProps> = ({ sauces, categories,  addDishToBu
             },
         ],
     }
+
+    if (!sauces.length) return null
 
     return (
         <div className='mt-5'>

@@ -1,61 +1,38 @@
 import React from 'react'
 import { Field, InjectedFormProps, reduxForm } from 'redux-form'
-import renderTextField from '../../common/elements/form/RenderTextField'
-import { Button, createStyles, Theme } from '@material-ui/core'
+import TextField from '../../common/elements/form/RenderTextField'
+import { Button } from '@material-ui/core'
 import { profileType, resumeType, vacancyType } from '../../../types/types'
 import { dateFormParse } from '../../../plugins/helpers'
-import { makeStyles } from '@material-ui/core/styles'
 import BirthdayPicker from '../../common/elements/BirthdayPicker'
-
-
-const useStyles = makeStyles(( theme: Theme ) =>
-    createStyles({
-        root: {
-            '& .MuiFormControl-root': {
-                margin: theme.spacing(1),
-                width: '220px',
-            },
-        },
-    }),
-)
+import Datepicker from '../../common/elements/form/RenderDatepicker';
 
 type PropsType = {
     vacancies: vacancyType[]
 }
 
 const ResumeForm: React.FC<InjectedFormProps<resumeType | profileType, PropsType> & PropsType> = ( {handleSubmit, vacancies} ) => {
-    const classes = useStyles()
 
     return (
-        <form onSubmit={handleSubmit} className={classes.root}>
-            <div>
-                <Field name='surname' component={renderTextField} label='Фамилия*' placeholder='Введите фамилию'/>
-            </div>
-            <div>
-                <Field name='forename' component={renderTextField} label='Имя*' placeholder='Введите имя'/>
-            </div>
-            <div>
-                <Field name='patronymic' component={renderTextField} label='Отчество' placeholder='Введите отчество'/>
-            </div>
-            <div>
-                <Field name='education' component={renderTextField} label='Образование'
-                       placeholder='Укажите ваше образование' multiline rowsMax={6}/>
-            </div>
+        <form onSubmit={handleSubmit}>
+            <Field name='surname' component={TextField} label='Фамилия*' placeholder='Введите фамилию'/>
+            <Field name='forename' component={TextField} label='Имя*' placeholder='Введите имя'/>
+            <Field name='patronymic' component={TextField} label='Отчество' placeholder='Введите отчество'/>
+            <Field name='education' component={TextField} label='Образование'
+                   placeholder='Укажите ваше образование' multiline rowsMax={6}/>
             {/*Подумать насчет мест работы и опыта*/}
-            <div>
-                <Field name='date_birth' component={BirthdayPicker} label='Дата рождения*'
-                       placeholder='Укажите дату рождения' parse={dateFormParse}/>
-            </div>
-            <div>
-                <Field name='address' component={renderTextField} label='Адрес' placeholder='Укажите адрес' multiline
-                       rowsMax={6}/>
-            </div>
-            <div>
-                <Field name='phone' component={renderTextField} label='Телефон*' placeholder='Укажите телефон'/>
-            </div>
-            <div>
-                <Field name='email' component={renderTextField} label='E-mail' placeholder='Укажите e-mail'/>
-            </div>
+            <Field name='date_birth'
+                   component={Datepicker}
+                   label='Дата рождения*'
+                   placeholder='Укажите дату рождения' />
+            <Field name='address'
+                   component={TextField}
+                   label='Адрес'
+                   placeholder='Укажите адрес'
+                   as='textarea'
+                   rows={6} />
+            <Field name='phone' component={TextField} label='Телефон*' placeholder='Укажите телефон'/>
+            <Field name='email' component={TextField} label='E-mail' placeholder='Укажите e-mail'/>
             <Button variant='contained' color='primary' type='submit'>Отправить резюме</Button>
         </form>
     )

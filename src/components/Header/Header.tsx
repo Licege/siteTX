@@ -8,7 +8,7 @@ import { getCategoriesSelector } from '../../redux/selectors/menu'
 import { getCategories } from '../../redux/thunks/menu.thunk'
 import logo from '../../static/img/logo.png'
 import { getMobileMenuStatusSelector } from '../../redux/selectors/app'
-import { actions } from '../../redux/reducers/app-reducer'
+import { actions } from '../../redux/actions/app.actions'
 
 
 const Header: React.FC = () => {

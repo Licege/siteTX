@@ -28,7 +28,7 @@ const ComplainForm: React.FC<FormType> = ({ types, handleSubmit }) => {
                     <Field name='email' component={TextField} label='Ваш e-mail'/>
                     <Field name='phone' component={TextField} label='Ваш телефон'/>
                 </div>
-                <Field name='visitDate' component={Datepicker} label='Дата и время посещения'/>
+                <Field name='visitDate' component={Datepicker} label='Дата и время посещения' showTimeSelect />
                 <Field name='text' component={TextField} label='Сообщение' as='textarea' rows={6}/>
                 <div className='complain-form__actions'>
                     <Button variant='contained' color='primary' type='submit'>Отправить</Button>

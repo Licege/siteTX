@@ -1,74 +1,48 @@
 import React from 'react'
 import { InjectedFormProps, reduxForm, Field } from 'redux-form'
-import renderTextField from '../common/elements/form/RenderTextField'
-import { FormControl, FormHelperText, InputLabel, Button, Theme, createStyles } from '@material-ui/core'
-import Select from '@material-ui/core/Select/Select'
+import TextField from '../common/elements/form/RenderTextField'
+import Datepicker from '../common/elements/form/RenderDatepicker'
+import Select from '../common/elements/form/RenderSelect'
+import { Button } from '@material-ui/core'
 import validate from './Validate'
 import { IOrder } from '../../types/types'
-import DateTimeField from '../common/elements/MaterialDateTimePicker'
-import { makeStyles } from '@material-ui/core/styles'
 import { scrollToFirstError } from '../../plugins/validate'
 
 
-const renderFromHelper = ( {touched, error}: any ) => {
-    if (!(touched && error)) {
-        return
-    } else {
-        return <FormHelperText component='div'>{touched && error}</FormHelperText>
+const datepickerSettings = () => {
+    const today = new Date()
+    const maxDate = new Date().setDate(today.getDate() + 30)
+    const label = 'Дата и время бронирования'
+
+    return {
+        minDate: today,
+        maxDate,
+        showTimeSelect: true,
+        label
     }
 }
 
-const renderSelectField = ( {input, label, meta: {touched, error}, children, ...custom}: any ): any => (
-    <FormControl error={touched && error} component='div'>
-        <InputLabel htmlFor="count">{label}</InputLabel>
-        <Select native {...input} {...custom} inputProps={{name: 'count', id: 'order-count-person'}}>
-            {children}
-        </Select>
-        {renderFromHelper({touched, error})}
-    </FormControl>
-)
-
-const useStyles = makeStyles(( theme: Theme ) =>
-    createStyles({
-        root: {
-            '& .MuiFormControl-root': {
-                margin: theme.spacing(1),
-                width: '200px',
-            },
-        },
-    }),
-)
-
-const FormOrder: React.FC<InjectedFormProps<IOrder>> = ( {handleSubmit} ) => {
-    const classes = useStyles()
-
+const FormOrder: React.FC<InjectedFormProps<IOrder>> = ({handleSubmit}) => {
+    const optionsCountPerson = Array(10).fill(0).map((_, key) => ({value: key, label: key}))
     return (
-        <form onSubmit={handleSubmit} className={classes.root}>
-            <div>
-                <Field name='name' component={renderTextField} label='Ваше имя:' placeholder='Введите имя:'/>
-            </div>
-            <div>
-                <Field name='phone' component={renderTextField} label='Контактный телефон'
-                       placeholder='Введите телефон'/>
-            </div>
-            <div>
-                {/*<Field name='datetime' component={MyReactDateTimePicker} parse={(value: Date) => value.toISOString()} />*/}
-                <Field name='orderDate' component={DateTimeField}/>
-            </div>
-            <div>
-                <Field name='countPerson' component={renderSelectField} label='Количество гостей'>
-                    <option value={1}>1</option>
-                    <option value={2}>2</option>
-                </Field>
-            </div>
-            <div>
-                <Field name='comment'
-                       component={renderTextField}
-                       label='Пожелания:'
-                       multiline
-                       rowsMax='6'
-                       margin='normal'/>
-            </div>
+        <form onSubmit={handleSubmit}>
+            <Field name='name' component={TextField} label='Ваше имя:' placeholder='Введите имя:'/>
+            <Field name='phone' component={TextField} label='Контактный телефон'
+                   placeholder='Введите телефон'/>
+            <Field name='orderDate' component={Datepicker} {...datepickerSettings()} />
+            <Field name='countPerson'
+                   component={Select}
+                   label='Количество гостей'
+                   options={optionsCountPerson}
+                   defaultValue={optionsCountPerson[0]}
+            />
+            <Field name='comment'
+                   component={TextField}
+                   label='Ваши пожелания:'
+                   as='textarea'
+                   rows={6}
+                   placeholder='Здесь вы можете ввести ваши пожелания'
+            />
             <div>
                 <Button variant='contained' color='primary' type='submit'>Забронировать стол</Button>
             </div>

@@ -2,7 +2,8 @@ import React from 'react'
 import { Field, FormSection, formValueSelector, InjectedFormProps, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { deliveryGlobalSettingsType, deliverySettingsType, deliveryType, IDeliveryPost } from '../../types/types'
-import renderTextField from '../common/elements/form/RenderTextField'
+import TextField from '../common/elements/form/RenderTextField'
+import Datepicker from '../common/elements/form/RenderDatepicker'
 import validate from './Validate'
 import {
     Button,
@@ -59,12 +60,23 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 )
 
+const datepickerSettings = () => {
+    const today = new Date()
+    const maxDate = new Date().setDate(today.getDate() + 7)
+    const label = 'Дата и время доставки'
+
+    return {
+        minDate: today,
+        maxDate,
+        showTimeSelect: true,
+        label
+    }
+}
+
 type FormType = InjectedFormProps<IMapStateToProps & IDeliveryPost, PropsType> & PropsType
 
 const FormOrder: React.FC<FormType> = (props) => {
     const { handleSubmit, settings, globalSettings, paymentMethod, deliveryMethod, saleForPickup, delivery, deliveryPrice } = props
-    let defaultDate = new Date()
-    defaultDate.setHours(defaultDate.getHours() + 2)
     const classes = useStyles()
 
     const sale = (delivery.totalPrice + deliveryPrice) * saleForPickup / 100
@@ -79,19 +91,19 @@ const FormOrder: React.FC<FormType> = (props) => {
             <form onSubmit={handleSubmit} className={classes.root}>
                 <div>
                     <Field name='name'
-                           component={renderTextField}
+                           component={TextField}
                            label='Ваше имя:'
                            placeholder='Введите имя' />
                 </div>
                 <div>
                     <Field name='phone'
-                           component={renderTextField}
+                           component={TextField}
                            label='Контактный телефон'
                            placeholder='Введите телефон' />
                 </div>
                 <div>
                     <Field name='email'
-                           component={renderTextField}
+                           component={TextField}
                            label='E-mail'
                            placeholder='Введите e-mail' />
                 </div>
@@ -117,7 +129,7 @@ const FormOrder: React.FC<FormType> = (props) => {
                     </Field>
                     {paymentMethod === 'cash' && <div className='bucket-order__cash'>
                         Подготовить сдачу с
-                        <Field name='oddMoney' component={renderTextField} label='' placeholder='0'/> рублей
+                        <Field name='oddMoney' component={TextField} label='' placeholder='0'/> рублей
                     </div>}
                 </div>
                 <div>
@@ -137,23 +149,23 @@ const FormOrder: React.FC<FormType> = (props) => {
                             <Field name='city' component={Select} label='Город' options={cityOptions} defaultValue={cityOptions[0]} />
                         </div>
                         <div>
-                            <Field name='street' component={renderTextField} label='Улица'
+                            <Field name='street' component={TextField} label='Улица'
                                    placeholder='Введите название улицы'/>
                         </div>
                         <div>
-                            <Field name='house' component={renderTextField} label='Дом'
+                            <Field name='house' component={TextField} label='Дом'
                                    placeholder='Введите номер дома'/>
                         </div>
                         <div>
-                            <Field name='flat' component={renderTextField} label='Квартира'
+                            <Field name='flat' component={TextField} label='Квартира'
                                    placeholder='Введите номер'/>
                         </div>
                         <div>
-                            <Field name='intercom' component={renderTextField} label='Домофон'
+                            <Field name='intercom' component={TextField} label='Домофон'
                                    placeholder='Введите код'/>
                         </div>
                         <div>
-                            <Field name='floor' component={renderTextField} label='Этаж' placeholder='Этаж'/>
+                            <Field name='floor' component={TextField} label='Этаж' placeholder='Этаж'/>
                         </div>
                     </FormSection>
                     :
@@ -161,24 +173,24 @@ const FormOrder: React.FC<FormType> = (props) => {
                         <label>Выберите адрес ресторана:</label>
                     </div>
                 }
-                <div>
-                    <Field name='timeDelivery' component={DateTimeField}/>
-                </div>
+                <Field name='timeDelivery' component={Datepicker} {...datepickerSettings()} />
                 <div>
                     <Field name='countPerson'
                            parse={(value: string) => value !== '' ? Number(value) : ''}
                            normalize={(value: number) => rangeNumbers(value, 0, 20)}
                            type='number'
-                           component={renderTextField}
+                           component={TextField}
                            label='Количество персон'
                            placeholder='Количество персон'/>
                 </div>
                 <div>
                     <Field name='comment'
-                           component={renderTextField}
+                           component={TextField}
                            as='textarea'
                            label='Пожелания к заказу'
-                           placeholder='Опишите ваши пожелания' rows={6} />
+                           placeholder='Опишите ваши пожелания'
+                           rows={6}
+                    />
                 </div>
                 <div>
                     <Field name='ruleAgree'
