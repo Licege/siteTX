@@ -1,5 +1,5 @@
 import React from 'react'
-import { Field, InjectedFormProps, reduxForm } from 'redux-form'
+import { Field, Form } from 'react-final-form'
 import Dialog from '@material-ui/core/Dialog'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import DialogContent from '@material-ui/core/DialogContent'
@@ -13,16 +13,6 @@ import renderCheckbox from '../common/elements/form/RenderCheckbox'
 import validate from './Validate'
 import { IReview } from '../../types/types'
 import renderRatingField from '../common/elements/form/RenderRating'
-
-interface IProps {
-    isOpen: boolean
-    handleClose: () => void
-}
-
-interface IMapStateToProps {
-    form: string
-    enableReinitialize: boolean
-}
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & { children?: React.ReactElement<any, any> },
@@ -42,49 +32,52 @@ const useStyles = makeStyles(( theme: Theme ) =>
     }),
 )
 
-const ModalForm: React.FC<InjectedFormProps<IReview & IMapStateToProps, IProps> & IProps>
+const ModalForm: React.FC<any>
     = ({
             isOpen,
            handleClose,
-           handleSubmit,
+           onSubmit,
     }) => {
     const classes = useStyles()
 
     return (
         <Dialog open={isOpen} onClose={handleClose} TransitionComponent={Transition}>
             <DialogTitle>Новый отзыв</DialogTitle>
-            <form onSubmit={handleSubmit} className={classes.root}>
-                <DialogContent>
-                    <div>
-                        <Field name='description' component={renderTextField} multiline placeholder='Ваш отзыв'/>
-                    </div>
-                    <div>
-                        <Field name='rating' component={renderRatingField} type='number' sizeStar={25}/>
-                    </div>
-                    <div>
-                        <input name='photo' type='file'/>
-                    </div>
-                    <div>
-                        <Field name='ruleAgree'
-                               component={renderCheckbox}
-                               label='Соглашаюсь на обработку персональных данных и условия пользовательского соглашения'/>
-                    </div>
-                </DialogContent>
-                <DialogActions>
-                    <Button variant='contained' color='primary' type='submit'>Отправить</Button>
-                </DialogActions>
-            </form>
+            <Form onSubmit={onSubmit} render={({ handleSubmit }) => (
+              <form onSubmit={handleSubmit} className={classes.root}>
+                  <DialogContent>
+                      <div>
+                          <Field name='description' component={renderTextField} multiline placeholder='Ваш отзыв'/>
+                      </div>
+                      <div>
+                          <Field name='rating' component={renderRatingField} type='number' sizeStar={25}/>
+                      </div>
+                      <div>
+                          <input name='photo' type='file'/>
+                      </div>
+                      <div>
+                          <Field name='ruleAgree'
+                                 component={renderCheckbox}
+                                 label='Соглашаюсь на обработку персональных данных и условия пользовательского соглашения'/>
+                      </div>
+                  </DialogContent>
+                  <DialogActions>
+                      <Button variant='contained' color='primary' type='submit'>Отправить</Button>
+                  </DialogActions>
+              </form>
+            )} />
+
         </Dialog>
     )
 }
 
-const ModalReduxForm = reduxForm<IReview & IMapStateToProps, IProps>({
-    form: 'modal-create-reviews',
-    validate,
-    initialValues: {
-        rating: 3,
-    },
-    enableReinitialize: true,
-})(ModalForm)
+// const ModalReduxForm = reduxForm<IReview & IMapStateToProps, IProps>({
+//     form: 'modal-create-reviews',
+//     validate,
+//     initialValues: {
+//         rating: 3,
+//     },
+//     enableReinitialize: true,
+// })(ModalForm)
 
-export default ModalReduxForm
+export default ModalForm

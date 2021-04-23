@@ -5,7 +5,8 @@ import shopping_cart from '../../static/img/shopping-cart.png'
 import BucketInfo from './BucketInfo'
 
 const ButtonBucket = () => {
-    const orders = useSelector((state: AppStateType) => state.bucket.delivery.order)
+    // const orders = useSelector((state: AppStateType) => state.bucket.delivery.order)
+    const orders = useSelector((state: any) => state.bucket.delivery.order)
     const [moreInfo, setMoreInfo] = useState(false)
 
     const toggle = () => {
@@ -13,7 +14,7 @@ const ButtonBucket = () => {
     }
 
     let count
-    let acc = orders.reduce((acc, order) => acc + order.count, 0)
+    let acc = orders.reduce((acc: any, order: any) => acc + order.count, 0)
     acc > 100 ? count = '99+' : count = acc
 
     return (

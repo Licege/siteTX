@@ -5,7 +5,7 @@ import { Address } from './Address'
 import { AboutUs } from './AboutUs'
 import { useDispatch, useSelector } from 'react-redux'
 import { getContactsSelector } from '../../redux/selectors/contacts'
-import { getContacts } from '../../redux/thunks/contacts.thunk'
+import { requestContacts } from '../../redux/thunks/contacts.thunk'
 import './style.scss'
 
 
@@ -16,7 +16,7 @@ const Contacts: React.FC = () => {
     useEffect(() => {
         document.title = 'О нас'
         window.scroll(0, 0)
-        dispatch(getContacts())
+        dispatch(requestContacts())
     }, [dispatch])
 
     const postForm = ( data: reviewType ) => {

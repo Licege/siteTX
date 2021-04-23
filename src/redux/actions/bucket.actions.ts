@@ -1,4 +1,4 @@
-import { InferActionsTypes } from '../redux-store';
+// import { InferActionsTypes } from '../redux-store';
 import { deliveryGlobalSettingsType, deliverySettingsType, dishType } from '../../types/types';
 
 export const actions = {
@@ -27,4 +27,4 @@ export const actions = {
     } as const),
 }
 
-export type ActionsTypes = InferActionsTypes<typeof actions>
+export type ActionsTypes = any

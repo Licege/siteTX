@@ -2,7 +2,7 @@ import React, { createContext } from 'react'
 import io from 'socket.io-client'
 import { WS_BASE } from '../api/api'
 import { useDispatch } from 'react-redux'
-import { actions } from '../redux/actions/bucket.actions'
+import * as actions from '../redux/reducers/bucket.reducer'
 import { IDeliveryPost } from '../types/types'
 
 export const WebSocketContext = createContext(null)

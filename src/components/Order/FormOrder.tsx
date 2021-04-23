@@ -1,5 +1,5 @@
 import React from 'react'
-import { InjectedFormProps, reduxForm, Field } from 'redux-form'
+import { Form, Field } from 'react-final-form'
 import TextField from '../common/elements/form/RenderTextField'
 import Datepicker from '../common/elements/form/RenderDatepicker'
 import Select from '../common/elements/form/RenderSelect'
@@ -22,42 +22,44 @@ const datepickerSettings = () => {
     }
 }
 
-const FormOrder: React.FC<InjectedFormProps<IOrder>> = ({handleSubmit}) => {
+const FormOrder: React.FC<any> = ({ onSubmit }) => {
     const optionsCountPerson = Array(10).fill(0).map((_, key) => ({value: key, label: key}))
     return (
+      <Form onSubmit={onSubmit} render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
-            <Field name='name' component={TextField} label='Ваше имя:' placeholder='Введите имя:'/>
-            <Field name='phone' component={TextField} label='Контактный телефон'
-                   placeholder='Введите телефон'/>
-            <Field name='orderDate' component={Datepicker} {...datepickerSettings()} />
-            <Field name='countPerson'
-                   component={Select}
-                   label='Количество гостей'
-                   options={optionsCountPerson}
-                   defaultValue={optionsCountPerson[0]}
-            />
-            <Field name='comment'
-                   component={TextField}
-                   label='Ваши пожелания:'
-                   as='textarea'
-                   rows={6}
-                   placeholder='Здесь вы можете ввести ваши пожелания'
-            />
-            <div>
-                <Button variant='contained' color='primary' type='submit'>Забронировать стол</Button>
-            </div>
+          <Field name='name' component={TextField} label='Ваше имя:' placeholder='Введите имя:'/>
+          <Field name='phone' component={TextField} label='Контактный телефон'
+                 placeholder='Введите телефон'/>
+          {/*<Field name='orderDate' component={Datepicker} {...datepickerSettings()} />*/}
+          <Field name='countPerson'
+                 component={Select}
+                 label='Количество гостей'
+                 options={optionsCountPerson}
+                 defaultValue={optionsCountPerson[0]}
+          />
+          <Field name='comment'
+                 component={TextField}
+                 label='Ваши пожелания:'
+                 as='textarea'
+                 rows={6}
+                 placeholder='Здесь вы можете ввести ваши пожелания'
+          />
+          <div>
+            <Button variant='contained' color='primary' type='submit'>Забронировать стол</Button>
+          </div>
         </form>
+      )} />
     )
 }
 
-let ReduxFormOrder = reduxForm<IOrder>({
-    form: 'orderForm',
-    initialValues: {
-        orderDate: new Date(new Date().setMilliseconds(2 * 60 * 60 * 1000)),
-    },
-    validate,
-    onSubmitFail: (errors => scrollToFirstError(errors)),
-    enableReinitialize: true,
-})(FormOrder)
+// let ReduxFormOrder = reduxForm<IOrder>({
+//     form: 'orderForm',
+//     initialValues: {
+//         orderDate: new Date(new Date().setMilliseconds(2 * 60 * 60 * 1000)),
+//     },
+//     validate,
+//     onSubmitFail: (errors => scrollToFirstError(errors)),
+//     enableReinitialize: true,
+// })(FormOrder)
 
-export default ReduxFormOrder
+export default FormOrder

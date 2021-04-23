@@ -1,28 +1,30 @@
-import { ActionType } from '../actions/auth.actions'
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {authTokenType} from "../../types/types";
+import {login, logout, registration} from "../thunks/auth.thunk";
 
-const initialState = {
-    accessToken: localStorage.getItem('accessToken'),
-    refreshToken: localStorage.getItem('refreshToken'),
-    isAuthenticated: !!localStorage.getItem('accessToken'),
-}
+const authSlice = createSlice({
+    name: 'auth',
+    initialState: {
+        accessToken: localStorage.getItem('accessToken'),
+        refreshToken: localStorage.getItem('refreshToken'),
+        isAuthenticated: !!localStorage.getItem('accessToken')
+    },
+    reducers: {},
+    extraReducers: builder => {
+        builder.addCase(login.fulfilled, (state, action: PayloadAction<authTokenType>) => {
+            localStorage.setItem('accessToken', action.payload.accessToken)
+            localStorage.setItem('refreshToken', action.payload.refreshToken)
 
-const authReducer = (state = initialState, action: ActionType) => {
-    switch (action.type) {
-        case 'AUTH/REGISTRATION':
-            return state
-        case 'AUTH/LOGIN':
-            localStorage.setItem('accessToken', action.data.accessToken)
-            localStorage.setItem('refreshToken', action.data.refreshToken)
-            return {
-                ...state,
-                isAuthenticated: true,
-            }
-        case 'AUTH/LOGOUT':
+            state.accessToken = action.payload.accessToken
+            state.refreshToken = action.payload.refreshToken
+            state.isAuthenticated = true
+        })
+        builder.addCase(logout.fulfilled, state => {
             localStorage.clear()
-            return { ...state, isAuthenticated: false }
-        default:
-            return state
+            state.isAuthenticated = false
+        })
+        // builder.addCase(registration.fulfilled, (state, action) => {})
     }
-}
+})
 
-export default authReducer
+export default authSlice.reducer

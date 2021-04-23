@@ -1,7 +1,6 @@
-import { InferActionsTypes } from '../redux-store';
 import { IReview } from '../../types/types';
 
-export type ActionsTypes = InferActionsTypes<typeof actions>
+export type ActionsTypes = any
 
 export const actions = {
     getReviews: (reviews: Array<IReview>) => ({ type: 'REVIEWS/GET_REVIEWS', reviews } as const),

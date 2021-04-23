@@ -1,7 +1,6 @@
-import { InferActionsTypes } from '../redux-store';
 import { promoType } from '../../types/types';
 
-export type ActionsTypes = InferActionsTypes<typeof actions>
+export type ActionsTypes = any
 
 export const actions = {
     getPromos: (promos: Array<promoType>) => ({ type: 'PROMOS/GET_PROMOS', promos } as const),

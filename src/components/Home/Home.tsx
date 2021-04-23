@@ -8,11 +8,11 @@ import { getNewsSelector } from '../../redux/selectors/news'
 import { getCategoriesSelector, getDishesSelector } from '../../redux/selectors/menu'
 import { getPromosSelector } from '../../redux/selectors/promos'
 import { getContactsSelector } from '../../redux/selectors/contacts'
-import { actions } from '../../redux/actions/bucket.actions'
+import { addDish } from '../../redux/reducers/bucket.reducer'
 import { requestNews } from '../../redux/thunks/news.thunk'
-import { getMenu } from '../../redux/thunks/menu.thunk'
+import { requestDishes } from '../../redux/thunks/menu.thunk'
 import { requestPromos } from '../../redux/thunks/promos.thunk'
-import { getContacts } from '../../redux/thunks/contacts.thunk'
+import { requestContacts } from '../../redux/thunks/contacts.thunk'
 import { dishType } from '../../types/types'
 
 const Home: React.FC = () => {
@@ -25,15 +25,15 @@ const Home: React.FC = () => {
     const dispatch = useDispatch()
 
     const addDishToBucket = (dish: dishType) => {
-        dispatch(actions.addDish(dish))
+        dispatch(addDish(dish))
     }
     useEffect(() => {
         window.scrollTo(0, 0)
         document.title = 'Три Холма'
         dispatch(requestNews())
-        dispatch(getMenu())
+        dispatch(requestDishes())
         dispatch(requestPromos())
-        dispatch(getContacts())
+        dispatch(requestContacts())
     }, [ dispatch ])
     // let url = "http://navse360.ru/onlyTour/4421"
     return (

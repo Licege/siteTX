@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { getContactsSelector } from '../../redux/selectors/contacts'
-import { getContacts } from '../../redux/thunks/contacts.thunk'
+import { requestContacts } from '../../redux/thunks/contacts.thunk'
 import vk from '../../static/img/vk.svg'
 import instagram from '../../static/img/instagram.svg'
 import fb from '../../static/img/fb.svg'
@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
     const dispatch = useDispatch()
     useEffect(() => {
         if (!Object.keys(contacts).length) {
-            dispatch(getContacts())
+            dispatch(requestContacts())
         }
     }, [dispatch, contacts])
 
@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
                     <div className='footer__work_time'>
                         <span className='footer__title'><img className='footer__icon' src={hours}
                                                              alt=''/> Часы работы</span>
-                        {contacts?.openHours?.map(( item, key ) => <div key={key}>{item}</div>)}
+                        {contacts?.openHours?.map(( item: any, key: any ) => <div key={key}>{item}</div>)}
                     </div>
                     <div className='footer__social'>
                         {contacts && contacts.vk ?

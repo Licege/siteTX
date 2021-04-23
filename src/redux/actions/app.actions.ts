@@ -1,6 +1,6 @@
-import { InferActionsTypes } from '../redux-store';
+// import { InferActionsTypes } from '../redux-store';
 
-export type ActionType = InferActionsTypes<typeof actions>
+export type ActionType = any
 export const actions = {
     toggleMobileMenu: () => ({ type: 'APP/TOGGLE_MOBILE_MENU' } as const),
 }

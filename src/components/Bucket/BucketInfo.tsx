@@ -5,7 +5,7 @@ import { dishType } from '../../types/types'
 import { getDishesKey } from '../../plugins/helpers'
 import { NavLink } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
-import { actions } from '../../redux/actions/bucket.actions'
+import * as actions from '../../redux/reducers/bucket.reducer'
 
 interface IProps {
     isOpen: boolean
@@ -13,15 +13,17 @@ interface IProps {
 }
 
 const BucketInfo: React.FC<IProps> = ({ isOpen, toggle }) => {
-    const orders = useSelector((state: AppStateType) => state.bucket.delivery.order)
-    const dishes = useSelector((state: AppStateType) => state.bucket.orderedDishes)
+    // const orders = useSelector((state: AppStateType) => state.bucket.delivery.order)
+    // const dishes = useSelector((state: AppStateType) => state.bucket.orderedDishes)
+    const orders = useSelector((state: any) => state.bucket.delivery.order)
+    const dishes = useSelector((state: any) => state.bucket.orderedDishes)
     const dispatch = useDispatch()
 
     const reduceDishCount = useCallback((dish: dishType) => {
         dispatch(actions.reduceDishCount(dish))
     }, [dispatch])
     const changeDishCount = useCallback((dish: dishType, count: number) => {
-        dispatch(actions.changeDishCount(dish, count))
+        dispatch(actions.changeDishCount({ dish, count }))
     }, [dispatch])
     const increaseDishCount = useCallback((dish: dishType) => {
         dispatch(actions.increaseDishCount(dish))
@@ -44,7 +46,7 @@ const BucketInfo: React.FC<IProps> = ({ isOpen, toggle }) => {
                 ? <>
                     <div className='shopping_cart-info-content'>
                         <div className='shopping_cart-info-content-list'>
-                            {dishes.map(dish => (
+                            {dishes.map((dish: any) => (
                                 <div className='shopping_cart-info-content-list-item' key={dish.id}>
                                     <div className='shopping_cart-info-content-list-item-title'>{dish.title}</div>
                                     <div className='shopping_cart-info-content-list-item-count'>
@@ -66,7 +68,7 @@ const BucketInfo: React.FC<IProps> = ({ isOpen, toggle }) => {
                     </div>
                     <div className='shopping_cart-info-footer'>
                         <div className='shopping_cart-info-footer-price'>
-                            Сумма: {orders.reduce((acc, order) => acc + order.cost * order.count, 0)} ₽
+                            Сумма: {orders.reduce((acc: any, order: any) => acc + order.cost * order.count, 0)} ₽
                         </div>
                         <NavLink className='shopping_cart-info-footer-button' exact to='/bucket'>
                             <Button variant='contained' color='primary' onClick={toggle}>Оформить заказ</Button>

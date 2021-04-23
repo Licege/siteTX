@@ -11,10 +11,10 @@ import {
     dishType,
     IDeliveryPost, profileType,
 } from '../../types/types'
-import { actions } from '../../redux/actions/bucket.actions'
+import * as actions from '../../redux/reducers/bucket.reducer'
 import { postOrder, requestDeliverySettings, requestGlobalDeliverySettings } from '../../redux/thunks/bucket.thunk'
-import { formValueSelector } from 'redux-form'
-import { getCategories, getMenu } from '../../redux/thunks/menu.thunk'
+// import { formValueSelector } from 'redux-form'
+import { requestDishes, requestCategories } from '../../redux/thunks/menu.thunk'
 import { WebSocketContext } from '../../socket/WebSocket'
 
 type MapStatePropsType = {
@@ -184,8 +184,8 @@ class BucketContainer extends React.Component<PropsType, StateType> {
     }
 }
 
-const mapStateToProps = (state: AppStateType) => {
-    const selector = formValueSelector('bucketOrderForm')
+const mapStateToProps = (state: any) => {
+    // const selector = formValueSelector('bucketOrderForm')
     return {
         me: state.profilePage.me,
         menu: state.menuPage.menu,
@@ -196,9 +196,9 @@ const mapStateToProps = (state: AppStateType) => {
         globalSettings: state.bucket.globalSettings,
         isDeliveryPosted: state.bucket.isDeliveryPosted,
         orderStatus: state.bucket.statusOrder,
-        address: selector(state, 'address'),
-        paymentType: selector(state, 'paymentType'),
-        deliveryType: selector(state, 'deliveryType'),
+        // address: selector(state, 'address'),
+        // paymentType: selector(state, 'paymentType'),
+        // deliveryType: selector(state, 'deliveryType'),
     }
 }
 
@@ -217,7 +217,7 @@ const mapDispatchToProps = (dispatch: any) => {
             dispatch(actions.reduceDishCount(dish))
         },
         changeDishCount: (dish: dishType, count: number) => {
-            dispatch(actions.changeDishCount(dish, count))
+            dispatch(actions.changeDishCount({ dish, count }))
         },
         removeDish: (id: number | string) => {
             dispatch(actions.removeDish(id))
@@ -229,10 +229,10 @@ const mapDispatchToProps = (dispatch: any) => {
             dispatch(postOrder(order))
         },
         getMenu: () => {
-            dispatch(getMenu())
+            dispatch(requestDishes())
         },
         getCategories: () => {
-            dispatch(getCategories())
+            dispatch(requestCategories())
         },
         addDishToBucket: (dish: dishType) => {
             dispatch(actions.addDish(dish))

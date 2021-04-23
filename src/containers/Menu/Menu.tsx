@@ -2,9 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { RouteComponentProps } from 'react-router'
 import { AppStateType } from '../../redux/redux-store'
-import { getCategories, getDish, getMenu, getMenuByCategory } from '../../redux/thunks/menu.thunk'
+import { requestDishes, requestCategories, requestDishesByCategoryId, requestDishById } from '../../redux/thunks/menu.thunk'
 import Menu from '../../components/Menu/Menu'
-import { actions as bucketActions } from '../../redux/actions/bucket.actions'
+import * as bucketActions from '../../redux/reducers/bucket.reducer'
 import { scrollHeight } from '../../plugins/helpers'
 import { categoryType, deliveryType, dishType, RouteParams } from '../../types/types'
 
@@ -104,7 +104,7 @@ class MenuContainer extends React.Component<PropsType> {
     }
 }
 
-let mapStateToProps = (state: AppStateType): MapStatePropsType => {
+let mapStateToProps = (state: any): MapStatePropsType => {
     return {
         dish: state.menuPage.dish,
         menu: state.menuPage.menu,
@@ -116,16 +116,16 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
 let mapDispatchToProps = (dispatch: any): MapDispatchPropsType => {
     return {
         getDish: (id: number) => {
-            dispatch(getDish(id))
+            dispatch(requestDishById(id))
         },
         getMenu: () => {
-            dispatch(getMenu())
+            dispatch(requestDishes())
         },
         getCategories: () => {
-            dispatch(getCategories())
+            dispatch(requestCategories())
         },
         getMenuByCategory: (categoryId: number | string) => {
-            dispatch(getMenuByCategory(categoryId))
+            dispatch(requestDishesByCategoryId(categoryId))
         },
         addDishToBucket: (dish: dishType) => {
             dispatch(bucketActions.addDish(dish))

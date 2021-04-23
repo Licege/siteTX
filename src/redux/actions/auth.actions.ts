@@ -1,4 +1,4 @@
-import { InferActionsTypes } from '../redux-store';
+// import { InferActionsTypes } from '../redux-store';
 import { authTokenType } from '../../types/types';
 
 export const actions = {
@@ -7,4 +7,4 @@ export const actions = {
     logout: () => ({ type: 'AUTH/LOGOUT' } as const),
 }
 
-export type ActionType = InferActionsTypes<typeof actions>
+export type ActionType = any

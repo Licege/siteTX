@@ -25,7 +25,7 @@ const Vacancies: React.FC = () => {
         <main className='page-container'>
             <h1 className='page-container-title'>~ Вакансии ~</h1>
             <div className='vacancies-container'>
-                {vacancies.map(vacancy =>
+                {vacancies.map((vacancy: any) =>
                     <CardVacancy vacancy={vacancy} key={vacancy.id}/>,
                 )}
             </div>

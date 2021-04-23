@@ -27,7 +27,7 @@ export const Promos: React.FC = () => {
         <main className='promos'>
             <h1 className='promos-title'>~ Акции ~</h1>
             <div className='promos-wrapper'>
-                {promos.map(promo => <CardPromo promo={promo} key={promo.id}/>)}
+                {promos.map((promo: any) => <CardPromo promo={promo} key={promo.id}/>)}
             </div>
         </main>
     )

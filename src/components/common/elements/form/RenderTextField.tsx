@@ -1,5 +1,6 @@
 import React from 'react'
 import { FormControl } from 'react-bootstrap'
+import { FieldRenderProps } from "react-final-form";
 
 import './style.scss'
 
@@ -21,14 +22,14 @@ interface IProps {
     custom: any
 }
 
-const renderTextField: React.FC<IProps> = ({
+const renderTextField: React.FC<FieldRenderProps<any>> = ({
                                                label,
                                                placeholder,
                                                input: { name, value, onChange },
                                                meta: { touched, invalid, error },
                                                as = 'input',
                                                ...custom
-                                           }) => (
+                                           }: FieldRenderProps<any>) => (
     <div className={'field' + ((touched && invalid) ? ' error' : '')}>
         {label ? <label className='field__label' htmlFor={name}>{label}</label> : null}
         <FormControl id={name}

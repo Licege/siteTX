@@ -1,6 +1,5 @@
 import React from 'react'
 import Rating from '../Rating'
-import { WrappedFieldProps } from 'redux-form'
 
 interface IProps {
     countStars?: number
@@ -8,8 +7,8 @@ interface IProps {
     disabled?: boolean
 }
 
-const renderRatingField: React.FC<WrappedFieldProps & IProps>
-    = ( {
+const renderRatingField: React.FC<any>
+    = ({
             input: {
                 value,
                 onChange,
@@ -17,7 +16,7 @@ const renderRatingField: React.FC<WrappedFieldProps & IProps>
             countStars,
             sizeStar,
             disabled,
-        } ) => (
+        }) => (
     <div>
         <Rating value={value} countStars={countStars} size={sizeStar} onChange={onChange} disabled={disabled}/>
     </div>

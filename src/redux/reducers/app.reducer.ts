@@ -1,18 +1,34 @@
-import { ActionType } from '../actions/app.actions'
+import { createSlice } from "@reduxjs/toolkit";
 
-let initialState = {
-    isOpen: false,
-}
-
-type InitialState = typeof initialState
-
-const appReducer = (state = initialState, action: ActionType): InitialState => {
-    switch (action.type) {
-        case 'APP/TOGGLE_MOBILE_MENU':
-            return { ...state, isOpen: !state.isOpen }
-        default:
-            return state
+const appSlice = createSlice({
+    name: 'app',
+    initialState: {
+        isOpen: false
+    },
+    reducers: {
+        toggleMobileMenu: state => { state.isOpen = !state.isOpen }
     }
-}
+})
 
-export default appReducer
+export const { toggleMobileMenu } = appSlice.actions
+
+export default appSlice.reducer
+
+// import { ActionType } from '../actions/app.actions'
+//
+// let initialState = {
+//     isOpen: false,
+// }
+//
+// type InitialState = typeof initialState
+//
+// const appReducer = (state = initialState, action: ActionType): InitialState => {
+//     switch (action.type) {
+//         case 'APP/TOGGLE_MOBILE_MENU':
+//             return { ...state, isOpen: !state.isOpen }
+//         default:
+//             return state
+//     }
+// }
+//
+// export default appReducer

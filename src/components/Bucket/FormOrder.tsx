@@ -1,5 +1,5 @@
 import React from 'react'
-import { Field, FormSection, formValueSelector, InjectedFormProps, reduxForm } from 'redux-form'
+import { Field } from 'react-final-form'
 import { connect } from 'react-redux'
 import { deliveryGlobalSettingsType, deliverySettingsType, deliveryType, IDeliveryPost } from '../../types/types'
 import TextField from '../common/elements/form/RenderTextField'
@@ -73,16 +73,13 @@ const datepickerSettings = () => {
     }
 }
 
-type FormType = InjectedFormProps<IMapStateToProps & IDeliveryPost, PropsType> & PropsType
-
-const FormOrder: React.FC<FormType> = (props) => {
-    const { handleSubmit, settings, globalSettings, paymentMethod, deliveryMethod, saleForPickup, delivery, deliveryPrice } = props
+const FormOrder: React.FC<any> = ({ handleSubmit, settings, globalSettings, paymentMethod, deliveryMethod, saleForPickup, delivery, deliveryPrice }: any) => {
     const classes = useStyles()
 
     const sale = (delivery.totalPrice + deliveryPrice) * saleForPickup / 100
     const price = delivery.totalPrice + deliveryPrice - sale
 
-    const cityOptions = settings.reduce((acc: any, s) => {
+    const cityOptions = settings.reduce((acc: any, s: any) => {
         return s.isDelivery ? [...acc, { value: s.id, label: s.city }] : acc
     }, [])
 
@@ -144,7 +141,7 @@ const FormOrder: React.FC<FormType> = (props) => {
                 </div>
                 {deliveryMethod === 'home'
                     ?
-                    <FormSection name='address'>
+                    <Field name='address'>
                         <div>
                             <Field name='city' component={Select} label='Город' options={cityOptions} defaultValue={cityOptions[0]} />
                         </div>
@@ -167,13 +164,13 @@ const FormOrder: React.FC<FormType> = (props) => {
                         <div>
                             <Field name='floor' component={TextField} label='Этаж' placeholder='Этаж'/>
                         </div>
-                    </FormSection>
+                    </Field>
                     :
                     <div>
                         <label>Выберите адрес ресторана:</label>
                     </div>
                 }
-                <Field name='timeDelivery' component={Datepicker} {...datepickerSettings()} />
+                {/*<Field name='timeDelivery' component={Datepicker} {...datepickerSettings()} />*/}
                 <div>
                     <Field name='countPerson'
                            parse={(value: string) => value !== '' ? Number(value) : ''}
@@ -221,14 +218,16 @@ const FormOrder: React.FC<FormType> = (props) => {
     )
 }
 
-let ReduxFormOrder = reduxForm<IDeliveryPost & IMapStateToProps, PropsType>({
-    form: 'bucketOrderForm',
-    validate,
-    onSubmitFail: (errors => scrollToFirstError(errors)),
-    enableReinitialize: true,
-})(FormOrder)
+// let ReduxFormOrder = reduxForm<IDeliveryPost & IMapStateToProps, PropsType>({
+//     form: 'bucketOrderForm',
+//     validate,
+//     onSubmitFail: (errors => scrollToFirstError(errors)),
+//     enableReinitialize: true,
+// })(FormOrder)
 
-const selector = formValueSelector('bucketOrderForm')
-export default connect(
-    state => selector(state, 'paymentType', 'deliveryType')
-)(ReduxFormOrder)
+// const selector = formValueSelector('bucketOrderForm')
+// export default connect(
+//     state => selector(state, 'paymentType', 'deliveryType')
+// )(FormOrder)
+
+export default FormOrder

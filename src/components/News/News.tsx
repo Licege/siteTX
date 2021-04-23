@@ -32,7 +32,7 @@ const News: React.FC = () => {
         <main className='page-container'>
             <h1 className='page-container-title'>~ Новости ~</h1>
             <TransitionGroup component={null}>
-                {news?.map(item =>
+                {news?.map((item: any) =>
                     <CSSTransition
                         timeout={2000}
                         classNames='card_animation'

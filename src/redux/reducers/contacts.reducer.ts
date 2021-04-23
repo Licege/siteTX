@@ -1,19 +1,16 @@
-import { ActionsTypes } from '../actions/contacts.actions'
+import { createSlice } from "@reduxjs/toolkit";
 import { contactsType } from '../../types/types'
+import { requestContacts } from "../thunks/contacts.thunk";
 
-const initialState = {
-    contacts: {} as contactsType,
-}
-
-type initialStateType = typeof initialState;
-
-const contactsReducer = (state = initialState, action: ActionsTypes): initialStateType => {
-    switch (action.type) {
-        case 'CONTACTS/GET_CONTACTS':
-            return { ...state, contacts: action.contacts }
-        default:
-            return state
+const contactsSlice = createSlice({
+    name: 'contacts',
+    initialState: {
+        contacts: {} as contactsType
+    },
+    reducers: {},
+    extraReducers: builder => {
+        builder.addCase(requestContacts.fulfilled, (state, action) => { state.contacts = action.payload })
     }
-}
+})
 
-export default contactsReducer
+export default contactsSlice.reducer

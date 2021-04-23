@@ -12,7 +12,7 @@ const complainReducer = (state = initialState, action: ActionsTypes): InitialSta
         case 'COMPLAIN/GET_COMPLAIN_TYPES':
             return {
                 ...state,
-                complainTypes: action.complainTypes.map(({ id, title }) => ({ value: id, label: title }))
+                complainTypes: action.complainTypes.map(({ id, title }: any) => ({ value: id, label: title }))
             }
         default:
             return state

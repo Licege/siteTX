@@ -1,4 +1,5 @@
 import axios from 'axios'
+import request from "../lib/request";
 import {
     authProfileType,
     categoryType, complainType,
@@ -91,21 +92,24 @@ export const authAPI = {
 
 export const contactsAPI = {
     getContacts() {
-        return axios.get<contactsType>(baseURL + `/contacts/`)
-            .then(response => {
-                return response
-            })
+        return request.get(`${baseURL}/contacts/`)
     },
 }
 
 export const profileAPI = {
     getMe() {
-        return apiUserRequest.get<profileType>(apiURL + `/public/me`)
-            .then(response => response)
+        return request.get(`${apiURL}/public/me`, {}, {
+            headers: {
+                'Authorization': localStorage.getItem('accessToken'),
+            }
+        })
     },
     getOrdersHistory() {
-        return apiUserRequest.get<Array<orderDishType>>(apiURL + `/public/me/orders`)
-            .then(response => response)
+        return request.get(`${apiURL}/public/me/orders`, {}, {
+            headers: {
+                'Authorization': localStorage.getItem('accessToken'),
+            }
+        })
     }
 }
 
@@ -192,18 +196,13 @@ export const newsAPI = {
 
 export const bucketAPI = {
     getDeliverySettings() {
-        return axios.get(baseURL + `/delivery-settings/common/`)
-            .then(response => {
-                return response
-            })
+        return request.get(baseURL + `/delivery-settings/common/`)
     },
 
     getDeliveryGlobalSettings() {
-        return axios.get(baseURL + `/delivery-settings/global/`)
-            .then(response => {
-                return response
-            })
+        return request.get(baseURL + `/delivery-settings/global/`)
     },
+
     postOrder(order: IDeliveryPost) {
         return axios.post(baseURL + `/delivery/`, order)
             .then(response => {

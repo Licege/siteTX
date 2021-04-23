@@ -1,7 +1,7 @@
-import { InferActionsTypes } from '../redux-store';
+// import { InferActionsTypes } from '../redux-store';
 import { newsType } from '../../types/types';
 
-export type ActionsTypes = InferActionsTypes<typeof actions>
+export type ActionsTypes = any
 
 export const actions = {
     getNews: (news: Array<newsType>, total_count: number) => ({

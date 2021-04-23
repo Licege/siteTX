@@ -1,7 +1,7 @@
-import { InferActionsTypes } from '../redux-store';
+// import { InferActionsTypes } from '../redux-store';
 import { categoryType, dishType } from '../../types/types';
 
-export type ActionsTypes = InferActionsTypes<typeof actions>
+export type ActionsTypes = any
 
 export const actions = {
     getMenu: (menu: Array<dishType>) => ({ type: 'MENU/GET_MENU', menu } as const),
