@@ -5,16 +5,14 @@ import { IDeliveryPost } from '../../types/types';
 export const requestDeliverySettings = createAsyncThunk(
   'bucket/fetchAllDeliverySettings',
   async () => {
-      const response = await bucketAPI.getDeliverySettings()
-      return response.data
+      return await bucketAPI.getDeliverySettings()
   }
 )
 
 export const requestGlobalDeliverySettings = createAsyncThunk(
   'bucket/fetchGlobalDeliverySettings',
   async () => {
-      const response = await bucketAPI.getDeliveryGlobalSettings()
-      return response.data
+      return await bucketAPI.getDeliveryGlobalSettings()
   }
 )
 

@@ -11,7 +11,10 @@ const menuSlice = createSlice({
     },
     reducers: {},
     extraReducers: builder => {
-        builder.addCase(requestDishes.fulfilled, (state, action) => { state.menu = action.payload })
+        builder.addCase(requestDishes.fulfilled, (state, action) => {
+            console.log(action.payload);
+            state.menu = action.payload
+        })
         builder.addCase(requestCategories.fulfilled, (state, action) => { state.categories = action.payload })
         builder.addCase(requestDishesByCategoryId.fulfilled, (state, action) => { state.menu = action.payload })
         builder.addCase(requestDishById.fulfilled, (state, action) => { state.dish = action.payload })

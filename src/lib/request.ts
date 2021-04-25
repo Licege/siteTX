@@ -1,4 +1,4 @@
-import axios from 'axios'
+import fetch from 'isomorphic-fetch'
 
 type MethodsTypes = 'GET'|'POST'|'PATCH'|'PUT'|'DELETE'|'COPY'
 
@@ -22,6 +22,10 @@ const downloadFileHandler = (response: any) => {
 };
 
 const responseHandler = async (response: any) => {
+  if (response.type === 'cors') {
+    return Promise.resolve(await response.json());
+  }
+
   const contentType = response.headers.get('content-type');
 
   if (!contentType) return Promise.resolve();
@@ -48,8 +52,8 @@ const responseHandler = async (response: any) => {
 const generalOptions = {
   headers: {
     'Content-Type': 'application/json',
-    'Authorization': localStorage.getItem('accessToken')
-  }
+  },
+  credentials: 'include'
 }
 
 const request = (method: MethodsTypes) => async (url: string, body?: any, options = {}) => {
@@ -57,7 +61,7 @@ const request = (method: MethodsTypes) => async (url: string, body?: any, option
   if (body) {
     init.body = JSON.stringify(body)
   }
-  const response = axios(url, init)
+  const response = await fetch(url, init)
   return responseHandler(response)
 }
 

@@ -60,8 +60,12 @@ import profileReducer from './reducers/profile.reducer'
 import contactsReducer from './reducers/contacts.reducer'
 import menuReducer from './reducers/menu.reducer'
 import bucketReducer from './reducers/bucket.reducer'
-import NewsReducer from './reducers/news.reducer'
+import newsReducer from './reducers/news.reducer'
 import promosReducer from './reducers/promos.reducer'
+import complainReducer from './reducers/complain.reducer'
+import reviewsReducer from './reducers/reviews.reducer'
+import vacanciesReducer from './reducers/vacancies.reducer'
+
 
 const store = configureStore({
     reducer: {
@@ -71,8 +75,11 @@ const store = configureStore({
         contacts: contactsReducer,
         menuPage: menuReducer,
         bucket: bucketReducer,
-        newsPage: NewsReducer,
+        newsPage: newsReducer,
         promosPage: promosReducer,
+        complainPage: complainReducer,
+        reviewsPage: reviewsReducer,
+        vacanciesPage: vacanciesReducer
     },
     middleware: (getDefaultMiddleware =>
       getDefaultMiddleware()

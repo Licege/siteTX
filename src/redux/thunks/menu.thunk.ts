@@ -4,32 +4,28 @@ import { menuAPI } from '../../api/api';
 export const requestCategories = createAsyncThunk(
   'dishes/fetchAllCategories',
   async () => {
-      const response = await menuAPI.getCategories()
-      return response.data
+      return await menuAPI.getCategories()
   }
 )
 
 export const requestDishes = createAsyncThunk(
   'dishes/fetchAllDishes',
   async () => {
-      const response = await menuAPI.getMenu()
-      return response.data
+      return await menuAPI.getMenu()
   }
 )
 
 export const requestDishesByCategoryId = createAsyncThunk(
   'dishes/fetchAllDishesByCategory',
   async (categoryId: string|number) => {
-      const response = await menuAPI.getMenuByCategory(categoryId)
-      return response.data
+      return await menuAPI.getMenuByCategory(categoryId)
   }
 )
 
 export const requestDishById = createAsyncThunk(
   'dishes/fetchDishById',
   async (id: number) => {
-      const response = await menuAPI.getDish(id)
-      return response.data
+      return await menuAPI.getDish(id)
   }
 )
 

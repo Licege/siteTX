@@ -12,6 +12,7 @@ import {
     resumeType,
     vacancyType,
 } from '../types/types'
+import fetch from "isomorphic-fetch";
 
 //const host = process.env.NODE_ENV === 'production' ? '//31.31.201.99/' : 'http://localhost'
 
@@ -19,6 +20,7 @@ const hostname = window.location.hostname
 export const WS_BASE = process.env.NODE_ENV === 'production' ? '//server.tri-xolma.ru/' : `http://${hostname}:9091/`
 
 export const serverUrl = process.env.NODE_ENV === 'production' ? '//api.tri-xolma.ru/' : `http://${hostname}:9090/`
+const authUrl = process.env.NODE_ENV === 'production' ? '//auth.tri-xolma.ru/' : `http://${hostname}:9092`
 const baseURL = serverUrl + 'api/public'
 const apiURL = `${serverUrl}api`
 const apiUserRequest = axios.create({
@@ -62,17 +64,11 @@ apiUserRequest.interceptors.response.use(function (response) {
 })
 
 export const authAPI = {
-    login(profile: authProfileType) {
-        return axios.post(baseURL + `/auth/login/`, profile)
-            .then(response => {
-                return response
-            })
+    async login(profile: authProfileType) {
+        return request.post(`${authUrl}/auth/login/`, profile)
     },
     registration(profile: authProfileType) {
-        return axios.post(baseURL + `/auth/registration/`, profile)
-            .then(response => {
-                return response
-            })
+        return request.post(`${authUrl}/auth/registration/`, profile)
     },
     refresh() {
         const refreshToken = window.localStorage.getItem('refreshToken')
@@ -93,157 +89,208 @@ export const authAPI = {
 export const contactsAPI = {
     getContacts() {
         return request.get(`${baseURL}/contacts/`)
+          .then(payload => payload)
+          .catch(reason => console.error(reason))
     },
 }
 
 export const profileAPI = {
     getMe() {
-        return request.get(`${apiURL}/public/me`, {}, {
-            headers: {
-                'Authorization': localStorage.getItem('accessToken'),
-            }
-        })
+        // return fetch(`${apiURL}/public/me`, { credentials: 'include', method: 'GET' }).then(res => res.json()).then(res => res)
+        return request.get(`${apiURL}/public/me`)
+          .then(payload => payload)
+          .catch(reason => console.error(reason))
+        // return fetch(`${apiURL}/public/me`, {
+        //     credentials: 'include',
+        //     method: 'GET'
+        // }).then(res => res.json()).then(res => {
+        //     console.log(res)
+        //     return res
+        // })
     },
     getOrdersHistory() {
-        return request.get(`${apiURL}/public/me/orders`, {}, {
-            headers: {
-                'Authorization': localStorage.getItem('accessToken'),
-            }
-        })
+        return request.get(`${apiURL}/public/me/orders`)
+          .then(payload => payload)
+          .catch(reason => console.error(reason))
     }
 }
 
 export const menuAPI = {
-    getMenu() {
-        return axios.get<Array<dishType>>(baseURL + `/menu/`)
-            .then(response => {
-                return response
-            })
+    async getMenu() {
+        // return fetch(`${baseURL}/menu/`, {
+        //     headers: { 'Content-Type': 'application/json' },
+        //     credentials: 'include'
+        // })
+        //   .then(res => {
+        //       console.log(res);
+        //       return res.json()
+        //   })
+        //   .catch(reason => console.error(reason))
+
+        return await request.get(`${baseURL}/menu/`)
+          .then(payload => payload)
+          .catch(reason => console.error(reason))
+
+        // return axios.get<Array<dishType>>(baseURL + `/menu/`)
+        //     .then(response => {
+        //         return response
+        //     })
     },
     getMenuByCategory(categoryId: number | string) {
-        return axios.get<Array<dishType>>(baseURL + `/menu/${categoryId}`)
-            .then(response => {
-                return response
-            })
+        // return fetch(`${baseURL}/menu/${categoryId}`, {
+        //     headers: { 'Content-Type': 'application/json' },
+        //     credentials: 'include'
+        // })
+        //   .then(res => res.json())
+        //   .then(payload => payload)
+        //   .catch(reason => console.error(reason))
+        return request.get(`${baseURL}/menu/${categoryId}`)
+          .then(payload => payload)
+          .catch(reason => console.error(reason))
+
+        // return axios.get<Array<dishType>>(baseURL + `/menu/${categoryId}`)
+        //     .then(response => {
+        //         return response
+        //     })
     },
     getDish(id: number) {
-        return axios.get<dishType>(baseURL + `/menu/dish/${id}`)
-            .then(response => {
-                return response
-            })
+        // return fetch(`${baseURL}/menu/dish/${id}`, {
+        //     headers: { 'Content-Type': 'application/json' },
+        //     credentials: 'include'
+        // })
+        //   .then(res => res.json())
+        //   .then(payload => payload)
+        //   .catch(reason => console.error(reason))
+
+        return request.get(`${baseURL}/menu/dish/${id}`)
+          .then(payload => payload)
+          .catch(reason => console.error(reason))
+
+        // return axios.get<dishType>(baseURL + `/menu/dish/${id}`)
+        //     .then(response => {
+        //         return response
+        //     })
     },
     getCategories() {
-        return axios.get<Array<categoryType>>(baseURL + `/categories/`)
-            .then(response => {
-                return response
-            })
+        // return fetch(`${baseURL}/categories/`, {
+        //     headers: { 'Content-Type': 'application/json' },
+        //     credentials: 'include'
+        // })
+        //   .then(res => res.json())
+        //   .then(payload => payload)
+        //   .catch(reason => console.error(reason))
+
+        return request.get(`${baseURL}/categories/`)
+          .then(payload => payload)
+          .catch(reason => console.error(reason))
+
+        // return axios.get<Array<categoryType>>(baseURL + `/categories/`)
+        //     .then(response => {
+        //         return response
+        //     })
     },
 }
 
 export const promoAPI = {
     getPromos() {
-        return axios.get<Array<promoType>>(baseURL + `/promos/`)
-            .then(response => {
-                return response
-            })
+        return request.get(baseURL + `/promos/`)
+          .then(payload => payload)
+          .catch(reason => console.error(reason))
     },
     getPromoById(id: string) {
-        return axios.get<promoType>(baseURL + `/promos/${id}`)
-            .then(response => {
-                return response
-            })
+        return request.get(baseURL + `/promos/${id}`)
+          .then(payload => payload)
+          .catch(reason => console.error(reason))
     },
 }
 
 export const vacanciesAPI = {
     getVacancies() {
-        return axios.get<Array<vacancyType>>(baseURL + `/vacancies/`)
-            .then(response => {
-                return response
-            })
+        return request.get(baseURL + `/vacancies/`)
+          .then(payload => payload)
+          .catch(reason => console.error(reason))
     },
     postResume(resume: resumeType) {
-        return axios.post<resumeType>(baseURL + `/resume/`, resume)
-            .then(response => {
-                return response
-            })
+        return request.post(baseURL + `/resume/`, resume)
+          .then(payload => payload)
+          .catch(reason => console.error(reason))
     },
 }
 
 export const orderAPI = {
     postOrder(order: IOrder) {
-        return axios.post(baseURL + `/orders/`, order)
-            .then(response => {
-                return response
-            })
+        return request.post(baseURL + `/orders/`, order)
+          .then(payload => payload)
+          .catch(reason => console.error(reason))
     },
 }
 
 export const newsAPI = {
     getNews(page = 1) {
-        return axios.get(baseURL + `/news/?page=${page}`)
-            .then(response => {
-                return response
-            })
+        return request.get(baseURL + `/news/?page=${page}`)
+          .then(payload => payload)
+          .catch(reason => console.error(reason))
     },
     getNewsById(id: string) {
-        return axios.get(baseURL + `/news/${id}`)
-            .then(response => {
-                return response
-            })
+        return request.get(baseURL + `/news/${id}`)
+          .then(payload => payload)
+          .catch(reason => console.error(reason))
     },
 }
 
 export const bucketAPI = {
     getDeliverySettings() {
         return request.get(baseURL + `/delivery-settings/common/`)
+          .then(payload => payload)
+          .catch(reason => console.error(reason))
     },
 
     getDeliveryGlobalSettings() {
         return request.get(baseURL + `/delivery-settings/global/`)
+          .then(payload => payload)
+          .catch(reason => console.error(reason))
     },
 
     postOrder(order: IDeliveryPost) {
-        return axios.post(baseURL + `/delivery/`, order)
-            .then(response => {
-                return response
-            })
+        return request.post(baseURL + `/delivery/`, order)
+          .then(payload => payload)
+          .catch(reason => console.error(reason))
     },
 }
 
 export const ordersAPI = {
     postOrder(order: IOrder) {
-        return axios.post(baseURL + `/order/`, order)
-            .then(response => {
-                return response
-            })
+        return request.post(baseURL + `/order/`, order)
+          .then(payload => payload)
+          .catch(reason => console.error(reason))
     },
 }
 
 export const reviewsAPI = {
     getReviews() {
-        return axios.get(baseURL + `/reviews/`)
-            .then(response => {
-                return response
-            })
+        return request.get(baseURL + `/reviews/`)
+          .then(payload => payload)
+          .catch(reason => console.error(reason))
     },
     postReview(review: IReview) {
-        return apiUserRequest.post(`/public/reviews/`, review)
-            .then(response => {
-                return response
-            })
-            .catch(e => console.log(e))
+        return request.post(`/public/reviews/`, review)
+          .then(payload => payload)
+          .catch(reason => console.error(reason))
     },
 }
 
 export const complainAPI = {
-    async getComplainTypes() {
-        return await axios.get(`${baseURL}/complain-types`)
+    getComplainTypes() {
+        return request.get(`${baseURL}/complain-types`)
+          .then(payload => payload)
+          .catch(reason => console.error(reason))
     },
     async postComplainPrivate(complain: complainType) {
         return await apiUserRequest.post(`${apiURL}/private/complain`, complain)
     },
-    async postComplainPublic(complain: complainType) {
-        return await axios.post(`${baseURL}/complain`, complain)
+    postComplainPublic(complain: complainType) {
+        return request.post(`${baseURL}/complain`, complain)
+          .then(payload => payload)
+          .catch(reason => console.error(reason))
     }
 }

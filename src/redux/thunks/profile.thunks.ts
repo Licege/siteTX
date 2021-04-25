@@ -4,17 +4,14 @@ import { profileAPI } from '../../api/api';
 export const requestMe = createAsyncThunk(
   'profile/fetchMe',
     async (a, thunkAPI) => {
-        console.log(thunkAPI);
-        const response = await profileAPI.getMe()
-        return response.data
+        return await profileAPI.getMe()
     }
   )
 
 export const requestOrdersHistory = createAsyncThunk(
   'profile/fetchOrderHistory',
   async () => {
-      const response = await profileAPI.getOrdersHistory()
-      return response.data
+      return await profileAPI.getOrdersHistory()
   }
 )
 

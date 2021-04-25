@@ -4,16 +4,14 @@ import { newsAPI } from '../../api/api';
 export const requestNews = createAsyncThunk(
   'news/fetchAllNews',
   async (page?: number) => {
-      const response = await newsAPI.getNews(page)
-      return response.data
+      return await newsAPI.getNews(page)
   }
 )
 
 export const requestCurrentNews = createAsyncThunk(
   'news/fetchNewsById',
   async (id: string) => {
-      const response = await newsAPI.getNewsById(id)
-      return response.data
+      return await newsAPI.getNewsById(id)
   }
 )
 

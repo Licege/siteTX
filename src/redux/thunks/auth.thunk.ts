@@ -6,16 +6,14 @@ import { clearProfile } from "../reducers/profile.reducer";
 export const registration = createAsyncThunk(
   'auth/registration',
   async (profile: authProfileType, thunkAPI) => {
-    const response = await authAPI.registration(profile)
-    return response.data
+    return authAPI.registration(profile)
   }
 )
 
 export const login = createAsyncThunk(
   'auth/login',
   async (profile: authProfileType, thunkAPI) => {
-      const response = await authAPI.login(profile)
-      return response.data
+    return await authAPI.login(profile)
   }
 )
 

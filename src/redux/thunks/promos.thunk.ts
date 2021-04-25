@@ -4,16 +4,14 @@ import { promoAPI } from '../../api/api';
 export const requestPromos = createAsyncThunk(
   'promos/fetchAllPromos',
   async () => {
-      const response = await promoAPI.getPromos()
-      return response.data
+      return await promoAPI.getPromos()
   }
 )
 
 export const requestPromoById = createAsyncThunk(
   'promos/fetchPromoById',
   async (id: string) => {
-      const response = await promoAPI.getPromoById(id)
-      return response.data
+      return await promoAPI.getPromoById(id)
   }
 )
 
