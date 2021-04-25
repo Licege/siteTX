@@ -2,17 +2,19 @@ import axios from 'axios'
 import request from "../lib/request";
 import {
     authProfileType,
-    categoryType, complainType,
+    categoryType,
+    complainType,
     contactsType,
     dishType,
     IDeliveryPost,
     IOrder,
-    IReview, orderDishType, profileType,
+    IReview,
+    orderDishType,
+    profileType,
     promoType,
     resumeType,
     vacancyType,
 } from '../types/types'
-import fetch from "isomorphic-fetch";
 
 //const host = process.env.NODE_ENV === 'production' ? '//31.31.201.99/' : 'http://localhost'
 
@@ -20,7 +22,7 @@ const hostname = window.location.hostname
 export const WS_BASE = process.env.NODE_ENV === 'production' ? '//server.tri-xolma.ru/' : `http://${hostname}:9091/`
 
 export const serverUrl = process.env.NODE_ENV === 'production' ? '//api.tri-xolma.ru/' : `http://${hostname}:9090/`
-const authUrl = process.env.NODE_ENV === 'production' ? '//auth.tri-xolma.ru/' : `http://${hostname}:9092`
+const authUrl = process.env.NODE_ENV === 'production' ? '//auth.tri-xolma.ru/' : `http://${hostname}:9092/api`
 const baseURL = serverUrl + 'api/public'
 const apiURL = `${serverUrl}api`
 const apiUserRequest = axios.create({
@@ -64,11 +66,20 @@ apiUserRequest.interceptors.response.use(function (response) {
 })
 
 export const authAPI = {
-    async login(profile: authProfileType) {
+    login(profile: authProfileType) {
         return request.post(`${authUrl}/auth/login/`, profile)
+          .then(payload => payload)
+          .catch(reason => console.error(reason))
+    },
+    logout() {
+        return request.get(`${authUrl}/auth/logout/`)
+          .then(payload => payload)
+          .catch(reason => console.error(reason))
     },
     registration(profile: authProfileType) {
         return request.post(`${authUrl}/auth/registration/`, profile)
+          .then(payload => payload)
+          .catch(reason => console.error(reason))
     },
     refresh() {
         const refreshToken = window.localStorage.getItem('refreshToken')

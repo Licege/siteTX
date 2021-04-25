@@ -21,7 +21,10 @@ export const logout = createAsyncThunk(
   'auth/logout',
   async (arg, thunkAPI) => {
       thunkAPI.dispatch(clearProfile)
-      return {}
+      await authAPI.logout()
+      // @ts-ignore
+      // window.location = 'http://pub.trixolma.localhost:3000'
+      window.location = 'https://google.com/'
   }
 )
 
