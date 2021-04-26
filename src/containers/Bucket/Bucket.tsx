@@ -1,7 +1,7 @@
 import React from 'react'
 import { AppStateType } from '../../redux/redux-store'
 import { connect } from 'react-redux'
-import Bucket from '../../components/Bucket/Bucket'
+import Bucket from '../../pages/Bucket/Bucket'
 import {
     addressType,
     categoryType,

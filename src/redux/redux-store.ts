@@ -65,6 +65,7 @@ import promosReducer from './reducers/promos.reducer'
 import complainReducer from './reducers/complain.reducer'
 import reviewsReducer from './reducers/reviews.reducer'
 import vacanciesReducer from './reducers/vacancies.reducer'
+import modalReducer from './reducers/modals.reducer'
 
 
 const store = configureStore({
@@ -79,7 +80,8 @@ const store = configureStore({
         promosPage: promosReducer,
         complainPage: complainReducer,
         reviewsPage: reviewsReducer,
-        vacanciesPage: vacanciesReducer
+        vacanciesPage: vacanciesReducer,
+        modal: modalReducer
     },
     middleware: (getDefaultMiddleware =>
       getDefaultMiddleware()

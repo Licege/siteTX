@@ -5,27 +5,28 @@ import MenuContainer from './containers/Menu/Menu'
 import BucketContainer from './containers/Bucket/Bucket'
 import { requestContacts } from './redux/thunks/contacts.thunk'
 import { Error404 } from './pages/Errors/Error404'
-import { Promos } from './components/Promos/Promos'
-import { Promo } from './components/Promos/Promo'
+import { Promos } from './pages/Promos/Promos'
+import { Promo } from './pages/Promos/Promo'
 import './assets/main.scss'
-import Contacts from './components/Contacts/Contacts'
+import Contacts from './pages/Contacts/Contacts'
 import Header from './components/Header/Header'
-import Footer from './components/Footer/Footer'
-import Home from './components/Home/Home'
-import News from './components/News/News'
-import NewsById from './components/News/NewsById'
-import { Banquets } from './components/Banquets/Banquets'
-import Order from './components/Order/Order'
+import Footer from './pages/Footer/Footer'
+import Home from './pages/Home/Home'
+import News from './pages/News/News'
+import NewsById from './pages/News/NewsById'
+import { Banquets } from './pages/Banquets/Banquets'
+import Order from './pages/Order/Order'
 import Gallery from './components/Gallery/Gallery'
-import Reviews from './components/Reviews/Reviews'
-import Vacancies from './components/Vacancies/Vacancies'
-import Resume from './components/Vacancies/Resume/Resume'
+import Reviews from './pages/Reviews/Reviews'
+import Vacancies from './pages/Vacancies/Vacancies'
+import Resume from './pages/Vacancies/Resume/Resume'
 import Profile from './pages/profile';
 import { requestMe } from './redux/thunks/profile.thunks';
 import { getMeSelector } from './redux/selectors/profile';
 import { getAuthStatus } from './redux/selectors/auth';
 import CatchErrors from './pages/Errors/CatchErrors';
 import Complain from './pages/complain/Complain';
+import Modal from "./components/Modals/ModalRoot";
 
 const App = () => {
     const dispatch = useDispatch()
@@ -73,6 +74,7 @@ const App = () => {
                 </CatchErrors>
                 <Footer/>
             </div>
+            <Modal />
         </div>
     )
 }
