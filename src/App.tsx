@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Route, Switch, Redirect } from 'react-router-dom'
-import MenuContainer from './containers/Menu/Menu'
+// import MenuContainer from './containers/Menu/Menu'
 import BucketContainer from './containers/Bucket/Bucket'
 import { requestContacts } from './redux/thunks/contacts.thunk'
 import { Error404 } from './pages/Errors/Error404'
@@ -27,6 +27,7 @@ import { getAuthStatus } from './redux/selectors/auth';
 import CatchErrors from './pages/Errors/CatchErrors';
 import Complain from './pages/complain/Complain';
 import Modal from "./components/Modals/ModalRoot";
+import Menu from './pages/Menu/Menu'
 
 const App = () => {
     const dispatch = useDispatch()
@@ -55,7 +56,7 @@ const App = () => {
                     <Switch>
                         <Route exact path='/me' render={checkAuth(<Profile />)} />
                         <Route exact path='/' component={Home}/>
-                        <Route path='/menu/:id?' component={MenuContainer}/>
+                        <Route path='/menu/:categoryId?' component={Menu}/>
                         <Route exact path='/contacts' component={Contacts}/>
                         <Route exact path='/vacancies' component={Vacancies}/>
                         <Route exact path='/gallery' component={Gallery}/>

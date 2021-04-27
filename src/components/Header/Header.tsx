@@ -58,7 +58,6 @@ const Header: React.FC = () => {
                 <div className='header-action-button'>
                     <AuthButton/>
                 </div>
-
                 <ButtonBucket/>
             </div>
         </header>

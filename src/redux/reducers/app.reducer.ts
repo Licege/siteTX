@@ -3,10 +3,10 @@ import { createSlice } from "@reduxjs/toolkit";
 const appSlice = createSlice({
     name: 'app',
     initialState: {
-        isOpen: false
+        isPhone: false
     },
     reducers: {
-        toggleMobileMenu: state => { state.isOpen = !state.isOpen }
+        toggleMobileMenu: state => { state.isPhone = !state.isPhone }
     }
 })
 

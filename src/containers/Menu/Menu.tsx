@@ -93,14 +93,15 @@ class MenuContainer extends React.Component<PropsType> {
             categories,
             mobileMenuStatus,
         } = this.props
+        return <div />
 
-        return <Menu menu={menu}
-                     categories={categories}
-                     order={delivery?.order}
-                     mobileMenuStatus={mobileMenuStatus}
-                     addToBucket={this.addToBucket}
-                     increaseCountDish={this.increaseCountDish}
-                     reduceCountDish={this.reduceCountDish}/>
+        // return <Menu menu={menu}
+        //              categories={categories}
+        //              order={delivery?.order}
+        //              mobileMenuStatus={mobileMenuStatus}
+        //              addToBucket={this.addToBucket}
+        //              increaseCountDish={this.increaseCountDish}
+        //              reduceCountDish={this.reduceCountDish}/>
     }
 }
 
