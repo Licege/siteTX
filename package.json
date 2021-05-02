@@ -68,7 +68,7 @@
     "identity-obj-proxy": "^3.0.0"
   },
   "scripts": {
-    "start": "HOST=pub.trixolma.localhost react-scripts start",
+    "start": "HOST=pub.trixolma.localhost PORT=3000 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

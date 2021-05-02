@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, NavLink } from 'react-router-dom'
-import ButtonBucket from '../../pages/Bucket/ButtonBucket'
+import Bucket from './Bucket'
 import MobileMenu from '../common/elements/MobileMenu'
 import AuthButton from '../AuthButton/AuthButton'
 import { getCategoriesSelector } from '../../redux/selectors/menu'
 import { requestCategories } from '../../redux/thunks/menu.thunk'
-import logo from '../../static/img/logo.png'
 import { getMobileMenuStatusSelector } from '../../redux/selectors/app'
 import { toggleMobileMenu } from '../../redux/reducers/app.reducer'
+import Logo from './Logo'
+import Navigation from './Navigation'
 
 
 const Header: React.FC = () => {
@@ -32,33 +32,13 @@ const Header: React.FC = () => {
         <header className={'header' + (isOpenMobileMenu ? ' -active' : '')}>
             <div className={isOpenMobileMenu ? 'burger -active' : 'burger'} onClick={toggle}><span/></div>
             <MobileMenu isOpen={isOpenMobileMenu} categories={categories} toggle={toggle}/>
-            <Link to="/"><img className='header-logo' src={logo} alt=''/></Link>
-            <nav className='header-navbar'>
-                <ul>
-                    <li>
-                        <NavLink exact activeClassName='-active' className='header-navbar-item' to='/'>ГЛАВНАЯ</NavLink>
-                    </li>
-                    <li>
-                        <NavLink activeClassName='-active' className='header-navbar-item' to='/menu'>МЕНЮ</NavLink>
-                    </li>
-                    <li>
-                        <NavLink activeClassName='-active' className='header-navbar-item' to='/news'>СОБЫТИЯ</NavLink>
-                    </li>
-                    <li>
-                        <NavLink activeClassName='-active' className='header-navbar-item' to='/order'>ЗАКАЗ
-                            СТОЛОВ</NavLink>
-                    </li>
-                    <li>
-                        <NavLink activeClassName='-active' className='header-navbar-item' to='/contacts'>О НАС</NavLink>
-                    </li>
-                </ul>
-            </nav>
-
+            <Logo />
+            <Navigation />
             <div className='header-action'>
                 <div className='header-action-button'>
                     <AuthButton/>
                 </div>
-                <ButtonBucket/>
+                <Bucket/>
             </div>
         </header>
     )

@@ -1,17 +1,12 @@
 import React from 'react'
 import LinkButton from '../../../components/common/elements/buttons/LinkButton'
-import { promoType } from '../../../types/types'
-import SliderPromo from './SliderPromo'
+import SliderPromo from '../../../components/Sliders/SliderPromo'
 
-interface IProps {
-    promos: Array<promoType>
-}
-
-const SectionPromo: React.FC<IProps> = ( {promos} ) => (
+const SectionPromo = () => (
     <div className='Section-promo'>
         <h2 className='Section-promo-header'>Наши акции</h2>
         <div className='Section-promo-info'>Выгодное предложение для Вас</div>
-        <SliderPromo promos={promos}/>
+        <SliderPromo />
         <LinkButton to='/actions' label='Смотреть все акции'/>
     </div>
 )

@@ -31,12 +31,20 @@ interface IProps {
     options: OptionType[]
 }
 
+const getInitialValue = ({ defaultValue, options, input }: any) => {
+    if (defaultValue) return defaultValue
+
+    if (options.length && input) return options.find((option: any) => option.value === input.value)
+
+    return undefined
+}
+
 class renderSelect extends React.Component<any, any> {
     constructor(props: any) {
         super(props)
 
         this.state = {
-            innerValue: this.props.defaultValue
+            innerValue: getInitialValue(props)
         }
     }
 

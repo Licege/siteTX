@@ -10,7 +10,7 @@ interface IProps {
     toggle: () => void
 }
 
-const MobileMenu = ( {isOpen, categories, toggle}: IProps ) => {
+const MobileMenu = ({ isOpen, categories, toggle }: IProps) => {
     return (
         <div className={'mobile_menu' + (isOpen ? ' -active' : '')}>
             <nav className='mobile_menu-wrapper'>

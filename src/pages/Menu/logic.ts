@@ -1,12 +1,9 @@
-import { useCallback } from 'react'
 import { useSelector } from 'react-redux'
-import { useAppDispatch } from '../../redux/redux-store'
-import { useAllCategories, useAllDishes } from '../../redux/hooks'
+import { useCategories, useDishes } from '../../redux/hooks/menu.hooks'
 
-import * as bucketActions from '../../redux/reducers/bucket.reducer'
-import { dishType } from '../../types/types'
 import { getDeliveryOrder } from '../../redux/getters/bucket.getters'
 import { getIsPhone } from '../../redux/getters/app.getters'
+import { useDeliveryActions } from '../../redux/hooks/bucket.hooks'
 
 export const useMenuLogic = () => {
   document.title = 'Меню'
@@ -14,24 +11,13 @@ export const useMenuLogic = () => {
 }
 
 export const useMenuCardsLogic = () => {
-  const dispatch = useAppDispatch()
 
-  const dishes = useAllDishes()
+  const dishes = useDishes()
   const { order } = useSelector(getDeliveryOrder)
   const isPhone = useSelector(getIsPhone)
-  const categories = useSelector(useAllCategories)
+  const categories = useCategories()
 
-  const addDishToBucket = useCallback((dish: dishType) => {
-    dispatch(bucketActions.addDish(dish))
-  }, [])
+  const { addDishToBucket, increaseDishCount, reduceDishCount } = useDeliveryActions()
 
-  const increaseCountDish = useCallback((dish: dishType) => {
-    dispatch(bucketActions.increaseDishCount(dish))
-  }, [])
-
-  const reduceCountDish = useCallback((dish: dishType) => {
-    dispatch(bucketActions.reduceDishCount(dish))
-  }, [])
-
-  return { dishes, order, isPhone, addDishToBucket, increaseCountDish, reduceCountDish }
+  return { dishes, categories, order, isPhone, addDishToBucket, increaseDishCount, reduceDishCount }
 }

@@ -6,7 +6,6 @@ import {
     dishType,
     orderDishType,
 } from '../../types/types'
-import { getDishesKey } from '../../plugins/helpers'
 import {requestDeliverySettings, requestGlobalDeliverySettings} from "../thunks/bucket.thunk";
 
 type statusesType = 'created'|'error'
@@ -82,7 +81,7 @@ const bucketSlice = createSlice({
                 state.delivery.order[dishIndex] = {
                     dishId: action.payload.id,
                     title: action.payload.title,
-                    count: state.delivery.order[dishIndex].count + 1,
+                    count: count - 1,
                     cost: action.payload.cost
                 }
 
@@ -94,7 +93,7 @@ const bucketSlice = createSlice({
         changeDishCount: (state, action) => {
             const dishIndex = state.delivery.order.findIndex(dish => dish.dishId === action.payload.dish.id)
             const { count } = state.delivery.order[dishIndex]
-            const newCount = count - 1
+            const newCount = count < 1 ? 1 : count - 1
 
             state.delivery.order[dishIndex] = {
                 dishId: action.payload.dish.id,

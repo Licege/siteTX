@@ -53,7 +53,7 @@ export type contactsType = {
 }
 
 export type reviewType = {
-    id: number | string
+    id: number
     name: string
     phone: string
     comment: string
@@ -61,7 +61,7 @@ export type reviewType = {
 }
 
 export type dishType = {
-    id: number | string
+    id: number
     title: string
     description: string | null
     weight: number | null
@@ -73,14 +73,14 @@ export type dishType = {
 }
 
 export type categoryType = {
-    id: number | string
+    id: number
     title: string
     titleEn: string
     isDelivery: boolean
 }
 
 export type vacancyType = {
-    id: number | string
+    id: number
     title: string
     requirements: string | null
     description: string | null
@@ -128,7 +128,7 @@ export interface IReview {
 }
 
 export type newsType = {
-    id: number | string
+    id: number
     title: string
     description: string
     createdAt: Date
@@ -137,7 +137,7 @@ export type newsType = {
 }
 
 export type orderDishType = {
-    dishId: number | string
+    dishId: number
     title: string
     count: number
     cost: number
@@ -149,7 +149,7 @@ export type deliveryType = {
 }
 
 export type deliverySettingsType = {
-    id: number | string
+    id: number
     city: string
     priceForDelivery: number
     freeDelivery: number
@@ -208,15 +208,15 @@ export type ResponseType = {
 }
 
 export type ordersListItemType = {
-    dishId: string | number
+    dishId: number
     title: string
     count: number
     cost: number
 }
 
 export type ordersHistoryType = {
-    id: string | number
-    userId: string | number
+    id: number
+    userId: number
     address: addressType
     comment: string | undefined
     countPerson: number
@@ -238,7 +238,7 @@ export type ordersHistoryType = {
 }
 
 export type complainTypeType = {
-    id: string|number
+    id: number
     title: string
 }
 
@@ -248,9 +248,9 @@ export type selectOptionsType = {
 }
 
 export type complainType = {
-    id?: string|number
-    typeId: string|number
-    userId?: string|number|null
+    id?: number
+    typeId: number
+    userId?: number|null
     name: string
     email: string
     phone: string

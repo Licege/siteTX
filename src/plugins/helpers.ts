@@ -54,7 +54,7 @@ export function tsToDate( timestamp: Date | number, type: string ): string {
     }
 }
 
-export function getDishesKey( dishes: Array<orderDishType>, id: number | string, key: string ): number {
+export function getDishesKey( dishes: Array<orderDishType>, id: number, key: string ): number {
     switch (key) {
         case 'count':
             return dishes.find(dish => dish.dishId === id)?.count as number

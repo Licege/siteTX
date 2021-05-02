@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { categoryType, dishType } from '../../types/types'
-import {requestCategories, requestDishById, requestDishes, requestDishesByCategoryId} from "../thunks/menu.thunk";
+import { requestCategories, requestDishById, requestDishes, requestDishesByCategoryId } from "../thunks/menu.thunk";
 
 const menuSlice = createSlice({
     name: 'menu',

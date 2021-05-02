@@ -3,7 +3,7 @@ import { profileAPI } from '../../api/api';
 
 export const requestMe = createAsyncThunk(
   'profile/fetchMe',
-    async (a, thunkAPI) => {
+    async () => {
         return await profileAPI.getMe()
     }
   )
