@@ -1,22 +1,37 @@
 import React from 'react'
 import { useMenuCardsLogic } from '../logic'
-import CardDish from '../../../components/common/elements/CardDish'
+import CardDish from '../../../components/Cards/CardDish/CardDishSC'
+import { Grid, makeStyles } from '@material-ui/core'
+
+const useGridStyles = makeStyles(({ breakpoints }) => ({
+  root: {
+    [breakpoints.up('md')]: {
+      justifyContent: 'center'
+    }
+  }
+}))
 
 const Cards = (): JSX.Element => {
-  const { dishes, categories, order, addDishToBucket, increaseDishCount, reduceDishCount } = useMenuCardsLogic()
+  const { dishes } = useMenuCardsLogic()
+  const gridStyles = useGridStyles()
 
   return (
-    <div className='menu-wrapper-content'>
-      {dishes.map(dish => <CardDish dish={dish}
-                                    categories={categories}
-                                    order={order}
-                                    addToBucket={addDishToBucket}
-                                    increaseCountDish={increaseDishCount}
-                                    reduceCountDish={reduceDishCount}
-                                    key={dish.id} />
-      )}
-    </div>
+    <Grid classes={gridStyles} container spacing={4}>
+      {dishes.map(dish => (
+          <CardDish dish={dish} key={dish.id} />
+      ))}
+    </Grid>
   )
 }
+
+// const Cards = (): JSX.Element => {
+//   const { dishes } = useMenuCardsLogic()
+//
+//   return (
+//     <div className='menu-wrapper-content'>
+//       {dishes.map(dish => <CardDish dish={dish} key={dish.id} />)}
+//     </div>
+//   )
+// }
 
 export default Cards

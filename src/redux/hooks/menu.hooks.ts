@@ -64,12 +64,12 @@ export const useCurrentDish = () => {
   return useSelector(getCurrentDish)
 }
 
-export const useCategories = () => {
+export const useCategories = ({ force = false } = {}) => {
   const dispatch = useAppDispatch()
   const categories = useSelector(getAllCategories)
 
   useEffect(() => {
-    if (!categories.length) {
+    if (!categories.length || force) {
       dispatch(requestCategories())
     }
   }, [])

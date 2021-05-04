@@ -1,7 +1,7 @@
 import React, { CSSProperties } from 'react'
-import { promoType } from '../../../types/types'
-import { fullLink } from '../../../plugins/helpers'
-import altImg from '../../../static/img/dish.svg'
+import { promoType } from '../../types/types'
+import { fullLink } from '../../plugins/helpers'
+import altImg from '../../static/img/dish.svg'
 import { useHistory } from 'react-router-dom'
 
 interface IProps {

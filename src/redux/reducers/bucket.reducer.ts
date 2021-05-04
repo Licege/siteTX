@@ -74,15 +74,16 @@ const bucketSlice = createSlice({
             if (dishIndex !== -1) {
                 const { count } = state.delivery.order[dishIndex]
 
-                if (count - 1 < 0) {
-                    delete state.delivery.order[dishIndex]
-                }
-
-                state.delivery.order[dishIndex] = {
-                    dishId: action.payload.id,
-                    title: action.payload.title,
-                    count: count - 1,
-                    cost: action.payload.cost
+                if (count === 1) {
+                    state.delivery.order.splice(dishIndex, 1)
+                    state.orderedDishes = state.orderedDishes.filter(dish => dish.id !== action.payload.id)
+                } else {
+                    state.delivery.order[dishIndex] = {
+                        dishId: action.payload.id,
+                        title: action.payload.title,
+                        count: count - 1,
+                        cost: action.payload.cost
+                    }
                 }
 
                 state.delivery.totalPrice -= action.payload.cost

@@ -11,13 +11,7 @@ export const useMenuLogic = () => {
 }
 
 export const useMenuCardsLogic = () => {
-
   const dishes = useDishes()
-  const { order } = useSelector(getDeliveryOrder)
-  const isPhone = useSelector(getIsPhone)
-  const categories = useCategories()
 
-  const { addDishToBucket, increaseDishCount, reduceDishCount } = useDeliveryActions()
-
-  return { dishes, categories, order, isPhone, addDishToBucket, increaseDishCount, reduceDishCount }
+  return { dishes }
 }

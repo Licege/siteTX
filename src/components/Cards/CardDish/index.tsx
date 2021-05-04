@@ -1,48 +1,29 @@
-import React, { CSSProperties, useState } from 'react'
-import { categoryType, dishType, orderDishType } from '../../../types/types'
+import React, { CSSProperties } from 'react'
+import { dishType } from '../../../types/types'
 import altImg from '../../../static/img/dish.svg'
-import Button from '@material-ui/core/Button'
-import { cropText, fullLink } from '../../../plugins/helpers'
-import ModalDish from './modals/ModalDish'
+import { cropText } from '../../../plugins/helpers'
+import { Button } from '../../core'
+import useCardDishLogic from './logic'
+import { Card } from '@material-ui/core'
 
 type PropsType = {
     dish: dishType
-    categories: Array<categoryType>
-    order?: Array<orderDishType>
     showDescription?: boolean
     shortCard?: boolean
-
-    addToBucket: (dish: dishType) => void
-    increaseCountDish?: (dish: dishType) => void
-    reduceCountDish?: (dish: dishType) => void
 }
 
-const CardDish: React.FC<PropsType> = ({
-                                           dish,
-                                           categories,
-                                           order,
-                                           addToBucket,
-                                           showDescription = true,
-                                           shortCard,
-                                           increaseCountDish = () => {},
-                                           reduceCountDish= () => {},
-                                       }) => {
+const CardDish: React.FC<PropsType> = ({ dish, showDescription = true, shortCard}) => {
     const style = {
-        backgroundImage: `url(${dish.imageSrc ? fullLink(dish.imageSrc) : altImg})`,
+        backgroundImage: `url(${dish.imageSrc || altImg})`,
         backgroundSize: 'cover',
         borderRadius: shortCard ? '4px' : '',
     } as CSSProperties
 
-    const [isOpen, setOpen] = useState(false)
-
-    const orderedDish = order?.find(d => d.dishId === dish.id)
-    const category = categories.find(category => category.id === dish.categoryId)
-    const isCategoryDelivery = category?.isDelivery
+  const { orderedDish, isCategoryDelivery, showDishInfoModal, addDishToBucket, increaseCountDish, reduceCountDish } = useCardDishLogic(dish)
 
     return (
-        <>
             <div className={'card card_item' + (shortCard ? ' -short' : '')}>
-                <div className='card_item-img' style={style} onClick={() => setOpen(true)}/>
+                <div className='card_item-img' style={style} onClick={showDishInfoModal}/>
                 <div className='card_item__wrapper'>
                     <h3 className='card_item-title'>{dish.title}</h3>
                     {showDescription && dish.description &&
@@ -56,7 +37,7 @@ const CardDish: React.FC<PropsType> = ({
                         {dish.isDelivery && isCategoryDelivery
                             ? <div className='card_item-button'>
                                 {!orderedDish || shortCard
-                                    ? <Button variant='contained' color='primary' onClick={() => addToBucket(dish)}>
+                                    ? <Button variant='contained' color='primary' onClick={() => addDishToBucket(dish)}>
                                         {shortCard ? dish.cost + ' р' : 'Заказать'}
                                     </Button>
                                     : <div className='card_item-button__ordered'>
@@ -78,8 +59,6 @@ const CardDish: React.FC<PropsType> = ({
                     </div>
                 </div>
             </div>
-            <ModalDish dish={dish} open={isOpen} addToBucket={() => addToBucket(dish)} onClose={() => setOpen(false)}/>
-        </>
     )
 }
 

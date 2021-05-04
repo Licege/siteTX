@@ -1,9 +1,9 @@
 import React from 'react'
-import { vacancyType } from '../../../types/types'
-import altImg from '../../../static/img/female_cook.png'
+import { vacancyType } from '../../types/types'
+import altImg from '../../static/img/female_cook.png'
 import { Button } from '@material-ui/core'
 import { Link } from 'react-router-dom'
-import { fullLink } from '../../../plugins/helpers'
+import { fullLink } from '../../plugins/helpers'
 
 type PropsType = {
     vacancy: vacancyType

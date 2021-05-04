@@ -9,9 +9,7 @@ const Menu: React.FC = () => (
         <div className='menu-wrapper'>
           <CategoriesFeed />
           <h1 className='menu-wrapper-header'>~ Меню ~</h1>
-          <div className='menu-wrapper-content'>
-            <Cards />
-          </div>
+          <Cards />
         </div>
       </div>
   )

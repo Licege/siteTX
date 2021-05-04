@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { newsType } from '../../../types/types'
-import altImg from '../../../static/img/news.jpg'
-import { fullLink, tsToDate } from '../../../plugins/helpers'
+import { newsType } from '../../types/types'
+import altImg from '../../static/img/news.jpg'
+import { fullLink, tsToDate } from '../../plugins/helpers'
 
 
 type PropsType = {

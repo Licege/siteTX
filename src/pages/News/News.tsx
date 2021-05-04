@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import CardNews from '../../components/common/elements/CardNews'
+import CardNews from '../../components/Cards/CardNews'
 import Paginator from '../../components/common/elements/Paginator'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { getNewsCountSelector, getNewsSelector } from '../../redux/selectors/news'

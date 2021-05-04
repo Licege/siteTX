@@ -8,8 +8,8 @@ const Content = () => {
   return (
     <div className='shopping_cart-info-content'>
       <div className='shopping_cart-info-content-list'>
-        {orderedDished.map(dish => (
-          <div className='shopping_cart-info-content-list-item' key={dish.id}>
+        {orderedDished.map((dish, key) => (
+          <div className='shopping_cart-info-content-list-item' key={key}>
             <div className='shopping_cart-info-content-list-item-title'>{dish.title}</div>
             <div className='shopping_cart-info-content-list-item-count'>
               <span className='custom_subtract' onClick={() => reduceDishCount(dish)}/>

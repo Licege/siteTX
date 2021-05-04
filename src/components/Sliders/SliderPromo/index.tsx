@@ -1,6 +1,6 @@
 import React from 'react'
 import CustomSlider from '../../common/elements/sliders/CustomSlider'
-import CardPromo from '../../common/elements/CardPromo'
+import CardPromo from '../../Cards/CardPromo'
 import { usePromos } from '../../../redux/hooks/promos.hooks'
 import config from './config'
 

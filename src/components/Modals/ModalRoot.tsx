@@ -1,12 +1,14 @@
 import React from 'react'
-import { useSelector } from "react-redux"
-import { getCurrentModal } from "../../redux/getters/modals.getters";
-import ModalRegister from "./ModalRegister/ModalRegister";
-import ModalAuth from "./ModalAuth/ModalAuth";
+import { useSelector } from 'react-redux'
+import { getCurrentModal } from '../../redux/getters/modals.getters'
+import ModalRegister from './ModalRegister/ModalRegister'
+import ModalAuth from './ModalAuth/ModalAuth'
+import ModalDishInfo from './ModalDishInfo'
 
 const MODALS: any = {
   REGISTER: ModalRegister,
-  AUTH: ModalAuth
+  AUTH: ModalAuth,
+  DISH_INFO: ModalDishInfo
 }
 
 const ModalRoot = () => {
