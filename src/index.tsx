@@ -19,10 +19,8 @@ let rerenderEntireTree = () => {
             <BrowserRouter>
                 <Provider store={store}>
                   <ThemeProvider theme={theme}>
-                        <WebSocketProvider>
                           <App/>
                           <GlobalStyles />
-                        </WebSocketProvider>
                   </ThemeProvider>
                 </Provider>
             </BrowserRouter>

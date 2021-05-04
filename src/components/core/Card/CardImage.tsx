@@ -4,19 +4,18 @@ import { CardMedia as MaterialCardMedia } from '@material-ui/core'
 
 interface IProps {
   image: string
+  cursor?: 'pointer'|'default'
   onClick?: () => void
 }
 
-const SCCardMedia = styled(MaterialCardMedia)`
+const CardMedia = styled(MaterialCardMedia).attrs((props: IProps) => ({
+  image: props.image,
+  onClick: props.onClick
+}))`
+  cursor: ${props => Boolean(props.onClick) ? 'pointer' : 'default'};
   border-radius: 16px 16px 0 0;
   background-size: cover;
   min-height: 200px;
 `
-
-const CardMedia: React.FC<IProps> = ({ image, onClick }) => (
-  <picture>
-    <SCCardMedia image={image} onClick={onClick} />
-  </picture>
-)
 
 export default CardMedia

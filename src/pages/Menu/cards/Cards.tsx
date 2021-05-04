@@ -24,14 +24,4 @@ const Cards = (): JSX.Element => {
   )
 }
 
-// const Cards = (): JSX.Element => {
-//   const { dishes } = useMenuCardsLogic()
-//
-//   return (
-//     <div className='menu-wrapper-content'>
-//       {dishes.map(dish => <CardDish dish={dish} key={dish.id} />)}
-//     </div>
-//   )
-// }
-
 export default Cards

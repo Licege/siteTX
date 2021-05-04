@@ -1,4 +1,4 @@
-import React, { useMemo, CSSProperties } from 'react'
+import React from 'react'
 import Color from 'color'
 import { dishType } from '../../../types/types'
 import altImg from '../../../static/img/dish.svg'

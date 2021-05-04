@@ -4,6 +4,7 @@ import altImg from '../../../static/img/dish.svg'
 import { cropText } from '../../../plugins/helpers'
 import { Button, Card, CardBody, CardFooter, CardMedia, CardText, CardTitle, CardWrapper } from '../../core'
 import useCardDishLogic from './logic'
+import styled from 'styled-components'
 
 type PropsType = {
     dish: dishType
@@ -11,7 +12,7 @@ type PropsType = {
     shortCard?: boolean
 }
 
-const CardDish: React.FC<PropsType> = ({ dish, showDescription = true, shortCard}) => {
+const CardDish: React.FC<PropsType> = ({ dish, showDescription = true, shortCard = false }) => {
   const { orderedDish, isCategoryDelivery, showDishInfoModal, addDishToBucket, increaseCountDish, reduceCountDish } = useCardDishLogic(dish)
 
     return (
@@ -24,32 +25,32 @@ const CardDish: React.FC<PropsType> = ({ dish, showDescription = true, shortCard
                     <CardText><b>Описание:</b> {cropText(dish.description, 70)}</CardText>}
                   </CardBody>
                   <CardFooter>
-                    <div className='card_item-info'>
-                      {dish.cost ? <p className='card_item-info-price'>{dish.cost} руб.</p>: null}
-                      {dish.weight ? <p className='card_item-info-weight'>{dish.weight} г.</p> : null}
-                    </div>
+                    {!shortCard && <ItemInfo>
+                      {dish.cost ? <Price>{dish.cost} руб.</Price> : null}
+                      {dish.weight ? <Weight>{dish.weight} г.</Weight> : null}
+                    </ItemInfo>}
 
                     {dish.isDelivery && isCategoryDelivery
-                      ? <div className='card_item-button'>
+                      ? <ActionsBlock>
                         {!orderedDish || shortCard
                           ? <Button variant='contained' color='primary' onClick={() => addDishToBucket(dish)}>
                             {shortCard ? dish.cost + ' р' : 'Заказать'}
                           </Button>
-                          : <div className='card_item-button__ordered'>
+                          : <OrderedActionsBlock>
                             <Button variant='contained' color='primary'
                                     onClick={() => reduceCountDish(dish)}>
                               -
                             </Button>
-                            <span className='value'>{orderedDish?.count}</span>
+                            <Count>{orderedDish?.count}</Count>
                             <Button variant='contained' color='primary'
                                     onClick={() => increaseCountDish(dish)}>
                               +
                             </Button>
-                          </div>}
-                      </div>
-                      : <div className='card_item-no_delivery'>
+                          </OrderedActionsBlock>}
+                      </ActionsBlock>
+                      : <NoDelivery>
                         Доступно только в ресторане
-                      </div>
+                      </NoDelivery>
                     }
                   </CardFooter>
                 </Card>
@@ -58,3 +59,61 @@ const CardDish: React.FC<PropsType> = ({ dish, showDescription = true, shortCard
 }
 
 export default CardDish
+
+const ItemInfo = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
+const Price = styled.p`
+  margin-right: 8px;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+`
+
+const Weight = styled.p`
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 0.5rem;
+  font-size: .75rem;
+`
+
+const ActionsBlock = styled.div`
+  display: block;
+  text-align: center;
+  
+  button {
+    height: 35px;
+    width: 120px;
+  }
+`
+
+const OrderedActionsBlock = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 12px;
+
+  .MuiButton-root {
+    padding: 6px;
+    min-width: auto;
+  }
+
+  button {
+    width: 36px;
+  }
+`
+
+const Count = styled.span`
+  display: block;
+  width: 36px;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+`
+
+const NoDelivery = styled.div`
+  text-align: center;
+  line-height: 18px;
+  user-select: none;
+`

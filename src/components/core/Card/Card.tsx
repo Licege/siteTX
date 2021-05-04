@@ -10,15 +10,14 @@ interface ICard extends ThemedStyledProps<any, any> {
     color?: any
 }
 
-interface IProps {
-    children: any
-}
-
-const SCCard = styled(MaterialCard)`
+const Card = styled(MaterialCard).attrs(() => ({
+    as: 'main'
+}))`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-width: ${(props: ICard) => `${props.minWidth ? `${props.minWidth}px` : '256px'}`};
+  border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 16px !important;
   box-shadow: none;
   width: ${(props: ICard) => `${props.width ? `${props.width}px` : '280px' }`};
@@ -26,15 +25,13 @@ const SCCard = styled(MaterialCard)`
   position: relative;
   &:hover {
         box-shadow: ${(props: ICard) => `0 6px 12px 0 ${Color(props.color || '#ff9900')
-      .rotate(-12)
-      .darken(0.2)
-      .fade(0.5)}`
-    }
+          .rotate(-12)
+          .darken(0.2)
+          .fade(0.5)}`
+        };
+      background-color: rgb(250, 235, 225);
+      transition: 0.2s;
   }
 `
-
-const Card: React.FC<IProps> = ({ children }) => (
-  <SCCard as='main'>{children}</SCCard>
-)
 
 export default Card
