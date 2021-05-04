@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDishes } from '../../../redux/hooks/menu.hooks'
-import { useDelivery, useDeliveryActions } from '../../../redux/hooks/bucket.hooks'
+import { useDelivery, useDeliveryActions, useOrderedDishes } from '../../../redux/hooks/bucket.hooks'
 import { dishType } from '../../../types/types'
 
 export const useBucketShowOrderPageLogic = () => {
@@ -12,8 +12,8 @@ export const useBucketShowOrderPageLogic = () => {
 }
 
 export const useBucketOrderTableLogic = () => {
-  const dishes = useDishes()
   const { order } = useDelivery()
+  const dishes = useOrderedDishes()
 
   const { increaseDishCount, reduceDishCount, changeDishCount, removeDish } = useDeliveryActions()
 
