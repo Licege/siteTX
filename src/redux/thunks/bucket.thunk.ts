@@ -19,8 +19,9 @@ export const requestGlobalDeliverySettings = createAsyncThunk(
 export const postOrder = createAsyncThunk(
   'bucket/postOrder',
   async (order: IDeliveryPost) => {
-      const response = await bucketAPI.postOrder(order)
-      return response.status
+    const response = await bucketAPI.postOrder(order)
+    console.log(response)
+    return response
   }
 )
 

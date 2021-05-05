@@ -98,10 +98,8 @@ export const authAPI = {
 }
 
 export const contactsAPI = {
-    getContacts() {
+    async getContacts() {
         return request.get(`${baseURL}/contacts/`)
-          .then(payload => payload)
-          .catch(reason => console.error(reason))
     },
 }
 
@@ -219,12 +217,10 @@ export const vacanciesAPI = {
     getVacancies() {
         return request.get(baseURL + `/vacancies/`)
           .then(payload => payload)
-          .catch(reason => console.error(reason))
     },
     postResume(resume: resumeType) {
         return request.post(baseURL + `/resume/`, resume)
           .then(payload => payload)
-          .catch(reason => console.error(reason))
     },
 }
 
@@ -262,10 +258,8 @@ export const bucketAPI = {
           .catch(reason => console.error(reason))
     },
 
-    postOrder(order: IDeliveryPost) {
-        return request.post(baseURL + `/delivery/`, order)
-          .then(payload => payload)
-          .catch(reason => console.error(reason))
+    async postOrder(order: IDeliveryPost) {
+        return request.post(`${baseURL}/delivery/`, order)
     },
 }
 

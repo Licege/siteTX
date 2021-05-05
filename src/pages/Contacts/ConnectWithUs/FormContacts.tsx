@@ -1,9 +1,8 @@
 import React from 'react'
 import { Field, Form } from 'react-final-form'
-import renderTextField from '../../../components/common/elements/form/RenderTextField'
+import TextField from '../../../components/common/elements/form/RenderTextField'
 import validate from './Validate'
 import { Button, createStyles, Theme } from '@material-ui/core'
-import { reviewType } from '../../../types/types'
 import { makeStyles } from '@material-ui/core/styles'
 import { useFormContactsLogic } from '../logic'
 
@@ -27,24 +26,24 @@ const FormContacts = () => {
       <form onSubmit={handleSubmit} className={classes.root}>
         <div>
           <Field name='name'
-                 component={renderTextField}
+                 component={TextField}
                  label='Введите имя'
                  placeholder='Ваше имя'/>
         </div>
         <div>
           <Field name='phone'
-                 component={renderTextField}
+                 component={TextField}
                  label='Введите телефон'
                  placeholder='Введите телефон'/>
         </div>
         <div>
           <Field name='comment'
-                 component={renderTextField}
+                 component={TextField}
                  label='Ваш вопрос'
                  placeholder='Введите вопрос'
-                 multiline
-                 rowsMax={10}
-                 margin='normal'/>
+                 as='textarea'
+                 rows={6}
+          />
         </div>
         <div>
           <Button variant='contained' color='primary' type='submit'>Отправить</Button>

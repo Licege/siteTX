@@ -4,25 +4,15 @@ import { getPromos } from '../getters/promos.getters'
 import { useEffect } from 'react'
 import { requestPromos } from '../thunks/promos.thunk'
 
-export const usePromos = () => {
+export const usePromos = ({ force = false } = {}) => {
   const dispatch = useAppDispatch()
   const promos = useSelector(getPromos)
 
   useEffect(() => {
-    if (!promos) {
+    if (!promos.length || force) {
       dispatch(requestPromos())
     }
   }, [])
 
   return promos
-}
-
-export const useRequestPromos = () => {
-  const dispatch = useAppDispatch()
-
-  useEffect(() => {
-    dispatch(requestPromos())
-  }, [])
-
-  return useSelector(getPromos)
 }

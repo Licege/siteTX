@@ -11,7 +11,7 @@ const OrderTable = () => {
       {dishes.map(dish => (
         <div className="bucket-table-row" key={dish.id}>
           <img className="bucket-table-row-img"
-               src={dish.imageSrc ? fullLink(dish.imageSrc) : altImg} alt=""
+               src={dish.imageSrc || altImg} alt=""
           />
           <div className="bucket-table-row-info">
             <div className="bucket-table-row-info-title">{dish.title}</div>

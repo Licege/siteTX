@@ -15,12 +15,12 @@ type categoryIdParam = {
   categoryId: string
 }
 
-export const useDishes = () => {
+export const useDishes = ({ force = false } = {}) => {
   const dispatch = useAppDispatch()
   const dishes = useSelector(getAllDishes)
 
   useEffect(() => {
-    if (!dishes?.length) {
+    if (!dishes?.length || force) {
       dispatch(requestDishes())
     }
   }, [])
@@ -28,17 +28,7 @@ export const useDishes = () => {
   return dishes
 }
 
-export const useRequestDishes = () => {
-  const dispatch = useAppDispatch()
-
-  useEffect(() => {
-    dispatch(requestDishes())
-  }, [])
-
-  return useSelector(getAllDishes)
-}
-
-export const useRequestDishesByCategoryId = () => {
+export const useDishesByCategoryId = () => {
   const { categoryId } = useParams<categoryIdParam>()
   const dispatch = useAppDispatch()
 

@@ -1,9 +1,4 @@
-import { useSelector } from 'react-redux'
-import { useCategories, useDishes } from '../../redux/hooks/menu.hooks'
-
-import { getDeliveryOrder } from '../../redux/getters/bucket.getters'
-import { getIsPhone } from '../../redux/getters/app.getters'
-import { useDeliveryActions } from '../../redux/hooks/bucket.hooks'
+import { useDishes, useDishesByCategoryId } from '../../redux/hooks/menu.hooks'
 
 export const useMenuLogic = () => {
   document.title = 'Меню'
@@ -11,6 +6,7 @@ export const useMenuLogic = () => {
 }
 
 export const useMenuCardsLogic = () => {
+  useDishesByCategoryId()
   const dishes = useDishes()
 
   return { dishes }

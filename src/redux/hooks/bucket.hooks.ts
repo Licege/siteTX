@@ -6,10 +6,10 @@ import {
   getDeliveryOrder,
   getGlobalDeliverySettings
 } from '../getters/bucket.getters'
-import { dishType } from '../../types/types'
+import { dishType, IDeliveryPost } from '../../types/types'
 import * as actions from '../reducers/bucket.reducer'
 import { useAppDispatch } from '../redux-store'
-import { requestDeliverySettings, requestGlobalDeliverySettings } from '../thunks/bucket.thunk'
+import { postOrder, requestDeliverySettings, requestGlobalDeliverySettings } from '../thunks/bucket.thunk'
 
 export const useDelivery = () => {
   return useSelector(getDeliveryOrder)
@@ -73,4 +73,12 @@ export const useDeliveryActions = () => {
   }
 
   return { addDishToBucket, increaseDishCount, reduceDishCount, changeDishCount, removeDish, clearBucket }
+}
+
+export const usePostOrder = () => {
+  const dispatch = useAppDispatch()
+
+  return (order: IDeliveryPost) => {
+    dispatch(postOrder(order))
+  }
 }

@@ -6,7 +6,7 @@ import {
     dishType,
     orderDishType,
 } from '../../types/types'
-import {requestDeliverySettings, requestGlobalDeliverySettings} from "../thunks/bucket.thunk";
+import {requestDeliverySettings, requestGlobalDeliverySettings, postOrder} from "../thunks/bucket.thunk";
 
 type statusesType = 'created'|'error'
 

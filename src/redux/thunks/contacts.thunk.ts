@@ -4,6 +4,6 @@ import { contactsAPI } from '../../api/api';
 export const requestContacts = createAsyncThunk(
   'contacts/fetchAll',
   async () => {
-      return await contactsAPI.getContacts();
+    return await contactsAPI.getContacts();
   }
 )

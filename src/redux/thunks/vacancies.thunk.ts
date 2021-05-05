@@ -6,7 +6,7 @@ export const requestVacancies = createAsyncThunk(
   'vacancies/fetchAllNews',
   async () => {
       const response = await vacanciesAPI.getVacancies()
-      return response.data
+      return response
   }
 )
 
@@ -14,7 +14,7 @@ export const postResume = createAsyncThunk(
   'vacancies/postNewResume',
   async (resume: resumeType) => {
       const response = await vacanciesAPI.postResume(resume)
-      return response.data
+      return response
   }
 )
 

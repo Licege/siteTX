@@ -31,7 +31,7 @@ const NewsById: React.FC = () => {
     return (
         <div className='page-container'>
             <div className='news'>
-                <img src={news.imageSrc ? fullLink(news.imageSrc) : altImg} className='news-image' alt=''/>
+                <img src={news.imageSrc || altImg} className='news-image' alt=''/>
                 <div className='news-wrapper'>
                     <div className='news-wrapper-title'>{news.title}</div>
                     <div className='news-wrapper-body'>{news.description}</div>

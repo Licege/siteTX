@@ -1,6 +1,11 @@
 import { useMemo } from 'react'
-import { useDelivery, useDeliverySettings, useGlobalDeliverySettings } from '../../../redux/hooks/bucket.hooks'
-import { IDeliveryPost, profileType } from '../../../types/types'
+import {
+  useDelivery,
+  useDeliverySettings,
+  useGlobalDeliverySettings,
+  usePostOrder
+} from '../../../redux/hooks/bucket.hooks'
+import { deliverySettingsType, IDeliveryPost, profileType } from '../../../types/types'
 import { getFullName } from '../../../plugins/helpers'
 import { useMe } from '../../../redux/hooks/profile.hooks'
 import { useFormState } from 'react-final-form'
@@ -55,21 +60,25 @@ export const useBucketFormOrderLogic = () => {
   const delivery = useDelivery()
   const settings = useDeliverySettings()
   const globalSettings = useGlobalDeliverySettings()
+  const postOrder = usePostOrder()
 
   const cityOptions = settings.reduce((acc: any, s) => {
     return s.isDelivery ? [...acc, { value: s.id, label: s.city }] : acc
   }, [])
 
   const onSubmit = (data: IDeliveryPost) => {
+    const { deliveryType, address } = data
+
     const postData = {
       ...data,
       list: delivery.order,
-      // deliveryCost: this.state.deliveryPrice,
-      // sale: this.state.saleForPickup,
+      deliveryCost: calcDeliveryPrice({ settings, deliveryType, address, deliveryTotalPrice: delivery.totalPrice }),
+      sale: calcSale({ deliveryType, saleForPickup: globalSettings.saleForPickup }),
       totalPrice: delivery.totalPrice,
       userId: me?.id || null,
     }
     console.log(postData)
+    // postOrder(postData)
     // this.context.sendOrderDelivery(post)
   }
 
@@ -111,4 +120,31 @@ export const useBucketInfoBlockLogic = () => {
   const { sale, price, saleForPickup } = calcPrice()
 
   return { showInfo, sale, price, saleForPickup, totalPrice: delivery.totalPrice, deliveryPrice }
+}
+
+interface ICalcDeliveryPrice {
+  deliveryType: any,
+  address: any,
+  settings: deliverySettingsType[],
+  deliveryTotalPrice: number
+}
+
+function calcDeliveryPrice ({ deliveryType, settings, address, deliveryTotalPrice }: ICalcDeliveryPrice) {
+  if (deliveryType === 'restaurant') return 0
+  const currentCitySettings = settings.find(s => s.id === address.city)
+
+  if (!currentCitySettings) throw new Error(`Not found delivery settings for city ${address.city}`)
+
+  if (currentCitySettings.freeDelivery < deliveryTotalPrice) return 0
+
+  return currentCitySettings.priceForDelivery
+}
+
+interface ICalcSale {
+  deliveryType: any
+  saleForPickup: number
+}
+
+function calcSale({ deliveryType, saleForPickup }: ICalcSale) {
+  return deliveryType === 'restaurant' ? saleForPickup : 0
 }

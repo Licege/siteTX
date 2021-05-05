@@ -15,7 +15,7 @@ const CardNews: React.FC<PropsType> = ({ news }) => (
             <div className='card-body card_news__wrapper'>
                 {news.createdAt && <div className='card_news-date'>{tsToDate(news.createdAt, 'dd MMMM')}</div>}
                 <div className='card_news-content'>
-                    <img className='card_news-content-img' src={news.imageSrc ? fullLink(news.imageSrc) : altImg}
+                    <img className='card_news-content-img' src={news.imageSrc || altImg}
                          alt=''/>
                     <div className='card_news-content-info'>
                         <div className='card_news-content-info-header'>

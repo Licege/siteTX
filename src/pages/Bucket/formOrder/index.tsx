@@ -20,6 +20,7 @@ import { scrollToFirstError } from '../../../plugins/validate'
 import { rangeNumbers } from '../../../plugins/helpers'
 import { useBucketFormOrderLogic } from './logic'
 import InfoBlock from './InfoBlock'
+import { Radios } from 'mui-rff'
 
 const radioButton = ({ input, ...rest }: any) => (
     <FormControl>
@@ -78,42 +79,21 @@ const FormOrder = () => {
                              placeholder='Введите e-mail' />
                   </div>
                   <div>
-                      <div>
-                          <label>Выберите способ оплаты:</label>
-                      </div>
-                      <Field name='paymentType' component={radioButton}>
-                          {globalSettings.paymentCash &&
-                          <FormControlLabel value='cash'
-                                            control={<Radio/>}
-                                            label='Наличная оплата' />
-                          }
-                          {globalSettings.paymentCashless &&
-                          <FormControlLabel value='cashlessPayment'
-                                            control={<Radio/>}
-                                            label='Безналичный расчет курьеру' />
-                          }
-                          {globalSettings.paymentOnline &&
-                          <FormControlLabel value='cashlessPaymentOnline'
-                                            control={<Radio/>}
-                                            label='Безналичный расчет онлайн' />}
-                      </Field>
+                    <Radios name='paymentType' label='Выберите способ оплаты:' data={[
+                      { label: 'Наличная оплата', value: 'cash', disabled: !globalSettings.paymentCash },
+                      { label: 'Безналичный расчет курьеру', value: 'cashlessPayment', disabled: !globalSettings.paymentCashless },
+                      { label: 'Безналичный расчет онлайн', value: 'cashlessPaymentOnline', disabled: !globalSettings.paymentOnline },
+                    ]} />
                       {values.paymentType === 'cash' && <div className='bucket-order__cash'>
                           Подготовить сдачу с
                           <Field name='oddMoney' component={TextField} label='' placeholder='0'/> рублей
                       </div>}
                   </div>
                   <div>
-                      <div>
-                          <label>Выберите способ доставки:</label>
-                      </div>
-                      {/*<Field name='deliveryType' component={radioButton} type='radio'>*/}
-                      {/*    {globalSettings.isDeliveryWorking &&*/}
-                      {/*    <FormControlLabel value='home' control={<Radio/>} label='На дом'/>}*/}
-                      {/*    <FormControlLabel value='restaurant' control={<Radio/>} label='Самовывоз из ресторана'/>*/}
-                      {/*</Field>*/}
-                    {globalSettings.isDeliveryWorking &&
-                    <Field name='deliveryType' value='home' component='input' type='radio' label='На дом'/>}
-                    <Field name='deliveryType' value='restaurant' component='input' type='radio' label='Самовывоз из ресторана'/>
+                    <Radios name='deliveryType' label='Выберите способ доставки:' data={[
+                      { label: 'На дом', value: 'home', disabled: !globalSettings.isDeliveryWorking },
+                      { label: 'Самовывоз из ресторана', value: 'restaurant' }
+                    ]} />
                   </div>
                   {values.deliveryType === 'home'
                     ?

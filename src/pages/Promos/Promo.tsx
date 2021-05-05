@@ -29,7 +29,7 @@ export const Promo: React.FC = () => {
     const goBack = () => history.push('/actions')
 
     const style = {
-        backgroundImage: `url(${promo.imageSrc ? fullLink(promo.imageSrc) : altImg})`,
+        backgroundImage: `url(${promo.imageSrc || altImg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
     } as CSSProperties

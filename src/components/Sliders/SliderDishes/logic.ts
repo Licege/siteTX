@@ -1,7 +1,7 @@
-import { useRequestDishes } from '../../../redux/hooks/menu.hooks'
+import { useDishes } from '../../../redux/hooks/menu.hooks'
 
 export const useSliderDishesLogic = () => {
-  const dishes = useRequestDishes()
+  const dishes = useDishes({ force: true })
 
   return { dishes }
 }

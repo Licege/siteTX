@@ -6,8 +6,9 @@ const useButtonBucketLogic = () => {
   const [moreInfo, setMoreInfo] = useState(false)
 
   const toggle = () => setMoreInfo(!moreInfo)
+  const close = () => setMoreInfo(false)
 
-  return { moreInfo, toggle }
+  return { moreInfo, toggle, close }
 }
 
 export const useButtonBucketCounterLogic = () => {

@@ -16,7 +16,7 @@ const showMore = (id: number | string, history: any) => {
 
 const CardPromo: React.FC<IProps> = ({ promo }) => {
     const style = {
-        backgroundImage: `url(${promo.imageSrc ? fullLink(promo.imageSrc) : altImg})`,
+        backgroundImage: `url(${promo.imageSrc || altImg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
     } as CSSProperties

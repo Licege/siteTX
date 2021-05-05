@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import useButtonBucketLogic from './logic'
 import shopping_cart from '../../../static/img/shopping-cart.png'
 import BucketInfo from './BucketInfo'
 import Counter from './Counter'
+import useOutsideClick from '../../../hooks/outsideClick'
 
 const Bucket = () => {
-  const { toggle, moreInfo } = useButtonBucketLogic()
+  const { moreInfo, toggle, close } = useButtonBucketLogic()
+  // const ref = useRef(null)
+  // useOutsideClick(ref, close)
 
   return (
       <div className='shopping_cart'>

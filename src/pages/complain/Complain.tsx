@@ -28,6 +28,8 @@ const Complain = () => {
 
     if (!complainTypes.length) return null
 
+    const preparedComplainTypes = complainTypes.map(type => ({ label: type.title, value: type.id }))
+
     const onSubmit = (complain: complainType) => {
         dispatch(requestComplain(complain));
     }
@@ -44,7 +46,7 @@ const Complain = () => {
 
     return (
         <div className='complain'>
-            <ComplainForm initialValues={initialValues} types={complainTypes} onSubmit={onSubmit} />
+            <ComplainForm initialValues={initialValues} types={preparedComplainTypes} onSubmit={onSubmit} />
         </div>
     )
 }
