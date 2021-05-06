@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import SectionMenu from './Menu/SectionMenu'
+// import SectionMenu from './Menu/SectionMenu'
 import SectionAbout from './About/SectionAbout'
 import SectionPromo from './Promo/SectionPromo'
 import SectionMap from './Map/SectionMap'
@@ -14,12 +14,12 @@ const Home: React.FC = () => {
 
     return (
         <main className='Home'>
-            <SectionAbout/>
+            <SectionAbout />
             <SectionPDFMenu />
-            <SectionMenu />
+            {/*<SectionMenu />*/}
             <SectionPromo />
             {/*<SectionDelivery contacts={contacts}/>*/}
-            <SectionMap/>
+            <SectionMap />
         </main>
     )
 }
