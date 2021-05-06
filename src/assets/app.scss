@@ -1,3 +1,5 @@
+@import "variables/variables";
+
 .app-wrapper {
   display: flex;
   flex-direction: column;
@@ -6,15 +8,18 @@
   min-height: 100vh;
 
   &-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex: 1 0 auto;
+    display: grid;
+    grid-template-rows: 1fr #{$footer_height};
     overflow-x: hidden;
-    min-height: 100vh;
-    padding-top: 24px;
+    min-height: calc(100vh - #{$header_height});
+    margin-top: $header_height;
     background-color: rgb(251, 251, 253);
-    // background-color: sandybrown;
+  }
+
+  @include media-breakpoint-down(sm) {
+    &-content {
+      grid-template-rows: 1fr 342px;
+    }
   }
 }
 

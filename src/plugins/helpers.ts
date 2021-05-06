@@ -1,7 +1,15 @@
-import { orderDishType } from '../types/types'
+import { addressType, orderDishType } from '../types/types'
 import { serverUrl } from '../api/api'
 
 export const isIos = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform)
+
+export const isNil = (item: Object | Array<any> | string | number | null | undefined) => {
+    if (!item) return true
+    if (typeof item === 'number' && !item && item !== 0) return true
+    if (item instanceof Array && !item.length) return true
+
+    return !Object.keys(item).length;
+}
 
 export function getTitleById( items: Array<any>, id: number ): string | undefined {
     let title = items.find(item => item.id === id)
@@ -46,12 +54,12 @@ export function tsToDate( timestamp: Date | number, type: string ): string {
     }
 }
 
-export function getDishesKey( dishes: Array<orderDishType>, id: string, key: string ): number {
+export function getDishesKey( dishes: Array<orderDishType>, id: number, key: string ): number {
     switch (key) {
         case 'count':
-            return dishes.find(dish => dish.dish_id === id)?.count as number
+            return dishes.find(dish => dish.dishId === id)?.count as number
         case 'cost':
-            return dishes.find(dish => dish.dish_id === id)?.cost as number
+            return dishes.find(dish => dish.dishId === id)?.cost as number
         default:
             return -1
     }
@@ -93,15 +101,6 @@ function isPunctuationMark( simbol: string ): boolean {
 
 }
 
-export function cropText1( text: string, limit = 100 ): string {
-    if (text.length < limit) return text
-
-    while (text[limit + 1] !== ' ' || isPunctuationMark(text[limit])) {
-        limit--
-    }
-    return text.slice(0, limit) + '...'
-}
-
 export function rangeNumbers(value: number, minValue: number, maxValue: number): number {
     let result = value
 
@@ -109,4 +108,18 @@ export function rangeNumbers(value: number, minValue: number, maxValue: number):
     if (value > maxValue) return maxValue
 
     return result
+}
+
+export function getFullName({ surname = '', forename = '', patronymic = '' }) {
+    return `${surname}${forename ? ' ' + forename : ''}${patronymic ? ' ' + patronymic : ''}`
+}
+
+export function parseAddress(address: addressType) {
+    const { city, street, house, intercom, floor, flat } = address
+    let parsedAddress = city
+
+    if (street) parsedAddress += ` улица ${street}`
+    if (house) parsedAddress += `, ${house}`
+
+    return parsedAddress
 }

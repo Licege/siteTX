@@ -1,0 +1,31 @@
+@import "./src/assets/variables/variables";
+
+.complain {
+  padding: 24px;
+}
+
+.complain-form {
+  max-width: 674px;
+  margin: 0 auto;
+
+  &__container {
+    padding: 24px;
+    background-color: #fff;
+    border: 1px solid $border_color;
+  }
+
+  &__row {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 24px;
+  }
+
+  &__field {}
+
+  &__actions {
+    margin-top: 24px;
+    display: flex;
+    justify-content: flex-end;
+  }
+}

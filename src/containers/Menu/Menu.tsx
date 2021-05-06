@@ -2,9 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { RouteComponentProps } from 'react-router'
 import { AppStateType } from '../../redux/redux-store'
-import { getCategories, getDish, getMenu, getMenuByCategory } from '../../redux/menu-reducer'
-import Menu from '../../components/Menu/Menu'
-import { actions as bucketActions } from '../../redux/bucket-reducer'
+import { requestDishes, requestCategories, requestDishesByCategoryId, requestDishById } from '../../redux/thunks/menu.thunk'
+import Menu from '../../pages/Menu'
+import * as bucketActions from '../../redux/reducers/bucket.reducer'
 import { scrollHeight } from '../../plugins/helpers'
 import { categoryType, deliveryType, dishType, RouteParams } from '../../types/types'
 
@@ -19,7 +19,7 @@ type MapDispatchPropsType = {
     getDish: (id: number) => void,
     getMenu: () => void,
     getCategories: () => void,
-    getMenuByCategory: (category: string) => void,
+    getMenuByCategory: (category: number | string) => void,
     addDishToBucket: (dish: dishType) => void,
     increaseDishCount: (dish: dishType) => void,
     reduceDishCount: (dish: dishType) => void,
@@ -45,8 +45,8 @@ class MenuContainer extends React.Component<PropsType> {
 
     componentDidUpdate(prevProps: Readonly<PropsType>) {
         if (!prevProps.categories && this.props.categories.length) {
-            let category_id = this.props.categories.find(category => category.title_en === this.props.match.params.id)!._id
-            this.props.getMenuByCategory(category_id)
+            const categoryId = this.props.categories.find(category => category.titleEn === this.props.match.params.id)!.id
+            this.props.getMenuByCategory(categoryId)
         }
         if (this.props.match.params && this.props.match.params.id && prevProps.match.params.id !== this.props.match.params.id) {
             this.props.getMenuByCategory(this.props.match.params.id)
@@ -57,18 +57,20 @@ class MenuContainer extends React.Component<PropsType> {
 
     onScroll = () => {
         let limit = scrollHeight() - document.documentElement.clientHeight - document.getElementById('footer')!.offsetHeight
-        let navbar = document.getElementById('menu-categories-navbar')!
+        let navbar = document.getElementById('menu-categories-navbar')
 
-        if (window.pageYOffset > limit) {
-            navbar.classList.add('-fixed')
-            navbar.style.top = limit.toString() + 'px'
-        } else if (navbar.classList.contains('-fixed')) {
-            navbar.classList.remove('-fixed')
-            navbar.style.top = 'auto'
-        }
+        if (navbar) {
+            if (window.pageYOffset > limit) {
+                navbar.classList.add('-fixed')
+                navbar.style.top = limit.toString() + 'px'
+            } else if (navbar.classList.contains('-fixed')) {
+                navbar.classList.remove('-fixed')
+                navbar.style.top = 'auto'
+            }
 
-        if (window.pageYOffset === 0) {
-            navbar.style.top = 'auto'
+            if (window.pageYOffset === 0) {
+                navbar.style.top = 'auto'
+            }
         }
     }
 
@@ -91,18 +93,19 @@ class MenuContainer extends React.Component<PropsType> {
             categories,
             mobileMenuStatus,
         } = this.props
+        return <div />
 
-        return <Menu menu={menu}
-                     categories={categories}
-                     order={delivery?.order}
-                     mobileMenuStatus={mobileMenuStatus}
-                     addToBucket={this.addToBucket}
-                     increaseCountDish={this.increaseCountDish}
-                     reduceCountDish={this.reduceCountDish}/>
+        // return <Menu menu={menu}
+        //              categories={categories}
+        //              order={delivery?.order}
+        //              mobileMenuStatus={mobileMenuStatus}
+        //              addToBucket={this.addToBucket}
+        //              increaseCountDish={this.increaseCountDish}
+        //              reduceCountDish={this.reduceCountDish}/>
     }
 }
 
-let mapStateToProps = (state: AppStateType): MapStatePropsType => {
+let mapStateToProps = (state: any): MapStatePropsType => {
     return {
         dish: state.menuPage.dish,
         menu: state.menuPage.menu,
@@ -114,16 +117,16 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
 let mapDispatchToProps = (dispatch: any): MapDispatchPropsType => {
     return {
         getDish: (id: number) => {
-            dispatch(getDish(id))
+            dispatch(requestDishById(id))
         },
         getMenu: () => {
-            dispatch(getMenu())
+            dispatch(requestDishes())
         },
         getCategories: () => {
-            dispatch(getCategories())
+            dispatch(requestCategories())
         },
-        getMenuByCategory: (category: string) => {
-            dispatch(getMenuByCategory(category))
+        getMenuByCategory: (categoryId: number | string) => {
+            dispatch(requestDishesByCategoryId(categoryId))
         },
         addDishToBucket: (dish: dishType) => {
             dispatch(bucketActions.addDish(dish))

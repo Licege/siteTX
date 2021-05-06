@@ -1,7 +1,16 @@
 .form_registration {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 16px;
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  &__submit {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
 
   @include media-breakpoint-down(sm) {
     grid-template-columns: 1fr;

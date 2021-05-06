@@ -6,4 +6,11 @@
   .MuiFormControl-root {
     margin-bottom: 16px;
   }
+
+  &__submit {
+    margin: 16px 0;
+    button {
+      width: 100%;
+    }
+  }
 }

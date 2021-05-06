@@ -18,7 +18,7 @@ const ModalDish: React.FC<IProps> = ({ dish, addToBucket, open, onClose }) => {
             <DialogContent>
                 <div className='modal-dish__wrapper'>
                     <div className='modal-dish__close' onClick={onClose}/>
-                    <img className='modal-dish__img' src={fullLink(dish.imageSrc)} alt=''/>
+                    <img className='modal-dish__img' src={dish.imageSrc} alt=''/>
                     <div className='modal-dish__info'>
                         <div className='modal-dish__title'>{dish.title}</div>
                         {dish.description ? <div className='modal-dish__description'>{dish.description}</div> : null}
@@ -52,7 +52,7 @@ const ModalDish: React.FC<IProps> = ({ dish, addToBucket, open, onClose }) => {
                             <div className='modal-dish__worth-weight'>{dish.weight} грамм</div>
                         </div>
 
-                        {dish.is_delivery
+                        {dish.isDelivery
                             ? <div className='modal-dish__button'>
                                 <Button variant='contained' color='primary' onClick={() => addToBucket(dish)}>
                                     Заказать
