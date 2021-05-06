@@ -190,6 +190,8 @@ export type deliveryGlobalSettingsType = {
     paymentCash: boolean
     paymentCashless: boolean
     paymentOnline: boolean
+    pdfMenuSrc: string
+    showMenuType: string
 }
 
 export type RouteParams = {

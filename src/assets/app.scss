@@ -15,5 +15,11 @@
     margin-top: $header_height;
     background-color: rgb(251, 251, 253);
   }
+
+  @include media-breakpoint-down(sm) {
+    &-content {
+      grid-template-rows: 1fr 342px;
+    }
+  }
 }
 

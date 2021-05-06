@@ -29,6 +29,7 @@ import Complain from './pages/complain/Complain';
 import Modal from "./components/Modals/ModalRoot";
 import Menu from './pages/Menu'
 import Bucket from './pages/Bucket'
+import PDFViewer from './components/Modals/PDFViewer'
 
 const App = () => {
     const dispatch = useDispatch()
@@ -71,6 +72,7 @@ const App = () => {
                         <Route exact path='/actions' component={Promos}/>
                         <Route exact path='/actions/:id' component={Promo}/>
                         <Route exact path='/complain' component={Complain} />
+                        <Route exact path='/test' component={PDFViewer} />
                         <Route component={Error404}/>
                     </Switch>
                 </CatchErrors>

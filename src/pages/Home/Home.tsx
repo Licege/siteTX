@@ -3,6 +3,7 @@ import SectionMenu from './Menu/SectionMenu'
 import SectionAbout from './About/SectionAbout'
 import SectionPromo from './Promo/SectionPromo'
 import SectionMap from './Map/SectionMap'
+import SectionPDFMenu from './PDFMenu/SectionPDFMenu'
 
 const Home: React.FC = () => {
     useEffect(() => {
@@ -14,6 +15,7 @@ const Home: React.FC = () => {
     return (
         <main className='Home'>
             <SectionAbout/>
+            <SectionPDFMenu />
             <SectionMenu />
             <SectionPromo />
             {/*<SectionDelivery contacts={contacts}/>*/}
