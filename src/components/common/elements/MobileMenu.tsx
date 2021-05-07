@@ -2,49 +2,49 @@ import React from 'react'
 import { categoryType } from '../../../types/types'
 import { NavLink } from 'react-router-dom'
 import closeImg from '../../../static/img/close.png'
+import { useMobileMenuLogic } from '../../Header/logic'
 
-interface IProps {
-    isOpen: boolean,
-    categories: Array<categoryType>
+const MobileMenu = () => {
+    const { isMenuOpen, categories, toggleMenu } = useMobileMenuLogic()
 
-    toggle: () => void
-}
-
-const MobileMenu = ({ isOpen, categories, toggle }: IProps) => {
     return (
-        <div className={'mobile_menu' + (isOpen ? ' -active' : '')}>
-            <nav className='mobile_menu-wrapper'>
-                <img src={closeImg} className='mobile_menu-wrapper-close' onClick={toggle} alt='Закрыть'/>
-                <ul>
-                    <li>
-                        <NavLink activeClassName='-active' to='/menu' onClick={toggle}>Все меню</NavLink>
-                    </li>
-                    {categories.map(category => (
+      <>
+          <div className={isMenuOpen ? 'burger -active' : 'burger'} onClick={toggleMenu}><span/></div>
+          <div className={'mobile_menu' + (isMenuOpen ? ' -active' : '')}>
+              <nav className='mobile_menu-wrapper'>
+                  <img src={closeImg} className='mobile_menu-wrapper-close' onClick={toggleMenu} alt='Закрыть'/>
+                  <ul>
+                      <li>
+                          <NavLink activeClassName='-active' to='/menu' onClick={toggleMenu}>Все меню</NavLink>
+                      </li>
+                      {categories.map(category => (
                         <li key={category.id}>
                             <NavLink activeClassName='-active'
-                                     onClick={toggle}
+                                     onClick={toggleMenu}
                                      to={`/menu/${category.titleEn}`}
                                      key={category.id}>
                                 {category.title}
                             </NavLink>
                         </li>
-                    ))}
-                    <span className='mobile_menu-wrapper-border'/>
-                    <li>
-                        <NavLink activeClassName='-active' to='/news' onClick={toggle}>СОБЫТИЯ</NavLink>
-                    </li>
-                    <li>
-                        <NavLink activeClassName='-active' to='/order' onClick={toggle}>ЗАКАЗ СТОЛОВ</NavLink>
-                    </li>
-                    <li>
-                        <NavLink activeClassName='-active' to='/contacts' onClick={toggle}>О НАС</NavLink>
-                    </li>
-                    <li>
-                        <NavLink activeClassName='-active' to='/gallery' onClick={toggle}>ФОТОГАЛЕРЕЯ</NavLink>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+                      ))}
+                      <span className='mobile_menu-wrapper-border'/>
+                      <li>
+                          <NavLink activeClassName='-active' to='/news' onClick={toggleMenu}>СОБЫТИЯ</NavLink>
+                      </li>
+                      <li>
+                          <NavLink activeClassName='-active' to='/order' onClick={toggleMenu}>ЗАКАЗ СТОЛОВ</NavLink>
+                      </li>
+                      <li>
+                          <NavLink activeClassName='-active' to='/contacts' onClick={toggleMenu}>О НАС</NavLink>
+                      </li>
+                      <li>
+                          <NavLink activeClassName='-active' to='/gallery' onClick={toggleMenu}>ФОТОГАЛЕРЕЯ</NavLink>
+                      </li>
+                  </ul>
+              </nav>
+          </div>
+      </>
+
     )
 }
 
