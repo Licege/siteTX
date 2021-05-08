@@ -2,7 +2,7 @@ FROM node:16-alpine3.11
 
 RUN apk add git \
     && git clone https://github.com/Licege/siteTX.git \
-    && cd siteTX
+    && cd siteTX \
     && ls
 
 WORKDIR /var/www/app
