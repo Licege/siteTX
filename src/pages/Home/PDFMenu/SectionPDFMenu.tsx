@@ -1,15 +1,35 @@
 import React from 'react'
-import { usePdfMenuLogic } from '../Menu/logic'
-import Book from '../../../components/Book'
+import styled from 'styled-components'
+import { SectionTitle, SectionWrapper } from '../../../components/core'
+import PDFMenu from './PDFMenu'
+import PDFBar from './PDFBar'
+import CardContainer from './CardContainer'
 
-const SectionPDFMenu = () => {
-  const { pdfMenuSrc, showPDFMenu } = usePdfMenuLogic()
-
-  return (
-    <section>
-      <button onClick={showPDFMenu}>Показать меню</button>
-    </section>
+const SectionPDFMenu = () => (
+    <SectionWrapper>
+      <SectionTitle>Меню ресторана</SectionTitle>
+      <SectionContent>
+        <CardContainer title='Основное меню'>
+          <PDFMenu />
+        </CardContainer>
+        <CardContainer title='Карта бара'>
+          <PDFBar />
+        </CardContainer>
+      </SectionContent>
+    </SectionWrapper>
   )
-}
+
+const SectionContent = styled.div`
+  display: grid;
+  grid-gap: 16px;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr 1fr;
+  justify-content: space-between;
+  margin: 25px 0;
+  
+  @media(max-width: 768px) {
+    display: block;
+  }
+`
 
 export default SectionPDFMenu

@@ -12,9 +12,16 @@ interface INumPages {
   numPages: number | null
 }
 
+function getPageWidth() {
+  const pageWidth = document.body.getBoundingClientRect().width - 70
+
+  return pageWidth < 595 ? pageWidth : 595
+}
+
 const Book: React.FC<IProps> = ({ file }) => {
   const bookRef = useRef<any>(null)
   const [numPages, setNumPages] = useState<number|null>(null)
+  const width = getPageWidth()
 
   useEffect(() => {
     window.addEventListener('keydown', onKeyHandle)
@@ -49,15 +56,16 @@ const Book: React.FC<IProps> = ({ file }) => {
                   height={841}
                   size='stretch'
                   minWidth={300}
-                  minHeight={841}
+                  minHeight={360}
                   maxHeight={841}
                   maxShadowOpacity={0.5}
                   // showCover
+                  swipeDistance={30}
                   mobileScrollSupport={true}
                   autoSize
                   ref={bookRef}
         >
-          <Pages counts={numPages} />
+          <Pages counts={numPages} width={width} />
         </FlipBook>
       </Document>
     </Container>
@@ -69,6 +77,22 @@ const Container = styled.div`
   
   @media(max-width: 1280px) {
     width: 595px;
+  }
+  
+  @media(max-width: 668px) {
+    width: 500px;
+  }
+  
+  @media(max-width: 565px) {
+    width: 400px;
+  }
+  
+  @media(max-width: 468px) {
+    width: 360px;
+  }
+  
+  @media(max-width: 375px) {
+    width: 300px;
   }
 `
 

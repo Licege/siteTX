@@ -18,6 +18,9 @@ export const theme = {
       lighter: '#F2F4F8',
       lightest: '#EBEEF4'
     },
+    brown: {
+      brand: 'rgb(139, 69, 19)'
+    },
     backgroundLight: '#FAFBFC',
     white: '#FFFFFF',
     black: '#000000'

@@ -1,11 +1,13 @@
 import React from 'react'
 import { Page } from 'react-pdf'
+import styled from 'styled-components'
 
 interface IProps {
   counts: number|null
+  width: number
 }
 
-const Pages = React.forwardRef(({ counts }: IProps, ref: any): JSX.Element => {
+const Pages = React.forwardRef(({ counts, width }: IProps, ref: any): JSX.Element => {
   if (!counts) return <div />
 
   const arrayPages = Array.from(Array(counts))
@@ -13,22 +15,17 @@ const Pages = React.forwardRef(({ counts }: IProps, ref: any): JSX.Element => {
   return (
     <>
       {arrayPages.map((_, i) => (
-        <div ref={ref} key={`pdf-page-${i + 1}`}>
-          <Page pageNumber={i + 1} />
-        </div>
+        <PageWrapper ref={ref} key={`pdf-page-${i + 1}`}>
+          <Page pageNumber={i + 1} width={width} />
+        </PageWrapper>
       ) )}
     </>
   )
 })
 
-// const Pages = ({ counts }: IProps): JSX.Element => {
-//   const arrayPages = Array.from(Array(counts))
-//
-//   return (
-//     <>
-//       {arrayPages.map((_, i) => <Page key={`pdf-page-${i + 1}`} pageNumber={i + 1} /> )}
-//     </>
-//   )
-// }
+const PageWrapper = styled.div`
+  //width: 100%;
+  //max-width: 595px;
+`
 
 export default Pages
