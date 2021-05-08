@@ -1,30 +1,19 @@
-import React, { useState, useRef } from 'react'
-import { Document, pdfjs } from 'react-pdf'
+import React, { useRef } from 'react'
 import { Dialog } from '@material-ui/core'
-import Pages from '../../Book/Pages'
 import styled from 'styled-components'
 import Book from '../../Book'
-
-
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`
-
-interface INumPages {
-  numPages: number | null
-}
+import { useModalActions } from '../../../redux/hooks/app.hooks'
 
 interface IProps {
   src: string
 }
 
 const PDFViewer: React.FC<IProps> = ({ src }) => {
-  const [numPages, setNumPages] = useState<number|null>(null)
-  const [pageNumber, setPageNumber] = useState(1)
   const refForScroll = useRef(null)
-
-  const onDocumentLoadSuccess = ({ numPages }: INumPages) => setNumPages(numPages)
+  const { hideModal } = useModalActions()
 
   return (
-    <Dialog open ref={refForScroll} maxWidth='xl'>
+    <Dialog open ref={refForScroll} onBackdropClick={hideModal} maxWidth='xl'>
       <Book file={src} />
     </Dialog>
   )

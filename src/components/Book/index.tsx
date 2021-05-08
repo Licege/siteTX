@@ -1,8 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Document } from 'react-pdf'
+import { Document, pdfjs } from 'react-pdf'
 import HTMLFlipBook from 'react-pageflip'
 import styled from 'styled-components'
 import Pages from './Pages'
+import { Loader } from '../core'
+
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`
 
 interface IProps {
   file: any
@@ -50,7 +53,7 @@ const Book: React.FC<IProps> = ({ file }) => {
 
   return (
     <Container>
-      <Document file={file} onLoadSuccess={onDocumentLoadSuccess}>
+      <Document file={file} onLoadSuccess={onDocumentLoadSuccess} loading={<Loader />}>
         { /* @ts-ignore */ }
         <FlipBook width={595}
                   height={841}
