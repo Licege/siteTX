@@ -2,7 +2,8 @@ import React, { useEffect } from 'react'
 import ConnectWithUs from './ConnectWithUs'
 import AddressBlock from './AddressBlock'
 import { AboutUs } from './AboutUs'
-import './style.scss'
+import { PageContainer } from '../../components/core'
+import styled from 'styled-components'
 
 
 const Contacts: React.FC = () => {
@@ -12,14 +13,20 @@ const Contacts: React.FC = () => {
     }, [])
 
     return (
-        <main className='page-container'>
+        <PageContainer>
             <AboutUs/>
-            <div className='contacts'>
+            <BlocksWrapper>
                 <AddressBlock />
                 <ConnectWithUs />
-            </div>
-        </main>
+            </BlocksWrapper>
+        </PageContainer>
     )
 }
+
+const BlocksWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 36px;
+`
 
 export default Contacts
