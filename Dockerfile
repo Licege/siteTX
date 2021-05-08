@@ -2,13 +2,10 @@ FROM node:16-alpine3.11
 
 RUN apk add git \
     && git clone https://github.com/Licege/siteTX.git \
-    && cd siteTX \
-    && ls
+    && cd siteTX
 
-WORKDIR /var/www/app
+WORKDIR /var/www/app/siteTX
 
 EXPOSE 3000
 
-CMD ls
-
-#CMD npm run start
+CMD npm run start
