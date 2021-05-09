@@ -27,13 +27,25 @@ services:
     links:
       - db
   site:
-    image: licege/trixolma-site
     container_name: site
+    build:
+      context: .
+    env_file:
+      - .env
+    volumes:
+      - .:/var/www/app/siteTX
+      - /var/www/app/app/siteTX/node_modules
     ports:
       - 3000:3000
-    links:
-      - api-auth
-      - api-service
+    command: npm run start
+#  site:
+#    image: licege/trixolma-site
+#    container_name: site
+#    ports:
+#      - 3000:3000
+#    links:
+#      - api-auth
+#      - api-service
   dashboard:
     image: licege/trixolma-dashboard
     container_name: dashboard

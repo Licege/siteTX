@@ -1,14 +1,10 @@
 import React from 'react'
 import Map from '../../../components/common/Map/Map'
 
-interface IProps {
-
-}
-
-const SectionMap: React.FC<IProps> = () => (
-    <div className='Section-map'>
+const SectionMap = () => (
+    <section>
         <Map style={{width: '100%', height: '424px'}}/>
-    </div>
+    </section>
 )
 
 export default SectionMap

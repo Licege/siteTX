@@ -12,6 +12,7 @@ export const theme = {
       active: '#163881'
     },
     gray: {
+      brand: '#D7D7D7',
       additional: '#767B92',
       active: '#6A6F83',
       disabled: '#C6CAE3',

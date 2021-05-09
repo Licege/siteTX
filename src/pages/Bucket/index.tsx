@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import FormOrder from './formOrder'
-import { ShowOrder } from './showOrder'
-import { FinishOrder } from './FinishOrder'
+import ShowOrder from './showOrder'
+import FinishOrder from './FinishOrder'
 import BucketBreadcrumbs from './Breadcrumbs'
 import { useBucketPageLogic } from './logic'
 

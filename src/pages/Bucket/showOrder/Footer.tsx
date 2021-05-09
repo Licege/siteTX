@@ -1,6 +1,7 @@
 import React from 'react'
-import { Button } from '@material-ui/core'
 import { useBucketOrderTableFooterLogic } from './logic'
+import styled from 'styled-components'
+import { Button } from '../../../components/core'
 
 
 interface IProps {
@@ -11,12 +12,33 @@ const Footer: React.FC<IProps> = ({ setStep }) => {
   const { totalPrice } = useBucketOrderTableFooterLogic()
 
   return (
-    <div className="bucket-table__arrange">
-      <div className="bucket-table__price">Сумма заказа: {totalPrice} р.*</div>
+    <ArrangeBlock>
+      <div>Сумма заказа: {totalPrice} р.*</div>
       <Button variant="contained" color="primary" onClick={() => setStep(1)}>Оформить заказ</Button>
-      <div className="bucket-table__hint">* - цена представлена без учета доставки</div>
-    </div>
+      <Hint>* - цена представлена без учета доставки</Hint>
+    </ArrangeBlock>
   )
 }
+
+const ArrangeBlock = styled.footer`
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 32px 0;
+
+  button {
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  }
+`
+
+const Hint = styled.div`
+  position: absolute;
+  right: 0;
+  bottom: -22px;
+  font-size: 10px;
+  line-height: 14px;
+  text-align: end;
+`
 
 export default Footer

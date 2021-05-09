@@ -1,15 +1,16 @@
 import React from 'react'
 import ShowAllButton from './ShowAllButton'
 import SliderDishes from '../../../components/Sliders/SliderDishes'
+import { SectionSubtitle, SectionTitle, SectionWrapper } from '../../../components/core'
 
 
 const SectionMenu = () => (
-    <div className='Section-menu'>
-        <h2 className='Section-menu-header'>Наше меню</h2>
-        <p className='Section-menu-info'>У нас каждый найдет себе блюдо по вкусу</p>
+    <SectionWrapper>
+      <SectionTitle>Наше меню</SectionTitle>
+      <SectionSubtitle>У нас каждый найдет себе блюдо по вкусу</SectionSubtitle>
         <SliderDishes />
         <ShowAllButton />
-    </div>
+    </SectionWrapper>
 )
 
 export default SectionMenu

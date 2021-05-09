@@ -1,10 +1,19 @@
-FROM node:16-alpine3.11
-
-RUN apk add git \
-    && git clone https://github.com/Licege/siteTX.git \
-    && cd siteTX
+FROM node:16
 
 WORKDIR /var/www/app/siteTX
+
+COPY package*.json ./
+
+RUN npm install
+RUN npm build
+
+COPY . .
+
+#COPY ./dist ./dist
+
+#RUN apk add git \
+#    && git clone https://github.com/Licege/siteTX.git \
+#    && cd siteTX
 
 EXPOSE 3000
 

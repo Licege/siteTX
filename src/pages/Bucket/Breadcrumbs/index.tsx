@@ -1,5 +1,6 @@
 import React from 'react'
 import { Breadcrumbs, Chip, Theme, withStyles } from '@material-ui/core'
+import styled from 'styled-components'
 
 const StyledBreadcrumb = withStyles((theme: Theme) => ({
   root: {
@@ -26,7 +27,7 @@ interface IProps {
 
 const BucketBreadcrumbs: React.FC<IProps> = ({ step, setStep }) => {
   return (
-    <Breadcrumbs separator='>' component='div' className='breadcrumbs'>
+    <StyledBreadcrumbs separator='>'>
       <StyledBreadcrumb component='a'
                         className={step === 0 ? 'active' : ''}
                         label='Ваш заказ'
@@ -38,8 +39,29 @@ const BucketBreadcrumbs: React.FC<IProps> = ({ step, setStep }) => {
       <StyledBreadcrumb component='a'
                         className={step === 2 ? 'active' : ''}
                         label='Заказ оформлен' />
-    </Breadcrumbs>
+    </StyledBreadcrumbs>
   )
 }
+
+const StyledBreadcrumbs = styled(Breadcrumbs)`
+  .active {
+    color: ${props => props.theme.colors.brown.brand} !important;
+  }
+
+  @media(max-width: 768px) {
+    margin-bottom: 16px;
+  
+    .MuiChip-label {
+      padding: 0;
+      font-size: 12px;
+      line-height: 16px;
+    }
+  
+    .MuiBreadcrumbs-separator {
+      padding: 0 4px;
+      margin: 0;
+    }
+}
+`
 
 export default BucketBreadcrumbs

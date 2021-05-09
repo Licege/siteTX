@@ -8,6 +8,13 @@ export const SectionTitle = styled.h2`
   color: ${props => props.theme.colors.brown.brand};
 `
 
+export const SectionSubtitle = styled.p`
+  font-size: 1rem;
+  color: ${props => props.theme.colors.gray.brand};
+  text-align: center;
+  margin-bottom: 16px;
+`
+
 interface ISectionWrapper {
   display?: 'flex'|'block'|'grid'
 }
