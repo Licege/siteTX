@@ -1,21 +1,30 @@
 import React from 'react'
 import LinkButton from '../../../components/common/elements/buttons/LinkButton'
-import { Button } from '@material-ui/core'
 import { useBucketOrderTableActionsLogic } from './logic'
+import styled from 'styled-components'
+import { Button } from '../../../components/core'
 
 const OrderTableActions = () => {
   const { clearBucket } = useBucketOrderTableActionsLogic()
 
   return (
-    <div className="bucket-table__action">
+    <ActionsBlock>
       <LinkButton to="/menu" label="В меню" variant="contained" color="secondary" />
-      <Button variant="contained" color="secondary" onClick={clearBucket}
-              className="mb-2 text-center"
-      >
+      <CustomButton variant="contained" color="secondary" onClick={clearBucket}>
         Очистить корзину
-      </Button>
-    </div>
+      </CustomButton>
+    </ActionsBlock>
   )
 }
+
+const ActionsBlock = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+const CustomButton = styled(Button)`
+  margin-bottom: 8px;
+  text-align: center;
+`
 
 export default OrderTableActions

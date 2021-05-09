@@ -5,10 +5,10 @@ import { getComplainTypeSelector } from '../../redux/selectors/complain'
 import { requestComplain, requestComplainTypes } from '../../redux/thunks/complain.thunk'
 import ComplainForm from './ComplainForm'
 
-import './style.scss'
 import { getMeSelector } from '../../redux/selectors/profile';
 import { getFullName, isNil } from '../../plugins/helpers'
 import { complainType } from '../../types/types';
+import styled from 'styled-components'
 
 interface IInitialValues {
     name?: string
@@ -45,10 +45,14 @@ const Complain = () => {
     }
 
     return (
-        <div className='complain'>
+        <Container>
             <ComplainForm initialValues={initialValues} types={preparedComplainTypes} onSubmit={onSubmit} />
-        </div>
+        </Container>
     )
 }
+
+const Container = styled.main`
+    padding: 24px;
+`
 
 export default Complain

@@ -15,3 +15,11 @@ export const PageContainer = styled.main`
     padding: 0 .25rem .25rem;
   }
 `
+
+export const PageTitle = styled.h1`
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  margin-bottom: 20px;
+`

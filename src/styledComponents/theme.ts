@@ -22,6 +22,7 @@ export const theme = {
     brown: {
       brand: 'rgb(139, 69, 19)'
     },
+    borderColor: 'rgba(0, 0, 0, 0.125)',
     backgroundLight: '#FAFBFC',
     white: '#FFFFFF',
     black: '#000000'

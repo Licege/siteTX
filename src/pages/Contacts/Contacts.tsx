@@ -7,20 +7,20 @@ import styled from 'styled-components'
 
 
 const Contacts: React.FC = () => {
-    useEffect(() => {
-        document.title = 'О нас'
-        window.scroll(0, 0)
-    }, [])
+  useEffect(() => {
+    document.title = 'О нас'
+    window.scroll(0, 0)
+  }, [])
 
-    return (
-        <PageContainer>
-            <AboutUs/>
-            <BlocksWrapper>
-                <AddressBlock />
-                <ConnectWithUs />
-            </BlocksWrapper>
-        </PageContainer>
-    )
+  return (
+    <PageContainer>
+      <AboutUs />
+      <BlocksWrapper>
+        <AddressBlock />
+        <ConnectWithUs />
+      </BlocksWrapper>
+    </PageContainer>
+  )
 }
 
 const BlocksWrapper = styled.div`

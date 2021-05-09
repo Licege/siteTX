@@ -10,7 +10,7 @@ const AddressInfo = () => {
     <>
       {contacts.address && <p>{contacts.address}</p>}
       {contacts.phone && <p><a href={`tel:${contacts.phone}`}>{contacts.phone}</a></p>}
-      {contacts.openHours?.map(( item, key ) => <div key={key}>{item}</div>)}
+      {contacts.openHours?.map((item, key) => <div key={key}>{item}</div>)}
     </>
   )
 }

@@ -1,24 +1,66 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { useCategoriesFeedLogic } from './logic'
+import styled from 'styled-components'
 
 const CategoriesFeed = (): JSX.Element => {
   const { categories, isPhone } = useCategoriesFeedLogic()
 
   return (
-    <ul className={'menu-feed' + (isPhone ? '' : ' -fixed')}>
+    <Feed>
       {categories.map(category => (
         <li key={category.id}>
-          <NavLink activeClassName="-active"
-                   className="menu-feed-item"
-                   to={`/menu/${category.titleEn}`}
-          >
+          <FeedItem activeClassName="-active" to={`/menu/${category.titleEn}`}>
             {category.title}
-          </NavLink>
+          </FeedItem>
         </li>
       ))}
-    </ul>
+    </Feed>
   )
 }
+
+const Feed = styled.ul`
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  list-style: none;
+  overflow-x: auto;
+  height: 50px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  border-top: 1px solid darkgrey;
+  background-color: #fff;
+  position: fixed;
+  top: 58px;
+  left: 0;
+  right: 0;
+  
+  &::-webkit-scrollbar {
+    height: 0;
+  }
+  
+  @media (max-width: 992px) {
+    display: flex;
+  }
+`
+
+const FeedItem = styled(NavLink)`
+  margin-right: 16px;
+  margin-bottom: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  color: ${props => props.theme.colors.brown.brand};
+  text-decoration: none;
+
+  &.-active {
+    border-bottom: 2px solid;
+  }
+
+  &:hover {
+    color: goldenrod;
+    text-decoration: none;
+  }
+`
 
 export default CategoriesFeed
