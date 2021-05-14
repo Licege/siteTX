@@ -1,31 +1,32 @@
 import React from 'react'
 import { contactsType } from '../../../types/types'
-import { Link } from 'react-router-dom'
+import { SectionSubtitle, SectionTitle } from '../../../components/core'
+import { Body, DignityBlock, DignityItem, Image, MenuLink, OrderBlock, Phone, Wrapper } from './styles'
 
 interface IProps {
-    contacts: contactsType
+  contacts: contactsType
 }
 
-const SectionDelivery: React.FC<IProps> = ( {contacts} ) => (
-    <div className='Section-delivery'>
-        <h2 className='Section-delivery-header'>Условия доставки</h2>
-        <div className='Section-delivery-info'>Все об оплате и получении заказа</div>
-        <div className='Section-delivery-order'>
-            Заказ блюд по телефону:
-            <a href={`tel:${contacts.phone}`} className='Section-delivery-order-phone'> {contacts.phone} </a>
-            или на
-            <Link to='/menu' className='Section-delivery-order-link'> сайте</Link>
-        </div>
-        <div className='Section-delivery-wrapper'>
-            <div className='Section-delivery-wrapper__image'/>
-            <div className='Section-delivery-wrapper__block'>
-                <div className='Section-delivery-wrapper__block-item'>Минимальная сумма заказа от</div>
-                <div className='Section-delivery-wrapper__block-item'>Бесплатная доставка от</div>
-                <div className='Section-delivery-wrapper__block-item'>Доставка с X до Y</div>
-                <div className='Section-delivery-wrapper__block-item'>Оплата наличными</div>
-            </div>
-        </div>
-    </div>
+const SectionDelivery: React.FC<IProps> = ({ contacts }) => (
+  <Wrapper>
+    <SectionTitle>Условия доставки</SectionTitle>
+    <SectionSubtitle noMargin>Все об оплате и получении заказа</SectionSubtitle>
+    <OrderBlock>
+      Заказ блюд по телефону:
+      <Phone href={`tel:${contacts.phone}`}> {contacts.phone} </Phone>
+      или на
+      <MenuLink to="/menu"> сайте</MenuLink>
+    </OrderBlock>
+    <Body>
+      <Image />
+      <DignityBlock>
+        <DignityItem>Минимальная сумма заказа от</DignityItem>
+        <DignityItem>Бесплатная доставка от</DignityItem>
+        <DignityItem>Доставка с X до Y</DignityItem>
+        <DignityItem>Оплата наличными</DignityItem>
+      </DignityBlock>
+    </Body>
+  </Wrapper>
 )
 
 export default SectionDelivery

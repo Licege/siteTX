@@ -3,6 +3,7 @@ import { addressType, profileType } from '../../types/types';
 import format from "date-fns/format";
 import { ru } from "date-fns/locale";
 import { Avatar } from '../../components/common/elements/avatar/avatar';
+import styled from 'styled-components'
 
 interface IProps {
     profile: profileType
@@ -99,13 +100,21 @@ const getAddress = (address: addressType | undefined): string => {
     return result
 }
 
-export const ProfileInfo = ({ profile }: IProps) => {
+const ProfileInfo = ({ profile }: IProps) => {
     const { avatar } = profile
 
     return (
-        <div className='profile-info'>
+        <Container>
             <Avatar avatarSrc={avatar} />
             <Info profile={profile} />
-        </div>
+        </Container>
     )
 }
+
+const Container = styled.div`
+    display: flex;
+    grid-auto-flow: row;
+    grid-gap: 32px;
+`
+
+export default ProfileInfo

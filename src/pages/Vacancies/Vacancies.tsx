@@ -1,36 +1,31 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react'
 import CardVacancy from '../../components/Cards/CardVacancy'
-import { getVacanciesSelector } from '../../redux/selectors/vacancies'
-import { requestVacancies } from '../../redux/thunks/vacancies.thunk'
-import EmptyPage from '../empyPage';
+import EmptyPage from '../empyPage'
+import { useVacanciesPageLogic } from './logic'
+import { PageContainer, PageTitle } from '../../components/core'
+import styled from 'styled-components'
 
 
-const Vacancies: React.FC = () => {
-    useEffect(() => {
-        document.title = 'Вакансии'
-        window.scrollTo(0, 0)
-    })
+const Vacancies = () => {
+  const { vacancies } = useVacanciesPageLogic()
 
-    let vacancies = useSelector(getVacanciesSelector)
-    const dispatch = useDispatch()
+  if (!vacancies.length) return <EmptyPage />
 
-    useEffect(() => {
-        dispatch(requestVacancies())
-    }, [dispatch])
-
-    if (!vacancies.length) return <EmptyPage />
-
-    return (
-        <main className='page-container'>
-            <h1 className='page-container-title'>~ Вакансии ~</h1>
-            <div className='vacancies-container'>
-                {vacancies.map((vacancy: any) =>
-                    <CardVacancy vacancy={vacancy} key={vacancy.id}/>,
-                )}
-            </div>
-        </main>
-    )
+  return (
+    <PageContainer>
+      <PageTitle>~ Вакансии ~</PageTitle>
+      <Wrapper>
+        {vacancies.map(vacancy =>
+          <CardVacancy vacancy={vacancy} key={vacancy.id} />
+        )}
+      </Wrapper>
+    </PageContainer>
+  )
 }
+
+const Wrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+`
 
 export default Vacancies

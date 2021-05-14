@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { Tab, Tabs } from 'react-bootstrap';
 import { requestMe } from '../../redux/thunks/profile.thunks';
 import { getMeSelector } from '../../redux/selectors/profile';
-import { ProfileInfo } from './ProfileInfo';
-import { Tab, Tabs } from 'react-bootstrap';
-import { OrdersHistory } from './OrdersHistory';
+import ProfileInfo from './ProfileInfo';
+import OrdersHistory from './OrdersHistory';
 import './style.scss'
+import styled from 'styled-components'
 
 const setPageName = (name: string) => document.title = name
 
@@ -30,7 +31,7 @@ const Profile = () => {
     if (!me || !Object.keys(me).length) return null
 
     return (
-        <main className='profile'>
+        <Container>
             <Tabs defaultActiveKey='profile' id='profile-page-tab'>
                 <Tab eventKey='profile' title='Профиль'>
                     {/*<FormEditProfile onSubmit={() => {}} />*/}
@@ -43,8 +44,16 @@ const Profile = () => {
                     <div>2</div>
                 </Tab>
             </Tabs>
-        </main>
+        </Container>
     )
 }
+
+const Container = styled.main`
+    height: 100%;
+    width: calc(100% - 48px);
+    background-color: ${props => props.theme.colors.white};
+    margin: 24px;
+    box-shadow: ${props => props.theme.colors.borderShadow};
+`
 
 export default Profile

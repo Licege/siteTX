@@ -6,7 +6,7 @@ interface IProps {
 }
 
 
-const ReviewsList: React.FC<IProps> = ( {reviews} ) => (
+const ReviewsList: React.FC<IProps> = ({ reviews }) => (
     reviews ?
         <div>
             {reviews.map(review => (

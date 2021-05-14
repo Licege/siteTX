@@ -9,7 +9,8 @@ export const theme = {
       dark: '#252B49',
       main: '#1C50DE',
       hover: '#0638C0',
-      active: '#163881'
+      active: '#163881',
+      brand: '#0000EE'
     },
     gray: {
       brand: '#D7D7D7',
@@ -23,6 +24,7 @@ export const theme = {
       brand: 'rgb(139, 69, 19)'
     },
     borderColor: 'rgba(0, 0, 0, 0.125)',
+    borderShadow: '0 0 4px rgba(0, 0, 0, 0.25)',
     backgroundLight: '#FAFBFC',
     white: '#FFFFFF',
     black: '#000000'

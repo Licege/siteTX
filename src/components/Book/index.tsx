@@ -12,7 +12,7 @@ interface IProps {
 }
 
 interface INumPages {
-  numPages: number | null
+  numPages?: number | null
 }
 
 function getPageWidth() {
@@ -49,7 +49,8 @@ const Book: React.FC<IProps> = ({ file }) => {
 
   const prevPage = () => bookRef.current.pageFlip().flipPrev()
 
-  const onDocumentLoadSuccess = ({ numPages }: INumPages) => setNumPages(numPages)
+  const onDocumentLoadSuccess = ({ numPages }: INumPages) => setNumPages(numPages!)
+
 
   return (
     <Container>

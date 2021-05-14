@@ -4,8 +4,9 @@ import { getMyOrdersHistory } from '../../../redux/selectors/profile'
 import { requestOrdersHistory } from '../../../redux/thunks/profile.thunks'
 import OrderHistoryCard from './Card/index'
 import './style.scss'
+import styled from 'styled-components'
 
-export const OrdersHistory = () => {
+const OrdersHistory = () => {
     const orders = useSelector(getMyOrdersHistory)
     const dispatch = useDispatch()
 
@@ -15,9 +16,18 @@ export const OrdersHistory = () => {
 
     return (
         orders.length
-            ? <div className='orders-history__container'>
+            ? <Container>
                 {orders.map(order => <OrderHistoryCard order={order} key={order.id} />)}
-            </div>
+          </Container>
             : <div>Здесь вы будете видеть все заказы, сделанные на сайте</div>
     )
 }
+
+const Container = styled.div`
+    display: grid;
+    grid-template-columns: 400px 400px;
+    grid-gap: 32px;
+    justify-content: center;
+`
+
+export default OrdersHistory

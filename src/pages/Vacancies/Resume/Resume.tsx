@@ -1,34 +1,20 @@
-import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import React from 'react'
 import ResumeForm from './ResumeForm'
-import { getMyResumeSelector, getVacanciesSelector } from '../../../redux/selectors/vacancies'
-import { getMeSelector } from '../../../redux/selectors/profile';
-import { isNil } from '../../../plugins/helpers';
+import { PageContainer, PageTitle } from '../../../components/core'
+import { useResumePageLogic } from './logic'
 
 
-const Resume: React.FC = () => {
-    const me = useSelector(getMeSelector)
-    const resume = useSelector(getMyResumeSelector)
-    const vacancies = useSelector(getVacanciesSelector)
+const Resume = () => {
+  const { initialValues, postResume } = useResumePageLogic()
 
-    const initialValues = !isNil(resume) ? resume : me
-
-    useEffect(() => {
-        window.scroll(0, 0)
-    })
-
-    const postResume = ( data: any ) => {
-        console.log(data)
-    }
-
-    return (
-        <main className='page-container'>
-            <div className='page-container-title'>Резюме</div>
-            <div>
-                <ResumeForm onSubmit={postResume} initialValues={initialValues} vacancies={vacancies} />
-            </div>
-        </main>
-    )
+  return (
+    <PageContainer>
+      <PageTitle>Резюме</PageTitle>
+      <div>
+        <ResumeForm onSubmit={postResume} initialValues={initialValues} />
+      </div>
+    </PageContainer>
+  )
 }
 
 export default Resume

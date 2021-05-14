@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Button } from '@material-ui/core'
 import ModalForm from './ModalForm'
 import { getReviewsSelector } from '../../redux/selectors/reviews'
 import { getAuthStatus } from '../../redux/selectors/auth'
 import { postReview, requestReviews } from '../../redux/thunks/reviews.thunk'
 import { IReview } from '../../types/types'
+import { Button, PageContainer, PageTitle } from '../../components/core'
+import { ActionsBlock, EmptyPage, Hint } from './styles'
 
 
 const Reviews: React.FC = () => {
@@ -37,23 +38,24 @@ const Reviews: React.FC = () => {
     }
 
     return (
-        <main className='reviews page-container'>
-            <h1 className='page-container-title'>~ Отзывы ~</h1>
+        <PageContainer>
+            <PageTitle>~ Отзывы ~</PageTitle>
             {reviews.length
-                ? <div className='reviews-empty'>
+                ? <EmptyPage>
                     К сожалению, здесь пока нет ни одного отзыва, но Вы можете стать первым, кто оставит его :)
-                </div>
-                : <div className='reviews-empty'>Отзывы еще не готовы :)</div>
+              </EmptyPage>
+                : <EmptyPage>Отзывы еще не готовы :)</EmptyPage>
             }
-            <div className='reviews__action'>
-                <Button variant='contained' color='primary' onClick={toggleModal} disabled={!isAuthenticated}>Оставить
-                    отзыв</Button>
-                {!isAuthenticated && <span className='reviews__hint'>Авторизуйтесь, чтобы оставить отзыв.</span>}
-            </div>
+            <ActionsBlock>
+                <Button variant='contained' color='primary' onClick={toggleModal} disabled={!isAuthenticated}>
+                    Оставить отзыв
+                </Button>
+                {!isAuthenticated && <Hint>Авторизуйтесь, чтобы оставить отзыв.</Hint>}
+            </ActionsBlock>
             <div>
                 <ModalForm isOpen={isOpen} handleClose={toggleModal} onSubmit={onSubmit}/>
             </div>
-        </main>
+        </PageContainer>
     )
 }
 

@@ -11,7 +11,7 @@ type PropsType = {
     vacancies: vacancyType[]
 }
 
-const ResumeForm: React.FC<any> = ({ onSubmit, vacancies }) => {
+const ResumeForm: React.FC<any> = ({ onSubmit }) => {
 
     return (
       <Form onSubmit={onSubmit} render={({ handleSubmit }) => (

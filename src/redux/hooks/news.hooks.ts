@@ -1,8 +1,13 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 import { useAppDispatch } from '../redux-store'
-import { getNews, getNewsTotal } from '../getters/news.getters'
-import { requestNews } from '../thunks/news.thunk'
+import { getCurrentNews, getNews, getNewsTotal } from '../getters/news.getters'
+import { requestCurrentNews, requestNews } from '../thunks/news.thunk'
+
+type IdParam = {
+  id: string
+}
 
 export const useNews = ({ force = false } = {}) => {
   const dispatch = useAppDispatch()
@@ -16,5 +21,16 @@ export const useNews = ({ force = false } = {}) => {
   }, [])
 
   return { news, totalCount }
+}
+
+export const useCurrentNews = () => {
+  const dispatch = useAppDispatch()
+  const { id } = useParams<IdParam>()
+
+  useEffect(() => {
+    dispatch(requestCurrentNews(id))
+  }, [])
+
+  return useSelector(getCurrentNews)
 }
 

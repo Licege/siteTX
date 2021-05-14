@@ -1,9 +1,12 @@
 import React from 'react'
 import { Form, Field } from 'react-final-form'
-import renderTextField from '../../components/common/elements/form/RenderTextField';
-import { scrollToFirstError } from '../../plugins/validate';
-import { IOrder } from '../../types/types';
-import { Button } from '@material-ui/core';
+import renderTextField from '../../components/common/elements/form/RenderTextField'
+import { scrollToFirstError } from '../../plugins/validate'
+import { IOrder } from '../../types/types'
+import DateTimeField from '../../components/common/elements/MaterialDateTimePicker';
+import { Button } from '../../components/core'
+
+
 const FormEditProfile: React.FC<any> = ({ onSubmit }) => {
   return (
     <Form onSubmit={onSubmit} render={({ handleSubmit }) => (
@@ -30,8 +33,6 @@ const FormEditProfile: React.FC<any> = ({ onSubmit }) => {
     )} />
 )
 }
-
-import DateTimeField from '../../components/common/elements/MaterialDateTimePicker';
 
 // export default reduxForm<any>({
 //     form: 'profileEdit',
