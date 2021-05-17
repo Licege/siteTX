@@ -5,7 +5,7 @@ import SectionPromo from './Promo/SectionPromo'
 import SectionMap from './Map/SectionMap'
 import SectionPDFMenu from './PDFMenu/SectionPDFMenu'
 
-const Home: React.FC = () => {
+const Home = () => {
     useEffect(() => {
         window.scrollTo(0, 0)
         document.title = 'Три Холма'
@@ -13,7 +13,7 @@ const Home: React.FC = () => {
     // const url = "http://navse360.ru/onlyTour/4421"
 
     return (
-        <main className='Home'>
+        <main>
             <SectionAbout/>
             <SectionPDFMenu />
             <SectionMenu />

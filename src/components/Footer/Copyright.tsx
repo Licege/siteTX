@@ -1,7 +1,8 @@
 import React from 'react'
+import { CopyrightInfo } from './styles'
 
 const Copyright = () => (
-  <small className='footer__copyright'>© Три холма {new Date().getFullYear()}</small>
+  <CopyrightInfo>© Три холма {new Date().getFullYear()}</CopyrightInfo>
 )
 
 export default Copyright

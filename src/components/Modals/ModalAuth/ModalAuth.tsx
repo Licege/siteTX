@@ -1,9 +1,11 @@
 import React from 'react'
-import { Button, Dialog, DialogContent, DialogTitle } from '@material-ui/core'
+import { Dialog, DialogContent, DialogTitle } from '@material-ui/core'
 import { TransitionProps } from '@material-ui/core/transitions'
 import Slide from '@material-ui/core/Slide'
 import Login from '../../../pages/Auth/Login'
 import {useModalAuthLogic} from "./logic";
+import { ActionsBlock, Wrapper } from './styles'
+import { Button } from '../../core'
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & { children?: React.ReactElement<any, any> },
@@ -17,15 +19,15 @@ const ModalAuth = () => {
 
     return (
         <Dialog open onClose={hideModal} onEscapeKeyDown={hideModal} TransitionComponent={Transition}>
-            <div className='modal-auth'>
+            <Wrapper>
                 <DialogTitle className='text-center'>Авторизация</DialogTitle>
                 <DialogContent>
                     <Login onSubmit={submit}/>
                 </DialogContent>
-                <div className='d-flex justify-content-center'>
+                <ActionsBlock>
                     <Button variant='text' onClick={showRegisterModal}>Еще нет аккаунта?</Button>
-                </div>
-            </div>
+                </ActionsBlock>
+            </Wrapper>
         </Dialog>
     )
 }

@@ -1,27 +1,28 @@
 import React from 'react'
 import Bucket from './Bucket'
-import MobileMenu from '../common/elements/MobileMenu'
+import MobileMenu from '../MobileMenu'
 import AuthButton from '../AuthButton/AuthButton'
 import Logo from './Logo'
 import Navigation from './Navigation'
 import { useHeaderLogic } from './logic'
+import { ActionsBlock, AuthButtonWrapper, Container } from './styles'
 
 
 const Header: React.FC = () => {
     const { isMenuOpen } = useHeaderLogic()
 
     return (
-        <header className={'header' + (isMenuOpen ? ' -active' : '')}>
+        <Container isMenuOpen={isMenuOpen}>
             <MobileMenu />
             <Logo />
             <Navigation />
-            <div className='header-action'>
-                <div className='header-action-button'>
+            <ActionsBlock>
+                <AuthButtonWrapper>
                     <AuthButton/>
-                </div>
+                </AuthButtonWrapper>
                 <Bucket/>
-            </div>
-        </header>
+            </ActionsBlock>
+        </Container>
     )
 }
 

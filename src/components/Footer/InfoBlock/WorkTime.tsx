@@ -1,16 +1,18 @@
 import React from 'react'
 import { useContacts } from '../../../redux/hooks/contacts.hooks'
 import hours from '../../../static/img/hours.svg'
+import { Schedule, Title } from '../styles'
 
 const WorkTime = () => {
   const contacts = useContacts()
 
   return (
-    <div className="footer__work_time">
-      <span className="footer__title">
-        <img className="footer__icon" src={hours} alt="" /> Часы работы</span>
+    <Schedule>
+      <Title>
+        <img src={hours} alt='' /> Часы работы
+      </Title>
         {contacts?.openHours?.map((item, key) => <div key={key}>{item}</div>)}
-    </div>
+    </Schedule>
   )
 }
 

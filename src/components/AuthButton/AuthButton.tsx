@@ -1,7 +1,7 @@
 import React from 'react'
-import { Button } from '@material-ui/core'
 import DropdownMenu from "./DropdownMenu";
 import {useAuthButtonLogic} from "./logic";
+import { Button } from '../core'
 
 
 const AuthButton = () => {

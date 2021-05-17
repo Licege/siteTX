@@ -1,12 +1,13 @@
 import React from 'react'
 import AddressInfo from './AddressInfo'
 import PhoneInfo from './PhoneInfo'
+import { AddressBlockContainer } from '../styles'
 
 const AddressBlock = () => (
-  <div className='footer__address_block'>
+  <AddressBlockContainer>
     <AddressInfo />
     <PhoneInfo />
-  </div>
+  </AddressBlockContainer>
 )
 
 export default AddressBlock

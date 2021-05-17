@@ -1,16 +1,16 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavBlock, NavItem } from './styles'
 
 const NavigationBlock = () => (
-  <nav className="footer__nav_block">
-    <NavLink activeClassName="-active" className="footer__navbar-item" to="/actions">Акции</NavLink>
-    <NavLink activeClassName="-active" className="footer__navbar-item" to="/banquets">Банкеты</NavLink>
-    <NavLink activeClassName="-active" className="footer__navbar-item" to="/vacancies">Вакансии</NavLink>
-    <NavLink activeClassName="-active" className="footer__navbar-item" to="/news">Новости</NavLink>
-    <NavLink activeClassName="-active" className="footer__navbar-item" to="/gallery">Фотогалерея</NavLink>
-    <NavLink activeClassName="-active" className="footer__navbar-item" to="/complain">Ваше мнение</NavLink>
+  <NavBlock>
+    <NavItem activeClassName="active" to="/actions">Акции</NavItem>
+    <NavItem activeClassName="active" to="/banquets">Банкеты</NavItem>
+    <NavItem activeClassName="active" to="/vacancies">Вакансии</NavItem>
+    <NavItem activeClassName="active" to="/news">Новости</NavItem>
+    <NavItem activeClassName="active" to="/gallery">Фотогалерея</NavItem>
+    <NavItem activeClassName="active" to="/complain">Ваше мнение</NavItem>
     {/*<NavLink activeClassName='-active' className='footer__navbar-item' to='/reviews'>Отзывы</NavLink>*/}
-  </nav>
+  </NavBlock>
 )
 
 export default NavigationBlock

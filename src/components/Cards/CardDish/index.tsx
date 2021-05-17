@@ -4,7 +4,6 @@ import altImg from '../../../static/img/dish.svg'
 import { cropText } from '../../../plugins/helpers'
 import { Button } from '../../core'
 import useCardDishLogic from './logic'
-import { Card } from '@material-ui/core'
 
 type PropsType = {
     dish: dishType

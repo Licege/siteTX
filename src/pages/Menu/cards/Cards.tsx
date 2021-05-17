@@ -17,9 +17,7 @@ const Cards = (): JSX.Element => {
 
   return (
     <Grid classes={gridStyles} container spacing={4}>
-      {dishes.map(dish => (
-          <CardDish dish={dish} key={dish.id} />
-      ))}
+      {dishes.map(dish => <CardDish dish={dish} key={dish.id} />)}
     </Grid>
   )
 }

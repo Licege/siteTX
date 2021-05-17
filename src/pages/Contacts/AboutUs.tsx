@@ -1,8 +1,9 @@
 import React from 'react'
+import { PageTitle } from '../../components/core'
 
 export const AboutUs: React.FC = () => (
   <>
-    <h1 className="page-container-title">О нас</h1>
+    <PageTitle>О нас</PageTitle>
     <p>
       Мы - семья профессионалов любящих свое дело.<br />
       Главная задача нашего ресторана - это внимательное и заботливое отношение к каждому гостю.<br />

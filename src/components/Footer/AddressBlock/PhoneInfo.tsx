@@ -1,6 +1,7 @@
 import React from 'react'
 import { useContacts } from '../../../redux/hooks/contacts.hooks'
 import phone from '../../../static/img/phone.svg'
+import { Phone } from '../styles'
 
 const PhoneInfo = () => {
   const contacts = useContacts()
@@ -8,9 +9,9 @@ const PhoneInfo = () => {
   if (!contacts) return null
 
   return (
-    <a className='footer__phone' href={`tel:${contacts.phone}`}>
+    <Phone href={`tel:${contacts.phone}`}>
       <img src={phone} alt=''/> {contacts.phone}
-    </a>
+    </Phone>
   )
 }
 

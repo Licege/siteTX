@@ -30,6 +30,7 @@ import Modal from "./components/Modals/ModalRoot";
 import Menu from './pages/Menu'
 import Bucket from './pages/Bucket'
 import PDFViewer from './components/Modals/PDFViewer'
+import { AppContent, AppWrapper } from './styles'
 
 const App = () => {
     const dispatch = useDispatch()
@@ -51,9 +52,9 @@ const App = () => {
     }, [me, isAuthenticated])
 
     return (
-        <div className='app-wrapper'>
+        <AppWrapper>
             <Header/>
-            <div className='app-wrapper-content'>
+            <AppContent>
                 <CatchErrors>
                     <Switch>
                         <Route exact path='/me' render={checkAuth(<Profile />)} />
@@ -77,9 +78,9 @@ const App = () => {
                     </Switch>
                 </CatchErrors>
                 <Footer/>
-            </div>
+            </AppContent>
             <Modal />
-        </div>
+        </AppWrapper>
     )
 }
 

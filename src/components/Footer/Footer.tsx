@@ -3,16 +3,17 @@ import InfoBlock from './InfoBlock'
 import AddressBlock from './AddressBlock'
 import NavigationBlock from './NavigationBlock'
 import Copyright from './Copyright'
+import { FooterContainer, Wrapper } from './styles'
 
-const Footer: React.FC = () => (
-  <footer className='footer' id='footer'>
-    <div className='footer__wrapper'>
+const Footer = () => (
+  <FooterContainer id='footer'>
+    <Wrapper>
         <InfoBlock />
         <AddressBlock />
         <NavigationBlock />
-    </div>
+    </Wrapper>
     <Copyright />
-  </footer>
+  </FooterContainer>
 )
 
 export default Footer

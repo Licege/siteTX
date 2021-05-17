@@ -7,55 +7,66 @@ import useCardDishLogic from './logic'
 import styled from 'styled-components'
 
 type PropsType = {
-    dish: dishType
-    showDescription?: boolean
-    shortCard?: boolean
+  dish: dishType
+  showDescription?: boolean
+  shortCard?: boolean
 }
 
 const CardDish: React.FC<PropsType> = ({ dish, showDescription = true, shortCard = false }) => {
-  const { orderedDish, isCategoryDelivery, showDishInfoModal, addDishToBucket, increaseCountDish, reduceCountDish } = useCardDishLogic(dish)
+  const {
+    orderedDish,
+    isCategoryDelivery,
+    showDishInfoModal,
+    addDishToBucket,
+    increaseCountDish,
+    reduceCountDish
+  } = useCardDishLogic(dish)
 
-    return (
-            <CardWrapper>
-                <Card>
-                  <CardBody>
-                    <CardMedia image={dish.imageSrc || altImg} onClick={showDishInfoModal} />
-                    <CardTitle>{dish.title}</CardTitle>
-                    {showDescription && dish.description &&
-                    <CardText><b>Описание:</b> {cropText(dish.description, 70)}</CardText>}
-                  </CardBody>
-                  <CardFooter>
-                    {!shortCard && <ItemInfo>
-                      {dish.cost ? <Price>{dish.cost} руб.</Price> : null}
-                      {dish.weight ? <Weight>{dish.weight} г.</Weight> : null}
-                    </ItemInfo>}
+  return (
+    <CardWrapper>
+      <Card>
+        <CardBody>
+          <CardMedia image={dish.imageSrc || altImg} onClick={showDishInfoModal} />
+          <CardTitle>{dish.title}</CardTitle>
+          {showDescription && dish.description &&
+          <CardText><b>Описание:</b> {cropText(dish.description, 70)}</CardText>}
+        </CardBody>
+        <CardFooter>
+          {!shortCard && (
+            <ItemInfo>
+              {dish.cost ? <Price>{dish.cost} руб.</Price> : null}
+              {dish.weight ? <Weight>{dish.weight} г.</Weight> : null}
+            </ItemInfo>
+          )}
 
-                    {dish.isDelivery && isCategoryDelivery
-                      ? <ActionsBlock>
-                        {!orderedDish || shortCard
-                          ? <Button variant='contained' color='primary' onClick={() => addDishToBucket(dish)}>
-                            {shortCard ? dish.cost + ' р' : 'Заказать'}
-                          </Button>
-                          : <OrderedActionsBlock>
-                            <Button variant='contained' color='primary'
-                                    onClick={() => reduceCountDish(dish)}>
-                              -
-                            </Button>
-                            <Count>{orderedDish?.count}</Count>
-                            <Button variant='contained' color='primary'
-                                    onClick={() => increaseCountDish(dish)}>
-                              +
-                            </Button>
-                          </OrderedActionsBlock>}
-                      </ActionsBlock>
-                      : <NoDelivery>
-                        Доступно только в ресторане
-                      </NoDelivery>
-                    }
-                  </CardFooter>
-                </Card>
-            </CardWrapper>
-    )
+          {dish.isDelivery && isCategoryDelivery
+            ? <ActionsBlock>
+              {!orderedDish || shortCard
+                ? <Button variant="contained" color="primary" onClick={() => addDishToBucket(dish)}>
+                  {shortCard ? dish.cost + ' р' : 'Заказать'}
+                </Button>
+                : <OrderedActionsBlock>
+                  <Button variant="contained" color="primary"
+                          onClick={() => reduceCountDish(dish)}
+                  >
+                    -
+                  </Button>
+                  <Count>{orderedDish?.count}</Count>
+                  <Button variant="contained" color="primary"
+                          onClick={() => increaseCountDish(dish)}
+                  >
+                    +
+                  </Button>
+                </OrderedActionsBlock>}
+            </ActionsBlock>
+            : <NoDelivery>
+              Доступно только в ресторане
+            </NoDelivery>
+          }
+        </CardFooter>
+      </Card>
+    </CardWrapper>
+  )
 }
 
 export default CardDish
@@ -81,7 +92,7 @@ const Weight = styled.p`
 const ActionsBlock = styled.div`
   display: block;
   text-align: center;
-  
+
   button {
     height: 35px;
     width: 120px;

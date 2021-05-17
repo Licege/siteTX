@@ -1,26 +1,27 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { Navbar, NavItem } from './styles'
 
 const Navigation = () => (
-  <nav className='header-navbar'>
+  <Navbar>
     <ul>
       <li>
-        <NavLink exact activeClassName='-active' className='header-navbar-item' to='/'>ГЛАВНАЯ</NavLink>
+        <NavItem exact activeClassName='active' to='/'>ГЛАВНАЯ</NavItem>
       </li>
       <li>
-        <NavLink activeClassName='-active' className='header-navbar-item' to='/menu'>МЕНЮ</NavLink>
+        <NavItem activeClassName='active' to='/menu'>МЕНЮ</NavItem>
       </li>
       <li>
-        <NavLink activeClassName='-active' className='header-navbar-item' to='/news'>СОБЫТИЯ</NavLink>
+        <NavItem activeClassName='active' to='/news'>СОБЫТИЯ</NavItem>
       </li>
       <li>
-        <NavLink activeClassName='-active' className='header-navbar-item' to='/order'>ЗАКАЗ СТОЛОВ</NavLink>
+        <NavItem activeClassName='active' to='/order'>ЗАКАЗ СТОЛОВ</NavItem>
       </li>
       <li>
-        <NavLink activeClassName='-active' className='header-navbar-item' to='/contacts'>О НАС</NavLink>
+        <NavItem activeClassName='active' to='/contacts'>О НАС</NavItem>
       </li>
     </ul>
-  </nav>
+  </Navbar>
 )
 
 export default Navigation;

@@ -1,8 +1,25 @@
 import React from 'react'
 import { dishType } from '../../../types/types'
-import { Dialog, DialogContent } from '@material-ui/core'
-import Button from '@material-ui/core/Button'
+import { DialogContent } from '@material-ui/core'
 import useModalDishInfoLogic from './logic'
+import {
+  Close,
+  Container,
+  Description,
+  Energy,
+  EnergyDescription,
+  EnergyTitle,
+  Image,
+  InfoBlock,
+  NoDelivery,
+  OrderButton,
+  Price,
+  Title,
+  Weight,
+  Worth,
+  Wrapper
+} from './styles'
+import { Button } from '../../core'
 
 interface IProps {
   dish: dishType
@@ -12,17 +29,17 @@ const ModalDishInfo: React.FC<IProps> = ({ dish }) => {
   const { addDishToBucket, hideModal } = useModalDishInfoLogic()
 
   return (
-    <Dialog open onClose={hideModal} className='modal-dish'>
+    <Container open={true} onClose={hideModal}>
       <DialogContent>
-        <div className='modal-dish__wrapper'>
-          <div className='modal-dish__close' onClick={hideModal}/>
-          <img className='modal-dish__img' src={dish.imageSrc} alt=''/>
-          <div className='modal-dish__info'>
-            <div className='modal-dish__title'>{dish.title}</div>
-            {dish.description ? <div className='modal-dish__description'>{dish.description}</div> : null}
-            <div className='modal-dish__energy'>
-              <div className='modal-dish__energy-title'>Энергетическая ценность</div>
-              <div className='modal-dish__energy-description'>
+        <Wrapper>
+          <Close onClick={hideModal} />
+          <Image src={dish.imageSrc} alt=''/>
+          <InfoBlock>
+            <Title>{dish.title}</Title>
+            {dish.description ? <Description>{dish.description}</Description> : null}
+            <Energy>
+              <EnergyTitle>Энергетическая ценность</EnergyTitle>
+              <EnergyDescription>
                 <table>
                   <tbody>
                   <tr>
@@ -38,32 +55,32 @@ const ModalDishInfo: React.FC<IProps> = ({ dish }) => {
                     <td>** г</td>
                   </tr>
                   <tr>
-                    <td>Каллорийность</td>
+                    <td>Калорийность</td>
                     <td>*** Ккал</td>
                   </tr>
                   </tbody>
                 </table>
-              </div>
-            </div>
-            <div className="modal-dish__worth">
-              <div className='modal-dish__worth-price'>{dish.cost} р</div>
-              <div className='modal-dish__worth-weight'>{dish.weight} грамм</div>
-            </div>
+              </EnergyDescription>
+            </Energy>
+            <Worth>
+              <Price>{dish.cost} р</Price>
+              <Weight>{dish.weight} грамм</Weight>
+            </Worth>
 
             {dish.isDelivery
-              ? <div className='modal-dish__button'>
+              ? <OrderButton>
                 <Button variant='contained' color='primary' onClick={() => addDishToBucket(dish)}>
                   Заказать
                 </Button>
-              </div>
-              : <div className='modal-dish__no_delivery'>
+              </OrderButton>
+              : <NoDelivery>
                 Доступно только в ресторане
-              </div>
+              </NoDelivery>
             }
-          </div>
-        </div>
+          </InfoBlock>
+        </Wrapper>
       </DialogContent>
-    </Dialog>
+    </Container>
   )
 }
 

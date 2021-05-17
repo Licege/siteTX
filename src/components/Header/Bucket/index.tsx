@@ -1,24 +1,36 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import useButtonBucketLogic from './logic'
 import shopping_cart from '../../../static/img/shopping-cart.png'
 import BucketInfo from './BucketInfo'
 import Counter from './Counter'
-import useOutsideClick from '../../../hooks/outsideClick'
+import styled from 'styled-components'
 
 const Bucket = () => {
-  const { moreInfo, toggle, close } = useButtonBucketLogic()
-  // const ref = useRef(null)
-  // useOutsideClick(ref, close)
+  const { moreInfo, toggle } = useButtonBucketLogic()
 
   return (
-      <div className='shopping_cart'>
-          <div className='shopping_cart-bucket' onClick={toggle}>
-              <img src={shopping_cart} alt='Корзина'/>
-              <Counter />
-          </div>
-          <BucketInfo isOpen={moreInfo} toggle={toggle}/>
-      </div>
+    <Container>
+      <BucketIcon onClick={toggle}>
+        <img src={shopping_cart} alt="Корзина" />
+        <Counter />
+      </BucketIcon>
+      <BucketInfo isOpen={moreInfo} toggle={toggle} />
+    </Container>
   )
 }
+
+const Container = styled.div`
+  position: relative;
+`
+
+const BucketIcon = styled.div`
+  cursor: pointer;
+
+  &:hover {
+    span {
+      background-color: red;
+    }
+  }
+`
 
 export default Bucket

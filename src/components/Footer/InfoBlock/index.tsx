@@ -1,12 +1,13 @@
 import React from 'react'
 import WorkTime from './WorkTime'
 import SocialNetworks from './SocialNetworks'
+import { InfoBlockContainer } from '../styles'
 
 const InfoBlock = () => (
-  <div className='footer__info_block'>
+  <InfoBlockContainer>
     <WorkTime />
     <SocialNetworks />
-  </div>
+  </InfoBlockContainer>
 )
 
 export default InfoBlock

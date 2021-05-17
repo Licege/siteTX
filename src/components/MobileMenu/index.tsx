@@ -1,18 +1,18 @@
 import React from 'react'
-import { categoryType } from '../../../types/types'
 import { NavLink } from 'react-router-dom'
-import closeImg from '../../../static/img/close.png'
-import { useMobileMenuLogic } from '../../Header/logic'
+import closeImg from '../../static/img/close.png'
+import { useMobileMenuLogic } from '../Header/logic'
+import { Border, BurgerMenu, CloseIcon, NavigationBlock, Wrapper } from './styles'
 
 const MobileMenu = () => {
     const { isMenuOpen, categories, toggleMenu } = useMobileMenuLogic()
 
     return (
       <>
-          <div className={isMenuOpen ? 'burger -active' : 'burger'} onClick={toggleMenu}><span/></div>
-          <div className={'mobile_menu' + (isMenuOpen ? ' -active' : '')}>
-              <nav className='mobile_menu-wrapper'>
-                  <img src={closeImg} className='mobile_menu-wrapper-close' onClick={toggleMenu} alt='Закрыть'/>
+          <BurgerMenu isOpen={isMenuOpen} onClick={toggleMenu}><span/></BurgerMenu>
+          <Wrapper isOpen={isMenuOpen}>
+              <NavigationBlock>
+                  <CloseIcon src={closeImg} onClick={toggleMenu} alt='Закрыть' />
                   <ul>
                       <li>
                           <NavLink activeClassName='-active' to='/menu' onClick={toggleMenu}>Все меню</NavLink>
@@ -27,7 +27,7 @@ const MobileMenu = () => {
                             </NavLink>
                         </li>
                       ))}
-                      <span className='mobile_menu-wrapper-border'/>
+                      <Border />
                       <li>
                           <NavLink activeClassName='-active' to='/news' onClick={toggleMenu}>СОБЫТИЯ</NavLink>
                       </li>
@@ -41,8 +41,8 @@ const MobileMenu = () => {
                           <NavLink activeClassName='-active' to='/gallery' onClick={toggleMenu}>ФОТОГАЛЕРЕЯ</NavLink>
                       </li>
                   </ul>
-              </nav>
-          </div>
+              </NavigationBlock>
+          </Wrapper>
       </>
 
     )

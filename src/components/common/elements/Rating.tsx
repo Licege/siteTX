@@ -1,5 +1,6 @@
 import React from 'react'
 import { FaStar } from 'react-icons/fa'
+import styled from 'styled-components'
 
 interface IProps {
     value?: number,
@@ -48,7 +49,7 @@ class Rating extends React.PureComponent<IProps, IState> {
                     const ratingValue = i + 1
 
                     return (
-                        <label className='star' key={ratingValue}>
+                        <StarsWrapper key={ratingValue}>
                             <input
                                 type='radio'
                                 name='rating'
@@ -61,12 +62,23 @@ class Rating extends React.PureComponent<IProps, IState> {
                                 onMouseEnter={this.changeFocus(ratingValue)}
                                 onMouseLeave={this.changeFocus(null)}
                             />
-                        </label>
+                        </StarsWrapper>
                     )
                 })}
             </div>
         )
     }
 }
+
+const StarsWrapper = styled.label`
+    svg {
+        cursor: pointer;
+        transition: 200ms;
+    }
+
+    input[type = 'radio'] {
+        display: none;
+    }
+`
 
 export default Rating

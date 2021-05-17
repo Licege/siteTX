@@ -1,33 +1,35 @@
 import React from 'react'
 import { getDishesKey } from '../../../../plugins/helpers'
 import { useBucketInfoContentLogic } from '../logic'
+import { ContentWrapper, Count, Dish, DishTitle, ListDishes, Price } from './styles'
+import { Close, Plus, Subtract } from '../../../../styledComponents/atoms'
 
 const Content = () => {
   const { order, orderedDished, increaseDishCount, reduceDishCount, changeDishCount, removeDish } = useBucketInfoContentLogic()
 
   return (
-    <div className='shopping_cart-info-content'>
-      <div className='shopping_cart-info-content-list'>
+    <ContentWrapper>
+      <ListDishes>
         {orderedDished.map((dish, key) => (
-          <div className='shopping_cart-info-content-list-item' key={key}>
-            <div className='shopping_cart-info-content-list-item-title'>{dish.title}</div>
-            <div className='shopping_cart-info-content-list-item-count'>
-              <span className='custom_subtract' onClick={() => reduceDishCount(dish)}/>
-              <input className='shopping_cart-info-content-list-item-count-input'
-                     onChange={changeDishCount(dish)}
+          <Dish key={key}>
+            <DishTitle>{dish.title}</DishTitle>
+            <Count>
+              <Subtract onClick={() => reduceDishCount(dish)} />
+              <input onChange={changeDishCount(dish)}
                      inputMode='numeric'
-                     value={getDishesKey(order, dish.id, 'count')}/>
-              <span className='custom_add' onClick={() => increaseDishCount(dish)}/>
+                     value={getDishesKey(order, dish.id, 'count')} />
+              <Plus onClick={() => increaseDishCount(dish)} />
+            </Count>
+            <Price>
+              {getDishesKey(order, dish.id, 'cost') * getDishesKey(order, dish.id, 'count') + ' ₽'}
+            </Price>
+            <div>
+              <Close onClick={() => removeDish(dish.id)} />
             </div>
-            <div
-              className='shopping_cart-info-content-list-item-price'>{getDishesKey(order, dish.id, 'cost') * getDishesKey(order, dish.id, 'count') + ' ₽'}</div>
-            <div className='shopping_cart-info-content-list-item-remove'><span
-              className='custom_close'
-              onClick={() => removeDish(dish.id)} /></div>
-          </div>
+          </Dish>
         ))}
-      </div>
-    </div>
+      </ListDishes>
+    </ContentWrapper>
   )
 }
 
