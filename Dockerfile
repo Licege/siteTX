@@ -1,13 +1,12 @@
-FROM node:16
+FROM node:16.1.0
 
 WORKDIR /var/www/app/siteTX
 
 COPY package*.json ./
+COPY ./ ./
 
 RUN npm install
-RUN npm build
-
-COPY . .
+RUN npm rebuild node-sass
 
 #COPY ./dist ./dist
 

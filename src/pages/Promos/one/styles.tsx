@@ -8,15 +8,15 @@ export const Container = styled.main`
     padding: 16px 24px 8px;
     margin-top: 16px;
     
-    @media(max-width: ${BREAKPOINTS['dm']}) {
+    @media(max-width: ${BREAKPOINTS['dm']}px) {
         grid-template-columns: 480px 1fr;
     }
 
-    @media(max-width: ${BREAKPOINTS['tm']}) {
+    @media(max-width: ${BREAKPOINTS['tm']}px) {
         grid-template-columns: 360px 1fr;
     }
 
-    @media(max-width: ${BREAKPOINTS['ts']}) {
+    @media(max-width: ${BREAKPOINTS['ts']}px) {
         grid-template-columns: auto;
     }
 `
@@ -25,22 +25,23 @@ interface IImage {
   image: string
 }
 
-export const Image = styled.div.attrs((props: IImage) => `url(${props.image || altImg})`)`
+export const Image = styled.div`
     width: 540px;
     height: 360px;
     border-radius: 5px;
+    background-image: ${(props: IImage) => `url(${props.image || altImg})`};
     background-size: cover;
     background-position: center;
 
-    @media(max-width: ${BREAKPOINTS['dm']}) {
+    @media(max-width: ${BREAKPOINTS['dm']}px) {
         width: 480px;
     }
 
-    @media(max-width: ${BREAKPOINTS['tm']}) {
+    @media(max-width: ${BREAKPOINTS['tm']}px) {
         width: 360px;
     }
 
-    @media(max-width: ${BREAKPOINTS['ts']}) {
+    @media(max-width: ${BREAKPOINTS['ts']}px) {
         width: 100%;
         height: auto;
         max-height: 360px;
@@ -62,7 +63,7 @@ export const Title = styled.h2`
     font-size: 1.4rem;
     font-weight: 700;
     
-    @media(max-width: ${BREAKPOINTS['ts']}) {
+    @media(max-width: ${BREAKPOINTS['ts']}px) {
         margin-top: 8px;
     }
 `

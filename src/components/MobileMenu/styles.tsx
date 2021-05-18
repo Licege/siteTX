@@ -50,11 +50,11 @@ export const BurgerMenu = styled.div`
     }
   }
   
-  @media(max-width: ${BREAKPOINTS['ds']}) {
+  @media(max-width: ${BREAKPOINTS['ds']}px) {
     display: none;
   }
   
-  @media(max-width: ${BREAKPOINTS['ts']}) {
+  @media(max-width: ${BREAKPOINTS['ts']}px) {
     margin: auto 0;
   }
     
@@ -137,7 +137,7 @@ export const CloseIcon = styled.img`
   right: 20px;
   cursor: pointer;
   
-  @media(max-width: ${BREAKPOINTS['ds']}) {
+  @media(max-width: ${BREAKPOINTS['ds']}px) {
     display: block;
   }
 `

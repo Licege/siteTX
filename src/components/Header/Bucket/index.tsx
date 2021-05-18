@@ -25,6 +25,11 @@ const Container = styled.div`
 
 const BucketIcon = styled.div`
   cursor: pointer;
+  
+  img {
+    width: 50px;
+    height: 50px;
+  }
 
   &:hover {
     span {

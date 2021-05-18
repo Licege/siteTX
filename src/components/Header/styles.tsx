@@ -19,6 +19,28 @@ export const Container = styled.header`
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
   
   ${(props: IHeader) => props.isMenuOpen ? css`background-color: #f5f5f7;` : ''}
+  
+  ul {
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    list-style: none;
+    white-space: nowrap;
+  }
+
+  li {
+    cursor: auto;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  &:hover, &:visited {
+    text-decoration: none;
+  }
 `
 
 export const ActionsBlock = styled.div`
@@ -35,7 +57,7 @@ export const AuthButtonWrapper = styled.div`
 `
 
 export const Navbar = styled.nav`
-  display: flex;
+  display: inline-block;
   align-items: center;
   margin: 0 auto;
   width: 100%;
@@ -52,7 +74,11 @@ export const Navbar = styled.nav`
     margin-bottom: 0;
   }
   
-  @media(max-width: ${BREAKPOINTS['tm']}) {
+  ul, li {
+    list-style: none;
+  }
+  
+  @media(max-width: ${BREAKPOINTS['tm']}px) {
     display: none;
   }
 `

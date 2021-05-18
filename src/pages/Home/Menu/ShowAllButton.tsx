@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDishes } from '../../../redux/hooks/menu.hooks'
-import LinkButton from '../../../components/common/elements/buttons/LinkButton'
+import { LinkButton } from '../styles'
 
 const ShowAllButton = () => {
   const dishes = useDishes()

@@ -7,6 +7,7 @@ const Promo: React.FC = () => {
   const { promo, redirectToPromos } = usePromoPageLogic()
 
   const { title, description, imageSrc } = promo
+  console.log(imageSrc)
 
   return (
     <Container>
@@ -14,7 +15,7 @@ const Promo: React.FC = () => {
       <Wrapper>
         <Content>
           <Title>{title}</Title>
-          <div dangerouslySetInnerHTML={{__html: description}} />
+          <div dangerouslySetInnerHTML={{ __html: description }} />
           <ActionsBlock>
             <Button variant="outlined" onClick={redirectToPromos}>Все акции</Button>
           </ActionsBlock>

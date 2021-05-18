@@ -40,7 +40,7 @@ const Body = styled.div`
   display: flex;
   justify-content: center;
 
-  @media (max-width: ${BREAKPOINTS['ml']}) {
+  @media (max-width: ${BREAKPOINTS['ml']}px) {
     flex-direction: column;
     margin-bottom: 20px;
   }
@@ -52,14 +52,14 @@ const Image = styled.img`
     margin: 20px 40px;
     user-select: none;
 
-    @media (max-width: ${BREAKPOINTS['ml']}) {
+    @media (max-width: ${BREAKPOINTS['ml']}px) {
         width: 90%;
         margin: 8px auto;
     }
 `
 
 const Content = styled.div`
-    @media (max-width: ${BREAKPOINTS['ml']}) {
+    @media (max-width: ${BREAKPOINTS['ml']}px) {
         margin: 0 auto;
     }
 `

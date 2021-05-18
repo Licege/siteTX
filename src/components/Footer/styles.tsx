@@ -14,7 +14,7 @@ export const FooterContainer = styled.footer`
   display: table;
   // background: center / cover no-repeat url("../../static/img/background3.svg");
   
-  @media(max-width: ${BREAKPOINTS['tm']}) {
+  @media(max-width: ${BREAKPOINTS['tm']}px) {
     padding: 1rem .5rem;
   }
 `
@@ -35,7 +35,7 @@ export const Wrapper = styled.div`
     text-decoration: none;
   }
   
-  @media(max-width: ${BREAKPOINTS['ts']}) {
+  @media(max-width: ${BREAKPOINTS['ts']}px) {
     grid-template-areas: 'info nav' 'address address';
     grid-template-columns: 1fr 1fr;
     justify-items: flex-start;
@@ -43,7 +43,7 @@ export const Wrapper = styled.div`
     line-height: 16px;
   }
 
-  @media(max-width: ${BREAKPOINTS['tm']}) {
+  @media(max-width: ${BREAKPOINTS['tm']}px) {
     margin-top: 16px;
   }
 `
@@ -67,7 +67,7 @@ export const NavItem = styled(NavLink)`
 `
 
 const BlockContainer = styled.div`
-  @media(max-width: ${BREAKPOINTS['tm']}) {
+  @media(max-width: ${BREAKPOINTS['tm']}px) {
     font-size: 16px;
     line-height: 18px;
   }
@@ -83,7 +83,7 @@ export const InfoBlockContainer = styled(BlockContainer)`
 export const AddressBlockContainer = styled(BlockContainer)`
   grid-area: address;
   
-  @media(max-width: ${BREAKPOINTS['ts']}) {
+  @media(max-width: ${BREAKPOINTS['ts']}px) {
     margin-top: 16px;
   }
 `
@@ -109,11 +109,6 @@ export const Phone = styled.a`
     color: inherit;
     text-decoration: none;
   }
-`
-
-export const NavBlockContainer = styled(BlockContainer)`
-  grid-area: nav;
-  margin: auto;
 `
 
 export const SocialNav = styled.nav`

@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import LinkButton from '../../../components/common/elements/buttons/LinkButton'
 import { SectionTitle, SectionWrapper } from '../../../components/core'
 import ImageSrc from '../../../static/img/veranda-2.jpg'
+import { LinkButton } from '../styles'
 
 const SectionAbout = () => (
     <Container>

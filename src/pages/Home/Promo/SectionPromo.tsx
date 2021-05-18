@@ -1,7 +1,7 @@
 import React from 'react'
-import LinkButton from '../../../components/common/elements/buttons/LinkButton'
 import SliderPromo from '../../../components/Sliders/SliderPromo'
 import { SectionSubtitle, SectionTitle, SectionWrapper } from '../../../components/core'
+import { LinkButton } from '../styles'
 
 const SectionPromo = () => (
     <SectionWrapper>
