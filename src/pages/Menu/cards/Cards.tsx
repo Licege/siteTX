@@ -3,11 +3,9 @@ import { useMenuCardsLogic } from '../logic'
 import CardDish from '../../../components/Cards/CardDish/CardDishSC'
 import { Grid, makeStyles } from '@material-ui/core'
 
-const useGridStyles = makeStyles(({ breakpoints }) => ({
+const useGridStyles = makeStyles(() => ({
   root: {
-    [breakpoints.up('md')]: {
-      justifyContent: 'center'
-    }
+    justifyContent: 'center'
   }
 }))
 

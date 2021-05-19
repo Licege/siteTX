@@ -7,9 +7,7 @@ interface IProps {
 }
 
 const ImageWithBackground: React.FC<IProps> = ({ imageSrc, onClick }) => (
-  <Background>
-    <Image imageSrc={imageSrc} onClick={onClick} />
-  </Background>
+  <Image imageSrc={imageSrc} onClick={onClick} />
 )
 
 interface IImage {
@@ -20,28 +18,14 @@ const Image = styled.div`
   background-image: ${(props: IImage) => `url(${props.imageSrc})`};
   background-size: cover;
   background-repeat: no-repeat;
-  height: 100%;
+  height: 500px;
   width: 100%;
   cursor: pointer;
   transition: all .4s;
   
   &:hover {
-    opacity: .5;
-  }
-`
-
-const Background = styled.div`
-  height: 500px;
-  width: 100%;
-  background-color: #000;
-  transition: all .4s;
-
-  &:hover {
     transform: scale(1.02);
-    
-    ${Image}: {
-      opacity: .5;
-    }
+    filter: brightness(50%);
   }
 `
 

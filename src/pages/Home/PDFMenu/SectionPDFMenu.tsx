@@ -23,7 +23,7 @@ const SectionContent = styled.div`
   display: grid;
   grid-gap: 16px;
   grid-auto-flow: column;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(500px, 1fr));
   justify-content: space-between;
   margin: 25px 0;
   

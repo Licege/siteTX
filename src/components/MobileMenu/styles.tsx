@@ -6,7 +6,7 @@ interface IBurger {
 }
 
 export const BurgerMenu = styled.div`
-  display: block;
+  display: none;
   margin: auto 0 auto 20px;
   position: relative;
   height: 50px;
@@ -51,7 +51,7 @@ export const BurgerMenu = styled.div`
   }
   
   @media(max-width: ${BREAKPOINTS['ds']}px) {
-    display: none;
+    display: block;
   }
   
   @media(max-width: ${BREAKPOINTS['ts']}px) {
@@ -119,6 +119,7 @@ export const NavigationBlock = styled.nav`
 
       a {
         display: block;
+        color: black;
         width: 100%;
 
         &:hover {

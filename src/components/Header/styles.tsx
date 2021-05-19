@@ -19,28 +19,6 @@ export const Container = styled.header`
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
   
   ${(props: IHeader) => props.isMenuOpen ? css`background-color: #f5f5f7;` : ''}
-  
-  ul {
-    height: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    list-style: none;
-    white-space: nowrap;
-  }
-
-  li {
-    cursor: auto;
-  }
-
-  a {
-    text-decoration: none;
-    color: black;
-  }
-
-  &:hover, &:visited {
-    text-decoration: none;
-  }
 `
 
 export const ActionsBlock = styled.div`
@@ -70,15 +48,35 @@ export const Navbar = styled.nav`
   user-select: none;
 
   ul {
+    height: 100%;
     width: 100%;
     margin-bottom: 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    list-style: none;
+    white-space: nowrap;
   }
-  
+
+  li {
+    cursor: auto;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
   ul, li {
     list-style: none;
   }
   
-  @media(max-width: ${BREAKPOINTS['tm']}px) {
+  &:hover, &:visited {
+    text-decoration: none;
+  }
+  
+  
+  @media(max-width: ${BREAKPOINTS['ds']}px) {
     display: none;
   }
 `

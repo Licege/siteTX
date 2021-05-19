@@ -7,7 +7,6 @@ const Promo: React.FC = () => {
   const { promo, redirectToPromos } = usePromoPageLogic()
 
   const { title, description, imageSrc } = promo
-  console.log(imageSrc)
 
   return (
     <Container>
