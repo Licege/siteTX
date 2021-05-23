@@ -4,6 +4,7 @@ import { SectionTitle, SectionWrapper } from '../../../components/core'
 import PDFMenu from './PDFMenu'
 import PDFBar from './PDFBar'
 import CardContainer from './CardContainer'
+import { BREAKPOINTS } from '../../../styledComponents/helpers'
 
 const SectionPDFMenu = () => (
     <SectionWrapper>
@@ -23,11 +24,11 @@ const SectionContent = styled.div`
   display: grid;
   grid-gap: 16px;
   grid-auto-flow: column;
-  grid-template-columns: repeat(2, minmax(500px, 1fr));
+  grid-template-columns: repeat(2, minmax(484px, 1fr));
   justify-content: space-between;
   margin: 25px 0;
   
-  @media(max-width: 768px) {
+  @media(max-width: ${BREAKPOINTS['ds']}px) {
     display: block;
   }
 `

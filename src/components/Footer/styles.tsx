@@ -23,6 +23,8 @@ export const Wrapper = styled.div`
   display: grid;
   grid-template-areas: 'info address nav';
   grid-template-columns: 1fr 1fr 1fr;
+  grid-row-gap: 16px;
+  grid-column-gap: 16px;
   justify-items: center;
   margin-bottom: 16px;
 
@@ -43,9 +45,9 @@ export const Wrapper = styled.div`
     line-height: 16px;
   }
 
-  @media(max-width: ${BREAKPOINTS['tm']}px) {
-    margin-top: 16px;
-  }
+  // @media(max-width: ${BREAKPOINTS['tm']}px) {
+  //   margin-top: 16px;
+  // }
 `
 
 export const NavBlock = styled.nav`
@@ -83,9 +85,9 @@ export const InfoBlockContainer = styled(BlockContainer)`
 export const AddressBlockContainer = styled(BlockContainer)`
   grid-area: address;
   
-  @media(max-width: ${BREAKPOINTS['ts']}px) {
-    margin-top: 16px;
-  }
+  // @media(max-width: ${BREAKPOINTS['ts']}px) {
+  //   margin-top: 16px;
+  // }
 `
 
 export const Address = styled.address`

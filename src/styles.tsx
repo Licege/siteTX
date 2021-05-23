@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { HEADER_HEIGHT, FOOTER_HEIGHT } from './styledComponents/constants'
+import { BREAKPOINTS } from './styledComponents/helpers'
 
 export const AppWrapper = styled.div`
   display: flex;
@@ -16,4 +17,8 @@ export const AppContent = styled.div`
   min-height: calc(100vh - ${HEADER_HEIGHT});
   margin-top: ${HEADER_HEIGHT};
   background-color: rgb(251, 251, 253);
+
+  @media(max-width: ${BREAKPOINTS['ts']}px) {
+    grid-template-rows: 1fr minmax(${FOOTER_HEIGHT}, auto);
+  }
 `
