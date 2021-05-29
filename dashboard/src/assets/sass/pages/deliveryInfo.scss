@@ -1,0 +1,86 @@
+.delivery_info {
+  padding: 0 1.25rem 1.25rem;
+
+  &-block {
+    display: flex;
+    justify-content: space-evenly;
+
+
+    &-card {
+      &-title {
+        display: flex;
+        align-items: center;
+        font-size: 1.25rem;
+        border-top: 2px solid grey;
+        padding: .5rem;
+      }
+
+      &-item {
+        display: flex;
+        align-items: center;
+        border-top: 1px solid rgba(51, 51, 51, 0.125);
+        padding: .5rem;
+      }
+
+      svg {
+        margin-right: 4px;
+      }
+    }
+  }
+
+  &-detail {
+    margin-top: 16px;
+
+    &-title {
+      display: flex;
+      align-items: center;
+      font-size: 1.25rem;
+      border-top: 2px solid grey;
+      padding: .5rem;
+      border-bottom: 1px solid rgba(51, 51, 51, 0.125);
+    }
+
+    &-info {
+      &-item {
+        font-size: 1rem;
+      }
+    }
+
+    &-table {
+      max-height: 250px;
+      overflow: scroll;
+
+      &-img {
+        width: 50px;
+        border-radius: 2px;
+      }
+    }
+
+    td, th {
+      text-align: center;
+    }
+
+    td {
+      vertical-align: middle;
+    }
+  }
+
+  &-item {
+
+  }
+
+  &-modal {
+    max-height: 60vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    &-img {
+      width: 60px;
+      border-radius: 2px;
+    }
+
+    td {
+      vertical-align: middle;
+    }
+  }
+}

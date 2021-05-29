@@ -1,0 +1,19 @@
+.d_settings {
+  &-block {
+    margin-bottom: 16px;
+
+    &-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+
+      &-label {
+        margin-right: 0.5rem;
+      }
+
+      &-field {
+
+      }
+    }
+  }
+}

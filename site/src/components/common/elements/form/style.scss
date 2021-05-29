@@ -1,0 +1,27 @@
+@import "site/srcsrc/assets/variables/variables";
+
+.field {
+  margin-bottom: 12px;
+
+  &__datepicker {
+    width: 100%;
+  }
+
+  &.error {
+    input::placeholder {
+      color: $error;
+    }
+  }
+
+  &__label {
+    margin-bottom: 4px;
+  }
+
+  &__prompt {
+    color: $error;
+  }
+
+  textarea {
+    resize: none;
+  }
+}

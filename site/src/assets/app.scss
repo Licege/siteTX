@@ -1,0 +1,25 @@
+@import "site/src/assets/variables/variables";
+
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 100%;
+  min-height: 100vh;
+
+  &-content {
+    display: grid;
+    grid-template-rows: 1fr #{$footer_height};
+    overflow-x: hidden;
+    min-height: calc(100vh - #{$header_height});
+    margin-top: $header_height;
+    background-color: rgb(251, 251, 253);
+  }
+
+  @include media-breakpoint-down(sm) {
+    &-content {
+      grid-template-rows: 1fr 342px;
+    }
+  }
+}
+

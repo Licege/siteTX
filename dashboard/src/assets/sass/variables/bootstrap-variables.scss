@@ -1,0 +1,46 @@
+$grid-breakpoints: (
+        xs: 0,
+        sm: 480px,
+        md: 640px,
+        lg: 992px,
+        xl: 1300px
+);
+
+$white: #FFFFFF;
+$grey: #FBFBFB;
+$brown: #440506;
+$black: #333333;
+$brand-brown: saddlebrown;
+
+
+$yiq: $brown;
+$primary: orange;
+$card-cap-bg: $white;
+$component-active-color: $black;
+$brand-light-gray: #ced4da;
+
+$input-bg: $white;
+$input-disabled-bg: $grey;
+
+
+$font-family-base: 'Roboto';
+
+$font-size-base: 14;
+$h3-font-size: 24;
+$h4-font-size: 20;
+$h5-font-size: 16;
+
+$headings-font-weight: bold;
+
+$b-table-busy-opacity: 1;
+
+//ANIMATIONS
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
