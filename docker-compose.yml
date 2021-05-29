@@ -4,7 +4,7 @@ services:
     image: postgres:13.2-alpine
     container_name: postgres
     ports:
-      - 5432:5432
+      - "5432:5432"
     volumes:
       - ./pg_data:/var/lib/postgresql/data/pgdata
     environment:
@@ -12,45 +12,47 @@ services:
       POSTGRES_DB: trixolma
       PGDATA: /var/lib/postgresql/data/pgdata
     restart: always
+
   api-service:
-    image: licege/trixolma-api-service
+    build:
+      context: "../serverNodeTX/"
+      dockerfile: Dockerfile
     container_name: api-service
     ports:
-      - 9090:9090
-    links:
-      - db
+      - "9090:9090"
+#    links:
+#      - db
+#    restart: always
+#    environment:
+#      - DEFAULT_EXECUTION_MODE=service
+
   api-auth:
-    image: licege/trixolma-api-auth
+#    image: licege/trixolma-api-auth
+    build:
+      context: ../serverNodeTX/src/docker
+      dockerfile: Dockerfile-auth
     container_name: api-auth
     ports:
-      - 9092:9092
+      - "9092:9092"
     links:
       - db
-  site:
-    container_name: site
-    build:
-      context: .
-    env_file:
-      - .env
-    volumes:
-      - .:/var/www/app/siteTX
-      - /var/www/app/app/siteTX/node_modules
-    ports:
-      - 3000:3000
-    command: npm run start
+#    restart: always
+    environment:
+      - DEFAULT_EXECUTION_MODE=authorization
+
 #  site:
-#    image: licege/trixolma-site
 #    container_name: site
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
 #    ports:
-#      - 3000:3000
-#    links:
-#      - api-auth
-#      - api-service
+#      - "3000:3000"
+
   dashboard:
     image: licege/trixolma-dashboard
     container_name: dashboard
     ports:
-      - 3001:3001
+      - "3001:3001"
     links:
       - api-auth
       - api-service

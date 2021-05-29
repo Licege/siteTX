@@ -7,7 +7,6 @@ import { Provider } from 'react-redux'
 import store from './redux/redux-store'
 import DateFnsUtils from '@date-io/date-fns'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
-import WebSocketProvider from './socket/WebSocket'
 import { ru } from 'date-fns/locale'
 import {ThemeProvider} from "styled-components";
 import theme from './styledComponents/theme'
