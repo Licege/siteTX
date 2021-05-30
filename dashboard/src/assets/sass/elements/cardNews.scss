@@ -1,0 +1,72 @@
+.card_news {
+  position: relative;
+  padding: 12px;
+
+  &-content {
+    display: grid;
+    grid-template-columns: 80px 300px minmax(200px, 1fr);
+    grid-auto-flow: column;
+    grid-gap: 8px;
+
+    &-date {
+      min-width: 80px;
+      text-align: center;
+      align-self: center;
+    }
+
+    &-info {
+      width: 100%;
+
+      &-header {
+        border-bottom: 1px solid saddlebrown;
+
+        &-title {
+          font-size: 1.3em;
+          text-transform: uppercase;
+          color: saddlebrown;
+        }
+
+        a:hover {
+          text-decoration: none;
+          color: saddlebrown;
+        }
+      }
+
+      &-description {
+
+      }
+
+      &-link {
+        position: absolute;
+        right: 16px;
+        bottom: 16px;
+
+        a {
+          font-size: 1.2em;
+          color: sandybrown;
+        }
+
+        &:hover {
+          color: sandybrown;
+        }
+
+        button {
+          font-size: 1.2em;
+          color: sandybrown;
+          border: none;
+          background-color: inherit;
+        }
+
+        button:focus, button:active {
+          outline: none;
+        }
+
+      }
+    }
+
+    &-img {
+      width: 300px;
+      height: 200px;
+    }
+  }
+}

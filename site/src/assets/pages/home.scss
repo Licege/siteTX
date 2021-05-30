@@ -1,0 +1,243 @@
+.Home {
+  .Link-Button {
+    text-align: center;
+
+    button {
+      display: block;
+      margin: 0 auto;
+      color: $brand-brown;
+      font-weight: 600;
+      border-color: $brand-brown;
+      border-radius: 50px;
+      transition: .4s;
+
+      &:hover {
+        color: #f9f9f9;
+        background-color: $brand-brown;
+      }
+    }
+
+    a {
+      display: inline-block;
+      text-decoration: none;
+    }
+  }
+
+  .Section {
+    &-about {
+      padding: 20px;
+      border-bottom: 1px dashed $brand-brown;
+      display: flex;
+
+      &-image {
+        margin: 20px;
+        background-image: url('../../static/img/veranda-2.jpg');
+        border-radius: 5px;
+        width: 320px;
+        height: 320px;
+      }
+
+      &-block {
+        float: right;
+        width: calc(100% - 350px);
+
+        &-header {
+          font-size: 1.5rem;
+          font-weight: 600;
+          color: $brand-brown;
+          text-transform: uppercase;
+          text-align: center;
+          margin-bottom: 20px;
+        }
+
+        &-info {
+          font-size: 1rem;
+          margin-bottom: 30px;
+        }
+      }
+
+      @include media-breakpoint-down(xsm) {
+        display: block;
+
+        &-image {
+          margin: 0 auto;
+        }
+
+        &-block {
+          float: none;
+          width: 100%;
+        }
+      }
+    }
+
+    &-menu {
+      padding: 20px;
+      border-bottom: 1px dashed $brand-brown;
+
+      &-header {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: $brand-brown;
+        text-transform: uppercase;
+        text-align: center;
+      }
+
+      &-info {
+        font-size: 1rem;
+        color: $brand-grey;
+        text-align: center;
+        margin-bottom: 16px;
+      }
+
+      &-slider {
+        //max-width: 680px;
+        max-width: calc(100vw - 90px);
+        margin: 0 auto;
+
+        button {
+          &:before, &:after {
+            color: $brand-grey;
+          }
+        }
+      }
+    }
+
+    &-delivery {
+      padding: 20px;
+
+      &-header {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: $brand-brown;
+        text-transform: uppercase;
+        text-align: center;
+      }
+
+      &-info {
+        font-size: 1rem;
+        color: $brand-grey;
+        text-align: center;
+      }
+
+      &-order {
+        text-align: center;
+
+        &-phone {
+          font-weight: 700;
+          color: $brand-blue;
+          text-decoration: underline;
+          white-space: nowrap;
+          margin-right: 8px;
+        }
+
+        &-link {
+          font-weight: 600;
+          text-decoration: none;
+        }
+      }
+
+      &-wrapper {
+        display: flex;
+        justify-content: center;
+
+        &__image {
+          margin: 20px;
+          background-image: url("../../static/img/packet-delivery.jpg");
+          border-radius: 5px;
+          width: 320px;
+          height: 320px;
+        }
+
+        &__block {
+          display: grid;
+          grid-template-rows: repeat(2, 1fr);
+          grid-template-columns: repeat(3, 1fr);
+          margin-top: 20px;
+
+          &-item {
+            text-align: center;
+            margin: auto;
+          }
+        }
+      }
+
+
+    }
+
+    &-promo {
+      padding: 20px;
+      border-bottom: 1px dashed $brand-brown;
+
+      &-header {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: $brand-brown;
+        text-transform: uppercase;
+        text-align: center;
+      }
+
+      &-info {
+        font-size: 1rem;
+        color: $brand-grey;
+        text-align: center;
+        margin-bottom: 16px;
+      }
+
+      &-slider {
+        max-width: calc(100vw - 90px);
+        margin: 0 auto 32px;
+
+        button {
+          &:before, &:after {
+            color: $brand-grey;
+          }
+        }
+      }
+    }
+
+    &-map {
+
+    }
+
+    @include media-breakpoint-down(sm) {
+      &-about {
+        &-block {
+          &-header {
+            margin-top: 20px;
+          }
+        }
+
+        &-image {
+          width: 264px;
+          height: 264px;
+        }
+      }
+
+      &-menu {
+        &-slider {
+          max-width: 480px;
+        }
+      }
+
+      &-delivery {
+        &-wrapper {
+          flex-direction: column;
+
+          &__image {
+            width: 264px;
+            height: 264px;
+            margin: 12px auto;
+          }
+        }
+      }
+    }
+
+    @include media-breakpoint-down(xsm) {
+      &-menu {
+        &-slider {
+          max-width: 256px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+.page {
+  display: block;
+  min-height: calc(100vh - 268px);
+  background-color: #fff;
+
+  &-container {
+    max-width: 1150px;
+    width: 100%;
+    margin: 32px auto;
+    padding: 24px;
+    background-color: #fff;
+
+    &-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  }
+
+  @include media-breakpoint-down(xl) {
+    &-container {
+      max-width: 800px;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    &-container {
+      padding: 0 .25rem .25rem;
+    }
+  }
+}

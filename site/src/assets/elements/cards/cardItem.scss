@@ -1,0 +1,168 @@
+.card_item {
+  position: relative;
+  width: 90%;
+  min-height: 300px;
+  max-height: 560px;
+  margin: 0 auto 32px;
+  letter-spacing: 1px;
+  max-width: 360px;
+
+  &__wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 16px;
+    padding-top: 0;
+    //margin-bottom: 80px;
+  }
+
+  &-img {
+    background-position: 50%;
+    background-repeat: no-repeat;
+    height: 200px;
+    min-height: 200px;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  &-title {
+    text-align: center;
+    margin: 8px 0;
+    color: $brand-brown;
+    border-radius: 8px;
+    font-family: '1925MyToyPrintDeluxePro-Normal', sans-serif;
+  }
+
+  &-describe {
+    height: 100px;
+    overflow: hidden;
+  }
+
+  &-info {
+    //width: calc(100% - 40px);
+    display: flex;
+    justify-content: center;
+    //position: absolute;
+    //top: 75%;
+
+    &-weight {
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 0.5rem;
+      font-size: .75rem;
+    }
+
+    &-price {
+      margin-right: 8px;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+  }
+
+  &-action {
+
+  }
+
+  &-button {
+    display: block;
+    text-align: center;
+    //position: absolute;
+    //padding: 10px 20px;
+    //bottom: 20px;
+    //left: 50%;
+    //margin-left: -80px;
+
+    button {
+      height: 35px;
+      width: 120px;
+    }
+
+    &__ordered {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 12px;
+
+      .value {
+        display: block;
+        width: 36px;
+        text-align: center;
+        font-size: 1.3rem;
+        font-weight: 600;
+      }
+
+      .MuiButton-root {
+        padding: 6px;
+        min-width: auto;
+      }
+
+      button {
+        width: 36px;
+      }
+    }
+
+    &.-auto-width {
+      button {
+        width: auto;
+      }
+    }
+  }
+
+  &-no_delivery {
+    text-align: center;
+    line-height: 18px;
+    user-select: none;
+  }
+
+  &:hover {
+    // transform: translateY(-5px);
+    // transform: scale(1.01);
+    transition: 0.4s;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    background-color: rgb(250, 235, 225);
+  }
+
+  &.-short {
+    display: flex;
+    flex-direction: row;
+    min-width: 280px;
+    min-height: 150px;
+
+    .card_item-img {
+      height: 110px;
+      width: 110px;
+      float: left;
+      margin: auto;
+      min-height: auto;
+    }
+
+    .card_item__wrapper {
+      width: calc(100% - 150px);
+      position: relative;
+      float: right;
+      padding-left: 0;
+    }
+
+    .card_item-title {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    .card_item-describe {
+      display: none;
+    }
+
+    .card_item-info {
+      display: none;
+    }
+
+    .card_item-button {
+      position: absolute;
+      padding: 10px 20px;
+      left: 50%;
+      margin-left: -90px;
+      bottom: -50%;
+    }
+  }
+}

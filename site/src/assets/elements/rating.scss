@@ -1,0 +1,10 @@
+.star {
+  svg {
+    cursor: pointer;
+    transition: 200ms;
+  }
+
+  input[type = 'radio'] {
+    display: none;
+  }
+}
