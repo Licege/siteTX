@@ -1,0 +1,16 @@
+.gallery {
+  &__grid {
+    display: grid;
+    grid-template-columns: 65% 20% 15%;
+    grid-template-rows: 185px 277px;
+    grid-gap: 1px;
+  }
+
+  &__img {
+
+    &:nth-child(1) {
+      grid-column: 1;
+      grid-row: 1 / 3;
+    }
+  }
+}

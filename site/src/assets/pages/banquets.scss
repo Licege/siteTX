@@ -1,0 +1,22 @@
+.banquets {
+  &-header {
+    position: relative;
+
+    &__title {
+      position: absolute;
+      top: 30%;
+      left: 15%;
+      color: indianred;
+      font-size: 5vw;
+      font-weight: bold;
+    }
+
+    &__image {
+      height: 100vh;
+      width: 100vw;
+      background: url("../../static/img/banquetHall-3.jpg") center no-repeat;
+      background-size: cover;
+      border-radius: 5px;
+    }
+  }
+}

@@ -118,7 +118,7 @@ module.exports = io => {
     .get('/api/private/delivery-settings/global/', globalDeliverySettings.get)
     .patch('/api/private/delivery-settings/global/:id', globalDeliverySettings.update);
 
-  router.get('/api/private/statistics/average-checks', averageChecks.get);
+  // router.get('/api/private/statistics/average-checks', averageChecks.get);
 
 
   /* Public */

@@ -73,14 +73,14 @@
     "identity-obj-proxy": "^3.0.0"
   },
   "scripts": {
-    "start": "../node_modules/.bin/react-scripts start",
-    "build": "../node_modules/.bin/react-scripts build",
-    "test": "../node_modules/.bin/react-scripts test",
-    "eject": "../node_modules/.bin/react-scripts eject",
-    "preinstall": "../node_modules/.bin/npx npm-force-resolutions",
-    "jest": "../node_modules/.bin/jest",
-    "jest:watch": "../node_modules/.bin/jest --watch",
-    "jest:coverage": "../node_modules/.bin/jest --coverage"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "preinstall": "./node_modules/.bin/npx npm-force-resolutions",
+    "jest": "./node_modules/.bin/jest",
+    "jest:watch": "./node_modules/.bin/jest --watch",
+    "jest:coverage": "./node_modules/.bin/jest --coverage"
   },
   "eslintConfig": {
     "extends": "react-app"
