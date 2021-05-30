@@ -1,0 +1,14 @@
+.table {
+  &-thread > tr > th {
+    border-top: none;
+  }
+
+  &-body > tr > td {
+    cursor: pointer;
+  }
+}
+
+.paginator {
+  margin-top: 20px;
+  justify-content: center;
+}

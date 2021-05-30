@@ -1,0 +1,69 @@
+.navbar {
+  grid-area: n;
+  background: white;
+  position: relative;
+  width: 300px;
+  box-shadow: 4px 0 12px rgba(0, 0, 0, 0.15);
+  overflow: auto;
+  z-index: 1;
+
+  &-accordion {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    &-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      margin-bottom: 0;
+      width: 100%;
+      cursor: pointer;
+
+      &-item {
+        display: block;
+        width: 100%;
+        color: black;
+        padding: 15px 25px 15px 36px;
+        cursor: pointer;
+        text-decoration: none;
+        border-left: 4px solid transparent;
+
+        &:hover, &:visited {
+          text-decoration: none;
+        }
+
+        &.-active {
+          border-left-color: $brown;
+        }
+
+        &:hover {
+          transition: .4s;
+          color: $primary;
+        }
+      }
+
+      &-arrow {
+        width: 25px;
+        height: 25px;
+      }
+    }
+  }
+
+
+}
+
+/*
+.active {
+  border-left-color: $brown;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}*/

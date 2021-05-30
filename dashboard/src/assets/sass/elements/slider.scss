@@ -1,0 +1,114 @@
+.ImageSlider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  &-Body {
+    height: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #252e33;
+
+    &-Item {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    &-Img {
+      object-fit: contain;
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    &-ArrowNext,
+    &-ArrowPrev {
+      height: 100%;
+      width: 45px;
+      position: absolute;
+      top: 0;
+      background: url("../../../static/img/white-chevron-left.png") center no-repeat;
+      cursor: pointer;
+      z-index: 9998;
+    }
+
+    &-ArrowPrev {
+      left: 0;
+    }
+
+    &-ArrowNext {
+      right: 0;
+      transform: rotate(180deg);
+    }
+
+    &_animating {
+      &_next {
+        .ImageSlider-Body-Item_active {
+          -webkit-animation: slideNextHide 1s;
+        }
+
+        .ImageSlider-Body-Item_next {
+          -webkit-animation: slideNextShow 1s;
+        }
+      }
+
+      &_prev {
+        .ImageSlider-Body-Item_active {
+          -webkit-animation: slidePrevHide 1s;
+        }
+
+        .ImageSlider-Body-Item_next {
+          -webkit-animation: slidePrevShow 1s;
+        }
+      }
+
+      &_to {
+        .ImageSlider-Body-Item_active {
+          -webkit-animation: slideHide 1s;
+        }
+
+        .ImageSlider-Body-Item_next {
+          -webkit-animation: slideShow 1s;
+        }
+      }
+    }
+  }
+
+  &-PreviewsList {
+    background-color: rgba(37, 46, 51, 0.5);
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    z-index: 500;
+
+    &-Item {
+      height: 40px;
+      width: 40px;
+      display: inline-block;
+      vertical-align: middle;
+      border-radius: 5px;
+      overflow: hidden;
+      opacity: 0.4;
+      margin: 8px 4px;
+      cursor: pointer;
+
+      &-Item {
+        &_active {
+          opacity: 1;
+        }
+
+        &-Img {
+          object-fit: cover;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+}

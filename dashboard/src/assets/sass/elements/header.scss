@@ -1,0 +1,18 @@
+.header {
+  grid-area: h;
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+
+  &-logo {
+    margin-left: 20px;
+    width: 96px;
+    height: 64px;
+  }
+
+  &-logout {
+    margin: auto 16px;
+  }
+}
