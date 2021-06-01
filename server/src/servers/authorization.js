@@ -32,10 +32,10 @@ const start = () => {
 
   app.use(cookieParser(process.env.SECRET))
 
-  app.use(require('cors')({
-    credentials: true,
-    origin: configureOrigin
-  }))
+  // app.use(require('cors')({
+  //   credentials: true,
+  //   origin: configureOrigin
+  // }))
 
   passport.serializeUser((user, done) => done(null, user));
   passport.deserializeUser((obj, done) => {

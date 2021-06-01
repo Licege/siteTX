@@ -1,13 +1,19 @@
 FROM node:16.1.0
 
+RUN mkdir -p /var/www/app/serverNodeTX
 WORKDIR /var/www/app/serverNodeTX
 
-COPY ../package*.json ./
+COPY package*.json ./
+COPY .env ./
 
 RUN npm install
 
-COPY ../ ./
+COPY . .
 
-EXPOSE 9092
+RUN git clone https://github.com/vishnubob/wait-for-it.git
 
-CMD npm run start
+EXPOSE 9090
+
+CMD ["./wait-for-it/wait-for-it.sh", "db:5432", "--", "make", "start-service"]
+#CMD npm run start
+#CMD env $(cat .env) npm run start

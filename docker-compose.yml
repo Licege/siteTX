@@ -1,43 +1,85 @@
 version: '3'
 services:
+#  db:
+#    image: postgres:latest
+#    container_name: postgres
+#    ports:
+#      - "5432:5432"
+#    volumes:
+#      - ./db/pg_data:/var/lib/postgresql/data/pgdata
+#    environment:
+#      POSTGRES_USER: postgres
+#      POSTGRES_PASSWORD: 5315
+#      POSTGRES_DB: trixolma
+#      PGDATA: /var/lib/postgresql/data/pgdata
+#    restart: always
+
   db:
-    image: postgres:13.2-alpine
+    image: postgres:latest
     container_name: postgres
     ports:
       - "5432:5432"
     volumes:
-      - ./db/pg_data:/var/lib/postgresql/data/pgdata
+      - ./db/pg_data:/var/lib/postgresql/data
     environment:
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 5315
       POSTGRES_DB: trixolma
-      PGDATA: /var/lib/postgresql/data/pgdata
+      PGDATA: /var/lib/postgresql/data
     restart: always
 
   api_service:
     container_name: api_service
     build:
       context: ./server
-      dockerfile: Dockerfile
+      dockerfile: ./docker/Dockerfile-service
     ports:
       - "9090:9090"
     links:
       - db
-#    restart: always
+    restart: always
     environment:
       - DEFAULT_EXECUTION_MODE=service
+      - DB_HOST=db
+      - DB_NAME=trixolma
+      - DB_USER=postgres
+      - DB_PASSWORD=5315
+      - TRIXOLMA_SID=tri_xolma_sid
+      - TRIXOLMA_BASE_DOMAIN=.trixolma.localhost
+      - COOKIE_MAX_AGE=null
+      - SECRET=special_secret_field
+      - STORAGE_SRC=http://localhost:9090
 
   api_auth:
     container_name: api_auth
     build:
       context: ./server
-      dockerfile: Dockerfile
+      dockerfile: ./docker/Dockerfile-auth
     ports:
       - "9092:9092"
     links:
       - db
-#    restart: always
+    restart: always
     environment:
       - DEFAULT_EXECUTION_MODE=authorization
+      - DB_HOST=db
+      - DB_NAME=trixolma
+      - DB_USER=postgres
+      - DB_PASSWORD=5315
+      - TRIXOLMA_SID=tri_xolma_sid
+      - TRIXOLMA_BASE_DOMAIN=.trixolma.localhost
+      - COOKIE_MAX_AGE=null
+      - SECRET=special_secret_field
+      - STORAGE_SRC=http://localhost:9090
+
+#  migration:
+#    image: sitetx_api_service
+#    command: ["./wait-for-it/wait-for-it.sh", "api_service:9090", "--", "sequelize", "db:migrate"]
+#    environment:
+#      - DB_NAME=trixolma
+#    links:
+#      - api_service
+#      - api_auth
 
 #  site:
 #    container_name: site
@@ -62,10 +104,9 @@ services:
     container_name: nginx
     build: ./nginx
     volumes:
-#      - ./nginx:/var/www/app/dashboard
       - ./dashboard/build:/var/www/app/dashboard
       - ./site/build/:/var/www/app/site
-#      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    restart: always
     ports:
       - 80:80
       - 443:443

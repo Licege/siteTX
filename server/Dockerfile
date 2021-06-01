@@ -4,6 +4,7 @@ RUN mkdir -p /var/www/app/serverNodeTX
 WORKDIR /var/www/app/serverNodeTX
 
 COPY package*.json ./
+COPY .env ./
 
 RUN npm install
 
@@ -11,4 +12,4 @@ COPY . .
 
 EXPOSE 9092
 
-CMD npm run start
+CMD env $(cat .env) npm run start

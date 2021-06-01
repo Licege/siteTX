@@ -41,6 +41,10 @@ module.exports = io => {
   //         failWithError: true
   //     }), admin.remove, adminAuthFailed)
 
+  router.get('api/public/test', (req, res) => {
+    res.status(200).json({success: true});
+  })
+
   router
     .get('/api/private/categories', categories.getAll)
     .get('/api/private/categories/:id', categories.get)

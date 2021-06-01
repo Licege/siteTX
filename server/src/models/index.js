@@ -6,7 +6,7 @@ const { Op } = Sequelize
 
 const basename = path.basename(module.filename)
 const env = process.env.NODE_ENV || 'development'
-const config = require(__dirname + './../../config/database.js')[env]
+const config = require('../../config/database.js')[env]
 
 if (config === undefined) {
     throw Error(`In src/config/database.js not config with such NODE_ENV: ${env}`)

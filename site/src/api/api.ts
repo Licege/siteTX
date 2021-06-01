@@ -19,10 +19,10 @@ import {
 //const host = process.env.NODE_ENV === 'production' ? '//31.31.201.99/' : 'http://localhost'
 
 const hostname = window.location.hostname
-export const WS_BASE = process.env.NODE_ENV === 'production' ? '//server.tri-xolma.ru/' : `http://${hostname}:9091/`
+export const WS_BASE = process.env.NODE_ENV === 'production' ? `//${hostname}/` : `http://${hostname}:9091/`
 
-export const serverUrl = process.env.NODE_ENV === 'production' ? '//api.tri-xolma.ru/' : `http://${hostname}:9090/`
-const authUrl = process.env.NODE_ENV === 'production' ? '//auth.tri-xolma.ru/' : `http://${hostname}:9092/api/auth`
+export const serverUrl = process.env.NODE_ENV === 'production' ? `//${hostname}/` : `http://${hostname}:9090/`
+const authUrl = process.env.NODE_ENV === 'production' ? `//${hostname}/` : `http://${hostname}:9092/api/auth`
 const baseURL = serverUrl + 'api/public'
 const apiURL = `${serverUrl}api`
 const apiUserRequest = axios.create({

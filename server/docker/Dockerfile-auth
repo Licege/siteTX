@@ -1,13 +1,21 @@
 FROM node:16.1.0
 
+RUN mkdir -p /var/www/app/serverNodeTX
 WORKDIR /var/www/app/serverNodeTX
 
-COPY ../package*.json ./
+COPY package*.json ./
+COPY .env ./
 
 RUN npm install
 
-COPY ../ ./
+COPY . .
+
+RUN git clone https://github.com/vishnubob/wait-for-it.git
+#RUN ./wait-for-it/wait-for-it.sh db:5432
+#RUN make migrate-run
 
 EXPOSE 9092
 
+#CMD ["./wait-for-it/wait-for-it.sh", "db:5432", "--", "sequelize" "db:migrate", "--", "npm", "run", "start"]
 CMD npm run start
+#CMD env $(cat .env) npm run start

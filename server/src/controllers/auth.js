@@ -60,8 +60,8 @@ module.exports.register = async (req, res) => {
     const transaction = await sequelize.transaction()
 
     try {
-        const emailInUse = await UserRepo.one({ email: req.body.email })
-        const phoneInUse = await UserRepo.one({ phone: req.body.phone })
+        const emailInUse = await UserRepo.one({ email })
+        const phoneInUse = await UserRepo.one({ phone })
 
         if (emailInUse) {
             return res.status(409).json({

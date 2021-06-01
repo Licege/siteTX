@@ -22,10 +22,11 @@ const whitelist = [
   'http://localhost:3001',
   'http://localhost:9090',
   'http://pub.trixolma.localhost:3000',
-  'http://dashboard.trixolma.localhost:3001'
+  'http://dashboard.trixolma.localhost:3001',
+  'http://127.0.0.1:9090'
 ]
 const configureOrigin = (origin, callback) => {
-  // callback(null, true)
+  console.log(origin);
   if (whitelist.indexOf(origin) !== -1) {
     callback(null, true)
   } else {
@@ -47,10 +48,10 @@ const start = () => {
   }
   app.use('/uploads', express.static('uploads', options))
 
-  app.use(require('cors')({
-    credentials: true,
-    origin: configureOrigin
-  }))
+  // app.use(require('cors')({
+  //   credentials: true,
+  //   origin: configureOrigin
+  // }))
 
   // const socketServer = require('http').createServer(app)
 
@@ -142,6 +143,7 @@ const start = () => {
   }
 
   app.use((err, res, next) => {
+    console.error('unknown error');
     if (err.name === 'Error') {
       console.error(err)
       return res.status(409).json({ msg: err.message })
