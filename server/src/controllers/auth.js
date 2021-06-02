@@ -4,7 +4,7 @@ const { validationResult } = require('express-validator')
 const { sequelize, User } = require('../models').init()
 const UserRepo = require('../repositories/user')
 const TokenRepo = require('../repositories/token')
-const keys = require('../../config/keys')
+// const keys = require('../../config/keys')
 const authHelper = require('../utils/authHelper')
 const errorHandler = require('../utils/errorHandler')
 
@@ -33,27 +33,27 @@ module.exports.logout = async (req, res) => {
     // })
 }
 
-module.exports.refreshTokens = async function (req, res) {
-    const {refreshToken} = req.body
-    let payload
-    try {
-        payload = jwt.verify(refreshToken, keys.jwt)
-        if (payload.type !== 'refresh') {
-            res.status(400).json({message: 'Невалидный токен!'})
-        }
-
-        const token = await TokenRepo.one({ tokenId: payload.id })
-        if (!token) {
-            res.status(400).json({message: 'Невалидный токен!'})
-        }
-
-        const newToken = await updateTokens(token.userId)
-
-        res.json(newToken)
-    } catch (e) {
-        errorHandler(res, e)
-    }
-}
+// module.exports.refreshTokens = async function (req, res) {
+//     const {refreshToken} = req.body
+//     let payload
+//     try {
+//         payload = jwt.verify(refreshToken, keys.jwt)
+//         if (payload.type !== 'refresh') {
+//             res.status(400).json({message: 'Невалидный токен!'})
+//         }
+//
+//         const token = await TokenRepo.one({ tokenId: payload.id })
+//         if (!token) {
+//             res.status(400).json({message: 'Невалидный токен!'})
+//         }
+//
+//         const newToken = await updateTokens(token.userId)
+//
+//         res.json(newToken)
+//     } catch (e) {
+//         errorHandler(res, e)
+//     }
+// }
 
 module.exports.register = async (req, res) => {
     const { email, phone, password, surname, forename, patronymic } = req.body
