@@ -28,44 +28,49 @@ services:
       PGDATA: /var/lib/postgresql/data
     restart: always
 
-  backend_image: &default
-    container_name: backend_trixolma
-    build:
-      context: ./server
-      dockerfile: Dockerfile
-    command: bash
-    env_file:
-      - ./server/.env
-    links:
-      - db
-
   api_service:
     container_name: api_service
-    <<: *default
-    command: npm run start
+    build:
+      context: ./server
+      dockerfile: ./docker/Dockerfile-service
     ports:
       - "9090:9090"
     links:
       - db
     restart: always
-    env_file:
-      - ./server/.env
     environment:
       - DEFAULT_EXECUTION_MODE=service
+      - DB_HOST=db
+      - DB_NAME=trixolma
+      - DB_USER=postgres
+      - DB_PASSWORD=5315
+      - TRIXOLMA_SID=tri_xolma_sid
+      - TRIXOLMA_BASE_DOMAIN=.trixolma.localhost
+      - COOKIE_MAX_AGE=null
+      - SECRET=special_secret_field
+      - STORAGE_SRC=http://localhost:9090
 
   api_auth:
     container_name: api_auth
-    <<: *default
-    command: npm run start
+    build:
+      context: ./server
+      dockerfile: ./docker/Dockerfile-auth
     ports:
       - "9092:9092"
     links:
       - db
     restart: always
-    env_file:
-      - ./server/.env
     environment:
       - DEFAULT_EXECUTION_MODE=authorization
+      - DB_HOST=db
+      - DB_NAME=trixolma
+      - DB_USER=postgres
+      - DB_PASSWORD=5315
+      - TRIXOLMA_SID=tri_xolma_sid
+      - TRIXOLMA_BASE_DOMAIN=.trixolma.localhost
+      - COOKIE_MAX_AGE=null
+      - SECRET=special_secret_field
+      - STORAGE_SRC=http://localhost:9090
 
 #  migration:
 #    image: sitetx_api_service
