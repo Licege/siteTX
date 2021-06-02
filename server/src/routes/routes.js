@@ -144,7 +144,7 @@ module.exports = io => {
   //     ],
   //     auth.login)
     .post('/api/public/auth/registration', auth.register)
-    .post('/api/public/auth/refresh-token', auth.refreshTokens);
+    // .post('/api/public/auth/refresh-token', auth.refreshTokens);
 
   router
     .get('/api/public/categories', categories.getAll)

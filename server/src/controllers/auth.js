@@ -5,19 +5,19 @@ const { sequelize, User } = require('../models').init()
 const UserRepo = require('../repositories/user')
 const TokenRepo = require('../repositories/token')
 // const keys = require('../../config/keys')
-const authHelper = require('../utils/authHelper')
+// const authHelper = require('../utils/authHelper')
 const errorHandler = require('../utils/errorHandler')
 
-const updateTokens = async (userId) => {
-    const accessToken = await authHelper.generateAccessToken(userId)
-    const refreshToken = authHelper.generateRefreshToken()
-    await authHelper.replaceRefreshToken(refreshToken.id, userId)
-
-    return {
-        accessToken: `Bearer ${accessToken}`,
-        refreshToken: refreshToken.token
-    }
-}
+// const updateTokens = async (userId) => {
+//     const accessToken = await authHelper.generateAccessToken(userId)
+//     const refreshToken = authHelper.generateRefreshToken()
+//     await authHelper.replaceRefreshToken(refreshToken.id, userId)
+//
+//     return {
+//         accessToken: `Bearer ${accessToken}`,
+//         refreshToken: refreshToken.token
+//     }
+// }
 
 module.exports.login = async (req, res) => {
     res.json({ success: true })
