@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Document, pdfjs } from 'react-pdf'
-import HTMLFlipBook from 'react-pageflip'
 import styled from 'styled-components'
 import Pages from './Pages'
 import { Loader } from '../core'
+import { useWindowSize } from '../../hooks/windowResize';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`
 
@@ -15,16 +15,19 @@ interface INumPages {
   numPages?: number | null
 }
 
-function getPageWidth() {
-  const pageWidth = document.body.getBoundingClientRect().width - 70
-
-  return pageWidth < 595 ? pageWidth : 595
+const calculateWidth = (width: number) => {
+  if (width > 1024) return 960
+  if (width > 768) return width - 100
+  if (width > 600) return width - 90
+  if (width > 412) return width - 80
+  return width - 70
 }
 
 const Book: React.FC<IProps> = ({ file }) => {
   const bookRef = useRef<any>(null)
   const [numPages, setNumPages] = useState<number|null>(null)
-  const width = getPageWidth()
+  const { width: pageWidth } = useWindowSize()
+  const width = calculateWidth(pageWidth);
 
   useEffect(() => {
     window.addEventListener('keydown', onKeyHandle)
@@ -51,57 +54,15 @@ const Book: React.FC<IProps> = ({ file }) => {
 
   const onDocumentLoadSuccess = ({ numPages }: INumPages) => setNumPages(numPages!)
 
-
   return (
-    <Container>
-      <Document file={file} onLoadSuccess={onDocumentLoadSuccess} loading={<Loader />}>
-        { /* @ts-ignore */ }
-        <FlipBook width={595}
-                  height={841}
-                  size='stretch'
-                  minWidth={300}
-                  minHeight={360}
-                  maxHeight={841}
-                  maxShadowOpacity={0.5}
-                  // showCover
-                  swipeDistance={30}
-                  mobileScrollSupport={true}
-                  autoSize
-                  ref={bookRef}
-        >
+    <Container style={{ width: width }}>
+      <Document file={file} onLoadSuccess={onDocumentLoadSuccess} loading={<Loader />} >
           <Pages counts={numPages} width={width} />
-        </FlipBook>
       </Document>
     </Container>
   )
 }
 
-const Container = styled.div`
-  width: 1190px;
-  
-  @media(max-width: 1280px) {
-    width: 595px;
-  }
-  
-  @media(max-width: 668px) {
-    width: 500px;
-  }
-  
-  @media(max-width: 565px) {
-    width: 400px;
-  }
-  
-  @media(max-width: 468px) {
-    width: 360px;
-  }
-  
-  @media(max-width: 375px) {
-    width: 300px;
-  }
-`
-
-const FlipBook = styled(HTMLFlipBook)`
-  overflow: hidden;
-`
+const Container = styled.div``
 
 export default Book

@@ -15,7 +15,7 @@ const Order: React.FC = () => {
   }, [])
 
   const onSubmit = (order: IOrder) => {
-    let date = {...order}
+    const date = {...order}
     if (typeof date.orderDate !== 'string') {
       date.orderDate = date.orderDate.toISOString()
     }

@@ -55,7 +55,7 @@ export const BurgerMenu = styled.div`
   }
   
   @media(max-width: ${BREAKPOINTS['ts']}px) {
-    margin: auto 0;
+    margin: auto 0 auto 16px;
   }
     
   ${(props: IBurger) => props.isOpen ? css`

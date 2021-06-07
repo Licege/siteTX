@@ -3,7 +3,7 @@ import Map from '../../../components/common/Map/Map'
 import { useWindowSize } from '../../../hooks/windowResize'
 
 const SectionMap = () => {
-  const [width] = useWindowSize()
+  const { width } = useWindowSize()
 
   return (
     <section>

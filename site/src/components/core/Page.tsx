@@ -22,4 +22,5 @@ export const PageTitle = styled.h1`
   line-height: 1.2;
   text-align: center;
   margin-bottom: 20px;
+  margin-top: 0;
 `

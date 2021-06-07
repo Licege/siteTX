@@ -3,13 +3,14 @@ import Sidebar from './sidebar'
 import CategoriesFeed from './categoriesFeed'
 import Cards from './cards/Cards'
 import styled from 'styled-components'
+import { PageTitle } from '../../components/core';
 
 const Menu = () => (
   <Container>
     <Sidebar />
     <Wrapper>
       <CategoriesFeed />
-      <Title>~ Меню ~</Title>
+      <PageTitle>~ Меню ~</PageTitle>
       <Cards />
     </Wrapper>
   </Container>
