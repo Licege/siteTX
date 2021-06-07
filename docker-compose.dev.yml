@@ -1,19 +1,5 @@
 version: '3'
 services:
-#  db:
-#    image: postgres:latest
-#    container_name: postgres
-#    ports:
-#      - "5432:5432"
-#    volumes:
-#      - ./db/pg_data:/var/lib/postgresql/data/pgdata
-#    environment:
-#      POSTGRES_USER: postgres
-#      POSTGRES_PASSWORD: 5315
-#      POSTGRES_DB: trixolma
-#      PGDATA: /var/lib/postgresql/data/pgdata
-#    restart: always
-
   db:
     image: postgres:latest
     container_name: postgres
@@ -51,8 +37,8 @@ services:
     env_file:
       - ./server/.env
     environment:
+      - NODE_ENV=development
       - DEFAULT_EXECUTION_MODE=service
-      - DB_HOST=db
 
   api_auth:
     container_name: api_auth
@@ -66,8 +52,8 @@ services:
     env_file:
       - ./server/.env
     environment:
+      - NODE_ENV=development
       - DEFAULT_EXECUTION_MODE=authorization
-      - DB_HOST=db
 
 #  migration:
 #    image: sitetx_api_service
@@ -78,31 +64,68 @@ services:
 #      - api_service
 #      - api_auth
 
-#  site:
-#    container_name: site
-#    build:
-#      context: ./site
-#      dockerfile: ./Dockerfile
-#    ports:
-#      - "3000:3000"
+  site:
+    container_name: site
+    build:
+      context: ./site
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./site:/app"
+    env_file:
+      - ./site/.env
+    environment:
+      - NODE_ENV=development
+    links:
+      - api_auth
+      - api_service
+    working_dir: /app
+#    command: sh -c "sleep 3600;"
+    command: sh -c "cd /app; npm run start"
 
 #  dashboard:
-#    build:
-#      context: ./dashboard
-#      dockerfile: Dockerfile
 #    container_name: dashboard
+#    image: node:16.1.0
 #    ports:
 #      - "3001:3001"
+#    volumes:
+#      - "./dashboard:/app"
+#    env_file:
+#      - ./dashboard/.env
+#    environment:
+#      - NODE_ENV=development
 #    links:
 #      - api_auth
 #      - api_service
+#    working_dir: /app
+#    command: sh -c "cd /app; npm install; npm run start"
+
+  dashboard:
+    container_name: dashboard
+    build:
+      context: ./dashboard
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    volumes:
+      - "./dashboard:/app"
+    env_file:
+      - ./dashboard/.env
+    environment:
+      - NODE_ENV=development
+    links:
+      - api_auth
+      - api_service
+    working_dir: /app
+    command: sh -c "cd /app; npm run start"
 
   nginx:
     container_name: nginx
-    build: ./nginx/prod
-    volumes:
-      - ./dashboard/build:/var/www/app/dashboard
-      - ./site/build/:/var/www/app/site
+    build: ./nginx/dev
+#    volumes:
+#      - ./dashboard/build:/var/www/app/dashboard
+#      - ./site/build/:/var/www/app/site
     restart: always
     ports:
       - 80:80
@@ -110,3 +133,5 @@ services:
     links:
       - api_auth
       - api_service
+      - site
+      - dashboard

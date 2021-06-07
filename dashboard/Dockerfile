@@ -1,16 +1,10 @@
 FROM node:15.12
 
-RUN mkdir -p /var/www/app/adminPanelTX
-WORKDIR /var/www/app/adminPanelTX
+RUN mkdir -p /app
+WORKDIR /app
 
-COPY package*.json ./
-
-RUN npm install
-
-COPY . .
-
-RUN npm run build
+COPY package.json package.json
+RUN npm install --force
+RUN npm rebuild node-sass
 
 EXPOSE 3001
-
-CMD env $(cat .env) npm run start

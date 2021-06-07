@@ -1,10 +1,10 @@
 import request from '../lib/request'
 
 const hostname = window.location.hostname
-export const WS_BASE = process.env.NODE_ENV === 'production' ? `//${hostname}/` : `http://${hostname}:9091/`
+export const WS_BASE = process.env.NODE_ENV === 'production' ? `//${hostname}/` : `http://${hostname}/`
 
-export const serverUrl = process.env.NODE_ENV === 'production' ? `//${hostname}/` : `http://${hostname}:9090/`
-const authUrl = process.env.NODE_ENV === 'production' ? `//${hostname}/api/auth` : `http://${hostname}:9092/api/auth`
+export const serverUrl = process.env.NODE_ENV === 'production' ? `//${hostname}/` : `http://${hostname}/`
+const authUrl = process.env.NODE_ENV === 'production' ? `//${hostname}/api/auth` : `http://${hostname}/api/auth`
 const baseUrl = serverUrl + 'api/private'
 export const secret = 'dev-jwt'
 

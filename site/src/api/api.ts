@@ -1,4 +1,3 @@
-import axios from 'axios'
 import request from "../lib/request";
 import {
     authProfileType,
@@ -19,51 +18,13 @@ import {
 //const host = process.env.NODE_ENV === 'production' ? '//31.31.201.99/' : 'http://localhost'
 
 const hostname = window.location.hostname
-export const WS_BASE = process.env.NODE_ENV === 'production' ? `//${hostname}/` : `http://${hostname}:9091/`
+export const WS_BASE = process.env.NODE_ENV === 'production' ? `//${hostname}/` : `http://${hostname}/`
 
-export const serverUrl = process.env.NODE_ENV === 'production' ? `//${hostname}/` : `http://${hostname}:9090/`
-const authUrl = process.env.NODE_ENV === 'production' ? `//${hostname}/` : `http://${hostname}:9092/api/auth`
+export const serverUrl = process.env.NODE_ENV === 'production' ? `//${hostname}/` : `http://${hostname}/`
+const authUrl = process.env.NODE_ENV === 'production' ? `//${hostname}/` : `http://${hostname}/api/auth`
 const baseURL = serverUrl + 'api/public'
 const apiURL = `${serverUrl}api`
-const apiUserRequest = axios.create({
-    baseURL: apiURL,
-    headers: {
-        'Authorization': localStorage.getItem('accessToken'),
-    },
-})
 
-const clearTokenFromAPIRequest = () => {
-    delete apiUserRequest.defaults.headers.common["Authorization"];
-}
-
-apiUserRequest.interceptors.response.use(function (response) {
-    return response
-}, function (error) {
-
-    const originalRequest = error.config
-    const refreshToken = window.localStorage.getItem('refreshToken')
-
-    if (error.response.status === 401 && !originalRequest._retry && refreshToken) {
-        originalRequest._retry = true
-        console.log('updToken');
-
-        return axios.post(baseURL + `/auth/refresh-token/`, { refreshToken })
-            .then(({ data }) => {
-                window.localStorage.setItem('accessToken', data.accessToken)
-                window.localStorage.setItem('refreshToken', data.refreshToken)
-                apiUserRequest.defaults.headers['Authorization'] = data.accessToken
-                originalRequest.headers['Authorization'] = data.accessToken
-                return apiUserRequest(originalRequest)
-            })
-            .catch(error => {
-                console.log(error);
-                window.localStorage.clear()
-                window.location.reload()
-            })
-    }
-
-    return Promise.reject(error)
-})
 
 export const authAPI = {
     login(profile: authProfileType) {
@@ -82,18 +43,8 @@ export const authAPI = {
           .catch(reason => console.error(reason))
     },
     refresh() {
-        const refreshToken = window.localStorage.getItem('refreshToken')
-
-        return axios.post(baseURL + `/auth/refresh-token/`, { refreshToken })
-            .then(({ data }) => {
-                window.localStorage.setItem('accessToken', data.accessToken)
-                window.localStorage.setItem('refreshToken', data.refreshToken)
-                apiUserRequest.defaults.headers['Authorization'] = data.accessToken
-            })
-            .catch(error => {
-                window.localStorage.clear()
-                window.location.reload()
-            })
+        console.log('delete this method');
+        return {}
     },
 }
 
@@ -291,7 +242,8 @@ export const complainAPI = {
           .catch(reason => console.error(reason))
     },
     async postComplainPrivate(complain: complainType) {
-        return await apiUserRequest.post(`${apiURL}/private/complain`, complain)
+        console.log('доделать')
+        // return await apiUserRequest.post(`${apiURL}/private/complain`, complain)
     },
     postComplainPublic(complain: complainType) {
         return request.post(`${baseURL}/complain`, complain)

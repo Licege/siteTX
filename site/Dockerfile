@@ -1,12 +1,13 @@
-FROM node:16.1.0
+FROM node:15.12
 
-RUN mkdir -p /var/www/app/siteTX
-WORKDIR /var/www/app/siteTX
+RUN mkdir -p /app
+WORKDIR /app
 
-COPY ./ ./
+COPY package.json package.json
 
+# Need for fix node-sass bugs
+RUN npm install npm@6.14.11 -g
 RUN npm install
+#RUN npm rebuild node-sass
 
 EXPOSE 3000
-
-CMD npm run start
