@@ -1,8 +1,8 @@
 import React from 'react'
 import { getDishesKey } from '../../../../plugins/helpers'
 import { useBucketInfoContentLogic } from '../logic'
-import { ContentWrapper, Count, Dish, DishTitle, ListDishes, Price } from './styles'
-import { Close, Plus, Subtract } from '../../../../styledComponents/atoms'
+import { ContentWrapper, Count, Dish, DishTitle, ListDishes, Price, Remove } from './styles'
+import { Plus, Subtract } from '../../../../styledComponents/atoms'
 
 const Content = () => {
   const { order, orderedDished, increaseDishCount, reduceDishCount, changeDishCount, removeDish } = useBucketInfoContentLogic()
@@ -24,7 +24,7 @@ const Content = () => {
               {getDishesKey(order, dish.id, 'cost') * getDishesKey(order, dish.id, 'count') + ' ₽'}
             </Price>
             <div>
-              <Close onClick={() => removeDish(dish.id)} />
+              <Remove onClick={() => removeDish(dish.id)} />
             </div>
           </Dish>
         ))}

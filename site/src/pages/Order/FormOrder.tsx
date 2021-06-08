@@ -7,6 +7,8 @@ import validate from './Validate'
 import { IOrder } from '../../types/types'
 import { scrollToFirstError } from '../../plugins/validate'
 import { Button } from '../../components/core'
+import styled from 'styled-components';
+import { BREAKPOINTS } from '../../styledComponents/helpers'
 
 
 const datepickerSettings = () => {
@@ -45,12 +47,18 @@ const FormOrder: React.FC<any> = ({ onSubmit }) => {
                  placeholder='Здесь вы можете ввести ваши пожелания'
           />
           <div>
-            <Button variant='contained' color='primary' type='submit'>Забронировать стол</Button>
+            <SubmitButton variant='contained' color='primary' type='submit'>Забронировать стол</SubmitButton>
           </div>
         </form>
       )} />
     )
 }
+
+const SubmitButton = styled(Button)`
+  @media (max-width: ${BREAKPOINTS['ts']}px) {
+    width: 100%;
+  }
+`
 
 // let ReduxFormOrder = reduxForm<IOrder>({
 //     form: 'orderForm',

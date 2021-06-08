@@ -45,15 +45,12 @@ export const Wrapper = styled.div`
     font-size: 12px;
     line-height: 16px;
   }
-
-  // @media(max-width: ${BREAKPOINTS['tm']}px) {
-  //   margin-top: 16px;
-  // }
 `
 
 export const NavBlock = styled.nav`
   grid-area: nav;
   margin: auto;
+  font-size: ${props => props.theme.font.size.normal};
 `
 
 export const NavItem = styled(NavLink)`
@@ -85,10 +82,6 @@ export const InfoBlockContainer = styled(BlockContainer)`
 
 export const AddressBlockContainer = styled(BlockContainer)`
   grid-area: address;
-  
-  // @media(max-width: ${BREAKPOINTS['ts']}px) {
-  //   margin-top: 16px;
-  // }
 `
 
 export const Address = styled.address`

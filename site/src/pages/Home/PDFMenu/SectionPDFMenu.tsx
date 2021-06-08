@@ -13,6 +13,7 @@ const SectionPDFMenu = () => (
         <CardContainer title='Основное меню'>
           <PDFMenu />
         </CardContainer>
+        <Divider />
         <CardContainer title='Карта бара'>
           <PDFBar />
         </CardContainer>
@@ -28,6 +29,16 @@ const SectionContent = styled.div`
   justify-content: space-between;
   margin: 25px 0;
   
+  @media(max-width: ${BREAKPOINTS['ds']}px) {
+    display: block;
+  }
+`
+
+const Divider = styled.div`
+  display: none;
+  height: 32px;
+  width: 100%;
+
   @media(max-width: ${BREAKPOINTS['ds']}px) {
     display: block;
   }

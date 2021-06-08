@@ -9,6 +9,7 @@ import {
     ZoomControl,
 } from 'react-yandex-maps'
 import pointer from '../../../static/img/pointer-map.png'
+import { useWindowSize } from '../../../hooks/windowResize';
 
 
 interface IProps {
@@ -22,7 +23,37 @@ const setMapBehaviors = (map: any) => {
     }
 }
 
-const CustomMap: React.FC<IProps> = ({style}) => {
+interface ISize {
+    width: number
+    height: number
+}
+
+const calculateSize = (propsSize: any, windowSize: ISize) => {
+    let width = propsSize?.width;
+    let height = propsSize?.height;
+
+    if (!width) {
+        width = windowSize.width - 760
+    } else if ((width - 80) > windowSize.width) {
+        width -= 160
+    }
+
+    if (!height) {
+        height = windowSize.height - 80
+    } else if ((height - 80) > windowSize.height) {
+        height -= 80
+    }
+
+    return {
+        width,
+        height
+    }
+}
+
+const CustomMap: React.FC<IProps> = ({ style }) => {
+    const windowSize = useWindowSize();
+    const calculatedSize = calculateSize(style, windowSize)
+
     const properties = {
         hintContent: '&lt;img src={pointer} /&gt;',
     }
@@ -35,8 +66,8 @@ const CustomMap: React.FC<IProps> = ({style}) => {
     }
 
     return (
-        <YMaps style={style} query={{lang: 'ru_RU'}}>
-            <Map style={style}
+        <YMaps style={calculatedSize} query={{ lang: 'ru_RU' }}>
+            <Map style={calculatedSize}
                  defaultState={{
                      center: [54.649906, 20.366676],
                      controls: [],

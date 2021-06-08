@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { BREAKPOINTS } from '../../../../styledComponents/helpers'
 import { NavLink } from 'react-router-dom'
+import { Close } from '../../../../styledComponents/atoms';
 
 export const ContentWrapper = styled.div`
   margin-bottom: 20px;
@@ -15,20 +16,23 @@ export const ListDishes = styled.div`
 `
 
 export const Dish = styled.div`
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr 75px 70px 30px;
+  grid-gap: 8px;
   justify-content: space-between;
   align-items: center;
   padding-bottom: 8px;
 `
 
 export const DishTitle = styled.div`
-  width: 40%;
   overflow: hidden;
+  text-overflow: ellipsis;
 `
 
 export const Count = styled.div`
   display: flex;
-  width: 30%;
+  align-items: center;
   height: 100%;
   max-width: 90px;
   
@@ -44,7 +48,6 @@ export const Count = styled.div`
 `
 
 export const Price = styled.div`
-  width: 20%;
   margin: auto;
   text-align: center;
 `
@@ -81,4 +84,9 @@ export const SubmitButton = styled(NavLink)`
   @media(max-width: ${BREAKPOINTS['ts']}px) {
     width: auto;
   }
+`
+
+export const Remove = styled(Close)`
+  padding: 0;
+  margin: 0;
 `

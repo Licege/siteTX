@@ -62,6 +62,10 @@ const Content = styled.div`
     @media (max-width: ${BREAKPOINTS['ml']}px) {
         margin: 0 auto;
     }
+  
+  @media (max-width: ${BREAKPOINTS['ts']}px) {
+    width: 100%;
+  }
 `
 
 export default Order

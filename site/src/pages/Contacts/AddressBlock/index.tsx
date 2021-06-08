@@ -6,7 +6,7 @@ const AddressBlock = () => (
   <div>
     <h3>Мы на карте</h3>
     <AddressInfo />
-    <CustomMap/>
+    <CustomMap />
   </div>
 )
 

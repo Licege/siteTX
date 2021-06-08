@@ -6,6 +6,8 @@ import { createStyles, Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { useFormContactsLogic } from '../logic'
 import { Button } from '../../../components/core'
+import styled from 'styled-components';
+import { BREAKPOINTS } from '../../../styledComponents/helpers';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -49,12 +51,18 @@ const FormContacts = () => {
           />
         </div>
         <div>
-          <Button variant="contained" color="primary" type="submit">Отправить</Button>
+          <SubmitButton variant="contained" color="primary" type="submit">Отправить</SubmitButton>
         </div>
       </form>
     )}
     />
   )
 }
+
+const SubmitButton = styled(Button)`
+  @media (max-width: ${BREAKPOINTS['ts']}px) {
+    width: 100%;
+  }
+`
 
 export default FormContacts
