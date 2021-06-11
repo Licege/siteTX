@@ -69,6 +69,7 @@ services:
     environment:
       - DEFAULT_EXECUTION_MODE=authorization
       - DB_HOST=db
+      - TRIXOLMA_BASE_DOMAIN=.tri-xolma.ru
 
 #  migration:
 #    image: sitetx_api_service
