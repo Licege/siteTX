@@ -17,10 +17,7 @@ interface INumPages {
 
 const calculateWidth = (width: number) => {
   if (width > 1024) return 960
-  if (width > 768) return width - 100
-  if (width > 600) return width - 90
-  if (width > 412) return width - 80
-  return width - 70
+  return Math.max(width * 0.9, 360)
 }
 
 const Book: React.FC<IProps> = ({ file }) => {

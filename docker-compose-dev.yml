@@ -1,19 +1,5 @@
 version: '3'
 services:
-#  db:
-#    image: postgres:latest
-#    container_name: postgres
-#    ports:
-#      - "5432:5432"
-#    volumes:
-#      - ./db/pg_data:/var/lib/postgresql/data/pgdata
-#    environment:
-#      POSTGRES_USER: postgres
-#      POSTGRES_PASSWORD: 5315
-#      POSTGRES_DB: trixolma
-#      PGDATA: /var/lib/postgresql/data/pgdata
-#    restart: always
-
   db:
     image: postgres:latest
     container_name: postgres
@@ -53,7 +39,6 @@ services:
     environment:
       - DEFAULT_EXECUTION_MODE=service
       - DB_HOST=db
-      - TRIXOLMA_BASE_DOMAIN=.tri-xolma.ru
 
   api_auth:
     container_name: api_auth
@@ -70,37 +55,9 @@ services:
       - DEFAULT_EXECUTION_MODE=authorization
       - DB_HOST=db
 
-#  migration:
-#    image: sitetx_api_service
-#    command: ["./wait-for-it/wait-for-it.sh", "api_service:9090", "--", "sequelize", "db:migrate"]
-#    environment:
-#      - DB_NAME=trixolma
-#    links:
-#      - api_service
-#      - api_auth
-
-#  site:
-#    container_name: site
-#    build:
-#      context: ./site
-#      dockerfile: ./Dockerfile
-#    ports:
-#      - "3000:3000"
-
-#  dashboard:
-#    build:
-#      context: ./dashboard
-#      dockerfile: Dockerfile
-#    container_name: dashboard
-#    ports:
-#      - "3001:3001"
-#    links:
-#      - api_auth
-#      - api_service
-
   nginx:
     container_name: nginx
-    build: ./nginx/prod
+    build: ./nginx/dev
     volumes:
       - ./dashboard/build:/var/www/app/dashboard
       - ./site/build/:/var/www/app/site
