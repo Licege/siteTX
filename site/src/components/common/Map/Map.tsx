@@ -10,6 +10,7 @@ import {
 } from 'react-yandex-maps'
 import pointer from '../../../static/img/pointer-map.png'
 import { useWindowSize } from '../../../hooks/windowResize';
+import { BREAKPOINTS } from '../../../styledComponents/helpers';
 
 
 interface IProps {
@@ -29,20 +30,15 @@ interface ISize {
 }
 
 const calculateSize = (propsSize: any, windowSize: ISize) => {
-    let width = propsSize?.width;
-    let height = propsSize?.height;
+    let width
 
-    if (!width) {
-        width = windowSize.width - 760
-    } else if ((width - 80) > windowSize.width) {
-        width -= 160
+    if (BREAKPOINTS['ts'] > windowSize.width) {
+        width = Math.max(windowSize.width * 0.9, 240)
+    } else {
+        width = Math.min(windowSize.width * 0.5 - 48, 360)
     }
 
-    if (!height) {
-        height = windowSize.height - 80
-    } else if ((height - 80) > windowSize.height) {
-        height -= 80
-    }
+    const height = Math.max(width, 320);
 
     return {
         width,
