@@ -56,6 +56,7 @@ services:
       - DEFAULT_EXECUTION_MODE=service
       - DB_HOST=db
       - TRIXOLMA_BASE_DOMAIN=.tri-xolma.ru
+      - STORAGE_SRC=http://pub.tri-xolma.ru
 
   api_auth:
     container_name: api_auth
