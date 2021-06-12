@@ -9,8 +9,6 @@ import {
     ZoomControl,
 } from 'react-yandex-maps'
 import pointer from '../../../static/img/pointer-map.png'
-import { useWindowSize } from '../../../hooks/windowResize';
-import { BREAKPOINTS } from '../../../styledComponents/helpers';
 
 
 interface IProps {

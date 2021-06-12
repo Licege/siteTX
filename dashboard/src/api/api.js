@@ -179,6 +179,7 @@ export const menuAPI = {
 
 export const newsAPI = {
     getNews() {
+        // return fetch(`${baseUrl}/news/`, { credentials: 'include' })
         return request.get(`${baseUrl}/news/`)
           .then(response => response)
     },

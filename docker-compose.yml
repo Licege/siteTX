@@ -50,6 +50,8 @@ services:
     restart: always
     env_file:
       - ./server/.env
+    volumes:
+      - ./server/uploads:/var/www/app/serverNodeTX/uploads
     environment:
       - DEFAULT_EXECUTION_MODE=service
       - DB_HOST=db

@@ -44,9 +44,9 @@ const responseHandler = async response => {
 };
 
 const generalOptions = {
-  headers: {
-    'Content-Type': 'application/json'
-  },
+  // headers: {
+  //   'Content-Type': 'application/json'
+  // },
   credentials: 'include'
 }
 
