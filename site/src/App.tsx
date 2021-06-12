@@ -25,7 +25,7 @@ import { requestMe } from './redux/thunks/profile.thunks';
 import { getMeSelector } from './redux/selectors/profile';
 import { getAuthStatus } from './redux/selectors/auth';
 import CatchErrors from './pages/Errors/CatchErrors';
-import Complain from './pages/complain/Complain';
+import Complain from './pages/Complain';
 import Modal from "./components/Modals/ModalRoot";
 import Menu from './pages/Menu'
 import Bucket from './pages/Bucket'

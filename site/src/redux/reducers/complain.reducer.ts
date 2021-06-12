@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {requestComplainTypes} from "../thunks/complain.thunk";
-import { selectOptionsType } from '../../types/types';
+import { complainTypeType } from '../../types/types';
 
 const complainSlice = createSlice({
     name: 'complain',
     initialState: {
-        complainTypes: [] as selectOptionsType[],
+        complainTypes: [] as complainTypeType[],
     },
     reducers: {},
     extraReducers: builder => {

@@ -25,9 +25,13 @@ const datepickerSettings = () => {
 }
 
 const FormOrder: React.FC<any> = ({ onSubmit }) => {
-    const optionsCountPerson = Array(10).fill(0).map((_, key) => ({value: key, label: key}))
+    const optionsCountPerson = Array(25).fill(0).map((_, key) => ({ value: key + 1, label: key + 1 }))
+    const initialValues = {
+        countPerson: optionsCountPerson[0].value
+    }
+
     return (
-      <Form onSubmit={onSubmit} render={({ handleSubmit }) => (
+      <Form onSubmit={onSubmit} initialValues={initialValues} render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
           <Field name='name' component={TextField} label='Ваше имя:' placeholder='Введите имя:'/>
           <Field name='phone' component={TextField} label='Контактный телефон'
@@ -37,7 +41,6 @@ const FormOrder: React.FC<any> = ({ onSubmit }) => {
                  component={Select}
                  label='Количество гостей'
                  options={optionsCountPerson}
-                 defaultValue={optionsCountPerson[0]}
           />
           <Field name='comment'
                  component={TextField}

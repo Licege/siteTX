@@ -4,16 +4,18 @@ import Select from '../../components/common/elements/form/RenderSelect'
 import Datepicker from '../../components/common/elements/form/RenderDatepicker'
 import TextField from '../../components/common/elements/form/RenderTextField'
 import Button from '@material-ui/core/Button'
-import validate from './Validate'
-import { complainType, selectOptionsType } from '../../types/types'
 import styled from 'styled-components'
-import { Container } from '@material-ui/core'
+import { useComplainFormLogic } from './logic';
 
-const ComplainForm: React.FC<any> = ({types, onSubmit}) => {
-  return (
-    <Form onSubmit={onSubmit} render={({handleSubmit}) => (
+const ComplainForm = () => {
+    const { initialValues, types, onSubmit } = useComplainFormLogic()
+
+    if (!types.length) return null
+
+    return (
+    <Form onSubmit={onSubmit} initialValues={initialValues} render={({ handleSubmit }) => (
       <FormContent onSubmit={handleSubmit}>
-        <Field name="typeId" component={Select} options={types} defaultValue={types[0]} label="Тема обращения" />
+        <Field name="typeId" component={Select} options={types} label="Тема обращения" />
         <Field name="name" component={TextField} label="Ваше имя" />
         <Row>
           <Field name="email" component={TextField} label="Ваш e-mail" />
@@ -51,11 +53,5 @@ const ActionsBlock = styled.div`
     display: flex;
     justify-content: flex-end;
 `
-
-// const ComplainReduxForm = reduxForm<complainType & IMapStateToProps, PropsType>({
-//     form: 'complain-redux-form',
-//     validate,
-//     enableReinitialize: true
-// })(ComplainForm)
 
 export default ComplainForm

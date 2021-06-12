@@ -118,7 +118,7 @@ const FormOrder = () => {
                        component={Select}
                        label="Город"
                        options={cityOptions}
-                       defaultValue={cityOptions[0]}
+                       initialValue={cityOptions[0]}
                 />
               </div>
               <div>
