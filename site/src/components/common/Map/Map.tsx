@@ -24,32 +24,7 @@ const setMapBehaviors = (map: any) => {
     }
 }
 
-interface ISize {
-    width: number
-    height: number
-}
-
-const calculateSize = (propsSize: any, windowSize: ISize) => {
-    let width
-
-    if (BREAKPOINTS['ts'] > windowSize.width) {
-        width = Math.max(windowSize.width * 0.9, 240)
-    } else {
-        width = Math.min(windowSize.width * 0.5 - 48, 360)
-    }
-
-    const height = Math.max(width, 320);
-
-    return {
-        width,
-        height
-    }
-}
-
 const CustomMap: React.FC<IProps> = ({ style }) => {
-    const windowSize = useWindowSize();
-    const calculatedSize = calculateSize(style, windowSize)
-
     const properties = {
         hintContent: '&lt;img src={pointer} /&gt;',
     }
@@ -62,8 +37,8 @@ const CustomMap: React.FC<IProps> = ({ style }) => {
     }
 
     return (
-        <YMaps style={calculatedSize} query={{ lang: 'ru_RU' }}>
-            <Map style={calculatedSize}
+        <YMaps style={style} query={{ lang: 'ru_RU' }}>
+            <Map style={style}
                  defaultState={{
                      center: [54.649906, 20.366676],
                      controls: [],
