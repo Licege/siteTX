@@ -45,6 +45,7 @@
     "react-final-form": "^6.5.3",
     "react-icons": "^4.2.0",
     "react-image-gallery": "^1.0.9",
+    "react-image-lightbox": "^5.1.1",
     "react-pageflip": "^2.0.3",
     "react-pdf": "^5.2.0",
     "react-redux": "^7.2.3",

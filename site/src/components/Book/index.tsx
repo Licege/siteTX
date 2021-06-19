@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Document, pdfjs } from 'react-pdf'
 import styled from 'styled-components'
 import Pages from './Pages'
-import { Loader } from '../core'
 import { useWindowSize } from '../../hooks/windowResize';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`
@@ -52,8 +51,8 @@ const Book: React.FC<IProps> = ({ file }) => {
   const onDocumentLoadSuccess = ({ numPages }: INumPages) => setNumPages(numPages!)
 
   return (
-    <Container style={{ width: width }}>
-      <Document file={file} onLoadSuccess={onDocumentLoadSuccess} loading={<Loader />} >
+    <Container style={{ width: width, backgroundColor: 'black' }}>
+      <Document file={file} onLoadSuccess={onDocumentLoadSuccess} >
           <Pages counts={numPages} width={width} />
       </Document>
     </Container>

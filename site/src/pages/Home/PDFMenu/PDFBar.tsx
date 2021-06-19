@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import CardPdf from '../../../components/Cards/CardPdf'
 import menuImg from '../../../static/img/menu.jpg'
 // @ts-ignore
-import pdfMenuDrinks from '../../../temp/tri_holma_bar.pdf'
+import pdfMenuDrinks from '../../../temp/bar.pdf'
 import styled from 'styled-components'
 import { Button } from '../../../components/core'
 

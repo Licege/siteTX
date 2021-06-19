@@ -31,6 +31,7 @@ import Menu from './pages/Menu'
 import Bucket from './pages/Bucket'
 import PDFViewer from './components/Modals/PDFViewer'
 import { AppContent, AppWrapper } from './styles'
+import { isProduction } from './utils'
 
 const App = () => {
     const dispatch = useDispatch()
@@ -57,23 +58,23 @@ const App = () => {
             <AppContent>
                 <CatchErrors>
                     <Switch>
-                        <Route exact path='/me' render={checkAuth(<Profile />)} />
+                        {!isProduction() && <Route exact path="/me" render={checkAuth(<Profile/>)}/>}
                         <Route exact path='/' component={Home}/>
-                        <Route path='/menu/:categoryId?' component={Menu}/>
+                        {!isProduction() && <Route path="/menu/:categoryId?" component={Menu}/>}
                         <Route exact path='/contacts' component={Contacts}/>
                         <Route exact path='/vacancies' component={Vacancies}/>
-                        <Route exact path='/gallery' component={Gallery}/>
-                        <Route exact path='/order' component={Order}/>
+                        {!isProduction() && <Route exact path="/gallery" component={Gallery}/>}
+                        {!isProduction() && <Route exact path="/order" component={Order}/>}
                         <Route exact path='/news' component={News}/>
                         <Route exact path='/news/:id' component={NewsById}/>
-                        <Route exact path='/bucket' component={Bucket}/>
-                        <Route exact path='/reviews' component={Reviews}/>
-                        <Route exact path='/resume/:id' component={Resume}/>
-                        <Route exact path='/banquets' component={Banquets}/>
+                        {!isProduction() && <Route exact path="/bucket" component={Bucket}/>}
+                        {!isProduction() && <Route exact path="/reviews" component={Reviews}/>}
+                        {!isProduction() && <Route exact path="/resume/:id" component={Resume}/>}
+                        {!isProduction() && <Route exact path="/banquets" component={Banquets}/>}
                         <Route exact path='/actions' component={Promos}/>
                         <Route exact path='/actions/:id' component={Promo}/>
                         <Route exact path='/complain' component={Complain} />
-                        <Route exact path='/test' component={PDFViewer} />
+                        {!isProduction() && <Route exact path="/test" component={PDFViewer}/>}
                         <Route component={Error404}/>
                     </Switch>
                 </CatchErrors>

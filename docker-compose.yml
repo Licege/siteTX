@@ -45,11 +45,7 @@ services:
     command: npm run start
     ports:
       - "9090:9090"
-    links:
-      - db
     restart: always
-    env_file:
-      - ./server/.env
     volumes:
       - ./server/uploads:/var/www/app/serverNodeTX/uploads
     environment:
@@ -64,11 +60,7 @@ services:
     command: npm run start
     ports:
       - "9092:9092"
-    links:
-      - db
     restart: always
-    env_file:
-      - ./server/.env
     environment:
       - DEFAULT_EXECUTION_MODE=authorization
       - DB_HOST=db

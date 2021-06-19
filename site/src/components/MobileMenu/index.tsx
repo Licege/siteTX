@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom'
 import closeImg from '../../static/img/close.png'
 import { useMobileMenuLogic } from '../Header/logic'
 import { Border, BurgerMenu, CloseIcon, NavigationBlock, Wrapper } from './styles'
+import { isProduction } from '../../utils';
+import CallToAs from '../CallToAs';
 
 const MobileMenu = () => {
     const { isMenuOpen, categories, toggleMenu } = useMobileMenuLogic()
@@ -14,32 +16,37 @@ const MobileMenu = () => {
               <NavigationBlock>
                   <CloseIcon src={closeImg} onClick={toggleMenu} alt='Закрыть' />
                   <ul>
-                      <li>
-                          <NavLink activeClassName='-active' to='/menu' onClick={toggleMenu}>Все меню</NavLink>
-                      </li>
-                      {categories.map(category => (
-                        <li key={category.id}>
-                            <NavLink activeClassName='-active'
-                                     onClick={toggleMenu}
-                                     to={`/menu/${category.titleEn}`}
-                                     key={category.id}>
-                                {category.title}
-                            </NavLink>
-                        </li>
+                      {!isProduction() && <li>
+                          <NavLink activeClassName="-active" to="/menu" onClick={toggleMenu}>Все меню</NavLink>
+                      </li>}
+                      {!isProduction() && categories.map(category => (
+                          <li key={category.id}>
+                              <NavLink activeClassName='-active'
+                              onClick={toggleMenu}
+                              to={`/menu/${category.titleEn}`}
+                              key={category.id}>
+                                 {category.title}
+                              </NavLink>
+                          </li>
                       ))}
-                      <Border />
+                      {!isProduction() && <Border/>}
                       <li>
                           <NavLink activeClassName='-active' to='/news' onClick={toggleMenu}>СОБЫТИЯ</NavLink>
                       </li>
-                      <li>
-                          <NavLink activeClassName='-active' to='/order' onClick={toggleMenu}>ЗАКАЗ СТОЛОВ</NavLink>
-                      </li>
+                      {!isProduction()
+                          ? (<li>
+                              <NavLink activeClassName="-active" to="/order" onClick={toggleMenu}>ЗАКАЗ СТОЛОВ</NavLink>
+                          </li>)
+                          : (<li>
+                              <CallToAs text='ЗАКАЗ СТОЛОВ' />
+                          </li>)
+                      }
                       <li>
                           <NavLink activeClassName='-active' to='/contacts' onClick={toggleMenu}>О НАС</NavLink>
                       </li>
-                      <li>
-                          <NavLink activeClassName='-active' to='/gallery' onClick={toggleMenu}>ФОТОГАЛЕРЕЯ</NavLink>
-                      </li>
+                      {!isProduction() && <li>
+                          <NavLink activeClassName="-active" to="/gallery" onClick={toggleMenu}>ФОТОГАЛЕРЕЯ</NavLink>
+                      </li>}
                   </ul>
               </NavigationBlock>
           </Wrapper>

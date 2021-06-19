@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import { FOOTER_HEIGHT } from '../../styledComponents/constants'
 import { BREAKPOINTS } from '../../styledComponents/helpers'
+import CallToAs from '../CallToAs';
 
 export const FooterContainer = styled.footer`
   width: 100%;
@@ -51,6 +52,15 @@ export const NavBlock = styled.nav`
   grid-area: nav;
   margin: auto;
   font-size: ${props => props.theme.font.size.normal};
+  
+  a {
+    display: block;
+    color: #999;
+
+    &:hover {
+      color: #000;
+    }
+  }
 `
 
 export const NavItem = styled(NavLink)`

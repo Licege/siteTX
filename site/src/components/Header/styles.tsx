@@ -59,6 +59,7 @@ export const Navbar = styled.nav`
   }
 
   li {
+    text-transform: uppercase;
     cursor: auto;
   }
 

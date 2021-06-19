@@ -6,6 +6,7 @@ import Logo from './Logo'
 import Navigation from './Navigation'
 import { useHeaderLogic } from './logic'
 import { ActionsBlock, AuthButtonWrapper, Container } from './styles'
+import { isProduction } from '../../utils'
 
 
 const Header: React.FC = () => {
@@ -16,12 +17,12 @@ const Header: React.FC = () => {
             <MobileMenu />
             <Logo />
             <Navigation />
-            <ActionsBlock>
+            {!isProduction() && <ActionsBlock>
                 <AuthButtonWrapper>
                     <AuthButton/>
                 </AuthButtonWrapper>
                 <Bucket/>
-            </ActionsBlock>
+            </ActionsBlock>}
         </Container>
     )
 }
