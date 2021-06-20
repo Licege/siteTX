@@ -5,7 +5,7 @@ import { SectionWrapper } from '../../../components/core';
 
 const Tour = () => {
     const { width } = useWindowSize()
-    const url = "http://navse360.ru/onlyTour/4421"
+    const url = "//navse360.ru/onlyTour/4421"
 
     return (
         <SectionWrapper>

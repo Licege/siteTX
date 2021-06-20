@@ -18,9 +18,8 @@ const Home = () => {
     return (
         <main>
             <SectionAbout/>
-            <SectionPDFMenu />
-            <Tour />
             <MenuGallery />
+            <Tour />
             {!isProduction() && <SectionMenu/>}
             <SectionPromo />
             {/*<SectionDelivery contacts={contacts}/>*/}
