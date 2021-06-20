@@ -13,29 +13,11 @@ const sessionMiddleware = require('../middleware/session')
 // const credentials = {key: privateKey, cert: certificate}
 /**/
 
-const whitelist = [
-  'http://localhost:3000',
-  'http://localhost:3001',
-  'http://pub.trixolma.localhost:3000',
-  'http://dashboard.trixolma.localhost:3001'
-]
-const configureOrigin = (origin, callback) => {
-  if (whitelist.indexOf(origin) !== -1) {
-    callback(null, true)
-  } else
-    callback(new Error('Not allowed by CORS'))
-}
-
 
 const start = () => {
   const app = express()
 
   app.use(cookieParser(process.env.SECRET))
-
-  // app.use(require('cors')({
-  //   credentials: true,
-  //   origin: configureOrigin
-  // }))
 
   passport.serializeUser((user, done) => done(null, user));
   passport.deserializeUser((obj, done) => {

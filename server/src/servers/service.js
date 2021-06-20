@@ -17,23 +17,6 @@ const { createDeliveryController } = require('../controllers/sockets/delivery');
 // const credentials = {key: privateKey, cert: certificate}
 /**/
 
-const whitelist = [
-  'http://localhost:3000',
-  'http://localhost:3001',
-  'http://localhost:9090',
-  'http://pub.trixolma.localhost:3000',
-  'http://dashboard.trixolma.localhost:3001',
-  'http://127.0.0.1:9090'
-]
-const configureOrigin = (origin, callback) => {
-  console.log(origin);
-  if (whitelist.indexOf(origin) !== -1) {
-    callback(null, true)
-  } else {
-    callback(new Error('Not allowed by CORS'))
-  }
-}
-
 const start = () => {
   const app = express()
 
@@ -47,11 +30,6 @@ const start = () => {
     }
   }
   app.use('/uploads', express.static('uploads', options))
-
-  // app.use(require('cors')({
-  //   credentials: true,
-  //   origin: configureOrigin
-  // }))
 
   // const socketServer = require('http').createServer(app)
 
@@ -143,7 +121,6 @@ const start = () => {
   }
 
   app.use((err, res, next) => {
-    console.error('unknown error');
     if (err.name === 'Error') {
       console.error(err)
       return res.status(409).json({ msg: err.message })

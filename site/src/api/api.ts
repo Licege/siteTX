@@ -18,10 +18,10 @@ import {
 //const host = process.env.NODE_ENV === 'production' ? '//31.31.201.99/' : 'http://localhost'
 
 const hostname = window.location.hostname
-export const WS_BASE = process.env.NODE_ENV === 'production' ? `//${hostname}/` : `http://${hostname}/`
+export const WS_BASE = `//${hostname}/`
 
-export const serverUrl = process.env.NODE_ENV === 'production' ? `//${hostname}/` : `http://${hostname}/`
-const authUrl = process.env.NODE_ENV === 'production' ? `//${hostname}/` : `http://${hostname}/api/auth`
+export const serverUrl = `//${hostname}/`
+const authUrl = `//${hostname}/api/auth`
 const baseURL = serverUrl + 'api/public'
 const apiURL = `${serverUrl}api`
 

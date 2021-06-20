@@ -5,11 +5,10 @@ import { SectionWrapper } from '../../../components/core';
 
 const Tour = () => {
     const { width } = useWindowSize()
-    const url = "//navse360.ru/onlyTour/4421"
 
     return (
         <SectionWrapper>
-            <iframe src={url} style={{ width: width - 40, height: 360 }} />
+            <iframe src={process.env._APP_TOUR_SRC} style={{ width: width - 40, height: 360 }} />
         </SectionWrapper>
     )
 }

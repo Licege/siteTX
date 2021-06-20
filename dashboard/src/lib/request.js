@@ -51,6 +51,7 @@ const generalOptions = {
 }
 
 const request = method => async (url, body, options = {}) => {
+  console.log(options);
   const init = { ...generalOptions, ...options, method }
   if (body) {
     if (body instanceof FormData) {

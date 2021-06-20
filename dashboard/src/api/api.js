@@ -1,16 +1,20 @@
 import request from '../lib/request'
 
 const hostname = window.location.hostname
-export const WS_BASE = process.env.NODE_ENV === 'production' ? `//${hostname}/` : `http://${hostname}/`
+export const WS_BASE = `//${hostname}/`
 
-export const serverUrl = process.env.NODE_ENV === 'production' ? `//${hostname}/` : `http://${hostname}/`
-const authUrl = process.env.NODE_ENV === 'production' ? `//${hostname}/api/auth` : `http://${hostname}/api/auth`
+export const serverUrl = `//${hostname}/`
+const authUrl = `//${hostname}/api/auth`
 const baseUrl = serverUrl + 'api/private'
-export const secret = 'dev-jwt'
 
 export const authAPI = {
     login( user ) {
-      return request.post(`${authUrl}/login/`, user)
+      return request.post(`${authUrl}/login/`, user,
+        {
+          headers: {
+              'Content-Type': 'application/json'
+          }
+        })
         .then(response => response)
     },
     logout() {
