@@ -106,8 +106,8 @@ services:
     networks:
       nginx_net:
     volumes:
-      - ./data/certbot/conf:/etc/letsencrypt
-      - ./data/certbot/www:/var/www/certbot
+      - ./nginx/prod/data/certbot/conf:/etc/letsencrypt
+      - ./nginx/prod/data/certbot/www:/var/www/certbot
       - ./dashboard/build:/var/www/app/dashboard
       - ./site/build/:/var/www/app/site
     restart: always
@@ -125,8 +125,8 @@ services:
     networks:
       nginx_net:
     volumes:
-      - ./data/certbot/conf:/etc/letsencrypt
-      - ./data/certbot/www:/var/www/certbot
+      - ./nginx/prod/data/certbot/conf:/etc/letsencrypt
+      - ./nginx/prod/data/certbot/www:/var/www/certbot
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 #    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
