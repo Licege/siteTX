@@ -43,6 +43,8 @@ services:
     container_name: api_service
     <<: *default
     command: npm run start
+    networks:
+      nginx_net:
     ports:
       - "9090:9090"
     restart: always
@@ -58,6 +60,8 @@ services:
     container_name: api_auth
     <<: *default
     command: npm run start
+    networks:
+      nginx_net:
     ports:
       - "9092:9092"
     restart: always
