@@ -11,6 +11,6 @@ export function isStrongPassword(value: string) {
 }
 
 export function isCorrectPhoneNumber(value: string) {
-    const phoneNumberPattern = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/
+    const phoneNumberPattern = /^((8|\+7)[- ]?)?(\(?\d{3}\)?[- ]?)?[\d\- ]{7,10}$/
     return phoneNumberPattern.test(value)
 }

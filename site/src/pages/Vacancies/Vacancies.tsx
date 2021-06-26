@@ -1,6 +1,6 @@
 import React from 'react'
 import CardVacancy from '../../components/Cards/CardVacancy'
-import EmptyPage from '../empyPage'
+import EmptyPage from '../EmpyPage'
 import { useVacanciesPageLogic } from './logic'
 import { PageContainer, PageTitle } from '../../components/core'
 import styled from 'styled-components'

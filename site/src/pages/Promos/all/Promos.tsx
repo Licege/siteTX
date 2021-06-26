@@ -1,6 +1,6 @@
 import React from 'react'
 import CardPromo from '../../../components/Cards/CardPromo'
-import EmptyPage from '../../empyPage'
+import EmptyPage from '../../EmpyPage'
 import { Container, Title, Wrapper } from './styles'
 import { usePromosPageLogic } from './logic'
 

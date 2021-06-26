@@ -3,7 +3,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import styled from 'styled-components'
 import CardNews from '../../../components/Cards/CardNews'
 import Paginator from '../../../components/common/elements/Paginator'
-import EmptyPage from '../../empyPage'
+import EmptyPage from '../../EmpyPage'
 import { PageContainer, PageTitle } from '../../../components/core'
 import { useNewsPageLogic } from './logic'
 

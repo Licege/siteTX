@@ -8,7 +8,7 @@ const Tour = () => {
 
     return (
         <SectionWrapper>
-            <iframe src={process.env._APP_TOUR_SRC} style={{ width: width - 40, height: 360 }} />
+            <iframe src='//navse360.ru/onlyTour/4421' style={{ width: width - 40, height: 360 }} />
         </SectionWrapper>
     )
 }
