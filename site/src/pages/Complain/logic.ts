@@ -48,6 +48,5 @@ export const useComplainFormLogic = () => {
 
     const initialValues: IInitialValues = useMemo(getInitialValues, [complainTypes]);
 
-
     return { initialValues, types, onSubmit }
 }

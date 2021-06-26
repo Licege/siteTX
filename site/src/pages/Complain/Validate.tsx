@@ -4,6 +4,7 @@ const REQUIRED_FIELDS = [
     'name',
     'phone',
     'email',
+    'text'
 ]
 
 export default function (values: any): any {

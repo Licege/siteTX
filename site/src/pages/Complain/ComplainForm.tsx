@@ -1,6 +1,5 @@
 import React from 'react'
 import { Form, Field } from 'react-final-form'
-// import Field from '../../styledComponents/components/Field'
 import Select from '../../components/common/elements/form/RenderSelect'
 import Datepicker from '../../components/common/elements/form/RenderDatepicker'
 import TextField from '../../components/common/elements/form/RenderTextField'
@@ -31,7 +30,6 @@ const ComplainForm = () => {
       </FormContent>
         )}
     />
-
   )
 }
 
