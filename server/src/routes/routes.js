@@ -25,6 +25,7 @@ const profile = require('../controllers/profile');
 const complain = require('../controllers/complain');
 const complainType = require('../controllers/complainType');
 // const files = require('../../controllersMongo/file')
+const menuGallery = require('../controllers/menuGallery');
 
 module.exports = io => {
   // router
@@ -195,6 +196,12 @@ module.exports = io => {
     .delete('/api/private/complain/:id', complain.remove);
 
   // router.post('/', upload.array('files', 25), files.uploadFile)
+
+  router
+    .get('/api/private/menu/gallery', menuGallery.getAllMenu)
+    .get('/api/private/bar/gallery', menuGallery.getAllBar)
+    .post('/api/private/menu/gallery', upload.array('files', 10), menuGallery.createOrUpdateMenu)
+    .post('/api/private/bar/gallery', upload.array('files', 10), menuGallery.createOrUpdateBar)
 
   return router;
 };

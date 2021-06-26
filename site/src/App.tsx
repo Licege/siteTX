@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Route, Switch, Redirect } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 // import MenuContainer from './containers/Menu/Menu'
 // import BucketContainer from './containers/Bucket/Bucket'
 import { requestContacts } from './redux/thunks/contacts.thunk'
+import AlertProvider from './components/core/Alert/Provider';
+import Alert from './components/core/Alert';
 import { Error404 } from './pages/Errors/Error404'
 import Promos from './pages/Promos/all/Promos'
 import Promo from './pages/Promos/one/Promo'
-import './assets/main.scss'
 import Contacts from './pages/Contacts/Contacts'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
@@ -32,6 +34,9 @@ import Bucket from './pages/Bucket'
 import PDFViewer from './components/Modals/PDFViewer'
 import { AppContent, AppWrapper } from './styles'
 import { isProduction } from './utils'
+import './assets/main.scss'
+
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
     const dispatch = useDispatch()
@@ -53,35 +58,40 @@ const App = () => {
     }, [me, isAuthenticated])
 
     return (
-        <AppWrapper>
-            <Header/>
-            <AppContent>
-                <CatchErrors>
-                    <Switch>
-                        {!isProduction() && <Route exact path="/me" render={checkAuth(<Profile/>)}/>}
-                        <Route exact path='/' component={Home}/>
-                        {!isProduction() && <Route path="/menu/:categoryId?" component={Menu}/>}
-                        <Route exact path='/contacts' component={Contacts}/>
-                        <Route exact path='/vacancies' component={Vacancies}/>
-                        {!isProduction() && <Route exact path="/gallery" component={Gallery}/>}
-                        {!isProduction() && <Route exact path="/order" component={Order}/>}
-                        <Route exact path='/news' component={News}/>
-                        <Route exact path='/news/:id' component={NewsById}/>
-                        {!isProduction() && <Route exact path="/bucket" component={Bucket}/>}
-                        {!isProduction() && <Route exact path="/reviews" component={Reviews}/>}
-                        {!isProduction() && <Route exact path="/resume/:id" component={Resume}/>}
-                        {!isProduction() && <Route exact path="/banquets" component={Banquets}/>}
-                        <Route exact path='/actions' component={Promos}/>
-                        <Route exact path='/actions/:id' component={Promo}/>
-                        <Route exact path='/complain' component={Complain} />
-                        {!isProduction() && <Route exact path="/test" component={PDFViewer}/>}
-                        <Route component={Error404}/>
-                    </Switch>
-                </CatchErrors>
-                <Footer/>
-            </AppContent>
-            <Modal />
-        </AppWrapper>
+        <AlertProvider>
+            <AppWrapper>
+                <Header/>
+                <AppContent>
+                    <CatchErrors>
+                        <Switch>
+                            {!isProduction() && <Route exact path="/me" render={checkAuth(<Profile/>)}/>}
+                            <Route exact path='/' component={Home}/>
+                            {!isProduction() && <Route path="/menu/:categoryId?" component={Menu}/>}
+                            <Route exact path='/contacts' component={Contacts}/>
+                            <Route exact path='/vacancies' component={Vacancies}/>
+                            {!isProduction() && <Route exact path="/gallery" component={Gallery}/>}
+                            {!isProduction() && <Route exact path="/order" component={Order}/>}
+                            <Route exact path='/news' component={News}/>
+                            <Route exact path='/news/:id' component={NewsById}/>
+                            {!isProduction() && <Route exact path="/bucket" component={Bucket}/>}
+                            {!isProduction() && <Route exact path="/reviews" component={Reviews}/>}
+                            {!isProduction() && <Route exact path="/resume/:id" component={Resume}/>}
+                            {!isProduction() && <Route exact path="/banquets" component={Banquets}/>}
+                            <Route exact path='/actions' component={Promos}/>
+                            <Route exact path='/actions/:id' component={Promo}/>
+                            <Route exact path='/complain' component={Complain} />
+                            {!isProduction() && <Route exact path="/test" component={PDFViewer}/>}
+                            <Route component={Error404}/>
+                        </Switch>
+                    </CatchErrors>
+                    <Footer/>
+                </AppContent>
+                <Alert />
+                <Modal />
+                <ToastContainer />
+            </AppWrapper>
+        </AlertProvider>
+
     )
 }
 

@@ -242,8 +242,7 @@ export const complainAPI = {
           .catch(reason => console.error(reason))
     },
     async postComplainPrivate(complain: complainType) {
-        console.log('доделать')
-        // return await apiUserRequest.post(`${apiURL}/private/complain`, complain)
+        return request.post(`${baseURL}/complain`, complain)
     },
     postComplainPublic(complain: complainType) {
         return request.post(`${baseURL}/complain`, complain)

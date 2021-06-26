@@ -37,14 +37,15 @@ module.exports.create = async function (req, res) {
 
         const complainToAdd = {
             typeId,
-            userId: req.user,
+            userId: req.user?.id,
             name,
             email,
             phone,
             visitDate,
             text
         }
-        console.log(complainToAdd);
+
+        if (!phone) return res.status(409).json({ success: false, msg: 'Phone can not be empty' });
 
         const complain = await ComplainRepo.create(complainToAdd, transaction)
         await transaction.commit()

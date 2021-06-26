@@ -135,5 +135,15 @@ module.exports = Model => ({
 
         await Model.update({ [attr]: !value }, { where, transaction })
         return !value
+    },
+
+    createOrUpdate: async ({ where, values, transaction }) => {
+      const data = await this.one({ where }, { transaction })
+
+      if (!data) {
+        return this.create(values, transaction)
+      }
+
+      return this.update(where, values, transaction)
     }
 });

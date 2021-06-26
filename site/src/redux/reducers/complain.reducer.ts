@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {requestComplainTypes} from "../thunks/complain.thunk";
+import { requestComplainTypes, requestComplain } from "../thunks/complain.thunk";
 import { complainTypeType } from '../../types/types';
+import { successSendCase, rejectSendCase } from '../../useCases/complain/send'
 
 const complainSlice = createSlice({
     name: 'complain',
@@ -11,6 +12,15 @@ const complainSlice = createSlice({
     extraReducers: builder => {
         builder.addCase(requestComplainTypes.fulfilled, (state, action) => {
             state.complainTypes = action.payload
+        })
+        builder.addCase(requestComplainTypes.pending, (state, action) => {
+            console.log('pending')
+        })
+        builder.addCase(requestComplain.fulfilled, (s, a) => {
+            successSendCase()
+        })
+        builder.addCase(requestComplain.rejected, () => {
+            rejectSendCase()
         })
     }
 })

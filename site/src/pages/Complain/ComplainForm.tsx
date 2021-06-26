@@ -1,11 +1,13 @@
 import React from 'react'
-import { Field, Form } from 'react-final-form'
+import { Form, Field } from 'react-final-form'
+// import Field from '../../styledComponents/components/Field'
 import Select from '../../components/common/elements/form/RenderSelect'
 import Datepicker from '../../components/common/elements/form/RenderDatepicker'
 import TextField from '../../components/common/elements/form/RenderTextField'
 import Button from '@material-ui/core/Button'
 import styled from 'styled-components'
 import { useComplainFormLogic } from './logic';
+import validate from './Validate'
 
 const ComplainForm = () => {
     const { initialValues, types, onSubmit } = useComplainFormLogic()
@@ -13,7 +15,7 @@ const ComplainForm = () => {
     if (!types.length) return null
 
     return (
-    <Form onSubmit={onSubmit} initialValues={initialValues} render={({ handleSubmit }) => (
+    <Form onSubmit={onSubmit} initialValues={initialValues} validate={validate} render={({ handleSubmit }) => (
       <FormContent onSubmit={handleSubmit}>
         <Field name="typeId" component={Select} options={types} label="Тема обращения" />
         <Field name="name" component={TextField} label="Ваше имя" />
@@ -27,18 +29,24 @@ const ComplainForm = () => {
           <Button variant="contained" color="primary" type="submit">Отправить</Button>
         </ActionsBlock>
       </FormContent>
-    )}
+        )}
     />
 
   )
 }
 
-const FormContent = styled.div`
+const FormContent = styled.form`
   padding: 24px;
   background-color: #fff;
   border: 1px solid ${props => props.theme.colors.borderColor};
   max-width: 674px;
   margin: 0 auto;
+
+  .error {
+    .text-field__prompt {
+      color: #800;
+    }
+  }
 `
 
 const Row = styled.div`
