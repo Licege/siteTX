@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'styled-components'
 import { CardMedia as MaterialCardMedia } from '@material-ui/core'
 
@@ -12,7 +11,7 @@ const CardMedia = styled(MaterialCardMedia).attrs((props: IProps) => ({
   image: props.image,
   onClick: props.onClick
 }))`
-  cursor: ${props => Boolean(props.onClick) ? 'pointer' : 'default'};
+  cursor: ${props => props.onClick ? 'pointer' : 'default'};
   border-radius: 16px 16px 0 0;
   background-size: cover;
   min-height: 200px;
