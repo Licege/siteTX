@@ -196,6 +196,7 @@ export const newsAPI = {
           .then(response => response)
     },
     updateNews( news, id ) {
+        console.log(id);
         return request.patch(`${baseUrl}/news/${id}`, news)
           .then(response => response)
     },

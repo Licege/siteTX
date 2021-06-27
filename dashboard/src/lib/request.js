@@ -56,9 +56,6 @@ const request = method => async (url, body, options = {}) => {
   if (body) {
     if (body instanceof FormData) {
       init.body = body
-      init.headers = {
-        'Content-type': 'application/x-www-form-urlencoded'
-      }
       // delete init.headers
     } else {
       init.body = JSON.stringify(body)

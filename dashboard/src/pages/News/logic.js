@@ -82,7 +82,7 @@ export const useEditNewsLogic = () => {
 
   const updateNews = news => {
     const formData = createFormDataWithFile(news, 'image')
-    dispatch(updateNewsThunk(formData))
+    dispatch(updateNewsThunk({ id: currentNews.id, data: formData}))
     history.goBack()
   }
 

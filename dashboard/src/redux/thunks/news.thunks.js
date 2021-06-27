@@ -27,8 +27,8 @@ export const requestNewsById = createAsyncThunk(
 
 export const updateNews = createAsyncThunk(
   'news/updateNews',
-  async (news, id) => {
-    const response = await newsAPI.updateNews(news, id)
+  async ({ id, data }) => {
+    const response = await newsAPI.updateNews(data, id)
     return response
   }
 )
