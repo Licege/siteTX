@@ -29,10 +29,10 @@ const NavigationSidebar = () => (
                     <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/bar'>Бар</NavLink>
                 </Accordion.Collapse>
                 */}
-      <Accordion.Collapse eventKey="0">
-        <NavLink activeClassName="-active" className="navbar-accordion-header-item" to="/halls">Банкетные
-          залы</NavLink>
-      </Accordion.Collapse>
+      {/*<Accordion.Collapse eventKey="0">*/}
+      {/*  <NavLink activeClassName="-active" className="navbar-accordion-header-item" to="/halls">Банкетные*/}
+      {/*    залы</NavLink>*/}
+      {/*</Accordion.Collapse>*/}
       <Accordion.Collapse eventKey="0">
         <NavLink activeClassName="-active" className="navbar-accordion-header-item"
                  to="/employees"
@@ -147,14 +147,14 @@ const NavigationSidebar = () => (
           доступа</NavLink>
       </Accordion.Collapse>
 
-      <CustomToggle className="navbar-accordion-header" eventKey="6">
-        Статистика и отчеты
-      </CustomToggle>
-      <Accordion.Collapse eventKey="6">
-        <NavLink activeClassName="-active" className="navbar-accordion-header-item"
-                 to="/average_check"
-        >Средний чек</NavLink>
-      </Accordion.Collapse>
+      {/*<CustomToggle className="navbar-accordion-header" eventKey="6">*/}
+      {/*  Статистика и отчеты*/}
+      {/*</CustomToggle>*/}
+      {/*<Accordion.Collapse eventKey="6">*/}
+      {/*  <NavLink activeClassName="-active" className="navbar-accordion-header-item"*/}
+      {/*           to="/average_check"*/}
+      {/*  >Средний чек</NavLink>*/}
+      {/*</Accordion.Collapse>*/}
     </Accordion>
   </nav>
 )

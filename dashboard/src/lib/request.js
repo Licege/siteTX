@@ -44,19 +44,22 @@ const responseHandler = async response => {
 };
 
 const generalOptions = {
-  // headers: {
-  //   'Content-Type': 'application/json'
-  // },
+  headers: {
+    'Content-Type': 'application/json'
+  },
   credentials: 'include'
 }
 
 const request = method => async (url, body, options = {}) => {
-  console.log(options);
   const init = { ...generalOptions, ...options, method }
+  if (method === 'GET') delete init.headers
   if (body) {
     if (body instanceof FormData) {
       init.body = body
-      delete init.headers
+      init.headers = {
+        'Content-type': 'application/x-www-form-urlencoded'
+      }
+      // delete init.headers
     } else {
       init.body = JSON.stringify(body)
     }
