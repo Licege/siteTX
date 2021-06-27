@@ -1,5 +1,6 @@
 import React from 'react'
 import Gallery from './Gallery';
+import menuImg from '../../../static/img/menu-v2.jpeg'
 
 const { hostname } = window.location
 const images = [
@@ -19,7 +20,7 @@ const images = [
   `//${hostname}/uploads/0032.webp`
 ];
 
-const MenuGallery = () => <Gallery images={images} />
+const MenuGallery = () => <Gallery images={images} backgroundImage={menuImg} />
 
 
 export default MenuGallery

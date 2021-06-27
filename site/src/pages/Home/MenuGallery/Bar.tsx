@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components';
 import Gallery from './Gallery';
 import { Button } from '../../../components/core';
+import menuImg from '../../../static/img/bar-menu-v1.jpeg'
 
 const { hostname } = window.location
 const images = [
@@ -35,7 +36,7 @@ const BarGallery = () => {
           Мне есть 18 лет
         </Button>
         </Bound>}
-      <Gallery images={images} />
+      <Gallery backgroundImage={menuImg} images={images} />
     </Wrapper>
   )
 }

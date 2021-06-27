@@ -25,8 +25,8 @@ const SectionContent = styled.div`
   display: grid;
   grid-gap: 16px;
   grid-auto-flow: column;
-  grid-template-columns: repeat(2, minmax(484px, 1fr));
-  justify-content: space-between;
+  grid-template-columns: repeat(2, minmax(500px, max-content));
+  justify-content: center;
   margin: 25px 0;
   
   @media(max-width: ${BREAKPOINTS.ds}px) {
