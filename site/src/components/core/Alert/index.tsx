@@ -5,24 +5,24 @@ import { AlertContext } from './Provider'
 
 
 function Alert(props: AlertProps) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />
+  return <MuiAlert elevation={6} variant="filled" {...props} />
 }
 
 
 const CustomAlert = () => {
-    const alertContext = useContext(AlertContext)
+  const alertContext = useContext(AlertContext)
 
-    if (!alertContext) return null;
+  if (!alertContext) return null;
 
-    const { alert, onClose } = alertContext
+  const { alert, onClose } = alertContext
 
-    return (
-        <Snackbar open={alert.isOpen} autoHideDuration={3000}>
-            <Alert onClose={onClose} severity={alert.type}>
-                {alert.message}
-            </Alert>
-        </Snackbar>
-    )
+  return (
+    <Snackbar open={alert.isOpen} autoHideDuration={3000}>
+      <Alert onClose={onClose} severity={alert.type}>
+        {alert.message}
+      </Alert>
+    </Snackbar>
+  )
 }
 
 export default CustomAlert

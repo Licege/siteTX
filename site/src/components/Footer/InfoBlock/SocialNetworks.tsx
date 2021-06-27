@@ -18,48 +18,42 @@ const SocialNetworks = () => {
       {contacts.vk ?
         <a href={contacts.vk}
            target='_blank'
-           rel="noopener noreferrer"
-        >
+           rel="noopener noreferrer">
           <img src={vk} alt='vk'/>
         </a> : ''
       }
       {contacts.inst ?
         <a href={contacts.inst}
            target='_blank'
-           rel="noopener noreferrer"
-        >
+           rel="noopener noreferrer">
           <img src={instagram} alt='instagram'/>
         </a> : ''
       }
       {contacts.fb ?
         <a href={contacts.fb}
            target='_blank'
-           rel="noopener noreferrer"
-        >
+           rel="noopener noreferrer">
           <img src={fb} alt='facebook'/>
         </a> : ''
       }
       {contacts.tg ?
         <a href={contacts.tg}
            target='_blank'
-           rel="noopener noreferrer"
-        >
+           rel="noopener noreferrer">
           <img src={tg} alt='telegram'/>
         </a> : ''
       }
       {contacts.google ?
         <a href={contacts.google}
            target='_blank'
-           rel="noopener noreferrer"
-        >
+           rel="noopener noreferrer">
           <img src={gmail} alt='mail'/>
         </a> : ''
       }
       {contacts.tw ?
         <a href={contacts.tw}
            target='_blank'
-           rel="noopener noreferrer"
-        >
+           rel="noopener noreferrer">
           <img src={tw} alt='twitter'/>
         </a> : ''
       }

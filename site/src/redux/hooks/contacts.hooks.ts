@@ -10,7 +10,7 @@ export const useContacts = () => {
 
   useEffect(() => {
     if (!contacts) dispatch(requestContacts())
-  }, [])
+  }, [dispatch])
 
   return contacts;
 }
@@ -20,7 +20,7 @@ export const useRequestContacts = () => {
 
   useEffect(() => {
     dispatch(requestContacts())
-  }, [])
+  }, [dispatch])
 
   return useSelector(getContacts)
 }

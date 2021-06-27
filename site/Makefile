@@ -6,3 +6,6 @@ start:
 
 start-prod:
 	env $(VARIABLES) NODE_ENV=production npm run start
+
+fix:
+	./node_modules/.bin/eslint --fix ${p}

@@ -1,6 +1,6 @@
 import React from 'react'
-import { dishType } from '../../../types/types'
 import { DialogContent } from '@material-ui/core'
+import { dishType } from '../../../types/types'
 import useModalDishInfoLogic from './logic'
 import {
   Close,
@@ -29,7 +29,7 @@ const ModalDishInfo: React.FC<IProps> = ({ dish }) => {
   const { addDishToBucket, hideModal } = useModalDishInfoLogic()
 
   return (
-    <Container open={true} onClose={hideModal}>
+    <Container open onClose={hideModal}>
       <DialogContent>
         <Wrapper>
           <Close onClick={hideModal} />
@@ -42,22 +42,22 @@ const ModalDishInfo: React.FC<IProps> = ({ dish }) => {
               <EnergyDescription>
                 <table>
                   <tbody>
-                  <tr>
-                    <td>Белки</td>
-                    <td>** г</td>
-                  </tr>
-                  <tr>
-                    <td>Жиры</td>
-                    <td>** г</td>
-                  </tr>
-                  <tr>
-                    <td>Углеводы</td>
-                    <td>** г</td>
-                  </tr>
-                  <tr>
-                    <td>Калорийность</td>
-                    <td>*** Ккал</td>
-                  </tr>
+                    <tr>
+                      <td>Белки</td>
+                      <td>** г</td>
+                    </tr>
+                    <tr>
+                      <td>Жиры</td>
+                      <td>** г</td>
+                    </tr>
+                    <tr>
+                      <td>Углеводы</td>
+                      <td>** г</td>
+                    </tr>
+                    <tr>
+                      <td>Калорийность</td>
+                      <td>*** Ккал</td>
+                    </tr>
                   </tbody>
                 </table>
               </EnergyDescription>

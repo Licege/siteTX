@@ -11,13 +11,9 @@ import * as actions from '../reducers/bucket.reducer'
 import { useAppDispatch } from '../redux-store'
 import { postOrder, requestDeliverySettings, requestGlobalDeliverySettings } from '../thunks/bucket.thunk'
 
-export const useDelivery = () => {
-  return useSelector(getDeliveryOrder)
-}
+export const useDelivery = () => useSelector(getDeliveryOrder)
 
-export const useOrderedDishes = () => {
-  return useSelector(getAllOrderedDishes)
-}
+export const useOrderedDishes = () => useSelector(getAllOrderedDishes)
 
 export const useDeliverySettings = ({ force = false } = {}) => {
   const dispatch = useAppDispatch()
@@ -27,7 +23,7 @@ export const useDeliverySettings = ({ force = false } = {}) => {
     if (!settings.length || force) {
       dispatch(requestDeliverySettings())
     }
-  }, [])
+  }, [dispatch, force])
 
   return settings
 }
@@ -40,7 +36,7 @@ export const useGlobalDeliverySettings = ({ force = false } = {}) => {
     if (!settings || !Object.keys(settings).length || force) {
       dispatch(requestGlobalDeliverySettings())
     }
-  }, [])
+  }, [dispatch, force])
 
   return settings
 }

@@ -1,18 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 import { promoType } from '../../types/types'
-import {requestPromoById, requestPromos} from "../thunks/promos.thunk";
+import { requestPromoById, requestPromos } from '../thunks/promos.thunk';
 
 const promosSlice = createSlice({
-    name: 'promos',
-    initialState: {
-        promos: [] as Array<promoType>,
-        currentPromo: {} as promoType
-    },
-    reducers: {},
-    extraReducers: builder => {
-        builder.addCase(requestPromos.fulfilled, (state, action) => { state.promos = action.payload })
-        builder.addCase(requestPromoById.fulfilled, (state, action) => { state.currentPromo = action.payload })
-    }
+  name: 'promos',
+  initialState: {
+    promos: [] as Array<promoType>,
+    currentPromo: {} as promoType
+  },
+  reducers: {},
+  extraReducers: builder => {
+    builder.addCase(requestPromos.fulfilled, (state, action) => { state.promos = action.payload })
+    builder.addCase(requestPromoById.fulfilled, (state, action) => { state.currentPromo = action.payload })
+  }
 })
 
 export default promosSlice.reducer

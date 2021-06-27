@@ -24,7 +24,7 @@ export const Wrapper = styled.div`
   display: flex;
   padding: 20px;
   
-  @media(max-width: ${BREAKPOINTS['ts']}px) {
+  @media(max-width: ${BREAKPOINTS.ts}px) {
     flex-direction: column;
   }
 `
@@ -51,7 +51,7 @@ export const Image = styled.img`
   width: 600px;
   height: 400px;
   
-  @media(max-width: ${BREAKPOINTS['ts']}px) {
+  @media(max-width: ${BREAKPOINTS.ts}px) {
     width: 216px;
     height: 216px;
   }
@@ -60,7 +60,7 @@ export const Image = styled.img`
 export const InfoBlock = styled.div`
   padding: 16px 0 0 30px;
   
-  @media(max-width: ${BREAKPOINTS['ts']}px) {
+  @media(max-width: ${BREAKPOINTS.ts}px) {
     padding: 0;
   }
 `
@@ -71,7 +71,7 @@ export const Title = styled.div`
   margin-bottom: 20px;
   line-height: 1.3;
   
-  @media(max-width: ${BREAKPOINTS['ts']}px) {
+  @media(max-width: ${BREAKPOINTS.ts}px) {
     margin-top: 8px;
     margin-bottom: 12px;
   }
@@ -84,7 +84,7 @@ export const Description = styled.div`
 export const Energy = styled.div`
   margin-bottom: 16px;
 
-  @media(max-width: ${BREAKPOINTS['ts']}px) {
+  @media(max-width: ${BREAKPOINTS.ts}px) {
     margin-bottom: 8px;
   }
 `

@@ -1,13 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const appSlice = createSlice({
-    name: 'app',
-    initialState: {
-        isPhone: false
-    },
-    reducers: {
-        toggleMobileMenu: state => { state.isPhone = !state.isPhone }
-    }
+  name: 'app',
+  initialState: {
+    isPhone: false
+  },
+  reducers: {
+    toggleMobileMenu: state => { state.isPhone = !state.isPhone }
+  }
 })
 
 export const { toggleMobileMenu } = appSlice.actions

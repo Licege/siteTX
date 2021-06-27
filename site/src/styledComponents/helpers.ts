@@ -16,23 +16,23 @@ type BreakpointsType = keyof typeof BREAKPOINTS
 
 export const getCurrentBreakpoint = () => {
   const { innerWidth } = window;
-  if (innerWidth >= 0 && innerWidth < BREAKPOINTS['ms']) {
+  if (innerWidth >= 0 && innerWidth < BREAKPOINTS.ms) {
     return 'ms';
-  } else if (innerWidth >= BREAKPOINTS['ms'] && innerWidth < BREAKPOINTS['mm']) {
+  } if (innerWidth >= BREAKPOINTS.ms && innerWidth < BREAKPOINTS.mm) {
     return 'mm';
-  } else if (innerWidth >= BREAKPOINTS['mm'] && innerWidth < BREAKPOINTS['ml']) {
+  } if (innerWidth >= BREAKPOINTS.mm && innerWidth < BREAKPOINTS.ml) {
     return 'ml';
-  } else if (innerWidth >= BREAKPOINTS['ml'] && innerWidth < BREAKPOINTS['ts']) {
+  } if (innerWidth >= BREAKPOINTS.ml && innerWidth < BREAKPOINTS.ts) {
     return 'ts';
-  } else if (innerWidth >= BREAKPOINTS['ts'] && innerWidth < BREAKPOINTS['tm']) {
+  } if (innerWidth >= BREAKPOINTS.ts && innerWidth < BREAKPOINTS.tm) {
     return 'tm';
-  } else if (innerWidth >= BREAKPOINTS['tm'] && innerWidth < BREAKPOINTS['ds']) {
+  } if (innerWidth >= BREAKPOINTS.tm && innerWidth < BREAKPOINTS.ds) {
     return 'ds';
-  } else if (innerWidth >= BREAKPOINTS['ds'] && innerWidth < BREAKPOINTS['dm']) {
+  } if (innerWidth >= BREAKPOINTS.ds && innerWidth < BREAKPOINTS.dm) {
     return 'dm';
-  } else if (innerWidth >= BREAKPOINTS['dm'] && innerWidth < BREAKPOINTS['dl']) {
+  } if (innerWidth >= BREAKPOINTS.dm && innerWidth < BREAKPOINTS.dl) {
     return 'dl';
-  } else if (innerWidth >= BREAKPOINTS['dl'] && innerWidth < BREAKPOINTS['dxl']) {
+  } if (innerWidth >= BREAKPOINTS.dl && innerWidth < BREAKPOINTS.dxl) {
     return 'dxl';
   }
   return 'dl';
@@ -51,7 +51,7 @@ const emSize = (pixelValue: number) => `${pixelValue / 16}em`;
 export const getSizeFromBreakpoint = (breakpointValue: BreakpointsType) => {
   if (BREAKPOINTS[breakpointValue]) {
     return emSize(BREAKPOINTS[breakpointValue]);
-  } else if (parseInt(breakpointValue, 10)) {
+  } if (parseInt(breakpointValue, 10)) {
     return emSize(BREAKPOINTS[breakpointValue]);
   }
   console.error('styled-media-query: No valid breakpoint or size specified for media.');

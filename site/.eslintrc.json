@@ -1,3 +1,45 @@
 {
-  "extends": "react-app"
+  "extends": ["react-app", "airbnb-typescript", "plugin:react/recommended", "prettier", "prettier"],
+  "rules": {
+    "no-unused-vars": "off",
+    "no-use-before-define": "off",
+    "indent": ["error", 2, { "ignoredNodes": ["JSXElement *", "JSXElement"]}],
+    "import/prefer-default-export": "off",
+    "react/display-name": "off",
+    "react/jsx-uses-react": "error",
+    "object-curly-spacing": "error",
+    "quotes": ["error", "single", { "avoidEscape": true }],
+    "react/jsx-indent": ["error", 2],
+    "react/jsx-indent-props": ["error", "first"],
+    "react/jsx-closing-bracket-location": ["error", "after-props"],
+    "react/jsx-first-prop-new-line": ["error", "never"],
+    "react/jsx-props-no-spreading": "off",
+    "react/no-array-index-key": "off",
+    "react/destructuring-assignment": "off"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts?(x)"],
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      },
+      "rules": {
+        "no-unused-vars": "off",
+        "no-use-before-define": "off",
+        "@typescript-eslint/no-use-before-define": "off",
+        "react/jsx-uses-react": "error",
+        "import/no-extraneous-dependencies": "off",
+        "@typescript-eslint/no-unused-expressions": "off",
+        "no-param-reassign": "off",
+        "import/no-cycle": "warn",
+        "react/prop-types": "off",
+        "@typescript-eslint/no-shadow": "off",
+        "@typescript-eslint/naming-convention": "off"
+      },
+      "globals": {
+        "React": true,
+        "JSX": true
+      }
+    }
+  ]
 }

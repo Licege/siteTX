@@ -1,16 +1,16 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { requestReviews } from "../thunks/reviews.thunk";
+import { createSlice } from '@reduxjs/toolkit';
+import { requestReviews } from '../thunks/reviews.thunk';
 import { IReview } from '../../types/types'
 
 const reviewsSlice = createSlice({
-    name: 'reviews',
-    initialState: {
-        reviews: [] as Array<IReview>,
-    },
-    reducers: {},
-    extraReducers: builder => {
-        builder.addCase(requestReviews.fulfilled, (state, action) => { state.reviews = action.payload })
-    }
+  name: 'reviews',
+  initialState: {
+    reviews: [] as Array<IReview>,
+  },
+  reducers: {},
+  extraReducers: builder => {
+    builder.addCase(requestReviews.fulfilled, (state, action) => { state.reviews = action.payload })
+  }
 })
 
 export default reviewsSlice.reducer

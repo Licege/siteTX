@@ -1,43 +1,43 @@
 import React, { useState } from 'react'
+import styled from 'styled-components';
 import Gallery from './Gallery';
 import { Button } from '../../../components/core';
-import styled from 'styled-components';
 
-const hostname = window.location.hostname
+const { hostname } = window.location
 const images = [
-    `//${hostname}/uploads/0014.webp`,
-    `//${hostname}/uploads/0015.webp`,
-    `//${hostname}/uploads/0016.webp`,
-    `//${hostname}/uploads/0017.webp`,
-    `//${hostname}/uploads/0018.webp`,
-    `//${hostname}/uploads/0019.webp`,
-    `//${hostname}/uploads/0020.webp`,
-    `//${hostname}/uploads/0021.webp`,
-    `//${hostname}/uploads/0022.webp`,
-    `//${hostname}/uploads/0023.webp`,
-    `//${hostname}/uploads/0024.webp`,
-    `//${hostname}/uploads/0025.webp`,
-    `//${hostname}/uploads/0026.webp`,
-    `//${hostname}/uploads/0027.webp`,
-    `//${hostname}/uploads/0028.webp`,
-    `//${hostname}/uploads/0029.webp`,
-    `//${hostname}/uploads/0030.webp`,
-    `//${hostname}/uploads/0031.webp`,
+  `//${hostname}/uploads/0014.webp`,
+  `//${hostname}/uploads/0015.webp`,
+  `//${hostname}/uploads/0016.webp`,
+  `//${hostname}/uploads/0017.webp`,
+  `//${hostname}/uploads/0018.webp`,
+  `//${hostname}/uploads/0019.webp`,
+  `//${hostname}/uploads/0020.webp`,
+  `//${hostname}/uploads/0021.webp`,
+  `//${hostname}/uploads/0022.webp`,
+  `//${hostname}/uploads/0023.webp`,
+  `//${hostname}/uploads/0024.webp`,
+  `//${hostname}/uploads/0025.webp`,
+  `//${hostname}/uploads/0026.webp`,
+  `//${hostname}/uploads/0027.webp`,
+  `//${hostname}/uploads/0028.webp`,
+  `//${hostname}/uploads/0029.webp`,
+  `//${hostname}/uploads/0030.webp`,
+  `//${hostname}/uploads/0031.webp`,
 ];
 
 const BarGallery = () => {
-    const [showBound, setShowBound] = useState(true)
+  const [showBound, setShowBound] = useState(true)
 
-    return (
-        <Wrapper>
-            {showBound && <Bound>
-              <Button variant="contained" color="secondary" onClick={() => setShowBound(false)}>
-                Мне есть 18 лет
-              </Button>
-            </Bound>}
-            <Gallery images={images} />
-        </Wrapper>
-    )
+  return (
+    <Wrapper>
+      {showBound && <Bound>
+        <Button variant="contained" color="secondary" onClick={() => setShowBound(false)}>
+          Мне есть 18 лет
+        </Button>
+        </Bound>}
+      <Gallery images={images} />
+    </Wrapper>
+  )
 }
 
 const Wrapper = styled.div`

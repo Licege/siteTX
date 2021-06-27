@@ -1,8 +1,8 @@
 import { useCallback } from 'react'
-import { useAppDispatch } from '../redux-store'
-import * as modalsActions from "../reducers/modals.reducer";
-import { toggleMobileMenu } from '../reducers/app.reducer'
 import { useSelector } from 'react-redux'
+import { useAppDispatch } from '../redux-store'
+import * as modalsActions from '../reducers/modals.reducer';
+import { toggleMobileMenu } from '../reducers/app.reducer'
 import { getIsPhone } from '../getters/app.getters'
 
 export const useModalActions = () => {
@@ -10,9 +10,9 @@ export const useModalActions = () => {
 
   const showModal = useCallback((name, props) => {
     dispatch(modalsActions.showModal({ name, props }))
-  }, [])
+  }, [dispatch])
 
-  const hideModal = useCallback(() => dispatch(modalsActions.hideModal()), [])
+  const hideModal = useCallback(() => dispatch(modalsActions.hideModal()), [dispatch])
 
   return { showModal, hideModal }
 }
@@ -28,7 +28,7 @@ export const useMobileMenuActions = () => {
     isOpenMobileMenu
       ? document.body.classList.remove('scroll_block')
       : document.body.classList.add('scroll_block')
-  }, [isOpenMobileMenu])
+  }, [isOpenMobileMenu, dispatch])
 
   return { toggleMenu }
 }

@@ -18,7 +18,7 @@ export const useNewsPageLogic = () => {
 
   const onPageChange = useCallback((page: number) => {
     dispatch(requestNews(page))
-  }, [])
+  }, [dispatch])
 
   return { news, totalCount, onPageChange }
 }

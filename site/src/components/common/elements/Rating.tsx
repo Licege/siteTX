@@ -17,56 +17,48 @@ interface IState {
 }
 
 class Rating extends React.PureComponent<IProps, IState> {
-    constructor( props: IProps ) {
-        super(props)
-        this.state = {
-            value: props.value || 3,
-            hover: null,
-        }
+  constructor( props: IProps ) {
+    super(props)
+    this.state = {
+      value: props.value || 3,
+      hover: null,
+    }
+  }
+
+    onChange = ( value: number ) => () => {
+      if (!this.props.disabled) {
+        this.props.onChange && this.props.onChange(value)
+        this.setState({ value })
+      }
     }
 
-    onChange = ( value: number ) => {
-        return () => {
-            if (!this.props.disabled) {
-                this.props.onChange && this.props.onChange(value)
-                this.setState({value})
-            }
-        }
-    }
-
-    changeFocus = ( value: number | null ) => {
-        return () => {
-            !this.props.disabled && this.setState({hover: value})
-        }
+    changeFocus = ( value: number | null ) => () => {
+      !this.props.disabled && this.setState({ hover: value })
     }
 
     render() {
-        const {value, hover} = this.state
+      const { value, hover } = this.state
 
-        return (
-            <div>
-                {[...Array(this.props.countStars || 5)].map(( star, i ) => {
+      return (
+        <div>
+          {[...Array(this.props.countStars || 5)].map(( star, i ) => {
                     const ratingValue = i + 1
 
                     return (
-                        <StarsWrapper key={ratingValue}>
-                            <input
-                                type='radio'
-                                name='rating'
-                                value={ratingValue}
-                                onClick={this.onChange(ratingValue)}
-                            />
-                            <FaStar
-                                size={this.props.size || 50}
+                      <StarsWrapper key={ratingValue}>
+                        <input type='radio'
+                               name='rating'
+                               value={ratingValue}
+                               onClick={this.onChange(ratingValue)}/>
+                        <FaStar size={this.props.size || 50}
                                 color={ratingValue <= (hover || value) ? 'ffc107' : 'e4e5e9'}
                                 onMouseEnter={this.changeFocus(ratingValue)}
-                                onMouseLeave={this.changeFocus(null)}
-                            />
-                        </StarsWrapper>
+                                onMouseLeave={this.changeFocus(null)}/>
+                      </StarsWrapper>
                     )
                 })}
-            </div>
-        )
+        </div>
+      )
     }
 }
 

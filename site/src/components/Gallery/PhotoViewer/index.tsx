@@ -9,20 +9,18 @@ interface IProps {
 }
 
 const PhotoViewer: FC<IProps> = ({ images, isOpen, onClose }) => {
-    const [photoIndex, setPhotoIndex] = useState(0)
+  const [photoIndex, setPhotoIndex] = useState(0)
 
-    if (!isOpen) return null
+  if (!isOpen) return null
 
-    return (
-        <Lightbox
-            mainSrc={images[photoIndex]}
-            nextSrc={images[(photoIndex + 1) % images.length]}
-            prevSrc={images[(photoIndex + images.length - 1) % images.length]}
-            onCloseRequest={onClose}
-            onMovePrevRequest={() => setPhotoIndex((photoIndex + images.length - 1) % images.length)}
-            onMoveNextRequest={() => setPhotoIndex((photoIndex + 1) % images.length)}
-        />
-    )
+  return (
+    <Lightbox mainSrc={images[photoIndex]}
+              nextSrc={images[(photoIndex + 1) % images.length]}
+              prevSrc={images[(photoIndex + images.length - 1) % images.length]}
+              onCloseRequest={onClose}
+              onMovePrevRequest={() => setPhotoIndex((photoIndex + images.length - 1) % images.length)}
+              onMoveNextRequest={() => setPhotoIndex((photoIndex + 1) % images.length)}/>
+  )
 }
 
 export default PhotoViewer

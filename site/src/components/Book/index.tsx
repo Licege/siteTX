@@ -33,14 +33,14 @@ const Book: React.FC<IProps> = ({ file }) => {
 
   const onKeyHandle = (event: KeyboardEvent) => {
     switch (event.key) {
-      case 'ArrowLeft':
-        prevPage()
-        break
-      case 'ArrowRight':
-        nextPage()
-        break
-      default:
-        break;
+    case 'ArrowLeft':
+      prevPage()
+      break
+    case 'ArrowRight':
+      nextPage()
+      break
+    default:
+      break;
     }
   }
 
@@ -51,9 +51,9 @@ const Book: React.FC<IProps> = ({ file }) => {
   const onDocumentLoadSuccess = ({ numPages }: INumPages) => setNumPages(numPages!)
 
   return (
-    <Container style={{ width: width, backgroundColor: 'black' }}>
+    <Container style={{ width, backgroundColor: 'black' }}>
       <Document file={file} onLoadSuccess={onDocumentLoadSuccess} >
-          <Pages counts={numPages} width={width} />
+        <Pages counts={numPages} width={width} />
       </Document>
     </Container>
   )

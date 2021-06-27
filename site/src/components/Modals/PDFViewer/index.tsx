@@ -12,7 +12,7 @@ const PDFViewer: React.FC<IProps> = ({ src }) => {
   const { hideModal } = useModalActions()
 
   return (
-    <Dialog open={true} ref={refForScroll} onBackdropClick={hideModal} maxWidth='xl'>
+    <Dialog open ref={refForScroll} onBackdropClick={hideModal} maxWidth='xl'>
       <Book file={src} />
     </Dialog>
   )

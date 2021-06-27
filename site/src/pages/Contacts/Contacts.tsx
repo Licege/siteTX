@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
+import styled from 'styled-components'
 import ConnectWithUs from './ConnectWithUs'
 import AddressBlock from './AddressBlock'
 import { AboutUs } from './AboutUs'
 import { PageContainer } from '../../components/core'
-import styled from 'styled-components'
 import { BREAKPOINTS } from '../../styledComponents/helpers';
 
 const Contacts: React.FC = () => {
@@ -28,7 +28,7 @@ const BlocksWrapper = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-gap: 36px;
   
-  @media(max-width: ${BREAKPOINTS['ts']}px) {
+  @media(max-width: ${BREAKPOINTS.ts}px) {
     flex-direction: column-reverse;
   }
 `

@@ -19,9 +19,9 @@ export const SectionSubtitle = styled.p`
   margin-bottom: 16px;
 
   ${(props: ISectionSubtitle) => props.noMargin
-          ? css`margin: 0;`
-          : ''
-  }
+    ? css`margin: 0;`
+    : ''
+}
 `
 
 interface ISectionWrapper {
@@ -35,7 +35,7 @@ export const SectionWrapper = styled.section`
   display: ${(props: ISectionWrapper) => props.display ? props.display : 'block'};
   
   ${props => props.noBorder 
-          ? css`border-bottom: inset;`
-          : ''
-  }
+    ? css`border-bottom: inset;`
+    : ''
+}
 `

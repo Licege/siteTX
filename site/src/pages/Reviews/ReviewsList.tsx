@@ -7,12 +7,12 @@ interface IProps {
 
 
 const ReviewsList: React.FC<IProps> = ({ reviews }) => (
-    reviews ?
-        <div>
-            {reviews.map(review => (
-                <div>{review.surname}</div>
+  reviews ?
+    <div>
+      {reviews.map((review, key) => (
+        <div key={key}>{review.surname}</div>
             ))}
-        </div> : null
+    </div> : null
 )
 
 export default ReviewsList

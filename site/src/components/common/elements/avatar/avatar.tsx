@@ -6,8 +6,6 @@ interface IProps {
     avatarSrc: string | undefined
 }
 
-export const Avatar = ({ avatarSrc = '' }: IProps) => {
-    return (
-        <img className='avatar' src={avatarSrc || altAvatar} alt='Аватар' />
-    )
-}
+export const Avatar = ({ avatarSrc = '' }: IProps) => (
+  <img className='avatar' src={avatarSrc || altAvatar} alt='Аватар' />
+)

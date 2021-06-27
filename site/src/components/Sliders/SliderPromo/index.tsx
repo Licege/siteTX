@@ -1,22 +1,22 @@
 import React from 'react'
+import styled from 'styled-components'
 import CustomSlider from '../../common/elements/sliders/CustomSlider'
 import CardPromo from '../../Cards/CardPromo'
 import { usePromos } from '../../../redux/hooks/promos.hooks'
 import config from './config'
-import styled from 'styled-components'
 
 const SliderPromo = () => {
-    const promos = usePromos()
+  const promos = usePromos()
 
-    return (
-        <Wrapper>
-            <CustomSlider settings={config(promos.length)}>
-                {promos.map((promo, key) => (
-                    <CardPromo promo={promo} key={key}/>
+  return (
+    <Wrapper>
+      <CustomSlider settings={config(promos.length)}>
+        {promos.map((promo, key) => (
+          <CardPromo promo={promo} key={key}/>
                 ))}
-            </CustomSlider>
-        </Wrapper>
-    )
+      </CustomSlider>
+    </Wrapper>
+  )
 }
 
 const Wrapper = styled.div`

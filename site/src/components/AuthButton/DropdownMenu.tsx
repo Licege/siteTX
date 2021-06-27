@@ -1,13 +1,13 @@
-import React from "react";
-import {Dropdown} from "react-bootstrap";
-import {useAuthDropdownMenuLogic} from "./logic";
+import React from 'react';
+import { Dropdown } from 'react-bootstrap';
+import { useAuthDropdownMenuLogic } from './logic';
 
 const DropdownMenu = () => {
   const { redirectToProfile, logout } = useAuthDropdownMenuLogic()
 
   return (
     <div>
-      {/*<Button variant='contained' color='secondary' onClick={signOutSubmit}>Выйти</Button>*/}
+      {/* <Button variant='contained' color='secondary' onClick={signOutSubmit}>Выйти</Button> */}
       <Dropdown>
         <Dropdown.Toggle>
           Профиль

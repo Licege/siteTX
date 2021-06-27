@@ -1,9 +1,9 @@
 import React from 'react'
+import styled from 'styled-components'
 import useButtonBucketLogic from './logic'
 import shopping_cart from '../../../static/img/shopping-cart.png'
 import BucketInfo from './BucketInfo'
 import Counter from './Counter'
-import styled from 'styled-components'
 
 const Bucket = () => {
   const { moreInfo, toggle } = useButtonBucketLogic()

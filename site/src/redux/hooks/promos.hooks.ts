@@ -28,7 +28,7 @@ export const usePromo = () => {
 
   useEffect(() => {
     dispatch(requestPromoById(id))
-  }, [])
+  }, [dispatch, id])
 
   return useSelector(getCurrentPromo)
 }

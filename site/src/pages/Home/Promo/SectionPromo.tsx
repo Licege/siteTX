@@ -5,18 +5,18 @@ import { SectionSubtitle, SectionTitle, SectionWrapper } from '../../../componen
 import { LinkButton } from '../styles'
 
 const SectionPromo = () => {
-    const { isPromosExist } = useSectionPromosLogic()
+  const { isPromosExist } = useSectionPromosLogic()
 
-    if (!isPromosExist) return null;
+  if (!isPromosExist) return null;
 
-    return (
-        <SectionWrapper>
-            <SectionTitle>Наши акции</SectionTitle>
-            <SectionSubtitle>Выгодное предложение для Вас</SectionSubtitle>
-            <SliderPromo />
-            <LinkButton to='/actions' label='Смотреть все акции'/>
-        </SectionWrapper>
-    )
+  return (
+    <SectionWrapper>
+      <SectionTitle>Наши акции</SectionTitle>
+      <SectionSubtitle>Выгодное предложение для Вас</SectionSubtitle>
+      <SliderPromo />
+      <LinkButton to='/actions' label='Смотреть все акции'/>
+    </SectionWrapper>
+  )
 }
 
 export default SectionPromo

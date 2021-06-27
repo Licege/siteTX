@@ -21,7 +21,7 @@ const Content = () => {
               <Plus onClick={() => increaseDishCount(dish)} />
             </Count>
             <Price>
-              {getDishesKey(order, dish.id, 'cost') * getDishesKey(order, dish.id, 'count') + ' ₽'}
+              {`${getDishesKey(order, dish.id, 'cost') * getDishesKey(order, dish.id, 'count')  } ₽`}
             </Price>
             <div>
               <Remove onClick={() => removeDish(dish.id)} />

@@ -1,12 +1,12 @@
 import React from 'react'
+import styled from 'styled-components'
 import { useSliderDishesLogic } from './logic'
 import CardDish from '../../Cards/CardDish'
 import CustomSlider from '../../common/elements/sliders/CustomSlider'
 import config from './config'
-import styled from 'styled-components'
 
 const SliderDishes = () => {
-  const {dishes} = useSliderDishesLogic()
+  const { dishes } = useSliderDishesLogic()
 
   return (
     <Container>

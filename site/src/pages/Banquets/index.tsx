@@ -10,10 +10,10 @@ const Banquets = () => {
   return (
     <main>
       <Header>
-          Ваши банкеты у нас
-        {/*<div className="banquets-header__image">*/}
-        {/*  <h3 className="banquets-header__title">Ваши банкеты у нас</h3>*/}
-        {/*</div>*/}
+        Ваши банкеты у нас
+        {/* <div className="banquets-header__image"> */}
+        {/*  <h3 className="banquets-header__title">Ваши банкеты у нас</h3> */}
+        {/* </div> */}
       </Header>
     </main>
   )

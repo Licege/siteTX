@@ -1,10 +1,10 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { useMenuSidebarLogic } from './logic'
 import styled from 'styled-components'
+import { useMenuSidebarLogic } from './logic'
 
 const Sidebar = (): JSX.Element => {
-  const {categories, height} = useMenuSidebarLogic()
+  const { categories, height } = useMenuSidebarLogic()
 
   return (
     <Container id="menu-categories-navbar" height={height}>
@@ -24,6 +24,7 @@ interface IContainer {
   height: number
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Container = styled.aside.attrs((props: IContainer) => {})`
   position: fixed;
   padding-top: 8px;

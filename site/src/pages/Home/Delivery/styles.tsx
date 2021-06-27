@@ -6,7 +6,7 @@ import { BREAKPOINTS } from '../../../styledComponents/helpers'
 export const Wrapper = styled(SectionWrapper)`
   margin: 0;
   
-  @media(max-width: ${BREAKPOINTS['ts']}px) {
+  @media(max-width: ${BREAKPOINTS.ts}px) {
     flex-direction: column;
   }
 `
@@ -40,7 +40,7 @@ export const Image = styled.div`
   width: 320px;
   height: 320px;
 
-  @media(max-width: ${BREAKPOINTS['ts']}px) {
+  @media(max-width: ${BREAKPOINTS.ts}px) {
     width: 264px;
     height: 264px;
     margin: 12px auto;

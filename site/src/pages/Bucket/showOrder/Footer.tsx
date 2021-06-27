@@ -1,6 +1,6 @@
 import React from 'react'
-import { useBucketOrderTableFooterLogic } from './logic'
 import styled from 'styled-components'
+import { useBucketOrderTableFooterLogic } from './logic'
 import { Button } from '../../../components/core'
 
 

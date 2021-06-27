@@ -1,19 +1,19 @@
 import React from 'react'
 import { Form, Field } from 'react-final-form'
-import Select from '../../components/common/elements/form/RenderSelect'
-import Datepicker from '../../components/common/elements/form/RenderDatepicker'
-import TextField from '../../components/common/elements/form/RenderTextField'
 import Button from '@material-ui/core/Button'
 import styled from 'styled-components'
+import Select from '../../components/common/elements/form/RenderSelect'
+// import Datepicker from '../../components/common/elements/form/RenderDatepicker'
+import TextField from '../../components/common/elements/form/RenderTextField'
 import { useComplainFormLogic } from './logic';
 import validate from './Validate'
 
 const ComplainForm = () => {
-    const { initialValues, types, onSubmit } = useComplainFormLogic()
+  const { initialValues, types, onSubmit } = useComplainFormLogic()
 
-    if (!types.length) return null
+  if (!types.length) return null
 
-    return (
+  return (
     <Form onSubmit={onSubmit} initialValues={initialValues} validate={validate} render={({ handleSubmit }) => (
       <FormContent onSubmit={handleSubmit}>
         <Field name="typeId" component={Select} options={types} label="Тема обращения" />
@@ -22,14 +22,13 @@ const ComplainForm = () => {
           <Field name="email" component={TextField} label="Ваш e-mail" />
           <Field name="phone" component={TextField} label="Ваш телефон" />
         </Row>
-        {/*<Field name='visitDate' component={Datepicker} label='Дата и время посещения' showTimeSelect />*/}
+        {/* <Field name='visitDate' component={Datepicker} label='Дата и время посещения' showTimeSelect /> */}
         <Field name="text" component={TextField} label="Сообщение" as="textarea" rows={6} />
         <ActionsBlock>
           <Button variant="contained" color="primary" type="submit">Отправить</Button>
         </ActionsBlock>
       </FormContent>
-        )}
-    />
+        )}/>
   )
 }
 

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-type modalType = {
+type ModalType = {
   name: string
   props: any
 }
@@ -8,7 +8,7 @@ type modalType = {
 const modalSlice = createSlice({
   name: 'modal',
   initialState: {
-    current: null as modalType | null
+    current: null as ModalType | null
   },
   reducers: {
     showModal: (state, action) => {

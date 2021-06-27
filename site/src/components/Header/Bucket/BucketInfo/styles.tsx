@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { BREAKPOINTS } from '../../../../styledComponents/helpers'
 import { NavLink } from 'react-router-dom'
+import { BREAKPOINTS } from '../../../../styledComponents/helpers'
 import { Close } from '../../../../styledComponents/atoms';
 
 export const ContentWrapper = styled.div`
@@ -55,7 +55,7 @@ export const Price = styled.div`
 export const FooterContainer = styled.div`
   display: flex;
   
-  @media(max-width: ${BREAKPOINTS['ts']}px) {
+  @media(max-width: ${BREAKPOINTS.ts}px) {
     display: block;
   }
 `
@@ -64,7 +64,7 @@ export const TotalPrice = styled.div`
   width: 50%;
   font-size: 1.2rem;
   
-  @media(max-width: ${BREAKPOINTS['ts']}px) {
+  @media(max-width: ${BREAKPOINTS.ts}px) {
     width: auto;
     text-align: center;
     font-size: 1.4rem;
@@ -81,7 +81,7 @@ export const SubmitButton = styled(NavLink)`
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   }
 
-  @media(max-width: ${BREAKPOINTS['ts']}px) {
+  @media(max-width: ${BREAKPOINTS.ts}px) {
     width: auto;
   }
 `

@@ -19,12 +19,11 @@ const OrderTable = () => {
               <Subtract onClick={() => reduceDishCount(dish)} />
               <input onChange={changeDishCount(dish)}
                      inputMode="numeric"
-                     value={getDishesKey(order, dish.id, 'count')}
-              />
+                     value={getDishesKey(order, dish.id, 'count')} />
               <Plus onClick={() => increaseDishCount(dish)} />
             </CountBlock>
             <Ceil>
-              {getDishesKey(order, dish.id, 'cost') * getDishesKey(order, dish.id, 'count') + ' ₽'}
+              {`${getDishesKey(order, dish.id, 'cost') * getDishesKey(order, dish.id, 'count')  } ₽`}
             </Ceil>
           </RowInfo>
           <Close onClick={() => removeDish(dish.id)} />

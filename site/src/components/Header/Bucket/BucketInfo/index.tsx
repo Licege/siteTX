@@ -1,8 +1,8 @@
 import React from 'react'
+import styled from 'styled-components'
 import { useBucketInfoWrapperLogic } from '../logic'
 import Content from './Content'
 import Footer from './Footer'
-import styled from 'styled-components'
 import { BREAKPOINTS } from '../../../../styledComponents/helpers';
 
 interface IProps {
@@ -11,28 +11,24 @@ interface IProps {
 }
 
 const BucketInfo: React.FC<IProps> = ({ isOpen, toggle }) => {
-    const { isBucketEmpty } = useBucketInfoWrapperLogic()
+  const { isBucketEmpty } = useBucketInfoWrapperLogic()
 
-    return (
-        /* @ts-ignore */
-        <Wrapper isShow={isOpen}>
-            {isBucketEmpty
+  return (
+  /* @ts-ignore */
+    <Wrapper isShow={isOpen}>
+      {isBucketEmpty
                 ? (
                   <>
-                      <Content />
-                      <Footer toggle={toggle} />
+                    <Content />
+                    <Footer toggle={toggle} />
                   </>
               )
                 : <div>
-                    К сожалению в корзине ничего нет.
+                  К сожалению в корзине ничего нет.
                 </div>
             }
-        </Wrapper>
-    )
-}
-
-interface IWrapper {
-    isShow: boolean
+    </Wrapper>
+  )
 }
 
 const Wrapper = styled.div`
@@ -48,12 +44,12 @@ const Wrapper = styled.div`
     transition: 0.3s ease;
     box-shadow: 0 8px 32px rgba(14, 14, 14, 0.16);
 
-  @media(max-width: ${BREAKPOINTS['ml']}px) {
+  @media(max-width: ${BREAKPOINTS.ml}px) {
     min-width: 320px;
     padding: 16px;
   }
 
-  @media(max-width: ${BREAKPOINTS['ms']}px) {
+  @media(max-width: ${BREAKPOINTS.ms}px) {
     padding: 8px;
   }
 `

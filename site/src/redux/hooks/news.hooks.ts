@@ -29,7 +29,7 @@ export const useCurrentNews = () => {
 
   useEffect(() => {
     dispatch(requestCurrentNews(id))
-  }, [])
+  }, [dispatch, id])
 
   return useSelector(getCurrentNews)
 }

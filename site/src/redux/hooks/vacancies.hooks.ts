@@ -23,7 +23,7 @@ export const useMyResume = () => {
 
   useEffect(() => {
     dispatch(requestReviews())
-  }, [])
+  }, [dispatch])
 
   return useSelector(getMyResume)
 }

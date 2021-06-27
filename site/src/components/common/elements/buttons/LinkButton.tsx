@@ -11,13 +11,13 @@ interface IProps {
 }
 
 const LinkButton: React.FC<IProps> = ({ to, label, className, variant, color }) => (
-    <div className={className ? `Link-Button ${className}` : 'Link-Button'}>
-        <Link to={to}>
-            <Button variant={variant ? variant : 'outlined'} color={color}>
-                {label}
-            </Button>
-        </Link>
-    </div>
+  <div className={className ? `Link-Button ${className}` : 'Link-Button'}>
+    <Link to={to}>
+      <Button variant={variant || 'outlined'} color={color}>
+        {label}
+      </Button>
+    </Link>
+  </div>
 )
 
 export default LinkButton

@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
+import styled from 'styled-components'
 import { IOrder } from '../../types/types'
 import OrderForm from './FormOrder'
 import { orderAPI } from '../../api/api'
 import img from '../../static/img/order_table.jpg'
 import { PageContainer, PageTitle } from '../../components/core'
-import styled from 'styled-components'
 import { BREAKPOINTS } from '../../styledComponents/helpers'
 
 
@@ -15,7 +15,7 @@ const Order: React.FC = () => {
   }, [])
 
   const onSubmit = (order: IOrder) => {
-    const date = {...order}
+    const date = { ...order }
     if (typeof date.orderDate !== 'string') {
       date.orderDate = date.orderDate.toISOString()
     }
@@ -40,7 +40,7 @@ const Body = styled.div`
   display: flex;
   justify-content: center;
 
-  @media (max-width: ${BREAKPOINTS['ml']}px) {
+  @media (max-width: ${BREAKPOINTS.ml}px) {
     flex-direction: column;
     margin-bottom: 20px;
   }
@@ -52,18 +52,18 @@ const Image = styled.img`
     margin: 20px 40px;
     user-select: none;
 
-    @media (max-width: ${BREAKPOINTS['ml']}px) {
+    @media (max-width: ${BREAKPOINTS.ml}px) {
         width: 90%;
         margin: 8px auto;
     }
 `
 
 const Content = styled.div`
-    @media (max-width: ${BREAKPOINTS['ml']}px) {
+    @media (max-width: ${BREAKPOINTS.ml}px) {
         margin: 0 auto;
     }
   
-  @media (max-width: ${BREAKPOINTS['ts']}px) {
+  @media (max-width: ${BREAKPOINTS.ts}px) {
     width: 100%;
   }
 `

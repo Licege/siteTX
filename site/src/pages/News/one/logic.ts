@@ -12,7 +12,7 @@ export const useCurrentNewsPageLogic = () => {
 
   const currentNews = useCurrentNews()
 
-  const redirectToAllNews = useCallback(() => history.push('/news'), [])
+  const redirectToAllNews = useCallback(() => history.push('/news'), [history])
 
   return { currentNews, redirectToAllNews }
 }

@@ -8,22 +8,22 @@ interface IProps {
 }
 
 const Gallery: FC<IProps> = ({ images }) => {
-    const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
-    const onOpen = useCallback(() => {
-        setIsOpen(true)
-    }, []);
+  const onOpen = useCallback(() => {
+    setIsOpen(true)
+  }, []);
 
-    const onClose = useCallback(() => {
-        setIsOpen(false)
-    }, []);
+  const onClose = useCallback(() => {
+    setIsOpen(false)
+  }, []);
 
-    return (
-        <>
-            <ImageWithBackground imageSrc={menuImg} onClick={onOpen} />
-            <PhotoViewer images={images} isOpen={isOpen} onClose={onClose} />
-        </>
-    )
+  return (
+    <>
+      <ImageWithBackground imageSrc={menuImg} onClick={onOpen} />
+      <PhotoViewer images={images} isOpen={isOpen} onClose={onClose} />
+    </>
+  )
 }
 
 export default Gallery

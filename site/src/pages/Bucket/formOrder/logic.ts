@@ -1,14 +1,14 @@
 import { useMemo } from 'react'
+import { useFormState } from 'react-final-form'
 import {
   useDelivery,
   useDeliverySettings,
   useGlobalDeliverySettings,
-  usePostOrder
+  // usePostOrder
 } from '../../../redux/hooks/bucket.hooks'
 import { deliverySettingsType, IDeliveryPost, profileType } from '../../../types/types'
 import { getFullName } from '../../../plugins/helpers'
 import { useMe } from '../../../redux/hooks/profile.hooks'
-import { useFormState } from 'react-final-form'
 
 
 interface IDataFromProfile {
@@ -60,11 +60,9 @@ export const useBucketFormOrderLogic = () => {
   const delivery = useDelivery()
   const settings = useDeliverySettings()
   const globalSettings = useGlobalDeliverySettings()
-  const postOrder = usePostOrder()
+  // const postOrder = usePostOrder()
 
-  const cityOptions = settings.reduce((acc: any, s) => {
-    return s.isDelivery ? [...acc, { value: s.id, label: s.city }] : acc
-  }, [])
+  const cityOptions = settings.reduce((acc: any, s) => s.isDelivery ? [...acc, { value: s.id, label: s.city }] : acc, [])
 
   const onSubmit = (data: IDeliveryPost) => {
     const { deliveryType, address } = data
@@ -96,18 +94,7 @@ export const useBucketInfoBlockLogic = () => {
 
   const showInfo = Boolean(delivery.order.length)
 
-  const calcDeliveryPrice = () => {
-    if (deliveryType === 'restaurant') return 0
-    const currentCitySettings = settings.find(s => s.id === address.city)
-
-    if (!currentCitySettings) throw new Error(`Not found delivery settings for city ${address.city}`)
-
-    if (currentCitySettings.freeDelivery < delivery.totalPrice) return 0
-
-    return currentCitySettings.priceForDelivery
-  }
-
-  const deliveryPrice = calcDeliveryPrice()
+  const deliveryPrice = calcDeliveryPrice({ settings, deliveryType, address, deliveryTotalPrice: delivery.totalPrice })
 
   const calcPrice = () => {
     const saleForPickup = deliveryType === 'restaurant' ? globalSettings.saleForPickup : 0

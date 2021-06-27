@@ -1,13 +1,13 @@
 import React from 'react'
+import styled from 'styled-components'
 import { Button, PageContainer } from '../../../components/core'
 import { useCurrentNewsPageLogic } from './logic'
 import altImg from '../../../static/img/news.jpg'
-import styled from 'styled-components'
 
 
 const NewsById = () => {
-  const {currentNews, redirectToAllNews} = useCurrentNewsPageLogic()
-  const {title, description, imageSrc} = currentNews
+  const { currentNews, redirectToAllNews } = useCurrentNewsPageLogic()
+  const { title, description, imageSrc } = currentNews
 
   return (
     <PageContainer>

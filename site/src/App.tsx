@@ -27,7 +27,7 @@ import { getMeSelector } from './redux/selectors/profile';
 import { getAuthStatus } from './redux/selectors/auth';
 import CatchErrors from './pages/Errors/CatchErrors';
 import Complain from './pages/Complain';
-import Modal from "./components/Modals/ModalRoot";
+import Modal from './components/Modals/ModalRoot';
 import Menu from './pages/Menu'
 import Bucket from './pages/Bucket'
 import PDFViewer from './components/Modals/PDFViewer'
@@ -38,57 +38,57 @@ import './assets/main.scss'
 import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
-    const dispatch = useDispatch()
-    const me = useSelector(getMeSelector)
-    const isAuthenticated = useSelector(getAuthStatus)
+  const dispatch = useDispatch()
+  const me = useSelector(getMeSelector)
+  const isAuthenticated = useSelector(getAuthStatus)
 
-    const checkAuth = (component: JSX.Element | null) => () => (
-        isAuthenticated ? component : <Redirect to='/' />
-    )
+  const checkAuth = (component: JSX.Element | null) => () => (
+    isAuthenticated ? component : <Redirect to='/' />
+  )
 
-    useEffect(() => {
-        dispatch(requestContacts())
-    }, [])
+  useEffect(() => {
+    dispatch(requestContacts())
+  }, [dispatch])
 
-    useEffect(() => {
-        if (isAuthenticated && (!me || !Object.keys(me).length)) {
-            dispatch(requestMe())
-        }
-    }, [me, isAuthenticated])
+  useEffect(() => {
+    if (isAuthenticated && (!me || !Object.keys(me).length)) {
+      dispatch(requestMe())
+    }
+  }, [me, isAuthenticated, dispatch])
 
-    return (
-        <AppWrapper>
-            <Header/>
-            <AppContent>
-                <CatchErrors>
-                    <Switch>
-                        {!isProduction() && <Route exact path="/me" render={checkAuth(<Profile/>)}/>}
-                        <Route exact path='/' component={Home}/>
-                        {!isProduction() && <Route path="/menu/:categoryId?" component={Menu}/>}
-                        <Route exact path='/contacts' component={Contacts}/>
-                        <Route exact path='/vacancies' component={Vacancies}/>
-                        {!isProduction() && <Route exact path="/gallery" component={Gallery}/>}
-                        {!isProduction() && <Route exact path="/order" component={Order}/>}
-                        <Route exact path='/news' component={News}/>
-                        <Route exact path='/news/:id' component={NewsById}/>
-                        {!isProduction() && <Route exact path="/bucket" component={Bucket}/>}
-                        {!isProduction() && <Route exact path="/reviews" component={Reviews}/>}
-                        {!isProduction() && <Route exact path="/resume/:id" component={Resume}/>}
-                        {!isProduction() && <Route exact path="/banquets" component={Banquets}/>}
-                        <Route exact path='/actions' component={Promos}/>
-                        <Route exact path='/actions/:id' component={Promo}/>
-                        <Route exact path='/complain' component={Complain} />
-                        {!isProduction() && <Route exact path="/test" component={PDFViewer}/>}
-                        <Route component={Error404}/>
-                    </Switch>
-                </CatchErrors>
-                <Footer/>
-            </AppContent>
-            <Alert />
-            <Modal />
-            <ToastContainer />
-        </AppWrapper>
-    )
+  return (
+    <AppWrapper>
+      <Header/>
+      <AppContent>
+        <CatchErrors>
+          <Switch>
+            {!isProduction() && <Route exact path="/me" render={checkAuth(<Profile/>)}/>}
+            <Route exact path='/' component={Home}/>
+            {!isProduction() && <Route path="/menu/:categoryId?" component={Menu}/>}
+            <Route exact path='/contacts' component={Contacts}/>
+            <Route exact path='/vacancies' component={Vacancies}/>
+            {!isProduction() && <Route exact path="/gallery" component={Gallery}/>}
+            {!isProduction() && <Route exact path="/order" component={Order}/>}
+            <Route exact path='/news' component={News}/>
+            <Route exact path='/news/:id' component={NewsById}/>
+            {!isProduction() && <Route exact path="/bucket" component={Bucket}/>}
+            {!isProduction() && <Route exact path="/reviews" component={Reviews}/>}
+            {!isProduction() && <Route exact path="/resume/:id" component={Resume}/>}
+            {!isProduction() && <Route exact path="/banquets" component={Banquets}/>}
+            <Route exact path='/actions' component={Promos}/>
+            <Route exact path='/actions/:id' component={Promo}/>
+            <Route exact path='/complain' component={Complain} />
+            {!isProduction() && <Route exact path="/test" component={PDFViewer}/>}
+            <Route component={Error404}/>
+          </Switch>
+        </CatchErrors>
+        <Footer/>
+      </AppContent>
+      <Alert />
+      <Modal />
+      <ToastContainer />
+    </AppWrapper>
+  )
 }
 
 export default App

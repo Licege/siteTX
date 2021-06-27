@@ -7,9 +7,9 @@ interface ICallToAs {
 }
 
 const CallToAs = ({ text }: ICallToAs) => {
-    const contacts = useContacts()
+  const contacts = useContacts()
 
-    return <a href={`tel:${contacts.phone}`}>{text}</a>
+  return <a href={`tel:${contacts.phone}`}>{text}</a>
 }
 
 export default CallToAs

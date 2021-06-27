@@ -1,4 +1,3 @@
-import React from 'react'
 import styled, { ThemedStyledProps } from 'styled-components'
 import { Card as MaterialCard } from '@material-ui/core'
 import Color from 'color'
@@ -11,7 +10,7 @@ interface ICard extends ThemedStyledProps<any, any> {
 }
 
 const Card = styled(MaterialCard).attrs(() => ({
-    as: 'main'
+  as: 'main'
 }))`
   display: flex;
   flex-direction: column;
@@ -25,10 +24,10 @@ const Card = styled(MaterialCard).attrs(() => ({
   position: relative;
   &:hover {
         box-shadow: ${(props: ICard) => `0 6px 12px 0 ${Color(props.color || '#ff9900')
-          .rotate(-12)
-          .darken(0.2)
-          .fade(0.5)}`
-        };
+    .rotate(-12)
+    .darken(0.2)
+    .fade(0.5)}`
+};
       background-color: rgb(250, 235, 225);
       transition: 0.2s;
   }

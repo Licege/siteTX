@@ -7,19 +7,19 @@ import MenuGallery from './Menu';
 import BarGallery from './Bar';
 
 const SectionPDFMenu = () => (
-    <SectionWrapper>
-      <SectionTitle>Меню ресторана</SectionTitle>
-      <SectionContent>
-        <CardContainer title='Основное меню'>
-          <MenuGallery />
-        </CardContainer>
-        <Divider />
-        <CardContainer title='Карта бара'>
-          <BarGallery />
-        </CardContainer>
-      </SectionContent>
-    </SectionWrapper>
-  )
+  <SectionWrapper>
+    <SectionTitle>Меню ресторана</SectionTitle>
+    <SectionContent>
+      <CardContainer title='Основное меню'>
+        <MenuGallery />
+      </CardContainer>
+      <Divider />
+      <CardContainer title='Карта бара'>
+        <BarGallery />
+      </CardContainer>
+    </SectionContent>
+  </SectionWrapper>
+)
 
 const SectionContent = styled.div`
   display: grid;
@@ -29,7 +29,7 @@ const SectionContent = styled.div`
   justify-content: space-between;
   margin: 25px 0;
   
-  @media(max-width: ${BREAKPOINTS['ds']}px) {
+  @media(max-width: ${BREAKPOINTS.ds}px) {
     display: block;
   }
 `
@@ -39,7 +39,7 @@ const Divider = styled.div`
   height: 32px;
   width: 100%;
 
-  @media(max-width: ${BREAKPOINTS['ds']}px) {
+  @media(max-width: ${BREAKPOINTS.ds}px) {
     display: block;
   }
 `

@@ -10,7 +10,7 @@ export const useComplainTypes = ({ force = false } = {}) => {
 
   useEffect(() => {
     if (!complainTypes?.length || force) dispatch(requestComplainTypes())
-  }, [])
+  }, [dispatch, force])
 
   return complainTypes;
 }

@@ -1,6 +1,6 @@
 import React from 'react'
-import { useButtonBucketCounterLogic } from './logic'
 import styled from 'styled-components'
+import { useButtonBucketCounterLogic } from './logic'
 
 const Counter = (): JSX.Element | null => {
   const { order, count } = useButtonBucketCounterLogic()

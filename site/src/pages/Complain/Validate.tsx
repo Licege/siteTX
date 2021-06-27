@@ -1,36 +1,37 @@
 import { isCorrectEmail, isCorrectPhoneNumber } from '../../utils/validation'
 
 const REQUIRED_FIELDS = [
-    'name',
-    'phone',
-    'email',
-    'text'
+  'name',
+  'phone',
+  'email',
+  'text'
 ]
 
 export default function (values: any): any {
-    const errors = {} as any
+  const errors = {} as any
 
-    REQUIRED_FIELDS.forEach(fieldKey => {
-        const fieldValue = values[fieldKey]
+  REQUIRED_FIELDS.forEach(fieldKey => {
+    const fieldValue = values[fieldKey]
 
-        if (!fieldValue) {
-            return errors[fieldKey] = 'Заполните это поле'
-        }
-        validateFieldValue(errors, fieldKey, fieldValue)
-    })
+    if (!fieldValue) {
+      errors[fieldKey] = 'Заполните это поле'
+    } else {
+      validateFieldValue(errors, fieldKey, fieldValue)
+    }
+  })
 
-    return errors
+  return errors
 }
 
 const validateFieldValue = (errors: any, fieldKey: string, value: string) => {
-    switch (fieldKey) {
-        case 'phone':
-            if (!isCorrectPhoneNumber(value)) errors[fieldKey] = 'Введите корректный номер'
-            break;
-        case 'email':
-            if (!isCorrectEmail(value)) errors[fieldKey] = 'Введите корректный email'
-            break;
-        default:
-            return;
-    }
+  switch (fieldKey) {
+  case 'phone':
+    if (!isCorrectPhoneNumber(value)) errors[fieldKey] = 'Введите корректный номер'
+    break;
+  case 'email':
+    if (!isCorrectEmail(value)) errors[fieldKey] = 'Введите корректный email'
+    break;
+  default:
+            
+  }
 }

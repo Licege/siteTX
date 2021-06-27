@@ -1,10 +1,10 @@
 import React from 'react'
+import styled from 'styled-components'
 import { dishType } from '../../../types/types'
 import altImg from '../../../static/img/dish.svg'
 import { cropText } from '../../../plugins/helpers'
 import { Button, Card, CardBody, CardFooter, CardMedia, CardText, CardTitle, CardWrapper } from '../../core'
 import useCardDishLogic from './logic'
-import styled from 'styled-components'
 
 type PropsType = {
   dish: dishType
@@ -43,18 +43,16 @@ const CardDish: React.FC<PropsType> = ({ dish, showDescription = true, shortCard
             ? <ActionsBlock>
               {!orderedDish || shortCard
                 ? <Button variant="contained" color="primary" onClick={() => addDishToBucket(dish)}>
-                  {shortCard ? dish.cost + ' р' : 'Заказать'}
+                  {shortCard ? `${dish.cost  } р` : 'Заказать'}
                 </Button>
                 : <OrderedActionsBlock>
                   <Button variant="contained" color="primary"
-                          onClick={() => reduceCountDish(dish)}
-                  >
+                          onClick={() => reduceCountDish(dish)}>
                     -
                   </Button>
                   <Count>{orderedDish?.count}</Count>
                   <Button variant="contained" color="primary"
-                          onClick={() => increaseCountDish(dish)}
-                  >
+                          onClick={() => increaseCountDish(dish)}>
                     +
                   </Button>
                 </OrderedActionsBlock>}

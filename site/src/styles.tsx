@@ -18,7 +18,7 @@ export const AppContent = styled.div`
   margin-top: ${HEADER_HEIGHT};
   background-color: rgb(251, 251, 253);
 
-  @media(max-width: ${BREAKPOINTS['ts']}px) {
+  @media(max-width: ${BREAKPOINTS.ts}px) {
     grid-template-rows: 1fr minmax(${FOOTER_HEIGHT}, auto);
   }
 `

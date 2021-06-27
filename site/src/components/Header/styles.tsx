@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
+import { NavLink } from 'react-router-dom'
 import { HEADER_HEIGHT } from '../../styledComponents/constants'
 import { BREAKPOINTS } from '../../styledComponents/helpers'
-import { NavLink } from 'react-router-dom'
 
 interface IHeader {
   isMenuOpen?: boolean
@@ -77,7 +77,7 @@ export const Navbar = styled.nav`
   }
   
   
-  @media(max-width: ${BREAKPOINTS['ds']}px) {
+  @media(max-width: ${BREAKPOINTS.ds}px) {
     display: none;
   }
 `

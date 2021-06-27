@@ -52,8 +52,8 @@
 //     return { store, persistor }
 // };
 
-import { configureStore } from "@reduxjs/toolkit"
-import { useDispatch } from "react-redux";
+import { configureStore } from '@reduxjs/toolkit'
+import { useDispatch } from 'react-redux';
 import appReducer from './reducers/app.reducer'
 import authReducer from './reducers/auth.reducer'
 import profileReducer from './reducers/profile.reducer'
@@ -69,24 +69,24 @@ import modalReducer from './reducers/modals.reducer'
 
 
 const store = configureStore({
-    reducer: {
-        app: appReducer,
-        authPage: authReducer,
-        profilePage: profileReducer,
-        contacts: contactsReducer,
-        menuPage: menuReducer,
-        bucket: bucketReducer,
-        newsPage: newsReducer,
-        promosPage: promosReducer,
-        complainPage: complainReducer,
-        reviewsPage: reviewsReducer,
-        vacanciesPage: vacanciesReducer,
-        modal: modalReducer
-    },
-    middleware: (getDefaultMiddleware =>
-      getDefaultMiddleware()
-        .prepend()
-    )
+  reducer: {
+    app: appReducer,
+    authPage: authReducer,
+    profilePage: profileReducer,
+    contacts: contactsReducer,
+    menuPage: menuReducer,
+    bucket: bucketReducer,
+    newsPage: newsReducer,
+    promosPage: promosReducer,
+    complainPage: complainReducer,
+    reviewsPage: reviewsReducer,
+    vacanciesPage: vacanciesReducer,
+    modal: modalReducer
+  },
+  middleware: (getDefaultMiddleware =>
+    getDefaultMiddleware()
+      .prepend()
+  )
 })
 
 export type AppStateType = ReturnType<typeof store.getState>

@@ -11,7 +11,7 @@ const WorkTime = () => {
       <Title>
         <img src={hours} alt='' /> Часы работы
       </Title>
-        {contacts?.openHours?.map((item, key) => <div key={key}>{item}</div>)}
+      {contacts?.openHours?.map((item, key) => <div key={key}>{item}</div>)}
     </Schedule>
   )
 }

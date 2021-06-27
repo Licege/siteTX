@@ -4,15 +4,15 @@ import CustomMap from '../../../components/common/Map/Map'
 import { useAddressBlockMapSize } from './logic';
 
 const AddressBlock = () => {
-    const size = useAddressBlockMapSize()
+  const size = useAddressBlockMapSize()
 
-    return (
-        <div>
-            <h3>Мы на карте</h3>
-            <AddressInfo/>
-            <CustomMap style={size} />
-        </div>
-    )
+  return (
+    <div>
+      <h3>Мы на карте</h3>
+      <AddressInfo/>
+      <CustomMap style={size} />
+    </div>
+  )
 }
 
 export default AddressBlock

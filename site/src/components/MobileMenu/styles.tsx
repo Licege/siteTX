@@ -50,11 +50,11 @@ export const BurgerMenu = styled.div`
     }
   }
   
-  @media(max-width: ${BREAKPOINTS['ds']}px) {
+  @media(max-width: ${BREAKPOINTS.ds}px) {
     display: block;
   }
   
-  @media(max-width: ${BREAKPOINTS['ts']}px) {
+  @media(max-width: ${BREAKPOINTS.ts}px) {
     margin: auto 0 auto 16px;
   }
     
@@ -95,11 +95,11 @@ export const Wrapper = styled.div`
   transition: width .3s ease-out;
   
   ${(props: IWrapper) => props.isOpen 
-          ? css`
+    ? css`
             width: 100%;
           `
-          : ''
-  }
+    : ''
+}
 `
 
 export const NavigationBlock = styled.nav`
@@ -138,7 +138,7 @@ export const CloseIcon = styled.img`
   right: 20px;
   cursor: pointer;
   
-  @media(max-width: ${BREAKPOINTS['ds']}px) {
+  @media(max-width: ${BREAKPOINTS.ds}px) {
     display: block;
   }
 `

@@ -1,28 +1,26 @@
 import React from 'react'
 import { format } from 'date-fns'
 import { ru } from 'date-fns/locale'
+import styled from 'styled-components'
 import { ordersHistoryType } from '../../../../types/types'
 import './style.scss'
 import { parseAddress } from '../../../../plugins/helpers'
 import { DeliveryTypeEnum, PaymentTypeEnum } from '../../../../dictionaries/delivery'
 import { Button } from '../../../../components/core'
-import styled from 'styled-components'
 
 interface IProps {
   order: ordersHistoryType
 }
 
-const getDate = (date: Date) => {
-  return format(date, 'd MMMM yyyy г. в HH:mm', {locale: ru})
-}
+const getDate = (date: Date) => format(date, 'd MMMM yyyy г. в HH:mm', { locale: ru })
 
 const getTotalPrice = (price: number, deliveryCost: number) => {
   const totalPrice = price + deliveryCost
-  return `Сумма ${totalPrice | 0} ₽`
+  return `Сумма ${totalPrice || 0} ₽`
 }
 
 const OrderHistoryCard = ({ order }: IProps) => {
-  const { price, deliveryType, deliveryCost, address, createdAt, id, status, paymentType } = order
+  const { price, deliveryType, deliveryCost, address, createdAt, paymentType } = order
 
   return (
     <Container>
@@ -39,8 +37,7 @@ const OrderHistoryCard = ({ order }: IProps) => {
       </Body>
       <Footer>
         <Button variant="contained" color="primary" onClick={() => {
-        }}
-        >Повторить заказ</Button>
+        }}>Повторить заказ</Button>
       </Footer>
     </Container>
   )

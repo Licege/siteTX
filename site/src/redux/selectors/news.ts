@@ -1,13 +1,7 @@
 import { AppStateType } from '../redux-store'
 
-export const getNewsSelector = (state: any) => {
-    return state.newsPage.news
-}
+export const getNewsSelector = (state: AppStateType) => state.newsPage.news
 
-export const getCurrentNewsSelector = (state: any) => {
-    return state.newsPage.currentNews
-}
+export const getCurrentNewsSelector = (state: AppStateType) => state.newsPage.currentNews
 
-export const getNewsCountSelector = (state: any) => {
-    return state.newsPage.totalCount
-}
+export const getNewsCountSelector = (state: AppStateType) => state.newsPage.totalCount

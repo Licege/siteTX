@@ -2,7 +2,6 @@ import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import { FOOTER_HEIGHT } from '../../styledComponents/constants'
 import { BREAKPOINTS } from '../../styledComponents/helpers'
-import CallToAs from '../CallToAs';
 
 export const FooterContainer = styled.footer`
   width: 100%;
@@ -16,7 +15,7 @@ export const FooterContainer = styled.footer`
   display: table;
   // background: center / cover no-repeat url("../../static/img/background3.svg");
   
-  @media(max-width: ${BREAKPOINTS['tm']}px) {
+  @media(max-width: ${BREAKPOINTS.tm}px) {
     padding: 1rem .5rem;
   }
 `
@@ -39,7 +38,7 @@ export const Wrapper = styled.div`
     text-decoration: none;
   }
   
-  @media(max-width: ${BREAKPOINTS['ts']}px) {
+  @media(max-width: ${BREAKPOINTS.ts}px) {
     grid-template-areas: 'info nav' 'address address';
     grid-template-columns: 1fr 1fr;
     justify-items: flex-start;
@@ -77,7 +76,7 @@ export const NavItem = styled(NavLink)`
 `
 
 const BlockContainer = styled.div`
-  @media(max-width: ${BREAKPOINTS['tm']}px) {
+  @media(max-width: ${BREAKPOINTS.tm}px) {
     font-size: 16px;
     line-height: 18px;
   }

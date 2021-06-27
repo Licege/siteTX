@@ -1,10 +1,10 @@
-import { useSelector } from "react-redux";
-import {useHistory} from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
-import {useAppDispatch} from "../../redux/redux-store";
+import { useAppDispatch } from '../../redux/redux-store';
 import * as authThunks from '../../redux/thunks/auth.thunk'
-import * as modalsActions from "../../redux/reducers/modals.reducer";
-import {getIsAuthenticated} from "../../redux/getters/auth.getters";
+import * as modalsActions from '../../redux/reducers/modals.reducer';
+import { getIsAuthenticated } from '../../redux/getters/auth.getters';
 
 export const useAuthButtonLogic = () => {
   const dispatch = useAppDispatch()
@@ -12,7 +12,7 @@ export const useAuthButtonLogic = () => {
   const isAuthenticated = useSelector(getIsAuthenticated)
 
   const showAuthModal = () => {
-    dispatch(modalsActions.showModal({name: 'AUTH'}))
+    dispatch(modalsActions.showModal({ name: 'AUTH' }))
   }
 
   return { showAuthModal, isAuthenticated }

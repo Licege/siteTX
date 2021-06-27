@@ -5,12 +5,12 @@ import { SectionSubtitle, SectionTitle, SectionWrapper } from '../../../componen
 
 
 const SectionMenu = () => (
-    <SectionWrapper>
-      <SectionTitle>Наше меню</SectionTitle>
-      <SectionSubtitle>У нас каждый найдет себе блюдо по вкусу</SectionSubtitle>
-        <SliderDishes />
-        <ShowAllButton />
-    </SectionWrapper>
+  <SectionWrapper>
+    <SectionTitle>Наше меню</SectionTitle>
+    <SectionSubtitle>У нас каждый найдет себе блюдо по вкусу</SectionSubtitle>
+    <SliderDishes />
+    <ShowAllButton />
+  </SectionWrapper>
 )
 
 export default SectionMenu

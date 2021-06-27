@@ -1,9 +1,5 @@
 import { AppStateType } from '../redux-store'
 
-export const getVacanciesSelector = (state: any) => {
-    return state.vacanciesPage.vacancies
-}
+export const getVacanciesSelector = (state: AppStateType) => state.vacanciesPage.vacancies
 
-export const getMyResumeSelector = (state: any) => {
-    return state.vacanciesPage.resume
-}
+export const getMyResumeSelector = (state: AppStateType) => state.vacanciesPage.resume

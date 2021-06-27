@@ -23,31 +23,31 @@ export const AlertContext = createContext<IAlertContext|null>(null);
 AlertContext.displayName = 'AlertContext';
 
 const AlertProvider: FC = ({ children }) => {
-    const [isOpen, setOpen] = useState(false)
-    const [message, setMessage] = useState('')
-    const [type, setType] = useState<Color>('success')
+  const [isOpen, setOpen] = useState(false)
+  const [message, setMessage] = useState('')
+  const [type, setType] = useState<Color>('success')
 
-    const handleClose = (event: React.SyntheticEvent | React.MouseEvent, reason? : string) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-
-        setOpen(false)
+  const handleClose = (event: React.SyntheticEvent | React.MouseEvent, reason? : string) => {
+    if (reason === 'clickaway') {
+      return;
     }
 
-    const setAlert = ({ isOpen, type, message }: ISetAlert) => {
-        setOpen(isOpen)
-        setMessage(message)
-        if (type) {
-            setType(type)
-        }
-    }
+    setOpen(false)
+  }
 
-    return (
-        <AlertContext.Provider value={{ alert: { isOpen, message, type }, setAlert, onClose: handleClose }}>
-            {children}
-        </AlertContext.Provider>
-    )
+  const setAlert = ({ isOpen, type, message }: ISetAlert) => {
+    setOpen(isOpen)
+    setMessage(message)
+    if (type) {
+      setType(type)
+    }
+  }
+
+  return (
+    <AlertContext.Provider value={{ alert: { isOpen, message, type }, setAlert, onClose: handleClose }}>
+      {children}
+    </AlertContext.Provider>
+  )
 }
 
 export default AlertProvider

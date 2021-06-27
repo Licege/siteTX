@@ -25,23 +25,21 @@ interface IProps {
   setStep: (step: 0|1|2) => void
 }
 
-const BucketBreadcrumbs: React.FC<IProps> = ({ step, setStep }) => {
-  return (
-    <StyledBreadcrumbs separator='>'>
-      <StyledBreadcrumb component='a'
-                        className={step === 0 ? 'active' : ''}
-                        label='Ваш заказ'
-                        onClick={() => setStep(0)}/>
-      <StyledBreadcrumb component='a'
-                        className={step === 1 ? 'active' : ''}
-                        label='Оформление заказа'
-                        onClick={() => setStep(1)}/>
-      <StyledBreadcrumb component='a'
-                        className={step === 2 ? 'active' : ''}
-                        label='Заказ оформлен' />
-    </StyledBreadcrumbs>
-  )
-}
+const BucketBreadcrumbs: React.FC<IProps> = ({ step, setStep }) => (
+  <StyledBreadcrumbs separator='>'>
+    <StyledBreadcrumb component='a' 
+                      className={step === 0 ? 'active' : ''}
+                      label='Ваш заказ'
+                      onClick={() => setStep(0)}/>
+    <StyledBreadcrumb component='a'
+                      className={step === 1 ? 'active' : ''}
+                      label='Оформление заказа'
+                      onClick={() => setStep(1)}/>
+    <StyledBreadcrumb component='a'
+                      className={step === 2 ? 'active' : ''}
+                      label='Заказ оформлен' />
+  </StyledBreadcrumbs>
+)
 
 const StyledBreadcrumbs = styled(Breadcrumbs)`
   .active {

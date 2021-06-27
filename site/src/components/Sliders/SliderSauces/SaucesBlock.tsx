@@ -7,16 +7,16 @@ import useSauceSliderLogic from './logic'
 
 export const SaucesBlock = () => {
   const { sauces } = useSauceSliderLogic()
-    const settings = config(sauces.length)
+  const settings = config(sauces.length)
 
-    if (!sauces.length) return null
+  if (!sauces.length) return null
 
-    return (
-        <div className='mt-5'>
-            <h3 className='mb-3 pl-3'>Выберите соус</h3>
-            <CustomSlider settings={settings}>
-                {sauces.map(sauce => <CardDish dish={sauce} shortCard={true} key={sauce.id}/>)}
-            </CustomSlider>
-        </div>
-    )
+  return (
+    <div className='mt-5'>
+      <h3 className='mb-3 pl-3'>Выберите соус</h3>
+      <CustomSlider settings={settings}>
+        {sauces.map(sauce => <CardDish dish={sauce} shortCard key={sauce.id}/>)}
+      </CustomSlider>
+    </div>
+  )
 }

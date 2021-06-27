@@ -7,7 +7,7 @@ export const useMenuSidebarLogic = () => {
 
   useEffect(() => {
     setHeight(`${document.body.scrollHeight - 300}px`)
-  }, [document.body.scrollHeight])
+  }, [])
 
   return { height, categories }
 }

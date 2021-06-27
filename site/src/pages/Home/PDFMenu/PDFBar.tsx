@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
+import styled from 'styled-components'
 import CardPdf from '../../../components/Cards/CardPdf'
 import menuImg from '../../../static/img/menu.jpg'
 // @ts-ignore
 import pdfMenuDrinks from '../../../temp/bar.pdf'
-import styled from 'styled-components'
 import { Button } from '../../../components/core'
 
 const PDFBar = () => {

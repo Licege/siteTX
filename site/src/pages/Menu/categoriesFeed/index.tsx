@@ -1,10 +1,10 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { useCategoriesFeedLogic } from './logic'
 import styled from 'styled-components'
+import { useCategoriesFeedLogic } from './logic'
 
 const CategoriesFeed = (): JSX.Element => {
-  const { categories, isPhone } = useCategoriesFeedLogic()
+  const { categories } = useCategoriesFeedLogic()
 
   return (
     <Feed>

@@ -10,21 +10,21 @@ import { isProduction } from '../../utils'
 
 
 const Header: React.FC = () => {
-    const { isMenuOpen } = useHeaderLogic()
+  const { isMenuOpen } = useHeaderLogic()
 
-    return (
-        <Container isMenuOpen={isMenuOpen}>
-            <MobileMenu />
-            <Logo />
-            <Navigation />
-            {!isProduction() && <ActionsBlock>
-                <AuthButtonWrapper>
-                    <AuthButton/>
-                </AuthButtonWrapper>
-                <Bucket/>
-            </ActionsBlock>}
-        </Container>
-    )
+  return (
+    <Container isMenuOpen={isMenuOpen}>
+      <MobileMenu />
+      <Logo />
+      <Navigation />
+      {!isProduction() && <ActionsBlock>
+        <AuthButtonWrapper>
+          <AuthButton/>
+        </AuthButtonWrapper>
+        <Bucket/>
+        </ActionsBlock>}
+    </Container>
+  )
 }
 
 export default Header

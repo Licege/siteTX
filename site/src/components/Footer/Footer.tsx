@@ -8,9 +8,9 @@ import { FooterContainer, Wrapper } from './styles'
 const Footer = () => (
   <FooterContainer id='footer'>
     <Wrapper>
-        <InfoBlock />
-        <AddressBlock />
-        <NavigationBlock />
+      <InfoBlock />
+      <AddressBlock />
+      <NavigationBlock />
     </Wrapper>
     <Copyright />
   </FooterContainer>

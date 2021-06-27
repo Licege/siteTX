@@ -1,24 +1,22 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { complainAPI } from '../../api/api'
-import { getAuthStatus } from '../selectors/auth'
 import { complainType } from '../../types/types'
-import {AppStateType} from "../redux-store";
+import { AppStateType } from '../redux-store';
+import { getIsAuthenticated } from '../getters/auth.getters'
 
 export const requestComplainTypes = createAsyncThunk(
   'complains/fetchAllComplainTypes',
-  async () => {
-      return await complainAPI.getComplainTypes()
-  }
+  async () => complainAPI.getComplainTypes()
 )
 
 export const requestComplain = createAsyncThunk<any, complainType, { state: AppStateType }>(
   'complains/postNewComplain',
   async (complain, thunkAPI) => {
-      const { getState } = thunkAPI
-      const isAuthenticated = getAuthStatus(getState())
-      return isAuthenticated
-            ? await complainAPI.postComplainPrivate(complain)
-            : await complainAPI.postComplainPublic(complain)
+    const { getState } = thunkAPI
+    const isAuthenticated = getIsAuthenticated(getState())
+    return isAuthenticated
+      ? complainAPI.postComplainPrivate(complain)
+      : complainAPI.postComplainPublic(complain)
   }
 )
 

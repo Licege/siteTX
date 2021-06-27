@@ -7,11 +7,11 @@ import { getAllCategories, getAllDishes, getCurrentDish } from '../getters/menu.
 import { dishType } from '../../types/types'
 import * as bucketActions from '../reducers/bucket.reducer'
 
-type idParam = {
+type IdParam = {
   id: string
 }
 
-type categoryIdParam = {
+type CategoryIdParam = {
   categoryId: string
 }
 
@@ -29,7 +29,7 @@ export const useDishes = ({ force = false } = {}) => {
 }
 
 export const useDishesByCategoryId = () => {
-  const { categoryId } = useParams<categoryIdParam>()
+  const { categoryId } = useParams<CategoryIdParam>()
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -38,18 +38,18 @@ export const useDishesByCategoryId = () => {
     } else {
       dispatch(requestDishes())
     }
-  }, [categoryId])
+  }, [categoryId, dispatch])
 
   return useSelector(getAllDishes)
 }
 
 export const useCurrentDish = () => {
-  const { id } = useParams<idParam>()
+  const { id } = useParams<IdParam>()
   const dispatch = useAppDispatch()
 
   useEffect(() => {
     dispatch(requestDishById(+id))
-  }, [])
+  }, [dispatch, id])
 
   return useSelector(getCurrentDish)
 }
@@ -72,7 +72,7 @@ export const useRequestCategories = () => {
 
   useEffect(() => {
     dispatch(requestCategories())
-  }, [])
+  }, [dispatch])
 
   return useSelector(getAllCategories)
 }
@@ -82,19 +82,19 @@ export const useMenuActions = () => {
 
   const addDishToBucket = useCallback((dish: dishType) => {
     dispatch(bucketActions.addDish(dish))
-  }, [])
+  }, [dispatch])
 
   const increaseCountDish = useCallback((dish: dishType) => {
     dispatch(bucketActions.increaseDishCount(dish))
-  }, [])
+  }, [dispatch])
 
   const reduceCountDish = useCallback((dish: dishType) => {
     dispatch(bucketActions.reduceDishCount(dish))
-  }, [])
+  }, [dispatch])
 
   const removeDish = useCallback((id: number) => {
     dispatch(bucketActions.removeDish(id))
-  }, [])
+  }, [dispatch])
 
   return { addDishToBucket, increaseCountDish, reduceCountDish, removeDish }
 }

@@ -1,7 +1,7 @@
 import React from 'react'
+import { Grid, makeStyles } from '@material-ui/core'
 import { useMenuCardsLogic } from '../logic'
 import CardDish from '../../../components/Cards/CardDish/CardDishSC'
-import { Grid, makeStyles } from '@material-ui/core'
 
 const useGridStyles = makeStyles(() => ({
   root: {

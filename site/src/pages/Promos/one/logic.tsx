@@ -1,6 +1,6 @@
 import { useHistory } from 'react-router-dom'
-import { usePromo } from '../../../redux/hooks/promos.hooks'
 import { useEffect } from 'react'
+import { usePromo } from '../../../redux/hooks/promos.hooks'
 
 export const usePromoPageLogic = () => {
   const promo = usePromo()
@@ -9,7 +9,7 @@ export const usePromoPageLogic = () => {
   useEffect(() => {
     window.scroll(0, 0)
     document.title = promo?.title || 'Акции'
-  }, [])
+  }, [promo?.title])
 
   const redirectToPromos = () => history.push('/actions')
 

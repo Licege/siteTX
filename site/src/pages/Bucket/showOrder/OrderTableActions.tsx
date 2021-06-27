@@ -1,7 +1,7 @@
 import React from 'react'
+import styled from 'styled-components'
 import LinkButton from '../../../components/common/elements/buttons/LinkButton'
 import { useBucketOrderTableActionsLogic } from './logic'
-import styled from 'styled-components'
 import { Button } from '../../../components/core'
 
 const OrderTableActions = () => {

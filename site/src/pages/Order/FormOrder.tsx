@@ -1,64 +1,62 @@
 import React from 'react'
 import { Form, Field } from 'react-final-form'
-import TextField from '../../components/common/elements/form/RenderTextField'
-import Datepicker from '../../components/common/elements/form/RenderDatepicker'
-import Select from '../../components/common/elements/form/RenderSelect'
-import validate from './Validate'
-import { IOrder } from '../../types/types'
-import { scrollToFirstError } from '../../plugins/validate'
-import { Button } from '../../components/core'
 import styled from 'styled-components';
+import TextField from '../../components/common/elements/form/RenderTextField'
+// import Datepicker from '../../components/common/elements/form/RenderDatepicker'
+import Select from '../../components/common/elements/form/RenderSelect'
+// import validate from './Validate'
+// import { IOrder } from '../../types/types'
+// import { scrollToFirstError } from '../../plugins/validate'
+import { Button } from '../../components/core'
 import { BREAKPOINTS } from '../../styledComponents/helpers'
 
 
-const datepickerSettings = () => {
-    const today = new Date()
-    const maxDate = new Date().setDate(today.getDate() + 30)
-    const label = 'Дата и время бронирования'
-
-    return {
-        minDate: today,
-        maxDate,
-        showTimeSelect: true,
-        label
-    }
-}
+// const datepickerSettings = () => {
+//   const today = new Date()
+//   const maxDate = new Date().setDate(today.getDate() + 30)
+//   const label = 'Дата и время бронирования'
+//
+//   return {
+//     minDate: today,
+//     maxDate,
+//     showTimeSelect: true,
+//     label
+//   }
+// }
 
 const FormOrder: React.FC<any> = ({ onSubmit }) => {
-    const optionsCountPerson = Array(25).fill(0).map((_, key) => ({ value: key + 1, label: key + 1 }))
-    const initialValues = {
-        countPerson: optionsCountPerson[0].value
-    }
+  const optionsCountPerson = Array(25).fill(0).map((_, key) => ({ value: key + 1, label: key + 1 }))
+  const initialValues = {
+    countPerson: optionsCountPerson[0].value
+  }
 
-    return (
-      <Form onSubmit={onSubmit} initialValues={initialValues} render={({ handleSubmit }) => (
-        <form onSubmit={handleSubmit}>
-          <Field name='name' component={TextField} label='Ваше имя:' placeholder='Введите имя:'/>
-          <Field name='phone' component={TextField} label='Контактный телефон'
-                 placeholder='Введите телефон'/>
-          {/*<Field name='orderDate' component={Datepicker} {...datepickerSettings()} />*/}
-          <Field name='countPerson'
-                 component={Select}
-                 label='Количество гостей'
-                 options={optionsCountPerson}
-          />
-          <Field name='comment'
-                 component={TextField}
-                 label='Ваши пожелания:'
-                 as='textarea'
-                 rows={6}
-                 placeholder='Здесь вы можете ввести ваши пожелания'
-          />
-          <div>
-            <SubmitButton variant='contained' color='primary' type='submit'>Забронировать стол</SubmitButton>
-          </div>
-        </form>
+  return (
+    <Form onSubmit={onSubmit} initialValues={initialValues} render={({ handleSubmit }) => (
+      <form onSubmit={handleSubmit}>
+        <Field name='name' component={TextField} label='Ваше имя:' placeholder='Введите имя:'/>
+        <Field name='phone' component={TextField} label='Контактный телефон'
+               placeholder='Введите телефон'/>
+        {/* <Field name='orderDate' component={Datepicker} {...datepickerSettings()} /> */}
+        <Field name='countPerson'
+               component={Select}
+               label='Количество гостей'
+               options={optionsCountPerson}/>
+        <Field name='comment'
+               component={TextField}
+               label='Ваши пожелания:'
+               as='textarea'
+               rows={6}
+               placeholder='Здесь вы можете ввести ваши пожелания'/>
+        <div>
+          <SubmitButton variant='contained' color='primary' type='submit'>Забронировать стол</SubmitButton>
+        </div>
+      </form>
       )} />
-    )
+  )
 }
 
 const SubmitButton = styled(Button)`
-  @media (max-width: ${BREAKPOINTS['ts']}px) {
+  @media (max-width: ${BREAKPOINTS.ts}px) {
     width: 100%;
   }
 `

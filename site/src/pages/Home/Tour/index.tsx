@@ -4,13 +4,13 @@ import { SectionWrapper } from '../../../components/core';
 
 
 const Tour = () => {
-    const { width } = useWindowSize()
+  const { width } = useWindowSize()
 
-    return (
-        <SectionWrapper>
-            <iframe src='//navse360.ru/onlyTour/4421' style={{ width: width - 40, height: 360 }} />
-        </SectionWrapper>
-    )
+  return (
+    <SectionWrapper>
+      <iframe title="tour" src='//navse360.ru/onlyTour/4421' style={{ width: width - 40, height: 360 }} />
+    </SectionWrapper>
+  )
 }
 
 export default Tour

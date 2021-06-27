@@ -15,38 +15,38 @@ interface IInitialValues {
 }
 
 export const useComplainFormLogic = () => {
-    const dispatch = useAppDispatch()
-    const me = useMe()
-    const complainTypes = useComplainTypes()
+  const dispatch = useAppDispatch()
+  const me = useMe()
+  const complainTypes = useComplainTypes()
 
-    useEffect(() => {
-        document.title = 'Ваше мнение'
-        dispatch(requestComplainTypes())
-    }, [])
+  useEffect(() => {
+    document.title = 'Ваше мнение'
+    dispatch(requestComplainTypes())
+  }, [dispatch])
 
-    const types = complainTypes.map(type => ({ label: type.title, value: type.id }))
+  const types = complainTypes.map(type => ({ label: type.title, value: type.id }))
 
-    const getInitialValues = (): IInitialValues => {
-        const initialValues: IInitialValues = {}
+  const getInitialValues = (): IInitialValues => {
+    const initialValues: IInitialValues = {}
 
-        if (types.length) initialValues.typeId = types[0].value
+    if (types.length) initialValues.typeId = types[0].value
 
-        if (!isNil(me)) {
-            const { surname, forename, patronymic, phone, email } = me
+    if (!isNil(me)) {
+      const { surname, forename, patronymic, phone, email } = me
 
-            initialValues.name = getFullName({ surname, forename, patronymic })
-            initialValues.phone = phone
-            initialValues.email = email
-        }
-
-        return initialValues
+      initialValues.name = getFullName({ surname, forename, patronymic })
+      initialValues.phone = phone
+      initialValues.email = email
     }
 
-    const onSubmit = (complain: complainType) => {
-        dispatch(requestComplain(complain));
-    }
+    return initialValues
+  }
 
-    const initialValues: IInitialValues = useMemo(getInitialValues, [complainTypes]);
+  const onSubmit = (complain: complainType) => {
+    dispatch(requestComplain(complain));
+  }
 
-    return { initialValues, types, onSubmit }
+  const initialValues: IInitialValues = useMemo(getInitialValues, [me, types]);
+
+  return { initialValues, types, onSubmit }
 }

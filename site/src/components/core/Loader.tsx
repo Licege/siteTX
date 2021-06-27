@@ -3,9 +3,9 @@ import { CircularProgress } from '@material-ui/core'
 import styled from 'styled-components';
 
 const Loader = () => (
-    <Container>
-        <CircularProgress />
-    </Container>
+  <Container>
+    <CircularProgress />
+  </Container>
 )
 
 const Container = styled.div`

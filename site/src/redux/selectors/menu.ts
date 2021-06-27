@@ -1,13 +1,7 @@
 import { AppStateType } from '../redux-store'
 
-export const getDishesSelector = (state: any) => {
-    return state.menuPage.menu
-}
+export const getDishesSelector = (state: AppStateType) => state.menuPage.menu
 
-export const getDishSelector = (state: any) => {
-    return state.menuPage.dish
-}
+export const getDishSelector = (state: AppStateType) => state.menuPage.dish
 
-export const getCategoriesSelector = (state: any) => {
-    return state.menuPage.categories
-}
+export const getCategoriesSelector = (state: AppStateType) => state.menuPage.categories
