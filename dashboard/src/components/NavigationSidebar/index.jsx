@@ -1,162 +1,102 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink as NavL } from 'react-router-dom'
 import { Accordion } from 'react-bootstrap'
 import CustomToggle from '../common/element/Toggle'
 
 const NavigationSidebar = () => (
   <nav className="navbar">
     <Accordion className="navbar-accordion">
-      <CustomToggle className="navbar-accordion-header" eventKey="0">
-        Ресторан
-      </CustomToggle>
-      <Accordion.Collapse eventKey="0">
-        <NavLink activeClassName="-active" className="navbar-accordion-header-item"
-                 to="/news"
-        >Новости</NavLink>
-      </Accordion.Collapse>
-      <Accordion.Collapse eventKey="0">
-        <NavLink activeClassName="-active" className="navbar-accordion-header-item"
-                 to="/menu"
-        >Меню</NavLink>
-      </Accordion.Collapse>
-      <Accordion.Collapse eventKey="0">
-        <NavLink activeClassName="-active" className="navbar-accordion-header-item"
-                 to="/categories"
-        >Категории</NavLink>
-      </Accordion.Collapse>
-      {/*
+      <MainSection />
+        <DeliverySection />
+        <ClientsSection />
+        <LoyaltySection />
+        <StorageSection />
+        <AdminsSection />
+    </Accordion>
+  </nav>
+)
+
+const Toggle = ({ eventKey, title }) => (
+  <CustomToggle className="navbar-accordion-header" eventKey={eventKey}>{title}</CustomToggle>
+)
+
+const NavLink = ({ eventKey, to, title }) => (
+  <Accordion.Collapse eventKey={eventKey}>
+    <NavL activeClassName="-active" className="navbar-accordion-header-item" to={to}>{title}</NavL>
+  </Accordion.Collapse>
+)
+
+const MainSection = () => (
+  <>
+    <Toggle eventKey='0' title='Ресторан' />
+    <NavLink eventKey='0' to='/news' title='Новости' />
+    <NavLink eventKey='0' to='/menu' title='Меню' />
+    <NavLink eventKey='0' to='/categories' title='Категории' />
+    <NavLink eventKey='0' to='/employees' title='Сотрудники' />
+    <NavLink eventKey='0' to='/vacancies' title='Вакансии' />
+    <NavLink eventKey='0' to='/contacts' title='Контакты' />
+    {/*
                 <Accordion.Collapse eventKey="0">
                     <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/bar'>Бар</NavLink>
                 </Accordion.Collapse>
                 */}
-      {/*<Accordion.Collapse eventKey="0">*/}
-      {/*  <NavLink activeClassName="-active" className="navbar-accordion-header-item" to="/halls">Банкетные*/}
-      {/*    залы</NavLink>*/}
-      {/*</Accordion.Collapse>*/}
-      <Accordion.Collapse eventKey="0">
-        <NavLink activeClassName="-active" className="navbar-accordion-header-item"
-                 to="/employees"
-        >Сотрудники</NavLink>
-      </Accordion.Collapse>
-      <Accordion.Collapse eventKey="0">
-        <NavLink activeClassName="-active" className="navbar-accordion-header-item"
-                 to="/vacancies"
-        >Вакансии</NavLink>
-      </Accordion.Collapse>
-      <Accordion.Collapse eventKey="0">
-        <NavLink activeClassName="-active" className="navbar-accordion-header-item"
-                 to="/contacts"
-        >Контакты</NavLink>
-      </Accordion.Collapse>
+    {/*<Accordion.Collapse eventKey="0">*/}
+    {/*  <NavLink activeClassName="-active" className="navbar-accordion-header-item" to="/halls">Банкетные*/}
+    {/*    залы</NavLink>*/}
+    {/*</Accordion.Collapse>*/}
+  </>
+)
 
-      <CustomToggle className="navbar-accordion-header" eventKey="1">
-        Доставка
-      </CustomToggle>
-      <Accordion.Collapse eventKey="1">
-        <NavLink activeClassName="-active" className="navbar-accordion-header-item"
-                 to="/delivery"
-        >Заказы</NavLink>
-      </Accordion.Collapse>
-      <Accordion.Collapse eventKey="1">
-        <NavLink activeClassName="-active" className="navbar-accordion-header-item" to="/delivery-settings">Настройки
-          доставки</NavLink>
-      </Accordion.Collapse>
+const DeliverySection = () => (
+  <>
+    <Toggle eventKey='1' title='Доставка' />
+    <NavLink eventKey='1' to='/delivery' title='Заказы' />
+    <NavLink eventKey='1' to='/delivery-settings' title='Настройки доставки' />
+  </>
+)
 
-      <CustomToggle className="navbar-accordion-header" eventKey="2">
-        Посетители
-      </CustomToggle>
-      <Accordion.Collapse eventKey="2">
-        <NavLink activeClassName="-active" className="navbar-accordion-header-item" to="/users">Все
-          посетители</NavLink>
-      </Accordion.Collapse>
-      <Accordion.Collapse eventKey="2">
-        <NavLink activeClassName="-active" className="navbar-accordion-header-item"
-                 to="/reviews"
-        >Отзывы</NavLink>
-      </Accordion.Collapse>
-      <Accordion.Collapse eventKey="2">
-        <NavLink activeClassName="-active" className="navbar-accordion-header-item"
-                 to="/messages"
-        >Сообщения</NavLink>
-      </Accordion.Collapse>
-      <Accordion.Collapse eventKey="2">
-        <NavLink activeClassName="-active" className="navbar-accordion-header-item"
-                 to="/resume"
-        >Резюме</NavLink>
-      </Accordion.Collapse>
-      <Accordion.Collapse eventKey="2">
-        <NavLink activeClassName="-active" className="navbar-accordion-header-item" to="/orders">Заявки на
-          бронирование</NavLink>
-      </Accordion.Collapse>
+const ClientsSection = () => (
+  <>
+    <Toggle eventKey='2' title='Посетители' />
+    <NavLink eventKey='2' to='/users' title='Все посетители' />
+    <NavLink eventKey='2' to='/feedback' title='Отзывы' />
+    <NavLink eventKey='2' to='/messages' title='Сообщения' />
+    <NavLink eventKey='2' to='/resume' title='Резюме' />
+    <NavLink eventKey='2' to='/orders' title='Заявки на бронирование' />
+    <NavLink eventKey='2' to='/orders' title='Заявки на бронирование' />
+  </>
+)
 
-      <CustomToggle className="navbar-accordion-header" eventKey="3">
-        Программа лояльности
-      </CustomToggle>
-      <Accordion.Collapse eventKey="3">
-        <NavLink activeClassName="-active"
-                 className="navbar-accordion-header-item"
-                 to="/promos"
-        >
-          Акции
-        </NavLink>
-      </Accordion.Collapse>
-      <Accordion.Collapse eventKey="3">
-        <NavLink activeClassName="-active"
-                 className="navbar-accordion-header-item"
-                 to="/bonus"
-        >
-          Бонусная система
-        </NavLink>
-      </Accordion.Collapse>
-      <Accordion.Collapse eventKey="3">
-        <NavLink activeClassName="-active"
-                 className="navbar-accordion-header-item"
-                 to="/sales"
-        >
-          Скидочная система
-        </NavLink>
-      </Accordion.Collapse>
-      <Accordion.Collapse eventKey="3">
-        <NavLink activeClassName="-active"
-                 className="navbar-accordion-header-item"
-                 to="/settings-loyalty"
-        >
-          Настройка системы лояльности
-        </NavLink>
-      </Accordion.Collapse>
+const LoyaltySection = () => (
+  <>
+    <Toggle eventKey='3' title='Программа лояльности' />
+    <NavLink eventKey='3' to='/promos' title='Акции' />
+    <NavLink eventKey='3' to='/bonus' title='Бонусная система' />
+    <NavLink eventKey='3' to='/sales' title='Система скидок' />
+    <NavLink eventKey='3' to='/settings-loyalty' title='Настройка системы лояльности' />
+  </>
+)
 
-      <CustomToggle className="navbar-accordion-header" eventKey="4">
-        Склад
-      </CustomToggle>
-      <Accordion.Collapse eventKey="4">
-        <NavLink activeClassName="-active" className="navbar-accordion-header-item"
-                 to="/leftovers"
-        >Остатки</NavLink>
-      </Accordion.Collapse>
+const StorageSection = () => (
+  <>
+    <Toggle eventKey='4' title='Склад' />
+    <NavLink eventKey='4' to='/leftovers' title='Баланс' />
+  </>
+)
 
-      <CustomToggle className="navbar-accordion-header" eventKey="5">
-        Администраторы
-      </CustomToggle>
-      <Accordion.Collapse eventKey="5">
-        <NavLink activeClassName="-active" className="navbar-accordion-header-item"
-                 to="/admin"
-        >Администраторы</NavLink>
-      </Accordion.Collapse>
-      <Accordion.Collapse eventKey="5">
-        <NavLink activeClassName="-active" className="navbar-accordion-header-item" to="/access-templates">Шаблоны
-          доступа</NavLink>
-      </Accordion.Collapse>
+const AdminsSection = () => (
+  <>
+    <Toggle eventKey='4' title='Администраторы' />
+    <NavLink eventKey='4' to='/admin' title='Администраторы' />
+    <NavLink eventKey='4' to='/access-templates' title='Шаблоны доступа' />
+  </>
+)
 
-      {/*<CustomToggle className="navbar-accordion-header" eventKey="6">*/}
-      {/*  Статистика и отчеты*/}
-      {/*</CustomToggle>*/}
-      {/*<Accordion.Collapse eventKey="6">*/}
-      {/*  <NavLink activeClassName="-active" className="navbar-accordion-header-item"*/}
-      {/*           to="/average_check"*/}
-      {/*  >Средний чек</NavLink>*/}
-      {/*</Accordion.Collapse>*/}
-    </Accordion>
-  </nav>
+const StatisticsSection = () => (
+  <>
+    <Toggle eventKey='5' title='Статистика и отчеты' />
+    <NavLink eventKey='5' to='/average_check' title='Средний чек' />
+  </>
 )
 
 export default NavigationSidebar

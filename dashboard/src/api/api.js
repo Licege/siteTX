@@ -183,7 +183,6 @@ export const menuAPI = {
 
 export const newsAPI = {
     getNews() {
-        // return fetch(`${baseUrl}/news/`, { credentials: 'include' })
         return request.get(`${baseUrl}/news/`)
           .then(response => response)
     },
@@ -350,4 +349,8 @@ export const averageChecksAPI = {
           .then(response => response)
           .catch(reason => console.error(reason))
     },
+}
+
+export const complainAPI = {
+    getComplains: async params => request.post(`${baseUrl}/complains`, params)
 }

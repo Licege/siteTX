@@ -1,6 +1,6 @@
 import {useState, useEffect, useCallback} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import {fetchContacts, updateContacts as updateContactsThunk} from '../../redux/thunks/contats.thunks'
+import {fetchContacts, updateContacts as updateContactsThunk} from '../../redux/thunks/contacts.thunks'
 import {getContacts} from '../../redux/getters/contacts.getters'
 
 const useContacts = () => {

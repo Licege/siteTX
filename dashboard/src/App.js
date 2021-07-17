@@ -18,6 +18,7 @@ import ReviewsContainer from './containers/Reviews/Reviews'
 import HallsContainer from './containers/Halls/HallsContainer'
 import AverageChecksContainer from './containers/Statistics/AverageChecksContainer'
 import LeftoversContainer from './containers/Storage/LeftoversContainer'
+import Feedback from './pages/Feedback'
 
 import Admin from './pages/Admin/Admin'
 import Auth from './pages/Auth/Auth'
@@ -135,6 +136,8 @@ function App() {
                         <Route exact path='/messages' component={MessagesContainer}/>
                         <Route exact path='/contacts' component={Contacts}/>
                         {/*<Route exact path='/orders' component={OrdersContainer}/>*/}
+
+                        <Route exact path='/feedback' component={Feedback} />
 
                         <Redirect to='/'/>
                     </Switch>

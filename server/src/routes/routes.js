@@ -188,7 +188,7 @@ module.exports = io => {
     .get('/api/public/complain-types', complainType.getAll);
 
   router
-    .get('/api/private/complain', complain.getAll)
+    .post('/api/private/complains', complain.getAll)
     .get('/api/private/complain/:id', complain.get)
     .post('/api/private/complain', complain.create)
     .post('/api/public/complain', complain.create)

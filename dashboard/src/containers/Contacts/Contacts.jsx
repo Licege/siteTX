@@ -1,6 +1,6 @@
 import React from 'react'
 import Contacts from '../../pages/Contacts/Contacts'
-import { fetchContacts, updateContacts } from '../../redux/reducers/contacts.reducer'
+import { fetchContacts, updateContacts } from '../../redux/thunks/contacts.thunks'
 import { connect } from 'react-redux'
 
 class ContactsContainer extends React.Component {

@@ -17,6 +17,7 @@ import hallReducer from './hall-reducer'
 import fileReducer from './file-reducer'
 import averageChecksReducer from './Statistics/average-checks-reducer'
 import modalReducer from './reducers/modals.reducer'
+import complainReducer from './reducers/complain.reducer'
 
 const middleware = getDefaultMiddleware({
     immutableCheck: false,
@@ -39,6 +40,7 @@ export default configureStore({
         menuPage: menuReducer,
         promosPage: promosReducer,
         deliveryPage: deliveryReducer,
-        ordersPage: ordersReducer
+        ordersPage: ordersReducer,
+        complainsPage: complainReducer
     }
 })

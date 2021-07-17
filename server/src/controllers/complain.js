@@ -4,7 +4,9 @@ const errorHandler = require('../utils/errorHandler')
 
 module.exports.getAll = async function (req, res) {
     try {
-        const complains = await ComplainRepo.all()
+        const { limit = 20, offset = 0 } = req.body.pagination;
+        const complains = await ComplainRepo.all({},{ limit, offset })
+
         res.status(200).json(complains)
     } catch (error) {
         errorHandler(res, error)
