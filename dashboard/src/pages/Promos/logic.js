@@ -1,8 +1,8 @@
-import {useEffect, useState} from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { useFileLogic } from '../../hooks'
-import {requestAllPromos, requestPromoById, postPromo, updatePromo} from '../../redux/thunks/promos.thunks'
+import {requestAllPromos, requestPromoById, postPromo, updatePromo, removePromo} from '../../redux/thunks/promos.thunks'
 import {getAllPromos, getCurrentPromo} from '../../redux/getters/promos.getters'
 
 const usePromos = ({ force = false } = {}) => {
@@ -39,9 +39,14 @@ export const usePromoHeaderLogic = () => {
 }
 
 export const usePromosCardsLogic = () => {
+  const dispatch = useDispatch()
   const promos = usePromos()
 
-  return { promos }
+  const onDelete = useCallback(id => {
+    dispatch(removePromo(id))
+  }, [])
+
+  return { promos, onDelete }
 }
 
 export const useCreatePromoLogic = () => {

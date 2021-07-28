@@ -43,15 +43,23 @@ const responseHandler = async response => {
   return Promise.reject(new TypeError(`Oops, we haven't got JSON! Your type is: ${contentType}`));
 };
 
-const generalOptions = {
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  credentials: 'include'
+const generalOptions = (settings = {}) => {
+  const options = {
+    credentials: 'include'
+  }
+
+  if (!settings.noAutoHeaders) {
+    options.headers = {
+      'Content-Type': 'application/json'
+    }
+  }
+
+  return options
 }
 
 const request = method => async (url, body, options = {}) => {
-  const init = { ...generalOptions, ...options, method }
+  const init = { ...generalOptions(options), method }
+
   if (method === 'GET') delete init.headers
   if (body) {
     if (body instanceof FormData) {

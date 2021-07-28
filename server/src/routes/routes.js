@@ -86,7 +86,8 @@ module.exports = io => {
     .get('/api/private/promos', promo.getAll)
     .get('/api/private/promos/:id', promo.getById)
     .post('/api/private/promos', upload.single('image'), promo.create)
-    .patch('/api/private/promos/:id', upload.single('image'), promo.update);
+    .patch('/api/private/promos/:id', upload.single('image'), promo.update)
+    .delete('/api/private/promos/:id', promo.remove);
 
 
   router

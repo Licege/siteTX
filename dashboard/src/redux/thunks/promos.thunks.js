@@ -32,3 +32,12 @@ export const updatePromo = createAsyncThunk(
     return response
   }
 )
+
+export const removePromo = createAsyncThunk(
+  'promos/removePromo',
+  async (id) => {
+    const response = await promoAPI.removePromo(id)
+    console.log(response);
+    return response
+  }
+)

@@ -35,7 +35,7 @@ const menuSlice = createSlice({
             state.dishes = state.dishes.map(dish => dish.id === action.payload.id ? action.payload : dish)
         },
         [deleteDish.fulfilled]: (state, action) => {
-            state.dishes = state.dishes.filter(dish => dish.id !== action.payload)
+            state.dishes = state.dishes.filter(dish => dish.id !== action.payload.id)
         },
         [updateCategory.fulfilled]: (state, action) => {
             state.categories = state.categories.map(cat => cat.id === action.payload.id ? action.payload : cat)

@@ -26,6 +26,9 @@
   }
 
   &-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
     position: absolute;
     bottom: 20px;
     right: calc(25% - 70px);

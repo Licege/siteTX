@@ -71,14 +71,13 @@ module.exports.update = async function (req, res) {
 }
 
 module.exports.delete = async function (req, res) {
+    const { id } = req.params;
     const transaction = await sequelize.transaction()
 
     try {
-        await NewsRepo.destroyById(req.params.id, transaction)
+        await NewsRepo.destroyById(id, transaction)
         await transaction.commit()
-        res.status(200).json({
-            message: 'Новость успешно удалена.'
-        })
+        res.status(200).json({ id: +id })
     } catch (e) {
         await transaction.rollback()
         handleError(res, e)

@@ -47,7 +47,7 @@ module.exports.create = async function (req, res) {
 module.exports.update = async function (req, res) {
     const transaction = await sequelize.transaction()
 
-    const promoToupdate = {
+    const promoToUpdate = {
         title: req.body.title,
         shortDescription: req.body.shortDescription,
         description: req.body.description,
@@ -55,18 +55,25 @@ module.exports.update = async function (req, res) {
     }
 
     if (req.file) {
-        promoToupdate.imageSrc = req.file
+        promoToUpdate.imageSrc = req.file
     }
 
     const id = req.params.id
     const where = { id }
     try {
-        await PromosRepo.update(where, promoToupdate, transaction)
+        await PromosRepo.update(where, promoToUpdate, transaction)
         await transaction.commit()
-        const promo = await PromosRepo.findById(id);
+        const promo = await PromosRepo.findById(id)
         res.status(200).json(promo)
     } catch (e) {
         await transaction.rollback()
         errorHandler(res, e)
     }
+}
+
+module.exports.remove = async (req, res) => {
+    const { id } = req.params;
+
+    await PromosRepo.destroyById(id)
+    res.status(200).json({ id: +id })
 }

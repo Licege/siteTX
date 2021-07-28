@@ -32,7 +32,7 @@ const newsSlice = createSlice({
             state.news = state.news.map(n => (n.id === action.currentNews.id ? action.currentNews : n))
         },
         [deleteNews.fulfilled]: (state, action) => {
-            state.news = state.news.filter(n => n.id !== action.payload)
+            state.news = state.news.filter(n => n.id !== action.payload.id)
         }
     }
 })

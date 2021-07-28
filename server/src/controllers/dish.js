@@ -44,14 +44,13 @@ module.exports.getById = async function (req, res) {
 }
 
 module.exports.remove = async function (req, res) {
+    const { id } = req.params;
     const transaction = await sequelize.transaction()
 
     try {
-        await DishRepo.destroyById(req.params.id, transaction)
+        await DishRepo.destroyById(id, transaction)
         await transaction.commit()
-        res.status(200).json({
-            message: 'Блюдо успешно удалено.'
-        })
+        res.status(200).json({ id: +id })
     } catch (e) {
         await transaction.rollback()
         errorHandler(res, e)

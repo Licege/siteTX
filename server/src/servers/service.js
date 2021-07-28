@@ -42,15 +42,15 @@ const start = () => {
   // app.use('/uploads', express.static('uploads', options))
   app.use(bodyParser.urlencoded({ extended: true }))
   app.use(bodyParser.json())
-  // app.use(bodyParser.json({
-  //   limit: '10mb',
-  //   type: [
-  //     'json',
-  //     'application/csp-report',
-  //     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel',
-  //     'application/x-www-form-urlencoded'
-  //   ]
-  // }))
+  app.use(bodyParser.json({
+    limit: '10mb',
+    type: [
+      'json',
+      'application/csp-report',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel',
+      'application/x-www-form-urlencoded'
+    ]
+  }))
 
   passport.use(
     'user-strategy',

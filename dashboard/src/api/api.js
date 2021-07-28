@@ -116,27 +116,16 @@ export const contactsAPI = {
 }
 
 export const promoAPI = {
-    getPromos() {
-        return request.get(`${baseUrl}/promos/`)
-          .then(response => response)
-    },
-    getPromo( id ) {
-        return request.get(`${baseUrl}/promos/${id}`)
-          .then(response => response)
-    },
-    postPromo( promo ) {
-        return request.post(`${baseUrl}/promos/`, promo)
-          .then(response => response)
-    },
-    updatePromo( promo, id ) {
-        return request.patch(`${baseUrl}/promos/${id}`, promo)
-          .then(response => response)
-    },
+    getPromos: () => request.get(`${baseUrl}/promos/`),
+    getPromo: id => request.get(`${baseUrl}/promos/${id}`),
+    postPromo: (promo) => request.post(`${baseUrl}/promos/`, promo, { noAutoHeaders: true }),
+    updatePromo: (promo, id) => request.patch(`${baseUrl}/promos/${id}`, promo, { noAutoHeaders: true }),
+    removePromo: (id) => request.delete(`${baseUrl}/promos/${id}`)
 }
 
 export const menuAPI = {
     createDish( dish ) {
-        return request.post(`${baseUrl}/menu/`, dish)
+        return request.post(`${baseUrl}/menu/`, dish, { noAutoHeaders: true })
           .then(response => response)
     },
     getDishes() {
@@ -152,7 +141,7 @@ export const menuAPI = {
           .then(response => response)
     },
     updateDish( dish, id ) {
-        return request.patch(`${baseUrl}/menu/${id}`, dish)
+        return request.patch(`${baseUrl}/menu/${id}`, dish, { noAutoHeaders: true })
           .then(response => response)
     },
     deleteDish( id ) {
@@ -191,12 +180,11 @@ export const newsAPI = {
           .then(response => response)
     },
     postNews( news ) {
-        return request.post(`${baseUrl}/news/`, news)
+        return request.post(`${baseUrl}/news/`, news, { noAutoHeaders: true })
           .then(response => response)
     },
     updateNews( news, id ) {
-        console.log(id);
-        return request.patch(`${baseUrl}/news/${id}`, news)
+        return request.patch(`${baseUrl}/news/${id}`, news, { noAutoHeaders: true })
           .then(response => response)
     },
     deleteNews( id ) {
