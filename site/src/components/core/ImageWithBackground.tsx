@@ -16,7 +16,7 @@ interface IImage {
 
 const Image = styled.div`
   background-image: ${(props: IImage) => `url(${props.imageSrc})`};
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   height: 500px;

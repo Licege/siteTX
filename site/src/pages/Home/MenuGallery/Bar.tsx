@@ -51,7 +51,7 @@ const Bound = styled.div`
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: #989898e0;
+  //background-color: #989898e0;
   z-index: 1;
   display: flex;
   justify-content: center;

@@ -1,10 +1,13 @@
-import React, { useCallback } from 'react'
+import React, { useState, useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
 
 const Gallery = () => {
+  const [files, setFiles] = useState([]);
+
   const onDrop = useCallback(acceptedFiles => {
-    console.log(acceptedFiles)
+    setFiles(prevFiles => prevFiles.concat(acceptedFiles))
   }, [])
+  console.log(files);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 

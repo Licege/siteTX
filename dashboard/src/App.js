@@ -84,7 +84,7 @@ function App() {
                         <Route exact path='/categories/edit/:id' component={EditCategory}/>
 
                         {/*Слайды с меню*/}
-                        <Route exact path='/menu/gallery/main' component={MenuGallery} />
+                        <Route exact path='/menu/slides' component={MenuGallery} />
 
                         {/*Пользователи*/}
                         <Route exact path='/users' component={UsersContainer}/>
