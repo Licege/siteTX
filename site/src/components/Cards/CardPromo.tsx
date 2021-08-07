@@ -18,7 +18,6 @@ const CardPromo: React.FC<IProps> = ({ promo }) => {
   } as CSSProperties
 
   const history = useHistory()
-  console.log(promo);
 
   return (
     <div className='card_promo'>

@@ -16,7 +16,7 @@ const NewsById = () => {
         <Image src={imageSrc || altImg} alt="" />
         <NewsWrapper>
           <Title>{title}</Title>
-          <Description>{description}</Description>
+          <div dangerouslySetInnerHTML={{ __html: description }} />
           <ActionsBlock>
             <Button variant="outlined" onClick={redirectToAllNews}>Все новости</Button>
           </ActionsBlock>
@@ -59,10 +59,6 @@ const NewsWrapper = styled.div`
 
 const Title = styled.h2`
   text-align: center;
-`
-
-const Description = styled.p`
-
 `
 
 const ActionsBlock = styled.div`

@@ -18,6 +18,7 @@ const Container = styled.div`
 const Title = styled.h4`
   color: ${props => props.theme.colors.brown.brand};
   text-align: center;
+  font-weight: 100;
 `
 
 export default CardContainer

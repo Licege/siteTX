@@ -13,7 +13,7 @@ const newsSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(requestNews.fulfilled, (state, action) => {
       state.news = action.payload.news
-      state.totalCount = action.payload.total_count
+      state.totalCount = action.payload.totalCount
     })
     builder.addCase(requestCurrentNews.fulfilled, (state, action) => {
       state.currentNews = action.payload

@@ -72,6 +72,7 @@ const Title = styled(SectionTitle)`
   
   @media(max-width: 768px) {
     margin-top: 20px;
+    margin-bottom: 8px;
   }
 `
 

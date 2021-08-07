@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import {useEffect, useState} from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import {useSelector} from 'react-redux'
@@ -56,19 +56,25 @@ export const useCreateNewsLogic = () => {
   const history = useHistory()
   const dispatch = useDispatch()
 
+  const [description, setDescription] = useState('')
   const { file, uploadFile, createFormDataWithFile } = useFileLogic()
+
+  const changeDescription = newDescription => setDescription(newDescription)
 
   const postNews = news => {
     const formData = createFormDataWithFile(news, 'image')
+
+    if (description) formData.append('description', description)
+
     dispatch(createNewNews(formData))
-    history.goBack()
+    history.push('/news')
   }
 
   const cancel = () => {
-    history.goBack()
+    history.push('/news')
   }
 
-  return { file, uploadFile, postNews, cancel }
+  return { file, uploadFile, postNews, changeDescription, cancel }
 }
 
 export const useEditNewsLogic = () => {
@@ -76,19 +82,25 @@ export const useEditNewsLogic = () => {
   const dispatch = useDispatch()
 
   const currentNews = useCurrentNews()
+  const [description, setDescription] = useState(currentNews?.description)
   const isLoading = useSelector(getNewsLoadingStatus)
 
   const { file, uploadFile, createFormDataWithFile } = useFileLogic()
 
+  const changeDescription = newDescription => setDescription(newDescription)
+
   const updateNews = news => {
     const formData = createFormDataWithFile(news, 'image')
+
+    if (description) formData.append('description', description)
+
     dispatch(updateNewsThunk({ id: currentNews.id, data: formData}))
-    history.goBack()
+    history.push('/news')
   }
 
   const cancel = () => {
-    history.goBack()
+    history.push('/news')
   }
 
-  return { currentNews, updateNews, isLoading, file, uploadFile, cancel }
+  return { currentNews, updateNews, isLoading, file, uploadFile, changeDescription, cancel }
 }

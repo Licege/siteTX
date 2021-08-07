@@ -39,6 +39,8 @@
 
       &-description {
         max-height: 120px;
+        overflow: hidden;
+        margin-bottom: 24px;
       }
 
       &-link {

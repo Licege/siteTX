@@ -13,9 +13,8 @@
 
   &-form {
     &-wysivyg {
-      width: 280px;
+      min-width: 280px;
       min-height: 300px;
-      max-width: 300px;
       border: 1px solid $brand-light-gray;
 
       .rdw-editor-main {

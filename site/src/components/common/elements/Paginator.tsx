@@ -8,12 +8,13 @@ interface IProps {
     onChange: ( page: number ) => void
 }
 
-const Paginator: React.FC<IProps> = ( { totalItemsCount, pageSize = 10, onChange } ) => {
+const Paginator: React.FC<IProps> = ({ totalItemsCount, pageSize = 10, onChange }) => {
   const pagesCount = Math.ceil(totalItemsCount / pageSize)
   const handleChange = ( event: ChangeEvent<unknown>, page: number ) => {
     onChange(page)
   }
 
+  if (pagesCount < 2) return null;
 
   return (
     <div className='pagination justify-content-center mt-4'>
@@ -23,7 +24,8 @@ const Paginator: React.FC<IProps> = ( { totalItemsCount, pageSize = 10, onChange
                   count={pagesCount}
                   showFirstButton
                   showLastButton
-                  onChange={handleChange} className='news-paginator'/>
+                  onChange={handleChange}
+                  className='news-paginator'/>
     </div>
 
   )

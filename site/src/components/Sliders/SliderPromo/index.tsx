@@ -13,7 +13,7 @@ const SliderPromo = () => {
       <CustomSlider settings={config(promos.length)}>
         {promos.map((promo, key) => (
           <CardPromo promo={promo} key={key}/>
-                ))}
+        ))}
       </CustomSlider>
     </Wrapper>
   )

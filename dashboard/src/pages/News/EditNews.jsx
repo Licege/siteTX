@@ -5,7 +5,7 @@ import Preloader from '../../components/common/Preloader/Preloader'
 import {PageHeader} from '../../styledComponents/components'
 
 const EditNews = () => {
-  const { currentNews, updateNews, isLoading, uploadFile, cancel } = useEditNewsLogic()
+  const { currentNews, updateNews, isLoading, uploadFile, changeDescription, cancel } = useEditNewsLogic()
 
   if (isLoading) return <Preloader />
 
@@ -17,7 +17,7 @@ const EditNews = () => {
       <div className='page-container'>
         <div className='card'>
           <div className='card-body'>
-            <NewsForm onSubmit={updateNews} initialValues={currentNews} news={currentNews} uploadFile={uploadFile} cancel={cancel} />
+            <NewsForm onSubmit={updateNews} initialValues={currentNews} news={currentNews} changeDescription={changeDescription} uploadFile={uploadFile} cancel={cancel} />
           </div>
         </div>
       </div>

@@ -27,10 +27,11 @@ const SectionContent = styled.div`
   grid-auto-flow: column;
   grid-template-columns: repeat(2, minmax(400px, max-content));
   justify-content: center;
-  margin: 25px 0;
+  margin: 16px 0;
   
   @media(max-width: ${BREAKPOINTS.ds}px) {
     display: block;
+    margin: 0;
   }
 `
 

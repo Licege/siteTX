@@ -4,16 +4,17 @@ import { Form } from 'react-final-form'
 import { SCInputField, SCTextareaField } from './styledComponents';
 import ImageInput from '../../components/common/imageInput'
 import {PageHeader} from '../../styledComponents/components'
+import ControlledEditor from "../../components/common/element/editor/ControlledEditor";
 
-const RenderForm = ({ handleSubmit, pristine, submitting, news, uploadFile, cancel }) => (
+const RenderForm = ({ handleSubmit, pristine, submitting, news, uploadFile, changeDescription, cancel }) => (
   <form onSubmit={handleSubmit}>
     <SCInputField name='title' placeholder='Название' />
     <SCTextareaField name='shortDescription'
                      placeholder='Краткое описание новости'
     />
-    <SCTextareaField name='description'
-                     placeholder='Полное описание новости'
-    />
+      <div className="promos-form-wysivyg">
+          <ControlledEditor value={news?.description || ''} onChange={changeDescription} />
+      </div>
     <div>
       <ImageInput value={news ? news.imageSrc : ''} onChange={uploadFile} allowClear={true} />
     </div>

@@ -10,6 +10,7 @@ import { useNewsPageLogic } from './logic'
 
 const News = () => {
   const { news, totalCount, onPageChange } = useNewsPageLogic()
+  console.log(totalCount);
 
   if (!news.length) return <EmptyPage />
 

@@ -19,6 +19,7 @@ const Image = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  border-radius: 4px;
   height: 500px;
   width: 100%;
   cursor: pointer;
