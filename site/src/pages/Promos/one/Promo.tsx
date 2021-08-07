@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from '../../../components/core'
-import { Container, Content, Wrapper, Image, Title, ActionsBlock } from './styles'
+import { Container, Content, Wrapper, Title, Image, ActionsBlock } from './styles'
 import { usePromoPageLogic } from './logic'
 
 const Promo: React.FC = () => {
@@ -10,7 +10,7 @@ const Promo: React.FC = () => {
 
   return (
     <Container>
-      <Image image={imageSrc} />
+      <Image src={imageSrc} />
       <Wrapper>
         <Content>
           <Title>{title}</Title>

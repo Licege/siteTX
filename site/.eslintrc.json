@@ -9,6 +9,8 @@
     "react/jsx-uses-react": "error",
     "object-curly-spacing": "error",
     "quotes": ["error", "single", { "avoidEscape": true }],
+    "spaced-comment": "off",
+    "jsx-a11y/alt-text": "off",
     "react/jsx-indent": ["error", 2],
     "react/jsx-indent-props": ["error", "first"],
     "react/jsx-closing-bracket-location": ["error", "after-props"],

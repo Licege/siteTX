@@ -2,11 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 import { SectionTitle, SectionWrapper } from '../../../components/core'
 import ImageSrc from '../../../static/img/veranda-2.jpg'
+import { BREAKPOINTS } from '../../../styledComponents/helpers'
 import { LinkButton } from '../styles'
 
 const SectionAbout = () => (
   <Container>
-    <Image imageSrc={ImageSrc} />
+    <Image src={ImageSrc} />
     <Article>
       <Title>Добро пожаловать</Title>
       <Text>
@@ -23,38 +24,43 @@ const SectionAbout = () => (
   </Container>
 )
 
+// Fix for parent calc height float elements
 const Container = styled(SectionWrapper)`
-  display: flex;
-  
-  @media(max-width: 576px) {
-    display: block;
+  display: block;
+
+  &:after {
+    content: " ";
+    display: table;
+    clear: both;
+  }
+
+  @media(max-width: ${BREAKPOINTS.ts}px) {
+    display: flex;
+    flex-direction: column;
   }
 `
 
-interface IImage {
-  imageSrc: string
-}
-
-const Image = styled.div`
+const Image = styled.img`
   margin: 20px;
-  background-image: ${(props: IImage) => `url(${props.imageSrc})`};
   border-radius: 5px;
   width: 320px;
   height: 320px;
-  
-  @media(max-width: 576px) {
-    margin: 0 auto;
-  }
-  
-  @media(max-width: 768px) {
+  float: left;
+
+  @media(max-width: ${BREAKPOINTS.tm}px) {
     width: 264px;
     height: 264px;
+  }
+
+  @media(max-width: ${BREAKPOINTS.ts}px) {
+    float: none;
+    margin: 0 auto;
+    width: auto;
   }
 `
 
 const Article = styled.article`
-  float: right;
-  width: calc(100% - 350px);
+  width: 100%;
   
   @media(max-width: 576px) {
     float: none;

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Button, PageContainer } from '../../../components/core'
 import { useCurrentNewsPageLogic } from './logic'
 import altImg from '../../../static/img/news.jpg'
+import { BREAKPOINTS } from '../../../styledComponents/helpers'
 
 
 const NewsById = () => {
@@ -26,20 +27,34 @@ const NewsById = () => {
 }
 
 const NewsContainer = styled.div`
-  display: flex;
-  min-height: calc(100vh - 308px);
+  &:after {
+    content: " ";
+    display: table;
+    clear: both;
+  }
 `
 
 const Image = styled.img`
+  float: left;
   width: 45%;
   height: 100%;
+  margin: 0 16px 8px 36px;
+  border-radius: 5px;
+
+  @media (max-width: ${BREAKPOINTS.ts}px) {
+    margin: 0 0 16px;
+    width: 100%;
+  }
 `
 
 const NewsWrapper = styled.div`
   position: relative;
   padding-bottom: 40px;
-  padding-left: 16px;
-  width: 55%;
+  padding-left: 36px;
+
+  @media(max-width: ${BREAKPOINTS.ts}px) {
+    padding: 0;
+  }
 `
 
 const Title = styled.h2`
