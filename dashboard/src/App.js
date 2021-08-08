@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
+import { Redirect, Route, Switch } from 'react-router-dom'
 import './App.scss'
 import Header from './components/Header/Header'
 import NavigationSidebar from './components/NavigationSidebar'
@@ -54,97 +54,93 @@ function App() {
 
     if (!isAuthenticated) {
         return (
-            <BrowserRouter>
-                <Switch>
-                    <Route exact path='/login' component={Auth}/>
-                    <Redirect to='/login'/>
-                </Switch>
-            </BrowserRouter>
+            <Switch>
+                <Route exact path='/login' component={Auth}/>
+                <Redirect to='/login'/>
+            </Switch>
         )
     }
 
     return (
-        <BrowserRouter>
-            <div className='app-wrapper'>
-                <Header/>
-                <NavigationSidebar />
-                <div className='app-wrapper-content'>
-                    <Switch>
-                        <Route exact path='/' component={HomeContainer}/>
+        <div className='app-wrapper'>
+            <Header/>
+            <NavigationSidebar />
+            <div className='app-wrapper-content'>
+                <Switch>
+                    <Route exact path='/' component={HomeContainer}/>
 
-                        {/*Админ*/}
-                        <Route exact path='/admin' component={Admin}/>
+                    {/*Админ*/}
+                    <Route exact path='/admin' component={Admin}/>
 
-                        {/*Меню*/}
-                        <Route exact path='/menu' component={Menu}/>
-                        <Route exact path='/menu/new' component={CreateDish}/>
-                        <Route exact path='/menu/edit/:id' component={EditDish}/>
-                        <Route exact path='/categories' component={Categories}/>
-                        <Route exact path='/categories/new' component={CreateCategory}/>
-                        <Route exact path='/categories/edit/:id' component={EditCategory}/>
+                    {/*Меню*/}
+                    <Route exact path='/menu' component={Menu}/>
+                    <Route exact path='/menu/new' component={CreateDish}/>
+                    <Route exact path='/menu/edit/:id' component={EditDish}/>
+                    <Route exact path='/categories' component={Categories}/>
+                    <Route exact path='/categories/new' component={CreateCategory}/>
+                    <Route exact path='/categories/edit/:id' component={EditCategory}/>
 
-                        {/*Слайды с меню*/}
-                        <Route exact path='/menu/slides' component={MenuGallery} />
+                    {/*Слайды с меню*/}
+                    <Route exact path='/menu/slides' component={MenuGallery} />
 
-                        {/*Пользователи*/}
-                        <Route exact path='/users' component={UsersContainer}/>
-                        <Route exact path='/users/:id' component={UserContainer}/>
+                    {/*Пользователи*/}
+                    <Route exact path='/users' component={UsersContainer}/>
+                    <Route exact path='/users/:id' component={UserContainer}/>
 
-                        {/*Сотрудники*/}
-                        <Route exact path='/employees' component={Employees}/>
-                        {/*<Route exact path='/employees/edit/:id' component={EmployeeContainer}/>*/}
-                        {/*<Route exact path='/employees/new' component={CreateEmployee}/>*/}
+                    {/*Сотрудники*/}
+                    <Route exact path='/employees' component={Employees}/>
+                    {/*<Route exact path='/employees/edit/:id' component={EmployeeContainer}/>*/}
+                    {/*<Route exact path='/employees/new' component={CreateEmployee}/>*/}
 
-                        {/*Резюме*/}
-                        <Route exact path='/resume' component={Resume}/>
+                    {/*Резюме*/}
+                    <Route exact path='/resume' component={Resume}/>
 
-                        {/*Вакансии*/}
-                        <Route exact path='/vacancies' component={Vacancies}/>
-                        <Route exact path='/vacancies/edit/:id' component={EditVacancy}/>
-                        <Route exact path='/vacancies/new' component={CreateVacancy}/>
+                    {/*Вакансии*/}
+                    <Route exact path='/vacancies' component={Vacancies}/>
+                    <Route exact path='/vacancies/edit/:id' component={EditVacancy}/>
+                    <Route exact path='/vacancies/new' component={CreateVacancy}/>
 
-                        {/*Новости*/}
-                        <Route exact path='/news' component={News}/>
-                        <Route exact path='/news/new' component={CreateNews}/>
-                        <Route exact path='/news/edit/:id' component={EditNews}/>
+                    {/*Новости*/}
+                    <Route exact path='/news' component={News}/>
+                    <Route exact path='/news/new' component={CreateNews}/>
+                    <Route exact path='/news/edit/:id' component={EditNews}/>
 
-                        {/*Доставка*/}
-                        <Route exact path='/delivery' component={Delivery}/>
-                        <Route exact path='/delivery/:id' component={DeliveryInfo}/>
-                        <Route exact path='/delivery-settings' component={SettingsDelivery}/>
-                        <Route exact path='/delivery-settings/new' component={SettingsDeliveryCommonNew}/>
-                        <Route exact path='/delivery-settings/edit/:id' component={SettingsDeliveryCommonEdit}/>
+                    {/*Доставка*/}
+                    <Route exact path='/delivery' component={Delivery}/>
+                    <Route exact path='/delivery/:id' component={DeliveryInfo}/>
+                    <Route exact path='/delivery-settings' component={SettingsDelivery}/>
+                    <Route exact path='/delivery-settings/new' component={SettingsDeliveryCommonNew}/>
+                    <Route exact path='/delivery-settings/edit/:id' component={SettingsDeliveryCommonEdit}/>
 
-                        {/*Акции*/}
-                        <Route exact path='/promos' component={Promos}/>
-                        <Route exact path='/promos/new' component={CreatePromo}/>
-                        <Route exact path='/promos/show/:id' component={ShowPromo}/>
-                        <Route exact path='/promos/edit/:id' component={EditPromo}/>
+                    {/*Акции*/}
+                    <Route exact path='/promos' component={Promos}/>
+                    <Route exact path='/promos/new' component={CreatePromo}/>
+                    <Route exact path='/promos/show/:id' component={ShowPromo}/>
+                    <Route exact path='/promos/edit/:id' component={EditPromo}/>
 
-                        {/*Отзывы*/}
-                        <Route exact path='/reviews' component={ReviewsContainer}/>
+                    {/*Отзывы*/}
+                    <Route exact path='/reviews' component={ReviewsContainer}/>
 
-                        {/*Банкетный зал*/}
-                        <Route exact path='/halls' component={HallsContainer}/>
+                    {/*Банкетный зал*/}
+                    <Route exact path='/halls' component={HallsContainer}/>
 
-                        {/*Склад*/}
-                        <Route exact path='/leftovers' component={LeftoversContainer}/>
+                    {/*Склад*/}
+                    <Route exact path='/leftovers' component={LeftoversContainer}/>
 
-                        {/*Статистика и отчеты*/}
-                        <Route exact path='/average_check' component={AverageChecksContainer}/>
+                    {/*Статистика и отчеты*/}
+                    <Route exact path='/average_check' component={AverageChecksContainer}/>
 
-                        <Route exact path='/messages' component={MessagesContainer}/>
-                        <Route exact path='/contacts' component={Contacts}/>
-                        {/*<Route exact path='/orders' component={OrdersContainer}/>*/}
+                    <Route exact path='/messages' component={MessagesContainer}/>
+                    <Route exact path='/contacts' component={Contacts}/>
+                    {/*<Route exact path='/orders' component={OrdersContainer}/>*/}
 
-                        <Route exact path='/feedback' component={Feedback} />
+                    <Route exact path='/feedback' component={Feedback} />
 
-                        <Redirect to='/'/>
-                    </Switch>
-                </div>
-                <Modal />
+                    <Redirect to='/'/>
+                </Switch>
             </div>
-        </BrowserRouter>
+            <Modal />
+        </div>
     )
 }
 

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { withRouter, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import imageSrc from '../../static/img/404.png'
+import {Button} from "react-bootstrap";
 
 class CatchErrors extends Component {
     constructor(props) {
@@ -20,18 +21,28 @@ class CatchErrors extends Component {
         CatchErrors.getDerivedStateFromError(error, errorInfo);
     }
 
+    goBack = () => {
+        const { history } = this.props
+
+        history.push('/');
+        window.location.reload();
+    }
+
     render() {
-        if (this.state.hasError) {
+        const { children } = this.props;
+        const { hasError } = this.state;
+
+        if (hasError) {
             return (
                 <Wrapper>
                     <Title>Упс, похоже что то пошло не так!</Title>
                     <Image src={imageSrc} />
-                    <NavLink to='/'><h2>Назад на главную</h2></NavLink>
+                    <Button onClick={this.goBack}>Назад на главную</Button>
                 </Wrapper>
             )
         }
 
-        return this.props.children
+        return children
     }
 }
 
@@ -40,6 +51,7 @@ const Title = styled.h1``
 const Image = styled.img`
   border-radius: 5px;
   min-width: 300px;
+  margin-bottom: 16px;
 `
 
 const Wrapper = styled.main`
@@ -51,4 +63,4 @@ const Wrapper = styled.main`
     flex-direction: column;
 `
 
-export default CatchErrors;
+export default withRouter(CatchErrors);
