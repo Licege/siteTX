@@ -4,6 +4,8 @@ export const theme = {
   colors: {
     warning: '#00CEE0',
     danger: '#FD4F53',
+    activeLink: '#008000',
+    hover: '#008000',
     blue: {
       blend: '#B5C5F1',
       dark: '#252B49',
@@ -11,6 +13,9 @@ export const theme = {
       hover: '#0638C0',
       active: '#163881',
       brand: '#0000EE'
+    },
+    green: {
+      main: '#008000'
     },
     gray: {
       brand: '#D7D7D7',

@@ -62,7 +62,7 @@ const Category = styled(NavLink)`
   color: ${props => props.theme.colors.brown.brand};
 
   &.-active {
-    color: gold;
+    color: ${props => props.theme.colors.hover};
   }
 
   &:hover {

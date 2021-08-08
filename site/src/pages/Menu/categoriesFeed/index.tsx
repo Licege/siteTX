@@ -54,11 +54,12 @@ const FeedItem = styled(NavLink)`
   text-decoration: none;
 
   &.-active {
+    color: ${props => props.theme.colors.activeLink};
     border-bottom: 2px solid;
   }
 
   &:hover {
-    color: goldenrod;
+    color: ${props => props.theme.colors.hover};
     text-decoration: none;
   }
 `

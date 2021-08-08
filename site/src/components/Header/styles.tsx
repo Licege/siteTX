@@ -84,6 +84,6 @@ export const Navbar = styled.nav`
 
 export const NavItem = styled(NavLink)`
   &.active {
-    color: gold;
+    color: #008000;
   }
 `
