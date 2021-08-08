@@ -4,7 +4,7 @@
   width: 90%;
   height: 100%;
   margin: 0 auto;
-
+  transition: .3s;
 
   &-img {
     width: 100%;
@@ -42,6 +42,10 @@
   }
 
   &__wrapper {
+  }
+
+  &:hover {
+    transform: scale(1.02);
   }
 
   @include media-breakpoint-down(xsm) {

@@ -65,6 +65,7 @@ export const NavBlock = styled.nav`
 export const NavItem = styled(NavLink)`
   display: block;
   color: #999;
+  transition: .2s;
 
   &.active {
     color: #000;
@@ -98,6 +99,7 @@ export const Address = styled.address`
 
   a {
     color: #999;
+    transition: .2s;
 
     &:hover {
       color: #000;
@@ -109,6 +111,7 @@ export const Phone = styled.a`
   text-decoration: none;
   white-space: nowrap;
   color: #999;
+  transition: .2s;
 
   &:hover {
     color: inherit;

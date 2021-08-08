@@ -6,14 +6,14 @@
   margin: 0 auto 32px;
   letter-spacing: 1px;
   max-width: 360px;
+  transition: .3s;
 
   &__wrapper {
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 16px;
-    padding-top: 0;
+    padding: 0 16px 16px;
     //margin-bottom: 80px;
   }
 

@@ -5,11 +5,18 @@ import { useFeedbackLogic } from './logic'
 import Table from '../../components/UI/Table'
 
 const Feedback = () => {
-  const { complains } = useFeedbackLogic();
-  console.log(complains);
+  const { complains, total, handlePageChange, handleChangePerPage, handleSort } = useFeedbackLogic();
+
   return (
     <Page title='Обратная связь'>
-      <Table data={complains} columns={tableConfig.columns} {...tableConfig.options} />
+      <Table data={complains}
+             paginationTotalRows={total}
+             onChangePage={handlePageChange}
+             onChangeRowsPerPage={handleChangePerPage}
+             onSort={handleSort}
+             columns={tableConfig.columns}
+             {...tableConfig.options}
+      />
     </Page>
   )
 }

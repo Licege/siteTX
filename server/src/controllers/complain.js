@@ -2,12 +2,17 @@ const { sequelize } = require('../models').init()
 const ComplainRepo = require('../repositories/complain')
 const errorHandler = require('../utils/errorHandler')
 
+function withSort() {
+
+}
+
 module.exports.getAll = async function (req, res) {
     try {
-        const { limit = 20, offset = 0 } = req.body.pagination;
-        const complains = await ComplainRepo.all({},{ limit, offset })
+        const { limit = 20, page = 1 } = req.body.pagination;
+        const complains = await ComplainRepo.all({},{ limit, offset: limit * (page - 1), order: [['createdAt', 'DESC']] })
+        const total = await ComplainRepo.total({})
 
-        res.status(200).json(complains)
+        res.status(200).json({ data: complains, total })
     } catch (error) {
         errorHandler(res, error)
     }

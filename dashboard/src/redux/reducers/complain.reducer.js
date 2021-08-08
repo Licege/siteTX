@@ -4,12 +4,14 @@ import { fetchComplains } from  '../thunks/complain.thunks'
 const complainSlice = createSlice({
   name: 'complains',
   initialState: {
-    complains: []
+    complains: [],
+    totalCount: 0
   },
   reducers: {},
   extraReducers: {
     [fetchComplains.fulfilled]: (state, action) => {
-      state.complains = action.payload
+      state.totalCount = action.payload.total
+      state.complains = action.payload.data
     }
   }
 })
