@@ -5,7 +5,6 @@ export const useVacanciesPageLogic = () => {
   const vacancies = useVacancies()
 
   useEffect(() => {
-    document.title = 'Вакансии'
     window.scrollTo(0, 0)
   }, [])
 

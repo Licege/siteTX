@@ -8,7 +8,6 @@ export const useNewsPageLogic = () => {
   const { news, totalCount } = useNews()
 
   useEffect(() => {
-    document.title = 'Новости'
     window.scrollTo(0, 0)
   }, [])
 

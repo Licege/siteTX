@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet';
 import CardPromo from '../../../components/Cards/CardPromo'
 import EmptyPage from '../../EmpyPage'
 import { Container, Title, Wrapper } from './styles'
@@ -12,6 +13,7 @@ const Promos: React.FC = () => {
 
   return (
     <Container>
+      <Helmet title='Акции' />
       <Title>~ Акции ~</Title>
       <Wrapper>
         {promos.map((promo: any) => <CardPromo promo={promo} key={promo.id} />)}

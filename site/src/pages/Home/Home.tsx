@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { Helmet } from 'react-helmet'
 import SectionMenu from './Menu/SectionMenu'
 import SectionAbout from './About/SectionAbout'
 import SectionPromo from './Promo/SectionPromo'
@@ -12,11 +13,11 @@ import MenuGallery from './MenuGallery';
 const Home = () => {
   useEffect(() => {
     window.scrollTo(0, 0)
-    document.title = 'Три Холма'
   }, [])
 
   return (
     <main>
+      <Helmet title='Три Холма' />
       <SectionAbout/>
       <MenuGallery />
       <Tour />

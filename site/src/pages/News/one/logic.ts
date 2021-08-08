@@ -6,7 +6,6 @@ export const useCurrentNewsPageLogic = () => {
   const history = useHistory()
 
   useEffect(() => {
-    document.title = 'Новости'
     window.scrollTo(0, 0)
   }, [])
 

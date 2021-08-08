@@ -20,7 +20,6 @@ export const useComplainFormLogic = () => {
   const complainTypes = useComplainTypes()
 
   useEffect(() => {
-    document.title = 'Ваше мнение'
     dispatch(requestComplainTypes())
   }, [dispatch])
 

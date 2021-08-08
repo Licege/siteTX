@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet';
 import FormOrder from './formOrder'
 import ShowOrder from './showOrder'
 import FinishOrder from './FinishOrder'
@@ -13,6 +14,7 @@ const Bucket = () => {
 
   return (
     <PageContainer>
+      <Helmet title='Оформление заказа' />
       {haveOrder ?
         <>
           <BucketBreadcrumbs step={step} setStep={setStep} />

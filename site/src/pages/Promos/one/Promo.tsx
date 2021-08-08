@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet';
 import { Button } from '../../../components/core'
 import { Container, Content, Wrapper, Title, Image, ActionsBlock } from './styles'
 import { usePromoPageLogic } from './logic'
@@ -10,6 +11,7 @@ const Promo: React.FC = () => {
 
   return (
     <Container>
+      <Helmet title={promo?.title || 'Акции'} />
       <Image src={imageSrc} />
       <Wrapper>
         <Content>

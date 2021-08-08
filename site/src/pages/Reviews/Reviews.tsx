@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Helmet } from 'react-helmet';
 import ModalForm from './ModalForm'
 import { getReviewsSelector } from '../../redux/selectors/reviews'
 import { getAuthStatus } from '../../redux/selectors/auth'
@@ -16,7 +17,6 @@ const Reviews: React.FC = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    document.title = 'Отзывы'
     window.scrollTo(0, 0)
   })
 
@@ -39,6 +39,7 @@ const Reviews: React.FC = () => {
 
   return (
     <PageContainer>
+      <Helmet title='Отзывы' />
       <PageTitle>~ Отзывы ~</PageTitle>
       {reviews.length
                 ? <EmptyPage>

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
+import { Helmet } from 'react-helmet';
 import { IOrder } from '../../types/types'
 import OrderForm from './FormOrder'
 import { orderAPI } from '../../api/api'
@@ -10,7 +11,6 @@ import { BREAKPOINTS } from '../../styledComponents/helpers'
 
 const Order: React.FC = () => {
   useEffect(() => {
-    document.title = 'Заказ столов'
     window.scrollTo(0, 0)
   }, [])
 
@@ -24,6 +24,7 @@ const Order: React.FC = () => {
 
   return (
     <PageContainer>
+      <Helmet title='Заказ столов' />
       <PageTitle>~ Бронирование столов ~</PageTitle>
       <Body>
         <Image src={img} alt="" />

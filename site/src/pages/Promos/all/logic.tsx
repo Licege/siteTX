@@ -5,7 +5,6 @@ export const usePromosPageLogic = () => {
   const promos = usePromos()
 
   useEffect(() => {
-    document.title = 'Акции'
     window.scroll(0, 0)
   }, [])
 

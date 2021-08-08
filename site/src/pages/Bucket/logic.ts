@@ -3,7 +3,6 @@ import { useDelivery, useDeliverySettings } from '../../redux/hooks/bucket.hooks
 
 
 export const useBucketPageLogic = () => {
-  document.title = 'Оформление заказа'
   window.scrollTo(0, 0)
 
   useDeliverySettings()

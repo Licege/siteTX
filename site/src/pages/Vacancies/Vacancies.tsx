@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Helmet } from 'react-helmet';
 import CardVacancy from '../../components/Cards/CardVacancy'
 import EmptyPage from '../EmpyPage'
 import { useVacanciesPageLogic } from './logic'
@@ -13,6 +14,7 @@ const Vacancies = () => {
 
   return (
     <PageContainer>
+      <Helmet title='Вакансии' />
       <PageTitle>~ Вакансии ~</PageTitle>
       <Wrapper>
         {vacancies.map(vacancy =>

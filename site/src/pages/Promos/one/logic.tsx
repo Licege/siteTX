@@ -8,7 +8,6 @@ export const usePromoPageLogic = () => {
 
   useEffect(() => {
     window.scroll(0, 0)
-    document.title = promo?.title || 'Акции'
   }, [promo?.title])
 
   const redirectToPromos = () => history.push('/actions')

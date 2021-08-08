@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Helmet } from 'react-helmet';
 import { Button, PageContainer } from '../../../components/core'
 import { useCurrentNewsPageLogic } from './logic'
 import altImg from '../../../static/img/news.jpg'
@@ -12,6 +13,7 @@ const NewsById = () => {
 
   return (
     <PageContainer>
+      <Helmet title='Новости' />
       <NewsContainer>
         <Image src={imageSrc || altImg} alt="" />
         <NewsWrapper>

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
+import { Helmet } from 'react-helmet';
 import ConnectWithUs from './ConnectWithUs'
 import AddressBlock from './AddressBlock'
 import { AboutUs } from './AboutUs'
@@ -8,12 +9,12 @@ import { BREAKPOINTS } from '../../styledComponents/helpers';
 
 const Contacts: React.FC = () => {
   useEffect(() => {
-    document.title = 'О нас'
     window.scroll(0, 0)
   }, [])
 
   return (
     <PageContainer>
+      <Helmet title='О нас' />
       <AboutUs />
       <BlocksWrapper>
         <AddressBlock />

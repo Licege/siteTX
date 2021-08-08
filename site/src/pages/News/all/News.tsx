@@ -1,6 +1,7 @@
 import React from 'react'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import styled from 'styled-components'
+import { Helmet } from 'react-helmet';
 import CardNews from '../../../components/Cards/CardNews'
 import Paginator from '../../../components/common/elements/Paginator'
 import EmptyPage from '../../EmpyPage'
@@ -10,12 +11,12 @@ import { useNewsPageLogic } from './logic'
 
 const News = () => {
   const { news, totalCount, onPageChange } = useNewsPageLogic()
-  console.log(totalCount);
 
   if (!news.length) return <EmptyPage />
 
   return (
     <Container>
+      <Helmet title='Новости' />
       <div>
         <PageTitle>~ Новости ~</PageTitle>
         <TransitionGroup component={null}>

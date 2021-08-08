@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Helmet } from 'react-helmet';
 import Sidebar from './sidebar'
 import CategoriesFeed from './categoriesFeed'
 import Cards from './cards/Cards'
@@ -7,6 +8,7 @@ import { PageTitle } from '../../components/core';
 
 const Menu = () => (
   <Container>
+    <Helmet title='Меню' />
     <Sidebar />
     <Wrapper>
       <CategoriesFeed />

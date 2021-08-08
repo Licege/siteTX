@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
+import { Helmet } from 'react-helmet';
 
 const Banquets = () => {
   useEffect(() => {
-    document.title = 'Банкеты'
     window.scrollTo(0, 0)
   }, [])
 
   return (
     <main>
+      <Helmet title='Банкеты' />
       <Header>
         Ваши банкеты у нас
         {/* <div className="banquets-header__image"> */}
