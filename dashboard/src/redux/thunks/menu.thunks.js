@@ -3,89 +3,121 @@ import { menuAPI } from '../../api/api'
 
 export const createDish = createAsyncThunk(
   'menu/createDish',
-  async (dish) => {
-    const response = await menuAPI.createDish(dish)
-    return response
+  async (dish, { rejectWithValue }) => {
+    try {
+      return await menuAPI.createDish(dish)
+    } catch (e) {
+      return rejectWithValue({ status: e.status })
+    }
   }
 )
 
 export const requestDishes = createAsyncThunk(
   'menu/fetchAllDishes',
-  async () => {
-    const response = await menuAPI.getDishes()
-    return response
+  async (_, { rejectWithValue }) => {
+    try {
+      return await menuAPI.getDishes()
+    } catch (e) {
+      return rejectWithValue({ status: e.status })
+    }
   }
 )
 
 export const requestDishesByCategory = createAsyncThunk(
   'menu/fetchAllDishesByCategory',
-  async (category) => {
-    const response = await menuAPI.getDishesByCategory(category)
-    return response
+  async (category, { rejectWithValue }) => {
+    try {
+      return await menuAPI.getDishesByCategory(category)
+    } catch (e) {
+      return rejectWithValue({ status: e.status })
+    }
   }
 )
 
 export const requestDish = createAsyncThunk(
   'menu/fetchCurrentDish',
-  async (id) => {
-    const response = await menuAPI.getDish(id);
-    return response
+  async (id, { rejectWithValue }) => {
+    try {
+      return await menuAPI.getDish(id);
+    } catch (e) {
+      return rejectWithValue({ status: e.status })
+    }
   }
 )
 
 export const updateDish = createAsyncThunk(
   'menu/updateDishById',
-  async ({ dish, id }) => {
-    console.log(dish)
-    const response = await menuAPI.updateDish(dish, id)
-    return response
+  async ({ dish, id }, { rejectWithValue }) => {
+    try {
+      return await menuAPI.updateDish(dish, id)
+    } catch (e) {
+      return rejectWithValue({ status: e.status })
+    }
   }
 )
 
 export const deleteDish = createAsyncThunk(
   'menu/deleteDishById',
-  async (id) => {
-    const response = await menuAPI.deleteDish(id)
-    return response
+  async (id, { rejectWithValue }) => {
+    try {
+      return await menuAPI.deleteDish(id)
+    } catch (e) {
+      return rejectWithValue({ status: e.status })
+    }
   }
 )
 
 export const requestCategories = createAsyncThunk(
   'menu/fetchAllCategories',
-  async () => {
-    const response = await menuAPI.getCategories()
-    return response
+  async (_, { rejectWithValue }) => {
+    try {
+      return await menuAPI.getCategories()
+    } catch (e) {
+      return rejectWithValue({ status: e.status })
+    }
   }
 )
 
 export const requestCategory = createAsyncThunk(
   'menu/fetchCategoryById',
-  async (id) => {
-    const response = await menuAPI.getCategory(id)
-    return response
+  async (id, { rejectWithValue }) => {
+    try {
+      return await menuAPI.getCategory(id)
+    } catch (e) {
+      return rejectWithValue({ status: e.status })
+    }
   }
 )
 
 export const createCategory = createAsyncThunk(
   'menu/createCategory',
-  async (category) => {
-    const response = await menuAPI.createCategory(category)
-    return response
+  async (category, { rejectWithValue }) => {
+    try {
+      return await menuAPI.createCategory(category)
+    } catch (e) {
+      return rejectWithValue({ status: e.status })
+    }
   }
 )
 
 export const updateCategory = createAsyncThunk(
   'menu/updateCategory',
-  async (category) => {
-    const response = await menuAPI.updateCategory(category)
-    return response
+  async (category, { rejectWithValue }) => {
+    try {
+      return await menuAPI.updateCategory(category)
+    } catch (e) {
+      return rejectWithValue({ status: e.status })
+    }
   }
 )
 
 export const deleteCategory = createAsyncThunk(
   'menu/deleteCategory',
-  async (id) => {
-    const response = await menuAPI.deleteCategory(id)
-    return response
+  async (id, { rejectWithValue }) => {
+    try {
+      return await menuAPI.deleteCategory(id)
+    } catch (e) {
+      return rejectWithValue({ status: e.status })
+    }
   }
 )

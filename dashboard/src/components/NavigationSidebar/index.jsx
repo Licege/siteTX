@@ -60,9 +60,8 @@ const ClientsSection = () => (
     <Toggle eventKey='2' title='Посетители' />
     <NavLink eventKey='2' to='/users' title='Все посетители' />
     <NavLink eventKey='2' to='/feedback' title='Отзывы' />
-    <NavLink eventKey='2' to='/messages' title='Сообщения' />
+    {/*<NavLink eventKey='2' to='/messages' title='Сообщения' />*/}
     <NavLink eventKey='2' to='/resume' title='Резюме' />
-    <NavLink eventKey='2' to='/orders' title='Заявки на бронирование' />
     <NavLink eventKey='2' to='/orders' title='Заявки на бронирование' />
   </>
 )

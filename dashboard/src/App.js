@@ -10,7 +10,7 @@ import Resume from './pages/Resume/Resume'
 import UserContainer from './containers/Users/UserEdit'
 import HomeContainer from './containers/Home/Home'
 // import OrdersContainer from './containers/Orders/Orders'
-import MessagesContainer from './containers/Messages/Messages'
+// import MessagesContainer from './containers/Messages/Messages'
 // import SettingsDelivery from './containers/Delivery/Settings/Settings'
 // import SettingsDeliveryCommonNew from './containers/Delivery/Settings/SettingsCommonNew'
 // import SettingsDeliveryCommonEdit from './containers/Delivery/Settings/SettingsCommonEdit'
@@ -130,7 +130,7 @@ function App() {
                     {/*Статистика и отчеты*/}
                     <Route exact path='/average_check' component={AverageChecksContainer}/>
 
-                    <Route exact path='/messages' component={MessagesContainer}/>
+                    {/*<Route exact path='/messages' component={MessagesContainer}/>*/}
                     <Route exact path='/contacts' component={Contacts}/>
                     {/*<Route exact path='/orders' component={OrdersContainer}/>*/}
 

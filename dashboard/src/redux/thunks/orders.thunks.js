@@ -1,10 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import {ordersAPI} from '../../api/api'
+import { ordersAPI } from '../../api/api'
 
 export const requestAllOrders = createAsyncThunk(
   'orders/fetchAllOrders',
-  async () => {
-    const response = await ordersAPI.getOrders()
-    return response
+  async (_, { rejectWithValue }) => {
+    try {
+      return await ordersAPI.getOrders()
+    } catch (e) {
+      return rejectWithValue({ status: e.status })
+    }
   }
 )

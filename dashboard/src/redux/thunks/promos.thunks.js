@@ -3,41 +3,55 @@ import { promoAPI } from '../../api/api'
 
 export const requestAllPromos = createAsyncThunk(
   'promos/fetchAllPromos',
-  async () => {
-    const response = await promoAPI.getPromos()
-    return response
+  async (_, { rejectWithValue }) => {
+    try {
+      return await promoAPI.getPromos()
+    } catch (e) {
+      return rejectWithValue({ status: e.status })
+    }
   }
 )
 
 export const requestPromoById = createAsyncThunk(
   'promos/fetchPromoById',
-  async (id) => {
-    const response = await promoAPI.getPromo(id)
-    return response
+  async (id, { rejectWithValue }) => {
+    try {
+      return await promoAPI.getPromo(id)
+    } catch (e) {
+      return rejectWithValue({ status: e.status })
+    }
   }
 )
 
 export const postPromo = createAsyncThunk(
   'promos/createPromo',
-  async (promo) => {
-    const response = await promoAPI.postPromo(promo)
-    return response
+  async (promo, { rejectWithValue }) => {
+    try {
+      return await promoAPI.postPromo(promo)
+    } catch (e) {
+      return rejectWithValue({ status: e.status })
+    }
   }
 )
 
 export const updatePromo = createAsyncThunk(
   'promos/updatePromo',
-  async ({ id, promo }) => {
-    const response = await promoAPI.updatePromo(promo, id)
-    return response
+  async ({ id, promo }, { rejectWithValue }) => {
+    try {
+      return await promoAPI.updatePromo(promo, id)
+    } catch (e) {
+      return rejectWithValue({ status: e.status })
+    }
   }
 )
 
 export const removePromo = createAsyncThunk(
   'promos/removePromo',
-  async (id) => {
-    const response = await promoAPI.removePromo(id)
-    console.log(response);
-    return response
+  async (id, { rejectWithValue }) => {
+    try {
+      return await promoAPI.removePromo(id)
+    } catch (e) {
+      return rejectWithValue({ status: e.status })
+    }
   }
 )

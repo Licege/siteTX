@@ -22,11 +22,16 @@ const downloadFileHandler = response => {
 const responseHandler = async response => {
   const contentType = response.headers.get('content-type');
 
-  if (!contentType) return Promise.resolve();
+  if (!contentType) {
+    if (response.status >= 400) {
+      return Promise.reject({ status: response.status });
+    }
+    return Promise.reject()
+  }
 
   if (contentType.includes('text/html') || contentType.includes('text/plain')) {
     if (response.status >= 400) {
-      return Promise.reject();
+      return Promise.reject({ status: response.status });
     }
     return Promise.resolve();
   }

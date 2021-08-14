@@ -9,7 +9,6 @@ import menuReducer from './reducers/menu.reducer'
 import newsReducer from './reducers/news.reducer'
 import ordersReducer from './reducers/orders.reducer'
 import reviewsReducer from './reviews-reducer'
-import messageReducer from './message-reducer'
 import toggleReducer from './reducers/toogle.reducer'
 import deliveryReducer from './reducers/delivery.reducer'
 import adminReducer from './admin-reducer'
@@ -18,12 +17,13 @@ import fileReducer from './file-reducer'
 import averageChecksReducer from './Statistics/average-checks-reducer'
 import modalReducer from './reducers/modals.reducer'
 import complainReducer from './reducers/complain.reducer'
+import {authInterceptor} from './middlewares/auth';
 
 const middleware = getDefaultMiddleware({
     immutableCheck: false,
     serializableCheck: false,
     thunk: true
-})
+}).concat(authInterceptor)
 
 export default configureStore({
     middleware,

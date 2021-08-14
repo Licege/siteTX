@@ -3,5 +3,11 @@ import { complainAPI } from "../../api/api"
 
 export const fetchComplains = createAsyncThunk(
   'complain/fetchComplains',
-  async (params) => await complainAPI.getComplains(params)
+  async (params, { rejectWithValue }) => {
+    try {
+      return await complainAPI.getComplains(params)
+    } catch (e) {
+      return rejectWithValue({ status: e.status })
+    }
+  }
 )

@@ -3,40 +3,55 @@ import {newsAPI} from '../../api/api'
 
 export const createNewNews = createAsyncThunk(
   'news/postNews',
-  async (news) => {
-    const response = await newsAPI.postNews(news)
-    return response
+  async (news, { rejectWithValue }) => {
+    try {
+      return await newsAPI.postNews(news)
+    } catch (e) {
+      return rejectWithValue({ status: e.status })
+    }
   }
 )
 
 export const requestAllNews = createAsyncThunk(
   'news/fetchAllNews',
-  async () => {
-    const response = await newsAPI.getNews()
-    return response
+  async (_, { rejectWithValue }) => {
+    try {
+      return await newsAPI.getNews()
+    } catch (e) {
+      return rejectWithValue({ status: e.status })
+    }
   }
 )
 
 export const requestNewsById = createAsyncThunk(
   'news/getNewsById',
-  async (id) => {
-    const response = await newsAPI.getCurrentNews(id)
-    return response
+  async (id, { rejectWithValue }) => {
+    try {
+      return await newsAPI.getCurrentNews(id)
+    } catch (e) {
+      return rejectWithValue({ status: e.status })
+    }
   }
 )
 
 export const updateNews = createAsyncThunk(
   'news/updateNews',
-  async ({ id, data }) => {
-    const response = await newsAPI.updateNews(data, id)
-    return response
+  async ({ id, data }, { rejectWithValue }) => {
+    try {
+      return await newsAPI.updateNews(data, id)
+    } catch (e) {
+      return rejectWithValue({ status: e.status })
+    }
   }
 )
 
 export const deleteNews = createAsyncThunk(
   'news/deleteNews',
-  async (id) => {
-    const response = await newsAPI.deleteNews(id)
-    return response
+  async (id, { rejectWithValue }) => {
+    try {
+      return await newsAPI.deleteNews(id)
+    } catch (e) {
+      return rejectWithValue({ status: e.status })
+    }
   }
 )
