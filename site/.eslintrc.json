@@ -1,7 +1,7 @@
 {
   "extends": ["react-app", "airbnb-typescript", "plugin:react/recommended", "prettier", "prettier"],
   "rules": {
-    "no-unused-vars": "off",
+    "no-unused-vars": "warn",
     "no-use-before-define": "off",
     "indent": ["error", 2, { "ignoredNodes": ["JSXElement *", "JSXElement"]}],
     "import/prefer-default-export": "off",
@@ -26,7 +26,6 @@
         "project": "./tsconfig.json"
       },
       "rules": {
-        "no-unused-vars": "off",
         "no-use-before-define": "off",
         "@typescript-eslint/no-use-before-define": "off",
         "react/jsx-uses-react": "error",

@@ -123,7 +123,7 @@ export const NavigationBlock = styled.nav`
         width: 100%;
 
         &:hover {
-          color: gold;
+          color: ${props => props.theme.colors.activeLink};
           transition: 0.3s;
         }
       }

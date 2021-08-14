@@ -16,9 +16,11 @@ const MobileMenu = () => {
         <NavigationBlock>
           <CloseIcon src={closeImg} onClick={toggleMenu} alt='Закрыть' />
           <ul>
-            {!isProduction() && <li>
-              <NavLink activeClassName="-active" to="/menu" onClick={toggleMenu}>Все меню</NavLink>
-              </li>}
+            {!isProduction() &&
+              <li>
+                <NavLink activeClassName="-active" to="/menu" onClick={toggleMenu}>Все меню</NavLink>
+              </li>
+            }
             {!isProduction() && categories.map(category => (
               <li key={category.id}>
                 <NavLink activeClassName='-active'
@@ -28,30 +30,33 @@ const MobileMenu = () => {
                   {category.title}
                 </NavLink>
               </li>
-                      ))}
+            ))}
             {!isProduction() && <Border/>}
             <li>
               <NavLink activeClassName='-active' to='/news' onClick={toggleMenu}>СОБЫТИЯ</NavLink>
             </li>
             {!isProduction()
-                          ? (<li>
-                            <NavLink activeClassName="-active" to="/order" onClick={toggleMenu}>ЗАКАЗ СТОЛОВ</NavLink>
-                          </li>)
-                          : (<li>
-                            <CallToAs text='ЗАКАЗ СТОЛОВ' />
-                          </li>)
-                      }
+              ? (
+                <li>
+                  <NavLink activeClassName="-active" to="/order" onClick={toggleMenu}>ЗАКАЗ СТОЛОВ</NavLink>
+                </li>)
+              : (
+                <li>
+                  <CallToAs text='ЗАКАЗ СТОЛОВ' />
+                </li>
+              )
+            }
             <li>
               <NavLink activeClassName='-active' to='/contacts' onClick={toggleMenu}>О НАС</NavLink>
             </li>
-            {!isProduction() && <li>
-              <NavLink activeClassName="-active" to="/gallery" onClick={toggleMenu}>ФОТОГАЛЕРЕЯ</NavLink>
+            {!isProduction() &&
+              <li>
+                <NavLink activeClassName="-active" to="/gallery" onClick={toggleMenu}>ФОТОГАЛЕРЕЯ</NavLink>
               </li>}
           </ul>
         </NavigationBlock>
       </Wrapper>
     </>
-
   )
 }
 
