@@ -1,4 +1,3 @@
-import {useCallback} from 'react'
 import {useDispatch} from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import {useFileLogic} from '../../../hooks'
@@ -10,10 +9,11 @@ export const useCreateVacancyLogic = () => {
 
   const { createFormDataWithFile, uploadFile } = useFileLogic()
 
-  const createVacancy = useCallback(vacancy => {
+  const createVacancy = vacancy => {
     const formData = createFormDataWithFile(vacancy, 'image')
     dispatch(createNewVacancy(formData))
-  }, [])
+    history.push('/vacancies')
+  }
 
   const cancel = () => history.push('/vacancies')
 

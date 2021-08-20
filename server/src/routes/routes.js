@@ -105,7 +105,7 @@ module.exports = io => {
   router
     .get('/api/private/vacancies', vacancies.getAll)
     .get('/api/private/vacancies/:id', vacancies.getById)
-    .post('/api/private/vacancies', vacancies.create)
+    .post('/api/private/vacancies', upload.single('image'), vacancies.create)
     .patch('/api/private/vacancies/:id', vacancies.update)
     .delete('/api/private/vacancies/:id', vacancies.remove);
 

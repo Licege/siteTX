@@ -3,7 +3,9 @@ import { useState } from 'react'
 export const useFileLogic = () => {
   const [file, setFile] = useState('')
 
-  const uploadFile = file => setFile(file)
+  function uploadFile(file) {
+    setFile(file)
+  }
 
   const createFormDataWithFile = (data, fieldName) => {
     const formData = new FormData()

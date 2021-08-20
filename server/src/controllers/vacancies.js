@@ -71,14 +71,12 @@ module.exports.update = async function (req, res) {
 }
 
 module.exports.remove = async function (req, res) {
-    const transaction = await sequelize.transaction()
+    const { id } = req.params;
 
     try {
-        await VacanciesRepo.destroyById(req.params.id, transaction)
-        await transaction.commit()
-        res.status(200).json({
-            message: 'Вакансия успешно удалена.'
-        })
+        await VacanciesRepo.destroyById(id)
+
+        res.status(200).json(+id)
     } catch (e) {
         await transaction.rollback()
         errorHandler(res, e)

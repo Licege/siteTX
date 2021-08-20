@@ -91,11 +91,11 @@ export const vacancyAPI = {
           .then(response => response)
     },
     createVacancy( vacancy ) {
-        return request.post(`${baseUrl}/vacancies/`, vacancy)
+        return request.post(`${baseUrl}/vacancies/`, vacancy, { noAutoHeaders: true })
           .then(response => response)
     },
     updateVacancy( vacancy, id ) {
-        return request.patch(`${baseUrl}/vacancies/${id}`, vacancy)
+        return request.patch(`${baseUrl}/vacancies/${id}`, vacancy, { noAutoHeaders: true })
           .then(response => response)
     },
     deleteVacancy( id ) {

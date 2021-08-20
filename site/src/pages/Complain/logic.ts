@@ -23,7 +23,7 @@ export const useComplainFormLogic = () => {
     dispatch(requestComplainTypes())
   }, [dispatch])
 
-  const types = complainTypes.map(type => ({ label: type.title, value: type.id }))
+  const types = complainTypes.map((type: any) => ({ label: type.title, value: type.id }))
 
   const getInitialValues = (): IInitialValues => {
     const initialValues: IInitialValues = {}

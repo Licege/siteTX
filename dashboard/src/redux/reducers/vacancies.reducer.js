@@ -38,7 +38,7 @@ const vacanciesSlice = createSlice({
             state.vacancies = state.vacancies.map(vacancy => vacancy.id === action.vacancy.id ? action.vacancy : vacancy)
         },
         [deleteVacancy.fulfilled]: (state, action) => {
-            state.vacancies = state.vacancies.filter(vacancy => vacancy.id !== action.id)
+            state.vacancies = state.vacancies.filter(vacancy => vacancy.id !== action.payload)
         }
     }
 })
