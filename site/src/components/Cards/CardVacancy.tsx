@@ -3,7 +3,6 @@ import { Button } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 import { vacancyType } from '../../types/types'
 import altImg from '../../static/img/female_cook.png'
-import { fullLink } from '../../plugins/helpers'
 
 type PropsType = {
     vacancy: vacancyType
@@ -11,7 +10,7 @@ type PropsType = {
 
 const CardVacancy: React.FC<PropsType> = ( { vacancy } ) => (
   <div className='card card_item'>
-    <img className='card_item-img' src={vacancy.imageSrc ? fullLink(vacancy.imageSrc) : altImg} alt=''/>
+    <img className='card_item-img' src={vacancy.imageSrc || altImg} alt=''/>
     <div className='card-body'>
       <h3 className='card_item-title'>{vacancy.title}</h3>
       {vacancy.requirements && <p><b>Требования:</b> {vacancy.requirements}</p>}
