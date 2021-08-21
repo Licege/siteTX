@@ -5,6 +5,7 @@ import { useAppDispatch } from '../redux-store'
 import { getCurrentVacancy, getMyResume, getVacancies } from '../getters/vacancies.getters'
 import { requestCurrentVacancy, requestVacancies } from '../thunks/vacancies.thunk'
 import { requestReviews } from '../thunks/reviews.thunk'
+import { clearCurrentVacancy } from '../reducers/vacancies.reducer';
 
 type IdParam = {
   id: string
@@ -29,6 +30,10 @@ export const useCurrentVacancy = () => {
 
   useEffect(() => {
     dispatch(requestCurrentVacancy(id))
+
+    return () => {
+      dispatch(clearCurrentVacancy())
+    }
   }, [dispatch, id])
 
   return useSelector(getCurrentVacancy)

@@ -9,7 +9,9 @@ const vacanciesSlice = createSlice({
     currentVacancy: {} as vacancyType,
     resume: {} as resumeType,
   },
-  reducers: {},
+  reducers: {
+    clearCurrentVacancy: state => { state.currentVacancy = {} as vacancyType }
+  },
   extraReducers: builder => {
     builder.addCase(requestVacancies.fulfilled, (state, action) => { 
       state.vacancies = action.payload 
@@ -21,4 +23,5 @@ const vacanciesSlice = createSlice({
   }
 })
 
+export const { clearCurrentVacancy } = vacanciesSlice.actions
 export default vacanciesSlice.reducer

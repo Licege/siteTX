@@ -9,7 +9,7 @@ import { TextHtml } from '../../../styledComponents/components';
 
 
 const VacancyById = () => {
-  const { currentVacancy, redirectToAllVacancies } = useCurrentVacancyPageLogic()
+  const { currentVacancy, redirectToAllVacancies, redirectToResume } = useCurrentVacancyPageLogic()
   const { title, description, imageSrc } = currentVacancy
 
   return (
@@ -21,7 +21,8 @@ const VacancyById = () => {
           <Title>{title}</Title>
           {description && <TextHtml dangerouslySetInnerHTML={{ __html: description }} />}
           <ActionsBlock>
-            <Button variant="outlined" onClick={redirectToAllVacancies}>Смотреть все вакансии</Button>
+            <Button variant="outlined" onClick={redirectToAllVacancies}>Назад</Button>
+            <Button variant='contained' color='primary' onClick={redirectToResume}>Откликнуться</Button>
           </ActionsBlock>
         </VacancyWrapper>
       </VacancyContainer>
@@ -39,13 +40,13 @@ const VacancyContainer = styled.div`
 
 const Image = styled.img`
   float: left;
-  width: 45%;
-  height: 100%;
+  max-width: 45%;
   margin: 0 16px 8px 36px;
   border-radius: 5px;
 
   @media (max-width: ${BREAKPOINTS.ts}px) {
     margin: 0 0 16px;
+    max-width: unset;
     width: 100%;
   }
 `
@@ -56,7 +57,7 @@ const VacancyWrapper = styled.div`
   padding-left: 36px;
 
   @media(max-width: ${BREAKPOINTS.ts}px) {
-    padding: 0;
+    padding-left: 0;
   }
 `
 
@@ -65,9 +66,16 @@ const Title = styled.h2`
 `
 
 const ActionsBlock = styled.div`
+  display: flex;
+  gap: 16px;
   position: absolute;
   bottom: 0;
   right: 0;
+
+  @media(max-width: ${BREAKPOINTS.ts}px) {
+    position: static;
+    justify-content: space-evenly;
+  }
 `
 
 export default VacancyById

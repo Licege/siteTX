@@ -12,6 +12,7 @@ export const useCurrentVacancyPageLogic = () => {
   const currentVacancy = useCurrentVacancy()
 
   const redirectToAllVacancies = useCallback(() => history.push('/vacancies'), [])
+  const redirectToResume = useCallback(() => history.push(`/resume/${currentVacancy.id}`), [currentVacancy])
 
-  return { currentVacancy, redirectToAllVacancies }
+  return { currentVacancy, redirectToAllVacancies, redirectToResume }
 }

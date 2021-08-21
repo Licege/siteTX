@@ -12,7 +12,7 @@ export const PageContainer = styled.main`
   }
 
   @media(max-width: 576px) {
-    padding: 0 16px .25rem;
+    padding: 16px 16px .25rem;
   }
 `
 

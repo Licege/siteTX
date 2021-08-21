@@ -39,13 +39,13 @@ const NewsContainer = styled.div`
 
 const Image = styled.img`
   float: left;
-  width: 45%;
-  height: 100%;
+  max-width: 45%;
   margin: 0 16px 8px 36px;
   border-radius: 5px;
 
   @media (max-width: ${BREAKPOINTS.ts}px) {
     margin: 0 0 16px;
+    max-width: unset;
     width: 100%;
   }
 `
@@ -56,7 +56,8 @@ const NewsWrapper = styled.div`
   padding-left: 36px;
 
   @media(max-width: ${BREAKPOINTS.ts}px) {
-    padding: 0;
+    padding-bottom: 16px;
+    padding-left: 0;
   }
 `
 
@@ -68,6 +69,15 @@ const ActionsBlock = styled.div`
   position: absolute;
   bottom: 0;
   right: 0;
+
+  @media(max-width: ${BREAKPOINTS.ts}px) {
+    position: static;
+    margin-top: 16px;
+    
+    button {
+      width: 100%;
+    }
+  }
 `
 
 export default NewsById
