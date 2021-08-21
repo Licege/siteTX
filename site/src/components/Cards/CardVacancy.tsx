@@ -8,7 +8,19 @@ type PropsType = {
     vacancy: vacancyType
 }
 
-const CardVacancy: React.FC<PropsType> = ( { vacancy } ) => (
+const SalaryBlock: React.FC<PropsType> = ({ vacancy }) => {
+  if (vacancy.salaryFrom && vacancy.salaryTo) {
+    return <p>Заработная плата от {vacancy.salaryFrom} до {vacancy.salaryTo} ₽</p>
+  }
+
+  if (vacancy.salaryFrom || vacancy.salaryTo) {
+    return <p>Заработная плата: {vacancy.salaryFrom || vacancy.salaryTo} ₽</p>
+  }
+
+  return null;
+}
+
+const CardVacancy: React.FC<PropsType> = ({ vacancy }) => (
   <div className='card card_item'>
     <img className='card_item-img' src={vacancy.imageSrc || altImg} alt=''/>
     <div className='card-body'>
@@ -16,10 +28,7 @@ const CardVacancy: React.FC<PropsType> = ( { vacancy } ) => (
       {vacancy.requirements && <p><b>Требования:</b> {vacancy.requirements}</p>}
       {vacancy.description && <p><b>Описание:</b> {vacancy.description}</p>}
       {/* eslint-disable-next-line no-nested-ternary */}
-      {vacancy.salaryFrom && vacancy.salaryTo
-                    ? <p>Заработная плата от {vacancy.salaryFrom} до {vacancy.salaryTo} ₽</p>
-                    : vacancy.salaryFrom || vacancy.salaryTo
-                        ? <p>Заработная плата: {vacancy.salaryFrom || vacancy.salaryTo} ₽</p> : ''}
+      <SalaryBlock vacancy={vacancy} />
       <div className='card_item-button -auto-width'>
         <Link to={`/resume/${  vacancy.id}`}>
           <Button variant='contained'
