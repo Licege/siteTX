@@ -5,6 +5,7 @@ import { Button, PageContainer } from '../../../components/core'
 import { useCurrentNewsPageLogic } from './logic'
 import altImg from '../../../static/img/news.jpg'
 import { BREAKPOINTS } from '../../../styledComponents/helpers'
+import { TextHtml } from '../../../styledComponents/components';
 
 
 const NewsById = () => {
@@ -18,7 +19,7 @@ const NewsById = () => {
         <Image src={imageSrc || altImg} alt="" />
         <NewsWrapper>
           <Title>{title}</Title>
-          <div dangerouslySetInnerHTML={{ __html: description }} />
+          <TextHtml dangerouslySetInnerHTML={{ __html: description }} />
           <ActionsBlock>
             <Button variant="outlined" onClick={redirectToAllNews}>Все новости</Button>
           </ActionsBlock>

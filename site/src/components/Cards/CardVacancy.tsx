@@ -10,11 +10,11 @@ type PropsType = {
 
 const SalaryBlock: React.FC<PropsType> = ({ vacancy }) => {
   if (vacancy.salaryFrom && vacancy.salaryTo) {
-    return <p>Заработная плата от {vacancy.salaryFrom} до {vacancy.salaryTo} ₽</p>
+    return <p>Заработная плата от <b>{vacancy.salaryFrom}</b> до <b>{vacancy.salaryTo}</b> ₽</p>
   }
 
   if (vacancy.salaryFrom || vacancy.salaryTo) {
-    return <p>Заработная плата: {vacancy.salaryFrom || vacancy.salaryTo} ₽</p>
+    return <p>Заработная плата: <b>{vacancy.salaryFrom || vacancy.salaryTo}</b> ₽</p>
   }
 
   return null;

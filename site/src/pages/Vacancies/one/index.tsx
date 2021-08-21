@@ -5,6 +5,7 @@ import { Button, PageContainer } from '../../../components/core'
 import { useCurrentVacancyPageLogic } from './logic'
 import { BREAKPOINTS } from '../../../styledComponents/helpers'
 import altImg from '../../../static/img/female_cook.png'
+import { TextHtml } from '../../../styledComponents/components';
 
 
 const VacancyById = () => {
@@ -18,7 +19,7 @@ const VacancyById = () => {
         <Image src={imageSrc || altImg} alt=""/>
         <VacancyWrapper>
           <Title>{title}</Title>
-          {description && <div dangerouslySetInnerHTML={{ __html: description }}/>}
+          {description && <TextHtml dangerouslySetInnerHTML={{ __html: description }} />}
           <ActionsBlock>
             <Button variant="outlined" onClick={redirectToAllVacancies}>Смотреть все вакансии</Button>
           </ActionsBlock>
