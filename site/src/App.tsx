@@ -21,21 +21,22 @@ import Order from './pages/Order/Order'
 import Gallery from './components/Gallery/Gallery'
 import Reviews from './pages/Reviews/Reviews'
 import Vacancies from './pages/Vacancies/Vacancies'
+import VacancyById from './pages/Vacancies/one'
 import Resume from './pages/Vacancies/Resume/Resume'
-import Profile from './pages/profile';
-import { requestMe } from './redux/thunks/profile.thunks';
-import { getMeSelector } from './redux/selectors/profile';
-import { getAuthStatus } from './redux/selectors/auth';
-import CatchErrors from './pages/Errors/CatchErrors';
-import Complain from './pages/Complain';
-import Modal from './components/Modals/ModalRoot';
+import Profile from './pages/profile'
+import { requestMe } from './redux/thunks/profile.thunks'
+import { getMeSelector } from './redux/selectors/profile'
+import { getAuthStatus } from './redux/selectors/auth'
+import CatchErrors from './pages/Errors/CatchErrors'
+import Complain from './pages/Complain'
+import Modal from './components/Modals/ModalRoot'
 import Menu from './pages/Menu'
 import Bucket from './pages/Bucket'
 import PDFViewer from './components/Modals/PDFViewer'
 import { AppContent, AppWrapper } from './styles'
 import { isProduction } from './utils'
-import { gaPageView } from './utils/ga';
-import 'react-toastify/dist/ReactToastify.css';
+import { gaPageView } from './utils/ga'
+import 'react-toastify/dist/ReactToastify.css'
 
 import './assets/main.scss'
 
@@ -79,6 +80,7 @@ const App = () => {
               {!isProduction() && <Route path="/menu/:categoryId?" component={Menu}/>}
               <Route exact path='/contacts' component={Contacts}/>
               <Route exact path='/vacancies' component={Vacancies}/>
+              <Route exact path='/vacancies/:id' component={VacancyById}/>
               {!isProduction() && <Route exact path="/gallery" component={Gallery}/>}
               {!isProduction() && <Route exact path="/order" component={Order}/>}
               <Route exact path='/news' component={News}/>

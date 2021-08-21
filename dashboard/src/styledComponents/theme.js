@@ -15,6 +15,7 @@ export const theme = {
       additional: '#767B92',
       active: '#6A6F83',
       disabled: '#C6CAE3',
+      light: '#ced4da',
       lighter: '#F2F4F8',
       lightest: '#EBEEF4'
     },

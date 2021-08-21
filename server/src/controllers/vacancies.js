@@ -27,7 +27,7 @@ module.exports.create = async function (req, res) {
 
     const vacancyToCreate = {
         title: req.body.title,
-        requirements: req.body.requirements,
+        shortDescription: req.body.shortDescription,
         description: req.body.description,
         salaryFrom: req.body.salaryFrom,
         salaryTo: req.body.salaryTo,
@@ -49,7 +49,7 @@ module.exports.update = async function (req, res) {
 
     const vacancyToUpdate = {
         title: req.body.title,
-        requirements: req.body.requirements,
+        shortDescription: req.body.shortDescription,
         description: req.body.description,
         salaryFrom: req.body.salaryFrom,
         salaryTo: req.body.salaryTo

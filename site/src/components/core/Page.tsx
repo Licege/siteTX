@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const PageContainer = styled.main`
   max-width: 1150px;
   width: 100%;
-  margin: 32px auto;
+  margin: 0 auto;
   padding: 24px;
   background-color: #fff;
   

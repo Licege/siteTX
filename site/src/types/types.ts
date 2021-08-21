@@ -82,7 +82,7 @@ export type categoryType = {
 export type vacancyType = {
     id: number
     title: string
-    requirements: string | null
+    shortDescription: string | null
     description: string | null
     salaryFrom: number | null
     salaryTo: number | null

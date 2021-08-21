@@ -6,15 +6,14 @@ import {useEditVacancyLogic} from './logic'
 
 
 const EditVacancy = () => {
-  const { vacancy, editVacancy, uploadFile, cancel } = useEditVacancyLogic()
+  const { vacancy, setDescription, editVacancy, uploadFile, cancel } = useEditVacancyLogic()
 
   if (!vacancy) return <div />
 
   const { title, imageSrc } = vacancy
-  console.log(vacancy)
 
   const pageTitle = `Редактирование вакансии: ${title}`
-  const props = { uploadFile, cancel, imageSrc }
+  const props = { vacancy, setDescription, uploadFile, cancel, imageSrc }
 
   return (
     <div>

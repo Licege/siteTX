@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import {useCallback, useEffect, useState} from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import {useSelector} from 'react-redux'
@@ -59,7 +59,7 @@ export const useCreateNewsLogic = () => {
   const [description, setDescription] = useState('')
   const { file, uploadFile, createFormDataWithFile } = useFileLogic()
 
-  const changeDescription = newDescription => setDescription(newDescription)
+  const changeDescription = useCallback(newDescription => setDescription(newDescription), [])
 
   const postNews = news => {
     const formData = createFormDataWithFile(news, 'image')
@@ -98,9 +98,7 @@ export const useEditNewsLogic = () => {
     history.push('/news')
   }
 
-  const cancel = () => {
-    history.push('/news')
-  }
+  const cancel = useCallback(() => history.push('/news'), [])
 
   return { currentNews, updateNews, isLoading, file, uploadFile, changeDescription, cancel }
 }

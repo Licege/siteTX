@@ -22,12 +22,12 @@ const SalaryBlock: React.FC<PropsType> = ({ vacancy }) => {
 
 const CardVacancy: React.FC<PropsType> = ({ vacancy }) => (
   <div className='card card_item'>
-    <img className='card_item-img' src={vacancy.imageSrc || altImg} alt=''/>
+    <Link to={`/vacancies/${vacancy.id}`}>
+      <img className='card_item-img' src={vacancy.imageSrc || altImg} alt=''/>
+    </Link>
     <div className='card-body'>
       <h3 className='card_item-title'>{vacancy.title}</h3>
-      {vacancy.requirements && <p><b>Требования:</b> {vacancy.requirements}</p>}
-      {vacancy.description && <p><b>Описание:</b> {vacancy.description}</p>}
-      {/* eslint-disable-next-line no-nested-ternary */}
+      {vacancy.shortDescription && <p><b>Описание:</b> {vacancy.shortDescription}</p>}
       <SalaryBlock vacancy={vacancy} />
       <div className='card_item-button -auto-width'>
         <Link to={`/resume/${  vacancy.id}`}>

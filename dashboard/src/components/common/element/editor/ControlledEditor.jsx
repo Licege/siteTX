@@ -4,8 +4,8 @@ import { Editor } from 'react-draft-wysiwyg'
 import draftToHtml from 'draftjs-to-html'
 import htmlToDraft from 'html-to-draftjs'
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
-
 import { unemojify } from 'node-emoji'
+import styled from "styled-components";
 
 export default class ControlledEditor extends React.Component {
     constructor( props ) {
@@ -46,20 +46,37 @@ export default class ControlledEditor extends React.Component {
     }
 
     render() {
+        const { placeholder, autoCapitalize = true, autoComplete = true } = this.props
         const { editorState } = this.state
+
         return (
-            <div>
-                <Editor
-                    editorState={editorState}
-                    toolbarClassName="toolbarClassName"
-                    wrapperClassName="wrapperClassName"
-                    editorClassName="editorClassName"
-                    onEditorStateChange={this.onEditorStateChange}
-                    localization={{
-                        locale: 'ru',
-                    }}
-                />
-            </div>
+          <EditorWrapper>
+              <Editor
+                placeholder={placeholder}
+                autoCapitalize={autoCapitalize}
+                autoComplete={autoComplete}
+                editorState={editorState}
+                toolbarClassName="toolbarClassName"
+                wrapperClassName="wrapperClassName"
+                editorClassName="editorClassName"
+                onEditorStateChange={this.onEditorStateChange}
+                localization={{
+                    locale: 'ru',
+                }}
+              />
+          </EditorWrapper>
         )
     }
 }
+
+const EditorWrapper = styled.div`
+    min-width: 280px;
+    min-height: 300px;
+    border: 1px solid ${props => props.theme.colors.gray.light};
+    margin-bottom: 20px;
+
+    .rdw-editor-main {
+        padding: 10px;
+        min-height: 250px;
+    }
+`

@@ -1,9 +1,14 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom';
 import { useAppDispatch } from '../redux-store'
-import { getMyResume, getVacancies } from '../getters/vacancies.getters'
-import { requestVacancies } from '../thunks/vacancies.thunk'
+import { getCurrentVacancy, getMyResume, getVacancies } from '../getters/vacancies.getters'
+import { requestCurrentVacancy, requestVacancies } from '../thunks/vacancies.thunk'
 import { requestReviews } from '../thunks/reviews.thunk'
+
+type IdParam = {
+  id: string
+}
 
 export const useVacancies = ({ force = false } = {}) => {
   const dispatch = useAppDispatch()
@@ -16,6 +21,17 @@ export const useVacancies = ({ force = false } = {}) => {
   }, [])
 
   return vacancies
+}
+
+export const useCurrentVacancy = () => {
+  const dispatch = useAppDispatch()
+  const { id } = useParams<IdParam>()
+
+  useEffect(() => {
+    dispatch(requestCurrentVacancy(id))
+  }, [dispatch, id])
+
+  return useSelector(getCurrentVacancy)
 }
 
 export const useMyResume = () => {

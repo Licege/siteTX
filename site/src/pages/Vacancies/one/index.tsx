@@ -2,33 +2,33 @@ import React from 'react'
 import styled from 'styled-components'
 import { Helmet } from 'react-helmet';
 import { Button, PageContainer } from '../../../components/core'
-import { useCurrentNewsPageLogic } from './logic'
-import altImg from '../../../static/img/news.jpg'
+import { useCurrentVacancyPageLogic } from './logic'
 import { BREAKPOINTS } from '../../../styledComponents/helpers'
+import altImg from '../../../static/img/female_cook.png'
 
 
-const NewsById = () => {
-  const { currentNews, redirectToAllNews } = useCurrentNewsPageLogic()
-  const { title, description, imageSrc } = currentNews
+const VacancyById = () => {
+  const { currentVacancy, redirectToAllVacancies } = useCurrentVacancyPageLogic()
+  const { title, description, imageSrc } = currentVacancy
 
   return (
     <PageContainer>
-      <Helmet title={currentNews.title} />
-      <NewsContainer>
-        <Image src={imageSrc || altImg} alt="" />
-        <NewsWrapper>
+      <Helmet title={currentVacancy.title} />
+      <VacancyContainer>
+        <Image src={imageSrc || altImg} alt=""/>
+        <VacancyWrapper>
           <Title>{title}</Title>
-          <div dangerouslySetInnerHTML={{ __html: description }} />
+          {description && <div dangerouslySetInnerHTML={{ __html: description }}/>}
           <ActionsBlock>
-            <Button variant="outlined" onClick={redirectToAllNews}>Все новости</Button>
+            <Button variant="outlined" onClick={redirectToAllVacancies}>Смотреть все вакансии</Button>
           </ActionsBlock>
-        </NewsWrapper>
-      </NewsContainer>
+        </VacancyWrapper>
+      </VacancyContainer>
     </PageContainer>
   )
 }
 
-const NewsContainer = styled.div`
+const VacancyContainer = styled.div`
   &:after {
     content: " ";
     display: table;
@@ -49,7 +49,7 @@ const Image = styled.img`
   }
 `
 
-const NewsWrapper = styled.div`
+const VacancyWrapper = styled.div`
   position: relative;
   padding-bottom: 40px;
   padding-left: 36px;
@@ -69,4 +69,4 @@ const ActionsBlock = styled.div`
   right: 0;
 `
 
-export default NewsById
+export default VacancyById

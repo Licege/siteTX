@@ -146,31 +146,30 @@ export const menuAPI = {
 
 export const promoAPI = {
   getPromos() {
-    return request.get(`${baseURL  }/promos/`)
+    return request.get(`${baseURL}/promos/`)
       .then(payload => payload)
-      .catch(reason => console.error(reason))
   },
   getPromoById(id: string) {
-    return request.get(`${baseURL  }/promos/${id}`)
+    return request.get(`${baseURL}/promos/${id}`)
       .then(payload => payload)
-      .catch(reason => console.error(reason))
   },
 }
 
 export const vacanciesAPI = {
   getVacancies() {
-    return request.get(`${baseURL  }/vacancies/`)
+    return request.get(`${baseURL}/vacancies/`)
       .then(payload => payload)
   },
+  getVacancyById: async (id: string) => request.get(`${baseURL}/vacancies/${id}`),
   postResume(resume: resumeType) {
-    return request.post(`${baseURL  }/resume/`, resume)
+    return request.post(`${baseURL}/resume/`, resume)
       .then(payload => payload)
   },
 }
 
 export const orderAPI = {
   postOrder(order: IOrder) {
-    return request.post(`${baseURL  }/orders/`, order)
+    return request.post(`${baseURL}/orders/`, order)
       .then(payload => payload)
       .catch(reason => console.error(reason))
   },
@@ -178,12 +177,12 @@ export const orderAPI = {
 
 export const newsAPI = {
   getNews(page = 1) {
-    return request.get(`${baseURL  }/news/?page=${page}`)
+    return request.get(`${baseURL}/news/?page=${page}`)
       .then(payload => payload)
       .catch(reason => console.error(reason))
   },
   getNewsById(id: string) {
-    return request.get(`${baseURL  }/news/${id}`)
+    return request.get(`${baseURL}/news/${id}`)
       .then(payload => payload)
       .catch(reason => console.error(reason))
   },
@@ -191,13 +190,13 @@ export const newsAPI = {
 
 export const bucketAPI = {
   getDeliverySettings() {
-    return request.get(`${baseURL  }/delivery-settings/common/`)
+    return request.get(`${baseURL}/delivery-settings/common/`)
       .then(payload => payload)
       .catch(reason => console.error(reason))
   },
 
   getDeliveryGlobalSettings() {
-    return request.get(`${baseURL  }/delivery-settings/global/`)
+    return request.get(`${baseURL}/delivery-settings/global/`)
       .then(payload => payload)
       .catch(reason => console.error(reason))
   },

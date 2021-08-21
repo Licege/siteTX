@@ -20,14 +20,14 @@ const CardNews: React.FC<PropsType> = ({ news }) => (
           <div className='card_news-content-info'>
             <div className='card_news-content-info-header'>
               {news.title &&
-                <Link to={`/news/${  news.id}`} className='card_news-content-info-header-title'>
+                <Link to={`/news/${news.id}`} className='card_news-content-info-header-title'>
                   {news.title}
                 </Link>}
             </div>
             {news.shortDescription &&
             <div className='card_news-content-info-description'>{news.shortDescription}</div>}
             <div className='card_news-content-info-link'>
-              <Link to={`/news/${  news.id}`}>Подробнее...</Link>
+              <Link to={`/news/${news.id}`}>Подробнее...</Link>
             </div>
           </div>
         </div>

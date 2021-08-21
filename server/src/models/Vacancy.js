@@ -6,9 +6,9 @@ module.exports = (sequelize, DataTypes) => {
           type: DataTypes.STRING,
           allowNull: false
         },
-        requirements: {
+        shortDescription: {
           type: DataTypes.TEXT,
-          allowNull: false
+          defaultValue: ''
         },
         description: DataTypes.TEXT,
         salaryFrom: DataTypes.INTEGER,
