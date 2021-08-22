@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { Helmet } from 'react-helmet';
+import styled from 'styled-components';
 import AddressBlock from './AddressBlock'
 import { AboutUs } from './AboutUs'
 import { PageContainer } from '../../components/core'
@@ -10,12 +11,18 @@ const Contacts: React.FC = () => {
   }, [])
 
   return (
-    <PageContainer>
+    <Container>
       <Helmet title='О нас' />
       <AboutUs />
       <AddressBlock />
-    </PageContainer>
+    </Container>
   )
 }
+
+const Container = styled(PageContainer)`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`
 
 export default Contacts

@@ -1,0 +1,25 @@
+.employees {
+    max-width: 768px;
+    background-color: white;
+    margin: 40px auto 0;
+    border-radius: 4px;
+    padding: 16px;
+}
+
+.employees__list {
+    display: grid;
+    gap: 1.3rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media screen and (min-width: 640px) {
+    .employees__list {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .employees__list {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+}

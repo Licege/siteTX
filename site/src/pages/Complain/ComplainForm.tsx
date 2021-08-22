@@ -23,7 +23,7 @@ const ComplainForm = () => {
           <Field name="phone" component={TextField} label="Ваш телефон" />
         </Row>
         {/* <Field name='visitDate' component={Datepicker} label='Дата и время посещения' showTimeSelect /> */}
-        <Field name="text" component={TextField} label="Сообщение" as="textarea" rows={6} />
+        <Field name="text" component={TextField} placeholder="Введите текст..." label="Сообщение" as="textarea" rows={6} />
         <ActionsBlock>
           <Button variant="contained" color="primary" type="submit">Отправить</Button>
         </ActionsBlock>

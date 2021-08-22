@@ -24,7 +24,7 @@ const Home = () => {
       {!isProduction() && <SectionMenu/>}
       <SectionPromo />
       {/* <SectionDelivery contacts={contacts}/> */}
-      <SectionMap/>
+      <SectionMap />
     </main>
   )
 }

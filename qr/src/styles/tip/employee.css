@@ -1,0 +1,18 @@
+.employee {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.employee__avatar {
+    border-radius: 100px;
+    width: 100%;
+    max-height: 100%;
+}
+
+.employee:hover .employee__avatar {
+    transform: scale(1.05);
+}
+
+.employee__name {
+    text-align: center;
+}
