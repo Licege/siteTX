@@ -222,5 +222,8 @@ module.exports = io => {
     .patch(`${PRIVATE}/employees/:id`, upload.single('image'), employees.update)
     .delete(`${PRIVATE}/employees/:id`, employees.remove)
 
+  router
+    .get(`${PUBLIC}/employees/tips`, employees.getAllForTips)
+
   return router;
 };

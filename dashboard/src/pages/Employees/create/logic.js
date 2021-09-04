@@ -11,7 +11,7 @@ export function useCreateEmployeePageLogic() {
   const dispatch = useDispatch()
   const positions = useStaffPositions();
 
-  const { uploadFile, createFormDataWithFile } = useFileLogic()
+  const { file, uploadFile, createFormDataWithFile } = useFileLogic()
 
   const positionOptions = prepareOptions(positions, { value: 'id', name: 'name', withEmpty: true })
 
@@ -24,7 +24,7 @@ export function useCreateEmployeePageLogic() {
 
     dispatch(createNewEmployee(formData))
     history.push('/employees')
-  }, []);
+  }, [file]);
 
   return { positions: positionOptions, cancel, create, uploadFile }
 }

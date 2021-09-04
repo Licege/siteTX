@@ -19,12 +19,14 @@ module.exports = Model => ({
         return undefined
     },
 
-    findById: async (id, { transaction = null, attributes = null, paranoid = true } = {}) =>
+    findById: async (id, { transaction = null, attributes = null, include = null, paranoid = true } = {}) =>
         await Model.findOne({
             where: { id },
             transaction,
             attributes,
+            include,
             paranoid,
+            nest: true,
             raw: true
         }),
 
@@ -60,7 +62,8 @@ module.exports = Model => ({
                 group,
                 order,
                 paranoid,
-                raw: true
+                raw: true,
+                nest: true
             }),
 
     oneAttrId: async (where, transaction) => {

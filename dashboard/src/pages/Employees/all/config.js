@@ -15,38 +15,38 @@ export const tableConfig = {
     },
     {
       name: 'Должность',
-      selector: row => row['position'],
-      maxWidth: '250px',
+      selector: row => row.position.name,
+      maxWidth: '160px',
       sortable: false
     },
     {
       name: 'Телефон',
       selector: row => row['phone'],
-      maxWidth: '160px',
+      maxWidth: '140px',
       sortable: false
     },
     {
       name: 'Заработная плата',
-      selector: row => toRub(row['balance']),
+      selector: row => toRub(row['salary']),
       sortable: false,
-      maxWidth: '200px'
+      maxWidth: '160px'
     },
     {
       name: 'Баланс',
       selector: row => toRub(row['balance']),
       sortable: false,
-      maxWidth: '200px'
+      maxWidth: '140px'
     },
     {
       name: 'Нанят',
       selector: row => format(new Date(row['dateOfEmployment']), 'dd.MM.yyyy'),
-      maxWidth: '160px',
+      maxWidth: '140px',
       sortable: false,
     },
     {
       name: 'Дата увольнения',
       selector: row => row['dateOfDismissal'] ? format(new Date(row['dateOfDismissal']), 'dd.MM.yyyy') : '-',
-      maxWidth: '160px',
+      maxWidth: '140px',
       sortable: false,
     },
   ],
