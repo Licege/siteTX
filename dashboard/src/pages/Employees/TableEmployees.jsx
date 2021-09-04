@@ -2,30 +2,30 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { Table } from 'react-bootstrap'
-import { getProfessionNameById } from '../../plugins/helpers'
+import {getPositionsNameById} from '../../plugins/helpers'
 import deleteButton from '../../static/img/close.png'
-import { getEmployees, getProfessions } from '../../redux/getters/employees.getters'
+import { getEmployees } from '../../redux/getters/employees.getters'
 import {
   deleteEmployee as deleteEmployeeThunk,
   fetchAllEmployees,
-  fetchAllProfessions
+  fetchAllPositions
 } from '../../redux/thunks/employees.thunks'
 
 const TableEmployees = () => {
   const history = useHistory()
   const dispatch = useDispatch()
   const employees = useSelector(getEmployees)
-  const professions = useSelector(getProfessions)
+  const positions = [];
 
   useEffect(() => {
     dispatch(fetchAllEmployees())
-    dispatch(fetchAllProfessions())
+    dispatch(fetchAllPositions())
   }, [])
 
   const redirectToDetail = id => () => history.push(`employees/edit/${id}`)
   const deleteEmployee = id => () => dispatch(deleteEmployeeThunk(id))
 
-  if (!employees.length || !professions.length) return null
+  if (!employees.length) return null
   console.log('рендер таблицы')
   console.log(employees)
 
@@ -43,7 +43,7 @@ const TableEmployees = () => {
       <tbody>
       {employees.map(employee => (
         <tr key={employee.id} onClick={redirectToDetail(employee.id)}>
-          <td>{getProfessionNameById(professions, employee.profession)}</td>
+          <td>{getPositionsNameById(positions, employee.positionId)}</td>
           <td>{employee.surname}</td>
           <td>{employee.name}</td>
           <td>{employee.phone}</td>

@@ -1,22 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { employeesAPI } from '../../api/api'
+import { employeesAPI, staffPositionsAPI } from '../../api/api'
 
 export const fetchAllEmployees = createAsyncThunk(
   'employees/fetchAllEmployees',
-  async (_, { rejectWithValue }) => {
+  async (params, { rejectWithValue }) => {
     try {
-      return await employeesAPI.getEmployees();
-    } catch (e) {
-      return rejectWithValue({ status: e.status })
-    }
-  }
-)
-
-export const fetchAllProfessions = createAsyncThunk(
-  'employees/fetchAllProfessions',
-  async (_, { rejectWithValue }) => {
-    try {
-      return await employeesAPI.getProfessions()
+      return await employeesAPI.getEmployees(params);
     } catch (e) {
       return rejectWithValue({ status: e.status })
     }

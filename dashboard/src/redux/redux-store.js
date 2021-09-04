@@ -17,7 +17,8 @@ import fileReducer from './file-reducer'
 import averageChecksReducer from './Statistics/average-checks-reducer'
 import modalReducer from './reducers/modals.reducer'
 import complainReducer from './reducers/complain.reducer'
-import {authInterceptor} from './middlewares/auth';
+import staffPositionsReducer from './reducers/staffPositions.reducer'
+import {authInterceptor} from './middlewares/auth'
 
 const middleware = getDefaultMiddleware({
     immutableCheck: false,
@@ -41,6 +42,7 @@ export default configureStore({
         promosPage: promosReducer,
         deliveryPage: deliveryReducer,
         ordersPage: ordersReducer,
-        complainsPage: complainReducer
+        complainsPage: complainReducer,
+        staffPositions: staffPositionsReducer
     }
 })

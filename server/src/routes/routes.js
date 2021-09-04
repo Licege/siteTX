@@ -26,6 +26,11 @@ const complain = require('../controllers/complain');
 const complainType = require('../controllers/complainType');
 // const files = require('../../controllersMongo/file')
 const menuGallery = require('../controllers/menuGallery');
+const staffPositions = require('../controllers/staffPositions');
+const employees = require('../controllers/employees');
+
+const PRIVATE = '/api/private'
+const PUBLIC = '/api/public'
 
 module.exports = io => {
   // router
@@ -203,6 +208,19 @@ module.exports = io => {
     .get('/api/private/bar/gallery', menuGallery.getAllBar)
     .post('/api/private/menu/gallery', upload.array('files', 10), menuGallery.createOrUpdateMenu)
     .post('/api/private/bar/gallery', upload.array('files', 10), menuGallery.createOrUpdateBar)
+
+  router
+    .get(`${PRIVATE}/staff-positions`, staffPositions.findAll)
+    .get(`${PRIVATE}/staff-positions/:id`, staffPositions.findById)
+    .post(`${PRIVATE}/staff-positions`, staffPositions.create)
+    .patch(`${PRIVATE}/staff-positions/:id`, staffPositions.update)
+    .delete(`${PRIVATE}/staff-positions/:id`, staffPositions.destroy)
+
+  router
+    .post(`${PRIVATE}/employees/list`, employees.getAll)
+    .post(`${PRIVATE}/employees`, upload.single('image'), employees.create)
+    .patch(`${PRIVATE}/employees/:id`, upload.single('image'), employees.update)
+    .delete(`${PRIVATE}/employees/:id`, employees.remove)
 
   return router;
 };

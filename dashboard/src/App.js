@@ -23,7 +23,8 @@ import Feedback from './pages/Feedback'
 import Admin from './pages/Admin/Admin'
 import Auth from './pages/Auth/Auth'
 import Contacts from './pages/Contacts/Contacts'
-import Employees from './pages/Employees/Employees'
+import Employees from './pages/Employees/all'
+import CreateEmployee from './pages/Employees/create'
 import Menu from './pages/Menu/main/Menu'
 import CreateDish from './pages/Menu/CreateDish'
 import EditDish from './pages/Menu/EditDish'
@@ -90,7 +91,7 @@ function App() {
                     {/*Сотрудники*/}
                     <Route exact path='/employees' component={Employees}/>
                     {/*<Route exact path='/employees/edit/:id' component={EmployeeContainer}/>*/}
-                    {/*<Route exact path='/employees/new' component={CreateEmployee}/>*/}
+                    <Route exact path='/employees/new' component={CreateEmployee}/>
 
                     {/*Резюме*/}
                     <Route exact path='/resume' component={Resume}/>

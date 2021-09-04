@@ -1,16 +1,13 @@
 import React from 'react'
-import { Field } from '../../../styledComponents/atoms'
+import Select from 'react-select'
+import { Field } from 'react-final-form'
 
-const EmptyOption = ({ withEmptyOption = false, emptyOptionTitle = '' }) =>
-  Boolean(withEmptyOption) && <option>{emptyOptionTitle}</option>
+const ReactSelectAdapter = ({ input, ...rest }) => (
+  <Select {...input} {...rest} />
+)
 
-const SelectField = ({ options, emptyOptionTitle, withEmptyOption, ...props }) => (
-  <Field component='select' {...props}>
-    <EmptyOption emptyOptionTitle={emptyOptionTitle} withEmptyOption={withEmptyOption} />
-    {options.map(({ value, name }) => (
-      <option value={value} key={value}>{name}</option>
-    ))}
-  </Field>
+const SelectField = ({ options, ...props }) => (
+  <Field component={ReactSelectAdapter} {...props} options={options} />
 )
 
 export default SelectField

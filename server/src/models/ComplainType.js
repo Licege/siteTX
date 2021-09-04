@@ -7,7 +7,8 @@ module.exports = (sequelize, DateTypes) => {
           allowNull: false,
           validate: {
             isEmpty: false
-          }
+          },
+          unique: true
         }
       },
       { timestamps: false }

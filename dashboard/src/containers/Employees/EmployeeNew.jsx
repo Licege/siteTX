@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import CreateProfile from '../../pages/Employees/new/Employee'
+import CreateProfile from '../../pages/Employees/create'
 import { createNewEmployee, requestProfessions } from '../../redux/reducers/employees.reducer'
 
 class CreateEmployee extends React.Component {

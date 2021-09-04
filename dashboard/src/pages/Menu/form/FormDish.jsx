@@ -14,9 +14,8 @@ const RenderForm = ({ handleSubmit, submitting, pristine, categories = [], dishI
     <div>
       <label>Категории</label>
       <SCSelectField name='categoryId'
-                     options={prepareOptions(categories, { value: 'id', name: 'title' })}
-                     withEmptyOption
-                     emptyOptionTitle='Выберите категорию'
+                     placeholder='Выберите категорию'
+                     options={prepareOptions(categories, { value: 'id', name: 'title', withEmpty: true })}
       />
     </div>
     <SCInputField name='weight' placeholder='Вес порции (г.)' />

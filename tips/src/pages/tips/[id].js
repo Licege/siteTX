@@ -32,7 +32,7 @@ const EmployeeTip = ({ employee }) => {
   const [amount, setAmount] = useState(200)
   const [isPaidCommission, setIsPaidCommission] = useState(true)
   const [commission, setCommission] = useState(calcCommission(amount))
-  const [rating, setRating] = useState(3)
+  const [rating, setRating] = useState(0)
   const [isShowReview, setIsShowReview] = useState(true)
   const [review, setReview] = useState('')
 
@@ -53,10 +53,14 @@ const EmployeeTip = ({ employee }) => {
   }
 
   const submit = () => {
-    const result = { employeeId: employee.id, amount, isPaidCommission, commission, rating };
+    const result = { employeeId: employee.id, amount, isPaidCommission, commission };
 
     if (isShowReview && review) {
       result.text = review;
+    }
+
+    if (rating) {
+      result.rating = rating;
     }
 
     console.log(result);

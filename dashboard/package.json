@@ -25,9 +25,11 @@
     "react-final-form": "^6.5.3",
     "react-icons": "^4.2.0",
     "react-modal": "^3.12.1",
+    "react-number-format": "^4.7.3",
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3",
+    "react-select": "^4.3.1",
     "react-sortable-hoc": "^2.0.0",
     "socket.io-client": "^4.0.1",
     "styled-components": "^5.2.3"

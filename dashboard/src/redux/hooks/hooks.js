@@ -3,8 +3,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import {requestAllOrders} from '../thunks/orders.thunks'
 import {getOrders} from '../getters/orders.getters'
-import {requestCategories, requestCategory, requestDishes} from '../thunks/menu.thunks'
-import {getCategories, getCurrentCategory, getMenu} from '../getters/menu.getters'
 import {
   requestDeliverySettings, requestDeliverySettingsById,
   requestGlobalDeliverySettings,

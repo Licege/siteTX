@@ -72,6 +72,22 @@ services:
       - DB_HOST=db
       - TRIXOLMA_BASE_DOMAIN=.tri-xolma.ru
 
+  api_bot:
+    container_name: api_bot
+    <<: *default
+    command: npm run start
+    networks:
+      nginx_net:
+    ports:
+      - "9093:9093"
+    restart: always
+    environment:
+      - DEFAULT_EXECUTION_MODE=telegram
+      - DB_HOST=db
+      - TRIXOLMA_BASE_DOMAIN=.tri-xolma.ru
+    env_file:
+      - ./server/.env
+
 #  migration:
 #    image: sitetx_api_service
 #    command: ["./wait-for-it/wait-for-it.sh", "api_service:9090", "--", "sequelize", "db:migrate"]

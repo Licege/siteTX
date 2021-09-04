@@ -1,7 +1,7 @@
 import { serverUrl } from '../api/api'
 
-export function getProfessionNameById( professions, id ) {
-    return professions.find(profession => profession.id === id).profession
+export function getPositionsNameById( positions, id ) {
+    return positions.find(position => position.id === id).name
 }
 
 export function getTitleById( arr, id ) {
@@ -86,5 +86,13 @@ export function checkStatus( type, data, status, params = null ) {
         default:
             return { type: type + '_ERROR', data, ...params }
     }
+}
+
+export function getFullName({ surname = '', forename = '', patronymic = '' }) {
+    return `${surname}${forename ? ` ${forename}` : ''}${patronymic ? ` ${patronymic}` : ''}`
+}
+
+export function toRub(number) {
+    return new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB' }).format(number)
 }
 

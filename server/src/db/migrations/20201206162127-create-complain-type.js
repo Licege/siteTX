@@ -12,7 +12,8 @@ module.exports = {
         allowNull: false,
         validate: {
           isEmpty: false
-        }
+        },
+        unique: true
       }
     });
   },

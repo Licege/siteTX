@@ -5,7 +5,7 @@ const handleError = require('../utils/errorHandler')
 module.exports.getAll = async function (req, res) {
     try {
         const news = await NewsRepo.all({})
-        const totalCount = news.length
+        const totalCount = await NewsRepo.total({})
         res.status(200).json({
             news,
             totalCount

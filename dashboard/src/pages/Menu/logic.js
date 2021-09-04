@@ -8,6 +8,7 @@ import {
 } from '../../redux/thunks/menu.thunks'
 import {showModal} from '../../redux/reducers/modals.reducer'
 import { useCategories, useCurrentDish, useDishes } from '../../redux/hooks/menu.hooks'
+import {toSelectValue} from "../../components/Form/utils";
 
 export const useMenuLogic = () => {
   const history = useHistory()
@@ -53,6 +54,11 @@ export const useCreateDishLogic = () => {
     let formData = new FormData()
     for (const key in dish) {
       if (dish.hasOwnProperty(key)) {
+        if (key === 'categoryId') {
+          formData.append(key, dish[key].value)
+          continue;
+        }
+
         formData.append(key, dish[key])
       }
     }
@@ -68,6 +74,13 @@ export const useCreateDishLogic = () => {
   }
 
   return { categories, createDish, uploadFile, cancel }
+}
+
+function generateInitialDish(dish, categories = []) {
+  return {
+    ...dish,
+    categoryId: toSelectValue(categories, dish.categoryId, { keyLabel: 'title' })
+  }
 }
 
 export const useEditDishLogic = () => {
@@ -101,7 +114,7 @@ export const useEditDishLogic = () => {
   }
 
   return {
-    dish,
+    dish: generateInitialDish(dish, categories),
     categories,
     editDish,
     cancel,

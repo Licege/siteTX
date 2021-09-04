@@ -1,5 +1,5 @@
 import React from 'react'
-import TableEmployees from './TableEmployees'
+// import TableEmployees from './TableEmployees'
 import Header from './Header'
 
 const Employees = () => (
@@ -12,7 +12,8 @@ const Employees = () => (
                         <div className='filter-main'>
                             <input type='text' placeholder='Фамилия' className='filter-main-input -name form-control'/>
                             <input type='text' placeholder='Имя' className='filter-main-input -name form-control'/>
-                            <input type='text' placeholder='Должность'
+                            <input type='text'
+                                   placeholder='Должность'
                                    className='filter-main-input -name form-control'/>
                         </div>
                         <div className='filter-actions'>
@@ -22,11 +23,11 @@ const Employees = () => (
                     </div>
                 </div>
 
-                <div className='card'>
-                    <div className='card-body'>
-                        <TableEmployees />
-                    </div>
-                </div>
+                {/*<div className='card'>*/}
+                {/*    <div className='card-body'>*/}
+                {/*        <TableEmployees />*/}
+                {/*    </div>*/}
+                {/*</div>*/}
             </div>
         </div>
     )

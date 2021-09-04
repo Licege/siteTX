@@ -1,8 +1,8 @@
 import React from 'react'
-import { getProfessionNameById } from '../../../plugins/helpers'
+import {getPositionsNameById} from '../../../plugins/helpers'
 import {PageHeader} from '../../../styledComponents/components'
 
-const Employee = ({ employee, professions, goEditMode, cancel }) => {
+const Employee = ({ employee, positions, goEditMode, cancel }) => {
     if (!employee) return null
 
     return (
@@ -13,7 +13,7 @@ const Employee = ({ employee, professions, goEditMode, cancel }) => {
                     <div className='card-body'>
                         <div>Фамилия: {employee.surname}</div>
                         <div>Имя: {employee.name}</div>
-                        <div>Должность: {getProfessionNameById(professions, employee.profession)}</div>
+                        <div>Должность: {getPositionsNameById(positions, employee.positionId)}</div>
                         <div>Телефон: {employee.phone}</div>
                         <div>Адрес: {employee.address}</div>
                         <div>ID файла: {employee.file_id}</div>

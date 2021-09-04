@@ -55,11 +55,11 @@ export const usersAPI = {
 
 export const employeesAPI = {
     createEmployee( profile ) {
-        return request.post(`${baseUrl}/employees/`, profile)
+        return request.post(`${baseUrl}/employees/`, profile, { noAutoHeaders: true })
           .then(response => response)
     },
-    getEmployees() {
-        return request.get(`${baseUrl}/employees/`)
+    getEmployees(params) {
+        return request.post(`${baseUrl}/employees/list`, params)
           .then(response => response)
     },
     getEmployeeById( id ) {
@@ -67,17 +67,13 @@ export const employeesAPI = {
           .then(response => response)
     },
     updateEmployee( profile ) {
-        return request.put(`${baseUrl}/employees/${profile.id}`, profile)
+        return request.put(`${baseUrl}/employees/${profile.id}`, profile, { noAutoHeaders: true })
           .then(response => response)
     },
     deleteEmployee( id ) {
         return request.delete(`${baseUrl}/employees/${id}`)
           .then(response => response)
-    },
-    getProfessions() {
-        return request.get(`${baseUrl}/professions/`)
-          .then(response => response)
-    },
+    }
 }
 
 export const vacancyAPI = {
@@ -341,4 +337,8 @@ export const averageChecksAPI = {
 
 export const complainAPI = {
     getComplains: async params => request.post(`${baseUrl}/complains`, params)
+}
+
+export const staffPositionsAPI = {
+    getAll: async () => request.get(`${baseUrl}/staff-positions`)
 }
