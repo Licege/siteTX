@@ -37,6 +37,7 @@ module.exports = Model => ({
             attributes,
             include,
             paranoid,
+            nest: true,
             raw: true
         }),
 
@@ -78,6 +79,7 @@ module.exports = Model => ({
             where,
             transaction,
             attributes: ['id'],
+            nest: true,
             raw: true
         });
 
@@ -103,6 +105,7 @@ module.exports = Model => ({
             group: [attr],
             attributes: [attr],
             transaction,
+            nest: true,
             raw: true
         })
         return groupedValues.map(value => value[attr])
@@ -114,6 +117,7 @@ module.exports = Model => ({
             group: [attr],
             attributes: [attr],
             transaction,
+            nest: true,
             raw: true
         })
         return groupedValues.length

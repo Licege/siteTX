@@ -15,7 +15,7 @@ export const tableConfig = {
     },
     {
       name: 'Должность',
-      selector: row => row.position.name,
+      selector: row => row['position'],
       maxWidth: '160px',
       sortable: false
     },

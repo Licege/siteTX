@@ -1,27 +1,28 @@
 {
-  "employees": [
-    { "id": 1, "name": "Тестова Тест", "imageSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
-    { "id": 2, "name": "Тестова Тест", "imageSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
-    { "id": 3, "name": "Тестова Тест", "imageSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
-    { "id": 4, "name": "Тестова Тест", "imageSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
-    { "id": 5, "name": "Тестова Тест", "imageSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
-    { "id": 6, "name": "Тестова Тест", "imageSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
-    { "id": 7, "name": "Тестова Тест", "imageSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
-    { "id": 8, "name": "Тестова Тест", "imageSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
-    { "id": 9, "name": "Тестова Тест", "imageSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
-    { "id": 10, "name": "Тестова Тест", "imageSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
-    { "id": 11, "name": "Тестова Тест", "imageSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
-    { "id": 12, "name": "Тестова Тест", "imageSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
-    { "id": 13, "name": "Тестова Тест", "imageSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
-    { "id": 14, "name": "Тестова Тест", "imageSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
-    { "id": 15, "name": "Тестова Тест", "imageSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
-    { "id": 16, "name": "Тестова Тест", "imageSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
-    { "id": 17, "name": "Тестова Тест", "imageSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
-    { "id": 18, "name": "Тестова Тест", "imageSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
-    { "id": 19, "name": "Тестова Тест", "imageSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
-    { "id": 20, "name": "Тестова Тест", "imageSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
-    { "id": 21, "name": "Тестова Тест", "imageSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
-    { "id": 22, "name": "Тестова Тест", "imageSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" }
-
-  ]
+  "employees": {
+    "data": [
+      { "id": 1, "lastName": "Тестовая", "firstName": "Официантка", "middleName": null, "avatarSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
+      { "id": 2, "lastName": "Тестовая", "firstName": "Официантка", "middleName": null, "avatarSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
+      { "id": 3, "lastName": "Тестовая", "firstName": "Официантка", "middleName": null, "avatarSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
+      { "id": 4, "lastName": "Тестовая", "firstName": "Официантка", "middleName": null, "avatarSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
+      { "id": 5, "lastName": "Тестовая", "firstName": "Официантка", "middleName": null, "avatarSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
+      { "id": 6, "lastName": "Тестовая", "firstName": "Официантка", "middleName": null, "avatarSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
+      { "id": 7, "lastName": "Тестовая", "firstName": "Официантка", "middleName": null, "avatarSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
+      { "id": 8, "lastName": "Тестовая", "firstName": "Официантка", "middleName": null, "avatarSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
+      { "id": 9, "lastName": "Тестовая", "firstName": "Официантка", "middleName": null, "avatarSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
+      { "id": 10, "lastName": "Тестовая", "firstName": "Официантка", "middleName": null, "avatarSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
+      { "id": 11, "lastName": "Тестовая", "firstName": "Официантка", "middleName": null, "avatarSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
+      { "id": 12, "lastName": "Тестовая", "firstName": "Официантка", "middleName": null, "avatarSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
+      { "id": 13, "lastName": "Тестовая", "firstName": "Официантка", "middleName": null, "avatarSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
+      { "id": 14, "lastName": "Тестовая", "firstName": "Официантка", "middleName": null, "avatarSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
+      { "id": 15, "lastName": "Тестовая", "firstName": "Официантка", "middleName": null, "avatarSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
+      { "id": 16, "lastName": "Тестовая", "firstName": "Официантка", "middleName": null, "avatarSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
+      { "id": 17, "lastName": "Тестовая", "firstName": "Официантка", "middleName": null, "avatarSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
+      { "id": 18, "lastName": "Тестовая", "firstName": "Официантка", "middleName": null, "avatarSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
+      { "id": 19, "lastName": "Тестовая", "firstName": "Официантка", "middleName": null, "avatarSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
+      { "id": 20, "lastName": "Тестовая", "firstName": "Официантка", "middleName": null, "avatarSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
+      { "id": 21, "lastName": "Тестовая", "firstName": "Официантка", "middleName": null, "avatarSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" },
+      { "id": 22, "lastName": "Тестовая", "firstName": "Официантка", "middleName": null, "avatarSrc": "https://yella-public.s3.eu-central-1.amazonaws.com/employee/photo/wv2EhKncvBxyvCRAqIySWx48JFSizuEFNH08Ji2z.jpg" }
+    ]
+  }
 }

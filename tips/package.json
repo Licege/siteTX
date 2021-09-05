@@ -5,7 +5,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "mock-api": "json-server db.json -p 4200 -d 100"
+    "mock-api": "json-server db.json -p 4200 -d 100 --routes routes.json"
   },
   "dependencies": {
     "next": "^11.1.0",

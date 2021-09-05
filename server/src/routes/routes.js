@@ -223,7 +223,8 @@ module.exports = io => {
     .delete(`${PRIVATE}/employees/:id`, employees.remove)
 
   router
-    .get(`${PUBLIC}/employees/tips`, employees.getAllForTips)
+    .get(`${PUBLIC}/tips/employees`, employees.getAllForTips)
+    .get(`${PUBLIC}/tips/employees/:id`, employees.getOneForTips)
 
   return router;
 };

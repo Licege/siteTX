@@ -6,6 +6,7 @@ import MainLayout from "../../components/MainLayout";
 import {Block, BlockWithLabel} from "../../components/Block";
 import BlockAmount from "../../components/BlockAmount";
 import Rating from "../../components/rating";
+import {getFullName} from "../../utils";
 
 
 function generateSubmitButtonText(amount, isPaidCommission, commission) {
@@ -71,7 +72,7 @@ const EmployeeTip = ({ employee }) => {
   }
 
   return (
-    <MainLayout title={employee.name}>
+    <MainLayout title={getFullName(employee)}>
       <div className={classes.tip}>
         <BlockWithLabel className={classes.about}
                         label="Cотрудник"
@@ -79,9 +80,9 @@ const EmployeeTip = ({ employee }) => {
                         onClickAction={redirectToTipsPage}
                         >
           <div className={classes.avatar__wrapper}>
-            <Image className={classes.avatar} src={employee.imageSrc} alt="" />
+            <Image className={classes.avatar} src={employee.avatarSrc} alt="" />
           </div>
-          <div className={classes.about__name}>{employee.name}</div>
+          <div className={classes.about__name}>{getFullName(employee)}</div>
         </BlockWithLabel>
 
         <BlockAmount value={amount} onChange={setAmount} />
@@ -116,7 +117,7 @@ const EmployeeTip = ({ employee }) => {
 }
 
 export async function getServerSideProps({ query }) {
-  const response = await fetch(`${process.env.API_URL}/employees/${query.id}`)
+  const response = await fetch(`${process.env.API_URL}/tips/employees/${query.id}`)
   const employee = await response.json()
 
   return {

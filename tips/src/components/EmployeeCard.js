@@ -2,6 +2,7 @@
 import classes from '../styles/employee-card.module.css';
 import Image from "./Image";
 import { useRouter } from "next/router";
+import {getFullName} from "../utils";
 
 const EmployeeCard = ({ employee }) => {
   const router = useRouter();
@@ -12,8 +13,8 @@ const EmployeeCard = ({ employee }) => {
 
   return (
     <div className={classes.employee} onClick={handleClick}>
-      <Image src={employee.imageSrc} className={classes.employee__avatar} alt="" />
-      <div className={classes.employee__name}>{employee.name}</div>
+      <Image src={employee.avatarSrc} className={classes.employee__avatar} alt="" />
+      <div className={classes.employee__name}>{getFullName(employee)}</div>
     </div>
   )
 }

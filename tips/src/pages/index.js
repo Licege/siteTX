@@ -7,7 +7,7 @@ const Home = ({ employees }) => {
   return (
     <MainLayout>
       <BlockWithLabel className={classes.employees} label="Выберите сотрудника">
-        <div className={`${classes.employees__list}`}>
+        <div className={classes.employees__list}>
           {employees.map(employee => <EmployeeCard employee={employee} key={employee.id} />)}
         </div>
       </BlockWithLabel>
@@ -16,11 +16,11 @@ const Home = ({ employees }) => {
 }
 
 export async function getServerSideProps() {
-  const response = await fetch(`${process.env.API_URL}/employees`)
-  const employees = await response.json()
+  const response = await fetch(`${process.env.API_URL}/tips/employees`)
+  const { data } = await response.json()
 
   return {
-    props: { employees }
+    props: { employees: data }
   }
 }
 
