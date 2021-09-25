@@ -139,7 +139,7 @@ services:
       - ./data/certbot/www:/var/www/certbot
       - ./dashboard/build:/var/www/app/dashboard
       - ./site/build/:/var/www/app/site
-      - ./tips:/var/www/app/tips
+      - ./tips/.next:/var/www/app/tips
     restart: always
     ports:
       - 80:80
