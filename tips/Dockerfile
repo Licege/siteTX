@@ -30,6 +30,6 @@ COPY --from=builder /app/tips/package.json ./package.json
 
 USER nextjs
 
-EXPOSE 9090
+EXPOSE 9095
 
 CMD npm run start

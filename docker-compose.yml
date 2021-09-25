@@ -88,6 +88,19 @@ services:
     env_file:
       - ./server/.env
 
+  tips_service:
+    container_name: tips_service
+    build:
+      context: ./tips
+      dockerfile: Dockerfile
+    networks:
+      nginx_net:
+    ports:
+      - "9095:9095"
+    restart: always
+    env_file:
+      - ./tips/.env
+
 #  migration:
 #    image: sitetx_api_service
 #    command: ["./wait-for-it/wait-for-it.sh", "api_service:9090", "--", "sequelize", "db:migrate"]
