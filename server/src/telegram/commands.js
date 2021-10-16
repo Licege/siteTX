@@ -1,6 +1,7 @@
 const { Markup } = require('telegraf');
 const { dictionary } = require('./dictionary');
 const repository = require('./repository');
+const { isCustomError } = require('../utils/customError');
 
 async function startHandler(ctx) {
   const telegramChatId = ctx.update.message.from.id;
@@ -27,7 +28,7 @@ exports.commands = bot => {
     try {
       await repository.registrationEmployee(contact)
     } catch (err) {
-      console.log('Ошибка: ', err);
+      if (isCustomError(err)) ctx.reply(err.message)
     }
   })
 
