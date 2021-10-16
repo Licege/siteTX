@@ -9,11 +9,9 @@ async function startHandler(ctx) {
   const isUserExist = await repository.isEmployeeRegistered(telegramChatId);
 
   if (!isUserExist) {
-    const reply = ctx.reply('Авторизуйтесь по номеру телефона', Markup.keyboard([
+    ctx.reply('Авторизуйтесь по номеру телефона', Markup.keyboard([
       Markup.button.contactRequest("Войти по номеру телефона")
-    ]).resize(false))
-
-    console.log('reply', reply);
+    ]).resize(false));
   } else {
     ctx.reply('Здравствуйте', Markup.removeKeyboard())
   }
@@ -24,7 +22,7 @@ exports.commands = bot => {
   bot.help((ctx) => ctx.reply(dictionary.commands))
 
   bot.on('contact', ctx => {
-    console.log(ctx.update.message.contact)
+    console.log('contact', ctx.update.message.contact)
   })
 
   bot.on("message", async ctx => {
