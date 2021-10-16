@@ -46,6 +46,9 @@ module.exports = (sequelize, DataTypes) => {
       dateOfDismissal: {
         type: DataTypes.DATE
       },
+      telegramId: {
+        type: DataTypes.INTEGER
+      }
     }
   )
 
