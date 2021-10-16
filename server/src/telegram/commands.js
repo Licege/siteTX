@@ -9,7 +9,7 @@ function startHandler(ctx) {
 
   if (!isUserExist) {
     ctx.reply('Авторизуйтесь по номеру телефона', Markup.keyboard([
-      Markup.contactRequestButton("Войти по номеру телефона")
+      Markup.button.contactRequest("Войти по номеру телефона")
     ]).resize(false).extra())
   } else {
     ctx.reply('Здравствуйте', Markup.removeKeyboard().extra())
