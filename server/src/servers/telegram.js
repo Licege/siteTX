@@ -1,4 +1,5 @@
 const { Telegraf } = require('telegraf')
+const { commands } = require('../telegram/commands')
 
 // "lt --port 9093 --subdomain trixolma" for work
 const start = () => {
@@ -8,7 +9,7 @@ const start = () => {
 
   bot.use(Telegraf.log())
 
-  bot.help((ctx) => ctx.reply("Справка в процессе"))
+  commands(bot);
 
   if (process.env.NODE_ENV === 'development') {
     bot.launch({
