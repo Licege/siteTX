@@ -21,8 +21,14 @@ exports.commands = bot => {
   bot.command("start", startHandler)
   bot.help((ctx) => ctx.reply(dictionary.commands))
 
-  bot.on('contact', ctx => {
-    console.log('contact', ctx.update.message.contact)
+  bot.on('contact', async ctx => {
+    const { contact } = ctx.update.message;
+
+    try {
+      await repository.registrationEmployee(contact)
+    } catch (err) {
+      console.log('Ошибка: ', err);
+    }
   })
 
   bot.on("message", async ctx => {
