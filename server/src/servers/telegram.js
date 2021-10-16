@@ -27,8 +27,10 @@ const pathToCert = path.resolve(__dirname, '../../certificates/')
 function getTLS() {
   if (process.env.NODE_ENV !== 'production') return undefined;
 
+  return undefined;
+
   return {
-    key: fs.readFileSync(path.resolve(pathToCert, 'privkey.pem')),
+    key: fs.readlinkSync(path.resolve(pathToCert, 'privkey.pem')),
     cert: fs.readFileSync(path.resolve(pathToCert, 'cert.pem'))
   }
 }
