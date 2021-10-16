@@ -23,7 +23,9 @@ exports.commands = bot => {
   bot.on("message", async ctx => {
     const msg = ctx.message.text;
 
-    ctx.reply(msg);
+    if (msg) {
+      ctx.reply(msg);
+    }
   })
 
   bot.on()
