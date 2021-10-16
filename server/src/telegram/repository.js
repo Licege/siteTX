@@ -8,6 +8,8 @@ exports.isEmployeeRegistered = async telegramId => {
 }
 
 exports.registrationEmployee = async tgContact => {
+  console.log('tgContact', tgContact);
+  console.log('tgContact.phone_number', tgContact.phone_number);
   const candidate = await Employee.findOne({ where: { phone: tgContact.phone_number }, raw: true });
 
   if (!candidate) throw new CustomError('Сотрудник не найден');

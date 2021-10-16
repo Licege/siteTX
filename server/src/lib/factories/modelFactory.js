@@ -25,6 +25,7 @@ module.exports = Model => ({
             transaction,
             attributes,
             include,
+            exclude: ['password'],
             paranoid,
             nest: true,
             raw: true
