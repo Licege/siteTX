@@ -82,7 +82,7 @@ services:
       - "9093:9093"
     restart: always
     volumes:
-      - ./data/certbot/conf/live/bot.tri-xolma.ru:/certificats
+      - ./data/certbot/conf/live/bot.tri-xolma.ru:/var/www/app/serverNodeTX/certificates
     environment:
       - DEFAULT_EXECUTION_MODE=telegram
       - DB_HOST=db
