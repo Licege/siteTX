@@ -6,6 +6,7 @@ const errorHandler = require('../utils/errorHandler')
 module.exports.getMe = async function(req, res) {
     try {
         const me = await UserRepo.findById(req.user.id)
+        delete me.password;
         res.status(200).json(me)
     } catch (e) {
         errorHandler(res, e)
