@@ -1,4 +1,6 @@
 const { Telegraf } = require('telegraf')
+const fs = require('fs')
+const path = require('path')
 
 // "lt --port 9093 --subdomain trixolma" for work
 const start = () => {
@@ -14,9 +16,21 @@ const start = () => {
   bot.launch({
     webhook: {
       domain: process.env.TELEGRAM_WEBHOOK_PATH,
-      port: process.env.TELEGRAM_BOT_PORT
+      port: process.env.TELEGRAM_BOT_PORT,
+      tlsOptions: getTLS()
     }
   })
+}
+
+const pathToCert = path.resolve(__dirname, '../../certificates/')
+
+function getTLS() {
+  if (process.env.NODE_ENV !== 'production') return undefined;
+
+  return {
+    key: fs.readFileSync(path.resolve(pathToCert, 'privkey.pem')),
+    cert: fs.readFileSync(path.resolve(pathToCert, 'cert.pem'))
+  }
 }
 
 module.exports = start
