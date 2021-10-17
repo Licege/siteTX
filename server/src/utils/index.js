@@ -29,4 +29,8 @@ const prepareImageUrl = url => {
     return `${STORAGE_SRC}/${url.replace('\\', '/')}`
 }
 
-module.exports = { parseLink, prepareImageUrl }
+function getFullName({ lastName = '', firstName = '', middleName = '' }) {
+    return `${lastName} ${firstName} ${middleName}`.trim();
+}
+
+module.exports = { parseLink, prepareImageUrl, getFullName }

@@ -8,12 +8,12 @@ exports.isEmployeeRegistered = async telegramId => {
 }
 
 exports.registrationEmployee = async tgContact => {
-  console.log('tgContact', tgContact);
-  console.log('tgContact.phone_number', tgContact.phone_number);
-  const candidate = await Employee.findOne({ where: { phone: tgContact.phone_number }, raw: true });
+  const candidate = await Employee.findOne({ where: { phone: tgContact.phone_number, attributes: { exclude: ['password'] } }, raw: true });
 
   if (!candidate) throw new CustomError('Сотрудник не найден');
   if (candidate.telegramId) throw new CustomError('Сотрудник уже зарегистрирован. Если это не вы, обратитесь к администратору');
 
   await Employee.update({ telegramId: tgContact.user_id }, { where: { id: candidate.id }, limit: 1 });
+
+  return candidate;
 }

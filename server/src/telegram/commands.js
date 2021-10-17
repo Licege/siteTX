@@ -1,6 +1,7 @@
 const { Markup } = require('telegraf');
 const { dictionary } = require('./dictionary');
 const repository = require('./repository');
+const { getFullName } = require('../utils');
 const { isCustomError } = require('../utils/customError');
 
 async function startHandler(ctx) {
@@ -26,7 +27,8 @@ exports.commands = bot => {
     const { contact } = ctx.update.message;
 
     try {
-      await repository.registrationEmployee(contact)
+      const newEmployee = await repository.registrationEmployee(contact)
+      ctx.reply(`Здравствуйте, ${getFullName(newEmployee)}!`, Markup.removeKeyboard())
     } catch (err) {
       if (isCustomError(err)) ctx.reply(err.message)
     }
