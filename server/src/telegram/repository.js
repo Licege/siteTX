@@ -1,14 +1,14 @@
 const { Employee } = require('../models').init();
 const { CustomError } = require('../utils/customError');
 
-exports.isEmployeeRegistered = async telegramId => {
+exports.getRegisteredEmployee = async telegramId => {
   const employee = await Employee.findOne({ where: { telegramId }, raw: true });
 
-  return Boolean(employee);
+  return employee;
 }
 
 exports.registrationEmployee = async tgContact => {
-  const candidate = await Employee.findOne({ where: { phone: tgContact.phone_number, attributes: { exclude: ['password'] } }, raw: true });
+  const candidate = await Employee.findOne({ where: { phone: tgContact.phone_number }, raw: true });
 
   if (!candidate) throw new CustomError('Сотрудник не найден');
   if (candidate.telegramId) throw new CustomError('Сотрудник уже зарегистрирован. Если это не вы, обратитесь к администратору');

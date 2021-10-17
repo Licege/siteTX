@@ -7,15 +7,14 @@ const { isCustomError } = require('../utils/customError');
 async function startHandler(ctx) {
   const telegramChatId = ctx.update.message.from.id;
 
-  // Должна быть проверка, есть ли пользователь с таким id в базе
-  const isUserExist = await repository.isEmployeeRegistered(telegramChatId);
+  const employee = await repository.getRegisteredEmployee(telegramChatId);
 
-  if (!isUserExist) {
+  if (!employee) {
     ctx.reply('Авторизуйтесь по номеру телефона', Markup.keyboard([
       Markup.button.contactRequest("Войти по номеру телефона")
     ]).resize(false));
   } else {
-    ctx.reply('Здравствуйте', Markup.removeKeyboard())
+    ctx.reply(`Здравствуйте, ${getFullName(employee)}!`, Markup.removeKeyboard())
   }
 }
 
@@ -31,6 +30,7 @@ exports.commands = bot => {
       ctx.reply(`Здравствуйте, ${getFullName(newEmployee)}!`, Markup.removeKeyboard())
     } catch (err) {
       if (isCustomError(err)) ctx.reply(err.message)
+      console.log(err);
     }
   })
 
