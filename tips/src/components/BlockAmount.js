@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
 import { BlockWithLabel } from "./Block";
 import classes from '../styles/block-amount.module.css';
+import {currencyFormat} from "../utils";
 
 function isButtonsMode(mode) {
   return mode === 'buttons';
@@ -30,7 +31,7 @@ function generateButtonCN(currentValue, buttonValue) {
 }
 
 function generateInputHintText() {
-  return `Введите сумму от ${process.env.MIN_TIP_AMOUNT} до ${process.env.MAX_TIP_AMOUNT} ₽.`
+  return `Введите сумму от ${currencyFormat(process.env.MIN_TIP_AMOUNT, { withoutSign: true })} до ${currencyFormat(process.env.MAX_TIP_AMOUNT)}.`
 }
 
 const BlockAmount = ({ value, onChange, blockLabel = 'Сумма', className }) => {
