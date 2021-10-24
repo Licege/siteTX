@@ -14,7 +14,13 @@
 }
 
 .button:hover {
-    background-color: lightgrey;
+background-color: lightgrey;
+}
+
+@media screen and (max-width: 768px) {
+    .button:hover {
+        background-color: gold;
+    }
 }
 
 .button-active {
