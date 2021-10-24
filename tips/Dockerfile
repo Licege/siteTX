@@ -5,7 +5,6 @@ RUN mkdir -p /app/tips
 WORKDIR /app/tips
 
 COPY package*.json ./
-COPY next.config.js ./
 COPY .env ./
 
 RUN npm install
@@ -24,11 +23,11 @@ ENV NODE_ENV production
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nextjs -u 1001
 
+COPY --from=builder /app/next.config.js ./
 #COPY --from=builder /app/tips/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/tips/.next ./.next
 COPY --from=builder /app/tips/node_modules ./node_modules
 COPY --from=builder /app/tips/package.json ./package.json
-COPY --from=builder /app/tips/next.config.js ./next.config.js
 
 USER nextjs
 
