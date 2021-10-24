@@ -5,6 +5,7 @@ RUN mkdir -p /app/tips
 WORKDIR /app/tips
 
 COPY package*.json ./
+COPY next.config.js ./
 COPY .env ./
 
 RUN npm install
