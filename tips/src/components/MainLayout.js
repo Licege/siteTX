@@ -2,7 +2,6 @@ import Head from "next/head";
 import Image from 'next/image'
 import classes from "../styles/main.module.css";
 import logo from '../assets/logo.png'
-import favicon from '../assets/favicon.png'
 
 function getYear() {
   return new Date().getFullYear()
@@ -12,7 +11,7 @@ export default function MainLayout({ title = 'Три холма', children }) {
   return (
     <>
       <Head>
-        <link rel="icon" href={favicon} />
+        <link rel="icon" href='../assets/favicon.png' />
         <meta charSet="utf-8" />
         <title>{title}</title>
       </Head>
