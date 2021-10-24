@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-import {BlockWithLabel} from "./Block";
+import { BlockWithLabel } from "./Block";
 import classes from '../styles/block-amount.module.css';
 
 function isButtonsMode(mode) {
@@ -90,7 +90,7 @@ const BlockAmount = ({ value, onChange, blockLabel = 'Сумма', className }) 
       )}
       {isInputsMode(mode) && (
         <div>
-          <input className={classes.input} ref={inputRef} value={inputValue} onChange={onInput} onBlur={onBlurInput} />
+          <input className={classes.input} inputMode="numeric" ref={inputRef} value={inputValue} onChange={onInput} onBlur={onBlurInput} />
           <div className={classes['input__hint']}>{generateInputHintText()}</div>
         </div>
       )}
