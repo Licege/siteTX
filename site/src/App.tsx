@@ -13,6 +13,7 @@ import Promo from './pages/Promos/one/Promo'
 import Contacts from './pages/Contacts/Contacts'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
+import ButtonCallToUs from './components/Buttons/CallUs';
 import Home from './pages/Home/Home'
 import News from './pages/News/all/News'
 import NewsById from './pages/News/one/NewsById'
@@ -97,6 +98,7 @@ const App = () => {
             </Switch>
           </CatchErrors>
           <Footer/>
+          <ButtonCallToUs />
         </AppContent>
         <Alert />
         <Modal />
