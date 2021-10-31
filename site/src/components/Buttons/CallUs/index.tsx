@@ -26,11 +26,11 @@ const Wrapper = styled.a`
   transform: rotate(245deg);
   color: yellow;
   background-color: green;
-  text-decoration: none;
   
   &:hover {
     color: yellow;
     background-color: green;
+    text-decoration: none;
   }
 `
 
