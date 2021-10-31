@@ -96,9 +96,9 @@ const App = () => {
               {!isProduction() && <Route exact path="/test" component={PDFViewer}/>}
               <Route component={Error404}/>
             </Switch>
+            <ButtonCallToUs />
           </CatchErrors>
           <Footer/>
-          <ButtonCallToUs />
         </AppContent>
         <Alert />
         <Modal />
