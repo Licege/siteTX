@@ -7,7 +7,7 @@ import { LinkButton } from '../styles'
 
 const SectionAbout = () => (
   <Container>
-    <Image src={ImageSrc} />
+    <Image src={ImageSrc} alt="restaurant-picture" />
     <Article>
       <Title>Добро пожаловать</Title>
       <Text>

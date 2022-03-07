@@ -54,7 +54,7 @@ export const NavBlock = styled.nav`
   
   a {
     display: block;
-    color: #999;
+    color: #212529ab;
 
     &:hover {
       color: #000;
@@ -64,7 +64,7 @@ export const NavBlock = styled.nav`
 
 export const NavItem = styled(NavLink)`
   display: block;
-  color: #999;
+  color: #212529ab;
   transition: .2s;
 
   &.active {
@@ -98,7 +98,7 @@ export const Address = styled.address`
   margin-bottom: 8px;
 
   a {
-    color: #999;
+    color: #212529ab;
     transition: .2s;
 
     &:hover {
@@ -110,7 +110,7 @@ export const Address = styled.address`
 export const Phone = styled.a`
   text-decoration: none;
   white-space: nowrap;
-  color: #999;
+  color: #212529ab;
   transition: .2s;
 
   &:hover {

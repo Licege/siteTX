@@ -15,7 +15,7 @@ const CardContainer: React.FC<IProps> = ({ title, children }) => (
 const Container = styled.div`
 `
 
-const Title = styled.h4`
+const Title = styled.h3`
   color: ${props => props.theme.colors.brown.brand};
   text-align: center;
 `

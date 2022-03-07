@@ -5,7 +5,7 @@ import logo from '../../static/img/logo.png'
 
 const Logo = () => (
   <Link to="/">
-    <LogoIcon src={logo} alt='' />
+    <LogoIcon src={logo} alt='logo' />
   </Link>
 )
 
