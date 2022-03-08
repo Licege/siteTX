@@ -7,9 +7,11 @@ import { requestMe } from '../../redux/thunks/profile.thunks';
 import { getMeSelector } from '../../redux/selectors/profile';
 import ProfileInfo from './ProfileInfo';
 import OrdersHistory from './OrdersHistory';
+import { useOnlyAuth } from '../../hooks/useOnlyAuth';
 import './style.scss'
 
 const Profile = () => {
+  useOnlyAuth();
   const me = useSelector(getMeSelector)
   const dispatch = useDispatch()
 

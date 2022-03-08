@@ -30,10 +30,6 @@ const App = () => {
   const me = useSelector(getMeSelector)
   const isAuthenticated = useSelector(getAuthStatus)
 
-  // const checkAuth = (component: JSX.Element | null) => () => (
-  //   isAuthenticated ? component : <Redirect to='/' />
-  // )
-
   useEffect(() => {
     gaPageView(window.location.pathname + window.location.search)
   }, [])
