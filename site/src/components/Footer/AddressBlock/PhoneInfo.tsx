@@ -10,7 +10,7 @@ const PhoneInfo = () => {
 
   return (
     <Phone href={`tel:${contacts.phone}`}>
-      <img src={phone} alt=''/> {contacts.phone}
+      <img src={phone} width={24} height={24} alt='phone'/> {contacts.phone}
     </Phone>
   )
 }

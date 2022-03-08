@@ -9,7 +9,7 @@ const WorkTime = () => {
   return (
     <Schedule>
       <Title>
-        <img src={hours} alt='' /> Часы работы
+        <img src={hours} height={16} width={16} alt='Work time' /> Часы работы
       </Title>
       {contacts?.openHours?.map((item, key) => <div key={key}>{item}</div>)}
     </Schedule>
