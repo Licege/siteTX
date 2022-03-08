@@ -17,7 +17,8 @@
     "react/jsx-first-prop-new-line": ["error", "never"],
     "react/jsx-props-no-spreading": "off",
     "react/no-array-index-key": "off",
-    "react/destructuring-assignment": "off"
+    "react/destructuring-assignment": "off",
+    "react-hooks/exhaustive-deps": "off"
   },
   "overrides": [
     {
