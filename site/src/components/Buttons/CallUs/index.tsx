@@ -6,7 +6,7 @@ const ButtonCallToUs = () => {
   const contacts = useContacts()
 
   return (
-    <Wrapper href={`tel:${contacts.phone}`}>
+    <Wrapper href={`tel:${contacts.phone}`} aria-label="Call with us">
       <i className='fas fa-phone-alt' />
     </Wrapper>
   )
