@@ -6,10 +6,10 @@ interface ICallToAs {
     text: string
 }
 
-const CallToAs = ({ text }: ICallToAs) => {
+const CallToUs = ({ text }: ICallToAs) => {
   const contacts = useContacts()
 
   return <a href={`tel:${contacts.phone}`}>{text}</a>
 }
 
-export default CallToAs
+export default CallToUs

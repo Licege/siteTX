@@ -2,7 +2,7 @@ import React from 'react'
 import { NavBlock, NavItem } from './styles'
 import { isProduction } from '../../utils';
 import { useContacts } from '../../redux/hooks/contacts.hooks';
-import CallToAs from '../CallToAs';
+import CallToUs from '../CallToUs';
 
 const NavigationBlock = () => {
   useContacts()
@@ -12,7 +12,7 @@ const NavigationBlock = () => {
       <NavItem activeClassName="active" to="/actions">Акции</NavItem>
       {!isProduction()
                 ? <NavItem activeClassName="active" to="/banquets">Банкеты</NavItem>
-                : <CallToAs text='Заказать банкет' />
+                : <CallToUs text='Заказать банкет' />
             }
       <NavItem activeClassName="active" to="/vacancies">Вакансии</NavItem>
       <NavItem activeClassName="active" to="/news">Новости</NavItem>

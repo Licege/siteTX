@@ -4,7 +4,7 @@ import closeImg from '../../static/img/close.png'
 import { useMobileMenuLogic } from '../Header/logic'
 import { Border, BurgerMenu, CloseIcon, NavigationBlock, Wrapper } from './styles'
 import { isProduction } from '../../utils';
-import CallToAs from '../CallToAs';
+import CallToUs from '../CallToUs';
 
 const MobileMenu = () => {
   const { isMenuOpen, categories, toggleMenu } = useMobileMenuLogic()
@@ -42,7 +42,7 @@ const MobileMenu = () => {
                 </li>)
               : (
                 <li>
-                  <CallToAs text='ЗАКАЗ СТОЛОВ' />
+                  <CallToUs text='ЗАКАЗ СТОЛОВ' />
                 </li>
               )
             }

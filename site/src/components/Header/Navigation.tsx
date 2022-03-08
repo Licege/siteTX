@@ -1,7 +1,7 @@
 import React from 'react'
 import { isProduction } from '../../utils';
 import { Navbar, NavItem } from './styles'
-import CallToAs from '../CallToAs';
+import CallToUs from '../CallToUs';
 
 const Navigation = () => (
   <Navbar>
@@ -18,7 +18,7 @@ const Navigation = () => (
       {!isProduction() ? <li>
         <NavItem activeClassName="active" to="/order">Заказ столов</NavItem>
       </li> : <li>
-        <CallToAs text='Заказ столов' />
+        <CallToUs text='Заказ столов' />
       </li>}
       <li>
         <NavItem activeClassName="active" to="/contacts">О нас</NavItem>
