@@ -7,7 +7,7 @@ const REQUIRED_FIELDS = [
   'text'
 ]
 
-export default function (values: any): any {
+export default function validate (values: any): any {
   const errors = {} as any
 
   REQUIRED_FIELDS.forEach(fieldKey => {
