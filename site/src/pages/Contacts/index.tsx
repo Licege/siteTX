@@ -23,6 +23,7 @@ const Container = styled(PageContainer)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  row-gap: 32px;
 `
 
 export default Contacts

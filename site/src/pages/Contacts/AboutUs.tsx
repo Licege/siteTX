@@ -1,4 +1,5 @@
 import React from 'react'
+import Tour from './Tour';
 import { PageTitle } from '../../components/core'
 
 export const AboutUs: React.FC = () => (
@@ -10,5 +11,6 @@ export const AboutUs: React.FC = () => (
       Кулинарное мастерство наших поваров позволит вам приятно провести время и насладиться изысканными блюдами.<br />
       Желаем вам приятного аппетита и надеемся на будущие встречи!
     </p>
+    <Tour />
   </section>
 )

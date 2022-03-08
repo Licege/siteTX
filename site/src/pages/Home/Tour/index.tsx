@@ -1,6 +1,7 @@
 import React from 'react'
 import { useWindowSize } from '../../../hooks/windowResize';
 import { SectionWrapper } from '../../../components/core';
+import Tour3D from '../../../components/Tour3D';
 
 
 const Tour = () => {
@@ -8,7 +9,7 @@ const Tour = () => {
 
   return (
     <SectionWrapper>
-      <iframe title="tour" src='//navse360.ru/onlyTour/4421' style={{ width: width - 40, height: 360 }} />
+      <Tour3D width={width - 40} height={360} />
     </SectionWrapper>
   )
 }
