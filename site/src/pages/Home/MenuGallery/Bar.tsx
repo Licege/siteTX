@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components';
 import Gallery from './Gallery';
 import { Button } from '../../../components/core';
-import menuImg from '../../../static/img/bar-menu-v1.jpeg'
+import menuImg from '../../../static/img/bar-menu-v1.webp'
 
 const { hostname } = window.location
 const images = [

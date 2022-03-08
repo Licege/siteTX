@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { SectionTitle, SectionWrapper } from '../../../components/core'
-import ImageSrc from '../../../static/img/veranda-2.jpg'
+import ImageSrc from '../../../static/img/veranda-2.webp'
 import { BREAKPOINTS } from '../../../styledComponents/helpers'
 import { LinkButton } from '../styles'
 

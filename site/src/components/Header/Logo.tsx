@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import logo from '../../static/img/logo.png'
+import logo from '../../static/img/logo.webp'
 
 const Logo = () => (
   <Link to="/">
