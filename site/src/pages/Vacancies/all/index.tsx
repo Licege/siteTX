@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Helmet } from 'react-helmet';
-import CardVacancy from '../../components/Cards/CardVacancy'
-import EmptyPage from '../EmpyPage'
+import CardVacancy from '../../../components/Cards/CardVacancy'
+import EmptyPage from '../../EmpyPage'
 import { useVacanciesPageLogic } from './logic'
-import { PageContainer, PageTitle } from '../../components/core'
+import { PageContainer, PageTitle } from '../../../components/core'
 
 
 const Vacancies = () => {

@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useVacancies } from '../../redux/hooks/vacancies.hooks'
+import { useVacancies } from '../../../redux/hooks/vacancies.hooks'
 
 export const useVacanciesPageLogic = () => {
   const vacancies = useVacancies()

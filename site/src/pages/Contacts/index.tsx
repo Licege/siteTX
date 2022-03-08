@@ -5,7 +5,7 @@ import AddressBlock from './AddressBlock'
 import { AboutUs } from './AboutUs'
 import { PageContainer } from '../../components/core'
 
-const Contacts: React.FC = () => {
+const Contacts = () => {
   useEffect(() => {
     window.scroll(0, 0)
   }, [])
