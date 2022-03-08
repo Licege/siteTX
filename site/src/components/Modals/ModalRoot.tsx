@@ -4,13 +4,11 @@ import { getCurrentModal } from '../../redux/getters/modals.getters'
 import ModalRegister from './ModalRegister/ModalRegister'
 import ModalAuth from './ModalAuth/ModalAuth'
 import ModalDishInfo from './ModalDishInfo'
-import PDFViewer from './PDFViewer'
 
 const MODALS: any = {
   REGISTER: ModalRegister,
   AUTH: ModalAuth,
   DISH_INFO: ModalDishInfo,
-  PDF_VIEWER: PDFViewer
 }
 
 const ModalRoot = () => {
