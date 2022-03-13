@@ -2,9 +2,6 @@ import React from 'react'
 import styled from 'styled-components';
 import { useContacts } from '../../../redux/hooks/contacts.hooks';
 
-// const BOX_SHADOW_COLOR = [56, 163, 253];
-// const BOX_SHADOW_COLOR = [100, 28, 21];
-
 const ButtonCallToUs = () => {
   const contacts = useContacts()
 
@@ -15,33 +12,10 @@ const ButtonCallToUs = () => {
   )
 }
 
-// const Wrapper = styled.a`
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   width: 50px;
-//   height: 50px;
-//   position: fixed;
-//   bottom: 20px;
-//   right: 20px;
-//   border-radius: 50%;
-//   font-size: 24px;
-//   transform: rotate(245deg);
-//   color: yellow;
-//   background-color: green;
-//
-//   &:hover {
-//     color: yellow;
-//     background-color: green;
-//     text-decoration: none;
-//   }
-// `
-
 const Wrapper = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
-  //background: #38a3fd;
   color: yellow;
   background-color: green;
   border: 2px solid #38a3fd;
