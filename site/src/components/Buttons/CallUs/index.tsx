@@ -18,7 +18,7 @@ const Wrapper = styled.a`
   justify-content: center;
   color: yellow;
   background-color: green;
-  border: 2px solid #38a3fd;
+  border: 2px solid green;
   border-radius: 50%;
   box-shadow: 0 8px 10px rgba(56,163,253,0.3);
   cursor: pointer;
