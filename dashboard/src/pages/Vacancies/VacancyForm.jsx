@@ -2,9 +2,9 @@ import React from 'react'
 import {Button} from 'react-bootstrap'
 import {SCInputField, SCTextareaField} from './styledComponents'
 import ImageInput from '../../components/common/imageInput'
-import ControlledEditor from "../../components/common/element/editor/ControlledEditor";
+import ControlledEditor from '../../components/common/element/editor/ControlledEditor';
 
-const VacancyForm = ({ handleSubmit, submitting, pristine, vacancy, imageSrc = '', setDescription, uploadFile, cancel }) => (
+const VacancyForm = ({handleSubmit, submitting, pristine, vacancy, imageSrc = '', setDescription, uploadFile, cancel}) => (
   <form onSubmit={handleSubmit}>
     <SCInputField name='title' placeholder='Название' />
     <SCInputField name='salaryFrom' placeholder='Зп от' parse={value => Number(value)} />

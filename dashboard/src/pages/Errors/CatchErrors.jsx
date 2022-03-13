@@ -1,48 +1,48 @@
-import React, { Component } from 'react';
-import { withRouter, NavLink } from 'react-router-dom';
+import React, {Component} from 'react';
+import {withRouter, NavLink} from 'react-router-dom';
 import styled from 'styled-components';
 import imageSrc from '../../static/img/404.png'
-import {Button} from "react-bootstrap";
+import {Button} from 'react-bootstrap';
 
 class CatchErrors extends Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = { hasError: false }
-    }
+    this.state = {hasError: false}
+  }
 
-    static getDerivedStateFromError(error, errorInfo) {
-        console.log(error);
-        console.log(errorInfo);
-        return { hasError: true }
-    }
+  static getDerivedStateFromError(error, errorInfo) {
+    console.log(error);
+    console.log(errorInfo);
+    return {hasError: true}
+  }
 
-    componentDidCatch(error, errorInfo) {
-        CatchErrors.getDerivedStateFromError(error, errorInfo);
-    }
+  componentDidCatch(error, errorInfo) {
+    CatchErrors.getDerivedStateFromError(error, errorInfo);
+  }
 
     goBack = () => {
-        const { history } = this.props
+      const {history} = this.props
 
-        history.push('/');
-        window.location.reload();
+      history.push('/');
+      window.location.reload();
     }
 
     render() {
-        const { children } = this.props;
-        const { hasError } = this.state;
+      const {children} = this.props;
+      const {hasError} = this.state;
 
-        if (hasError) {
-            return (
-                <Wrapper>
-                    <Title>Упс, похоже что то пошло не так!</Title>
-                    <Image src={imageSrc} />
-                    <Button onClick={this.goBack}>Назад на главную</Button>
-                </Wrapper>
-            )
-        }
+      if (hasError) {
+        return (
+          <Wrapper>
+            <Title>Упс, похоже что то пошло не так!</Title>
+            <Image src={imageSrc} />
+            <Button onClick={this.goBack}>Назад на главную</Button>
+          </Wrapper>
+        )
+      }
 
-        return children
+      return children
     }
 }
 

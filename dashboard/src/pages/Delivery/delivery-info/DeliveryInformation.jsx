@@ -1,7 +1,7 @@
 import React from 'react'
 import {tsToDate} from '../../../plugins/helpers'
 
-const DeliveryInformation = ({ order = {} }) => {
+const DeliveryInformation = ({order = {}}) => {
   const {
     address: {
       city,

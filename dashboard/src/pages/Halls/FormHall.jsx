@@ -1,10 +1,10 @@
 import React from 'react'
-import { Button } from 'react-bootstrap'
-import { Form } from 'react-final-form'
-import { SCInputField, SCTextareaField } from './styledComponents'
+import {Button} from 'react-bootstrap'
+import {Form} from 'react-final-form'
+import {SCInputField, SCTextareaField} from './styledComponents'
 
 
-const RenderForm = ({ handleSubmit, submitting, pristine, cancel }) => (
+const RenderForm = ({handleSubmit, submitting, pristine, cancel}) => (
   <form onSubmit={handleSubmit}>
     <SCInputField name='title' placeholder='Название' />
     <SCInputField name='capacity' placeholder='Вместимость' />
@@ -14,7 +14,7 @@ const RenderForm = ({ handleSubmit, submitting, pristine, cancel }) => (
   </form>
 )
 
-const FormHall = ({ hall, ...props }) => (
+const FormHall = ({hall, ...props}) => (
   <>
     <div className="page-header">
       <div className="page-header-title">
@@ -24,8 +24,7 @@ const FormHall = ({ hall, ...props }) => (
         <div className="card">
           <div className="card-body">
             <Form onSubmit={() => {}}
-                  render={({ ...formProps }) => <RenderForm {...formProps} {...props} />}
-            />
+                  render={({...formProps}) => <RenderForm {...formProps} {...props} />}/>
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
-import { getCurrentModal } from '../../redux/getters/modals.getters'
+import {useSelector} from 'react-redux'
+import {getCurrentModal} from '../../redux/getters/modals.getters'
 
 import ModalDelete from './ModalDelete'
 import ModalMenu from './ModalMenu'

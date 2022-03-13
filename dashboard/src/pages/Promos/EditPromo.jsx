@@ -1,14 +1,14 @@
 import React from 'react'
-import { useCurrentPromo } from './logic'
+import {useCurrentPromo} from './logic'
 import EditPromoForm from './form/EditPromoForm'
-import { PageHeader } from '../../styledComponents/components'
+import {PageHeader} from '../../styledComponents/components'
 
 const EditPromo = () => {
   const promo = useCurrentPromo();
 
   if (!promo) return <div />
 
-  const { title } = promo
+  const {title} = promo
 
   return (
     <div>

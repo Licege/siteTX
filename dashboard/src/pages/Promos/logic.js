@@ -1,17 +1,17 @@
-import { useEffect, useState, useCallback } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { useHistory, useParams } from 'react-router-dom'
-import { useFileLogic } from '../../hooks'
+import {useEffect, useState, useCallback} from 'react'
+import {useSelector, useDispatch} from 'react-redux'
+import {useHistory, useParams} from 'react-router-dom'
+import {useFileLogic} from '../../hooks'
 import {requestAllPromos, requestPromoById, postPromo, updatePromo, removePromo} from '../../redux/thunks/promos.thunks'
 import {getAllPromos, getCurrentPromo} from '../../redux/getters/promos.getters'
 
-const usePromos = ({ force = false } = {}) => {
+const usePromos = ({force = false} = {}) => {
   const dispatch = useDispatch()
   const promos = useSelector(getAllPromos)
 
   useEffect(() => {
     if (!promos.length || force)
-    dispatch(requestAllPromos())
+      dispatch(requestAllPromos())
   }, [])
 
   return promos
@@ -19,7 +19,7 @@ const usePromos = ({ force = false } = {}) => {
 
 export const useCurrentPromo = () => {
   const dispatch = useDispatch()
-  const { id } = useParams()
+  const {id} = useParams()
 
   useEffect(() => {
     dispatch(requestPromoById(id))
@@ -32,10 +32,10 @@ export const usePromoHeaderLogic = () => {
   const history = useHistory()
 
   const redirectToCreatePromo = () => {
-    history.push(`promos/new`)
+    history.push('promos/new')
   }
 
-  return { redirectToCreatePromo }
+  return {redirectToCreatePromo}
 }
 
 export const usePromosCardsLogic = () => {
@@ -46,7 +46,7 @@ export const usePromosCardsLogic = () => {
     dispatch(removePromo(id))
   }, [])
 
-  return { promos, onDelete }
+  return {promos, onDelete}
 }
 
 export const useCreatePromoLogic = () => {
@@ -54,7 +54,7 @@ export const useCreatePromoLogic = () => {
   const dispatch = useDispatch()
 
   const [description, setDescription] = useState('')
-  const { file, uploadFile, createFormDataWithFile } = useFileLogic()
+  const {file, uploadFile, createFormDataWithFile} = useFileLogic()
 
   const changeDescription = newDescription => setDescription(newDescription)
 
@@ -71,7 +71,7 @@ export const useCreatePromoLogic = () => {
     history.push('/promos')
   }
 
-  return { changeDescription, uploadFile, createPromo, cancel }
+  return {changeDescription, uploadFile, createPromo, cancel}
 }
 
 export const useEditPromoLogic = () => {
@@ -80,7 +80,7 @@ export const useEditPromoLogic = () => {
 
   const promo = useCurrentPromo()
   const [description, setDescription] = useState(promo.description)
-  const { file, uploadFile, createFormDataWithFile } = useFileLogic()
+  const {file, uploadFile, createFormDataWithFile} = useFileLogic()
 
   const changeDescription = newDescription => setDescription(newDescription)
 
@@ -88,7 +88,7 @@ export const useEditPromoLogic = () => {
     const formData = createFormDataWithFile(newPromo, 'image')
     if (description) formData.set('description', description)
 
-    dispatch(updatePromo({ promo: formData, id: formData.get('id') }))
+    dispatch(updatePromo({promo: formData, id: formData.get('id')}))
 
     history.push('/promos')
   }
@@ -97,12 +97,12 @@ export const useEditPromoLogic = () => {
     history.push('/promos')
   }
 
-  return { promo, editPromo, cancel, changeDescription, uploadFile }
+  return {promo, editPromo, cancel, changeDescription, uploadFile}
 }
 
 export const useShowPromoLogic = () => {
   const history = useHistory()
-  const { id } = useParams()
+  const {id} = useParams()
 
   const promo = useCurrentPromo()
 
@@ -114,5 +114,5 @@ export const useShowPromoLogic = () => {
     history.push('/promos')
   }
 
-  return { promo, redirectToChangePromo, goBack }
+  return {promo, redirectToChangePromo, goBack}
 }

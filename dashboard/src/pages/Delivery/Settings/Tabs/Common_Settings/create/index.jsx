@@ -4,7 +4,7 @@ import SettingsForm from '../SettingsForm'
 import {useCreateDeliverySettingsLogic} from './logic'
 
 const CreateSettings = () => {
-  const { createSettings, cancel } = useCreateDeliverySettingsLogic()
+  const {createSettings, cancel} = useCreateDeliverySettingsLogic()
 
   return (
     <div className='page form_delivery'>

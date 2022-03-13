@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
-import { flexChildMixin } from '../helpers';
+import styled, {css} from 'styled-components';
+import {flexChildMixin} from '../helpers';
 
 const Text = styled.p`
   font-weight: normal;

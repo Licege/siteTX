@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 import SelectField from './selectField';
-import { Wrapper } from "../styles";
+import {Wrapper} from '../styles';
 
-const SelectFieldWithLabel = ({ label, ...props }) => (
+const SelectFieldWithLabel = ({label, ...props}) => (
   <Wrapper>
     <div>{label}</div>
     <SelectField { ...props } />

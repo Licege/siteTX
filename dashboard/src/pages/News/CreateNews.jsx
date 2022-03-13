@@ -4,7 +4,7 @@ import {PageHeader} from '../../styledComponents/components'
 import NewsForm from './NewsForm'
 
 const CreateNews = () => {
-  const { uploadFile, postNews, changeDescription, cancel } = useCreateNewsLogic()
+  const {uploadFile, postNews, changeDescription, cancel} = useCreateNewsLogic()
 
   return (
     <div>

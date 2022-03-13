@@ -1,15 +1,15 @@
-import { useCallback } from 'react'
-import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import {useCallback} from 'react'
+import {useDispatch} from 'react-redux'
+import {useHistory} from 'react-router-dom'
 import {useVacancies} from '../../../redux/hooks/hooks'
 import {deleteVacancy} from '../../../redux/thunks/vacancies.thunks'
 
 export const useHeaderVacanciesLogic = () => {
   const history = useHistory()
 
-  const redirectToCreateVacancy = useCallback(() => history.push(`vacancies/new`), [])
+  const redirectToCreateVacancy = useCallback(() => history.push('vacancies/new'), [])
 
-  return { redirectToCreateVacancy }
+  return {redirectToCreateVacancy}
 }
 
 export const useCardVacanciesLogic = () => {
@@ -24,5 +24,5 @@ export const useCardVacanciesLogic = () => {
 
   const removeVacancy = useCallback(id => () => dispatch(deleteVacancy(id)), [])
 
-  return { vacancies, redirectToChangeVacancy, removeVacancy }
+  return {vacancies, redirectToChangeVacancy, removeVacancy}
 }

@@ -28,7 +28,7 @@ const ComplainForm = () => {
           <Button variant="contained" color="primary" type="submit">Отправить</Button>
         </ActionsBlock>
       </FormContent>
-        )}/>
+    )}/>
   )
 }
 

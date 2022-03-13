@@ -24,14 +24,14 @@ const responseHandler = async response => {
 
   if (!contentType) {
     if (response.status >= 400) {
-      return Promise.reject({ status: response.status });
+      return Promise.reject({status: response.status});
     }
     return Promise.reject()
   }
 
   if (contentType.includes('text/html') || contentType.includes('text/plain')) {
     if (response.status >= 400) {
-      return Promise.reject({ status: response.status });
+      return Promise.reject({status: response.status});
     }
     return Promise.resolve();
   }
@@ -63,7 +63,7 @@ const generalOptions = (settings = {}) => {
 }
 
 const request = method => async (url, body, options = {}) => {
-  const init = { ...generalOptions(options), method }
+  const init = {...generalOptions(options), method}
 
   if (method === 'GET') delete init.headers
   if (body) {

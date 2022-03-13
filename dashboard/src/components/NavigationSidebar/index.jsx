@@ -1,26 +1,26 @@
 import React from 'react'
-import { NavLink as NavL } from 'react-router-dom'
-import { Accordion } from 'react-bootstrap'
+import {NavLink as NavL} from 'react-router-dom'
+import {Accordion} from 'react-bootstrap'
 import CustomToggle from '../common/element/Toggle'
 
 const NavigationSidebar = () => (
   <nav className="navbar">
     <Accordion className="navbar-accordion">
       <MainSection />
-        <DeliverySection />
-        <ClientsSection />
-        <LoyaltySection />
-        <StorageSection />
-        <AdminsSection />
+      <DeliverySection />
+      <ClientsSection />
+      <LoyaltySection />
+      <StorageSection />
+      <AdminsSection />
     </Accordion>
   </nav>
 )
 
-const Toggle = ({ eventKey, title }) => (
+const Toggle = ({eventKey, title}) => (
   <CustomToggle className="navbar-accordion-header" eventKey={eventKey}>{title}</CustomToggle>
 )
 
-const NavLink = ({ eventKey, to, title }) => (
+const NavLink = ({eventKey, to, title}) => (
   <Accordion.Collapse eventKey={eventKey}>
     <NavL activeClassName="-active" className="navbar-accordion-header-item" to={to}>{title}</NavL>
   </Accordion.Collapse>

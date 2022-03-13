@@ -1,4 +1,4 @@
-import { createDraftSafeSelector } from '@reduxjs/toolkit'
+import {createDraftSafeSelector} from '@reduxjs/toolkit'
 
 const selector = state => state.modal
 

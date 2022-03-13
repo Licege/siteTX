@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { flexChildMixin } from '../helpers';
+import {flexChildMixin} from '../helpers';
 
 const Flex = styled.div`
   display: flex;

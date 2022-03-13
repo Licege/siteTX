@@ -10,5 +10,5 @@ export const useGlobalSettingsFormLogic = () => {
 
   const postGlobalSettings = settings => dispatch(updateGlobalDeliverySettings(settings))
 
-  return { globalSettings, postGlobalSettings }
+  return {globalSettings, postGlobalSettings}
 }

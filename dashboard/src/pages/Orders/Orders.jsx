@@ -1,10 +1,10 @@
 import React from 'react'
-import { Nav, Tab } from 'react-bootstrap'
+import {Nav, Tab} from 'react-bootstrap'
 import OrdersTable from './Tabs/OrdersTable'
 import OrdersBanquet from './Tabs/OrdersBanquet'
 import {PageHeader} from '../../styledComponents/components'
 
-const Orders = ({ orders }) => {
+const Orders = ({orders}) => {
   return (
     <div>
       <PageHeader title='Заявки на бронирование столов' />

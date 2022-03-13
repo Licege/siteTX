@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form } from 'react-final-form'
+import {Form} from 'react-final-form'
 
 // const COMPONENT_TYPES = {
 //   input: InputField
@@ -19,7 +19,7 @@ import { Form } from 'react-final-form'
 //   })
 // }
 
-const CustomForm = ({ onSubmit, validate = () => {}, children }) => (
+const CustomForm = ({onSubmit, validate = () => {}, children}) => (
   <Form onSubmit={onSubmit}
         validate={validate}
         render={({
@@ -30,8 +30,7 @@ const CustomForm = ({ onSubmit, validate = () => {}, children }) => (
           <form onSubmit={handleSubmit}>
             {children}
           </form>
-        )}
-  />
+        )}/>
 )
 
 export default CustomForm

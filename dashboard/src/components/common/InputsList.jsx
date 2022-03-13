@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, {useState, useEffect} from 'react'
 
 
 const helpers = {
@@ -8,7 +8,7 @@ const helpers = {
   last: array => array[array.length - 1]
 }
 
-const InputsList = ({ items = [], onChange, placeholder }) => {
+const InputsList = ({items = [], onChange, placeholder}) => {
   const [innerItems, setInnerItems] = useState(items)
 
   useEffect(() => {
@@ -19,8 +19,8 @@ const InputsList = ({ items = [], onChange, placeholder }) => {
     onChange(innerItems)
   }, [innerItems])
 
-  const handleInputField = key => ({ target: { value } }) => {
-    const { pushEmptyInput, removeInput, changeHoursByKey, last } = helpers;
+  const handleInputField = key => ({target: {value}}) => {
+    const {pushEmptyInput, removeInput, changeHoursByKey, last} = helpers;
     let listHours = [...innerItems]
     if (value === '') {
       listHours = removeInput(listHours, key)
@@ -35,11 +35,10 @@ const InputsList = ({ items = [], onChange, placeholder }) => {
 
   return (
     innerItems.map((item, key) => <input value={item}
-                                                 onChange={handleInputField(key)}
-                                                 key={key}
-                                                 placeholder={!item ? placeholder : ''}
-                                                 className="filter-main-input -name form-control"
-    />)
+                                         onChange={handleInputField(key)}
+                                         key={key}
+                                         placeholder={!item ? placeholder : ''}
+                                         className="filter-main-input -name form-control"/>)
   )
 }
 

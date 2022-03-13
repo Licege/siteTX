@@ -1,11 +1,11 @@
 import React from 'react'
-import { Nav, Tab, TabContainer } from 'react-bootstrap'
+import {Nav, Tab, TabContainer} from 'react-bootstrap'
 import ApprovedReviews from './Tabs/ApprovedReviews'
 import WaitingReviews from './Tabs/WaitingReviews'
 import DisapprovedReviews from './Tabs/DisaprrovedReviews'
-import { Page } from '../../components/common/Page'
+import {Page} from '../../components/common/Page'
 
-const Reviews = ({ waitingReviews, approvedReviews, disapprovedReviews, onApprove, onDisapprove }) => {
+const Reviews = ({waitingReviews, approvedReviews, disapprovedReviews, onApprove, onDisapprove}) => {
   return (
     <Page title="Отзывы">
       <TabContainer id="page-reviews-tab" defaultActiveKey="approved">

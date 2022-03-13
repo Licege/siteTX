@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { fetchAllPositions } from "../thunks/staffPositions.thunk";
+import {createSlice} from '@reduxjs/toolkit'
+import {fetchAllPositions} from '../thunks/staffPositions.thunk';
 
 const staffPositionsSlice = createSlice({
   name: 'staffPositions',

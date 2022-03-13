@@ -4,13 +4,13 @@ import {PageHeader} from '../../../styledComponents/components'
 import DeliveryFilter from './DeliveryFilter'
 
 const Delivery = () => (
-        <div>
-            <PageHeader title='Заказы' />
-            <div className='page-container'>
-                <DeliveryFilter />
-                <DeliveryTable />
-            </div>
-        </div>
-    )
+  <div>
+    <PageHeader title='Заказы' />
+    <div className='page-container'>
+      <DeliveryFilter />
+      <DeliveryTable />
+    </div>
+  </div>
+)
 
 export default Delivery

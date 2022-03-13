@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { InputField, TextareaField } from '../../components/Form'
+import {InputField, TextareaField} from '../../components/Form'
 
 const commonStyles = () => `
   margin-bottom: 20px;

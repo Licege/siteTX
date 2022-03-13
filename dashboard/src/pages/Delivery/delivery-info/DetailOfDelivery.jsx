@@ -3,7 +3,7 @@ import {Button} from 'react-bootstrap'
 import DeliveryInformation from './DeliveryInformation'
 import TableProductsPositions from './TableProductsPositions'
 
-const DetailOfDelivery = ({ order, showMenuModal }) => {
+const DetailOfDelivery = ({order, showMenuModal}) => {
   return (
     <div className='delivery_info-detail'>
       <div className='delivery_info-detail-title'>

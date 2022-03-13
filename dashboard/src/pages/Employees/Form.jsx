@@ -1,14 +1,14 @@
 import React from 'react'
-import { Form } from 'react-final-form'
-import { Button } from "react-bootstrap";
+import {Form} from 'react-final-form'
+import {Button} from 'react-bootstrap';
 import {InputWithLabelField, InputPhoneWithLabelField, SelectWithLabelField, TextareaWithLabelField} from '../../components/Form'
-import ImageInput from "../../components/common/imageInput";
-import { FormLayout } from "../../styledComponents/atoms";
-import styled from "styled-components";
-import InputNumberFieldWithLabel from "../../components/Form/Fields/inputNumberFieldWithLabel";
+import ImageInput from '../../components/common/imageInput';
+import {FormLayout} from '../../styledComponents/atoms';
+import styled from 'styled-components';
+import InputNumberFieldWithLabel from '../../components/Form/Fields/inputNumberFieldWithLabel';
 
 
-const RenderForm = ({ handleSubmit, submitting, pristine, employee, uploadFile, positions = [], cancel }) => (
+const RenderForm = ({handleSubmit, submitting, pristine, employee, uploadFile, positions = [], cancel}) => (
   <FormLayout onSubmit={handleSubmit}>
     <FirstBlock>
       <div>
@@ -34,11 +34,10 @@ const RenderForm = ({ handleSubmit, submitting, pristine, employee, uploadFile, 
   </FormLayout>
 )
 
-const EmployeeForm = ({ onSubmit, initialValues, ...props }) => (
+const EmployeeForm = ({onSubmit, initialValues, ...props}) => (
   <Form onSubmit={onSubmit}
         initialValues={initialValues}
-        render={formProps => <RenderForm {...formProps} {...props} />}
-  />
+        render={formProps => <RenderForm {...formProps} {...props} />}/>
 )
 
 export default EmployeeForm

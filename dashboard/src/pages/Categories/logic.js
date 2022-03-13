@@ -1,8 +1,8 @@
-import { useCallback } from 'react'
+import {useCallback} from 'react'
 import {useDispatch} from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 import {createCategory, deleteCategory, updateCategory} from '../../redux/thunks/menu.thunks'
-import { useCategories, useCurrentCategory } from '../../redux/hooks/menu.hooks'
+import {useCategories, useCurrentCategory} from '../../redux/hooks/menu.hooks'
 
 const validate = values => {
   const errors = {}
@@ -21,9 +21,9 @@ const validate = values => {
 export const useCategoriesHeaderLogic = () => {
   const history = useHistory()
 
-  const redirectToCreateCategory = useCallback(() => history.push(`categories/new`), [])
+  const redirectToCreateCategory = useCallback(() => history.push('categories/new'), [])
 
-  return { redirectToCreateCategory }
+  return {redirectToCreateCategory}
 }
 
 export const useCategoriesTableLogic = () => {
@@ -38,7 +38,7 @@ export const useCategoriesTableLogic = () => {
     dispatch(deleteCategory(id))
   }, [])
 
-  return { categories, updateCategory, removeCategory }
+  return {categories, updateCategory, removeCategory}
 }
 
 export const useCreateCategoryLogic = () => {
@@ -47,12 +47,12 @@ export const useCreateCategoryLogic = () => {
 
   const createNewCategory = useCallback(category => {
     dispatch(createCategory(category))
-    history.push(`/categories`)
+    history.push('/categories')
   }, [])
 
   const cancel = useCallback(() => history.push('/categories'), [])
 
-  return { createNewCategory, cancel, validate }
+  return {createNewCategory, cancel, validate}
 }
 
 export const useEditCategoryLogic = () => {
@@ -63,10 +63,10 @@ export const useEditCategoryLogic = () => {
 
   const editCategory = useCallback(category => {
     dispatch(updateCategory(category))
-    history.push(`/categories`)
+    history.push('/categories')
   }, [])
 
   const cancel = useCallback(() => history.push('/categories'), [])
 
-  return { category, editCategory, cancel, validate }
+  return {category, editCategory, cancel, validate}
 }

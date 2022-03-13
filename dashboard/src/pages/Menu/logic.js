@@ -1,24 +1,24 @@
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { useHistory, useParams } from 'react-router-dom'
+import {useState} from 'react'
+import {useDispatch} from 'react-redux'
+import {useHistory, useParams} from 'react-router-dom'
 import {
   createDish as createDishThunk,
   deleteDish,
   updateDish
 } from '../../redux/thunks/menu.thunks'
 import {showModal} from '../../redux/reducers/modals.reducer'
-import { useCategories, useCurrentDish, useDishes } from '../../redux/hooks/menu.hooks'
-import {toSelectValue} from "../../components/Form/utils";
+import {useCategories, useCurrentDish, useDishes} from '../../redux/hooks/menu.hooks'
+import {toSelectValue} from '../../components/Form/utils';
 
 export const useMenuLogic = () => {
   const history = useHistory()
-  const redirectToCreateDish = () => history.push(`menu/new`)
+  const redirectToCreateDish = () => history.push('menu/new')
 
-  const onUploadPDFMenu = ({ target }) => {
+  const onUploadPDFMenu = ({target}) => {
     if (target.files.length) console.log(target.files[0])
   }
 
-  return { redirectToCreateDish, onUploadPDFMenu }
+  return {redirectToCreateDish, onUploadPDFMenu}
 }
 
 export const useMenuCardsLogic = () => {
@@ -31,7 +31,7 @@ export const useMenuCardsLogic = () => {
 
   const onRemove = id => () => dispatch(deleteDish(id))
 
-  const openDelModal = id => () => dispatch(showModal({ name: 'SIMPLE_DELETE', props: { title: 'блюдо', onRemove: onRemove(id) } }))
+  const openDelModal = id => () => dispatch(showModal({name: 'SIMPLE_DELETE', props: {title: 'блюдо', onRemove: onRemove(id)}}))
 
   return {
     dishes,
@@ -73,13 +73,13 @@ export const useCreateDishLogic = () => {
     history.push('/menu')
   }
 
-  return { categories, createDish, uploadFile, cancel }
+  return {categories, createDish, uploadFile, cancel}
 }
 
 function generateInitialDish(dish, categories = []) {
   return {
     ...dish,
-    categoryId: toSelectValue(categories, dish.categoryId, { keyLabel: 'title' })
+    categoryId: toSelectValue(categories, dish.categoryId, {keyLabel: 'title'})
   }
 }
 
@@ -87,7 +87,7 @@ export const useEditDishLogic = () => {
   const history = useHistory()
   const dispatch = useDispatch()
 
-  const { id } = useParams()
+  const {id} = useParams()
 
   const [file, setFile] = useState('')
   const dish = useCurrentDish()
@@ -95,7 +95,7 @@ export const useEditDishLogic = () => {
 
   const onRemove = () => dispatch(deleteDish(id))
 
-  const openDelModal = () => dispatch(showModal({ name: 'SIMPLE_DELETE', props: { title: 'блюдо', onRemove } }))
+  const openDelModal = () => dispatch(showModal({name: 'SIMPLE_DELETE', props: {title: 'блюдо', onRemove}}))
 
   const uploadFile = file => setFile(file)
 
@@ -105,7 +105,7 @@ export const useEditDishLogic = () => {
       if (dish.hasOwnProperty(key)) formData.append(key, dish[key])
     }
     formData.append('image', file)
-    dispatch(updateDish({ dish: formData, id: dish.id }))
+    dispatch(updateDish({dish: formData, id: dish.id}))
     history.push('/menu')
   }
 

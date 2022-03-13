@@ -1,10 +1,10 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
-import { PageHeader } from '../../styledComponents/components'
+import {useHistory} from 'react-router-dom'
+import {PageHeader} from '../../styledComponents/components'
 
 const Header = () => {
   const history = useHistory()
-  const redirectToCreateNewEmployee = () => history.push(`employees/new`)
+  const redirectToCreateNewEmployee = () => history.push('employees/new')
 
   return (
     <PageHeader title='Сотрудники'>

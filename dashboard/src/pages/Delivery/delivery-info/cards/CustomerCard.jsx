@@ -1,8 +1,8 @@
 import React from 'react'
 import {CardWrapper, Item, Title} from '../../style'
 
-const CustomerCard = ({ order = {} }) => {
-  const { name, email, phone, userId } = order
+const CustomerCard = ({order = {}}) => {
+  const {name, email, phone, userId} = order
 
   return (
     <CardWrapper>

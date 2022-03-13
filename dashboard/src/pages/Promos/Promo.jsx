@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from 'react-bootstrap'
+import {Button} from 'react-bootstrap'
 import {useShowPromoLogic} from './logic'
 import altImg from '../../static/img/dish.svg'
 import {PageHeader} from '../../styledComponents/components'
@@ -10,11 +10,11 @@ const getStyle = image => ({
 })
 
 const Promo = () => {
-  const { promo, redirectToChangePromo, goBack } = useShowPromoLogic()
+  const {promo, redirectToChangePromo, goBack} = useShowPromoLogic()
 
   if (!promo) return <div />
 
-  const { title, description, image } = promo
+  const {title, description, image} = promo
 
   return (
     <div>

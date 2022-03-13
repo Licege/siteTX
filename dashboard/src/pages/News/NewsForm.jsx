@@ -1,11 +1,11 @@
 import React from 'react'
-import { Button } from 'react-bootstrap'
-import { Form } from 'react-final-form'
-import { SCInputField, SCTextareaField } from './styledComponents';
+import {Button} from 'react-bootstrap'
+import {Form} from 'react-final-form'
+import {SCInputField, SCTextareaField} from './styledComponents';
 import ImageInput from '../../components/common/imageInput'
-import ControlledEditor from "../../components/common/element/editor/ControlledEditor";
+import ControlledEditor from '../../components/common/element/editor/ControlledEditor';
 
-const RenderForm = ({ handleSubmit, pristine, submitting, news, uploadFile, changeDescription, cancel }) => (
+const RenderForm = ({handleSubmit, pristine, submitting, news, uploadFile, changeDescription, cancel}) => (
   <form onSubmit={handleSubmit}>
     <SCInputField name='title' placeholder='Название' />
     <SCTextareaField name='shortDescription' placeholder='Краткое описание новости' />
@@ -19,7 +19,7 @@ const RenderForm = ({ handleSubmit, pristine, submitting, news, uploadFile, chan
 )
 
 
-const NewsForm = ({ onSubmit, initialValues, ...props }) => (
+const NewsForm = ({onSubmit, initialValues, ...props}) => (
   <Form onSubmit={onSubmit}
         initialValues={initialValues}
         render={formProps => <RenderForm { ...formProps} {...props } />} />

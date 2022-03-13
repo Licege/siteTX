@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Field as RFields } from 'react-final-form'
+import {Field as RFields} from 'react-final-form'
 
 const Field = styled(RFields)`
   display: block;

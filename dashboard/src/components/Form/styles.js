@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import NumberFormat from "react-number-format";
+import styled from 'styled-components';
+import NumberFormat from 'react-number-format';
 
 export const Wrapper = styled.label`
   display: flex;

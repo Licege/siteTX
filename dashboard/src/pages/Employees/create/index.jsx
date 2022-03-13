@@ -1,9 +1,9 @@
 import React from 'react'
 import EmployeeForm from '../Form'
-import { useCreateEmployeePageLogic } from "./logic";
+import {useCreateEmployeePageLogic} from './logic';
 
 const CreateProfile = () => {
-  const { positions, cancel, create, uploadFile } = useCreateEmployeePageLogic();
+  const {positions, cancel, create, uploadFile} = useCreateEmployeePageLogic();
 
   return (
     <div>

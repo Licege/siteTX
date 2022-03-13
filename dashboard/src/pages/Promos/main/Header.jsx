@@ -4,7 +4,7 @@ import {Button} from 'react-bootstrap'
 import {PageHeader} from '../../../styledComponents/components'
 
 const Header = () => {
-  const { redirectToCreatePromo } = usePromoHeaderLogic()
+  const {redirectToCreatePromo} = usePromoHeaderLogic()
 
   return (
     <PageHeader title='Акции'>

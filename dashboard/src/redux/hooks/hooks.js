@@ -1,6 +1,6 @@
-import { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import {useEffect} from 'react'
+import {useSelector, useDispatch} from 'react-redux'
+import {useParams} from 'react-router-dom'
 import {requestAllOrders} from '../thunks/orders.thunks'
 import {getOrders} from '../getters/orders.getters'
 import {
@@ -39,7 +39,7 @@ export const useDeliveryOrders = (options = {}) => {
 }
 
 export const useCurrentDeliveryOrder = () => {
-  const { id } = useParams()
+  const {id} = useParams()
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -78,7 +78,7 @@ export const useVacancies = () => {
 }
 
 export const useCurrentVacancy = () => {
-  const { id } = useParams()
+  const {id} = useParams()
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -89,7 +89,7 @@ export const useCurrentVacancy = () => {
 }
 
 export const useCurrentDeliverySettings = () => {
-  const { id } = useParams()
+  const {id} = useParams()
   const dispatch = useDispatch()
 
   useEffect(() => {

@@ -4,10 +4,10 @@ import {useCreateCategoryLogic} from '../logic'
 import CategoryForm from '../CategoryForm'
 
 const CreateCategoryForm = () => {
-  const { createNewCategory, cancel, validate } = useCreateCategoryLogic()
+  const {createNewCategory, cancel, validate} = useCreateCategoryLogic()
 
   return (
-    <Form onSubmit={createNewCategory} validate={validate} render={({ ...formProps }) => <CategoryForm {...formProps} cancel={cancel} />} />
+    <Form onSubmit={createNewCategory} validate={validate} render={({...formProps}) => <CategoryForm {...formProps} cancel={cancel} />} />
   )
 }
 

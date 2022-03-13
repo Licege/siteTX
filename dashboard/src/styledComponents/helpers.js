@@ -1,4 +1,4 @@
-import { css } from 'styled-components';
+import {css} from 'styled-components';
 
 export const BREAKPOINTS = {
   ms: 320,
@@ -13,7 +13,7 @@ export const BREAKPOINTS = {
 };
 
 export const getCurrentBreakpoint = () => {
-  const { innerWidth } = window;
+  const {innerWidth} = window;
   if (innerWidth >= 0 && innerWidth < BREAKPOINTS['ms']) {
     return 'ms';
   } else if (innerWidth >= BREAKPOINTS['ms'] && innerWidth < BREAKPOINTS['mm']) {
@@ -70,11 +70,11 @@ export const max = breakpoint => (...args) => css`
 
 export const between = (firstBreakpoint, secondBreakpoint) => (...args) => css`
   @media (min-width: ${getSizeFromBreakpoint(
-  firstBreakpoint,
-  BREAKPOINTS
-)}) and (max-width: ${getSizeFromBreakpoint(secondBreakpoint, BREAKPOINTS)}) {
+    firstBreakpoint,
+    BREAKPOINTS
+  )}) and (max-width: ${getSizeFromBreakpoint(secondBreakpoint, BREAKPOINTS)}) {
     ${css(...args)};
   }
 `;
 
-export const media = { min, max, between };
+export const media = {min, max, between};

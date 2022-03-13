@@ -1,0 +1,27 @@
+{
+  "extends": ["react-app", "plugin:react/recommended", "prettier", "prettier"],
+  "rules": {
+    "no-unused-vars": "warn",
+    "no-use-before-define": "off",
+    "indent": ["error", 2, { "ignoredNodes": ["JSXElement *", "JSXElement"]}],
+    "import/prefer-default-export": "off",
+    "react/display-name": "off",
+    "react/jsx-uses-react": "error",
+    "object-curly-spacing": "error",
+    "quotes": ["error", "single", { "avoidEscape": true }],
+    "spaced-comment": "off",
+    "jsx-a11y/alt-text": "off",
+    "react/prop-types": "off",
+    "react/jsx-indent": ["error", 2],
+    "react/jsx-indent-props": ["error", "first"],
+    "react/jsx-closing-bracket-location": ["error", "after-props"],
+    "react/jsx-first-prop-new-line": ["error", "never"],
+    "react/jsx-props-no-spreading": "off",
+    "react/no-array-index-key": "off",
+    "react/destructuring-assignment": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "import/no-extraneous-dependencies": "off",
+    "no-param-reassign": "off",
+    "import/no-cycle": "warn"
+  }
+}

@@ -4,7 +4,7 @@ import FormDish from './form/FormDish'
 import {useCreateDishLogic} from './logic'
 
 const CreateDish = () => {
-  const { categories, createDish, cancel, uploadFile } = useCreateDishLogic()
+  const {categories, createDish, cancel, uploadFile} = useCreateDishLogic()
 
   return (
     <div className="form_dish">

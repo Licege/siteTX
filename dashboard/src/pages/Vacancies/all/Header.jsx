@@ -3,7 +3,7 @@ import {useHeaderVacanciesLogic} from './logic'
 import {PageHeader} from '../../../styledComponents/components'
 
 const Header = () => {
-  const { redirectToCreateVacancy } = useHeaderVacanciesLogic()
+  const {redirectToCreateVacancy} = useHeaderVacanciesLogic()
 
   return (
     <PageHeader title='Вакансии'>

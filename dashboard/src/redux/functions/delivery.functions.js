@@ -1,5 +1,5 @@
 const calcDeliveryCost = state => {
-  const { deliveryType, address, price } = state.currentOrder
+  const {deliveryType, address, price} = state.currentOrder
 
   if (deliveryType === 'home') {
     const setting = state.settings.find(settings => settings.city === address.city)
@@ -24,9 +24,9 @@ const addDishIntoList = (dishes, dish) => {
 }
 
 export function handleAddDishToOrder(state, action) {
-  const { id, title, cost } = action.payload
+  const {id, title, cost} = action.payload
 
-  const position = { id, title, cost, count: 1 }
+  const position = {id, title, cost, count: 1}
 
   state.currentOrder.price += position.cost
   state.currentOrder.list = addDishIntoList(state.currentOrder.list, position)

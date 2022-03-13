@@ -1,4 +1,4 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
+import {configureStore, getDefaultMiddleware} from '@reduxjs/toolkit'
 import authReducer from './reducers/auth.reducer'
 import usersReducer from './users-reducer'
 import employeesReducer from './reducers/employees.reducer'
@@ -21,28 +21,28 @@ import staffPositionsReducer from './reducers/staffPositions.reducer'
 import {authInterceptor} from './middlewares/auth'
 
 const middleware = getDefaultMiddleware({
-    immutableCheck: false,
-    serializableCheck: false,
-    thunk: true
+  immutableCheck: false,
+  serializableCheck: false,
+  thunk: true
 }).concat(authInterceptor)
 
 export default configureStore({
-    middleware,
-    reducer: {
-        auth: authReducer,
-        file: fileReducer,
-        modal: modalReducer,
-        contactsPage: contactsReducer,
-        toggleComponent: toggleReducer,
-        newsPage: newsReducer,
-        vacanciesPage: vacanciesReducer,
-        usersPage: usersReducer,
-        employeesPage: employeesReducer,
-        menuPage: menuReducer,
-        promosPage: promosReducer,
-        deliveryPage: deliveryReducer,
-        ordersPage: ordersReducer,
-        complainsPage: complainReducer,
-        staffPositions: staffPositionsReducer
-    }
+  middleware,
+  reducer: {
+    auth: authReducer,
+    file: fileReducer,
+    modal: modalReducer,
+    contactsPage: contactsReducer,
+    toggleComponent: toggleReducer,
+    newsPage: newsReducer,
+    vacanciesPage: vacanciesReducer,
+    usersPage: usersReducer,
+    employeesPage: employeesReducer,
+    menuPage: menuReducer,
+    promosPage: promosReducer,
+    deliveryPage: deliveryReducer,
+    ordersPage: ordersReducer,
+    complainsPage: complainReducer,
+    staffPositions: staffPositionsReducer
+  }
 })

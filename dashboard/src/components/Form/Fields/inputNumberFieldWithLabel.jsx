@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 import InputNumberField from './inputNumberField';
-import { Wrapper } from "../styles";
+import {Wrapper} from '../styles';
 
-const InputNumberFieldWithLabel = ({ label, ...props }) => (
+const InputNumberFieldWithLabel = ({label, ...props}) => (
   <Wrapper>
     <div>{label}</div>
     <InputNumberField { ...props } />

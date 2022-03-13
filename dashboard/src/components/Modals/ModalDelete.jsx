@@ -1,10 +1,10 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { Button, Modal } from 'react-bootstrap'
-import { hideModal } from '../../redux/reducers/modals.reducer'
+import {useDispatch} from 'react-redux'
+import {Button, Modal} from 'react-bootstrap'
+import {hideModal} from '../../redux/reducers/modals.reducer'
 
 
-const ModalDelete = ({ title, onRemove, onCancel = () => {} }) => {
+const ModalDelete = ({title, onRemove, onCancel = () => {}}) => {
   const dispatch = useDispatch()
 
   const onHide = () => dispatch(hideModal())

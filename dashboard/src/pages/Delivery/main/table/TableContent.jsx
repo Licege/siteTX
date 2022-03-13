@@ -4,7 +4,7 @@ import {useDeliveryTableLogic} from '../../logic'
 import {deliveryHD} from '../../../../plugins/hardData'
 
 const TableContent = () => {
-  const { orders, detail, prevent } = useDeliveryTableLogic()
+  const {orders, detail, prevent} = useDeliveryTableLogic()
 
   return (
     <tbody className='table-body'>

@@ -1,5 +1,5 @@
-import {format} from "date-fns";
-import {getFullName, toRub} from "../../../plugins/helpers";
+import {format} from 'date-fns';
+import {getFullName, toRub} from '../../../plugins/helpers';
 
 export const tableConfig = {
   columns: [

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import {useState} from 'react'
 
 export const useFileLogic = () => {
   const [file, setFile] = useState('')
@@ -25,5 +25,5 @@ export const useFileLogic = () => {
     return formData
   }
 
-  return { file, uploadFile, createFormDataWithFile }
+  return {file, uploadFile, createFormDataWithFile}
 }

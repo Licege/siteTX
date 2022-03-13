@@ -1,21 +1,21 @@
-import React from "react";
+import React from 'react';
 import DataTable from 'react-data-table-component'
 
 const Table = ({
-                 data,
-                 columns,
-                 progressPending = false,
-                 highlightOnHover = true,
-                 pagination = false,
-                 paginationServer = false,
-                 paginationTotalRows = 0,
-                 paginationPerPage = 10,
-                 paginationRowsPerPageOptions = [10, 20, 25],
-                 selectableRows = false,
-                 onChangeRowsPerPage,
-                 onChangePage,
-                 sortServer = false,
-                 onSort
+  data,
+  columns,
+  progressPending = false,
+  highlightOnHover = true,
+  pagination = false,
+  paginationServer = false,
+  paginationTotalRows = 0,
+  paginationPerPage = 10,
+  paginationRowsPerPageOptions = [10, 20, 25],
+  selectableRows = false,
+  onChangeRowsPerPage,
+  onChangePage,
+  sortServer = false,
+  onSort
 }) => {
   const _columns = React.useMemo(() => columns, []);
 
@@ -34,8 +34,7 @@ const Table = ({
                paginationRowsPerPageOptions={paginationRowsPerPageOptions}
                paginationResetDefaultPage={true}
                sortServer={sortServer}
-               onSort={onSort}
-    />
+               onSort={onSort}/>
   )
 }
 

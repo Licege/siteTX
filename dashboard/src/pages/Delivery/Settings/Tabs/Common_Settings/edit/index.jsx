@@ -4,7 +4,7 @@ import SettingsForm from '../SettingsForm'
 import {useEditDeliverySettingsLogic} from './logic'
 
 const EditSettings = () => {
-  const { currentSettings, editSettings, cancel } = useEditDeliverySettingsLogic()
+  const {currentSettings, editSettings, cancel} = useEditDeliverySettingsLogic()
 
   if (!currentSettings) return <div />
 
@@ -15,8 +15,7 @@ const EditSettings = () => {
       <PageHeader title={title} />
       <SettingsForm onSubmit={editSettings}
                     currentSettings={currentSettings}
-                    cancel={cancel}
-      />
+                    cancel={cancel}/>
     </div>
   )
 }

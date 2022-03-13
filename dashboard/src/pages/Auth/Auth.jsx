@@ -1,33 +1,30 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { Form, Field } from 'react-final-form'
-import { Button } from 'react-bootstrap'
+import {useSelector, useDispatch} from 'react-redux'
+import {Form, Field} from 'react-final-form'
+import {Button} from 'react-bootstrap'
 
-import { login } from '../../redux/thunks/auth.thunks'
+import {login} from '../../redux/thunks/auth.thunks'
 
-const renderForm = ({ handleSubmit, pristine, submitting }) => (
+const renderForm = ({handleSubmit, pristine, submitting}) => (
   <form onSubmit={handleSubmit}>
     <div>
       <Field name="email"
              className="form-control mb-3"
              component="input"
-             placeholder="Введите логин"
-      />
+             placeholder="Введите логин"/>
     </div>
     <div>
       <Field name="password"
              className="form-control mb-3"
              component="input"
              type="password"
-             placeholder="Введите пароль"
-      />
+             placeholder="Введите пароль"/>
     </div>
     <div className="auth-wrapper-actions">
       <Button className="auth-wrapper-actions-btn"
               variant="primary"
               type="submit"
-              disabled={pristine || submitting}
-      >
+              disabled={pristine || submitting}>
         Войти
       </Button>
     </div>

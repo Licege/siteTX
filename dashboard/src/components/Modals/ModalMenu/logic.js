@@ -4,7 +4,7 @@ import {hideModal} from '../../../redux/reducers/modals.reducer'
 import {useRequestDeliveryCommonSettings} from '../../../redux/hooks/hooks'
 import {addDishToOrder} from '../../../redux/reducers/delivery.reducer'
 import {requestDishesByCategory} from '../../../redux/thunks/menu.thunks'
-import { useCategories, useDishes } from '../../../redux/hooks/menu.hooks'
+import {useCategories, useDishes} from '../../../redux/hooks/menu.hooks'
 
 const useFilterDishesByCategory = () => {
   const dispatch = useDispatch()
@@ -16,7 +16,7 @@ const useFilterDishesByCategory = () => {
     }
   }, [category])
 
-  return { category, setCategory }
+  return {category, setCategory}
 }
 
 export const useModalMenuLogic = () => {
@@ -26,7 +26,7 @@ export const useModalMenuLogic = () => {
   const dishes = useDishes()
   const categories = useCategories()
 
-  const { currentCategory, setCurrentCategory } = useFilterDishesByCategory()
+  const {currentCategory, setCurrentCategory} = useFilterDishesByCategory()
 
   const addDish = useCallback(dish => () => { dispatch(addDishToOrder(dish)) }, [])
 
@@ -34,5 +34,5 @@ export const useModalMenuLogic = () => {
 
   const onHide = () => dispatch(hideModal())
 
-  return { dishes, categories, addDish, currentCategory, changeCurrentCategory, onHide }
+  return {dishes, categories, addDish, currentCategory, changeCurrentCategory, onHide}
 }

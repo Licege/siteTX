@@ -5,7 +5,7 @@ import Preloader from '../../components/common/Preloader/Preloader'
 import {PageHeader} from '../../styledComponents/components'
 
 const EditNews = () => {
-  const { currentNews, updateNews, isLoading, uploadFile, changeDescription, cancel } = useEditNewsLogic()
+  const {currentNews, updateNews, isLoading, uploadFile, changeDescription, cancel} = useEditNewsLogic()
 
   if (isLoading) return <Preloader />
 

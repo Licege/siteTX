@@ -1,6 +1,6 @@
-import {logout} from "../reducers/auth.reducer";
+import {logout} from '../reducers/auth.reducer';
 
-export const authInterceptor = ({ dispatch }) => next => action => {
+export const authInterceptor = ({dispatch}) => next => action => {
   if (action.payload?.status === 401) {
     dispatch(logout());
   } else {

@@ -4,7 +4,7 @@ import {useCategoriesHeaderLogic} from '../logic'
 import {PageHeader} from '../../../styledComponents/components'
 
 const Header = () => {
-  const { redirectToCreateCategory } = useCategoriesHeaderLogic()
+  const {redirectToCreateCategory} = useCategoriesHeaderLogic()
 
   return (
     <PageHeader title='Категории'>

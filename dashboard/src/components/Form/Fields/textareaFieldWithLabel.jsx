@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 import TextareaField from './textareaField';
-import { Wrapper } from "../styles";
+import {Wrapper} from '../styles';
 
-const TextareaFieldWithLabel = ({ label, ...props }) => (
+const TextareaFieldWithLabel = ({label, ...props}) => (
   <Wrapper>
     <div>{label}</div>
     <TextareaField { ...props } />

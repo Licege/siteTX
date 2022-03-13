@@ -3,7 +3,7 @@ import {PageHeader} from '../../../styledComponents/components'
 import {useNewsHeaderLogic} from '../logic'
 
 const Header = () => {
-  const { redirectToCreateNews } = useNewsHeaderLogic()
+  const {redirectToCreateNews} = useNewsHeaderLogic()
 
   return (
     <PageHeader title='Новости'>

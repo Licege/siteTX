@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-const Photo = ({ index, photo, onClick = () => {} }) => {
+const Photo = ({index, photo, onClick = () => {}}) => {
   const handleClick = event => {
-    onClick(event, { photo, index })
+    onClick(event, {photo, index})
   }
 
 

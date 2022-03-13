@@ -2,7 +2,7 @@ import React from 'react'
 import {useDeliveryFilterLogic} from '../logic'
 
 const DeliveryFilter = () => {
-  const { changeFilter, clearFilter } = useDeliveryFilterLogic()
+  const {changeFilter, clearFilter} = useDeliveryFilterLogic()
 
   return (
     <div className='card filter'>

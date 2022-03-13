@@ -1,4 +1,4 @@
-import { useHistory } from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 import {useDeliveryCommonSettings} from '../../../../../redux/hooks/hooks'
 
 export const useDeliverySettingsTableLogic = () => {
@@ -8,13 +8,13 @@ export const useDeliverySettingsTableLogic = () => {
 
   const redirectToEditSettings = id => () => history.push(`delivery-settings/edit/${id}`)
 
-  return { settings, redirectToEditSettings }
+  return {settings, redirectToEditSettings}
 }
 
 export const useDeliverySettingsHeaderLogic = () => {
   const history = useHistory()
 
-  const redirectToCreateSettings = () => history.push(`delivery-settings/new`)
+  const redirectToCreateSettings = () => history.push('delivery-settings/new')
 
-  return { redirectToCreateSettings }
+  return {redirectToCreateSettings}
 }

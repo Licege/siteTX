@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import {createSlice} from '@reduxjs/toolkit'
 
 const modalSlice = createSlice({
   name: 'modal',
@@ -15,5 +15,5 @@ const modalSlice = createSlice({
   }
 })
 
-export const { showModal, hideModal } = modalSlice.actions
+export const {showModal, hideModal} = modalSlice.actions
 export default modalSlice.reducer

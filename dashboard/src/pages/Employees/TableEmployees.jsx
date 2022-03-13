@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
-import { Table } from 'react-bootstrap'
+import React, {useEffect} from 'react'
+import {useSelector, useDispatch} from 'react-redux'
+import {useHistory} from 'react-router-dom'
+import {Table} from 'react-bootstrap'
 import {getPositionsNameById} from '../../plugins/helpers'
 import deleteButton from '../../static/img/close.png'
-import { getEmployees } from '../../redux/getters/employees.getters'
+import {getEmployees} from '../../redux/getters/employees.getters'
 import {
   deleteEmployee as deleteEmployeeThunk,
   fetchAllEmployees,
@@ -32,28 +32,28 @@ const TableEmployees = () => {
   return (
     <Table responsive>
       <thead className='table-thread'>
-      <tr>
-        <th>Должность</th>
-        <th>Фамилия</th>
-        <th>Имя</th>
-        <th>Телефон</th>
-        <th>Адрес</th>
-      </tr>
+        <tr>
+          <th>Должность</th>
+          <th>Фамилия</th>
+          <th>Имя</th>
+          <th>Телефон</th>
+          <th>Адрес</th>
+        </tr>
       </thead>
       <tbody>
-      {employees.map(employee => (
-        <tr key={employee.id} onClick={redirectToDetail(employee.id)}>
-          <td>{getPositionsNameById(positions, employee.positionId)}</td>
-          <td>{employee.surname}</td>
-          <td>{employee.name}</td>
-          <td>{employee.phone}</td>
-          <td>{employee.address}</td>
-          <td>
-            <button onClick={deleteEmployee(employee.id)}>
-              <img src={deleteButton} alt="Удалить"/>
-            </button>
-          </td>
-        </tr>
+        {employees.map(employee => (
+          <tr key={employee.id} onClick={redirectToDetail(employee.id)}>
+            <td>{getPositionsNameById(positions, employee.positionId)}</td>
+            <td>{employee.surname}</td>
+            <td>{employee.name}</td>
+            <td>{employee.phone}</td>
+            <td>{employee.address}</td>
+            <td>
+              <button onClick={deleteEmployee(employee.id)}>
+                <img src={deleteButton} alt="Удалить"/>
+              </button>
+            </td>
+          </tr>
       ))}
       </tbody>
     </Table>

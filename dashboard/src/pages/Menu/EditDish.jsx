@@ -4,7 +4,7 @@ import Header from './common/Header'
 import FormDish from './form/FormDish'
 
 const EditDish = () => {
-  const { dish, categories, editDish, cancel, openDelModal, uploadFile } = useEditDishLogic()
+  const {dish, categories, editDish, cancel, openDelModal, uploadFile} = useEditDishLogic()
 
   if (!dish) return <div />
 

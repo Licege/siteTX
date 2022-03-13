@@ -1,8 +1,8 @@
 import React from 'react'
-import { Form, Field } from 'react-final-form'
-import { Button } from 'react-bootstrap'
+import {Form, Field} from 'react-final-form'
+import {Button} from 'react-bootstrap'
 
-const RenderForm = ({ handleSubmit, pristine, submitting, cancel }) => (
+const RenderForm = ({handleSubmit, pristine, submitting, cancel}) => (
   <form onSubmit={handleSubmit}>
     <div className='form_delivery__checkbox'>
       <Field name='isDelivery'
@@ -10,8 +10,7 @@ const RenderForm = ({ handleSubmit, pristine, submitting, cancel }) => (
              className='filter-main-checkbox form-control'
              component='input'
              type='checkbox'
-             chacked='isDelivery'
-      />
+             chacked='isDelivery'/>
       <label htmlFor='is_delivery'>Доставка</label>
     </div>
     <div>
@@ -34,11 +33,10 @@ const RenderForm = ({ handleSubmit, pristine, submitting, cancel }) => (
 )
 
 
-const SettingsForm = ({ onSubmit, currentSettings, cancel }) => (
+const SettingsForm = ({onSubmit, currentSettings, cancel}) => (
   <Form onSubmit={onSubmit}
         initialValues={currentSettings}
-        render={formProps => <RenderForm {...formProps} cancel={cancel} />}
-  />
+        render={formProps => <RenderForm {...formProps} cancel={cancel} />}/>
 )
 
 export default SettingsForm

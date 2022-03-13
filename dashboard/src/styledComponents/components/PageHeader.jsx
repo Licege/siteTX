@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { PageHeaderWrapper, Text } from '../atoms'
+import {PageHeaderWrapper, Text} from '../atoms'
 
-const Header = ({ title, children }) => (
+const Header = ({title, children}) => (
   <PageHeaderWrapper>
     <Title>{title}</Title>
     {Boolean(children) && <ButtonWrapper>{children}</ButtonWrapper>}

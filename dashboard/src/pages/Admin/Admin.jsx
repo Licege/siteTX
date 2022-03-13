@@ -3,7 +3,7 @@ import Tab from 'react-bootstrap/Tab'
 import Nav from 'react-bootstrap/Nav'
 import AdminsTable from './Tabs/AdminsTable'
 import UserTable from './Tabs/UsersTable'
-import { PageHeader } from '../../styledComponents/components'
+import {PageHeader} from '../../styledComponents/components'
 
 const Admin = () => {
   return (

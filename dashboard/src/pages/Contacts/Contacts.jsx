@@ -1,11 +1,11 @@
 import React from 'react'
-import { PageHeader } from '../../styledComponents/components'
+import {PageHeader} from '../../styledComponents/components'
 import FormContacts from './FormContacts'
 import {useContactLogic} from './logic'
 
 
 const Contact = () => {
-  const { contacts, updateContacts, ...props } = useContactLogic()
+  const {contacts, updateContacts, ...props} = useContactLogic()
 
   if (!contacts) return null
 

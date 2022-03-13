@@ -1,6 +1,6 @@
-import {useState, useCallback} from "react";
+import {useState, useCallback} from 'react';
 import {useDispatch} from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 import {useFileLogic} from '../../../hooks'
 import {createNewVacancy} from '../../../redux/thunks/vacancies.thunks'
 
@@ -9,7 +9,7 @@ export const useCreateVacancyLogic = () => {
   const dispatch = useDispatch()
   const [description, setDescription] = useState('')
 
-  const { createFormDataWithFile, uploadFile } = useFileLogic()
+  const {createFormDataWithFile, uploadFile} = useFileLogic()
 
   const createVacancy = vacancy => {
     const formData = createFormDataWithFile(vacancy, 'image')
@@ -22,5 +22,5 @@ export const useCreateVacancyLogic = () => {
 
   const cancel = () => history.push('/vacancies')
 
-  return { createVacancy, uploadFile, cancel, setDescription }
+  return {createVacancy, uploadFile, cancel, setDescription}
 }

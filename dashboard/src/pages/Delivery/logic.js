@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback } from 'react'
+import {useState, useEffect, useCallback} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 import {
   useCurrentDeliveryOrder,
   useDeliveryOrders,
@@ -14,7 +14,7 @@ import {
 import {requestOrdersDelivery, updateOrderDelivery} from '../../redux/thunks/delivery.thunks'
 import {showModal} from '../../redux/reducers/modals.reducer'
 import {getCurrentDeliveryPage, getDeliveryOrdersTotal} from '../../redux/getters/delivery.getters'
-import { useDishes } from '../../redux/hooks/menu.hooks'
+import {useDishes} from '../../redux/hooks/menu.hooks'
 
 export const useDeliveryInfoLogic = () => {
   const dispatch = useDispatch()
@@ -28,10 +28,10 @@ export const useDeliveryInfoLogic = () => {
   }, [])
 
   const showMenuModal = useCallback(() => {
-    dispatch(showModal({ name: 'MENU' }))
+    dispatch(showModal({name: 'MENU'}))
   }, [])
 
-  return { order, updateOrder, showMenuModal }
+  return {order, updateOrder, showMenuModal}
 }
 
 export const useDeliveryTableLogic = () => {
@@ -40,10 +40,10 @@ export const useDeliveryTableLogic = () => {
 
   const [filter, setFilter] = useState({})
   const currentPage = useSelector(getCurrentDeliveryPage)
-  const orders = useDeliveryOrders({ page: currentPage, filter })
+  const orders = useDeliveryOrders({page: currentPage, filter})
 
   useEffect(() => {
-    dispatch(requestOrdersDelivery({ page: currentPage, filter }))
+    dispatch(requestOrdersDelivery({page: currentPage, filter}))
   }, [currentPage])
 
   const detail = useCallback((id) => () => history.push(`/delivery/${id}`), [])
@@ -79,7 +79,7 @@ export const useTableProductsPositionsLogic = () => {
   const decreaseDish = useCallback(id => () => { dispatch(decreaseDishFromList(id)) }, [])
   const removeDish = useCallback(id => () => { dispatch(removeDishFromOrder(id)) }, [])
 
-  return { dishes, increaseDish, decreaseDish, removeDish }
+  return {dishes, increaseDish, decreaseDish, removeDish}
 }
 
 export const usePaginatorLogic = () => {

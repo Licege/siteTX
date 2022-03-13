@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit"
-import { fetchComplains } from  '../thunks/complain.thunks'
+import {createSlice} from '@reduxjs/toolkit'
+import {fetchComplains} from  '../thunks/complain.thunks'
 
 const complainSlice = createSlice({
   name: 'complains',

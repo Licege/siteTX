@@ -1,10 +1,10 @@
-import { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { useParams } from 'react-router-dom'
-import { getCategories, getCurrentCategory, getCurrentDish, getMenu } from '../getters/menu.getters'
-import { requestCategories, requestCategory, requestDish, requestDishes } from '../thunks/menu.thunks'
+import {useEffect} from 'react'
+import {useSelector, useDispatch} from 'react-redux'
+import {useParams} from 'react-router-dom'
+import {getCategories, getCurrentCategory, getCurrentDish, getMenu} from '../getters/menu.getters'
+import {requestCategories, requestCategory, requestDish, requestDishes} from '../thunks/menu.thunks'
 
-export const useDishes = ({ force = false } = {}) => {
+export const useDishes = ({force = false} = {}) => {
   const dispatch = useDispatch()
   const dishes = useSelector(getMenu)
 
@@ -19,7 +19,7 @@ export const useDishes = ({ force = false } = {}) => {
 
 export const useCurrentDish = () => {
   const dispatch = useDispatch()
-  const { id } = useParams()
+  const {id} = useParams()
 
   useEffect(() => {
     dispatch(requestDish(id))
@@ -28,7 +28,7 @@ export const useCurrentDish = () => {
   return useSelector(getCurrentDish)
 }
 
-export const useCategories = ({ force = false } = {}) => {
+export const useCategories = ({force = false} = {}) => {
   const dispatch = useDispatch()
   const categories = useSelector(getCategories)
 
@@ -40,7 +40,7 @@ export const useCategories = ({ force = false } = {}) => {
 }
 
 export const useCurrentCategory = () => {
-  const { id } = useParams()
+  const {id} = useParams()
   const dispatch = useDispatch()
 
   useEffect(() => {

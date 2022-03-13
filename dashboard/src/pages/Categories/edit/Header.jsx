@@ -1,5 +1,5 @@
 import React from 'react'
-import { useCurrentCategory } from '../../../redux/hooks/menu.hooks'
+import {useCurrentCategory} from '../../../redux/hooks/menu.hooks'
 import {PageHeader} from '../../../styledComponents/components'
 
 const Header = () => {

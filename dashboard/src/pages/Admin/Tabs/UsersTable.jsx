@@ -3,17 +3,17 @@ import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
 import {useSelector} from 'react-redux'
 
-const CustomTable = ({ children }) => (
+const CustomTable = ({children}) => (
   <div>
     <Table>
       <thead className="table-thread">
-      <tr>
-        <th>Email</th>
-        <th />
-      </tr>
+        <tr>
+          <th>Email</th>
+          <th />
+        </tr>
       </thead>
       <tbody>
-      {children}
+        {children}
       </tbody>
     </Table>
   </div>

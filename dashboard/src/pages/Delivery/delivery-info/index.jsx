@@ -1,6 +1,6 @@
 import React from 'react'
-import { Form } from 'react-final-form'
-import { Button } from 'react-bootstrap'
+import {Form} from 'react-final-form'
+import {Button} from 'react-bootstrap'
 import {PageHeader} from '../../../styledComponents/components'
 import {useDeliveryInfoLogic} from '../logic'
 import DeliveryCard from './cards/DeliveryCard'
@@ -9,7 +9,7 @@ import CostCard from './cards/CostCard'
 import {CardsBlock} from '../style'
 import DetailOfDelivery from './DetailOfDelivery'
 
-const PageContent = ({ handleSubmit, order, showMenuModal }) => (
+const PageContent = ({handleSubmit, order, showMenuModal}) => (
   <form onSubmit={handleSubmit} className='page'>
     <PageHeader title={`Редактирование заказа: №${order.id}`}>
       <Button variant='primary' type='submit'>Сохранить изменения</Button>
@@ -26,16 +26,15 @@ const PageContent = ({ handleSubmit, order, showMenuModal }) => (
 )
 
 const DeliveryInfo = () => {
-    const { order, updateOrder, showMenuModal } = useDeliveryInfoLogic()
+  const {order, updateOrder, showMenuModal} = useDeliveryInfoLogic()
 
-    if (!order) return <div/>
+  if (!order) return <div/>
 
-    return (
-          <Form onSubmit={updateOrder}
-                initialValues={order}
-                render={({ ...formProps }) => <PageContent {...formProps} order={order} showMenuModal={showMenuModal} />}
-          />
-    )
+  return (
+    <Form onSubmit={updateOrder}
+          initialValues={order}
+          render={({...formProps}) => <PageContent {...formProps} order={order} showMenuModal={showMenuModal} />}/>
+  )
 }
 
 export default DeliveryInfo;

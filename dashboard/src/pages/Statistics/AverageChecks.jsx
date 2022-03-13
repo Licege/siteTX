@@ -1,7 +1,7 @@
 import React from 'react'
 import {Page} from '../../components/common/Page'
-import { deliveryHD } from '../../plugins/hardData'
-import { CustomDatePicker } from '../../components/common/CustomDatePicker'
+import {deliveryHD} from '../../plugins/hardData'
+import {CustomDatePicker} from '../../components/common/CustomDatePicker'
 
 const Check = (item, key) => (
   <div key={key} className="card">
@@ -15,7 +15,7 @@ const Check = (item, key) => (
 //     return allChecks.reduce((acc, check) => acc + check.avg_delivery_check, 0)
 // }
 
-export const AverageChecks = ({ avgChecks, startDate, endDate, handleChange, changeFilter, clearFilter }) => {
+export const AverageChecks = ({avgChecks, startDate, endDate, handleChange, changeFilter, clearFilter}) => {
   return (
     <Page title="Средний чек">
       <div className="card filter">
