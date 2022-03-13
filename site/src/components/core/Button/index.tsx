@@ -1,6 +1,9 @@
 import { Button as MaterialButton, ButtonProps } from '@material-ui/core'
-import './style.css'
+import classNames from 'classnames';
+import styles from './style.module.css';
 
-const Button = (props: ButtonProps) => <MaterialButton {...props} />
+const Button = ({ className, ...props }: ButtonProps) => <MaterialButton className={classNames({
+  [styles['button-secondary']]: props.color === 'secondary'
+})} {...props} />
 
 export default Button
