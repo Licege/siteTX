@@ -3,19 +3,12 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
-const Socket = require('socket.io')
 const path = require('path')
 const router = require('../routes/routes')
 
 const authLocal = require('../lib/auth/auth-local')
 const sessionMiddleware = require('../middleware/session')
 const ensureAuthenticated = require('../middleware/ensureAuthenticated')
-const { createDeliveryController } = require('../controllers/sockets/delivery');
-/**/
-// const privateKey = fs.readFileSync('../../certs/selfsigned.key')
-// const certificate = fs.readFileSync('../../certs/selfsigned.crt')
-// const credentials = {key: privateKey, cert: certificate}
-/**/
 
 const start = () => {
   const app = express()
@@ -23,7 +16,7 @@ const start = () => {
   app.use(cookieParser(process.env.SECRET))
 
   const options = {
-    setHeaders: (res, path, stat) => {
+    setHeaders: (res) => {
       res.set('Access-Control-Allow-Origin', '*')
       res.set('Access-Control-Allow-Methods', 'GET')
       res.set('Access-Control-Allow-Headers', 'Content-Type')
@@ -31,15 +24,10 @@ const start = () => {
   }
   app.use('/uploads', express.static('uploads', options))
 
-  // const socketServer = require('http').createServer(app)
-
-  // socketServer.listen(+process.env.SOCKET_PORT || 9091)
-
   passport.serializeUser((user, done) => done(null, user));
   passport.deserializeUser((obj, done) => done(null, obj));
 
   app.use(require('morgan')('dev'))
-  // app.use('/uploads', express.static('uploads', options))
   app.use(bodyParser.urlencoded({ extended: true }))
   app.use(bodyParser.json())
   app.use(bodyParser.json({
@@ -64,53 +52,15 @@ const start = () => {
     ),
   )
 
-  // app.use((req, res, next) => {
-  //   res.setHeader('Surrogate-Control', 'no-store');
-  //   res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-  //   res.setHeader('Pragma', 'no-cache');
-  //   res.setHeader('Expires', '0');
-  //   next();
-  // });
-
   const session = sessionMiddleware({ rolling: true })
 
   app.use(session)
   app.use(passport.initialize())
   app.use(passport.session())
 
-  // const io = require('socket.io')(socketServer, {
-  //   cors: {
-  //     origin: 'http://localhost:3000',
-  //     methods: ['GET', 'POST']
-  //   }
-  // })
-
-  // let connections = []
-  //
-  // io.on('connection', (socket) => {
-  //   console.log('Connected to Socket!' + socket.id)
-  //   connections.push(socket)
-  //
-  //   socket.on('event://send-delivery', async (data) => {
-  //     const order = await createDeliveryController(JSON.parse(data))
-  //     if (order.status === 201) {
-  //       socket.broadcast.emit('event://get-delivery', JSON.stringify(order.data))
-  //     } else {
-  //       socket.emit('event://send-delivery-error', JSON.stringify(order))
-  //     }
-  //     socket.emit('event://send-delivery:status', JSON.stringify({status: order.status}))
-  //   })
-  //
-  //   socket.on('disconnect', () => {
-  //     connections.splice(connections.indexOf(socket), 1)
-  //     console.log('Успешное отсоединение')
-  //   })
-  // })
-
   app.use('/api/private/*', ensureAuthenticated)
 
   app.use(router())
-  // app.use(router(io))
 
   if (process.env.NODE_ENV === 'production') {
     app.use('/', express.static(path.join(__dirname, 'build')))
@@ -120,7 +70,7 @@ const start = () => {
     })
   }
 
-  app.use((err, res, next) => {
+  app.use((err, res) => {
     if (err.name === 'Error') {
       console.error(err)
       return res.status(409).json({ msg: err.message })
