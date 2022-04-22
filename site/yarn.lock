@@ -1181,10 +1181,10 @@
     "core-js-pure" "^3.0.0"
     "regenerator-runtime" "^0.13.4"
 
-"@babel/runtime@^7.1.2", "@babel/runtime@^7.10.0", "@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.0", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.5", "@babel/runtime@^7.13.8", "@babel/runtime@^7.3.1", "@babel/runtime@^7.4.4", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.0", "@babel/runtime@^7.6.3", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.3", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.2":
-  "integrity" "sha512-NCdgJEelPTSh+FEFylhnP1ylq848l1z9t9N0j1Lfbcw0+KXGjsTvUmkxy+voLLXB5SOKMbLLx4jxYliGrYQseA=="
-  "resolved" "https://registry.npmjs.org/@babel/runtime/-/runtime-7.13.17.tgz"
-  "version" "7.13.17"
+"@babel/runtime@^7.1.2", "@babel/runtime@^7.10.0", "@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.0", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.5", "@babel/runtime@^7.13.8", "@babel/runtime@^7.17.8", "@babel/runtime@^7.3.1", "@babel/runtime@^7.4.4", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.0", "@babel/runtime@^7.6.3", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.3", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.2":
+  "integrity" "sha512-dQpEpK0O9o6lj6oPu0gRDbbnk+4LeHlNcBpspf6Olzt3GIX4P1lWF1gS+pHLDFlaJvbR6q7jCfQ08zA4QJBnmA=="
+  "resolved" "https://registry.npmjs.org/@babel/runtime/-/runtime-7.17.8.tgz"
+  "version" "7.17.8"
   dependencies:
     "regenerator-runtime" "^0.13.4"
 
@@ -1847,10 +1847,10 @@
     "schema-utils" "^2.6.5"
     "source-map" "^0.7.3"
 
-"@popperjs/core@^2.8.6":
-  "integrity" "sha512-VZMYa7+fXHdwIq1TDhSXoVmSPEGM/aa+6Aiq3nVVJ9bXr24zScr+NlKFKC3iPljA7ho/GAZr+d2jOf5GIRC30Q=="
-  "resolved" "https://registry.npmjs.org/@popperjs/core/-/core-2.9.2.tgz"
-  "version" "2.9.2"
+"@popperjs/core@^2.0.0", "@popperjs/core@^2.11.4", "@popperjs/core@^2.8.6":
+  "integrity" "sha512-q/ytXxO5NKvyT37pmisQAItCFqA7FD/vNb8dgaJy3/630Fsc+Mz9/9f2SziBoIZ30TJooXyTwZmhi1zjXmObYg=="
+  "resolved" "https://registry.npmjs.org/@popperjs/core/-/core-2.11.4.tgz"
+  "version" "2.11.4"
 
 "@reduxjs/toolkit@^1.5.1":
   "integrity" "sha512-PngZKuwVZsd+mimnmhiOQzoD0FiMjqVks6ituO1//Ft5UEX5Ca9of13NEjo//pU22Jk7z/mdXVsmDfgsig1osA=="
@@ -4894,10 +4894,10 @@
     "whatwg-mimetype" "^2.3.0"
     "whatwg-url" "^8.0.0"
 
-"date-fns@*", "date-fns@^2.0.0", "date-fns@^2.0.1", "date-fns@^2.21.1":
-  "integrity" "sha512-m1WR0xGiC6j6jNFAyW4Nvh4WxAi4JF4w9jRJwSI8nBmNcyZXPcP9VUQG+6gHQXAmqaGEKDKhOqAtENDC941UkA=="
-  "resolved" "https://registry.npmjs.org/date-fns/-/date-fns-2.21.1.tgz"
-  "version" "2.21.1"
+"date-fns@*", "date-fns@^2.0.0", "date-fns@^2.0.1", "date-fns@^2.21.1", "date-fns@^2.28.0":
+  "integrity" "sha512-8d35hViGYx/QH0icHYCeLmsLmMUheMmTyV9Fcm6gvNwdw31yXXH+O85sOBJ+OLnLQMKZowvpKb6FgMIQjcpvQw=="
+  "resolved" "https://registry.npmjs.org/date-fns/-/date-fns-2.28.0.tgz"
+  "version" "2.28.0"
 
 "debug@^2.2.0":
   "integrity" "sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA=="
@@ -9097,6 +9097,11 @@
     "minipass" "^3.0.0"
     "yallist" "^4.0.0"
 
+"mitt@^3.0.0":
+  "integrity" "sha512-7dX2/10ITVyqh4aOSVI9gdape+t9l2/8QxHrFmUXu4EEUpdlxl6RudZUPZoc+zuY2hk1j7XxVroIVIan/pD/SQ=="
+  "resolved" "https://registry.npmjs.org/mitt/-/mitt-3.0.0.tgz"
+  "version" "3.0.0"
+
 "mixin-deep@^1.2.0":
   "integrity" "sha512-WRoDn//mXBiJ1H40rqa3vH0toePwSsGb45iInWlTySa+Uu4k3tYUSxa2v1KqAiLtvlrSzaExqS1gtk96A9zvEA=="
   "resolved" "https://registry.npmjs.org/mixin-deep/-/mixin-deep-1.3.2.tgz"
@@ -11061,7 +11066,7 @@
   "resolved" "https://registry.npmjs.org/react-display-name/-/react-display-name-0.2.5.tgz"
   "version" "0.2.5"
 
-"react-dom@^0.14.0 || ^15.0.0 || ^16 || ^17", "react-dom@^16.x", "react-dom@^17.0.2", "react-dom@>= 16.8.0", "react-dom@>=16":
+"react-dom@^0.14.0 || ^15.0.0 || ^16 || ^17", "react-dom@^16.8.6 || ^17.0.0", "react-dom@^16.x", "react-dom@^17.0.2", "react-dom@>= 16.8.0", "react-dom@>=16":
   "integrity" "sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-17.0.2.tgz"
   "version" "17.0.2"
@@ -11075,7 +11080,7 @@
   "resolved" "https://registry.npmjs.org/react-error-overlay/-/react-error-overlay-6.0.9.tgz"
   "version" "6.0.9"
 
-"react-fast-compare@^3.1.1":
+"react-fast-compare@^3.0.1", "react-fast-compare@^3.1.1":
   "integrity" "sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA=="
   "resolved" "https://registry.npmjs.org/react-fast-compare/-/react-fast-compare-3.2.0.tgz"
   "version" "3.2.0"
@@ -11197,6 +11202,14 @@
     "popper.js" "^1.14.4"
     "prop-types" "^15.6.1"
     "typed-styles" "^0.0.7"
+    "warning" "^4.0.2"
+
+"react-popper@^2.2.5":
+  "integrity" "sha512-kxGkS80eQGtLl18+uig1UIf9MKixFSyPxglsgLBxlYnyDf65BiY9B3nZSc6C9XUNDgStROB0fMQlTEz1KxGddw=="
+  "resolved" "https://registry.npmjs.org/react-popper/-/react-popper-2.2.5.tgz"
+  "version" "2.2.5"
+  dependencies:
+    "react-fast-compare" "^3.0.1"
     "warning" "^4.0.2"
 
 "react-redux@^7.2.3":
@@ -11401,7 +11414,7 @@
     "prop-types" "^15.7.2"
     "react-display-name" "^0.2.5"
 
-"react@^0.14.0 || ^15.0.0 || ^16 || ^17", "react@^15.6.2 || ^16.0 || ^17", "react@^16.3.0 || ^17.0.0", "react@^16.x", "react@^17.0.2", "react@>= 16.8.0", "react@>=16", "react@>=16.3.0":
+"react@^0.14.0 || ^15.0.0 || ^16 || ^17", "react@^15.6.2 || ^16.0 || ^17", "react@^16.3.0 || ^17.0.0", "react@^16.8.0 || ^17", "react@^16.8.6 || ^17.0.0", "react@^16.x", "react@^17.0.2", "react@>= 16.8.0", "react@>=16", "react@>=16.3.0":
   "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
   "version" "17.0.2"
@@ -13243,6 +13256,17 @@
   "integrity" "sha1-tAPQuRvlDDMd/EuC7s6yLD3hbSA="
   "resolved" "https://registry.npmjs.org/trim-newlines/-/trim-newlines-2.0.0.tgz"
   "version" "2.0.0"
+
+"trixolma-ui@^0.0.10":
+  "integrity" "sha512-w15y3B8jWSmSkq29SjpcQWT1BFssTlEXpetizf9bFAclLTshUPmT8iSacrDPWVQRmGG7697tH7Oxna+X4+cB7g=="
+  "resolved" "https://registry.npmjs.org/trixolma-ui/-/trixolma-ui-0.0.10.tgz"
+  "version" "0.0.10"
+  dependencies:
+    "@babel/runtime" "^7.17.8"
+    "@popperjs/core" "^2.11.4"
+    "date-fns" "^2.28.0"
+    "mitt" "^3.0.0"
+    "react-popper" "^2.2.5"
 
 "tryer@^1.0.1":
   "integrity" "sha512-c3zayb8/kWWpycWYg87P71E1S1ZL6b6IJxfb5fvsUgsf0S2MVGaDhDXXjDMpdCpfWXqptc+4mXwmiy1ypXqRAA=="

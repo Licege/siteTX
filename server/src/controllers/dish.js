@@ -1,5 +1,7 @@
-const { sequelize, Category, GlobalSettings } = require('../models').init()
+const path = require('path');
+const { sequelize, Category } = require('../models').init()
 const DishRepo = require('../repositories/dish')
+const fileLib = require('../lib/file');
 const errorHandler = require('../utils/errorHandler')
 
 module.exports.getAll = async function (req, res) {
@@ -59,7 +61,13 @@ module.exports.remove = async function (req, res) {
 
 module.exports.create = async function (req, res) {
     const { title, description, weight, cost, categoryId } = req.body
-    const imageSrc = req.file ? req.file.path : ''
+    let imageSrc = '';
+
+    const destination = path.resolve(__dirname, '../../', 'uploads');
+
+    if (req.file) {
+        imageSrc = await fileLib.uploadFile(req.file, destination, { format: 'webp' });
+    }
 
     const dishToAdd = {
         title,
@@ -79,7 +87,9 @@ module.exports.create = async function (req, res) {
 }
 
 module.exports.update = async function (req, res) {
-    const { id } = req.params
+    const { id } = req.params;
+
+    const destination = path.resolve(__dirname, '../../', 'uploads');
 
     const {
         title,
@@ -100,8 +110,9 @@ module.exports.update = async function (req, res) {
     }
 
     if (req.file) {
-        updatedData.imageSrc = req.file.path
+        updatedData.imageSrc = await fileLib.uploadFile(req.file, destination, { format: 'webp' });
     }
+
     const where = { id }
 
     try {
