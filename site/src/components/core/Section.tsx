@@ -27,12 +27,13 @@ export const SectionSubtitle = styled.p`
 interface ISectionWrapper {
   display?: 'flex'|'block'|'grid'
   noBorder?: boolean
+  ref?: any
 }
 
-export const SectionWrapper = styled.section`
+export const SectionWrapper = styled.section<ISectionWrapper>`
   padding: 20px;
   border-bottom: 1px dashed ${props => props.theme.colors.brown.brand};
-  display: ${(props: ISectionWrapper) => props.display ? props.display : 'block'};
+  display: ${(props) => props.display ? props.display : 'block'};
   
   ${props => props.noBorder 
     ? css`border-bottom: inset;`

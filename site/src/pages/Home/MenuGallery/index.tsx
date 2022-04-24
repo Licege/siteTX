@@ -1,25 +1,37 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import { SectionTitle, SectionWrapper } from '../../../components/core'
+import { useQuery } from '../../../hooks/useQuery';
 import CardContainer from './CardContainer'
 import { BREAKPOINTS } from '../../../styledComponents/helpers'
 import MenuGallery from './Menu';
 import BarGallery from './Bar';
 
-const SectionPDFMenu = () => (
-  <SectionWrapper>
-    <SectionTitle>Меню ресторана</SectionTitle>
-    <SectionContent>
-      <CardContainer title='Основное меню'>
-        <MenuGallery />
-      </CardContainer>
-      <Divider />
-      <CardContainer title='Карта бара'>
-        <BarGallery />
-      </CardContainer>
-    </SectionContent>
-  </SectionWrapper>
-)
+const SectionPDFMenu = () => {
+  const ref = useRef<HTMLElement>();
+  const query = useQuery()
+  
+  useEffect(() => {
+    if (ref.current && query.get('menu') === 'true') {
+      ref.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [Boolean(ref.current)])
+  
+  return (
+    <SectionWrapper ref={ref}>
+      <SectionTitle>Меню ресторана</SectionTitle>
+      <SectionContent>
+        <CardContainer title='Основное меню'>
+          <MenuGallery/>
+        </CardContainer>
+        <Divider/>
+        <CardContainer title='Карта бара'>
+          <BarGallery/>
+        </CardContainer>
+      </SectionContent>
+    </SectionWrapper>
+  )
+}
 
 const SectionContent = styled.div`
   display: grid;
