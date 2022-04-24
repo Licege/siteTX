@@ -13,7 +13,9 @@ const SectionPDFMenu = () => {
   
   useEffect(() => {
     if (ref.current && query.get('menu') === 'true') {
-      ref.current.scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        ref.current?.scrollIntoView({ behavior: 'smooth' });
+      }, 100)
     }
   }, [Boolean(ref.current)])
   
