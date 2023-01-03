@@ -9,7 +9,7 @@ import { ru } from 'date-fns/locale'
 import { ThemeProvider } from 'styled-components';
 import { AdaptivityProvider, AppRoot, ConfigProvider } from 'trixolma-ui';
 import store from './redux/redux-store'
-import * as serviceWorker from './serviceWorker'
+import * as serviceWorkerRegistration from './serviceWorkerRegistration'
 import App from './App'
 import { theme } from './styledComponents/theme'
 import GlobalStyles from './styledComponents/globalStyles'
@@ -47,4 +47,5 @@ store.subscribe(() => {
   rerenderEntireTree()
 })
 
-serviceWorker.unregister()
+serviceWorkerRegistration.register()
+// serviceWorkerRegistration.unregister()

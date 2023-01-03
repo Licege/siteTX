@@ -1,7 +1,7 @@
 import React, { createContext } from 'react'
 import io from 'socket.io-client'
 import { useDispatch } from 'react-redux'
-import { WS_BASE } from '../api/api'
+import { WS_BASE } from '../api'
 import * as actions from '../redux/reducers/bucket.reducer'
 import { IDeliveryPost } from '../types/types'
 

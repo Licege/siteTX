@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { authAPI } from '../../api/api';
+import { authAPI } from '../../api';
 import { authProfileType } from '../../types/types';
 import { clearProfile } from '../reducers/profile.reducer';
 

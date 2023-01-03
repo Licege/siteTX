@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Helmet } from 'react-helmet';
 import { IOrder } from '../../types/types'
 import OrderForm from './FormOrder'
-import { orderAPI } from '../../api/api'
+import { orderAPI } from '../../api'
 import img from '../../static/img/order_table.jpg'
 import { PageContainer, PageTitle } from '../../components/core'
 import { BREAKPOINTS } from '../../styledComponents/helpers'

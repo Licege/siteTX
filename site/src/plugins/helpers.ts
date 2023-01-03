@@ -1,5 +1,5 @@
 import { addressType, orderDishType } from '../types/types'
-import { serverUrl } from '../api/api'
+import { serverUrl } from '../api'
 
 export const isIos = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform)
 

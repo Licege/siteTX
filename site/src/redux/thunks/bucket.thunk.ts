@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { bucketAPI } from '../../api/api';
+import { bucketAPI } from '../../api';
 import { IDeliveryPost } from '../../types/types';
 
 export const requestDeliverySettings = createAsyncThunk(

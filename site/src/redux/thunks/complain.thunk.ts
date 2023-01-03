@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { complainAPI } from '../../api/api'
+import { complainAPI } from '../../api'
 import { complainType } from '../../types/types'
 import { AppStateType } from '../redux-store';
 import { getIsAuthenticated } from '../getters/auth.getters'

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { promoAPI } from '../../api/api';
+import { promoAPI } from '../../api';
 
 export const requestPromos = createAsyncThunk(
   'promos/fetchAllPromos',

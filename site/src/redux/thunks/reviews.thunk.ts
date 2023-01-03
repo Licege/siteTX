@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { reviewsAPI } from '../../api/api';
+import { reviewsAPI } from '../../api';
 import { IReview } from '../../types/types';
 
 export const requestReviews = createAsyncThunk(

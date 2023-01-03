@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { menuAPI } from '../../api/api';
+import { menuAPI } from '@/api';
 
 export const requestCategories = createAsyncThunk(
   'dishes/fetchAllCategories',
