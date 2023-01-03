@@ -1,17 +1,5 @@
 {
   "extends": ["react-app", "airbnb-typescript", "plugin:react/recommended", "prettier", "prettier"],
-  "settings": {
-    "import/extensions": {
-      "node": {
-        "extensions": [
-          ".js",
-          ".jsx",
-          ".ts",
-          ".tsx"
-        ]
-      }
-    }
-  },
   "rules": {
     "no-unused-vars": "warn",
     "no-use-before-define": "off",
@@ -30,16 +18,12 @@
     "react/jsx-props-no-spreading": "off",
     "react/no-array-index-key": "off",
     "react/destructuring-assignment": "off",
+    "react/require-default-props": "off",
     "react-hooks/exhaustive-deps": "off",
     "import/extensions": [
       "error",
-      "ignorePackages",
-      {
-        "js": "never",
-        "jsx": "never",
-        "ts": "never",
-        "tsx": "never"
-      }
+      "never",
+      { "ignorePackages": true }
     ]
   },
   "overrides": [
