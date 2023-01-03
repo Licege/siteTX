@@ -7,10 +7,9 @@ import { BREAKPOINTS } from '../../../styledComponents/helpers'
 import MenuGallery from './Menu';
 import BarGallery from './Bar';
 
-const SectionPDFMenu = () => {
-  const ref = useRef<HTMLElement>();
+const useScrollToMenu = (ref: React.MutableRefObject<HTMLElement | undefined>) => {
   const query = useQuery()
-  
+
   useEffect(() => {
     if (ref.current && query.get('menu') === 'true') {
       setTimeout(() => {
@@ -18,6 +17,12 @@ const SectionPDFMenu = () => {
       }, 100)
     }
   }, [Boolean(ref.current)])
+}
+
+const SectionPDFMenu = () => {
+  const ref = useRef<HTMLElement>();
+
+  useScrollToMenu(ref);
   
   return (
     <SectionWrapper ref={ref}>

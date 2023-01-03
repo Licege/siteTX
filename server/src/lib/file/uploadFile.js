@@ -11,6 +11,8 @@ function getFileName(file, options) {
     ext = `.${options.format}`;
   }
 
+  return `${parsedFileName.join('.')}${ext}`
+
   return `${Date.now()}-${parsedFileName.join('.')}${ext}`
 }
 

@@ -14,7 +14,7 @@ import { getAuthStatus } from './redux/selectors/auth'
 import CatchErrors from './pages/Errors/CatchErrors'
 import Modal from './components/Modals/ModalRoot'
 import { AppContent, AppWrapper } from './styles'
-import { gaPageView } from './utils/ga'
+import { gaPageView, isMobile } from './utils'
 import Routes from './routes';
 
 import 'react-toastify/dist/ReactToastify.css'
@@ -51,7 +51,7 @@ const App = () => {
         <AppContent>
           <CatchErrors>
             <Routes />
-            <ButtonCallToUs />
+            {isMobile.any() && <ButtonCallToUs/>}
           </CatchErrors>
           <Footer/>
         </AppContent>

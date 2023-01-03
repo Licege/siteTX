@@ -28,6 +28,7 @@ const complainType = require('../controllers/complainType');
 const menuGallery = require('../controllers/menuGallery');
 const staffPositions = require('../controllers/staffPositions');
 const employees = require('../controllers/employees');
+const {testUploadFiles} = require("../controllers/files");
 
 const PRIVATE = '/api/private'
 const PUBLIC = '/api/public'
@@ -46,6 +47,8 @@ module.exports = io => {
   //         session: false,
   //         failWithError: true
   //     }), admin.remove, adminAuthFailed)
+
+  router.post('/api/public/test-file', upload.single('image'), testUploadFiles);
 
   router.get('api/public/test', (req, res) => {
     res.status(200).json({success: true});
