@@ -54,7 +54,7 @@
     "react-pageflip": "^2.0.3",
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.3",
+    "react-scripts": "5.0.1",
     "react-scroll": "^1.8.2",
     "react-select": "^4.3.0",
     "react-slick": "^0.28.1",
@@ -89,6 +89,9 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "html-critical-webpack-plugin": "^2.1.0",
     "identity-obj-proxy": "^3.0.0",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-normalize": "^10.0.1",
+    "postcss-preset-env": "^7.8.3",
     "prettier": "2.3.2"
   },
   "scripts": {
