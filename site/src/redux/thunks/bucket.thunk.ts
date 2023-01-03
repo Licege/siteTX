@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { bucketAPI } from '../../api';
-import { IDeliveryPost } from '../../types/types';
+import { bucketAPI } from '@/api';
+import { IDeliveryPost } from '@/types/types';
 
 export const requestDeliverySettings = createAsyncThunk(
   'bucket/fetchAllDeliverySettings',

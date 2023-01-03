@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { vacanciesAPI } from '../../api';
-import { resumeType } from '../../types/types';
+import { vacanciesAPI } from '@/api';
+import { resumeType } from '@/types/types';
 
 export const requestVacancies = createAsyncThunk(
   'vacancies/fetchAllVacancies',

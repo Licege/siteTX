@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { newsAPI } from '../../api';
+import { newsAPI } from '@/api';
 
 export const requestNews = createAsyncThunk(
   'news/fetchAllNews',

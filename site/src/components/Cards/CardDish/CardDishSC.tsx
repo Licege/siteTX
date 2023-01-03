@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { dishType } from '../../../types/types'
+import { dishType } from '@/types/types'
+import { cropText } from '@/plugins/helpers'
 import altImg from '../../../static/img/dish.svg'
-import { cropText } from '../../../plugins/helpers'
 import { Button, Card, CardBody, CardFooter, CardMedia, CardText, CardTitle, CardWrapper } from '../../core'
 import useCardDishLogic from './logic'
 
