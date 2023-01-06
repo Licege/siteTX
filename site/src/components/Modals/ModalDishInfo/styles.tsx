@@ -50,6 +50,7 @@ export const Close = styled.div`
 export const Image = styled.img`
   width: 600px;
   height: 400px;
+  object-fit: cover;
   
   @media(max-width: ${BREAKPOINTS.ts}px) {
     width: 216px;
