@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { SectionWrapper } from '../../../components/core'
-import { BREAKPOINTS } from '../../../styledComponents/helpers'
+import { SectionWrapper } from '@/components/core'
+import { BREAKPOINTS } from '@/styledComponents/helpers'
 
 export const Wrapper = styled(SectionWrapper)`
   margin: 0;

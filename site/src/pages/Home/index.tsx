@@ -1,14 +1,15 @@
 import React, { Suspense, lazy, useEffect } from 'react'
 import { Helmet } from 'react-helmet'
-import { isProduction } from '../../utils';
-import MenuGallery from './MenuGallery';
-import Loader from '../../components/core/Loader';
+import Loader from '@/components/core/Loader';
+import { isProduction } from '@/utils';
+import MenuGallery from './components/sections/MenuGallery/MenuGallery';
 
-const SectionMenu = lazy(() => import('./Menu/SectionMenu'));
-const SectionAbout = lazy(() => import('./About/SectionAbout'));
-const SectionPromo = lazy(() => import('./Promo/SectionPromo'));
-// const SectionMap = lazy(() => import('./Map/SectionMap'));
-// const Tour = lazy(() => import('./Tour'));
+const SectionMenu = lazy(() => import('./components/sections/Menu/SectionMenu'));
+const SectionAbout = lazy(() => import('./components/sections/About/SectionAbout'));
+const SectionPromo = lazy(() => import('./components/sections/Promo/SectionPromo'));
+// const SectionDelivery = lazy(() => import('./components/sections/Delivery/SectionDelivery'));
+// const SectionMap = lazy(() => import('./components/sections/Map/SectionMap'));
+// const Tour = lazy(() => import('./components/sections/Tour/Tour'));
 
 const Content = () => (
   <Suspense fallback={<Loader />} >

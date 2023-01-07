@@ -1,4 +1,4 @@
-import { useWindowSize } from '../../../hooks/windowResize';
+import { useWindowSize } from '@/hooks';
 
 function calcWidth(windowWidth: number) {
   let maxWidth = 1150;

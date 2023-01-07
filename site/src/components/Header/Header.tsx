@@ -1,4 +1,5 @@
 import React from 'react'
+import { isProduction } from '@/utils'
 import Bucket from './Bucket'
 import MobileMenu from '../MobileMenu'
 import AuthButton from '../AuthButton/AuthButton'
@@ -6,7 +7,6 @@ import Logo from './Logo'
 import Navigation from './Navigation'
 import { useHeaderLogic } from './logic'
 import { ActionsBlock, AuthButtonWrapper, Container } from './styles'
-import { isProduction } from '../../utils'
 
 
 const Header: React.FC = () => {
@@ -14,15 +14,15 @@ const Header: React.FC = () => {
 
   return (
     <Container isMenuOpen={isMenuOpen}>
-      <MobileMenu />
       <Logo />
       <Navigation />
-      {!isProduction() && <ActionsBlock>
+      {!isProduction() && <ActionsBlock isMenuOpen={isMenuOpen}>
         <AuthButtonWrapper>
           <AuthButton/>
         </AuthButtonWrapper>
         <Bucket/>
-        </ActionsBlock>}
+        <MobileMenu />
+      </ActionsBlock>}
     </Container>
   )
 }

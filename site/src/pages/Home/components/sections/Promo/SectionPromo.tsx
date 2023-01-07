@@ -1,8 +1,8 @@
 import React from 'react'
 import { useSectionPromosLogic } from './logic'
-import SliderPromo from '../../../components/Sliders/SliderPromo'
-import { SectionSubtitle, SectionTitle, SectionWrapper } from '../../../components/core'
-import { LinkButton } from '../styles'
+import SliderPromo from '@/components/Sliders/SliderPromo'
+import { SectionSubtitle, SectionTitle, SectionWrapper } from '@/components/core'
+import { LinkButton } from '../../buttons'
 
 const SectionPromo = () => {
   const { isPromosExist } = useSectionPromosLogic()

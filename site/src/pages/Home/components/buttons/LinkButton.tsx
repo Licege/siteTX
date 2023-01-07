@@ -1,7 +1,13 @@
-import styled from 'styled-components'
-import RedirectButton from '../../components/common/elements/buttons/LinkButton'
+import styled from 'styled-components';
+import RedirectButton, { LinkButtonProps } from '@/components/common/elements/buttons/LinkButton'
 
-export const LinkButton = styled(RedirectButton)`
+export function LinkButton(props: LinkButtonProps) {
+  return (
+    <Button {...props} />
+  )
+}
+
+const Button = styled(RedirectButton)`
 {
   text-align: center;
 

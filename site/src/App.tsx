@@ -19,6 +19,7 @@ import Routes from './routes';
 
 import 'react-toastify/dist/ReactToastify.css'
 import './assets/main.scss'
+import { useDefineScrollbarWidth } from '@/hooks/useDefineScrollbarWidth';
 
 
 history.listen(location => {
@@ -43,6 +44,8 @@ const App = () => {
       dispatch(requestMe())
     }
   }, [me, isAuthenticated, dispatch])
+
+  useDefineScrollbarWidth();
 
   return (
     <Router history={history}>

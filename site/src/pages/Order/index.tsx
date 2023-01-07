@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { Helmet } from 'react-helmet';
-import { IOrder } from '../../types/types'
+import { orderAPI } from '@/api'
+import { IOrder } from '@/types/types'
+import { PageContainer, PageTitle } from '@/components/core'
+import { BREAKPOINTS } from '@/styledComponents/helpers'
 import OrderForm from './FormOrder'
-import { orderAPI } from '../../api'
 import img from '../../static/img/order_table.jpg'
-import { PageContainer, PageTitle } from '../../components/core'
-import { BREAKPOINTS } from '../../styledComponents/helpers'
 
 
 const Order: React.FC = () => {
@@ -52,6 +52,7 @@ const Image = styled.img`
     width: 45%;
     margin: 20px 40px;
     user-select: none;
+    object-fit: cover;
 
     @media (max-width: ${BREAKPOINTS.ml}px) {
         width: 90%;

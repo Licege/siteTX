@@ -1,6 +1,6 @@
 import React from 'react'
-import { contactsType } from '../../../types/types'
-import { SectionSubtitle, SectionTitle } from '../../../components/core'
+import { contactsType } from '@/types/types'
+import { SectionSubtitle, SectionTitle } from '@/components/core'
 import { Body, DignityBlock, DignityItem, Image, MenuLink, OrderBlock, Phone, Wrapper } from './styles'
 
 interface IProps {

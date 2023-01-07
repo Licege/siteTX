@@ -1,5 +1,5 @@
-import { useCheckIsOpenMobileMenu, useMobileMenuActions } from '../../redux/hooks/app.hooks'
-import { useCategories } from '../../redux/hooks/menu.hooks'
+import { useCheckIsOpenMobileMenu, useMobileMenuActions } from '@/redux/hooks/app.hooks'
+import { useCategories } from '@/redux/hooks/menu.hooks'
 
 export const useHeaderLogic = () => {
   const isMenuOpen = useCheckIsOpenMobileMenu()

@@ -1,7 +1,7 @@
 import React from 'react'
+import SliderDishes from '@/components/Sliders/SliderDishes'
+import { SectionSubtitle, SectionTitle, SectionWrapper } from '@/components/core'
 import ShowAllButton from './ShowAllButton'
-import SliderDishes from '../../../components/Sliders/SliderDishes'
-import { SectionSubtitle, SectionTitle, SectionWrapper } from '../../../components/core'
 
 
 const SectionMenu = () => (

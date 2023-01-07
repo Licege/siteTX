@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from 'react'
 import styled from 'styled-components'
-import { SectionTitle, SectionWrapper } from '../../../components/core'
-import { useQuery } from '../../../hooks/useQuery';
+import { SectionTitle, SectionWrapper } from '@/components/core'
+import { useQuery } from '@/hooks/useQuery';
+import { BREAKPOINTS } from '@/styledComponents/helpers'
 import CardContainer from './CardContainer'
-import { BREAKPOINTS } from '../../../styledComponents/helpers'
 import MenuGallery from './Menu';
 import BarGallery from './Bar';
 

@@ -1,6 +1,6 @@
 import React from 'react'
-import Map from '../../../components/common/Map/Map'
-import { useWindowSize } from '../../../hooks/windowResize'
+import Map from '@/components/common/Map/Map'
+import { useWindowSize } from '@/hooks'
 
 const SectionMap = () => {
   const { width } = useWindowSize()

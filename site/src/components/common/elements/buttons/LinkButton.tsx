@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from '../../../core'
 
-interface IProps {
+export interface LinkButtonProps {
     to: string
     label: String
     className?: String
@@ -10,7 +10,7 @@ interface IProps {
     color?: 'default' | 'inherit' | 'primary' | 'secondary'
 }
 
-const LinkButton: React.FC<IProps> = ({ to, label, className, variant, color }) => (
+const LinkButton: React.FC<LinkButtonProps> = ({ to, label, className, variant, color }) => (
   <div className={className ? `Link-Button ${className}` : 'Link-Button'}>
     <Link to={to}>
       <Button variant={variant || 'outlined'} color={color}>

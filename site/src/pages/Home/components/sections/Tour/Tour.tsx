@@ -1,7 +1,7 @@
 import React from 'react'
-import { useWindowSize } from '../../../hooks/windowResize';
-import { SectionWrapper } from '../../../components/core';
-import Tour3D from '../../../components/Tour3D';
+import { useWindowSize } from '@/hooks';
+import { SectionWrapper } from '@/components/core';
+import Tour3D from '@/components/Tour3D';
 
 
 const Tour = () => {

@@ -100,4 +100,5 @@
 .scroll_block {
   height: 100vh !important;
   overflow: hidden;
+  padding-right: var(--scrollbar-width, 8px);
 }

@@ -1,10 +1,10 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import closeImg from '../../static/img/close.png'
+import { isProduction } from '@/utils';
+import closeImg from '@/static/img/close.png'
 import { useMobileMenuLogic } from '../Header/logic'
-import { Border, BurgerMenu, CloseIcon, NavigationBlock, Wrapper } from './styles'
-import { isProduction } from '../../utils';
 import CallToUs from '../CallToUs';
+import { Border, BurgerMenu, CloseIcon, NavigationBlock, Wrapper } from './styles'
 
 const MobileMenu = () => {
   const { isMenuOpen, categories, toggleMenu } = useMobileMenuLogic()

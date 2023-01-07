@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { BREAKPOINTS } from '../../styledComponents/helpers'
+import { BREAKPOINTS } from '@/styledComponents/helpers'
 
 interface IBurger {
   isOpen: boolean
@@ -92,7 +92,8 @@ export const Wrapper = styled.div`
   // background-color: #808080;
   overflow-x: hidden;
   overflow-y: auto;
-  transition: width .3s ease-out;
+  transition: width .3s ease-in-out;
+  right: 0;
   
   ${(props: IWrapper) => props.isOpen 
     ? css`

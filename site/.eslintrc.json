@@ -1,5 +1,6 @@
 {
-  "extends": ["react-app", "airbnb-typescript", "plugin:react/recommended", "prettier", "prettier"],
+  "extends": ["react-app", "airbnb-typescript", "plugin:react/recommended", "prettier"],
+  "parser": "@typescript-eslint/parser",
   "rules": {
     "no-unused-vars": "warn",
     "no-use-before-define": "off",
@@ -21,7 +22,7 @@
     "react/require-default-props": "off",
     "react-hooks/exhaustive-deps": "off",
     "import/extensions": [
-      "error",
+      "warn",
       "never",
       { "ignorePackages": true }
     ]

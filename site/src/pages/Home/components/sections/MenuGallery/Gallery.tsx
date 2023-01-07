@@ -1,6 +1,6 @@
 import React, { FC, useState, useCallback } from 'react'
-import PhotoViewer from '../../../components/Gallery/PhotoViewer';
-import ImageWithBackground from '../../../components/core/ImageWithBackground';
+import PhotoViewer from '@/components/Gallery/PhotoViewer';
+import ImageWithBackground from '@/components/core/ImageWithBackground';
 
 interface IProps {
   images: Array<string>

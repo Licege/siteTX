@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 import { NavLink } from 'react-router-dom'
-import { HEADER_HEIGHT } from '../../styledComponents/constants'
-import { BREAKPOINTS } from '../../styledComponents/helpers'
+import { HEADER_HEIGHT } from '@/styledComponents/constants'
+import { BREAKPOINTS } from '@/styledComponents/helpers'
 
 interface IHeader {
   isMenuOpen?: boolean
@@ -23,7 +23,7 @@ export const Container = styled.header`
 
 export const ActionsBlock = styled.div`
   position: fixed;
-  right: 30px;
+  right: ${(props: IHeader) => props.isMenuOpen ? 'calc(12px + 8px)' : '12px'};;
   display: flex;
 `
 
