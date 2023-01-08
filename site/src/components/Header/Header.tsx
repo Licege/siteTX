@@ -16,13 +16,13 @@ const Header: React.FC = () => {
     <Container isMenuOpen={isMenuOpen}>
       <Logo />
       <Navigation />
-      {!isProduction() && <ActionsBlock isMenuOpen={isMenuOpen}>
-        <AuthButtonWrapper>
+      <ActionsBlock isMenuOpen={isMenuOpen}>
+        {!isProduction() && <AuthButtonWrapper>
           <AuthButton/>
-        </AuthButtonWrapper>
-        <Bucket/>
+        </AuthButtonWrapper>}
+        {!isProduction() && <Bucket/>}
         <MobileMenu />
-      </ActionsBlock>}
+      </ActionsBlock>
     </Container>
   )
 }
