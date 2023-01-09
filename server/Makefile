@@ -33,3 +33,6 @@ seed-undo:
 
 seed-undo-all:
 	env $(VARIABLES) DB_NAME=trixolma ./node_modules/.bin/sequelize db:seed:undo:all
+
+run-test:
+	env $(VARIABLES) node ./sandbox/test

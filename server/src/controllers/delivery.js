@@ -1,5 +1,6 @@
-const { Delivery, GlobalSettings, Settings } = require('../models').init()
+const { Delivery, GlobalSettings } = require('../models').init()
 const DeliveryRepo = require('../repositories/delivery')
+const CommonSettingsRepo = require('../repositories/deliveryCommonSettings')
 const DishRepo = require('../repositories/dish')
 const errorHandler = require('../utils/errorHandler')
 
@@ -116,7 +117,7 @@ module.exports.create = async function (req, res) {
     const globalSettings = await GlobalSettings.findOne()
 
     if (deliveryType === 'home') {
-      const settings = await Settings.findOne({ city: address.city })
+      const settings = await CommonSettingsRepo.one({ cityId: address.city })
       if (!settings) {
         return res.status(400).json({ message: 'Невалидные данные!' })
       }
@@ -135,7 +136,7 @@ module.exports.create = async function (req, res) {
       }
     }
 
-    const ids = list.map(({ id }) => id)
+    const ids = list.map(({ dishId }) => dishId)
     const where = { id: ids }
     const dishes = await DishRepo.all(where)
 

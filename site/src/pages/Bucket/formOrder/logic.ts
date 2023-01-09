@@ -44,7 +44,7 @@ const getInitialValues = (me: profileType): IInitialValues => {
     paymentType: 'cash',
     deliveryType: 'home',
     address: {
-      city: 8, // TODO исправить после ввода настройки города по умолчанию
+      city: 15, // TODO исправить после ввода настройки города по умолчанию
     },
     timeDelivery: defaultTimeDelivery,
   }
@@ -62,9 +62,9 @@ export const useBucketFormOrderLogic = () => {
   const globalSettings = useGlobalDeliverySettings()
   const postOrder = usePostOrder()
 
-  const cityOptions = settings.reduce((acc: any, s) => s.isDelivery ? [...acc, { value: s.id, label: s.city }] : acc, [])
+  const cityOptions = settings.reduce((acc: any, s) => s.isDelivery ? [...acc, { value: s.city.id, label: s.city.name }] : acc, [])
 
-  const onSubmit = (data: IDeliveryPost) => {
+  const onSubmit = async (data: IDeliveryPost) => {
     const { deliveryType, address } = data
 
     const postData = {
@@ -76,7 +76,7 @@ export const useBucketFormOrderLogic = () => {
       userId: me?.id || null,
     }
     console.log(postData)
-    // postOrder(postData)
+    await postOrder(postData)
     // this.context.sendOrderDelivery(post)
   }
 

@@ -1,11 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
   const Settings = sequelize.define('CommonSettings', {
-    city: {
-      type: DataTypes.STRING,
+    cityId: {
+      type: DataTypes.INTEGER,
       unique: true,
       allowNull: false,
-      validate: {
-        isEmpty: false
+      references: {
+        key: 'id',
+        model: 'User'
       }
     },
     priceForDelivery: {
@@ -23,6 +24,14 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: true
     }
   })
+
+  Settings.associate = (models) => {
+    Settings.belongsTo(models.City, {
+      foreignKey: 'cityId',
+      as: 'city',
+      onDelete: 'CASCADE'
+    })
+  }
 
   return Settings
 }

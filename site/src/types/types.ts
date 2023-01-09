@@ -148,9 +148,14 @@ export type deliveryType = {
     totalPrice: number
 }
 
+export type cityType = {
+    id: number
+    name: string
+}
+
 export type deliverySettingsType = {
     id: number
-    city: string
+    city: cityType
     priceForDelivery: number
     freeDelivery: number
     isDelivery: boolean

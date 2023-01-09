@@ -74,7 +74,7 @@ export const useDeliveryActions = () => {
 export const usePostOrder = () => {
   const dispatch = useAppDispatch()
 
-  return (order: IDeliveryPost) => {
-    dispatch(postOrder(order))
+  return async (order: IDeliveryPost) => {
+    await dispatch(postOrder(order))
   }
 }
