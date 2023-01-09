@@ -1,11 +1,11 @@
-const axios = require('axios');
-const qs = require('fast-querystring');
-const { SberError } = require('./SberError.js');
+const axios = require('axios')
+const qs = require('fast-querystring')
+const { SberError } = require('./SberError.js')
 
 // https://securepayments.sberbank.ru/wiki/doku.php/integration:api:start#%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81_rest
 
-const TEST_ENTRY = 'https://3dsec.sberbank.ru/payment/rest/';
-const ENTRY = 'https://securepayments.sberbank.ru/payment/rest/';
+const TEST_ENTRY = 'https://3dsec.sberbank.ru/payment/rest/'
+const ENTRY = 'https://securepayments.sberbank.ru/payment/rest/'
 
 const SBER_ERRORS = {
   NO_SUCH_ORDER_ID: 6
@@ -16,22 +16,22 @@ const ACTIONS = {
   getOrderStatusExtended: 'getOrderStatusExtended.do', // получение статуса заказа
   refund: 'refund.do', // возврат средств оплаты заказа
   getBindings: 'getBindings.do', // получение списка всех связок клиента
-  unBindCard: 'unBindCard.do', // деактивация связки
-};
+  unBindCard: 'unBindCard.do' // деактивация связки
+}
 
 function parse(response) {
-  const { status } = response;
+  const { status } = response
 
   if (status === 200) {
-    const { data } = response;
+    const { data } = response
 
     if (parseInt(data.errorCode)) {
-      throw new SberError(data);
+      throw new SberError(data)
     }
 
-    return data;
+    return data
   } else {
-    throw new Error(`HTTP error ${status}`);
+    throw new Error(`HTTP error ${status}`)
   }
 }
 
@@ -50,10 +50,10 @@ class SberAcquiring {
    * @param {boolean} params.test - использовать ли тестовое окружение
    */
   constructor({ credentials, successUrl, failUrl, test = false }) {
-    this.successUrl = successUrl;
-    this.failUrl = failUrl;
-    this.creadentials = credentials;
-    this.entry = test ? TEST_ENTRY : ENTRY;
+    this.successUrl = successUrl
+    this.failUrl = failUrl
+    this.creadentials = credentials
+    this.entry = test ? TEST_ENTRY : ENTRY
   }
 
   // TODO в будущем возможно получать callback об изменении статуса оплаты https://securepayments.sberbank.ru/wiki/doku.php/integration:api:callback:start
@@ -75,11 +75,11 @@ class SberAcquiring {
       amount: Math.round(amount * 100),
       description,
       successUrl: this.successUrl.replace(/{order}/g, orderNumber),
-      failUrl: this.failUrl.replace(/{order}/g, orderNumber),
-    });
+      failUrl: this.failUrl.replace(/{order}/g, orderNumber)
+    })
 
-    const response = await this.#POST(ACTIONS.register, data);
-    return parse(response);
+    const response = await this.#POST(ACTIONS.register, data)
+    return parse(response)
   }
 
   /**
@@ -92,14 +92,14 @@ class SberAcquiring {
    */
   async status(orderId, orderNumber = null) {
     try {
-      const response = await this.getOrderInfo(orderId, orderNumber);
-      return response.orderStatus;
+      const response = await this.getOrderInfo(orderId, orderNumber)
+      return response.orderStatus
     } catch (error) {
       if (parseInt(error.sberErrorCode) === SBER_ERRORS.NO_SUCH_ORDER_ID) {
-        return null;
+        return null
       }
 
-      throw error;
+      throw error
     }
   }
 
@@ -111,9 +111,9 @@ class SberAcquiring {
    * @returns {Promise<object>} response
    */
   async getOrderInfo(orderId, orderNumber = null) {
-    const data = this.#buildData(orderId ? { orderId } : { orderNumber });
-    const response = await this.#POST(ACTIONS.getOrderStatusExtended, data);
-    return parse(response);
+    const data = this.#buildData(orderId ? { orderId } : { orderNumber })
+    const response = await this.#POST(ACTIONS.getOrderStatusExtended, data)
+    return parse(response)
   }
 
   /**
@@ -127,15 +127,15 @@ class SberAcquiring {
     const params = {
       orderId,
       amount: Math.round(amount * 100)
-    };
-
-    if (otherParams) {
-      params.jsonParams = JSON.stringify(otherParams);
     }
 
-    const data = this.#buildData(params);
-    const response = await this.#POST(ACTIONS.refund, data);
-    return parse(response);
+    if (otherParams) {
+      params.jsonParams = JSON.stringify(otherParams)
+    }
+
+    const data = this.#buildData(params)
+    const response = await this.#POST(ACTIONS.refund, data)
+    return parse(response)
   }
 
   /**
@@ -150,11 +150,11 @@ class SberAcquiring {
       clientId,
       bindingType,
       bindingId
-    };
+    }
 
-    const data = this.#buildData(params);
-    const response = await this.#POST(ACTIONS.getBindings, data);
-    return parse(response);
+    const data = this.#buildData(params)
+    const response = await this.#POST(ACTIONS.getBindings, data)
+    return parse(response)
   }
 
   /**
@@ -163,21 +163,21 @@ class SberAcquiring {
    * @returns {Promise<object>} response
    */
   async unBindCard(bindingId) {
-    const data = this.#buildData({ bindingId });
-    const response = await this.#POST(ACTIONS.unBindCard, data);
-    return parse(response);
+    const data = this.#buildData({ bindingId })
+    const response = await this.#POST(ACTIONS.unBindCard, data)
+    return parse(response)
   }
 
   // TODO перенести отсюда в lib
   async #POST(action, data) {
-    return axios.post(this.entry + action, qs.stringify(data));
+    return axios.post(this.entry + action, qs.stringify(data))
   }
 
   /**
    * Add technical parameters to data
    */
   #buildData(params = {}) {
-    return { ...params, ...this.creadentials };
+    return { ...params, ...this.creadentials }
   }
 }
 
@@ -187,4 +187,4 @@ class SberAcquiring {
 //   await ac.register();
 // })()
 
-exports.SberAcquiring = SberAcquiring;
+exports.SberAcquiring = SberAcquiring

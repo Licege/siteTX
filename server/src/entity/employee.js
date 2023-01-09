@@ -1,4 +1,4 @@
-const { prepareImageUrl } = require('../utils');
+const { prepareImageUrl } = require('../utils')
 
 exports.makeEmployee = (employeeData) => {
   if (!employeeData) return null

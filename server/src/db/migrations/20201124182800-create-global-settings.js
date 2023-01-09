@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('GlobalSettings', {
@@ -26,9 +26,9 @@ module.exports = {
       saleForPickup: {
         type: Sequelize.INTEGER
       }
-    });
+    })
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('GlobalSettings');
+    await queryInterface.dropTable('GlobalSettings')
   }
-};
+}

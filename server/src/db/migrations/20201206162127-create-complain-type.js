@@ -15,9 +15,9 @@ module.exports = {
         },
         unique: true
       }
-    });
+    })
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('ComplainTypes');
+    await queryInterface.dropTable('ComplainTypes')
   }
-};
+}

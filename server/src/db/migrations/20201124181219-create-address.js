@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Addresses', {
@@ -27,9 +27,9 @@ module.exports = {
       intercom: {
         type: Sequelize.STRING
       }
-    });
+    })
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Addresses');
+    await queryInterface.dropTable('Addresses')
   }
-};
+}

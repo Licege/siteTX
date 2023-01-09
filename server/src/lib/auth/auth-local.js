@@ -2,13 +2,16 @@ const AuthenticationError = require('./auth-error')
 const { comparePassword } = require('./password')
 const UserRepo = require('../../repositories/user')
 
-let loginFailCount = 0;
+let loginFailCount = 0
 
 const authLocal = async (req, email, password, done) => {
   const antibot = req.body && req.body.name
   try {
     if (antibot) {
-      return setTimeout(() => done(new AuthenticationError(401, 'The password is not correct')), 30000)
+      return setTimeout(
+        () => done(new AuthenticationError(401, 'The password is not correct')),
+        30000
+      )
     }
 
     const user = await UserRepo.one({ email })
@@ -16,7 +19,9 @@ const authLocal = async (req, email, password, done) => {
       return done(new AuthenticationError(401, 'This email is not registered'))
     }
 
-    const [passwordMatch] = await Promise.all([comparePassword(password, user.password)])
+    const [passwordMatch] = await Promise.all([
+      comparePassword(password, user.password)
+    ])
     if (!passwordMatch) {
       loginFailCount += 1
     }

@@ -15,10 +15,10 @@ module.exports = {
     return queryInterface
   },
 
-  down: async queryInterface => {
+  down: async (queryInterface) => {
     await queryInterface.removeColumn('GlobalSettings', 'pdfMenuSrc')
     await queryInterface.removeColumn('GlobalSettings', 'showMenuType')
 
     return queryInterface
   }
-};
+}

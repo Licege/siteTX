@@ -3,13 +3,14 @@ const { commands } = require('../telegram/commands')
 
 // "lt --port 9093 --subdomain trixolma" for work
 const start = () => {
-  if (!process.env.TELEGRAM_TOKEN) throw new Error('Set telegram token for use bot')
+  if (!process.env.TELEGRAM_TOKEN)
+    throw new Error('Set telegram token for use bot')
 
   const bot = new Telegraf(process.env.TELEGRAM_TOKEN)
 
   bot.use(Telegraf.log())
 
-  commands(bot);
+  commands(bot)
 
   if (process.env.NODE_ENV === 'development') {
     bot.launch({

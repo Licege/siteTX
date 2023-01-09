@@ -13,4 +13,4 @@ module.exports = {
   down: async (queryInterface) => {
     await queryInterface.bulkDelete('StaffPositions', null, {})
   }
-};
+}

@@ -2,13 +2,17 @@ const session = require('express-session')
 const SequelizeStore = require('connect-session-sequelize')(session.Store)
 const { sequelize } = require('../models/index').init()
 
-const { TRIXOLMA_SID, TRIXOLMA_BASE_DOMAIN, SECRET, COOKIE_MAX_AGE } = process.env
-const oneDay = 24 * 3600 * 1000;
+const { TRIXOLMA_SID, TRIXOLMA_BASE_DOMAIN, SECRET, COOKIE_MAX_AGE } =
+  process.env
+const oneDay = 24 * 3600 * 1000
 
 const extendDefaultFields = (defaults, sessionData) => ({
   data: defaults.data,
   expires: defaults.expires,
-  userId: sessionData.passport && sessionData.passport.user ? sessionData.passport.user.id : null
+  userId:
+    sessionData.passport && sessionData.passport.user
+      ? sessionData.passport.user.id
+      : null
 })
 
 const sequeliseStore = () =>
@@ -20,7 +24,11 @@ const sequeliseStore = () =>
     extendDefaultFields
   })
 
-module.exports = ({ resave = true, saveUninitialized = false, rolling = true } = {}) =>
+module.exports = ({
+  resave = true,
+  saveUninitialized = false,
+  rolling = true
+} = {}) =>
   session({
     secret: SECRET,
     store: sequeliseStore(),

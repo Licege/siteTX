@@ -28,5 +28,5 @@ module.exports = {
       expires: Sequelize.DATE
     }),
 
-  down: async queryInterface => queryInterface.dropTable('Sessions')
-};
+  down: async (queryInterface) => queryInterface.dropTable('Sessions')
+}

@@ -24,21 +24,23 @@ const start = () => {
   }
   app.use('/uploads', express.static('uploads', options))
 
-  passport.serializeUser((user, done) => done(null, user));
-  passport.deserializeUser((obj, done) => done(null, obj));
+  passport.serializeUser((user, done) => done(null, user))
+  passport.deserializeUser((obj, done) => done(null, obj))
 
   app.use(require('morgan')('dev'))
   app.use(bodyParser.urlencoded({ extended: true }))
   app.use(bodyParser.json())
-  app.use(bodyParser.json({
-    limit: '10mb',
-    type: [
-      'json',
-      'application/csp-report',
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel',
-      'application/x-www-form-urlencoded'
-    ]
-  }))
+  app.use(
+    bodyParser.json({
+      limit: '10mb',
+      type: [
+        'json',
+        'application/csp-report',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel',
+        'application/x-www-form-urlencoded'
+      ]
+    })
+  )
 
   passport.use(
     'user-strategy',
@@ -49,7 +51,7 @@ const start = () => {
         passReqToCallback: true
       },
       authLocal
-    ),
+    )
   )
 
   const session = sessionMiddleware({ rolling: true })

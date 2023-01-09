@@ -20,17 +20,17 @@ const errorHandler = require('../utils/errorHandler')
 // }
 
 module.exports.login = async (req, res) => {
-    res.json({ success: true })
+  res.json({ success: true })
 }
 
 module.exports.logout = async (req, res) => {
-    req.logout()
-    // res.redirect('/')
-    // req.logOut()
-    // req.session.destroy(() => {
-    //     res.clearCookie(process.env.TRIXOLMA_SID)
-    //     res.redirect('/')
-    // })
+  req.logout()
+  // res.redirect('/')
+  // req.logOut()
+  // req.session.destroy(() => {
+  //     res.clearCookie(process.env.TRIXOLMA_SID)
+  //     res.redirect('/')
+  // })
 }
 
 // module.exports.refreshTokens = async function (req, res) {
@@ -56,37 +56,37 @@ module.exports.logout = async (req, res) => {
 // }
 
 module.exports.register = async (req, res) => {
-    const { email, phone, password, surname, forename, patronymic } = req.body
-    const transaction = await sequelize.transaction()
+  const { email, phone, password, surname, forename, patronymic } = req.body
+  const transaction = await sequelize.transaction()
 
-    try {
-        const emailInUse = await UserRepo.one({ email })
-        const phoneInUse = await UserRepo.one({ phone })
+  try {
+    const emailInUse = await UserRepo.one({ email })
+    const phoneInUse = await UserRepo.one({ phone })
 
-        if (emailInUse) {
-            return res.status(409).json({
-                message: 'Такой email уже зарегистрирован. Попробуйте другой.'
-            })
-        }
-        if (phoneInUse) {
-            return res.status(409).json({
-                message: 'Такой телефон уже зарегистрирован. Попробуйте другой.'
-            })
-        }
-
-        const salt = bcrypt.genSaltSync(10)
-        const user = await UserRepo.create({
-            email,
-            password: bcrypt.hashSync(password, salt),
-            surname,
-            forename,
-            patronymic,
-            phone
-        })
-        await transaction.commit()
-        res.status(201).json(user)
-    } catch (e) {
-        await transaction.rollback()
-        errorHandler(res, e)
+    if (emailInUse) {
+      return res.status(409).json({
+        message: 'Такой email уже зарегистрирован. Попробуйте другой.'
+      })
     }
+    if (phoneInUse) {
+      return res.status(409).json({
+        message: 'Такой телефон уже зарегистрирован. Попробуйте другой.'
+      })
+    }
+
+    const salt = bcrypt.genSaltSync(10)
+    const user = await UserRepo.create({
+      email,
+      password: bcrypt.hashSync(password, salt),
+      surname,
+      forename,
+      patronymic,
+      phone
+    })
+    await transaction.commit()
+    res.status(201).json(user)
+  } catch (e) {
+    await transaction.rollback()
+    errorHandler(res, e)
+  }
 }

@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node index",
-    "watch": "nodemon index"
+    "watch": "nodemon index",
+    "prettier:check": "prettier . --check",
+    "prettier:write": "prettier . --write"
   },
   "keywords": [
     "express"
@@ -49,6 +51,7 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "prettier": "^2.8.2"
   }
 }

@@ -1,10 +1,12 @@
 const bcrypt = require('bcryptjs')
 
-const hashPassword = password =>
+const hashPassword = (password) =>
   new Promise((resolve, reject) => {
     bcrypt.genSalt(10, (saltError, salt) => {
       if (saltError) reject(saltError)
-      bcrypt.hash(password, salt, null, (hashError, hash) => (hashError ? reject(hashError) : resolve(hash)))
+      bcrypt.hash(password, salt, null, (hashError, hash) =>
+        hashError ? reject(hashError) : resolve(hash)
+      )
     })
   })
 
@@ -13,7 +15,9 @@ const comparePassword = (candidatePassword, password) =>
     if (!password) {
       resolve(false)
     }
-    bcrypt.compare(candidatePassword, password, (error, isMatch) => (error ? reject(error) : resolve(isMatch)))
+    bcrypt.compare(candidatePassword, password, (error, isMatch) =>
+      error ? reject(error) : resolve(isMatch)
+    )
   })
 
 module.exports = {

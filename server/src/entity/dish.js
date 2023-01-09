@@ -1,4 +1,4 @@
-const { prepareImageUrl } = require('../utils');
+const { prepareImageUrl } = require('../utils')
 
 module.exports.makeDish = (dishData) => {
   if (!dishData) return null

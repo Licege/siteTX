@@ -27,7 +27,7 @@ module.exports = {
         allowNull: false
       },
       middleName: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       phone: {
         type: Sequelize.STRING,
@@ -61,5 +61,5 @@ module.exports = {
       }
     }),
 
-  down: async queryInterface => queryInterface.dropTable('Employees')
-};
+  down: async (queryInterface) => queryInterface.dropTable('Employees')
+}

@@ -1,10 +1,19 @@
 const { StaffPosition } = require('../models').init()
 const EmployeeRepo = require('../repositories/employees')
-const {makeEmployee} = require("../entity/employee");
+const { makeEmployee } = require('../entity/employee')
 
 exports.create = async (req, res) => {
-  const { lastName, firstName, middleName, positionId, phone, salary, address, dateOfEmployment } = req.body;
-  const avatarSrc = req.file ? req.file.path : '';
+  const {
+    lastName,
+    firstName,
+    middleName,
+    positionId,
+    phone,
+    salary,
+    address,
+    dateOfEmployment
+  } = req.body
+  const avatarSrc = req.file ? req.file.path : ''
 
   const dataToCreate = {
     lastName,
@@ -18,7 +27,7 @@ exports.create = async (req, res) => {
     dateOfEmployment
   }
 
-  const newEmployeeData = await EmployeeRepo.create(dataToCreate);
+  const newEmployeeData = await EmployeeRepo.create(dataToCreate)
   const newEmployee = await EmployeeRepo.findById(newEmployeeData.id, {
     include: { model: StaffPosition, attributes: ['name'], as: 'position' },
     attributes: {
@@ -31,8 +40,17 @@ exports.create = async (req, res) => {
 
 exports.update = async (req, res) => {
   const { id } = req.params
-  const { lastName, firstName, middleName, positionId, phone, salary, address, dateOfEmployment } = req.body;
-  const avatarSrc = req.file ? req.file.path : '';
+  const {
+    lastName,
+    firstName,
+    middleName,
+    positionId,
+    phone,
+    salary,
+    address,
+    dateOfEmployment
+  } = req.body
+  const avatarSrc = req.file ? req.file.path : ''
 
   const dataToCreate = {
     lastName,
@@ -63,7 +81,7 @@ exports.remove = async (req, res) => {
 exports.getAll = async (req, res) => {
   // Проверить права
   const { withFires = false, position } = req.query
-  const { limit = 20, page = 1 } = req.body.pagination;
+  const { limit = 20, page = 1 } = req.body.pagination
 
   function constructWhere() {
     const where = {}
@@ -89,32 +107,42 @@ exports.getAll = async (req, res) => {
   })
   const total = await EmployeeRepo.total(constructWhere())
 
-  res.status(200).json({ data: employees.map(employee => makeEmployee(employee)), total })
+  res
+    .status(200)
+    .json({ data: employees.map((employee) => makeEmployee(employee)), total })
 }
 
 exports.getAllForTips = async (req, res) => {
-  const employees = await EmployeeRepo.all({
-    dateOfDismissal: null,
-    '$position.tips$': true
-  }, {
-    include: { model: StaffPosition, attributes: ['name'], as: 'position' },
-    attributes: ['id', 'avatarSrc', 'lastName', 'firstName', 'middleName']
-  })
+  const employees = await EmployeeRepo.all(
+    {
+      dateOfDismissal: null,
+      '$position.tips$': true
+    },
+    {
+      include: { model: StaffPosition, attributes: ['name'], as: 'position' },
+      attributes: ['id', 'avatarSrc', 'lastName', 'firstName', 'middleName']
+    }
+  )
 
-  res.status(200).json({ data: employees.map(employee => makeEmployee(employee)) })
+  res
+    .status(200)
+    .json({ data: employees.map((employee) => makeEmployee(employee)) })
 }
 
 exports.getOneForTips = async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.params
 
-  const employee = await EmployeeRepo.one({
-    id,
-    dateOfDismissal: null,
-    '$position.tips$': true
-  }, {
-    include: { model: StaffPosition, attributes: ['name'], as: 'position' },
-    attributes: ['id', 'avatarSrc', 'lastName', 'firstName', 'middleName']
-  })
+  const employee = await EmployeeRepo.one(
+    {
+      id,
+      dateOfDismissal: null,
+      '$position.tips$': true
+    },
+    {
+      include: { model: StaffPosition, attributes: ['name'], as: 'position' },
+      attributes: ['id', 'avatarSrc', 'lastName', 'firstName', 'middleName']
+    }
+  )
 
   res.status(200).json(makeEmployee(employee))
 }

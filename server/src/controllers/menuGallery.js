@@ -18,7 +18,10 @@ exports.getAllBar = async (req, res) => {
 exports.createOrUpdateMenu = async (req, res) => {
   const { files } = req.body
 
-  const result = await GalleryRepo.createOrUpdate({ where: { type: TYPE_MENU }, values: files })
+  const result = await GalleryRepo.createOrUpdate({
+    where: { type: TYPE_MENU },
+    values: files
+  })
 
   res.status(200).json(result)
 }
@@ -26,8 +29,10 @@ exports.createOrUpdateMenu = async (req, res) => {
 exports.createOrUpdateBar = async (req, res) => {
   const { files } = req.body
 
-  const result = await GalleryRepo.createOrUpdate({ where: { type: TYPE_BAR }, values: files })
+  const result = await GalleryRepo.createOrUpdate({
+    where: { type: TYPE_BAR },
+    values: files
+  })
 
   res.status(200).json(result)
 }
-

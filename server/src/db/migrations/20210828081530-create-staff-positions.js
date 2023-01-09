@@ -19,5 +19,5 @@ module.exports = {
       }
     }),
 
-  down: async queryInterface => queryInterface.dropTable('StaffPositions')
-};
+  down: async (queryInterface) => queryInterface.dropTable('StaffPositions')
+}

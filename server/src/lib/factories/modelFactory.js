@@ -1,157 +1,185 @@
-module.exports = Model => ({
-    bulkCreate: async (values, transaction) => {
-        const collections = await Model.bulkCreate(values, { transaction, returning: true })
-        return collections.map(collection => collection.get({ plain: true }))
-    },
+module.exports = (Model) => ({
+  bulkCreate: async (values, transaction) => {
+    const collections = await Model.bulkCreate(values, {
+      transaction,
+      returning: true
+    })
+    return collections.map((collection) => collection.get({ plain: true }))
+  },
 
-    create: async (values, transaction) => {
-        const newObj = await Model.create(values, { transaction, returning: true })
-        return newObj.get({ plain: true })
-    },
+  create: async (values, transaction) => {
+    const newObj = await Model.create(values, { transaction, returning: true })
+    return newObj.get({ plain: true })
+  },
 
-    update: async (where, values, transaction) => {
-        await Model.update(values, { where, transaction, limit: 1 })
-        return undefined
-    },
+  update: async (where, values, transaction) => {
+    await Model.update(values, { where, transaction, limit: 1 })
+    return undefined
+  },
 
-    updateAll: async (where, values, transaction) => {
-        await Model.update(values, { where, transaction })
-        return undefined
-    },
+  updateAll: async (where, values, transaction) => {
+    await Model.update(values, { where, transaction })
+    return undefined
+  },
 
-    findById: async (id, { transaction = null, attributes = null, include = null, paranoid = true } = {}) =>
-        await Model.findOne({
-            where: { id },
-            transaction,
-            attributes,
-            include,
-            exclude: ['password'],
-            paranoid,
-            nest: true,
-            raw: true
-        }),
+  findById: async (
+    id,
+    {
+      transaction = null,
+      attributes = null,
+      include = null,
+      paranoid = true
+    } = {}
+  ) =>
+    await Model.findOne({
+      where: { id },
+      transaction,
+      attributes,
+      include,
+      exclude: ['password'],
+      paranoid,
+      nest: true,
+      raw: true
+    }),
 
-    one: async (where, { transaction = null, attributes = null, include = null, paranoid = true } = {}) =>
-        await Model.findOne({
-            where,
-            transaction,
-            attributes,
-            include,
-            paranoid,
-            nest: true,
-            raw: true
-        }),
+  one: async (
+    where,
+    {
+      transaction = null,
+      attributes = null,
+      include = null,
+      paranoid = true
+    } = {}
+  ) =>
+    await Model.findOne({
+      where,
+      transaction,
+      attributes,
+      include,
+      paranoid,
+      nest: true,
+      raw: true
+    }),
 
-    all: async (
-        where,
-        {
-            transaction = null,
-            attributes = null,
-            limit = null,
-            offset = null,
-            include = null,
-            group = null,
-            order = null,
-            paranoid = true
-        } = {}
-    ) => await Model.findAll({
-                where,
-                transaction,
-                attributes,
-                limit,
-                offset,
-                include,
-                group,
-                order,
-                paranoid,
-                raw: true,
-                nest: true
-            }),
+  all: async (
+    where,
+    {
+      transaction = null,
+      attributes = null,
+      limit = null,
+      offset = null,
+      include = null,
+      group = null,
+      order = null,
+      paranoid = true
+    } = {}
+  ) =>
+    await Model.findAll({
+      where,
+      transaction,
+      attributes,
+      limit,
+      offset,
+      include,
+      group,
+      order,
+      paranoid,
+      raw: true,
+      nest: true
+    }),
 
-    oneAttrId: async (where, transaction) => {
-        const data = await Model.findOne({ where, attributes: ['id'], transaction })
+  oneAttrId: async (where, transaction) => {
+    const data = await Model.findOne({ where, attributes: ['id'], transaction })
 
-        if (!data) return null
-        return data.id
-    },
+    if (!data) return null
+    return data.id
+  },
 
-    allAttrId: async (where, transaction) => {
-        const colections = await Model.findAll({
-            where,
-            transaction,
-            attributes: ['id'],
-            nest: true,
-            raw: true
-        });
+  allAttrId: async (where, transaction) => {
+    const colections = await Model.findAll({
+      where,
+      transaction,
+      attributes: ['id'],
+      nest: true,
+      raw: true
+    })
 
-        return colections.map(data => data.id)
-    },
+    return colections.map((data) => data.id)
+  },
 
-    oneAttr: async (attr, where, transaction) => {
-        const data = await Model.findOne({ where, attributes: [attr], transaction })
+  oneAttr: async (attr, where, transaction) => {
+    const data = await Model.findOne({ where, attributes: [attr], transaction })
 
-        if (!data) return null
-        return data[attr]
-    },
+    if (!data) return null
+    return data[attr]
+  },
 
-    allAttr: async (attr, where, transaction) => {
-        const colections = await Model.findAll({ where, attributes: [attr], transaction })
+  allAttr: async (attr, where, transaction) => {
+    const colections = await Model.findAll({
+      where,
+      attributes: [attr],
+      transaction
+    })
 
-        return colections.map(data => data[attr])
-    },
+    return colections.map((data) => data[attr])
+  },
 
-    allAttrUnique: async (attr, where, transaction) => {
-        const groupedValues = await Model.findAll({
-            where,
-            group: [attr],
-            attributes: [attr],
-            transaction,
-            nest: true,
-            raw: true
-        })
-        return groupedValues.map(value => value[attr])
-    },
+  allAttrUnique: async (attr, where, transaction) => {
+    const groupedValues = await Model.findAll({
+      where,
+      group: [attr],
+      attributes: [attr],
+      transaction,
+      nest: true,
+      raw: true
+    })
+    return groupedValues.map((value) => value[attr])
+  },
 
-    totalUniqueAttr: async (attr, where, transaction) => {
-        const groupedValues = await Model.findAll({
-            where,
-            group: [attr],
-            attributes: [attr],
-            transaction,
-            nest: true,
-            raw: true
-        })
-        return groupedValues.length
-    },
+  totalUniqueAttr: async (attr, where, transaction) => {
+    const groupedValues = await Model.findAll({
+      where,
+      group: [attr],
+      attributes: [attr],
+      transaction,
+      nest: true,
+      raw: true
+    })
+    return groupedValues.length
+  },
 
-    destroy: async (where, transaction, force = false) => await Model.destroy({ where, transaction, force }),
+  destroy: async (where, transaction, force = false) =>
+    await Model.destroy({ where, transaction, force }),
 
-    destroyById: async (id, transaction) => await Model.destroy({ where: { id }, transaction }),
+  destroyById: async (id, transaction) =>
+    await Model.destroy({ where: { id }, transaction }),
 
-    isExist: async (where, transaction) => !!(await Model.findOne({ where, transaction, attributes: ['id'] })),
+  isExist: async (where, transaction) =>
+    !!(await Model.findOne({ where, transaction, attributes: ['id'] })),
 
-    total: async (where, transaction) => await Model.count({ where, transaction }),
+  total: async (where, transaction) =>
+    await Model.count({ where, transaction }),
 
-    totalOptions: async (where, { transaction = null, include = null } = {}) =>
-        await Model.count({ where, transaction, include }),
+  totalOptions: async (where, { transaction = null, include = null } = {}) =>
+    await Model.count({ where, transaction, include }),
 
-    toggleAttr: async (attr, where, transaction) => {
-        const data = await Model.findOne({ where, attributes: [attr], transaction })
+  toggleAttr: async (attr, where, transaction) => {
+    const data = await Model.findOne({ where, attributes: [attr], transaction })
 
-        if (!data) return null
-        const value = data[attr]
+    if (!data) return null
+    const value = data[attr]
 
-        await Model.update({ [attr]: !value }, { where, transaction })
-        return !value
-    },
+    await Model.update({ [attr]: !value }, { where, transaction })
+    return !value
+  },
 
-    createOrUpdate: async ({ where, values, transaction }) => {
-      const data = await this.one({ where }, { transaction })
+  createOrUpdate: async ({ where, values, transaction }) => {
+    const data = await this.one({ where }, { transaction })
 
-      if (!data) {
-        return this.create(values, transaction)
-      }
-
-      return this.update(where, values, transaction)
+    if (!data) {
+      return this.create(values, transaction)
     }
-});
+
+    return this.update(where, values, transaction)
+  }
+})

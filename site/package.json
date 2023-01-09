@@ -104,7 +104,9 @@
     "jest:watch": "./node_modules/.bin/jest --watch",
     "jest:coverage": "./node_modules/.bin/jest --coverage",
     "lint": "./node_modules/.bin/eslint ./src",
-    "lint:fix": "./node_modules/.bin/eslint --fix"
+    "lint:fix": "./node_modules/.bin/eslint --fix",
+    "prettier:check": "prettier . --check",
+    "prettier:write": "prettier . --write"
   },
   "eslintConfig": {
     "extends": "react-app"

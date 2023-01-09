@@ -10,4 +10,4 @@ const servers = {
   telegram
 }
 
-module.exports = servers[mode]();
+module.exports = servers[mode]()

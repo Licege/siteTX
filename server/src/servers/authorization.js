@@ -13,30 +13,31 @@ const sessionMiddleware = require('../middleware/session')
 // const credentials = {key: privateKey, cert: certificate}
 /**/
 
-
 const start = () => {
   const app = express()
 
   app.use(cookieParser(process.env.SECRET))
 
-  passport.serializeUser((user, done) => done(null, user));
+  passport.serializeUser((user, done) => done(null, user))
   passport.deserializeUser((obj, done) => {
-    console.log('obj', obj);
-    done(null, obj);
-  });
+    console.log('obj', obj)
+    done(null, obj)
+  })
 
   app.use(require('morgan')('dev'))
   app.use('/uploads', express.static('uploads'))
   app.use(bodyParser.urlencoded({ extended: true }))
-  app.use(bodyParser.json({
-    limit: '10mb',
-    type: [
-      'json',
-      'application/csp-report',
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel',
-      'application/x-www-form-urlencoded'
-    ]
-  }))
+  app.use(
+    bodyParser.json({
+      limit: '10mb',
+      type: [
+        'json',
+        'application/csp-report',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel',
+        'application/x-www-form-urlencoded'
+      ]
+    })
+  )
 
   passport.use(
     'user-strategy',
@@ -47,10 +48,14 @@ const start = () => {
         passReqToCallback: true
       },
       authLocal
-    ),
+    )
   )
 
-  const session = sessionMiddleware({ resave: false, saveUninitialized: true, rolling: true })
+  const session = sessionMiddleware({
+    resave: false,
+    saveUninitialized: true,
+    rolling: true
+  })
 
   app.use(session)
   app.use(passport.initialize())
@@ -68,7 +73,7 @@ const start = () => {
   app.use((req, res) => {
     res.status(404).json({ msg: 'Not found' })
   })
-  process.on('unhandledRejection', console.error);
+  process.on('unhandledRejection', console.error)
 
   const server = app.listen(process.env.AUTHORIZATION_PORT || 9092, () => {
     console.log(`Authorization app listening at ${server.address().port}`)
@@ -76,7 +81,5 @@ const start = () => {
 
   return app
 }
-
-
 
 module.exports = start

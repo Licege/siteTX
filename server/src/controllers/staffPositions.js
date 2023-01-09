@@ -1,7 +1,7 @@
 const StaffPositionRepo = require('../repositories/staffPositions')
 
 exports.findAll = async (req, res) => {
-  const positions = await StaffPositionRepo.all({});
+  const positions = await StaffPositionRepo.all({})
 
   res.status(200).json(positions)
 }
@@ -35,7 +35,7 @@ exports.update = async (req, res) => {
 exports.destroy = async (req, res) => {
   const { id } = req.query
 
-  await StaffPositionRepo.destroyById(id);
+  await StaffPositionRepo.destroyById(id)
 
   res.status(200).json({ id })
 }

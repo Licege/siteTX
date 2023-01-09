@@ -1,4 +1,4 @@
-const { prepareImageUrl } = require('../utils');
+const { prepareImageUrl } = require('../utils')
 
 module.exports.makePromo = (promoData) => {
   if (!promoData) return null

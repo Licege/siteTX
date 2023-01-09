@@ -1,4 +1,4 @@
-const { prepareImageUrl } = require('../utils');
+const { prepareImageUrl } = require('../utils')
 
 module.exports.makeNews = (newsData) => {
   if (!newsData) return null

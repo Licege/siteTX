@@ -10,7 +10,7 @@ module.exports = {
     return queryInterface
   },
 
-  down: async queryInterface => {
+  down: async (queryInterface) => {
     await queryInterface.addColumn('Vacancies', 'requirements', {
       type: Sequelize.TEXT,
       defaultValue: ''
@@ -20,4 +20,4 @@ module.exports = {
 
     return queryInterface
   }
-};
+}

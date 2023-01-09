@@ -1,16 +1,19 @@
-const webp = require('webp-converter');
+const webp = require('webp-converter')
 
-webp.grant_permission();
+webp.grant_permission()
 
-const ALLOW_IMAGE_EXT = ['jpeg', 'jpg', 'png'];
-const DEFAULT_QUALITY = 75;
+const ALLOW_IMAGE_EXT = ['jpeg', 'jpg', 'png']
+const DEFAULT_QUALITY = 75
 
-const convertFileToWebp = async (pathToFile, { quality = DEFAULT_QUALITY } = {}) => {
-  const fileWithExt = pathToFile.split('/').pop();
-  const [fileName, fileExt] = fileWithExt.split('.');
+const convertFileToWebp = async (
+  pathToFile,
+  { quality = DEFAULT_QUALITY } = {}
+) => {
+  const fileWithExt = pathToFile.split('/').pop()
+  const [fileName, fileExt] = fileWithExt.split('.')
 
-  if (!ALLOW_IMAGE_EXT.includes(fileExt.toLowerCase())) return pathToFile;
-  return webp.cwebp(pathToFile, `./${fileName}.webp`, `-q ${quality}`);
+  if (!ALLOW_IMAGE_EXT.includes(fileExt.toLowerCase())) return pathToFile
+  return webp.cwebp(pathToFile, `./${fileName}.webp`, `-q ${quality}`)
 }
 
 // Example:

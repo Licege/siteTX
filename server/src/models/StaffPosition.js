@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     { timestamps: false }
   )
 
-  StaffPosition.associate = models => {
+  StaffPosition.associate = (models) => {
     StaffPosition.hasMany(models.Employee, { foreignKey: 'positionId' })
   }
 
