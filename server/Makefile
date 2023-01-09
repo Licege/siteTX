@@ -2,13 +2,13 @@ DEFAULT=./.env
 VARIABLES=`cat $(DEFAULT) | xargs`
 
 start-service:
-	env $(VARIABLES) PORT=9090 DEFAULT_EXECUTION_MODE=service npm run start
+	env $(VARIABLES) PORT=9090 DEFAULT_EXECUTION_MODE=service npm run watch
 
 start-auth:
-	env $(VARIABLES) PORT=9092 DEFAULT_EXECUTION_MODE=authorization npm run start
+	env $(VARIABLES) PORT=9092 DEFAULT_EXECUTION_MODE=authorization npm run watch
 
 start-tg-bot:
-	env $(VARIABLES) PORT=9093 DEFAULT_EXECUTION_MODE=telegram npm run start
+	env $(VARIABLES) PORT=9093 DEFAULT_EXECUTION_MODE=telegram npm run watch
 
 run-task:
 	env $(VARIABLES) node ${path}

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useDelivery, useDeliverySettings } from '../../redux/hooks/bucket.hooks'
+import { useDelivery, useDeliverySettings } from '@/redux/hooks/bucket.hooks'
 
 
 export const useBucketPageLogic = () => {

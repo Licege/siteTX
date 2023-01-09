@@ -5,6 +5,11 @@ const errorHandler = require('../utils/errorHandler')
 
 module.exports.getMe = async function(req, res) {
     try {
+        if (!req.user) {
+            res.sendStatus(401)
+            return
+        }
+
         const me = await UserRepo.findById(req.user.id)
         delete me.password;
         res.status(200).json(me)

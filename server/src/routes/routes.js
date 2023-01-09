@@ -137,7 +137,7 @@ module.exports = io => {
 
   /* Public */
 
-  // router.post('/api/public/delivery', delivery.create)
+  router.post('/api/public/delivery', delivery.create)
 
   router
     .get('/api/public/delivery-settings/common', commonDeliverySettings.getAll)

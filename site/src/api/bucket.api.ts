@@ -1,5 +1,5 @@
 import request from '../lib/request';
-import { IDeliveryPost } from '../types/types';
+import { IDeliveryPost } from '@/types/types';
 import { baseUrl } from './config';
 
 export const bucketAPI = {

@@ -4,11 +4,11 @@ import {
   useDelivery,
   useDeliverySettings,
   useGlobalDeliverySettings,
-  // usePostOrder
-} from '../../../redux/hooks/bucket.hooks'
-import { deliverySettingsType, IDeliveryPost, profileType } from '../../../types/types'
-import { getFullName } from '../../../plugins/helpers'
-import { useMe } from '../../../redux/hooks/profile.hooks'
+  usePostOrder
+} from '@/redux/hooks/bucket.hooks'
+import { useMe } from '@/redux/hooks/profile.hooks'
+import { deliverySettingsType, IDeliveryPost, profileType } from '@/types/types'
+import { getFullName } from '@/plugins/helpers'
 
 
 interface IDataFromProfile {
@@ -44,7 +44,7 @@ const getInitialValues = (me: profileType): IInitialValues => {
     paymentType: 'cash',
     deliveryType: 'home',
     address: {
-      city: 1,
+      city: 8, // TODO исправить после ввода настройки города по умолчанию
     },
     timeDelivery: defaultTimeDelivery,
   }
@@ -60,7 +60,7 @@ export const useBucketFormOrderLogic = () => {
   const delivery = useDelivery()
   const settings = useDeliverySettings()
   const globalSettings = useGlobalDeliverySettings()
-  // const postOrder = usePostOrder()
+  const postOrder = usePostOrder()
 
   const cityOptions = settings.reduce((acc: any, s) => s.isDelivery ? [...acc, { value: s.id, label: s.city }] : acc, [])
 
@@ -116,9 +116,9 @@ interface ICalcDeliveryPrice {
   deliveryTotalPrice: number
 }
 
-function calcDeliveryPrice ({ deliveryType, settings, address, deliveryTotalPrice }: ICalcDeliveryPrice) {
+function calcDeliveryPrice({ deliveryType, settings, address, deliveryTotalPrice }: ICalcDeliveryPrice) {
   if (deliveryType === 'restaurant') return 0
-  const currentCitySettings = settings.find(s => s.id === address.city)
+  const currentCitySettings = settings.find(s => s.id === address.city) ?? settings[0];
 
   if (!currentCitySettings) throw new Error(`Not found delivery settings for city ${address.city}`)
 

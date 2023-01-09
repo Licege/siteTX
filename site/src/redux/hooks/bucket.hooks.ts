@@ -1,12 +1,12 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { dishType, IDeliveryPost } from '@/types/types'
 import {
   getAllDeliverySettings,
   getAllOrderedDishes,
   getDeliveryOrder,
   getGlobalDeliverySettings
 } from '../getters/bucket.getters'
-import { dishType, IDeliveryPost } from '../../types/types'
 import * as actions from '../reducers/bucket.reducer'
 import { useAppDispatch } from '../redux-store'
 import { postOrder, requestDeliverySettings, requestGlobalDeliverySettings } from '../thunks/bucket.thunk'

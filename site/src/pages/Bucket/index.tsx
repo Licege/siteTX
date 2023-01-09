@@ -1,12 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet';
+import { PageContainer } from '@/components/core'
 import FormOrder from './formOrder'
 import ShowOrder from './showOrder'
 import FinishOrder from './FinishOrder'
 import BucketBreadcrumbs from './Breadcrumbs'
 import { useBucketPageLogic } from './logic'
-import { PageContainer } from '../../components/core'
 
 
 const Bucket = () => {
