@@ -3,7 +3,8 @@
     "target": "es5",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@ui-kit": ["src/components/core"]
     },
     "lib": [
       "dom",

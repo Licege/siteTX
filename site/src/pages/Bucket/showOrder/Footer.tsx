@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Button } from '@ui-kit'
 import { useBucketOrderTableFooterLogic } from './logic'
-import { Button } from '../../../components/core'
 
 
 interface IProps {

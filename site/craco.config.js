@@ -8,6 +8,7 @@ module.exports = {
   webpack: {
     alias: {
       '@': resolvePath('src'),
+      '@ui-kit': resolvePath('src/components/core'),
     },
     configure: webpackConfig => ({
       ...webpackConfig,

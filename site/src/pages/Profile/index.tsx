@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Tab, Tabs } from 'react-bootstrap';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components'
-import { requestMe } from '../../redux/thunks/profile.thunks';
-import { getMeSelector } from '../../redux/selectors/profile';
+import { useOnlyAuth } from '@/hooks/useOnlyAuth';
+import { requestMe } from '@/redux/thunks/profile.thunks';
+import { getMeSelector } from '@/redux/selectors/profile';
 import ProfileInfo from './ProfileInfo';
 import OrdersHistory from './OrdersHistory';
-import { useOnlyAuth } from '../../hooks/useOnlyAuth';
 import './style.scss'
 
 const Profile = () => {
@@ -35,7 +35,7 @@ const Profile = () => {
           <OrdersHistory />
         </Tab>
         <Tab eventKey='order-bonus' title='Бонусы'>
-          <div>2</div>
+          <div>В разработке...</div>
         </Tab>
       </Tabs>
     </Container>
@@ -43,7 +43,7 @@ const Profile = () => {
 }
 
 const Container = styled.main`
-    height: 100%;
+    height: calc(100% - 60px);
     width: calc(100% - 48px);
     background-color: ${props => props.theme.colors.white};
     margin: 24px;
