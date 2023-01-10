@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useCategories } from '../../../redux/hooks/menu.hooks'
+import { useCategories } from '@/redux/hooks/menu.hooks'
 
 export const useMenuSidebarLogic = () => {
   const [height, setHeight] = useState(`${document.body.scrollHeight - 300}px`)

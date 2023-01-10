@@ -1,10 +1,10 @@
 import { useCallback, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import { dishType } from '@/types/types'
 import { useAppDispatch } from '../redux-store'
 import { requestCategories, requestDishById, requestDishes, requestDishesByCategoryId } from '../thunks/menu.thunk'
 import { getAllCategories, getAllDishes, getCurrentDish } from '../getters/menu.getters'
-import { dishType } from '../../types/types'
 import * as bucketActions from '../reducers/bucket.reducer'
 
 type IdParam = {
