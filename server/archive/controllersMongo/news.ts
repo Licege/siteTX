@@ -1,7 +1,10 @@
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'News'.
 const News = require('../modelsMongo/News')
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'handleErro... Remove this comment to see the full error message
 const handleError = require('../src/utils/errorHandler')
 
-module.exports.getAll = async function (req, res) {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports.getAll = async function (req: any, res: any) {
   try {
     const news = await News.find({})
     const total_count = await News.countDocuments()
@@ -14,7 +17,8 @@ module.exports.getAll = async function (req, res) {
   }
 }
 
-module.exports.getById = async function (req, res) {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports.getById = async function (req: any, res: any) {
   try {
     const news = await News.findOne({ _id: req.params.id })
     res.status(200).json(news)
@@ -23,11 +27,15 @@ module.exports.getById = async function (req, res) {
   }
 }
 
-module.exports.create = async function (req, res) {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports.create = async function (req: any, res: any) {
+  // @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
   const News = require('../modelsMongo/News')
+  // @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
   const handleError = require('../src/utils/errorHandler')
 
-  module.exports.getAll = async function (req, res) {
+  // @ts-expect-error TS(2580): Cannot find name 'module'. Do you need to install ... Remove this comment to see the full error message
+  module.exports.getAll = async function (req: any, res: any) {
     try {
       const news = await News.find({})
       const total_count = await News.countDocuments()
@@ -40,7 +48,8 @@ module.exports.create = async function (req, res) {
     }
   }
 
-  module.exports.getById = async function (req, res) {
+  // @ts-expect-error TS(2580): Cannot find name 'module'. Do you need to install ... Remove this comment to see the full error message
+  module.exports.getById = async function (req: any, res: any) {
     try {
       const news = await News.findOne({ _id: req.params.id })
       res.status(200).json(news)
@@ -49,7 +58,8 @@ module.exports.create = async function (req, res) {
     }
   }
 
-  module.exports.create = async function (req, res) {
+  // @ts-expect-error TS(2580): Cannot find name 'module'. Do you need to install ... Remove this comment to see the full error message
+  module.exports.create = async function (req: any, res: any) {
     const news = new News({
       title: req.body.title,
       description: req.body.description,
@@ -66,7 +76,8 @@ module.exports.create = async function (req, res) {
     }
   }
 
-  module.exports.update = async function (req, res) {
+  // @ts-expect-error TS(2580): Cannot find name 'module'. Do you need to install ... Remove this comment to see the full error message
+  module.exports.update = async function (req: any, res: any) {
     const updated = {
       title: req.body.title,
       description: req.body.description,
@@ -74,6 +85,7 @@ module.exports.create = async function (req, res) {
     }
 
     if (req.file) {
+      // @ts-expect-error TS(2339): Property 'imageSrc' does not exist on type '{ titl... Remove this comment to see the full error message
       updated.imageSrc = req.file.path
     }
 
@@ -90,7 +102,8 @@ module.exports.create = async function (req, res) {
     }
   }
 
-  module.exports.delete = async function (req, res) {
+  // @ts-expect-error TS(2580): Cannot find name 'module'. Do you need to install ... Remove this comment to see the full error message
+  module.exports.delete = async function (req: any, res: any) {
     try {
       await News.remove({ _id: req.params.id })
       res.status(200).json({
@@ -116,7 +129,8 @@ module.exports.create = async function (req, res) {
   }
 }
 
-module.exports.update = async function (req, res) {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports.update = async function (req: any, res: any) {
   const updated = {
     title: req.body.title,
     description: req.body.description,
@@ -124,6 +138,7 @@ module.exports.update = async function (req, res) {
   }
 
   if (req.file) {
+    // @ts-expect-error TS(2339): Property 'imageSrc' does not exist on type '{ titl... Remove this comment to see the full error message
     updated.imageSrc = req.file.path
   }
 
@@ -140,7 +155,8 @@ module.exports.update = async function (req, res) {
   }
 }
 
-module.exports.delete = async function (req, res) {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports.delete = async function (req: any, res: any) {
   try {
     await News.remove({ _id: req.params.id })
     res.status(200).json({

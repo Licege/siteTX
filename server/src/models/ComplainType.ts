@@ -1,4 +1,5 @@
-module.exports = (sequelize, DateTypes) => {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports = (sequelize: any, DateTypes: any) => {
   const ComplainType = sequelize.define(
     'ComplainType',
     {
@@ -14,7 +15,7 @@ module.exports = (sequelize, DateTypes) => {
     { timestamps: false }
   )
 
-  ComplainType.associate = (models) => {
+  ComplainType.associate = (models: any) => {
     ComplainType.hasMany(models.Complain, {
       onDelete: 'CASCADE',
       foreignKey: 'typeId'

@@ -1,7 +1,10 @@
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'Category'.
 const Category = require('../modelsMongo/Category')
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'errorHandl... Remove this comment to see the full error message
 const errorHandler = require('../src/utils/errorHandler')
 
-module.exports.getAll = async function (req, res) {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports.getAll = async function (req: any, res: any) {
   try {
     const categories = await Category.find({})
     res.status(200).json(categories)
@@ -10,7 +13,8 @@ module.exports.getAll = async function (req, res) {
   }
 }
 
-module.exports.get = async function (req, res) {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports.get = async function (req: any, res: any) {
   try {
     const category = await Category.findOne({ _id: req.params.id })
     res.status(200).json(category)
@@ -19,7 +23,8 @@ module.exports.get = async function (req, res) {
   }
 }
 
-module.exports.remove = async function (req, res) {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports.remove = async function (req: any, res: any) {
   try {
     await Category.remove({ _id: req.params.id })
     res.status(200).json({
@@ -30,7 +35,8 @@ module.exports.remove = async function (req, res) {
   }
 }
 
-module.exports.create = async function (req, res) {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports.create = async function (req: any, res: any) {
   try {
     const category = await new Category({
       title: req.body.title,
@@ -42,7 +48,8 @@ module.exports.create = async function (req, res) {
   }
 }
 
-module.exports.update = async function (req, res) {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports.update = async function (req: any, res: any) {
   try {
     const category = await Category.findOneAndUpdate(
       { _id: req.params.id },

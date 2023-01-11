@@ -1,10 +1,16 @@
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'sequelize'... Remove this comment to see the full error message
 const { sequelize } = require('../../models').init()
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'DishRepo'.
 const DishRepo = require('../../repositories/dish')
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'DeliveryRe... Remove this comment to see the full error message
 const DeliveryRepo = require('../../repositories/delivery')
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'GlobalSett... Remove this comment to see the full error message
 const GlobalSettingsRepo = require('../../repositories/deliveryGlobalSettings')
+// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
 const SettingsRepo = require('../../repositories/deliveryCommonSettings')
 
-module.exports.createDeliveryController = async function (data) {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports.createDeliveryController = async function (data: any) {
   const transaction = await sequelize.transaction()
 
   try {
@@ -32,13 +38,15 @@ module.exports.createDeliveryController = async function (data) {
       }
     }
 
-    const ids = data.list.map(({ dishId }) => dishId)
+    const ids = data.list.map(({
+      dishId
+    }: any) => dishId)
     const where = { id: ids }
     const dishes = await DishRepo.all(where)
     let countItem = 0
     let totalPrice = 0
     for (let i = 0; i < data.list.length; i++) {
-      let dish = dishes.find((dish) => dish.id === data.list[i].dishId)
+      let dish = dishes.find((dish: any) => dish.id === data.list[i].dishId)
       if (data.list[i].cost !== dish.cost) {
         return { status: 400, message: 'Невалидные данные!' }
       }

@@ -1,7 +1,10 @@
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'BanquetHal... Remove this comment to see the full error message
 const BanquetHall = require('../modelsMongo/BanquetHall')
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'errorHandl... Remove this comment to see the full error message
 const errorHandler = require('../src/utils/errorHandler')
 
-module.exports.getAll = async function (req, res) {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports.getAll = async function (req: any, res: any) {
   try {
     const halls = await BanquetHall.find()
     res.status(200).json(halls)
@@ -10,7 +13,8 @@ module.exports.getAll = async function (req, res) {
   }
 }
 
-module.exports.get = async function (req, res) {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports.get = async function (req: any, res: any) {
   try {
     const hall = await BanquetHall.findOne({ _id: req.params.id })
     res.status(200).json(hall)
@@ -19,7 +23,8 @@ module.exports.get = async function (req, res) {
   }
 }
 
-module.exports.create = async function (req, res) {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports.create = async function (req: any, res: any) {
   try {
     const hall = await new BanquetHall({
       title: req.body.title,
@@ -32,14 +37,16 @@ module.exports.create = async function (req, res) {
   }
 }
 
-module.exports.getAll = async function (req, res) {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports.getAll = async function (req: any, res: any) {
   try {
   } catch (e) {
     errorHandler(res, e)
   }
 }
 
-module.exports.getAll = async function (req, res) {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports.getAll = async function (req: any, res: any) {
   try {
   } catch (e) {
     errorHandler(res, e)

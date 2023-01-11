@@ -1,10 +1,15 @@
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'path'.
 const path = require('path')
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'fileLib'.
 const fileLib = require('../lib/file')
 
-exports.downloadFiles = async (req, res) => {}
+// @ts-expect-error TS(2304): Cannot find name 'exports'.
+exports.downloadFiles = async (req: any, res: any) => {}
 
-exports.testUploadFiles = async (req, res) => {
+// @ts-expect-error TS(2304): Cannot find name 'exports'.
+exports.testUploadFiles = async (req: any, res: any) => {
   try {
+    // @ts-expect-error TS(2304): Cannot find name '__dirname'.
     const destination = path.resolve(__dirname, '../../', 'uploads')
     const src = await fileLib.uploadFile(req.file, destination, {
       format: 'webp'

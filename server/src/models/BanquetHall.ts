@@ -1,4 +1,5 @@
-module.exports = (sequelize, DataTypes) => {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports = (sequelize: any, DataTypes: any) => {
   const BanquetHall = sequelize.define(
     'BanquetHall',
     {
@@ -14,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     { timestamps: false }
   )
 
-  BanquetHall.associate = (models) => {
+  BanquetHall.associate = (models: any) => {
     BanquetHall.hasOne(models.Restaurant, {
       foreignKey: 'restaurantId',
       targetKey: 'id'

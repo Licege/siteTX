@@ -1,9 +1,13 @@
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'fs'.
 const fs = require('fs')
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'path'.
 const path = require('path')
+// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
 const { PassThrough } = require('stream')
+// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
 const { fileTransformer } = require('./transformer')
 
-function getFileName(file, options) {
+function getFileName(file: any, options: any) {
   let parsedFileName = file.originalname.split('.')
   let ext = parsedFileName.pop()
 
@@ -16,8 +20,10 @@ function getFileName(file, options) {
   return `${Date.now()}-${parsedFileName.join('.')}${ext}`
 }
 
-exports.uploadFile = (file, destination, options = {}) =>
-  new Promise((resolve, reject) => {
+// @ts-expect-error TS(2304): Cannot find name 'exports'.
+exports.uploadFile = (file: any, destination: any, options = {}) =>
+  // @ts-expect-error TS(2585): 'Promise' only refers to a type, but is being used... Remove this comment to see the full error message
+  new Promise((resolve: any, reject: any) => {
     const fileName = getFileName(file, options)
     const targetPath = `${destination}/${fileName}`
     const writableStream = fs.createWriteStream(targetPath)
@@ -34,8 +40,8 @@ exports.uploadFile = (file, destination, options = {}) =>
 
 function uploadWithMultiSize() {}
 
-function eachUpload(file, fileName, destination, stream) {
-  return (size) => {
+function eachUpload(file: any, fileName: any, destination: any, stream: any) {
+  return (size: any) => {
     const fileNameWithSuffix = `${destination}/${fileName}-${size.suffix}`
     const streamClone = new PassThrough()
     const transformStream = fileTransformer(file.buffer, size)
@@ -43,10 +49,11 @@ function eachUpload(file, fileName, destination, stream) {
 
     stream.pipe(streamClone)
 
-    return new Promise((resolve, reject) => {
+    // @ts-expect-error TS(2585): 'Promise' only refers to a type, but is being used... Remove this comment to see the full error message
+    return new Promise((resolve: any, reject: any) => {
       streamClone.pipe(transformStream).pipe(writableStream)
 
-      transformStream.on('error', (reason) => {
+      transformStream.on('error', (reason: any) => {
         reject(reason)
       })
 
@@ -57,6 +64,6 @@ function eachUpload(file, fileName, destination, stream) {
           suffix: size.suffix
         })
       })
-    })
-  }
+    });
+  };
 }

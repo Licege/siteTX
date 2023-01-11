@@ -1,9 +1,14 @@
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'sequelize'... Remove this comment to see the full error message
 const { sequelize } = require('../models').init()
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'UserRepo'.
 const UserRepo = require('../repositories/user')
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'DeliveryRe... Remove this comment to see the full error message
 const DeliveryRepo = require('../repositories/delivery')
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'errorHandl... Remove this comment to see the full error message
 const errorHandler = require('../utils/errorHandler')
 
-module.exports.getMe = async function (req, res) {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports.getMe = async function (req: any, res: any) {
   try {
     if (!req.user) {
       res.sendStatus(401)
@@ -18,7 +23,8 @@ module.exports.getMe = async function (req, res) {
   }
 }
 
-module.exports.getMyOrders = async function (req, res) {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports.getMyOrders = async function (req: any, res: any) {
   try {
     const attributes = [
       'id',
@@ -48,7 +54,8 @@ module.exports.getMyOrders = async function (req, res) {
   }
 }
 
-module.exports.updateMe = async function (req, res) {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports.updateMe = async function (req: any, res: any) {
   const transaction = await sequelize.transaction()
 
   try {

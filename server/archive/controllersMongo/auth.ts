@@ -1,13 +1,21 @@
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'bcrypt'.
 const bcrypt = require('bcryptjs')
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'jwt'.
 const jwt = require('jsonwebtoken')
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'validation... Remove this comment to see the full error message
 const { validationResult } = require('express-validator')
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'User'.
 const User = require('../modelsMongo/User')
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'Token'.
 const Token = require('../modelsMongo/Token')
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'keys'.
 const keys = require('../../config/keys')
+// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
 const authHelper = require('../src/utils/authHelper')
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'errorHandl... Remove this comment to see the full error message
 const errorHandler = require('../src/utils/errorHandler')
 
-const updateTokens = async (userId) => {
+const updateTokens = async (userId: any) => {
   const accessToken = await authHelper.generateAccessToken(userId)
   const refreshToken = authHelper.generateRefreshToken()
   await authHelper.replaceRefreshToken(refreshToken.id, userId)
@@ -18,7 +26,8 @@ const updateTokens = async (userId) => {
   }
 }
 
-module.exports.login = async function (req, res) {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports.login = async function (req: any, res: any) {
   try {
     const errors = validationResult(req)
 
@@ -73,7 +82,8 @@ module.exports.login = async function (req, res) {
   }
 }
 
-module.exports.refreshTokens = async function (req, res) {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports.refreshTokens = async function (req: any, res: any) {
   const { refreshToken } = req.body
   let payload
   try {
@@ -95,7 +105,8 @@ module.exports.refreshTokens = async function (req, res) {
   }
 }
 
-module.exports.register = async function (req, res) {
+// @ts-expect-error TS(2580): Cannot find name 'module'. Do you need to install ... Remove this comment to see the full error message
+module.exports.register = async function (req: any, res: any) {
   const email = await User.findOne({ email: req.body.email })
   const phone = await User.findOne({ phone: req.body.phone })
 

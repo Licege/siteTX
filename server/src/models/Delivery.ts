@@ -1,4 +1,5 @@
-module.exports = (sequelize, DataTypes) => {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports = (sequelize: any, DataTypes: any) => {
   const Delivery = sequelize.define('Delivery', {
     name: {
       type: DataTypes.STRING,
@@ -69,7 +70,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   })
 
-  Delivery.associate = (models) => {
+  Delivery.associate = (models: any) => {
     Delivery.belongsTo(models.User, { foreignKey: 'userId', targetKey: 'id' })
   }
 

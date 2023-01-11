@@ -1,5 +1,10 @@
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'SberError'... Remove this comment to see the full error message
 class SberError extends Error {
-  constructor({ errorMessage, sberErrorCode }) {
+  code: any;
+  constructor({
+    errorMessage,
+    sberErrorCode
+  }: any) {
     super(errorMessage)
 
     this.name = 'SberError'
@@ -8,4 +13,5 @@ class SberError extends Error {
   }
 }
 
+// @ts-expect-error TS(2304): Cannot find name 'exports'.
 exports.SberError = SberError

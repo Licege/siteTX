@@ -1,10 +1,14 @@
+// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
 const AuthenticationError = require('./auth-error')
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'comparePas... Remove this comment to see the full error message
 const { comparePassword } = require('./password')
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'UserRepo'.
 const UserRepo = require('../../repositories/user')
 
 let loginFailCount = 0
 
-const authLocal = async (req, email, password, done) => {
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'authLocal'... Remove this comment to see the full error message
+const authLocal = async (req: any, email: any, password: any, done: any) => {
   const antibot = req.body && req.body.name
   try {
     if (antibot) {
@@ -19,6 +23,7 @@ const authLocal = async (req, email, password, done) => {
       return done(new AuthenticationError(401, 'This email is not registered'))
     }
 
+    // @ts-expect-error TS(2585): 'Promise' only refers to a type, but is being used... Remove this comment to see the full error message
     const [passwordMatch] = await Promise.all([
       comparePassword(password, user.password)
     ])
@@ -48,4 +53,5 @@ const authLocal = async (req, email, password, done) => {
   }
 }
 
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
 module.exports = authLocal

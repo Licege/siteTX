@@ -1,5 +1,8 @@
+// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
 const axios = require('axios')
+// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
 const qs = require('fast-querystring')
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'SberError'... Remove this comment to see the full error message
 const { SberError } = require('./SberError.js')
 
 // https://securepayments.sberbank.ru/wiki/doku.php/integration:api:start#%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81_rest
@@ -19,7 +22,7 @@ const ACTIONS = {
   unBindCard: 'unBindCard.do' // деактивация связки
 }
 
-function parse(response) {
+function parse(response: any) {
   const { status } = response
 
   if (status === 200) {
@@ -42,6 +45,10 @@ function parse(response) {
  */
 
 class SberAcquiring {
+  creadentials: any;
+  entry: any;
+  failUrl: any;
+  successUrl: any;
   /**
    * @param {object} params
    * @param {Credential} params.credentials
@@ -49,7 +56,12 @@ class SberAcquiring {
    * @param {string} params.failUrl URL-адрес, на который будет перенаправлен плательщик в случае неуспешного платежа;
    * @param {boolean} params.test - использовать ли тестовое окружение
    */
-  constructor({ credentials, successUrl, failUrl, test = false }) {
+  constructor({
+    credentials,
+    successUrl,
+    failUrl,
+    test = false
+  }: any) {
     this.successUrl = successUrl
     this.failUrl = failUrl
     this.creadentials = credentials
@@ -68,7 +80,7 @@ class SberAcquiring {
    *   formUrl
    * }}
    */
-  async register(orderNumber, amount, description = '', otherParams = {}) {
+  async register(orderNumber: any, amount: any, description = '', otherParams = {}) {
     const data = this.#buildData({
       ...otherParams,
       orderNumber,
@@ -90,11 +102,12 @@ class SberAcquiring {
    * @returns {Promise<number|null>} status of the order or null unless it exists
    * может вернуть 0 - заказ создан, но не оплачен, будьте осторожны при сравнении null и 0
    */
-  async status(orderId, orderNumber = null) {
+  async status(orderId: any, orderNumber = null) {
     try {
       const response = await this.getOrderInfo(orderId, orderNumber)
       return response.orderStatus
     } catch (error) {
+      // @ts-expect-error TS(2571): Object is of type 'unknown'.
       if (parseInt(error.sberErrorCode) === SBER_ERRORS.NO_SUCH_ORDER_ID) {
         return null
       }
@@ -110,7 +123,7 @@ class SberAcquiring {
    * @param {string|null} orderNumber
    * @returns {Promise<object>} response
    */
-  async getOrderInfo(orderId, orderNumber = null) {
+  async getOrderInfo(orderId: any, orderNumber = null) {
     const data = this.#buildData(orderId ? { orderId } : { orderNumber })
     const response = await this.#POST(ACTIONS.getOrderStatusExtended, data)
     return parse(response)
@@ -123,13 +136,14 @@ class SberAcquiring {
    * @param {object|null} otherParams Дополнительные параметры запроса.
    * @returns {Promise<object>} response
    */
-  async refund(orderId, amount, otherParams = null) {
+  async refund(orderId: any, amount: any, otherParams = null) {
     const params = {
       orderId,
       amount: Math.round(amount * 100)
     }
 
     if (otherParams) {
+      // @ts-expect-error TS(2339): Property 'jsonParams' does not exist on type '{ or... Remove this comment to see the full error message
       params.jsonParams = JSON.stringify(otherParams)
     }
 
@@ -145,7 +159,7 @@ class SberAcquiring {
    * @param {string|undefined} bindingId Идентификатор связки.
    * @returns {Promise<object>} response
    */
-  async getBindings(clientId, bindingType = 'C', bindingId) {
+  async getBindings(clientId: any, bindingType = 'C', bindingId: any) {
     const params = {
       clientId,
       bindingType,
@@ -162,20 +176,22 @@ class SberAcquiring {
    * @param {string} bindingId Идентификатор связки.
    * @returns {Promise<object>} response
    */
-  async unBindCard(bindingId) {
+  async unBindCard(bindingId: any) {
     const data = this.#buildData({ bindingId })
     const response = await this.#POST(ACTIONS.unBindCard, data)
     return parse(response)
   }
 
   // TODO перенести отсюда в lib
-  async #POST(action, data) {
+  // @ts-expect-error TS(18028): Private identifiers are only available when target... Remove this comment to see the full error message
+  async #POST(action: any, data: any) {
     return axios.post(this.entry + action, qs.stringify(data))
   }
 
   /**
    * Add technical parameters to data
    */
+  // @ts-expect-error TS(18028): Private identifiers are only available when target... Remove this comment to see the full error message
   #buildData(params = {}) {
     return { ...params, ...this.creadentials }
   }
@@ -187,4 +203,5 @@ class SberAcquiring {
 //   await ac.register();
 // })()
 
+// @ts-expect-error TS(2304): Cannot find name 'exports'.
 exports.SberAcquiring = SberAcquiring

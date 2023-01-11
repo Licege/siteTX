@@ -1,8 +1,11 @@
+// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
 const Profile = require('../modelsMongo/User')
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'Delivery'.
 const Delivery = require('../modelsMongo/delivery/Delivery')
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'errorHandl... Remove this comment to see the full error message
 const errorHandler = require('../src/utils/errorHandler')
 
-const parsedProfile = (data) => {
+const parsedProfile = (data: any) => {
   const { password, _id, __v, reg_date, imageSrc, ...rest } = data._doc
 
   const fields = Object.keys(rest).reduce(
@@ -18,18 +21,19 @@ const parsedProfile = (data) => {
   }
 }
 
-const parsedDeliveryOrders = (data) => {
-  return data.map((order) => {
+const parsedDeliveryOrders = (data: any) => {
+  return data.map((order: any) => {
     const { __v, _id, ...rest } = order._doc
 
     return {
       id: _id,
       ...rest
     }
-  })
+  });
 }
 
-module.exports.getMe = async function (req, res) {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports.getMe = async function (req: any, res: any) {
   try {
     const me = await Profile.findOne({ _id: req.user })
     res.status(200).json(parsedProfile(me))
@@ -38,7 +42,8 @@ module.exports.getMe = async function (req, res) {
   }
 }
 
-module.exports.getMyOrders = async function (req, res) {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports.getMyOrders = async function (req: any, res: any) {
   try {
     const deliveryOrders = await Delivery.find({ user_id: req.user })
     res.status(200).json(parsedDeliveryOrders(deliveryOrders))
@@ -47,7 +52,8 @@ module.exports.getMyOrders = async function (req, res) {
   }
 }
 
-module.exports.updateMe = async function (req, res) {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports.updateMe = async function (req: any, res: any) {
   try {
     const updatedProfile = await Profile.findOneAndUpdate(
       { _id: req.user },

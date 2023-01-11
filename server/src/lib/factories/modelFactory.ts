@@ -1,29 +1,30 @@
-module.exports = (Model) => ({
-  bulkCreate: async (values, transaction) => {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports = (Model: any) => ({
+  bulkCreate: async (values: any, transaction: any) => {
     const collections = await Model.bulkCreate(values, {
       transaction,
       returning: true
     })
-    return collections.map((collection) => collection.get({ plain: true }))
+    return collections.map((collection: any) => collection.get({ plain: true }));
   },
 
-  create: async (values, transaction) => {
+  create: async (values: any, transaction: any) => {
     const newObj = await Model.create(values, { transaction, returning: true })
     return newObj.get({ plain: true })
   },
 
-  update: async (where, values, transaction) => {
+  update: async (where: any, values: any, transaction: any) => {
     await Model.update(values, { where, transaction, limit: 1 })
     return undefined
   },
 
-  updateAll: async (where, values, transaction) => {
+  updateAll: async (where: any, values: any, transaction: any) => {
     await Model.update(values, { where, transaction })
     return undefined
   },
 
   findById: async (
-    id,
+    id: any,
     {
       transaction = null,
       attributes = null,
@@ -43,7 +44,7 @@ module.exports = (Model) => ({
     }),
 
   one: async (
-    where,
+    where: any,
     {
       transaction = null,
       attributes = null,
@@ -62,7 +63,7 @@ module.exports = (Model) => ({
     }),
 
   all: async (
-    where,
+    where: any,
     {
       transaction = null,
       attributes = null,
@@ -88,14 +89,14 @@ module.exports = (Model) => ({
       nest: true
     }),
 
-  oneAttrId: async (where, transaction) => {
+  oneAttrId: async (where: any, transaction: any) => {
     const data = await Model.findOne({ where, attributes: ['id'], transaction })
 
     if (!data) return null
     return data.id
   },
 
-  allAttrId: async (where, transaction) => {
+  allAttrId: async (where: any, transaction: any) => {
     const colections = await Model.findAll({
       where,
       transaction,
@@ -104,27 +105,27 @@ module.exports = (Model) => ({
       raw: true
     })
 
-    return colections.map((data) => data.id)
+    return colections.map((data: any) => data.id);
   },
 
-  oneAttr: async (attr, where, transaction) => {
+  oneAttr: async (attr: any, where: any, transaction: any) => {
     const data = await Model.findOne({ where, attributes: [attr], transaction })
 
     if (!data) return null
     return data[attr]
   },
 
-  allAttr: async (attr, where, transaction) => {
+  allAttr: async (attr: any, where: any, transaction: any) => {
     const colections = await Model.findAll({
       where,
       attributes: [attr],
       transaction
     })
 
-    return colections.map((data) => data[attr])
+    return colections.map((data: any) => data[attr]);
   },
 
-  allAttrUnique: async (attr, where, transaction) => {
+  allAttrUnique: async (attr: any, where: any, transaction: any) => {
     const groupedValues = await Model.findAll({
       where,
       group: [attr],
@@ -133,10 +134,10 @@ module.exports = (Model) => ({
       nest: true,
       raw: true
     })
-    return groupedValues.map((value) => value[attr])
+    return groupedValues.map((value: any) => value[attr]);
   },
 
-  totalUniqueAttr: async (attr, where, transaction) => {
+  totalUniqueAttr: async (attr: any, where: any, transaction: any) => {
     const groupedValues = await Model.findAll({
       where,
       group: [attr],
@@ -148,22 +149,22 @@ module.exports = (Model) => ({
     return groupedValues.length
   },
 
-  destroy: async (where, transaction, force = false) =>
+  destroy: async (where: any, transaction: any, force = false) =>
     await Model.destroy({ where, transaction, force }),
 
-  destroyById: async (id, transaction) =>
+  destroyById: async (id: any, transaction: any) =>
     await Model.destroy({ where: { id }, transaction }),
 
-  isExist: async (where, transaction) =>
+  isExist: async (where: any, transaction: any) =>
     !!(await Model.findOne({ where, transaction, attributes: ['id'] })),
 
-  total: async (where, transaction) =>
+  total: async (where: any, transaction: any) =>
     await Model.count({ where, transaction }),
 
-  totalOptions: async (where, { transaction = null, include = null } = {}) =>
+  totalOptions: async (where: any, { transaction = null, include = null } = {}) =>
     await Model.count({ where, transaction, include }),
 
-  toggleAttr: async (attr, where, transaction) => {
+  toggleAttr: async (attr: any, where: any, transaction: any) => {
     const data = await Model.findOne({ where, attributes: [attr], transaction })
 
     if (!data) return null
@@ -173,13 +174,20 @@ module.exports = (Model) => ({
     return !value
   },
 
-  createOrUpdate: async ({ where, values, transaction }) => {
+  createOrUpdate: async ({
+    where,
+    values,
+    transaction
+  }: any) => {
+    // @ts-expect-error TS(7041): The containing arrow function captures the global ... Remove this comment to see the full error message
     const data = await this.one({ where }, { transaction })
 
     if (!data) {
+      // @ts-expect-error TS(7041): The containing arrow function captures the global ... Remove this comment to see the full error message
       return this.create(values, transaction)
     }
 
+    // @ts-expect-error TS(7041): The containing arrow function captures the global ... Remove this comment to see the full error message
     return this.update(where, values, transaction)
   }
 })

@@ -1,8 +1,12 @@
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'sequelize'... Remove this comment to see the full error message
 const { sequelize } = require('../models').init()
+// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
 const NewsRepo = require('../repositories/news')
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'handleErro... Remove this comment to see the full error message
 const handleError = require('../utils/errorHandler')
 
-module.exports.getAll = async function (req, res) {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports.getAll = async function (req: any, res: any) {
   try {
     const news = await NewsRepo.all({})
     const totalCount = await NewsRepo.total({})
@@ -15,7 +19,8 @@ module.exports.getAll = async function (req, res) {
   }
 }
 
-module.exports.getById = async function (req, res) {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports.getById = async function (req: any, res: any) {
   try {
     const news = await NewsRepo.findById(req.params.id)
     res.status(200).json(news)
@@ -24,7 +29,8 @@ module.exports.getById = async function (req, res) {
   }
 }
 
-module.exports.create = async function (req, res) {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports.create = async function (req: any, res: any) {
   const transaction = await sequelize.transaction()
   const newsToAdd = {
     title: req.body.title,
@@ -43,7 +49,8 @@ module.exports.create = async function (req, res) {
   }
 }
 
-module.exports.update = async function (req, res) {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports.update = async function (req: any, res: any) {
   const transaction = await sequelize.transaction()
   const newsToUpdate = {
     title: req.body.title,
@@ -52,6 +59,7 @@ module.exports.update = async function (req, res) {
   }
 
   if (req.file) {
+    // @ts-expect-error TS(2339): Property 'imageSrc' does not exist on type '{ titl... Remove this comment to see the full error message
     newsToUpdate.imageSrc = req.file.path
   }
 
@@ -69,7 +77,8 @@ module.exports.update = async function (req, res) {
   }
 }
 
-module.exports.delete = async function (req, res) {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports.delete = async function (req: any, res: any) {
   const { id } = req.params
   const transaction = await sequelize.transaction()
 

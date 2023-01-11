@@ -1,9 +1,14 @@
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'Dishes'.
 const Dishes = require('../../modelsMongo/Menu')
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'Delivery'.
 const Delivery = require('../../modelsMongo/delivery/Delivery')
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'GlobalSett... Remove this comment to see the full error message
 const GlobalSettings = require('../../modelsMongo/delivery/GlobalSettings')
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'Settings'.
 const Settings = require('../../modelsMongo/delivery/CommonSettings')
 
-module.exports.createDeliveryController = async function (data) {
+// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
+module.exports.createDeliveryController = async function (data: any) {
   try {
     //валидация
     const globalSettings = await GlobalSettings.findOne()
@@ -34,7 +39,7 @@ module.exports.createDeliveryController = async function (data) {
     let totalPrice = 0
     for (let i = 0; i < data.list.length; i++) {
       let dish = dishes.find(
-        (dish) => dish._id.toString() === data.list[i].dish_id
+        (dish: any) => dish._id.toString() === data.list[i].dish_id
       )
       if (data.list[i].cost !== dish.cost) {
         return { status: 400, message: 'Невалидные данные!' }

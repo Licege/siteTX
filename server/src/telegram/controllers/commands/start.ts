@@ -1,8 +1,12 @@
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'repository... Remove this comment to see the full error message
 const repository = require('../../repository');
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'getFullNam... Remove this comment to see the full error message
 const { getFullName } = require('../../../utils');
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'mainMenu'.
 const { mainMenu, noAuthMenu } = require('../../buttons');
 
-exports.start = async (ctx) => {
+// @ts-expect-error TS(2304): Cannot find name 'exports'.
+exports.start = async (ctx: any) => {
   try {
     const { id: chatId } = ctx.update.message.from
 
