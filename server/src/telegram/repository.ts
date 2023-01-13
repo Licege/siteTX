@@ -1,17 +1,15 @@
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'Employee'.
-const { Employee } = require('../models').init()
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'CustomErro... Remove this comment to see the full error message
-const { CustomError } = require('../utils/customError')
+import models from '../models';
+import { CustomError } from '../utils/customError';
 
-// @ts-expect-error TS(2304): Cannot find name 'exports'.
-exports.getRegisteredEmployee = async (telegramId: any) => {
+const { Employee } = models;
+
+export const getRegisteredEmployee = async (telegramId: any) => {
   const employee = await Employee.findOne({ where: { telegramId }, raw: true })
 
   return employee
 }
 
-// @ts-expect-error TS(2304): Cannot find name 'exports'.
-exports.registrationEmployee = async (tgContact: any) => {
+export const registrationEmployee = async (tgContact: any) => {
   const candidate = await Employee.findOne({
     where: { phone: tgContact.phone_number },
     raw: true

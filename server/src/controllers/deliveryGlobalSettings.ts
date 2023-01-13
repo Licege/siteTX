@@ -1,12 +1,10 @@
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'sequelize'... Remove this comment to see the full error message
-const { sequelize } = require('../models').init()
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'GlobalSett... Remove this comment to see the full error message
-const GlobalSettingsRepo = require('../repositories/deliveryGlobalSettings')
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'errorHandl... Remove this comment to see the full error message
-const errorHandler = require('../utils/errorHandler')
+import models from '../models';
+import GlobalSettingsRepo from '../repositories/deliveryGlobalSettings';
+import { errorHandler } from '../utils';
 
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
-module.exports.get = async function (req: any, res: any) {
+const { sequelize } = models;
+
+export const get = async function (req: any, res: any) {
   try {
     const settings = await GlobalSettingsRepo.one({})
     res.status(200).json(settings)
@@ -15,8 +13,7 @@ module.exports.get = async function (req: any, res: any) {
   }
 }
 
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
-module.exports.update = async function (req: any, res: any) {
+export const update = async function (req: any, res: any) {
   const transaction = await sequelize.transaction()
 
   try {

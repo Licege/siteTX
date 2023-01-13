@@ -1,14 +1,11 @@
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const { Vacancy: VacancyModel } = require('../models').init()
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'createBasi... Remove this comment to see the full error message
-const createBasicMethods = require('../lib/factories/modelFactory')
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const { makeVacancy } = require('../entity/vacancy')
+import models from '../models';
+import createBasicMethods from '../lib/factories/modelFactory';
+import { makeVacancy } from'../entity/vacancy';
+
+const { Vacancy: VacancyModel } = models;
 
 const Vacancy = createBasicMethods(VacancyModel)
-
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
-module.exports = {
+const vacancyRepository = {
   ...Vacancy,
   findById: async (
     id: any,
@@ -69,3 +66,5 @@ module.exports = {
     return makeVacancy(vacancy)
   }
 }
+
+export default vacancyRepository

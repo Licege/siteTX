@@ -1,16 +1,12 @@
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'Delivery'.
-const { Delivery, GlobalSettings } = require('../models').init()
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'DeliveryRe... Remove this comment to see the full error message
-const DeliveryRepo = require('../repositories/delivery')
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const CommonSettingsRepo = require('../repositories/deliveryCommonSettings')
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'DishRepo'.
-const DishRepo = require('../repositories/dish')
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'errorHandl... Remove this comment to see the full error message
-const errorHandler = require('../utils/errorHandler')
+import models from '../models';
+import DishRepo from '../repositories/dish';
+import DeliveryRepo from '../repositories/delivery';
+import CommonSettingsRepo from '../repositories/deliveryCommonSettings';
+import { errorHandler } from '../utils';
 
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
-module.exports.getAll = async function (req: any, res: any) {
+const { Delivery, GlobalSettings } = models;
+
+export const getAll = async function (req: any, res: any) {
   const {
     phone,
     createdAtStart,
@@ -26,73 +22,57 @@ module.exports.getAll = async function (req: any, res: any) {
     status
   } = req.query
 
-  const where = {}
+  const where: any = {}
 
   if (phone) {
-    // @ts-expect-error TS(2339): Property 'phone' does not exist on type '{}'.
     where.phone = { $regex: `.*${phone}.*` }
   }
   if (createdAtStart) {
-    // @ts-expect-error TS(2339): Property 'createdAt' does not exist on type '{}'.
     where.createdAt = {
       $gte: createdAtStart
     }
   }
   if (createdAtEnd) {
-    // @ts-expect-error TS(2339): Property 'createdAt' does not exist on type '{}'.
     if (!where.createdAt) {
-      // @ts-expect-error TS(2339): Property 'createdAt' does not exist on type '{}'.
       where.createdAt = {}
     }
-    // @ts-expect-error TS(2339): Property 'createdAt' does not exist on type '{}'.
     where.createdAt['$lte'] = createdAtEnd
   }
   if (totalPriceStart) {
-    // @ts-expect-error TS(2339): Property 'totalPrice' does not exist on type '{}'.
     where.totalPrice = {
       $gte: totalPriceStart
     }
   }
   if (totalPriceEnd) {
     if (!totalPriceStart) {
-      // @ts-expect-error TS(2339): Property 'totalPrice' does not exist on type '{}'.
       where.totalPrice = {}
     }
-    // @ts-expect-error TS(2339): Property 'totalPrice' does not exist on type '{}'.
     where.totalPrice['$lte'] = totalPriceStart
   }
   if (timeDeliveryStart) {
-    // @ts-expect-error TS(2339): Property 'timeDelivery' does not exist on type '{}... Remove this comment to see the full error message
     where.timeDelivery = {
       $gte: timeDeliveryStart
     }
   }
   if (timeDeliveryEnd) {
     if (!timeDeliveryStart) {
-      // @ts-expect-error TS(2339): Property 'timeDelivery' does not exist on type '{}... Remove this comment to see the full error message
       where.timeDelivery = {}
     }
-    // @ts-expect-error TS(2339): Property 'timeDelivery' does not exist on type '{}... Remove this comment to see the full error message
     where.timeDelivery['$lte'] = timeDeliveryEnd
   }
   if (paymentStatus) {
-    // @ts-expect-error TS(2339): Property 'paymentStatus' does not exist on type '{... Remove this comment to see the full error message
     where.paymentStatus = paymentStatus
   }
   if (deliveryStatus) {
-    // @ts-expect-error TS(2339): Property 'deliveryStatus' does not exist on type '... Remove this comment to see the full error message
     where.deliveryStatus = deliveryStatus
   }
   if (paymentType) {
-    // @ts-expect-error TS(2339): Property 'paymentType' does not exist on type '{}'... Remove this comment to see the full error message
     where.paymentType = paymentType
   }
   if (deliveryType) {
-    // @ts-expect-error TS(2339): Property 'deliveryType' does not exist on type '{}... Remove this comment to see the full error message
     where.deliveryType = deliveryType
   }
   if (status) {
-    // @ts-expect-error TS(2339): Property 'status' does not exist on type '{}'.
     where.status = status
   }
 
@@ -115,8 +95,7 @@ module.exports.getAll = async function (req: any, res: any) {
   }
 }
 
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
-module.exports.getById = async function (req: any, res: any) {
+export const getById = async function (req: any, res: any) {
   try {
     const delivery = await DeliveryRepo.findById(req.params.id)
     res.status(200).json(delivery)
@@ -125,8 +104,7 @@ module.exports.getById = async function (req: any, res: any) {
   }
 }
 
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
-module.exports.create = async function (req: any, res: any) {
+export const create = async function (req: any, res: any) {
   const {
     address,
     deliveryType,
@@ -190,8 +168,7 @@ module.exports.create = async function (req: any, res: any) {
   }
 }
 
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
-module.exports.update = async function (req: any, res: any) {
+export const update = async function (req: any, res: any) {
   try {
     const { id } = req.params
     const {

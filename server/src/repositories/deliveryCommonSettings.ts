@@ -1,10 +1,8 @@
-const { CommonSettings: CommonDeliveryModel, City: CityModel } =
-  // @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-  require('../models').init()
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'createBasi... Remove this comment to see the full error message
-const createBasicMethods = require('../lib/factories/modelFactory')
+import models from '../models';
+import createBasicMethods from '../lib/factories/modelFactory';
 
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'CommonDeli... Remove this comment to see the full error message
+const { CommonSettings: CommonDeliveryModel, City: CityModel } = models;
+
 const CommonDelivery = createBasicMethods(CommonDeliveryModel)
 
 function findById(
@@ -55,10 +53,11 @@ function all(
   })
 }
 
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
-module.exports = {
+const deliveryCommonSettingsRepository = {
   ...CommonDelivery,
   findById,
   one,
   all
 }
+
+export default createBasicMethods(deliveryCommonSettingsRepository)

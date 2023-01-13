@@ -1,4 +1,3 @@
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
 module.exports = (sequelize: any, DataTypes: any) => {
   const Promo = sequelize.define('Promo', {
     title: {

@@ -11,11 +11,9 @@ const options = {
   secretOrKey: keys.jwt
 }
 
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
 module.exports = (passport: any) => {
   passport.use(
     'simple-jwt',
-    // @ts-expect-error TS(2705): An async function or method in ES5/ES3 requires th... Remove this comment to see the full error message
     new JwtStrategy(options, async (payload: any, done: any) => {
       try {
         done(null, payload.userId)

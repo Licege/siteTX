@@ -1,4 +1,3 @@
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'TelegramBo... Remove this comment to see the full error message
 class TelegramBot {
   // @ts-expect-error TS(7008): Member '#bot' implicitly has an 'any' type.
   #bot;
@@ -18,5 +17,4 @@ class TelegramBot {
   }
 }
 
-// @ts-expect-error TS(2304): Cannot find name 'exports'.
-exports.TelegramBot = new TelegramBot;
+export const telegramBot = new TelegramBot();

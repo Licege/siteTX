@@ -1,28 +1,23 @@
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'fs'.
-const fs = require('fs')
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'path'.
-const path = require('path')
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const Sequelize = require('sequelize')
+import fs from 'fs';
+import path from 'path';
+import Sequelize from 'sequelize'
+import commonDbConfig from '../../config/database';
 
 const { Op } = Sequelize
 
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
 const basename = path.basename(module.filename)
-// @ts-expect-error TS(2580): Cannot find name 'process'. Do you need to install... Remove this comment to see the full error message
-const env = process.env.NODE_ENV || 'development'
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const config = require('../../config/database.js')[env]
+type NodeEnv = 'development' | 'production';
+const env: NodeEnv = process.env.NODE_ENV as NodeEnv || 'development'
+const config = commonDbConfig[env]
 
 if (config === undefined) {
   throw Error(`In src/config/database.js not config with such NODE_ENV: ${env}`)
 }
 
 const fileOfModels = fs
-  // @ts-expect-error TS(2304): Cannot find name '__dirname'.
   .readdirSync(__dirname)
   .filter(
-    (file: any) => file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js'
+    (file: any) => file.indexOf('.') !== 0 && file !== basename && ['.js', '.ts'].includes(file.slice(-3))
   )
 
 const operatorsAliases = {
@@ -64,49 +59,48 @@ const operatorsAliases = {
 
 const initDB = () => {
   let sequelize: any
+  // @ts-ignore
   if (config.use_env_constiable) {
-    // @ts-expect-error TS(2580): Cannot find name 'process'. Do you need to install... Remove this comment to see the full error message
-    sequelize = new Sequelize(process.env[config.use_env_constiable])
+    // @ts-ignore
+    sequelize = new Sequelize.Sequelize(process.env[config.use_env_constiable])
   } else {
-    sequelize = new Sequelize(
+    sequelize = new Sequelize.Sequelize(
       config.database,
       config.username,
       config.password,
+      // @ts-ignore
       { ...config, operatorsAliases }
     )
   }
 
-  const db = {}
+  const db: any = {}
   fileOfModels.forEach((file: any) => {
-    // @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
     const model = require(path.join(__dirname, file))(
       sequelize,
       Sequelize.DataTypes
     )
-    // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
     db[model.name] = model
   })
 
   Object.keys(db).forEach((modelName) => {
-    // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
     if (db[modelName].associate) {
-      // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
       db[modelName].associate(db)
     }
   })
 
-  // @ts-expect-error TS(2339): Property 'sequelize' does not exist on type '{}'.
   db.sequelize = sequelize
-  // @ts-expect-error TS(2339): Property 'Sequelize' does not exist on type '{}'.
   db.Sequelize = Sequelize
 
   return db
 }
 
 let cachedInitDB: any
-// @ts-expect-error TS(2304): Cannot find name 'exports'.
-exports.init = () => {
+const init = () => {
   if (cachedInitDB) return cachedInitDB
   cachedInitDB = initDB()
   return cachedInitDB
 }
+
+init();
+
+export default cachedInitDB;

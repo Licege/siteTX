@@ -1,10 +1,8 @@
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const BanquetHallRepo = require('../repositories/banquetHall')
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'errorHandl... Remove this comment to see the full error message
-const errorHandler = require('../utils/errorHandler')
+import BanquetHallRepo from '../repositories/banquetHall';
+import { errorHandler } from '../utils';
 
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
-module.exports.getAll = async function (req: any, res: any) {
+
+export const getAll = async function (req: any, res: any) {
   try {
     const halls = await BanquetHallRepo.all({})
     res.status(200).json(halls)
@@ -13,8 +11,7 @@ module.exports.getAll = async function (req: any, res: any) {
   }
 }
 
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
-module.exports.get = async function (req: any, res: any) {
+export const get = async function (req: any, res: any) {
   try {
     const { id } = req.params
 
@@ -25,8 +22,7 @@ module.exports.get = async function (req: any, res: any) {
   }
 }
 
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
-module.exports.create = async function (req: any, res: any) {
+export const create = async function (req: any, res: any) {
   try {
     // const hall = await new BanquetHall({
     //     title: req.body.title,

@@ -1,12 +1,11 @@
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const session = require('express-session')
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const SequelizeStore = require('connect-session-sequelize')(session.Store)
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'sequelize'... Remove this comment to see the full error message
-const { sequelize } = require('../models/index').init()
+import session from 'express-session';
+import connectSequelizeStore from 'connect-session-sequelize';
+import models from '../models';
 
-const { TRIXOLMA_SID, TRIXOLMA_BASE_DOMAIN, SECRET, COOKIE_MAX_AGE } =
-  // @ts-expect-error TS(2580): Cannot find name 'process'. Do you need to install... Remove this comment to see the full error message
+const { sequelize } = models;
+const SequelizeStore = connectSequelizeStore(session.Store);
+
+const { TRIXOLMA_BASE_DOMAIN, SECRET, COOKIE_MAX_AGE } =
   process.env
 const oneDay = 24 * 3600 * 1000
 
@@ -30,25 +29,23 @@ const sequeliseStore = () =>
     extendDefaultFields
   })
 
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
-module.exports = ({
+export default ({
   resave = true,
   saveUninitialized = false,
   rolling = true
 } = {}) =>
   session({
-    secret: SECRET,
+    secret: SECRET ?? '',
     store: sequeliseStore(),
     resave,
     saveUninitialized,
-    key: TRIXOLMA_SID,
+    // key: TRIXOLMA_SID,
     rolling,
     cookie: {
       maxAge: COOKIE_MAX_AGE === 'null' ? oneDay : oneDay,
       domain: TRIXOLMA_BASE_DOMAIN,
       // sameSite: 'none',
       expires: new Date(Date.now() + oneDay),
-      originalMaxAge: oneDay
+      // originalMaxAge: oneDay
     },
-    expires: new Date(Date.now() + oneDay)
   })

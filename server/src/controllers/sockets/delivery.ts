@@ -1,16 +1,12 @@
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'sequelize'... Remove this comment to see the full error message
-const { sequelize } = require('../../models').init()
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'DishRepo'.
-const DishRepo = require('../../repositories/dish')
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'DeliveryRe... Remove this comment to see the full error message
-const DeliveryRepo = require('../../repositories/delivery')
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'GlobalSett... Remove this comment to see the full error message
-const GlobalSettingsRepo = require('../../repositories/deliveryGlobalSettings')
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const SettingsRepo = require('../../repositories/deliveryCommonSettings')
+import models from '../../models';
+import DishRepo from '../../repositories/dish';
+import DeliveryRepo from '../../repositories/delivery';
+import GlobalSettingsRepo from '../../repositories/deliveryGlobalSettings';
+import SettingsRepo from '../../repositories/deliveryCommonSettings';
 
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
-module.exports.createDeliveryController = async function (data: any) {
+const { sequelize } = models;
+
+export const createDeliveryController = async function (data: any) {
   const transaction = await sequelize.transaction()
 
   try {

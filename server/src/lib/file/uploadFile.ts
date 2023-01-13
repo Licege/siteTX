@@ -1,11 +1,7 @@
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'fs'.
-const fs = require('fs')
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'path'.
-const path = require('path')
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const { PassThrough } = require('stream')
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const { fileTransformer } = require('./transformer')
+import fs from 'fs';
+import path from 'path';
+import { PassThrough } from 'stream';
+import { fileTransformer } from './transformer';
 
 function getFileName(file: any, options: any) {
   let parsedFileName = file.originalname.split('.')
@@ -20,9 +16,7 @@ function getFileName(file: any, options: any) {
   return `${Date.now()}-${parsedFileName.join('.')}${ext}`
 }
 
-// @ts-expect-error TS(2304): Cannot find name 'exports'.
-exports.uploadFile = (file: any, destination: any, options = {}) =>
-  // @ts-expect-error TS(2585): 'Promise' only refers to a type, but is being used... Remove this comment to see the full error message
+export const uploadFile = (file: any, destination: any, options = {}) =>
   new Promise((resolve: any, reject: any) => {
     const fileName = getFileName(file, options)
     const targetPath = `${destination}/${fileName}`
@@ -49,7 +43,6 @@ function eachUpload(file: any, fileName: any, destination: any, stream: any) {
 
     stream.pipe(streamClone)
 
-    // @ts-expect-error TS(2585): 'Promise' only refers to a type, but is being used... Remove this comment to see the full error message
     return new Promise((resolve: any, reject: any) => {
       streamClone.pipe(transformStream).pipe(writableStream)
 

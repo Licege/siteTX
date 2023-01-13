@@ -1,66 +1,36 @@
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'router'.
-const router = require('express').Router()
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'passport'.
-const passport = require('passport')
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const { check } = require('express-validator')
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const adminAuthFailed = require('../utils/adminAuthFailed')
-
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'upload'.
-const upload = require('../middleware/upload')
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const uploadPDF = require('../middleware/uploadPDF')
+import express from 'express';
+import upload from '../middleware/upload';
+import * as auth from '../controllers/auth';
+import { testUploadFiles } from '../controllers/files';
+import * as categories from '../controllers/categories';
+import * as contacts from '../controllers/contacts';
+import * as menu from '../controllers/dish';
+import * as news from '../controllers/news';
+import * as orders from '../controllers/orders';
+import * as promo from '../controllers/promo';
+import * as reviews from '../controllers/reviews';
+import * as users from '../controllers/users';
+import * as vacancies from '../controllers/vacancies';
+import * as delivery from '../controllers/delivery';
+import * as commonDeliverySettings from '../controllers/deliveryCommonSettings';
+import * as globalDeliverySettings from '../controllers/deliveryGlobalSettings';
+import * as profile from '../controllers/profile';
+import * as complain from '../controllers/complain';
+import * as complainType from '../controllers/complainType';
+import * as menuGallery from '../controllers/menuGallery';
+import * as staffPositions from '../controllers/staffPositions';
+import * as employees from '../controllers/employees';
 
 // const admin = require('../controllers/admin')
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'auth'.
-const auth = require('../controllers/auth')
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const categories = require('../controllers/categories')
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const contacts = require('../controllers/contacts')
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const menu = require('../controllers/dish')
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const news = require('../controllers/news')
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const orders = require('../controllers/orders')
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const promo = require('../controllers/promo')
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const reviews = require('../controllers/reviews')
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const users = require('../controllers/users')
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const vacancies = require('../controllers/vacancies')
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const delivery = require('../controllers/delivery')
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const commonDeliverySettings = require('../controllers/deliveryCommonSettings')
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const globalDeliverySettings = require('../controllers/deliveryGlobalSettings')
 // const averageChecks = require('../../controllersMongo/Statistics/averageChecks');
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const profile = require('../controllers/profile')
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const complain = require('../controllers/complain')
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const complainType = require('../controllers/complainType')
 // const files = require('../../controllersMongo/file')
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const menuGallery = require('../controllers/menuGallery')
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const staffPositions = require('../controllers/staffPositions')
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const employees = require('../controllers/employees')
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const { testUploadFiles } = require('../controllers/files')
+
+const router = express.Router()
 
 const PRIVATE = '/api/private'
 const PUBLIC = '/api/public'
 
-// @ts-expect-error TS(2580): Cannot find name 'module'. Do you need to install ... Remove this comment to see the full error message
-module.exports = (io: any) => {
+export default (io?: any) => {
   // router
   //     .get('/api/private/admin', passport.authenticate('admin-jwt', {
   //         session: false,
@@ -109,7 +79,7 @@ module.exports = (io: any) => {
     .get('/api/private/news/:id', news.getById)
     .post('/api/private/news', upload.single('image'), news.create)
     .patch('/api/private/news/:id', upload.single('image'), news.update)
-    .delete('/api/private/news/:id', news.delete)
+    .delete('/api/private/news/:id', news.destroy)
 
   router
     .get('/api/private/orders', orders.getAll)

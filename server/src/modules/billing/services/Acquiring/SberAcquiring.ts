@@ -1,6 +1,4 @@
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
 const axios = require('axios')
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
 const qs = require('fast-querystring')
 // @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'SberError'... Remove this comment to see the full error message
 const { SberError } = require('./SberError.js')
@@ -107,7 +105,6 @@ class SberAcquiring {
       const response = await this.getOrderInfo(orderId, orderNumber)
       return response.orderStatus
     } catch (error) {
-      // @ts-expect-error TS(2571): Object is of type 'unknown'.
       if (parseInt(error.sberErrorCode) === SBER_ERRORS.NO_SUCH_ORDER_ID) {
         return null
       }
@@ -203,5 +200,4 @@ class SberAcquiring {
 //   await ac.register();
 // })()
 
-// @ts-expect-error TS(2304): Cannot find name 'exports'.
 exports.SberAcquiring = SberAcquiring

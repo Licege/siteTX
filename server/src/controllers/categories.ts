@@ -1,12 +1,10 @@
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'sequelize'... Remove this comment to see the full error message
-const { sequelize } = require('../models').init()
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const CategoryRepo = require('../repositories/category')
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'errorHandl... Remove this comment to see the full error message
-const errorHandler = require('../utils/errorHandler')
+import models from '../models';
+import CategoryRepo from '../repositories/category';
+import errorHandler from '../utils/errorHandler';
 
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
-module.exports.getAll = async function (req: any, res: any) {
+const { sequelize } = models;
+
+export const getAll = async function (req: any, res: any) {
   try {
     const categories = await CategoryRepo.all({})
     res.status(200).json(categories)
@@ -15,8 +13,7 @@ module.exports.getAll = async function (req: any, res: any) {
   }
 }
 
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
-module.exports.get = async function (req: any, res: any) {
+export const get = async function (req: any, res: any) {
   try {
     const category = await CategoryRepo.findById(req.params.id)
     res.status(200).json(category)
@@ -25,8 +22,7 @@ module.exports.get = async function (req: any, res: any) {
   }
 }
 
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
-module.exports.remove = async function (req: any, res: any) {
+export const remove = async function (req: any, res: any) {
   const transaction = await sequelize.transaction()
 
   try {
@@ -41,8 +37,7 @@ module.exports.remove = async function (req: any, res: any) {
   }
 }
 
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
-module.exports.create = async function (req: any, res: any) {
+export const create = async function (req: any, res: any) {
   const transaction = await sequelize.transaction()
 
   try {
@@ -60,8 +55,7 @@ module.exports.create = async function (req: any, res: any) {
   }
 }
 
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
-module.exports.update = async function (req: any, res: any) {
+export const update = async function (req: any, res: any) {
   const { id } = req.params
   try {
     const where = { id }

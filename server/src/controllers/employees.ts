@@ -1,12 +1,10 @@
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'StaffPosit... Remove this comment to see the full error message
-const { StaffPosition } = require('../models').init()
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const EmployeeRepo = require('../repositories/employees')
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const { makeEmployee } = require('../entity/employee')
+import models from '../models';
+import EmployeeRepo from '../repositories/employees';
+import { makeEmployee } from '../entity/employee';
 
-// @ts-expect-error TS(2304): Cannot find name 'exports'.
-exports.create = async (req: any, res: any) => {
+const { StaffPosition } = models;
+
+export const create = async (req: any, res: any) => {
   const {
     lastName,
     firstName,
@@ -42,8 +40,7 @@ exports.create = async (req: any, res: any) => {
   res.status(200).json(newEmployee)
 }
 
-// @ts-expect-error TS(2304): Cannot find name 'exports'.
-exports.update = async (req: any, res: any) => {
+export const update = async (req: any, res: any) => {
   const { id } = req.params
   const {
     lastName,
@@ -75,8 +72,7 @@ exports.update = async (req: any, res: any) => {
   res.status(200).json(updatedEmployee)
 }
 
-// @ts-expect-error TS(2304): Cannot find name 'exports'.
-exports.remove = async (req: any, res: any) => {
+export const remove = async (req: any, res: any) => {
   const { id } = req.params
 
   await EmployeeRepo.destroyById(id)
@@ -84,22 +80,19 @@ exports.remove = async (req: any, res: any) => {
   res.status(200).json(id)
 }
 
-// @ts-expect-error TS(2304): Cannot find name 'exports'.
-exports.getAll = async (req: any, res: any) => {
+export const getAll = async (req: any, res: any) => {
   // Проверить права
   const { withFires = false, position } = req.query
   const { limit = 20, page = 1 } = req.body.pagination
 
   function constructWhere() {
-    const where = {}
+    const where: any = {}
 
     if (!withFires) {
-      // @ts-expect-error TS(2339): Property 'dateOfDismissal' does not exist on type ... Remove this comment to see the full error message
       where.dateOfDismissal = null
     }
 
     if (position) {
-      // @ts-expect-error TS(2339): Property 'position' does not exist on type '{}'.
       where.position = position
     }
 
@@ -121,8 +114,7 @@ exports.getAll = async (req: any, res: any) => {
     .json({ data: employees.map((employee: any) => makeEmployee(employee)), total })
 }
 
-// @ts-expect-error TS(2304): Cannot find name 'exports'.
-exports.getAllForTips = async (req: any, res: any) => {
+export const getAllForTips = async (req: any, res: any) => {
   const employees = await EmployeeRepo.all(
     {
       dateOfDismissal: null,
@@ -139,8 +131,7 @@ exports.getAllForTips = async (req: any, res: any) => {
     .json({ data: employees.map((employee: any) => makeEmployee(employee)) })
 }
 
-// @ts-expect-error TS(2304): Cannot find name 'exports'.
-exports.getOneForTips = async (req: any, res: any) => {
+export const getOneForTips = async (req: any, res: any) => {
   const { id } = req.params
 
   const employee = await EmployeeRepo.one(

@@ -1,8 +1,6 @@
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'repository... Remove this comment to see the full error message
-const repository = require('../../repository')
+import * as repository from '../../repository';
 
-// @ts-expect-error TS(2304): Cannot find name 'exports'.
-exports.showBalance = async (ctx: any) => {
+export const showBalance = async (ctx: any) => {
   try {
     const { from } = ctx.update.message
 

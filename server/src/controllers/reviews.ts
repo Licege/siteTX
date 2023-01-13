@@ -1,35 +1,28 @@
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'sequelize'... Remove this comment to see the full error message
-const { sequelize, User } = require('../models').init()
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const ReviewsRepo = require('../repositories/review')
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'errorHandl... Remove this comment to see the full error message
-const errorHandler = require('../utils/errorHandler')
+import models from '../models';
+import ReviewsRepo from '../repositories/review';
+import { errorHandler } from '../utils';
 
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
-module.exports.getAll = async function (req: any, res: any) {
+const { sequelize, User } = models;
+
+export const getAll = async function (req: any, res: any) {
   try {
-    const where = {}
+    const where: any = {}
 
     if (req.query.createdAtStart) {
-      // @ts-expect-error TS(2339): Property 'createdAt' does not exist on type '{}'.
       where.createdAt = {
         $gte: req.query.createdAtStart
       }
     }
     if (req.query.createdAtEnd) {
       if (!req.query.createAtStart) {
-        // @ts-expect-error TS(2339): Property 'createdAt' does not exist on type '{}'.
         where.createdAt = {}
       }
-      // @ts-expect-error TS(2339): Property 'createdAt' does not exist on type '{}'.
-      where.createdAt[$lte] = req.query.createdAtEnd
+      where.createdAt['$lte'] = req.query.createdAtEnd
     }
     if (req.query.status) {
-      // @ts-expect-error TS(2339): Property 'status' does not exist on type '{}'.
       where.status = req.query.status
     }
     if (req.query.rating) {
-      // @ts-expect-error TS(2339): Property 'rating' does not exist on type '{}'.
       where.rating = req.query.rating
     }
 
@@ -56,8 +49,7 @@ module.exports.getAll = async function (req: any, res: any) {
   }
 }
 
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
-module.exports.publicGetAll = async function (req: any, res: any) {
+export const publicGetAll = async function (req: any, res: any) {
   try {
     const where = { status: 1 }
 
@@ -80,8 +72,7 @@ module.exports.publicGetAll = async function (req: any, res: any) {
   }
 }
 
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
-module.exports.getById = async function (req: any, res: any) {
+export const getById = async function (req: any, res: any) {
   try {
     const include = [
       {
@@ -98,8 +89,7 @@ module.exports.getById = async function (req: any, res: any) {
   }
 }
 
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
-module.exports.create = async function (req: any, res: any) {
+export const create = async function (req: any, res: any) {
   const transaction = await sequelize.transaction()
 
   try {
@@ -122,26 +112,24 @@ module.exports.create = async function (req: any, res: any) {
     res.status(200).json(review)
   } catch (e) {
     await transaction.rollback()
-    // @ts-expect-error TS(2571): Object is of type 'unknown'.
-    if (e.code === 11000) {
-      res.status(400).json({ message: 'Отзыв уже был оставлен!' })
-    } else {
-      errorHandler(res, e)
-    }
+    // if (e.code === 11000) {
+    //   res.status(400).json({ message: 'Отзыв уже был оставлен!' })
+    // } else {
+    //   errorHandler(res, e)
+    // }
+    errorHandler(res, e)
   }
 }
 
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
-module.exports.update = async function (req: any, res: any) {
+export const update = async function (req: any, res: any) {
   const transaction = await sequelize.transaction()
 
-  const reviewToUpdate = {
+  const reviewToUpdate: any = {
     rating: req.body.rating,
     description: req.body.description,
     status: req.body.status
   }
   if (req.file) {
-    // @ts-expect-error TS(2339): Property 'imageSrc' does not exist on type '{ rati... Remove this comment to see the full error message
     reviewToUpdate.imageSrc = req.file.path
   }
   try {
@@ -155,8 +143,7 @@ module.exports.update = async function (req: any, res: any) {
   }
 }
 
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
-module.exports.remove = async function (req: any, res: any) {
+export const remove = async function (req: any, res: any) {
   const transaction = await sequelize.transaction()
 
   try {
@@ -173,7 +160,6 @@ module.exports.remove = async function (req: any, res: any) {
 // 0 - Неодобрен
 // 1 - Одобрен
 // 2 - Отклонен
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'hasReview'... Remove this comment to see the full error message
 const hasReview = (userId: any, reviews: any) => {
   const review = reviews.filter((r: any) => r.user._id.toString() === userId)[0]
 

@@ -1,12 +1,6 @@
-// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const { StaffPosition: StaffPositionModel } = require('../models').init()
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'createBasi... Remove this comment to see the full error message
-const createBasicMethods = require('../lib/factories/modelFactory')
+import models from '../models';
+import createBasicMethods from '../lib/factories/modelFactory';
 
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'StaffPosit... Remove this comment to see the full error message
-const StaffPosition = createBasicMethods(StaffPositionModel)
+const { StaffPosition: StaffPositionModel } = models;
 
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
-module.exports = {
-  ...StaffPosition
-}
+export default createBasicMethods(StaffPositionModel)

@@ -1,20 +1,15 @@
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'path'.
-const path = require('path')
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'sequelize'... Remove this comment to see the full error message
-const { sequelize, Category } = require('../models').init()
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'DishRepo'.
-const DishRepo = require('../repositories/dish')
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'fileLib'.
-const fileLib = require('../lib/file')
-// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'errorHandl... Remove this comment to see the full error message
-const errorHandler = require('../utils/errorHandler')
+import path from 'path';
+import models from '../models';
+import DishRepo from '../repositories/dish';
+import * as fileLib from '../lib/file';
+import { errorHandler } from '../utils';
 
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
-module.exports.getAll = async function (req: any, res: any) {
-  const where = {}
+const { sequelize, Category } = models;
+
+export const getAll = async function (req: any, res: any) {
+  const where: any = {}
 
   if (req.query.category) {
-    // @ts-expect-error TS(2339): Property 'categoryId' does not exist on type '{}'.
     where.categoryId = req.query.category
   }
   try {
@@ -25,8 +20,7 @@ module.exports.getAll = async function (req: any, res: any) {
   }
 }
 
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
-module.exports.getByCategory = async function (req: any, res: any) {
+export const getByCategory = async function (req: any, res: any) {
   try {
     const where = { titleEn: req.params.category }
     const include = [
@@ -43,8 +37,7 @@ module.exports.getByCategory = async function (req: any, res: any) {
   }
 }
 
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
-module.exports.getById = async function (req: any, res: any) {
+export const getById = async function (req: any, res: any) {
   try {
     const dish = await DishRepo.findById(req.params.id)
     res.status(200).json(dish)
@@ -53,8 +46,7 @@ module.exports.getById = async function (req: any, res: any) {
   }
 }
 
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
-module.exports.remove = async function (req: any, res: any) {
+export const remove = async function (req: any, res: any) {
   const { id } = req.params
   const transaction = await sequelize.transaction()
 
@@ -68,18 +60,16 @@ module.exports.remove = async function (req: any, res: any) {
   }
 }
 
-// @ts-expect-error TS(2552): Cannot find name 'module'. Did you mean 'mode'?
-module.exports.create = async function (req: any, res: any) {
+export const create = async function (req: any, res: any) {
   const { title, description, weight, cost, categoryId } = req.body
-  let imageSrc = ''
+  let imageSrc: string = ''
 
-  // @ts-expect-error TS(2304): Cannot find name '__dirname'.
   const destination = path.resolve(__dirname, '../../', 'uploads')
 
   if (req.file) {
     imageSrc = await fileLib.uploadFile(req.file, destination, {
       format: 'webp'
-    })
+    }) as string
   }
 
   const dishToAdd = {
@@ -99,16 +89,14 @@ module.exports.create = async function (req: any, res: any) {
   }
 }
 
-// @ts-expect-error TS(2580): Cannot find name 'module'. Do you need to install ... Remove this comment to see the full error message
-module.exports.update = async function (req: any, res: any) {
+export const update = async function (req: any, res: any) {
   const { id } = req.params
 
-  // @ts-expect-error TS(2304): Cannot find name '__dirname'.
   const destination = path.resolve(__dirname, '../../', 'uploads')
 
   const { title, description, weight, cost, category, is_delivery } = req.body
 
-  const updatedData = {
+  const updatedData: any = {
     title,
     description,
     weight,
@@ -118,7 +106,6 @@ module.exports.update = async function (req: any, res: any) {
   }
 
   if (req.file) {
-    // @ts-expect-error TS(2339): Property 'imageSrc' does not exist on type '{ titl... Remove this comment to see the full error message
     updatedData.imageSrc = await fileLib.uploadFile(req.file, destination, {
       format: 'webp'
     })
