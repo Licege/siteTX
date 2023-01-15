@@ -5,7 +5,7 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Dish } from './dishes.model';
 
 @ApiTags('Блюда')
-@Controller('api/v1/dishes')
+@Controller('dishes')
 export class DishesController {
   constructor(private dishService: DishesService) {}
 

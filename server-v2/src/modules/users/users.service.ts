@@ -35,35 +35,34 @@ export class UsersService {
       updateUserDto = { ...updateUserDto, avatar: avatarSrc };
     }
 
-    const user = await this.userRepository.update(updateUserDto, {
+    return this.userRepository.update(updateUserDto, {
       where: { id: 3 },
     });
-
-    return user;
   }
 
   async getUserById(id: number) {
-    const user = await this.userRepository.findOne({
+    return this.userRepository.findOne({
       where: { id },
       include: { all: true },
     });
-
-    return user;
   }
 
   async getAllUsers() {
-    const users = await this.userRepository.findAll({ include: { all: true } });
-
-    return users;
+    return this.userRepository.findAll({ include: { all: true } });
   }
 
   async getUserByEmail(email: string) {
-    const user = await this.userRepository.findOne({
+    return this.userRepository.findOne({
       where: { email },
       include: { all: true },
     });
+  }
 
-    return user;
+  async getUserByActivationLink(activationLink: string) {
+    return this.userRepository.findOne({
+      where: { activationLink },
+      include: { all: true },
+    });
   }
 
   async addRole(dto: AddRoleDto) {

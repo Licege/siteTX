@@ -24,7 +24,6 @@ export class RolesGuard implements CanActivate {
         [context.getHandler(), context.getClass()],
       );
 
-      // TODO ошибка? возвращаем true до проверки авторизации
       if (!requiredRoles) {
         return true;
       }

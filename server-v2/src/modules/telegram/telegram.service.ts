@@ -1,9 +1,6 @@
-import { Injectable } from '@nestjs/common';
-import { Client, ClientKafka, Transport } from '@nestjs/microservices';
-
-const { TELEGRAM_HOST = 'localhost', TELEGRAM_PORT = '9095' } = process.env;
-const TELEGRAM_BROKER = `${TELEGRAM_HOST}:${TELEGRAM_PORT}`;
-const TELEGRAM_CONSUMER = 'telegram-consumer';
+import { Inject, Injectable } from '@nestjs/common';
+import { ClientKafka } from '@nestjs/microservices';
+import { TELEGRAM_SERVICE } from './constants';
 
 enum Commands {
   SendMessage = 'send.message',
@@ -11,19 +8,7 @@ enum Commands {
 
 @Injectable()
 export class TelegramService {
-  @Client({
-    transport: Transport.KAFKA,
-    options: {
-      client: {
-        clientId: 'telegram-service',
-        brokers: [TELEGRAM_BROKER],
-      },
-      consumer: {
-        groupId: TELEGRAM_CONSUMER,
-      },
-    },
-  })
-  client: ClientKafka;
+  constructor(@Inject(TELEGRAM_SERVICE) private readonly client: ClientKafka) {}
 
   async onModuleInit() {
     this.client.subscribeToResponseOf(Commands.SendMessage);

@@ -2,6 +2,8 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 
+const TELEGRAM_CONSUMER = 'telegram-consumer';
+
 async function start() {
   const host = process.env.HOST || 'localhost';
   const port = process.env.PORT || '9095';
@@ -17,7 +19,7 @@ async function start() {
           brokers: [broker],
         },
         consumer: {
-          groupId: 'telegram-consumer',
+          groupId: TELEGRAM_CONSUMER,
         },
       },
     },

@@ -1,4 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsEmail, IsString, Length } from 'class-validator';
 
 export class CreateUserDto {
@@ -22,39 +22,37 @@ export class CreateUserDto {
     example: 'Иванов',
     description: 'Фамилия',
   })
-  readonly surname: string;
+  readonly lastName: string;
 
   @ApiProperty({
     example: 'Иван',
     description: 'Имя',
   })
-  readonly forename: string;
+  readonly firstName: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     example: 'Иванович',
     description: 'Отчество',
     required: false,
   })
   readonly patronymic?: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     example: 'http://localhost:5000/uploads/user-avatar.jpg',
     description: 'Аватарка',
     required: false,
   })
   readonly avatar?: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     example: '88005553535',
     description: 'Телефон',
-    required: false,
   })
   readonly phone?: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     example: '2021-04-24 19:19:56.155000 +00:00',
     description: 'Дата рождения',
-    required: false,
   })
-  readonly birthday?: string;
+  readonly dateOfBirthday?: string;
 }

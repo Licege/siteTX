@@ -2,23 +2,35 @@ import {
   BelongsToMany,
   Column,
   DataType,
+  HasOne,
   Model,
   Table,
 } from 'sequelize-typescript';
 import { ApiProperty } from '@nestjs/swagger';
 import { Role } from '../roles/roles.model';
 import { UserRoles } from '../roles/user-roles.model';
+import { BanUser } from '../ban-users/ban-users.model';
 
 interface UserCreationAttrs {
   email: string;
   password: string;
-  surname: string;
-  forename: string;
+  lastName: string;
+  firstName: string;
+  activationLink: string;
   avatar?: string;
 }
 
 @Table({ tableName: 'Users', paranoid: true })
 export class User extends Model<User, UserCreationAttrs> {
+  @ApiProperty({ example: '1', description: 'Уникальный идентификатор' })
+  @Column({
+    type: DataType.INTEGER,
+    unique: true,
+    autoIncrement: true,
+    primaryKey: true,
+  })
+  id: number;
+
   @ApiProperty({
     example: 'example@mail.com',
     description: 'Уникальный email',
@@ -51,7 +63,7 @@ export class User extends Model<User, UserCreationAttrs> {
     type: DataType.STRING,
     allowNull: false,
   })
-  surname: string;
+  lastName: string;
 
   @ApiProperty({
     example: 'Иван',
@@ -61,7 +73,7 @@ export class User extends Model<User, UserCreationAttrs> {
     type: DataType.STRING,
     allowNull: false,
   })
-  forename: string;
+  firstName: string;
 
   @ApiProperty({
     example: 'Иванович',
@@ -97,18 +109,33 @@ export class User extends Model<User, UserCreationAttrs> {
   @Column({
     type: DataType.DATE,
   })
-  birthday: string;
+  dateOfBirthday: string;
 
-  // TODO Вынести в отдельную таблицу и добавить причину блокировки
   @ApiProperty({
     example: 'false',
-    description: 'Заблокирован ли пользователь',
+    description: 'Подтвержден ли аккаунт (по умолчанию false)',
   })
   @Column({
     type: DataType.BOOLEAN,
+    allowNull: false,
+    defaultValue: false,
   })
-  blocked: boolean;
+  isActivated: boolean;
+
+  @ApiProperty({
+    example: 'http://localhost/activate-account/fdsfsweqweqweczx',
+    description: 'Ссылка для подтверждения аккаунта',
+  })
+  @Column({
+    type: DataType.STRING,
+    allowNull: true,
+    defaultValue: '',
+  })
+  activationLink: string;
 
   @BelongsToMany(() => Role, () => UserRoles)
   roles: Role[];
+
+  @HasOne(() => BanUser)
+  banned: BanUser;
 }

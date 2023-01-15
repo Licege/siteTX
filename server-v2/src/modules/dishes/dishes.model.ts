@@ -34,7 +34,7 @@ export class Dish extends Model<Dish, DishCreationAttrs> {
 
   @ApiProperty({ example: '320', description: 'Выход порции, грамм' })
   @Column({
-    type: DataType.NUMBER,
+    type: DataType.INTEGER,
     defaultValue: 0,
     allowNull: false,
   })
