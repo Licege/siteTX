@@ -1,10 +1,10 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { RolesService } from '../roles';
-import { AddRoleDto, CreateUserDto } from './dto';
+import { AddRoleDto, CreateUserDto, UpdateUserDto } from './dto';
 import { User } from './users.model';
 import { FilesService } from '../files/files.service';
-import { RepositoryOptions } from '../../types';
+import { RepositoryOptions } from '@/types';
 import { ActivateUser } from '../activate-users/activate-users.model';
 
 const DEFAULT_USER_ROLE = 'USER';
@@ -30,23 +30,34 @@ export class UsersService {
     return user;
   }
 
-  // TODO replace to UpdateUserDto
   async updateUser(
-    dto: CreateUserDto,
+    userId: number,
+    dto: UpdateUserDto,
     avatar?: any,
     { transaction }: RepositoryOptions = {},
-  ) {
+  ): Promise<User> {
     let updateUserDto = { ...dto };
 
     if (avatar) {
+      // TODO сделать транзакцию для отката загруженных файлов в случае ошибки
       const avatarSrc = await this.filesService.createFile(avatar);
       updateUserDto = { ...updateUserDto, avatar: avatarSrc };
     }
 
-    return this.userRepository.update(updateUserDto, {
-      where: { id: 3 },
-      transaction,
-    });
+    const [countUpdated, updatedUsers] = await this.userRepository.update(
+      updateUserDto,
+      {
+        where: { id: userId },
+        transaction,
+        returning: true,
+      },
+    );
+
+    if (!countUpdated) {
+      return;
+    }
+
+    return updatedUsers[0];
   }
 
   async getUserById(id: number, { transaction }: RepositoryOptions = {}) {

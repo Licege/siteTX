@@ -19,8 +19,7 @@ import { ConfigService } from '@nestjs/config';
 import { JwtAuthGuard } from './jwt-auth.guard';
 import { TransactionInterceptor } from '@/interceptors';
 import { TransactionParam } from '@/decorators';
-
-const ONE_DAY = 24 * 60 * 60 * 1000;
+import { DateEntity } from '@/domains/entities';
 
 @ApiTags('Авторизация')
 @Controller('auth')
@@ -35,9 +34,11 @@ export class AuthController {
     const { accessToken, refreshToken } = await this.authService.login(dto);
 
     const isProduction = this.configService.get('environment') === 'production';
+    const refreshExpiresIn = this.configService.get('jwt.refreshExpiresIn');
+    const maxAgeRefreshToken = DateEntity.getTime(refreshExpiresIn);
 
     res.cookie('refreshToken', refreshToken, {
-      maxAge: 30 * ONE_DAY,
+      maxAge: maxAgeRefreshToken,
       httpOnly: true,
       secure: isProduction,
     });
@@ -86,9 +87,11 @@ export class AuthController {
     );
 
     const isProduction = this.configService.get('environment') === 'production';
+    const refreshExpiresIn = this.configService.get('jwt.refreshExpiresIn');
+    const maxAgeRefreshToken = DateEntity.getTime(refreshExpiresIn);
 
     res.cookie('refreshToken', refreshToken, {
-      maxAge: 30 * ONE_DAY,
+      maxAge: maxAgeRefreshToken,
       httpOnly: true,
       secure: isProduction,
     });

@@ -19,8 +19,8 @@ import { Sequelize } from 'sequelize-typescript';
     ConfigModule,
     forwardRef(() => UsersModule),
     TokenModule,
-    ActivateUsersModule,
-    BanUsersModule,
+    forwardRef(() => ActivateUsersModule),
+    forwardRef(() => BanUsersModule),
   ],
   exports: [],
 })

@@ -15,6 +15,9 @@ import { AddRoleDto, CreateUserDto } from './dto';
 import { User } from './users.model';
 import { Roles } from '../auth/roles-auth.decorator';
 import { RolesGuard } from '../auth/roles.guard';
+import { SessionUser } from '@/decorators';
+import { JwtAuthGuard } from '@/modules/auth/jwt-auth.guard';
+import { UsersMapper } from '@/modules/users/users.mapper';
 
 @ApiTags('Пользователи')
 @Controller('users')
@@ -31,9 +34,22 @@ export class UsersController {
   }
 
   @Patch()
+  @UseGuards(JwtAuthGuard)
   @UseInterceptors(FileInterceptor('avatar'))
-  update(@Body() userDto: CreateUserDto, @UploadedFile() avatar) {
-    return this.userService.updateUser(userDto, avatar);
+  async update(
+    @Body() userDto: CreateUserDto,
+    @UploadedFile() avatar,
+    @SessionUser() user,
+  ) {
+    console.log('user', user);
+
+    const updatedUser = await this.userService.updateUser(
+      user.id,
+      userDto,
+      avatar,
+    );
+
+    return UsersMapper.toResponseDto(updatedUser);
   }
 
   @ApiOperation({

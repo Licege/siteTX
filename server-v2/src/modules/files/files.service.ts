@@ -5,19 +5,18 @@ import * as uuid from 'uuid';
 
 @Injectable()
 export class FilesService {
-  // TODO rewrite to async!
   async createFile(file): Promise<string> {
     try {
       const parsedFileName = file.originalname.split('.');
       const ext = parsedFileName.pop();
-      const fileName = uuid.v4() + ext;
+      const fileName = `${uuid.v4()}.${ext}`;
       const filePath = path.resolve(__dirname, '..', '..', 'static');
 
       if (!fs.existsSync(filePath)) {
-        fs.mkdirSync(filePath, { recursive: true });
+        await fs.promises.mkdir(filePath, { recursive: true });
       }
 
-      fs.writeFileSync(path.join(filePath, fileName), file.buffer);
+      await fs.promises.writeFile(path.join(filePath, fileName), file.buffer);
 
       return fileName;
     } catch (error) {
