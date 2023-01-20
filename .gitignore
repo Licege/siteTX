@@ -1,5 +1,6 @@
 .idea
-db
+./db
 dashboard/build
 site/build
 server/uploads
+temporary
