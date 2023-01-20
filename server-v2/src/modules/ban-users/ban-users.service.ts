@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { BanUser } from './ban-users.model';
 import { UsersService } from '../users/users.service';
 import { BanUserDto } from './dto';
+import { DateEntity } from '../../domains/entities';
 
 @Injectable()
 export class BanUsersService {
@@ -34,5 +35,21 @@ export class BanUsersService {
     }
 
     return this.banUserRepository.create(dto);
+  }
+
+  async isUserBanned(userId) {
+    const banRecord = await this.banUserRepository.findOne({
+      where: { userId },
+    });
+
+    if (!banRecord) {
+      return false;
+    }
+
+    if (!banRecord.dateOfExpiration) {
+      return false;
+    }
+
+    return !DateEntity.isPast(banRecord.dateOfExpiration);
   }
 }

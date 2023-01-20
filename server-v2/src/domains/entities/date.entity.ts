@@ -1,10 +1,19 @@
 import * as dateFns from 'date-fns';
+import ms, { StringValue } from 'ms';
 
 export class DateEntity {
   constructor(private readonly _date: Date) {}
 
   static of(value?: Date | string | number | null) {
     return new DateEntity(new Date(value));
+  }
+
+  static getTime(date: StringValue): number {
+    return ms(date);
+  }
+
+  static isPast(date: Date | number | string) {
+    return dateFns.isPast(new Date(date));
   }
 
   private compareAsc(date: Date): number {

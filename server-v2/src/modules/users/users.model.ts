@@ -10,6 +10,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { Role } from '../roles/roles.model';
 import { UserRoles } from '../roles/user-roles.model';
 import { BanUser } from '../ban-users/ban-users.model';
+import { ActivateUser } from '../activate-users/activate-users.model';
 
 interface UserCreationAttrs {
   email: string;
@@ -111,31 +112,12 @@ export class User extends Model<User, UserCreationAttrs> {
   })
   dateOfBirthday: string;
 
-  @ApiProperty({
-    example: 'false',
-    description: 'Подтвержден ли аккаунт (по умолчанию false)',
-  })
-  @Column({
-    type: DataType.BOOLEAN,
-    allowNull: false,
-    defaultValue: false,
-  })
-  isActivated: boolean;
-
-  @ApiProperty({
-    example: 'http://localhost/activate-account/fdsfsweqweqweczx',
-    description: 'Ссылка для подтверждения аккаунта',
-  })
-  @Column({
-    type: DataType.STRING,
-    allowNull: true,
-    defaultValue: '',
-  })
-  activationLink: string;
-
   @BelongsToMany(() => Role, () => UserRoles)
   roles: Role[];
 
   @HasOne(() => BanUser)
   banned: BanUser;
+
+  @HasOne(() => ActivateUser)
+  activate: ActivateUser;
 }

@@ -3,16 +3,19 @@ import {
   HttpStatus,
   Injectable,
   UnauthorizedException,
+  ForbiddenException,
 } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import * as bcrypt from 'bcryptjs';
 import * as uuid from 'uuid';
 import { LoginDto } from './dto';
 import { CreateUserDto } from '../users/dto';
 import { UsersService } from '../users/users.service';
-import { User } from '../users/users.model';
 import { TokenService } from './modules/token/token.service';
+import { ActivateUsersService } from '../activate-users/activate-users.service';
+import { RepositoryOptions } from '../../types';
+import { DateEntity } from '../../domains/entities';
+import { BanUsersService } from '../ban-users/ban-users.service';
 
 const SALT = 5;
 
@@ -21,15 +24,32 @@ export class AuthService {
   constructor(
     private configService: ConfigService,
     private userService: UsersService,
-    private jwtService: JwtService,
     private tokenService: TokenService,
+    private activateUsersService: ActivateUsersService,
+    private banUsersService: BanUsersService,
   ) {}
 
-  async login(dto: LoginDto, ip: string) {
+  async login(dto: LoginDto) {
     const user = await this.validateUser(dto);
 
-    const tokens = await this.generateToken(user);
-    await this.saveToken(user.id, ip, tokens.refreshToken);
+    const isUserActivated = await this.activateUsersService.isUserActivated(
+      user.id,
+    );
+    if (!isUserActivated) {
+      throw new UnauthorizedException({
+        message: 'Аккаунт не активирован',
+      });
+    }
+
+    const isUserBanned = await this.banUsersService.isUserBanned(user.id);
+    if (isUserBanned) {
+      throw new ForbiddenException({
+        message: 'Аккаунт заблокирован',
+      });
+    }
+
+    const tokens = await this.tokenService.generateToken(user);
+    await this.tokenService.saveToken(tokens.refreshToken);
 
     return tokens;
   }
@@ -38,7 +58,7 @@ export class AuthService {
     await this.tokenService.removeToken(refreshToken);
   }
 
-  async registration(userDto: CreateUserDto) {
+  async registration(userDto: CreateUserDto, options?: RepositoryOptions) {
     const candidate = await this.userService.getUserByEmail(userDto.email);
 
     if (candidate) {
@@ -48,57 +68,29 @@ export class AuthService {
       );
     }
 
-    const activationLink = uuid.v4();
     const hashedPassword = await bcrypt.hash(userDto.password, SALT);
-    const user = await this.userService.createUser({
-      ...userDto,
-      password: hashedPassword,
-      // activationLink,
-    });
-    const tokens = await this.generateToken(user);
-    await this.saveToken(user.id, 'ip', tokens.refreshToken);
+    const user = await this.userService.createUser(
+      {
+        ...userDto,
+        password: hashedPassword,
+      },
+      options,
+    );
+
+    const activationLink = uuid.v4();
+    await this.activateUsersService.create(
+      { userId: user.id, activationLink, isActivated: false },
+      options,
+    );
+
+    const tokens = await this.tokenService.generateToken(user);
+    await this.tokenService.saveToken(tokens.refreshToken);
 
     return tokens;
   }
 
-  // TODO move to TokenService
-  private async generateToken(user: User) {
-    const payload = { email: user.email, id: user.id, roles: user.roles };
-
-    const accessSecret = this.configService.get('jwtAccessSecret');
-    const refreshSecret = this.configService.get('jwtRefreshSecret');
-
-    const accessExpiresIn = this.configService.get('jwtAccessExpiresIn');
-    const refreshExpiresIn = this.configService.get('jwtRefreshExpiresIn');
-
-    const accessToken = this.jwtService.sign(payload, {
-      secret: accessSecret,
-      expiresIn: accessExpiresIn,
-    });
-    const refreshToken = this.jwtService.sign(payload, {
-      secret: refreshSecret,
-      expiresIn: refreshExpiresIn,
-    });
-
-    return {
-      accessToken,
-      refreshToken,
-    };
-  }
-
-  private async saveToken(userId, clientIp, refreshToken) {
-    const tokenRecord = await this.tokenService.getToken(userId, clientIp);
-
-    if (tokenRecord) {
-      tokenRecord.refreshToken = refreshToken;
-      await tokenRecord.save();
-    }
-
-    return this.tokenService.createToken({
-      userId,
-      clientIp,
-      refreshToken,
-    });
+  async refresh(oldRefreshToken: string) {
+    return this.tokenService.refresh(oldRefreshToken);
   }
 
   private async validateUser(dto: LoginDto) {
@@ -114,64 +106,16 @@ export class AuthService {
     });
   }
 
-  async activateAccount(activationLink) {
-    const user = await this.userService.getUserByActivationLink(activationLink);
+  async activateAccount(activationLink, options?: RepositoryOptions) {
+    const user = await this.userService.getUserByActivationLink(
+      activationLink,
+      options,
+    );
 
     if (!user) {
       throw new HttpException('Некорректная ссылка', HttpStatus.BAD_REQUEST);
     }
 
-    user.activationLink = '';
-    user.isActivated = true;
-    await user.save();
-  }
-
-  async refresh(oldRefreshToken: string) {
-    if (!oldRefreshToken) {
-      throw new HttpException(
-        'Пользователь не авторизован',
-        HttpStatus.UNAUTHORIZED,
-      );
-    }
-
-    const userData = this.validateRefreshToken(oldRefreshToken);
-    const tokenFromDb = await this.tokenService.getTokenByRefresh(
-      oldRefreshToken,
-    );
-
-    if (!userData || !tokenFromDb) {
-      throw new HttpException(
-        'Пользователь не авторизован',
-        HttpStatus.UNAUTHORIZED,
-      );
-    }
-
-    const user = await this.userService.getUserById(userData.userId);
-    const tokens = await this.generateToken(user);
-    await this.saveToken(user.id, tokenFromDb.clientIp, tokens.refreshToken);
-
-    return tokens;
-  }
-
-  // TODO move to TokenService
-  private validateAccessToken(token) {
-    try {
-      const secret = this.configService.get('jwtAccessSecret');
-
-      return this.jwtService.verify(token, { secret });
-    } catch (e) {
-      return null;
-    }
-  }
-
-  // TODO move to TokenService
-  private validateRefreshToken(token) {
-    try {
-      const secret = this.configService.get('jwtRefreshSecret');
-
-      return this.jwtService.verify(token, { secret });
-    } catch (e) {
-      return null;
-    }
+    await this.activateUsersService.activateUser(user.id, options);
   }
 }

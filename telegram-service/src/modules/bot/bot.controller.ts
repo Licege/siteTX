@@ -1,6 +1,6 @@
 import { Controller } from '@nestjs/common';
-import { BotService } from './bot.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
+import { BotService } from './bot.service';
 
 enum Commands {
   SendMessage = 'send.message',

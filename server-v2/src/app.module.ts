@@ -3,9 +3,16 @@ import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ServeStaticModule } from '@nestjs/serve-static';
-import { baseConfig, databaseConfig, smtpConfig } from './configs';
+import {
+  baseConfig,
+  databaseConfig,
+  jwtConfig,
+  smtpConfig,
+  telegramConfig,
+} from './configs';
 import {
   AuthModule,
+  ActivateUsersModule,
   BanUsersModule,
   DishesModule,
   MailModule,
@@ -22,6 +29,7 @@ import { Dish } from './modules/dishes/dishes.model';
 import { BanUser } from './modules/ban-users/ban-users.model';
 import { TestModule } from './test/test.module';
 import { Token } from './modules/auth/modules/token/token.model';
+import { ActivateUser } from './modules/activate-users/activate-users.model';
 
 @Module({
   controllers: [],
@@ -29,19 +37,8 @@ import { Token } from './modules/auth/modules/token/token.model';
   imports: [
     ConfigModule.forRoot({
       envFilePath: `.${process.env.NODE_ENV}.env`,
-      load: [baseConfig, databaseConfig, smtpConfig],
+      load: [baseConfig, databaseConfig, jwtConfig, smtpConfig, telegramConfig],
     }),
-    // SequelizeModule.forRoot({
-    //   dialect: 'postgres',
-    //   host: process.env.DB_HOST,
-    //   port: 5432,
-    //   username: process.env.DB_USER || 'root',
-    //   password: process.env.DB_PASSWORD || 'root',
-    //   database: process.env.DB_NAME || 'trixolma-test',
-    //   models: [Dish, User, Role, UserRoles, BanUser, Token],
-    //   autoLoadModels: true,
-    //   logging: console.log,
-    // }),
     SequelizeModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
@@ -51,7 +48,7 @@ import { Token } from './modules/auth/modules/token/token.model';
         username: configService.get('database.username'),
         password: configService.get('database.password'),
         database: configService.get('database.database'),
-        models: [Dish, User, Role, UserRoles, BanUser, Token],
+        models: [Dish, User, Role, UserRoles, BanUser, Token, ActivateUser],
         autoLoadModels: true,
       }),
       inject: [ConfigService],
@@ -64,11 +61,12 @@ import { Token } from './modules/auth/modules/token/token.model';
     RolesModule,
     AuthModule,
     FilesModule,
-    TelegramModule,
-    TestModule,
+    // TelegramModule,
+    // TestModule,
     BanUsersModule,
     MailModule,
     TokenModule,
+    ActivateUsersModule,
   ],
 })
 export class AppModule {}

@@ -1,4 +1,5 @@
 export * from './auth';
+export * from './activate-users';
 export * from './ban-users';
 export * from './dishes';
 export * from './mail';

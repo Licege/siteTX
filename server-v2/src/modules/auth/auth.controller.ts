@@ -6,6 +6,7 @@ import {
   Post,
   Get,
   HttpStatus,
+  UseGuards,
 } from '@nestjs/common';
 import { Controller } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
@@ -13,9 +14,8 @@ import { CreateUserDto } from '../users/dto';
 import { LoginDto } from './dto';
 import { AuthService } from './auth.service';
 import { ConfigService } from '@nestjs/config';
+import { JwtAuthGuard } from './jwt-auth.guard';
 
-// TODO вынести в конфиг
-const isProduction = process.env.NODE_ENV === 'production';
 const ONE_DAY = 24 * 60 * 60 * 1000;
 
 @ApiTags('Авторизация')
@@ -28,20 +28,20 @@ export class AuthController {
 
   @Post('/login')
   async login(@Body() dto: LoginDto, @Request() req, @Response() res) {
-    const { accessToken, refreshToken } = await this.authService.login(
-      dto,
-      req.ip,
-    );
+    const { accessToken, refreshToken } = await this.authService.login(dto);
 
-    req.cookie('refreshToken', refreshToken, {
+    const isProduction = this.configService.get('environment') === 'production';
+
+    res.cookie('refreshToken', refreshToken, {
       maxAge: 30 * ONE_DAY,
       httpOnly: true,
       secure: isProduction,
     });
 
-    return res.send({ accessToken });
+    return res.send({ accessToken, refreshToken });
   }
 
+  // TODO сделать приватным
   @Post('/logout')
   async logout(@Request() req, @Response() res) {
     const { refreshToken } = req.cookies;
@@ -69,6 +69,7 @@ export class AuthController {
     return res.redirect(clientUrl);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get('/refresh')
   async refresh(@Request() req, @Response() res) {
     const oldRefreshToken = req.cookies.refreshToken;
@@ -77,12 +78,14 @@ export class AuthController {
       oldRefreshToken,
     );
 
-    req.cookie('refreshToken', refreshToken, {
+    const isProduction = this.configService.get('environment') === 'production';
+
+    res.cookie('refreshToken', refreshToken, {
       maxAge: 30 * ONE_DAY,
       httpOnly: true,
       secure: isProduction,
     });
 
-    return res.send({ accessToken });
+    return res.send({ accessToken, refreshToken });
   }
 }
