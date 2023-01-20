@@ -4,12 +4,17 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { UsersModule } from '../users';
 import { TokenModule } from './modules';
-import { ActivateUsersModule } from '../activate-users';
-import { BanUsersModule } from '../ban-users';
+import { ActivateUsersModule, BanUsersModule } from '@/modules';
+import { SEQUELIZE, TransactionInterceptor } from '@/interceptors';
+import { Sequelize } from 'sequelize-typescript';
 
 @Module({
   controllers: [AuthController],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    TransactionInterceptor,
+    { provide: SEQUELIZE, useExisting: Sequelize },
+  ],
   imports: [
     ConfigModule,
     forwardRef(() => UsersModule),

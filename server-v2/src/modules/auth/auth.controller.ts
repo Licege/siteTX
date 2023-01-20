@@ -7,14 +7,18 @@ import {
   Get,
   HttpStatus,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
 import { Controller } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { Transaction } from 'sequelize';
 import { CreateUserDto } from '../users/dto';
 import { LoginDto } from './dto';
 import { AuthService } from './auth.service';
 import { ConfigService } from '@nestjs/config';
 import { JwtAuthGuard } from './jwt-auth.guard';
+import { TransactionInterceptor } from '@/interceptors';
+import { TransactionParam } from '@/decorators';
 
 const ONE_DAY = 24 * 60 * 60 * 1000;
 
@@ -41,7 +45,6 @@ export class AuthController {
     return res.send({ accessToken, refreshToken });
   }
 
-  // TODO сделать приватным
   @Post('/logout')
   async logout(@Request() req, @Response() res) {
     const { refreshToken } = req.cookies;
@@ -53,8 +56,12 @@ export class AuthController {
   }
 
   @Post('/registration')
-  registration(@Body() userDto: CreateUserDto) {
-    return this.authService.registration(userDto);
+  @UseInterceptors(TransactionInterceptor)
+  registration(
+    @Body() userDto: CreateUserDto,
+    @TransactionParam() transaction: Transaction,
+  ) {
+    return this.authService.registration(userDto, { transaction });
   }
 
   @Get('/activate/:link')
