@@ -11,6 +11,8 @@ import { Role } from '../roles/roles.model';
 import { UserRoles } from '../roles/user-roles.model';
 import { BanUser } from '../ban-users/ban-users.model';
 import { ActivateUser } from '../activate-users/activate-users.model';
+import { Address } from '@/modules/addresses/addresses.model';
+import { UserAddresses } from '@/modules/users/user-addresses.model';
 
 interface UserCreationAttrs {
   email: string;
@@ -114,6 +116,9 @@ export class User extends Model<User, UserCreationAttrs> {
 
   @BelongsToMany(() => Role, () => UserRoles)
   roles: Role[];
+
+  @BelongsToMany(() => Address, () => UserAddresses)
+  addresses: Address[];
 
   @HasOne(() => BanUser)
   banned: BanUser;

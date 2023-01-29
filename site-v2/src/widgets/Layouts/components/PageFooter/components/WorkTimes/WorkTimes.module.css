@@ -1,0 +1,15 @@
+.WorkTimes {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+  margin-bottom: 8px;
+}
+
+.time {
+  color: #212529ab;
+}

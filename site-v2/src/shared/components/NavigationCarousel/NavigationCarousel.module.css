@@ -1,0 +1,21 @@
+.scrollable {
+  width: 100%;
+  padding-bottom: 12px;
+}
+
+.content {
+  position: relative;
+  display: inline-flex;
+  min-width: 100%;
+}
+
+.selectionPlate {
+  position: absolute;
+  height: 32px;
+  background-color: azure;
+  border-radius: 16px;
+  z-index: -1;
+  transition-property: width;
+  transition-timing-function: ease;
+  transition-duration: 200ms;
+}

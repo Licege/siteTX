@@ -11,6 +11,7 @@ import { UserRoles } from '../roles/user-roles.model';
 import { AuthModule } from '../auth';
 import { FilesModule } from '../files';
 import { ActivateUser } from '../activate-users/activate-users.model';
+import { UserAddresses } from './user-addresses.model';
 
 @Module({
   controllers: [UsersController],
@@ -18,7 +19,13 @@ import { ActivateUser } from '../activate-users/activate-users.model';
   imports: [
     ConfigModule,
     JwtModule,
-    SequelizeModule.forFeature([User, Role, UserRoles, ActivateUser]),
+    SequelizeModule.forFeature([
+      User,
+      Role,
+      UserRoles,
+      ActivateUser,
+      UserAddresses,
+    ]),
     forwardRef(() => RolesModule),
     forwardRef(() => AuthModule),
     FilesModule,

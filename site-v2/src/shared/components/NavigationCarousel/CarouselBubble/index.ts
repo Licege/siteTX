@@ -1,0 +1,1 @@
+export { CarouselBubble } from './CarouselBubble';

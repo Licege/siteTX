@@ -1,0 +1,5 @@
+.SocialNetworks {
+  display: grid;
+  grid-template-columns: repeat(4, min-content);
+  grid-gap: 8px;
+}

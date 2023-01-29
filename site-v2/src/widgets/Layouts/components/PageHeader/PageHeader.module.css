@@ -1,0 +1,16 @@
+.header {
+  background-color: #FFFFFF;
+  height: 64px;
+  width: 100%;
+  box-shadow: rgb(0 0 0 / 25%) 0 1px 4px;
+  flex-shrink: 0;
+}
+
+.content {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  column-gap: 40px;
+}

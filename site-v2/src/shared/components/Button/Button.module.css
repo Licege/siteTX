@@ -1,0 +1,245 @@
+.Button {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  color: rebeccapurple;
+  border: none;
+  background-color: transparent;
+  transition-property: background-color, opacity, box-shadow;
+  transition-duration: 150ms;
+  transition-timing-function: ease-in-out;
+  font-variant-numeric: proportional-nums;
+  appearance: none;
+}
+
+.Button:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: '';
+  pointer-events: none;
+  border-radius: inherit;
+  transition-property: box-shadow;
+  transition-duration: 150ms;
+  transition-timing-function: ease-in-out;
+}
+
+.clickable {
+  position: relative;
+  cursor: pointer;
+}
+
+.clickable:before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  content: '';
+  pointer-events: none;
+  opacity: 0;
+  background-color: #000;
+  transition-property: opacity;
+  transition-duration: 150ms;
+  transition-timing-function: ease-in-out;
+  border-radius: inherit;
+}
+
+.clickable:hover:before {
+  opacity: .05;
+}
+
+.clickable:active:before {
+  opacity: .1;
+  transition-duration: 0s;
+}
+
+.ghost {
+  background-color: transparent;
+}
+
+.ghost:after {
+  box-shadow: none;
+}
+
+.action {
+  background-color: green;
+}
+
+.action:after {
+  box-shadow: none;
+}
+
+.default {
+  background-color: #0000EE;
+}
+
+.default:after {
+  box-shadow: none;
+}
+
+.floating {
+  background-color: #1ea7fd;
+}
+
+.floating:after {
+  box-shadow: inset 0 0 0 1px rgba(210, 208, 204, 0.5);
+}
+
+.outline {
+  background-color: #61dafb;
+}
+
+.outline:after {
+  box-shadow: inset 0 0 0 1px rgba(210, 208, 204, 0.5);
+}
+
+.xs {
+  height: 32px;
+}
+
+.s {
+  height: 40px;
+}
+
+.m {
+  height: 48px;
+}
+
+.l {
+  height: 56px;
+}
+
+.squire.xs {
+  border-radius: 10px;
+}
+
+.squire.s {
+  border-radius: 13px;
+}
+
+.squire.m {
+  border-radius: 16px;
+}
+
+.squire.l {
+  border-radius: 16px;
+}
+
+.circle.xs {
+  border-radius: 16px;
+}
+
+.circle.s {
+  border-radius: 20px;
+}
+
+.circle.m {
+  border-radius: 24px;
+}
+
+.circle.l {
+  border-radius: 28px;
+}
+
+.disabled {
+  color: #6c757d;
+  opacity: .5;
+}
+
+.content {
+  width: 100%;
+  flex: none;
+  line-height: 0;
+  text-align: center;
+  transition-property: opacity, transform;
+  transition-duration: 150ms;
+  transition-timing-function: ease-in-out;
+}
+
+.loading {
+  opacity: 1;
+}
+
+.loading.content {
+  opacity: 0;
+  transform: translateY(-50%);
+}
+
+.withTextContent.content {
+  padding-bottom: 1px;
+}
+
+.stretched {
+  width: 100%;
+}
+
+.contentWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.textContent {
+  pointer-events: none;
+}
+
+.textContentForm.squire.xs {
+  padding: 0 12px;
+}
+
+.textContentForm.squire.s {
+  padding: 4px 14px;
+}
+
+.textContentForm.squire.m {
+  padding: 8px 16px;
+}
+
+.textContentForm.squire.l {
+  padding: 12px 18px;
+}
+
+.textContentForm.circle.xs {
+  padding: 0 14px;
+}
+
+.textContentForm.circle.s {
+  padding: 4px 16px;
+}
+
+.textContentForm.circle.m {
+  padding: 8px 18px;
+}
+
+.textContentForm.circle.l {
+  padding: 12px 20px;
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  line-height: 0;
+  opacity: 0;
+  transform: translate(-50%, -50%) translateY(50%);
+  transition-property: opacity, transform;
+  transition-duration: 150ms;
+  transition-timing-function: ease-in-out;
+}
+
+.spinner.visible {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}

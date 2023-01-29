@@ -1,0 +1,23 @@
+.Contacts {}
+
+.title {
+  margin-bottom: 8px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+
+.link {
+  color: #212529ab;
+  transition: 200ms;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.link:hover {
+  color: #000;
+}

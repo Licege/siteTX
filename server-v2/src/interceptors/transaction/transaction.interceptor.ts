@@ -6,7 +6,7 @@ import {
   NestInterceptor,
 } from '@nestjs/common';
 import { Sequelize } from 'sequelize-typescript';
-import { catchError, Observable, tap, throwError } from 'rxjs';
+import { catchError, Observable, map } from 'rxjs';
 import { Transaction } from 'sequelize';
 import { SEQUELIZE } from './constants';
 
@@ -26,12 +26,14 @@ export class TransactionInterceptor implements NestInterceptor {
     req.transaction = transaction;
 
     return next.handle().pipe(
-      tap(async () => {
+      map(async (data) => {
         await transaction.commit();
+
+        return data;
       }),
       catchError(async (error) => {
         await transaction.rollback();
-        return throwError(error);
+        throw error;
       }),
     );
   }

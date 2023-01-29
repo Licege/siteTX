@@ -1,0 +1,62 @@
+{
+  "extends": ["react-app", "airbnb-typescript", "prettier"],
+  "parser": "@typescript-eslint/parser",
+  "rules": {
+    "no-unused-vars": "warn",
+    "no-use-before-define": "off",
+    "indent": ["error", 2, { "ignoredNodes": ["JSXElement *", "JSXElement"]}],
+    "import/prefer-default-export": "off",
+    "react/display-name": "off",
+    "react/jsx-uses-react": "error",
+    "object-curly-spacing": ["error", "always"],
+    "quotes": ["error", "single", { "avoidEscape": true }],
+    "spaced-comment": "off",
+    "jsx-a11y/alt-text": "off",
+    "react/jsx-indent": ["error", 2],
+    "react/jsx-indent-props": ["error", "first"],
+    "react/jsx-closing-bracket-location": ["error", "after-props"],
+    "react/jsx-first-prop-new-line": ["error", "never"],
+    "react/jsx-props-no-spreading": "off",
+    "react/no-array-index-key": "off",
+    "react/destructuring-assignment": "off",
+    "react/require-default-props": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "import/extensions": [
+      "warn",
+      "never",
+      { "ignorePackages": true }
+    ],
+    "comma-dangle": ["error", {
+      "arrays": "only-multiline",
+      "objects": "only-multiline",
+      "imports": "only-multiline",
+      "exports": "only-multiline",
+      "functions": "never"
+    }],
+    "semi": ["error", "always"]
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts?(x)"],
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      },
+      "rules": {
+        "no-use-before-define": "off",
+        "@typescript-eslint/no-use-before-define": "off",
+        "react/jsx-uses-react": "error",
+        "import/no-extraneous-dependencies": "off",
+        "@typescript-eslint/no-unused-expressions": "off",
+        "no-param-reassign": "off",
+        "import/no-cycle": "warn",
+        "react/prop-types": "off",
+        "@typescript-eslint/no-shadow": "off",
+        "@typescript-eslint/naming-convention": "off"
+      },
+      "globals": {
+        "React": true,
+        "JSX": true
+      }
+    }
+  ]
+}

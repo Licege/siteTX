@@ -41,8 +41,6 @@ export class UsersController {
     @UploadedFile() avatar,
     @SessionUser() user,
   ) {
-    console.log('user', user);
-
     const updatedUser = await this.userService.updateUser(
       user.id,
       userDto,

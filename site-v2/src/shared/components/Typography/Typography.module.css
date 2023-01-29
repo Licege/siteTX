@@ -1,0 +1,28 @@
+.Typography {
+  padding: 0;
+  margin: 0;
+}
+
+.Typography.uppercase {
+  text-transform: uppercase;
+}
+
+.Typography.alignLeft {
+  text-align: left;
+}
+
+.Typography.alignCenter {
+  text-align: center;
+}
+
+.Typography.alignRight {
+  text-align: right;
+}
+
+.clamp {
+  display: -webkit-box;
+  overflow: hidden;
+  word-break: break-word;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+}

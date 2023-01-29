@@ -12,8 +12,10 @@ import {
 } from './configs';
 import {
   AuthModule,
+  AddressesModule,
   ActivateUsersModule,
   BanUsersModule,
+  CitiesModule,
   DishesModule,
   MailModule,
   UsersModule,
@@ -21,6 +23,7 @@ import {
   FilesModule,
   TelegramModule,
   TokenModule,
+  RestaurantsModule,
 } from './modules';
 import { User } from './modules/users/users.model';
 import { Role } from './modules/roles/roles.model';
@@ -30,6 +33,10 @@ import { BanUser } from './modules/ban-users/ban-users.model';
 import { TestModule } from './test/test.module';
 import { Token } from './modules/auth/modules/token/token.model';
 import { ActivateUser } from './modules/activate-users/activate-users.model';
+import { Restaurant } from '@/modules/restaurants/restaurants.model';
+import { City } from './modules/cities/cities.model';
+import { Address } from '@/modules/addresses/addresses.model';
+import { UserAddresses } from '@/modules/users/user-addresses.model';
 
 @Module({
   controllers: [],
@@ -48,7 +55,19 @@ import { ActivateUser } from './modules/activate-users/activate-users.model';
         username: configService.get('database.username'),
         password: configService.get('database.password'),
         database: configService.get('database.database'),
-        models: [Dish, User, Role, UserRoles, BanUser, Token, ActivateUser],
+        models: [
+          Address,
+          Dish,
+          User,
+          Role,
+          UserAddresses,
+          UserRoles,
+          BanUser,
+          Token,
+          ActivateUser,
+          Restaurant,
+          City,
+        ],
         autoLoadModels: true,
       }),
       inject: [ConfigService],
@@ -67,6 +86,9 @@ import { ActivateUser } from './modules/activate-users/activate-users.model';
     MailModule,
     TokenModule,
     ActivateUsersModule,
+    RestaurantsModule,
+    CitiesModule,
+    AddressesModule,
   ],
 })
 export class AppModule {}
