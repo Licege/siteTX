@@ -1,6 +1,7 @@
 import { Story, Meta } from '@storybook/react';
 import { Typography, TypographyProps } from './Typography';
 import { TypographyVariant } from './Typography.types';
+import '../style.css';
 
 const TypographyStoryMeta: Meta<TypographyProps> = {
   title: 'Typography',

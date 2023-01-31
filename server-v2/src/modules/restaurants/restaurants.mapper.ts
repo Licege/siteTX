@@ -14,7 +14,7 @@ export class RestaurantsMapper {
       },
       openHours: model.openHours,
       socialNetworks: {
-        inst: model.inst,
+        instagram: model.inst,
         vk: model.vk,
         tg: model.tg,
         tw: model.tw,

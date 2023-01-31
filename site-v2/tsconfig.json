@@ -8,7 +8,7 @@
     ],
     "paths": {
       "@components": ["src/shared/components"],
-      "@assets": ["src/shared/assets"],
+      "@hooks": ["src/shared/hooks"],
       "@entities": ["src/entities"],
       "@pages": ["src/pages"],
       "@widgets": ["src/widgets"],

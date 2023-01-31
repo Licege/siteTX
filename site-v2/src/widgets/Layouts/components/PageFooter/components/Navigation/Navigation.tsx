@@ -11,8 +11,8 @@ const LinksList = Object.freeze([
 export const Navigation = () => {
   return (
     <ul className={c.Navigation}>
-      {LinksList.map(link => (
-        <NavigationLink as="li" to={link.to}>{link.name}</NavigationLink>
+      {LinksList.map((link, index) => (
+        <NavigationLink key={index} as="li" to={link.to}>{link.name}</NavigationLink>
       ))}
     </ul>
   );

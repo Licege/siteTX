@@ -28,7 +28,7 @@ export const NavigationLink = ({
 }: NavigationLinkProps) => (
   <Tag className={c.NavigationLink}>
     <NavLink to={to} className={getLinkClassName}>
-      <Typography variant="body0">
+      <Typography variant="body1">
         {children}
       </Typography>
     </NavLink>

@@ -25,7 +25,7 @@ export const NavigationLink = ({ as: Tag = 'li', to, children }: NavigationLinkP
   return (
     <Tag className={c.NavigationLink}>
       <NavLink to={to} className={getLinkClassName}>
-        <Typography variant="title2">
+        <Typography variant="body1" weight="medium" uppercase maxLines={1}>
           {children}
         </Typography>
       </NavLink>

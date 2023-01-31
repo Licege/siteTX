@@ -12,7 +12,6 @@ interface SocialNetworksProps {
 }
 
 export const SocialNetworks = ({ socialNetworks }: SocialNetworksProps) => {
-  console.log(socialNetworks);
   return (
     <div className={c.SocialNetworks}>
       {socialNetworks.map((item) => <SocialNetworkItem key={item.name} name={item.name} url={item.url} />)}

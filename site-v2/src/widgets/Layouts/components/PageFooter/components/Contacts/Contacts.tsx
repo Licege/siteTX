@@ -20,7 +20,7 @@ function transformAddress(city: string, street: string, house: string): string {
 export const Contacts = ({ city, street, house, phone }: ContactsProps) => {
   return (
     <div className={c.Contacts}>
-      <Typography className={c.title} variant="title3">Адрес</Typography>
+      <Typography className={c.title} variant="title5" weight="regular">Адрес</Typography>
       <div className={c.content}>
         <a className={c.link} href={MAP_ADDRESS_LINK} target="_blank" rel="noopener noreferrer">
           <Address height={ICON_SIZE} width={ICON_SIZE} />

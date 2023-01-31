@@ -7,7 +7,7 @@ interface Address {
 }
 
 interface SocialNetworks {
-  readonly inst?: string;
+  readonly instagram?: string;
   readonly vk?: string;
   readonly fb?: string;
   readonly tw?: string;

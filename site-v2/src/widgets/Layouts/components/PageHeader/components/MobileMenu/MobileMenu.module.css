@@ -1,0 +1,15 @@
+.MobileMenu {
+  position: fixed;
+  top: 64px;
+  height: calc(100vh - 64px);
+  width: 0;
+  background-color: #f5f5f7;
+  overflow-x: hidden;
+  overflow-y: auto;
+  transition: width 300ms ease-in-out;
+  right: 0;
+}
+
+.shown {
+  width: 100%;
+}

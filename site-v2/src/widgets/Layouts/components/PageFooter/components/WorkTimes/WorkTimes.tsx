@@ -1,5 +1,4 @@
-import { Typography } from '@components';
-import { Hours } from '../../assets';
+import { Typography, Icon } from '@components';
 import c from './WorkTimes.module.css';
 
 interface WorkTimesProps {
@@ -12,11 +11,11 @@ export const WorkTimes = ({ openHours }: WorkTimesProps) => {
   return (
     <div className={c.WorkTimes}>
       <div className={c.title}>
-        <Hours width={ICON_SIZE} height={ICON_SIZE} />
-        <Typography variant="title3">Часы работы</Typography>
+        <Icon iconName="hours" width={ICON_SIZE} height={ICON_SIZE} />
+        <Typography variant="title5" maxLines={1} weight="regular">Часы работы</Typography>
       </div>
       {openHours.map((item, index) => (
-        <Typography key={index} className={c.time} variant="body2">{item}</Typography>
+        <Typography key={index} className={c.time} maxLines={1} variant="body2">{item}</Typography>
       ))}
     </div>
   );

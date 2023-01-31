@@ -5,3 +5,4 @@ export * from './Button';
 export * from './NavigationCarousel';
 export * from './Spinner';
 export * from './Skeleton';
+export * from './Icon';

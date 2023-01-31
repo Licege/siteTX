@@ -1,20 +1,16 @@
 import { NavigationLink } from './components';
+import { Link } from '../../PageHeader.types';
 import c from './Navigation.module.css';
 
-const LinksList = Object.freeze([
-  { to: '/', name: 'Главная' },
-  { to: '/promos', name: 'Акции' },
-  { to: '/news', name: 'События' },
-  { to: '/about', name: 'О нас' },
-]);
+interface NavigationProps {
+  links: Link[]
+}
 
-export const Navigation = () => {
-  return null;
-
+export const Navigation = ({ links }: NavigationProps) => {
   return (
     <ul className={c.Navigation}>
-      {LinksList.map(link => (
-        <NavigationLink key={link.to} as="li" to={link.to}>{link.name}</NavigationLink>
+      {links.map((link, index) => (
+        <NavigationLink key={index} as="li" to={link.to}>{link.name}</NavigationLink>
       ))}
     </ul>
   );

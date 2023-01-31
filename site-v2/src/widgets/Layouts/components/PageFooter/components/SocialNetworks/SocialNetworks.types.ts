@@ -1,1 +1,1 @@
-export type Icons = 'vk' | 'fb' | 'inst' | 'tw' | 'tg' | 'gmail';
+export type Icons = 'vk' | 'fb' | 'instagram' | 'tw' | 'tg' | 'gmail';

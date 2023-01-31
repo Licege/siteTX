@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { Logo as LogoSVG } from '@assets';
+import { Icon } from '@components';
 import c from './Logo.module.css';
 
 const LOGO_WIDTH = 96;
@@ -10,5 +10,5 @@ interface LogoProps {
 }
 
 export const Logo = ({ className }: LogoProps) => (
-  <LogoSVG className={cn(className, c.Logo)} width={LOGO_WIDTH} height={LOGO_HEIGHT} />
+  <Icon className={cn(className, c.Logo)} iconName="logo" width={LOGO_WIDTH} height={LOGO_HEIGHT} />
 );

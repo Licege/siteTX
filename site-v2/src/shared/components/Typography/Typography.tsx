@@ -54,7 +54,7 @@ export const Typography = ({
   ...selfProps
 }: TypographyProps) => {
   const targetProps: HTMLAttributes<HTMLElement> = {
-    className: cn(className, c.Typography, c[variant], c[leading], c.alignLeft, {
+    className: cn(className, c.Typography, c[variant], c[weight], c[leading], c.alignLeft, {
       [c.alignLeft]: align === 'left',
       [c.alignRight]: align === 'right',
       [c.alignCenter]: align === 'center',
