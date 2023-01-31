@@ -1,7 +1,7 @@
 import { CSSProperties, HTMLAttributes, ReactNode } from 'react';
 import cn from 'classnames';
 import { sanitize } from '../../utils';
-import { TypographyAlign, TypographyVariant, TypographyWeight } from './Typography.types';
+import { TypographyAlign, TypographyLeading, TypographyVariant, TypographyWeight } from './Typography.types';
 import { WithClassName } from '../../types';
 import c from './Typography.module.css';
 
@@ -26,6 +26,7 @@ export interface TypographyProps extends WithClassName {
   children: ReactNode | number | string;
   style?: CSSProperties;
   weight?: TypographyWeight;
+  leading?: TypographyLeading;
   align?: TypographyAlign;
   as?: TextTag;
   html?: boolean;
@@ -42,6 +43,7 @@ export const Typography = ({
   variant,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   weight = 'regular',
+  leading = 'normal',
   align = 'left',
   html = false,
   maxLines,
@@ -52,7 +54,7 @@ export const Typography = ({
   ...selfProps
 }: TypographyProps) => {
   const targetProps: HTMLAttributes<HTMLElement> = {
-    className: cn(className, c.Typography, c.alignLeft, {
+    className: cn(className, c.Typography, c[variant], c[leading], c.alignLeft, {
       [c.alignLeft]: align === 'left',
       [c.alignRight]: align === 'right',
       [c.alignCenter]: align === 'center',

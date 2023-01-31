@@ -1,4 +1,5 @@
 export type TypographyWeight = 'regular' | 'light' | 'medium' | 'bold';
+export type TypographyLeading = 'normal' | 'tight' | 'loose';
 export type TypographyAlign = 'left' | 'center' | 'right';
 
 export type TypographyVariant =

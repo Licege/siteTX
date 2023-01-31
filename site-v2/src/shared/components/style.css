@@ -1,0 +1,101 @@
+:root {
+  /* font-size */
+  --typography-font-size-header: 48px;
+  --typography-font-size-body0: 24px;
+  --typography-font-size-body1: 20px;
+  --typography-font-size-body2: 16px;
+  --typography-font-size-title1: 40px;
+  --typography-font-size-title2: 32px;
+  --typography-font-size-title3: 28px;
+  --typography-font-size-title4: 24px;
+  --typography-font-size-title5: 20px;
+  --typography-font-size-caption1: 13px;
+  --typography-font-size-caption2: 11px;
+
+  /* line-height */
+  --typography-line-height-header-normal: 46px;
+  --typography-line-height-header-tight: 46px;
+  --typography-line-height-header-loose: 46px;
+  --typography-line-height-body0-normal: 24px;
+  --typography-line-height-body0-tight: 21px;
+  --typography-line-height-body0-loose: 27px;
+  --typography-line-height-body1-normal: 23px;
+  --typography-line-height-body1-tight: 20px;
+  --typography-line-height-body1-loose: 26px;
+  --typography-line-height-body2-normal: 19px;
+  --typography-line-height-body2-tight: 17px;
+  --typography-line-height-body2-loose: 21px;
+  --typography-line-height-title1-normal: 42px;
+  --typography-line-height-title1-tight: 42px;
+  --typography-line-height-title1-loose: 42px;
+  --typography-line-height-title2-normal: 35px;
+  --typography-line-height-title2-tight: 35px;
+  --typography-line-height-title2-loose: 35px;
+  --typography-line-height-title3-normal: 31px;
+  --typography-line-height-title3-tight: 31px;
+  --typography-line-height-title3-loose: 31px;
+  --typography-line-height-title4-normal: 27px;
+  --typography-line-height-title4-tight: 27px;
+  --typography-line-height-title4-loose: 27px;
+  --typography-line-height-title5-normal: 23px;
+  --typography-line-height-title5-tight: 23px;
+  --typography-line-height-title5-loose: 23px;
+  --typography-line-height-caption1-normal: 15px;
+  --typography-line-height-caption1-tight: 14px;
+  --typography-line-height-caption1-loose: 17px;
+  --typography-line-height-caption2-normal: 13px;
+  --typography-line-height-caption2-tight: 12px;
+  --typography-line-height-caption2-loose: 15px;
+
+  /* letter-spacing */
+  --typography-letter-spacing-header-bold: -0.02em;
+  --typography-letter-spacing-header-light: -0.02em;
+  --typography-letter-spacing-header-medium: -0.02em;
+  --typography-letter-spacing-header-regular: -0.02em;
+  --typography-letter-spacing-body0-bold: -0.01em;
+  --typography-letter-spacing-body0-light: -0.01em;
+  --typography-letter-spacing-body0-medium: -0.01em;
+  --typography-letter-spacing-body0-regular: -0.01em;
+  --typography-letter-spacing-body1-bold: -0.01em;
+  --typography-letter-spacing-body1-light: -0.01em;
+  --typography-letter-spacing-body1-medium: -0.01em;
+  --typography-letter-spacing-body1-regular: -0.01em;
+  --typography-letter-spacing-body2-bold: -0.005em;
+  --typography-letter-spacing-body2-light: 0;
+  --typography-letter-spacing-body2-medium: -0.005em;
+  --typography-letter-spacing-body2-regular: 0;
+  --typography-letter-spacing-title1-bold: -0.02em;
+  --typography-letter-spacing-title1-light: -0.02em;
+  --typography-letter-spacing-title1-medium: -0.02em;
+  --typography-letter-spacing-title1-regular: -0.02em;
+  --typography-letter-spacing-title2-bold: -0.02em;
+  --typography-letter-spacing-title2-light: -0.025em;
+  --typography-letter-spacing-title2-medium: -0.02em;
+  --typography-letter-spacing-title2-regular: -0.025em;
+  --typography-letter-spacing-title3-bold: -0.015em;
+  --typography-letter-spacing-title3-light: -0.015em;
+  --typography-letter-spacing-title3-medium: -0.015em;
+  --typography-letter-spacing-title3-regular: -0.015em;
+  --typography-letter-spacing-title4-bold: -0.01em;
+  --typography-letter-spacing-title4-light: -0.01em;
+  --typography-letter-spacing-title4-medium: -0.01em;
+  --typography-letter-spacing-title4-regular: -0.01em;
+  --typography-letter-spacing-title5-bold: -0.01em;
+  --typography-letter-spacing-title5-light: -0.01em;
+  --typography-letter-spacing-title5-medium: -0.01em;
+  --typography-letter-spacing-title5-regular: -0.01em;
+  --typography-letter-spacing-caption1-bold: 0;
+  --typography-letter-spacing-caption1-light: 0;
+  --typography-letter-spacing-caption1-medium: 0;
+  --typography-letter-spacing-caption1-regular: 0;
+  --typography-letter-spacing-caption2-bold: -0.01em;
+  --typography-letter-spacing-caption2-light: -0.01em;
+  --typography-letter-spacing-caption2-medium: -0.01em;
+  --typography-letter-spacing-caption2-regular: -0.01em;
+
+  /* font-weight */
+  --typography-font-weight-light: 100;
+  --typography-font-weight-regular: 400;
+  --typography-font-weight-medium: 500;
+  --typography-font-weight-bold: 700;
+}
