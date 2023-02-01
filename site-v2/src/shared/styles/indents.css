@@ -1,0 +1,12 @@
+:root {
+  --indent-xxs: 4px;
+  --indent-xs: 8px;
+  --indent-s: 12px;
+  --indent-m: 16px;
+  --indent-l: 20px;
+  --indent-xl: 24px;
+  --indent-xxl: 32px;
+  --indent-sxl: 40px;
+  --indent-mxl: 48px;
+  --indent-lxl: 72px;
+}

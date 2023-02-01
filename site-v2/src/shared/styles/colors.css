@@ -1,0 +1,7 @@
+:root {
+  --color-warning: #00CEE0;
+  --color-danger: #FD4F53;
+  --color-link-active: #008000;
+  --color-link-hover: #008000;
+  --color-saddle-brown: #8B4513; /* TODO переименовать */
+}

@@ -6,8 +6,8 @@
 .title {
   display: flex;
   align-items: center;
-  column-gap: 4px;
-  margin-bottom: 8px;
+  column-gap: var(--indent-xxs);
+  margin-bottom: var(--indent-xs);
 }
 
 .time {

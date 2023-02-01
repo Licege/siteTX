@@ -1,6 +1,6 @@
 .BurgerButton {
   display: none;
-  margin: auto 0 auto 20px;
+  margin: auto 0 auto var(--indent-l);
   position: relative;
   height: 50px;
   width: 50px;
@@ -18,7 +18,7 @@
   margin-left: -10px; /* половина ширины */
   height: 2px;
   width: 20px;
-  background-color: red;
+  background-color: var(--color-saddle-brown);
   transition: 200ms;
 }
 
@@ -29,7 +29,7 @@
   content: '';
   height: 2px;
   width: 20px;
-  background-color: red;
+  background-color: var(--color-saddle-brown);
   transition: 200ms;
 }
 
@@ -66,6 +66,6 @@
 
 @media (max-width: 768px) {
   .BurgerButton {
-    margin: auto 0 auto 16px;
+    margin: auto 0 auto var(--indent-m);
   }
 }

@@ -1,0 +1,31 @@
+.AboutSection {
+  padding: var(--indent-l);
+}
+
+.image {
+  margin-right: var(--indent-l);
+  margin-bottom: var(--indent-xxs);
+  border-radius: 5px;
+  width: 320px;
+  height: 320px;
+  float: left;
+}
+
+.info {
+  width: 100%;
+}
+
+.title {
+  margin-top: var(--indent-s);
+  margin-bottom: var(--indent-l);
+  color: var(--color-saddle-brown);
+}
+
+.text {
+  margin-bottom: var(--indent-xxl);
+}
+
+.button {
+  display: block;
+  margin: 0 auto;
+}
