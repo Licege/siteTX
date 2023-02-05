@@ -1,5 +1,5 @@
 import { configureStore, ConfigureStoreOptions } from '@reduxjs/toolkit';
-import { restaurantApi } from '../../entities/restaurant';
+import { restaurantApi, menuImagesApi } from '@entities';
 
 const setupStore = (
   options?: ConfigureStoreOptions['preloadedState'] | undefined
@@ -7,8 +7,9 @@ const setupStore = (
   return configureStore({
     reducer: {
       [restaurantApi.reducerPath]: restaurantApi.reducer,
+      [menuImagesApi.reducerPath]: menuImagesApi.reducer,
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(restaurantApi.middleware),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(restaurantApi.middleware, menuImagesApi.middleware),
     ...options
   });
 };

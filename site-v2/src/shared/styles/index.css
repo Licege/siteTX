@@ -1,3 +1,7 @@
+@import "./normilize.css";
+
+@import "./main.css";
 @import "./colors.css";
 @import "./indents.css";
 @import "./typography.css";
+@import "./breakpoints.css";

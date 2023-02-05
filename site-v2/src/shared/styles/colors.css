@@ -4,4 +4,7 @@
   --color-link-active: #008000;
   --color-link-hover: #008000;
   --color-saddle-brown: #8B4513; /* TODO переименовать */
+  --color-white: #FFF;
+
+  --color-primary: #8B4513;
 }

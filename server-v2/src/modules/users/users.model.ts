@@ -1,7 +1,9 @@
 import {
+  BelongsTo,
   BelongsToMany,
   Column,
   DataType,
+  ForeignKey,
   HasOne,
   Model,
   Table,
@@ -13,6 +15,7 @@ import { BanUser } from '../ban-users/ban-users.model';
 import { ActivateUser } from '../activate-users/activate-users.model';
 import { Address } from '@/modules/addresses/addresses.model';
 import { UserAddresses } from '@/modules/users/user-addresses.model';
+import { File } from '@/modules/files/file.model';
 
 interface UserCreationAttrs {
   email: string;
@@ -20,7 +23,7 @@ interface UserCreationAttrs {
   lastName: string;
   firstName: string;
   activationLink: string;
-  avatar?: string;
+  avatarId?: number;
 }
 
 @Table({ tableName: 'Users', paranoid: true })
@@ -88,15 +91,6 @@ export class User extends Model<User, UserCreationAttrs> {
   patronymic: string;
 
   @ApiProperty({
-    example: 'http://localhost:5000/uploads/user-avatar.jpg',
-    description: 'Аватарка',
-  })
-  @Column({
-    type: DataType.STRING,
-  })
-  avatar: string;
-
-  @ApiProperty({
     example: '88005553535',
     description: 'Телефон',
   })
@@ -113,6 +107,20 @@ export class User extends Model<User, UserCreationAttrs> {
     type: DataType.DATE,
   })
   dateOfBirthday: string;
+
+  @ApiProperty({
+    example: '1',
+    description: 'Id файла - аватарки',
+  })
+  @Column({
+    type: DataType.INTEGER,
+    onDelete: 'SET NULL',
+  })
+  @ForeignKey(() => File)
+  avatarId: number;
+
+  @BelongsTo(() => File)
+  avatar: File;
 
   @BelongsToMany(() => Role, () => UserRoles)
   roles: Role[];

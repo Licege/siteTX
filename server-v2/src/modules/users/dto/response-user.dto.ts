@@ -1,6 +1,11 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsEmail, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
+interface Avatar {
+  url: string;
+  previewUrl: string;
+}
+
 export class ResponseUserDto {
   @ApiProperty({
     example: '1',
@@ -40,11 +45,10 @@ export class ResponseUserDto {
   readonly patronymic?: string;
 
   @ApiPropertyOptional({
-    example: 'http://localhost:5000/uploads/user-avatar.jpg',
     description: 'Аватарка',
     required: false,
   })
-  readonly avatar?: string;
+  readonly avatar?: Avatar;
 
   @ApiPropertyOptional({
     example: '88005553535',

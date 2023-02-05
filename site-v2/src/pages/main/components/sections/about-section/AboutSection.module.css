@@ -1,5 +1,12 @@
 .AboutSection {
   padding: var(--indent-l);
+  margin-bottom: var(--indent-xxl);
+}
+
+.AboutSection:after {
+  content: '';
+  display: table;
+  clear: both;
 }
 
 .image {
@@ -22,10 +29,34 @@
 }
 
 .text {
-  margin-bottom: var(--indent-xxl);
+  display: block;
 }
 
 .button {
   display: block;
-  margin: 0 auto;
+  margin: var(--indent-m) auto 0;
+}
+
+@media (max-width: 600px) {
+  .AboutSection {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .image {
+    float: none;
+    margin: 0 auto;
+    width: auto;
+  }
+
+  .AboutSection .text {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .image {
+    width: 264px;
+    height: 264px;
+  }
 }

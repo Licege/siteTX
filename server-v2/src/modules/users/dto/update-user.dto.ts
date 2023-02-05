@@ -33,11 +33,11 @@ export class UpdateUserDto {
   readonly patronymic?: string;
 
   @ApiPropertyOptional({
-    example: 'http://localhost:5000/uploads/user-avatar.jpg',
-    description: 'Аватарка',
+    example: '23',
+    description: 'Id файла - аватарки',
     required: false,
   })
-  readonly avatar?: string;
+  readonly avatarId?: number;
 
   @ApiPropertyOptional({
     example: '88005553535',

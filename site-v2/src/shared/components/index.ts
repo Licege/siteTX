@@ -4,3 +4,4 @@ export * from './NavigationCarousel';
 export * from './Spinner';
 export * from './Skeleton';
 export * from './Icon';
+export * from './PhotoGallery';

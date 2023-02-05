@@ -10,7 +10,22 @@
   max-width: 960px;
   margin: 0 auto;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   padding: 0 var(--indent-l);
   column-gap: var(--indent-sxl);
+}
+
+.mobileMenu {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .navigation {
+    display: none;
+  }
+
+  .mobileMenu {
+    display: block;
+  }
 }

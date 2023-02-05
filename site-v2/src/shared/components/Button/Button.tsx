@@ -32,6 +32,10 @@ const getTextWeight = (variant: ButtonVariant): TypographyWeight => {
     return 'medium';
   }
 
+  if (variant === 'outline') {
+    return 'medium';
+  }
+
   return 'regular';
 };
 

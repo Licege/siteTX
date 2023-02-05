@@ -8,8 +8,15 @@
   overflow-y: auto;
   transition: width 300ms ease-in-out;
   right: 0;
+  z-index: 10;
 }
 
 .shown {
   width: 100%;
+}
+
+.content {
+  padding: 0 var(--indent-l);
+  margin: 0 auto;
+  max-width: var(--max-app-width);
 }

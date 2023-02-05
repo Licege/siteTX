@@ -3,7 +3,6 @@ import { InjectModel } from '@nestjs/sequelize';
 import { RolesService } from '../roles';
 import { AddRoleDto, CreateUserDto, UpdateUserDto } from './dto';
 import { User } from './users.model';
-import { FilesService } from '../files/files.service';
 import { RepositoryOptions } from '@/types';
 import { ActivateUser } from '../activate-users/activate-users.model';
 
@@ -16,7 +15,6 @@ export class UsersService {
     @InjectModel(ActivateUser)
     private activateUserRepository: typeof ActivateUser,
     private rolesService: RolesService,
-    private filesService: FilesService,
   ) {}
 
   async createUser(dto: CreateUserDto, options?: RepositoryOptions) {
@@ -32,18 +30,9 @@ export class UsersService {
 
   async updateUser(
     userId: number,
-    dto: UpdateUserDto,
-    avatar?: any,
+    updateUserDto: UpdateUserDto,
     { transaction }: RepositoryOptions = {},
   ): Promise<User> {
-    let updateUserDto = { ...dto };
-
-    if (avatar) {
-      // TODO сделать транзакцию для отката загруженных файлов в случае ошибки
-      const avatarSrc = await this.filesService.createFile(avatar);
-      updateUserDto = { ...updateUserDto, avatar: avatarSrc };
-    }
-
     const [countUpdated, updatedUsers] = await this.userRepository.update(
       updateUserDto,
       {

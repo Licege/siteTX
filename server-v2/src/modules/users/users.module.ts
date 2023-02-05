@@ -9,9 +9,9 @@ import { RolesModule } from '../roles';
 import { Role } from '../roles/roles.model';
 import { UserRoles } from '../roles/user-roles.model';
 import { AuthModule } from '../auth';
-import { FilesModule } from '../files';
 import { ActivateUser } from '../activate-users/activate-users.model';
 import { UserAddresses } from './user-addresses.model';
+import { File } from '../files/file.model';
 
 @Module({
   controllers: [UsersController],
@@ -25,10 +25,10 @@ import { UserAddresses } from './user-addresses.model';
       UserRoles,
       ActivateUser,
       UserAddresses,
+      File,
     ]),
     forwardRef(() => RolesModule),
     forwardRef(() => AuthModule),
-    FilesModule,
   ],
   exports: [UsersService],
 })

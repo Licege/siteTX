@@ -24,6 +24,8 @@ import {
   TelegramModule,
   TokenModule,
   RestaurantsModule,
+  MenuImagesModule,
+  FileManipulatorModule,
 } from './modules';
 import { User } from './modules/users/users.model';
 import { Role } from './modules/roles/roles.model';
@@ -37,6 +39,8 @@ import { Restaurant } from '@/modules/restaurants/restaurants.model';
 import { City } from './modules/cities/cities.model';
 import { Address } from '@/modules/addresses/addresses.model';
 import { UserAddresses } from '@/modules/users/user-addresses.model';
+import { MenuImages } from '@/modules/menu-images/menu-images.model';
+import { File } from '@/modules/files/file.model';
 
 @Module({
   controllers: [],
@@ -67,6 +71,8 @@ import { UserAddresses } from '@/modules/users/user-addresses.model';
           ActivateUser,
           Restaurant,
           City,
+          MenuImages,
+          File,
         ],
         autoLoadModels: true,
       }),
@@ -89,6 +95,8 @@ import { UserAddresses } from '@/modules/users/user-addresses.model';
     RestaurantsModule,
     CitiesModule,
     AddressesModule,
+    MenuImagesModule,
+    FileManipulatorModule,
   ],
 })
 export class AppModule {}

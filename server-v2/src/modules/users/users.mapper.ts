@@ -9,7 +9,10 @@ export class UsersMapper {
       lastName: model.lastName,
       firstName: model.firstName,
       patronymic: model.patronymic,
-      avatar: model.avatar,
+      avatar: {
+        url: model.avatar.name,
+        previewUrl: model.avatar.preview,
+      },
       dateOfBirthday: model.dateOfBirthday,
       phone: model.phone,
     };

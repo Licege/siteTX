@@ -10,3 +10,5 @@ export * from './users';
 export * from './files';
 export * from './telegram';
 export * from './restaurants';
+export * from './menu-images';
+export * from './file-manipulator';

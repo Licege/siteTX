@@ -9,8 +9,8 @@ export const PageHeader = () => {
     <header className={c.header}>
       <div className={c.content}>
         <Logo />
-        <Navigation links={header.navigations} />
-        <MobileMenu links={header.navigations} />
+        <Navigation className={c.navigation} links={header.navigations} />
+        <MobileMenu className={c.mobileMenu} links={header.navigations} />
       </div>
     </header>
   );

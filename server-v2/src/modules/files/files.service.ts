@@ -1,29 +1,47 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import * as path from 'path';
-import * as fs from 'fs';
-import * as uuid from 'uuid';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  StreamableFile,
+} from '@nestjs/common';
+import { InjectModel } from '@nestjs/sequelize';
+import { File } from './file.model';
+import { FileManipulatorService } from '@/modules/file-manipulator/file-manipulator.service';
 
 @Injectable()
 export class FilesService {
-  async createFile(file): Promise<string> {
+  constructor(
+    @InjectModel(File) private fileRepository: typeof File,
+    private fileManipulatorService: FileManipulatorService,
+  ) {}
+
+  async saveFile(file): Promise<File> {
     try {
-      const parsedFileName = file.originalname.split('.');
-      const ext = parsedFileName.pop();
-      const fileName = `${uuid.v4()}.${ext}`;
-      const filePath = path.resolve(__dirname, '..', '..', 'static');
+      const savedFile = await this.fileManipulatorService.saveFile(file);
 
-      if (!fs.existsSync(filePath)) {
-        await fs.promises.mkdir(filePath, { recursive: true });
-      }
-
-      await fs.promises.writeFile(path.join(filePath, fileName), file.buffer);
-
-      return fileName;
+      return this.fileRepository.create({
+        originalName: savedFile.originalName,
+        name: savedFile.name,
+        preview: savedFile.preview,
+      });
     } catch (error) {
+      console.error(error);
       throw new HttpException(
         'Ошибка при записи файла',
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
+  }
+
+  async saveFiles(files): Promise<File[]> {
+    return Promise.all(files.map((file) => this.saveFile(file)));
+  }
+
+  getFile(fileName: string): StreamableFile {
+    return this.fileManipulatorService.getFile(fileName);
+  }
+
+  async getFilesRecords(filesIds: number[]): Promise<File[]> {
+    return this.fileRepository.findAll({ where: { id: filesIds } });
   }
 }
