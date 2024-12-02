@@ -14,7 +14,7 @@
     "isomorphic-fetch": "^2.2.1",
     "mdbreact": "^4.6.1",
     "node-emoji": "^1.10.0",
-    "node-sass": "^5.0.0",
+    "node-sass": "^7.0.0",
     "react": "^17.0.2",
     "react-bootstrap": "^1.5.2",
     "react-data-table-component": "*",
