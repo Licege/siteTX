@@ -5,7 +5,6 @@ import {
   UnauthorizedException,
   ForbiddenException,
 } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import * as bcrypt from 'bcryptjs';
 import * as uuid from 'uuid';
 import { LoginDto } from './dto';
@@ -14,7 +13,6 @@ import { UsersService } from '../users/users.service';
 import { TokenService } from './modules/token/token.service';
 import { ActivateUsersService } from '../activate-users/activate-users.service';
 import { RepositoryOptions } from '../../types';
-import { DateEntity } from '../../domains/entities';
 import { BanUsersService } from '../ban-users/ban-users.service';
 
 const SALT = 5;
@@ -22,7 +20,6 @@ const SALT = 5;
 @Injectable()
 export class AuthService {
   constructor(
-    private configService: ConfigService,
     private userService: UsersService,
     private tokenService: TokenService,
     private activateUsersService: ActivateUsersService,

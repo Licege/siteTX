@@ -9,6 +9,7 @@ import {
   jwtConfig,
   smtpConfig,
   telegramConfig,
+  storageConfig,
 } from './configs';
 import {
   AuthModule,
@@ -48,7 +49,14 @@ import { File } from '@/modules/files/file.model';
   imports: [
     ConfigModule.forRoot({
       envFilePath: `.${process.env.NODE_ENV}.env`,
-      load: [baseConfig, databaseConfig, jwtConfig, smtpConfig, telegramConfig],
+      load: [
+        baseConfig,
+        databaseConfig,
+        jwtConfig,
+        smtpConfig,
+        telegramConfig,
+        storageConfig,
+      ],
     }),
     SequelizeModule.forRootAsync({
       imports: [ConfigModule],

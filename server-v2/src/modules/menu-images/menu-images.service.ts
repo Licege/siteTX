@@ -11,6 +11,7 @@ export class MenuImagesService {
   constructor(
     @InjectModel(MenuImages) private menuImagesRepository: typeof MenuImages,
     private filesService: FilesService,
+    private menuImagesMapper: MenuImagesMapper,
   ) {}
 
   async saveMenu(dto: SaveMenuDto): Promise<MenuImages> {
@@ -45,6 +46,6 @@ export class MenuImagesService {
 
     const images = await this.filesService.getFilesRecords(menu.images);
 
-    return MenuImagesMapper.toResponseDto(menu, images);
+    return this.menuImagesMapper.toResponseDto(menu, images);
   }
 }
