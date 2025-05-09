@@ -1,0 +1,37 @@
+.clearButton {
+  border: none;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  appearance: none;
+  cursor: pointer;
+}
+
+.carouselBubble {
+  height: 32px;
+  padding: 0 14px;
+  color: #6c757d;
+  position: relative;
+  transition-property: color;
+  transition-timing-function: ease-in-out;
+  transition-duration: 150ms;
+}
+
+.carouselBubble:hover {
+  color: red;
+}
+
+.carouselBubble:active {
+  color: red;
+}
+
+.carouselBubble.isSelected {
+  color: red;
+}
+
+.label {
+  display: inline-block;
+  padding-bottom: 1px;
+  white-space: nowrap;
+}

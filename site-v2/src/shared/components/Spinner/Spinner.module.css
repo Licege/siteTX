@@ -1,0 +1,30 @@
+.Spinner {
+  display: inline-block;
+  animation-name: spinner;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+  background-image: url("./assets/spinner.svg");
+  background-position: center;
+  background-size: 100%;
+}
+
+.s {
+  width: 20px;
+  height: 20px;
+}
+
+.m {
+  width: 24px;
+  height: 24px;
+}
+
+@keyframes spinner {
+  from {
+    transform: rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(720deg);
+  }
+}

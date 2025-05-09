@@ -1,0 +1,22 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { Spinner } from './Spinner';
+
+<Meta
+  title="Spinner"
+  component={Spinner}
+  argTypes={{
+    size: {
+      defaultValue: 'm'
+    }
+  }}
+/>
+
+# Spinner
+
+Крутящийся спиннер.
+
+<Canvas>
+  <Story name="Default">
+    {args => <Spinner {...args} />}
+  </Story>
+</Canvas>

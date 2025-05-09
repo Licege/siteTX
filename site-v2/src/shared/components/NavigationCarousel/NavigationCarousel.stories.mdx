@@ -1,0 +1,65 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { NavigationCarousel } from './NavigationCarousel';
+import { NavigationCarouselStoryWrapper } from './examples'
+
+
+<Meta
+  title="NavigationCarousel"
+  component={NavigationCarousel}
+  argTypes={{
+    selectedId: {
+      defaultValue: '3',
+    },
+    items: {
+      defaultValue: [
+        {
+          id: '1',
+          label: 'Молоко',
+        },
+        {
+          id: '2',
+          label: 'Яйца',
+        },
+        {
+          id: '3',
+          label: 'Йогурты',
+        },
+        {
+          id: '4',
+          label: 'Кефир',
+        },
+        {
+          id: '5',
+          label: 'Хлебобулочные изделия',
+        },
+        {
+          id: '6',
+          label: 'Говядина',
+        },
+        {
+          id: '7',
+          label: 'Рыба',
+        },
+      ],
+      control: {type: 'object'},
+    },
+  }}
+/>
+
+# NavigationCarousel
+
+Мобильный горизонтальный скроллируемый список навигационных бабблов.
+
+<Canvas>
+  <Story name="Default">
+    {({children, ...args}) => (
+      <PreviewDecorator theme="all">
+        <NavigationCarouselStoryWrapper {...args}>
+          {wrapperArgs => <NavigationCarousel {...args} {...wrapperArgs} />}
+        </NavigationCarouselStoryWrapper>
+      </PreviewDecorator>
+    )}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Default" />

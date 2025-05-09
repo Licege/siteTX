@@ -1,0 +1,49 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { Button } from './Button';
+
+<Meta
+  title="Button"
+  component={Button}
+  argTypes={{
+    variant: {
+      defaultValue: 'action'
+    },
+    size: {
+      defaultValue: 'm',
+      control: { type: 'radio' }
+    },
+    form: {
+      defaultValue: 'squire',
+      control: { type: 'radio' }
+    },
+    loading: {
+      defaultValue: false
+    },
+    disabled: {
+      defaultValue: false
+    },
+    type: {
+      defaultValue: 'button'
+    },
+    as: {
+      defaultValue: 'button'
+    },
+    children: {
+      control: { type: 'text' }
+    }
+  }}
+/>
+
+# Button
+
+Кнопка.
+
+<Canvas>
+  <Story name="Default">
+    {({ children, ...args }) => (
+      <Button {...args}>{children ?? `${args.variant.toUpperCase()} Button`}</Button>
+    )}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Default" />
