@@ -6,24 +6,15 @@ import menuImg from '@/static/img/bar-menu-v1.webp'
 
 const { hostname } = window.location
 const images = [
-  `//${hostname}/uploads/0014.webp`,
-  `//${hostname}/uploads/0015.webp`,
-  `//${hostname}/uploads/0016.webp`,
-  `//${hostname}/uploads/0017.webp`,
-  `//${hostname}/uploads/0018.webp`,
-  `//${hostname}/uploads/0019.webp`,
-  `//${hostname}/uploads/0020.webp`,
-  `//${hostname}/uploads/0021.webp`,
-  `//${hostname}/uploads/0022.webp`,
-  `//${hostname}/uploads/0023.webp`,
-  `//${hostname}/uploads/0024.webp`,
-  `//${hostname}/uploads/0025.webp`,
-  `//${hostname}/uploads/0026.webp`,
-  `//${hostname}/uploads/0027.webp`,
-  `//${hostname}/uploads/0028.webp`,
-  `//${hostname}/uploads/0029.webp`,
-  `//${hostname}/uploads/0030.webp`,
-  `//${hostname}/uploads/0031.webp`,
+  `//${hostname}/uploads/bar-0001.webp`,
+  `//${hostname}/uploads/bar-0002.webp`,
+  `//${hostname}/uploads/bar-0003.webp`,
+  `//${hostname}/uploads/bar-0004.webp`,
+  `//${hostname}/uploads/bar-0005.webp`,
+  `//${hostname}/uploads/bar-0006.webp`,
+  `//${hostname}/uploads/bar-0007.webp`,
+  `//${hostname}/uploads/bar-0008.webp`,
+  `//${hostname}/uploads/bar-0009.webp`
 ];
 
 const BarGallery = () => {
