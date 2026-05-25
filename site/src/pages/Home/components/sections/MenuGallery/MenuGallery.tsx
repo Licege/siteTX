@@ -6,6 +6,7 @@ import { BREAKPOINTS } from '@/styledComponents/helpers'
 import CardContainer from './CardContainer'
 import MenuGallery from './Menu';
 import BarGallery from './Bar';
+import BanquetGallery from './Banquet';
 
 const useScrollToMenu = (ref: React.MutableRefObject<HTMLElement | undefined>) => {
   const query = useQuery()
@@ -34,6 +35,9 @@ const SectionPDFMenu = () => {
         <Divider/>
         <CardContainer title='Карта бара'>
           <BarGallery/>
+        </CardContainer>
+        <CardContainer title='Банкетное меню'>
+          <BanquetGallery/>
         </CardContainer>
       </SectionContent>
     </SectionWrapper>
