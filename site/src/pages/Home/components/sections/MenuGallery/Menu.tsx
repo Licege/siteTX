@@ -1,5 +1,5 @@
 import React from 'react'
-import menuImg from '@/static/img/menu-v2.webp'
+import menuImg from '@/static/img/menu.jpg'
 import Gallery from './Gallery';
 
 const { hostname } = window.location

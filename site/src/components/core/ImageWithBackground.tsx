@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { BREAKPOINTS } from '@/styledComponents/helpers';
 
 interface IProps {
   imageSrc: string
@@ -28,6 +29,10 @@ const Image = styled.div`
   &:hover {
     transform: scale(1.02);
     filter: brightness(50%);
+  }
+
+  @media(max-width: ${BREAKPOINTS.dm}px) {
+    background-size: contain;
   }
 `
 
