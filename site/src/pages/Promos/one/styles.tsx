@@ -2,36 +2,27 @@ import styled from 'styled-components'
 import { BREAKPOINTS } from '../../../styledComponents/helpers'
 
 export const Container = styled.main`
-  display: block;
   position: relative;
-  padding: 16px 24px 8px;
+  padding: 16px 24px 72px;
   margin-top: 16px;
-
-  &:after {
-    content: " ";
-    display: table;
-    clear: both;
-  }
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
 `
 
 export const Image = styled.img`
-    float: left;
-    border-radius: 5px;
-    margin: 0 16px 8px 36px;
-
-    @media(max-width: ${BREAKPOINTS.ts}px) {
-      margin: 0 0 16px;
-      width: 100%;
-    }
+  display: block;
+  width: 100%;
+  max-width: 960px;
+  max-height: 480px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 5px;
+  margin: 0 auto 24px;
 `
 
 export const Wrapper = styled.div`
-    padding-right: 16px;
-    padding-left: 36px;
-
-  @media(max-width: ${BREAKPOINTS.ts}px) {
-    padding: 0;
-  }
+  padding: 0;
 `
 
 export const Content = styled.div`
@@ -49,7 +40,14 @@ export const Title = styled.h2`
 `
 
 export const ActionsBlock = styled.div`
+  margin-top: 24px;
+  text-align: center;
+
+  @media(min-width: ${BREAKPOINTS.ts + 1}px) {
     position: absolute;
     bottom: 16px;
-    right: 40px;
+    right: 0;
+    margin-top: 0;
+    text-align: right;
+  }
 `

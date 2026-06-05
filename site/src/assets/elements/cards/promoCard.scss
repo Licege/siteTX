@@ -12,7 +12,40 @@
     margin: 0 auto;
     border-radius: 4px;
     cursor: pointer;
+  }
 
+  &--banner {
+    min-width: unset;
+    max-width: 100%;
+    width: 100%;
+
+    .card_promo-img-btn {
+      display: block;
+      width: 100%;
+      padding: 0;
+      border: none;
+      background: none;
+      cursor: pointer;
+      border-radius: 4px;
+      overflow: hidden;
+      transition: opacity .3s;
+    }
+
+    .card_promo-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    &:hover {
+      transform: none;
+
+      .card_promo-img-btn {
+        opacity: .92;
+      }
+    }
   }
 
   &-title {

@@ -12,7 +12,7 @@ const Promo: React.FC = () => {
   return (
     <Container>
       <Helmet title={promo?.title || 'Акции'} />
-      <Image src={imageSrc} />
+      <Image src={imageSrc} alt={title} />
       <Wrapper>
         <Content>
           <Title>{title}</Title>

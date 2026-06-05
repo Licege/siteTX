@@ -16,7 +16,7 @@ const Promos: React.FC = () => {
       <Helmet title='Акции' />
       <Title>~ Акции ~</Title>
       <Wrapper>
-        {promos.map((promo: any) => <CardPromo promo={promo} key={promo.id} />)}
+        {promos.map((promo: any) => <CardPromo promo={promo} key={promo.id} variant='banner' />)}
       </Wrapper>
     </Container>
   )

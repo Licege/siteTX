@@ -14,8 +14,10 @@ export const Title = styled.h1`
 `
 
 export const Wrapper = styled.div`
-  display: grid;
-  justify-content: center;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 400px));
-  grid-gap: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
 `
