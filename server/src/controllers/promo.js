@@ -4,11 +4,24 @@ const PromosRepo = require('../repositories/promo')
 const fileLib = require('../lib/file')
 const errorHandler = require('../utils/errorHandler')
 
+const parseBoolean = (value) => {
+  if (value === undefined || value === null || value === '') return false
+  if (value === false || value === 'false' || value === '0' || value === 0) {
+    return false
+  }
+  return true
+}
+
+const isPublicPromoRoute = (req) => req.originalUrl.includes('/api/public/promos')
+
 module.exports.getAll = async function (req, res) {
   try {
     const where = {}
     if (req.query.status) {
       where.status = req.query.status
+    }
+    if (isPublicPromoRoute(req)) {
+      where.show = true
     }
     const promos = await PromosRepo.all(where)
     res.status(200).json(promos)
@@ -20,6 +33,15 @@ module.exports.getAll = async function (req, res) {
 module.exports.getById = async function (req, res) {
   try {
     const promo = await PromosRepo.findById(req.params.id)
+
+    if (!promo) {
+      return res.status(404).json({ message: 'Promo not found' })
+    }
+
+    if (isPublicPromoRoute(req) && !promo.show) {
+      return res.status(404).json({ message: 'Promo not found' })
+    }
+
     res.status(200).json(promo)
   } catch (e) {
     errorHandler(res, e)
@@ -41,7 +63,7 @@ module.exports.create = async function (req, res) {
     title: req.body.title,
     shortDescription: req.body.shortDescription,
     description: req.body.description,
-    status: req.body.status,
+    show: parseBoolean(req.body.show),
     imageSrc
   }
   try {
@@ -62,7 +84,7 @@ module.exports.update = async function (req, res) {
     title: req.body.title,
     shortDescription: req.body.shortDescription,
     description: req.body.description,
-    status: req.body.status
+    show: parseBoolean(req.body.show)
   }
 
   if (req.file) {

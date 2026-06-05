@@ -6,6 +6,7 @@ import ImageInput from '../../../components/common/imageInput'
 import ControlledEditor from '../../../components/common/element/editor/ControlledEditor'
 import {SCInputField, SCTextareaField} from '../styledComponents'
 import {CheckboxWithLabel} from '../../../styledComponents/atoms'
+import {booleanValue} from '../logic'
 
 const emptyValues = {
   title: '',
@@ -20,7 +21,7 @@ const normalizePromoValues = (values) => {
     ...values,
     title: values.title ?? '',
     shortDescription: values.shortDescription ?? '',
-    show: values.show ?? true
+    show: values.show === undefined || values.show === null ? true : booleanValue(values.show)
   }
 }
 
@@ -39,7 +40,7 @@ const RenderForm = ({handleSubmit, submitting, pristine, promo, changeDescriptio
       </div>
       <CheckboxWithLabel>
         <label>
-          Показывать акцию&nbsp;&nbsp;<SCInputField type='checkbox' name='show' />
+          Показывать акцию&nbsp;&nbsp;<SCInputField type='checkbox' name='show' parse={booleanValue} format={booleanValue} />
         </label>
       </CheckboxWithLabel>
       <div>

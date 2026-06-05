@@ -5,6 +5,12 @@ import {useFileLogic} from '../../hooks'
 import {requestAllPromos, requestPromoById, postPromo, updatePromo, removePromo} from '../../redux/thunks/promos.thunks'
 import {getAllPromos, getCurrentPromo} from '../../redux/getters/promos.getters'
 
+export const booleanValue = value => value === true || value === 'true' || value === 1 || value === '1'
+
+const appendShowToFormData = (formData, values) => {
+  formData.set('show', booleanValue(values.show) ? 'true' : 'false')
+}
+
 const usePromos = ({force = false} = {}) => {
   const dispatch = useDispatch()
   const promos = useSelector(getAllPromos)
@@ -60,6 +66,7 @@ export const useCreatePromoLogic = () => {
 
   const createPromo = newPromo => {
     const formData = createFormDataWithFile(newPromo, 'image')
+    appendShowToFormData(formData, newPromo)
     if (description) formData.append('description', description)
 
     dispatch(postPromo(formData))
@@ -92,6 +99,7 @@ export const useEditPromoLogic = () => {
 
   const editPromo = newPromo => {
     const formData = createFormDataWithFile(newPromo, 'image')
+    appendShowToFormData(formData, newPromo)
     if (description) formData.set('description', description)
 
     dispatch(updatePromo({promo: formData, id: promo?.id || id}))
