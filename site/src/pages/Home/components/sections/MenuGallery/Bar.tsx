@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components';
 import Gallery from './Gallery';
 import { Button } from '@/components/core';
-import menuImg from '@/static/img/bar-menu-v1.webp'
+import menuImg from '@/static/img/bar.jpg'
 
 const { hostname } = window.location
 const images = [
@@ -18,7 +18,7 @@ const images = [
 ];
 
 const BarGallery = () => {
-  const [showBound, setShowBound] = useState(true)
+  const [showBound, setShowBound] = useState(false)
 
   return (
     <Wrapper>

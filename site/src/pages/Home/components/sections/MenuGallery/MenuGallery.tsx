@@ -29,14 +29,15 @@ const SectionPDFMenu = () => {
     <SectionWrapper ref={ref}>
       <SectionTitle>Меню ресторана</SectionTitle>
       <SectionContent>
-        <CardContainer title='Основное меню'>
+        <CardContainer>
           <MenuGallery/>
         </CardContainer>
         <Divider/>
-        <CardContainer title='Карта бара'>
+        <CardContainer>
           <BarGallery/>
         </CardContainer>
-        <CardContainer title='Банкетное меню'>
+        <Divider/>
+        <CardContainer>
           <BanquetGallery/>
         </CardContainer>
       </SectionContent>
