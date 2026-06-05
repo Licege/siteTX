@@ -19,6 +19,12 @@
     max-width: none;
     width: 100%;
     margin: 0;
+    padding: 10px;
+    background: #fff;
+    border: 1px solid rgba($brand-brown, .12);
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
+    transition: box-shadow .25s ease, transform .25s ease, background-color .25s ease;
 
     .card_promo-img-btn {
       display: block;
@@ -27,15 +33,16 @@
       border: none;
       background: none;
       cursor: pointer;
-      border-radius: 4px;
-      transition: opacity .3s;
+      border-radius: 6px;
+      overflow: hidden;
+      transition: opacity .25s ease;
     }
 
     .card_promo-img {
       width: 100%;
       height: auto;
       display: block;
-      border-radius: 4px;
+      border-radius: 6px;
     }
 
     &.card_promo--wide {
@@ -43,10 +50,12 @@
     }
 
     &:hover {
-      transform: none;
+      transform: translateY(-3px);
+      background-color: rgb(250, 235, 225);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, .14);
 
       .card_promo-img-btn {
-        opacity: .92;
+        opacity: 1;
       }
     }
   }
