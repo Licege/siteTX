@@ -48,11 +48,11 @@ const SectionContent = styled.div`
   display: grid;
   grid-gap: 32px;
   grid-auto-flow: column;
-  grid-template-columns: repeat(2, minmax(400px, max-content));
+  grid-template-columns: repeat(3, minmax(400px, max-content));
   justify-content: center;
   margin: 16px 0;
   
-  @media(max-width: ${BREAKPOINTS.ds}px) {
+  @media(max-width: ${BREAKPOINTS.dm}px) {
     display: block;
     margin: 0;
   }
@@ -63,7 +63,7 @@ const Divider = styled.div`
   height: 32px;
   width: 100%;
 
-  @media(max-width: ${BREAKPOINTS.ds}px) {
+  @media(max-width: ${BREAKPOINTS.dm}px) {
     display: block;
   }
 `

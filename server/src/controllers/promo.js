@@ -1,5 +1,7 @@
+const path = require('path')
 const { sequelize } = require('../models').init()
 const PromosRepo = require('../repositories/promo')
+const fileLib = require('../lib/file')
 const errorHandler = require('../utils/errorHandler')
 
 module.exports.getAll = async function (req, res) {
@@ -26,13 +28,21 @@ module.exports.getById = async function (req, res) {
 
 module.exports.create = async function (req, res) {
   const transaction = await sequelize.transaction()
+  const destination = path.resolve(__dirname, '../../', 'uploads')
+  let imageSrc = ''
+
+  if (req.file) {
+    imageSrc = await fileLib.uploadFile(req.file, destination, {
+      format: 'webp'
+    })
+  }
 
   const promoToCreate = {
     title: req.body.title,
     shortDescription: req.body.shortDescription,
     description: req.body.description,
     status: req.body.status,
-    imageSrc: req.file ? req.file.path : ''
+    imageSrc
   }
   try {
     const promo = await PromosRepo.create(promoToCreate, transaction)
@@ -46,6 +56,7 @@ module.exports.create = async function (req, res) {
 
 module.exports.update = async function (req, res) {
   const transaction = await sequelize.transaction()
+  const destination = path.resolve(__dirname, '../../', 'uploads')
 
   const promoToUpdate = {
     title: req.body.title,
@@ -55,7 +66,9 @@ module.exports.update = async function (req, res) {
   }
 
   if (req.file) {
-    promoToUpdate.imageSrc = req.file
+    promoToUpdate.imageSrc = await fileLib.uploadFile(req.file, destination, {
+      format: 'webp'
+    })
   }
 
   const id = req.params.id
