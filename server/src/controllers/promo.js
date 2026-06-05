@@ -23,7 +23,12 @@ module.exports.getAll = async function (req, res) {
     if (isPublicPromoRoute(req)) {
       where.show = true
     }
-    const promos = await PromosRepo.all(where)
+    const promos = await PromosRepo.all(where, {
+      order: [
+        ['createdAt', 'DESC'],
+        ['updatedAt', 'DESC']
+      ]
+    })
     res.status(200).json(promos)
   } catch (e) {
     errorHandler(res, e)

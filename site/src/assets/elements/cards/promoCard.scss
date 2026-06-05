@@ -14,10 +14,11 @@
     cursor: pointer;
   }
 
-  &--banner {
+  &--grid {
     min-width: unset;
-    max-width: 100%;
+    max-width: none;
     width: 100%;
+    margin: 0;
 
     .card_promo-img-btn {
       display: block;
@@ -27,7 +28,6 @@
       background: none;
       cursor: pointer;
       border-radius: 4px;
-      overflow: hidden;
       transition: opacity .3s;
     }
 
@@ -36,7 +36,10 @@
       height: auto;
       display: block;
       border-radius: 4px;
-      cursor: pointer;
+    }
+
+    &.card_promo--wide {
+      grid-column: span 2;
     }
 
     &:hover {
