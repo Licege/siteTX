@@ -1,5 +1,7 @@
+const path = require('path')
 const { sequelize } = require('../models').init()
 const UserRepo = require('../repositories/user')
+const fileLib = require('../lib/file')
 const errorHandler = require('../utils/errorHandler')
 
 module.exports.getAll = async function (req, res) {
@@ -53,6 +55,7 @@ module.exports.getById = async function (req, res) {
 
 module.exports.update = async function (req, res) {
   const transaction = await sequelize.transaction()
+  const destination = path.resolve(__dirname, '../../', 'uploads')
 
   const userToUpdate = {
     password: req.body.password,
@@ -64,7 +67,9 @@ module.exports.update = async function (req, res) {
   }
 
   if (req.file) {
-    userToUpdate.imageSrc = req.file.path
+    userToUpdate.imageSrc = await fileLib.uploadFile(req.file, destination, {
+      format: 'webp'
+    })
   }
 
   try {

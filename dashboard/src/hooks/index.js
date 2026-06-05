@@ -16,9 +16,7 @@ export const useFileLogic = () => {
       }
     }
 
-    if (data[fieldName] && !file) {
-      formData.set(fieldName, data[fieldName])
-    } else {
+    if (file) {
       formData.set(fieldName, file)
     }
 

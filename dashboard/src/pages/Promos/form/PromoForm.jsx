@@ -7,32 +7,57 @@ import ControlledEditor from '../../../components/common/element/editor/Controll
 import {SCInputField, SCTextareaField} from '../styledComponents'
 import {CheckboxWithLabel} from '../../../styledComponents/atoms'
 
+const emptyValues = {
+  title: '',
+  shortDescription: '',
+  show: true
+}
 
-const RenderForm = ({handleSubmit, submitting, pristine, promo, changeDescription, uploadFile, cancel}) => (
-  <form onSubmit={handleSubmit}>
-    <SCInputField name='title' placeholder='Название' />
-    <SCTextareaField name='shortDescription' placeholder='Краткое описание (необязательно)' />
-    <div className="promos-form-wysivyg">
-      <ControlledEditor value={promo?.description || ''} onChange={changeDescription} />
-    </div>
-    <CheckboxWithLabel>
-      <label>
-        Показывать акцию&nbsp;&nbsp;<SCInputField type='checkbox' name='show' />
-      </label>
-    </CheckboxWithLabel>
-    <div>
-      <ImageInput value={promo?.imageSrc || ''} onChange={uploadFile} allowClear={true} />
-    </div>
-    <div>
-      <Button variant="secondary" type="button" onClick={cancel} disabled={submitting}>Отменить</Button>
-      <Button variant="primary" type="submit" disabled={submitting || pristine}>Сохранить</Button>
-    </div>
-  </form>
-)
+const normalizePromoValues = (values) => {
+  if (!values) return emptyValues
+
+  return {
+    ...values,
+    title: values.title ?? '',
+    shortDescription: values.shortDescription ?? '',
+    show: values.show ?? true
+  }
+}
+
+const nullSafeValue = value => value ?? ''
+
+const RenderForm = ({handleSubmit, submitting, pristine, promo, changeDescription, uploadFile, cancel, file, description = ''}) => {
+  const initialDescription = promo?.description ?? ''
+  const hasChanges = !pristine || !!file || description !== initialDescription
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <SCInputField name='title' placeholder='Название' />
+      <SCTextareaField name='shortDescription' placeholder='Краткое описание (необязательно)' parse={nullSafeValue} format={nullSafeValue} />
+      <div className="promos-form-wysivyg">
+        <ControlledEditor value={description} onChange={changeDescription} />
+      </div>
+      <CheckboxWithLabel>
+        <label>
+          Показывать акцию&nbsp;&nbsp;<SCInputField type='checkbox' name='show' />
+        </label>
+      </CheckboxWithLabel>
+      <div>
+        <ImageInput value={promo?.imageSrc || ''} onChange={uploadFile} allowClear={true} />
+      </div>
+      <div>
+        <Button variant="secondary" type="button" onClick={cancel} disabled={submitting}>Отменить</Button>
+        <Button variant="primary" type="submit" disabled={submitting || !hasChanges}>Сохранить</Button>
+      </div>
+    </form>
+  )
+}
 
 const PromoForm = ({onSubmit, initialValues, ...props}) => {
+  const normalizedInitialValues = normalizePromoValues(initialValues)
+
   return (
-    <Form onSubmit={onSubmit} initialValues={initialValues} render={formProps => <RenderForm {...formProps} {...props} />} />
+    <Form key={normalizedInitialValues.id || 'new'} onSubmit={onSubmit} initialValues={normalizedInitialValues} render={formProps => <RenderForm {...formProps} {...props} />} />
   )
 }
 

@@ -1,5 +1,7 @@
+const path = require('path')
 const { sequelize } = require('../models').init()
 const NewsRepo = require('../repositories/news')
+const fileLib = require('../lib/file')
 const handleError = require('../utils/errorHandler')
 
 module.exports.getAll = async function (req, res) {
@@ -26,11 +28,20 @@ module.exports.getById = async function (req, res) {
 
 module.exports.create = async function (req, res) {
   const transaction = await sequelize.transaction()
+  const destination = path.resolve(__dirname, '../../', 'uploads')
+  let imageSrc = ''
+
+  if (req.file) {
+    imageSrc = await fileLib.uploadFile(req.file, destination, {
+      format: 'webp'
+    })
+  }
+
   const newsToAdd = {
     title: req.body.title,
     description: req.body.description,
     shortDescription: req.body.shortDescription,
-    imageSrc: req.file ? req.file.path : ''
+    imageSrc
   }
 
   try {
@@ -45,6 +56,7 @@ module.exports.create = async function (req, res) {
 
 module.exports.update = async function (req, res) {
   const transaction = await sequelize.transaction()
+  const destination = path.resolve(__dirname, '../../', 'uploads')
   const newsToUpdate = {
     title: req.body.title,
     description: req.body.description,
@@ -52,7 +64,9 @@ module.exports.update = async function (req, res) {
   }
 
   if (req.file) {
-    newsToUpdate.imageSrc = req.file.path
+    newsToUpdate.imageSrc = await fileLib.uploadFile(req.file, destination, {
+      format: 'webp'
+    })
   }
 
   const id = req.params.id

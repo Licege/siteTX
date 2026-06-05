@@ -71,15 +71,21 @@ export const useCreatePromoLogic = () => {
     history.push('/promos')
   }
 
-  return {changeDescription, uploadFile, createPromo, cancel}
+  return {changeDescription, uploadFile, createPromo, cancel, description, file}
 }
 
 export const useEditPromoLogic = () => {
   const history = useHistory()
   const dispatch = useDispatch()
+  const {id} = useParams()
 
   const promo = useCurrentPromo()
-  const [description, setDescription] = useState(promo.description)
+  const [description, setDescription] = useState(() => promo?.description || '')
+
+  useEffect(() => {
+    setDescription(promo?.description || '')
+  }, [promo?.id, promo?.description])
+
   const {file, uploadFile, createFormDataWithFile} = useFileLogic()
 
   const changeDescription = newDescription => setDescription(newDescription)
@@ -88,7 +94,7 @@ export const useEditPromoLogic = () => {
     const formData = createFormDataWithFile(newPromo, 'image')
     if (description) formData.set('description', description)
 
-    dispatch(updatePromo({promo: formData, id: formData.get('id')}))
+    dispatch(updatePromo({promo: formData, id: promo?.id || id}))
 
     history.push('/promos')
   }
@@ -97,7 +103,7 @@ export const useEditPromoLogic = () => {
     history.push('/promos')
   }
 
-  return {promo, editPromo, cancel, changeDescription, uploadFile}
+  return {promo, editPromo, cancel, changeDescription, uploadFile, file, description}
 }
 
 export const useShowPromoLogic = () => {

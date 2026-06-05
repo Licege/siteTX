@@ -1,5 +1,7 @@
+const path = require('path')
 const { sequelize, User } = require('../models').init()
 const ReviewsRepo = require('../repositories/review')
+const fileLib = require('../lib/file')
 const errorHandler = require('../utils/errorHandler')
 
 module.exports.getAll = async function (req, res) {
@@ -89,6 +91,8 @@ module.exports.getById = async function (req, res) {
 
 module.exports.create = async function (req, res) {
   const transaction = await sequelize.transaction()
+  const destination = path.resolve(__dirname, '../../', 'uploads')
+  let imageSrc = ''
 
   try {
     // const reviews = await Reviews
@@ -98,11 +102,17 @@ module.exports.create = async function (req, res) {
     // if (hasReview(req.user, reviews)) {
     //     console.log('д1а')
     // }
+    if (req.file) {
+      imageSrc = await fileLib.uploadFile(req.file, destination, {
+        format: 'webp'
+      })
+    }
+
     const reviewToCreate = {
       user: req.user,
       rating: req.body.rating,
       description: req.body.description,
-      imageSrc: req.file ? req.file.path : ''
+      imageSrc
     }
 
     const review = await ReviewsRepo.create(reviewToCreate, transaction)
@@ -120,6 +130,7 @@ module.exports.create = async function (req, res) {
 
 module.exports.update = async function (req, res) {
   const transaction = await sequelize.transaction()
+  const destination = path.resolve(__dirname, '../../', 'uploads')
 
   const reviewToUpdate = {
     rating: req.body.rating,
@@ -127,7 +138,9 @@ module.exports.update = async function (req, res) {
     status: req.body.status
   }
   if (req.file) {
-    reviewToUpdate.imageSrc = req.file.path
+    reviewToUpdate.imageSrc = await fileLib.uploadFile(req.file, destination, {
+      format: 'webp'
+    })
   }
   try {
     const where = { id: req.params.id }

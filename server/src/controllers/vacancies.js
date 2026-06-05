@@ -1,5 +1,7 @@
+const path = require('path')
 const { sequelize } = require('../models').init()
 const VacanciesRepo = require('../repositories/vacancy')
+const fileLib = require('../lib/file')
 const errorHandler = require('../utils/errorHandler')
 
 module.exports.getAll = async function (req, res) {
@@ -30,6 +32,14 @@ module.exports.getById = async function (req, res) {
 
 module.exports.create = async function (req, res) {
   const transaction = await sequelize.transaction()
+  const destination = path.resolve(__dirname, '../../', 'uploads')
+  let imageSrc = ''
+
+  if (req.file) {
+    imageSrc = await fileLib.uploadFile(req.file, destination, {
+      format: 'webp'
+    })
+  }
 
   const vacancyToCreate = {
     title: req.body.title,
@@ -37,7 +47,7 @@ module.exports.create = async function (req, res) {
     description: req.body.description,
     salaryFrom: req.body.salaryFrom,
     salaryTo: req.body.salaryTo,
-    imageSrc: req.file ? req.file.path : ''
+    imageSrc
   }
 
   try {
@@ -52,6 +62,7 @@ module.exports.create = async function (req, res) {
 
 module.exports.update = async function (req, res) {
   const transaction = await sequelize.transaction()
+  const destination = path.resolve(__dirname, '../../', 'uploads')
 
   const vacancyToUpdate = {
     title: req.body.title,
@@ -61,7 +72,9 @@ module.exports.update = async function (req, res) {
     salaryTo: req.body.salaryTo
   }
   if (req.file) {
-    vacancyToUpdate.imageSrc = req.file.path
+    vacancyToUpdate.imageSrc = await fileLib.uploadFile(req.file, destination, {
+      format: 'webp'
+    })
   }
 
   try {

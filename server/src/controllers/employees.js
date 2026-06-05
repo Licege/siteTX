@@ -1,5 +1,7 @@
+const path = require('path')
 const { StaffPosition } = require('../models').init()
 const EmployeeRepo = require('../repositories/employees')
+const fileLib = require('../lib/file')
 const { makeEmployee } = require('../entity/employee')
 
 exports.create = async (req, res) => {
@@ -13,7 +15,14 @@ exports.create = async (req, res) => {
     address,
     dateOfEmployment
   } = req.body
-  const avatarSrc = req.file ? req.file.path : ''
+  const destination = path.resolve(__dirname, '../../', 'uploads')
+  let avatarSrc = ''
+
+  if (req.file) {
+    avatarSrc = await fileLib.uploadFile(req.file, destination, {
+      format: 'webp'
+    })
+  }
 
   const dataToCreate = {
     lastName,
@@ -50,18 +59,23 @@ exports.update = async (req, res) => {
     address,
     dateOfEmployment
   } = req.body
-  const avatarSrc = req.file ? req.file.path : ''
+  const destination = path.resolve(__dirname, '../../', 'uploads')
 
   const dataToCreate = {
     lastName,
     firstName,
     middleName,
-    avatarSrc,
     positionId,
     phone,
     salary,
     address,
     dateOfEmployment
+  }
+
+  if (req.file) {
+    dataToCreate.avatarSrc = await fileLib.uploadFile(req.file, destination, {
+      format: 'webp'
+    })
   }
 
   await EmployeeRepo.update({ id }, dataToCreate)

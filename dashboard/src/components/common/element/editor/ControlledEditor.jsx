@@ -13,9 +13,20 @@ export default class ControlledEditor extends React.Component {
     this.state = {
       editorState: this.init(props.value),
     }
-    this.props.onChange(
-      draftToHtml(convertToRaw(this.state.editorState.getCurrentContent())),
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.value === this.props.value) return
+
+    const currentHtml = draftToHtml(
+      convertToRaw(this.state.editorState.getCurrentContent())
     )
+
+    if (this.props.value !== currentHtml) {
+      this.setState({
+        editorState: this.init(this.props.value)
+      })
+    }
   }
 
     init = content => {
