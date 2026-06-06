@@ -1,6 +1,6 @@
-import React, {useCallback, useEffect, useMemo, useState} from 'react'
+import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import styled, {createGlobalStyle} from 'styled-components'
-import {Button} from 'react-bootstrap'
+import {Alert, Button} from 'react-bootstrap'
 import {arrayMove} from 'react-sortable-hoc'
 import {PageHeader} from '../../../styledComponents/components'
 import {menuDocumentsAPI} from '../../../api/api'
@@ -150,7 +150,24 @@ const MenuDocumentCard = ({type, title, document, onSave, saving}) => {
   }))
   const [uploading, setUploading] = useState(false)
   const [error, setError] = useState('')
+  const [successMessage, setSuccessMessage] = useState('')
+  const successTimeoutRef = useRef(null)
   const [previewMode, setPreviewMode] = useState(() => getPreviewMode(mapDocumentPreview(document), mapDocumentToPages(document)))
+
+  useEffect(() => () => {
+    if (successTimeoutRef.current) {
+      clearTimeout(successTimeoutRef.current)
+    }
+  }, [])
+
+  const showSuccess = useCallback((message) => {
+    if (successTimeoutRef.current) {
+      clearTimeout(successTimeoutRef.current)
+    }
+
+    setSuccessMessage(message)
+    successTimeoutRef.current = setTimeout(() => setSuccessMessage(''), 4000)
+  }, [])
 
   useEffect(() => {
     const mappedPages = mapDocumentToPages(document)
@@ -329,6 +346,15 @@ const MenuDocumentCard = ({type, title, document, onSave, saving}) => {
     return 'Страница не выбрана'
   }
 
+  const onDeleteAll = useCallback(() => {
+    setPages([])
+    setPreview({kind: 'auto'})
+    setPreviewMode('page')
+    setError('')
+  }, [])
+
+  const canDeleteAll = pages.length > 0 || isCustomPreview(preview, pages)
+
   const handleSave = async () => {
     setError('')
 
@@ -340,8 +366,11 @@ const MenuDocumentCard = ({type, title, document, onSave, saving}) => {
     try {
       await onSave(type, buildSavePayload(pages, preview))
       setSavedSnapshot(currentSnapshot)
+      setError('')
+      showSuccess('Меню успешно сохранено')
     } catch (saveError) {
       console.error(saveError)
+      setSuccessMessage('')
       setError('Не удалось сохранить меню')
     }
   }
@@ -352,7 +381,12 @@ const MenuDocumentCard = ({type, title, document, onSave, saving}) => {
       <CardBody>
         <Field>
           <FieldLabel>Загрузить PDF или изображения</FieldLabel>
-          <FileInput type="file" accept="application/pdf,image/png,image/jpeg,image/webp" multiple disabled={uploading || saving} onChange={onFilesUpload} />
+          <UploadActions>
+            <FileInput type="file" accept="application/pdf,image/png,image/jpeg,image/webp" multiple disabled={uploading || saving} onChange={onFilesUpload} />
+            <Button variant="outline-danger" disabled={!canDeleteAll || saving || uploading} onClick={onDeleteAll}>
+              Удалить всё
+            </Button>
+          </UploadActions>
           {uploading && <Hint>Обрабатываем файлы...</Hint>}
         </Field>
 
@@ -407,6 +441,12 @@ const MenuDocumentCard = ({type, title, document, onSave, saving}) => {
         </Field>
 
         {error && <ErrorText>{error}</ErrorText>}
+
+        {successMessage && (
+          <Alert variant="success" onClose={() => setSuccessMessage('')} dismissible>
+            {successMessage}
+          </Alert>
+        )}
 
         <Button variant="primary" disabled={!hasChanges || saving || uploading} onClick={handleSave}>
           {saving ? 'Сохранение...' : 'Сохранить'}
@@ -515,6 +555,13 @@ const ErrorText = styled.div`
 
 const FileInput = styled.input`
   display: block;
+`
+
+const UploadActions = styled.div`
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
 `
 
 const PreviewControls = styled.div`
