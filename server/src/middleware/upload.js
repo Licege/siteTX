@@ -1,15 +1,29 @@
 const multer = require('multer')
 
+const ALLOWED_MIMES = new Set([
+  'image/png',
+  'image/jpeg',
+  'image/webp',
+  'application/pdf'
+])
+
+const ALLOWED_EXTENSIONS = /\.(png|jpe?g|webp|pdf)$/i
+
 const fileFilter = (req, file, callback) => {
-  if (
-    file.mimetype === 'image/png' ||
-    file.mimetype === 'image/jpeg' ||
-    file.mimetype === 'application/pdf'
-  ) {
+  const mimetype = file.mimetype || ''
+  const filename = file.originalname || ''
+
+  if (ALLOWED_MIMES.has(mimetype)) {
     callback(null, true)
-  } else {
-    callback(null, false)
+    return
   }
+
+  if (ALLOWED_EXTENSIONS.test(filename)) {
+    callback(null, true)
+    return
+  }
+
+  callback(null, false)
 }
 
 const limits = {

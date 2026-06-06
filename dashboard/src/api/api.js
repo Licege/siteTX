@@ -122,7 +122,8 @@ export const promoAPI = {
 export const menuDocumentsAPI = {
   getAll: () => request.get(`${baseUrl}/menu-documents/`).then(response => response),
   splitPdf: (formData) => request.post(`${baseUrl}/menu-documents/split-pdf`, formData, {noAutoHeaders: true}).then(response => response),
-  update: (type, pages) => request.patch(`${baseUrl}/menu-documents/${type}`, {pages}).then(response => response),
+  uploadImages: (formData) => request.post(`${baseUrl}/menu-documents/upload-images`, formData, {noAutoHeaders: true}).then(response => response),
+  update: (type, payload) => request.patch(`${baseUrl}/menu-documents/${type}`, payload).then(response => response),
 }
 
 export const menuAPI = {

@@ -7,6 +7,7 @@ export type MenuDocument = {
   id?: number;
   type: MenuDocumentType;
   files: string[];
+  previewSrc?: string;
 };
 
 export const menuDocumentsAPI = {

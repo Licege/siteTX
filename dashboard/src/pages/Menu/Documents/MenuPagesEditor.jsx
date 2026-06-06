@@ -2,9 +2,12 @@ import React, {useCallback} from 'react'
 import styled from 'styled-components'
 import {SortableContainer, SortableElement} from 'react-sortable-hoc'
 
-const SortablePage = SortableElement(({page, onDelete}) => (
+const SortablePage = SortableElement(({page, onDelete, onSelectPreview, isPreview}) => (
   <PageItem>
-    <PageImage src={page.previewUrl} alt="" draggable={false} />
+    <PageImage src={page.previewUrl} alt="" draggable={false} $isPreview={isPreview} />
+    <PreviewButton type="button" onClick={() => onSelectPreview(page.path)} $active={isPreview}>
+      {isPreview ? 'Превью' : 'Сделать превью'}
+    </PreviewButton>
     <DeleteButton type="button" onClick={() => onDelete(page.id)} aria-label="Удалить страницу">
       ×
     </DeleteButton>
@@ -12,26 +15,26 @@ const SortablePage = SortableElement(({page, onDelete}) => (
   </PageItem>
 ))
 
-const SortablePages = SortableContainer(({pages, onDelete}) => (
+const SortablePages = SortableContainer(({pages, onDelete, onSelectPreview, previewPath}) => (
   <PagesGrid>
     {pages.map((page, index) => (
-      <SortablePage key={page.id} index={index} page={{...page, orderIndex: index}} onDelete={onDelete} />
+      <SortablePage key={page.id} index={index} page={{...page, orderIndex: index}} onDelete={onDelete} onSelectPreview={onSelectPreview} isPreview={previewPath === page.path} />
     ))}
   </PagesGrid>
 ))
 
-const MenuPagesEditor = ({pages, onSortEnd, onDelete}) => {
+const MenuPagesEditor = ({pages, onSortEnd, onDelete, onSelectPreview, previewPath}) => {
   const handleSortEnd = useCallback(
     ({oldIndex, newIndex}) => onSortEnd(oldIndex, newIndex),
     [onSortEnd]
   )
 
   if (!pages.length) {
-    return <EmptyState>Загрузите PDF, чтобы добавить страницы меню</EmptyState>
+    return <EmptyState>Загрузите PDF или изображения, чтобы добавить страницы меню</EmptyState>
   }
 
   return (
-    <SortablePages pages={pages} onDelete={onDelete} onSortEnd={handleSortEnd} axis="xy" distance={8} helperClass="menu-page-dragging" />
+    <SortablePages pages={pages} onDelete={onDelete} onSortEnd={handleSortEnd} onSelectPreview={onSelectPreview} previewPath={previewPath} axis="xy" distance={8} helperClass="menu-page-dragging" />
   )
 }
 
@@ -51,9 +54,21 @@ const PageImage = styled.img`
   height: 190px;
   object-fit: cover;
   border-radius: 4px;
-  border: 1px solid #ddd;
+  border: 2px solid ${({$isPreview}) => ($isPreview ? '#1f6feb' : '#ddd')};
   cursor: grab;
   background: #f5f5f5;
+`
+
+const PreviewButton = styled.button`
+  width: 100%;
+  margin-top: 6px;
+  border: 1px solid ${({$active}) => ($active ? '#1f6feb' : '#ccc')};
+  background: ${({$active}) => ($active ? '#e8f0fe' : '#fff')};
+  color: ${({$active}) => ($active ? '#1f6feb' : '#333')};
+  border-radius: 4px;
+  font-size: 12px;
+  padding: 4px 6px;
+  cursor: pointer;
 `
 
 const DeleteButton = styled.button`

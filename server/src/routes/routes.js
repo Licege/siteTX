@@ -229,6 +229,7 @@ module.exports = (io) => {
     .get(`${PRIVATE}/menu-documents`, menuGallery.getAll)
     .get(`${PRIVATE}/menu-documents/:type`, menuGallery.getByType)
     .post(`${PRIVATE}/menu-documents/split-pdf`, upload.single('pdf'), menuGallery.splitPdf)
+    .post(`${PRIVATE}/menu-documents/upload-images`, upload.array('images', 50), menuGallery.uploadImages)
     .patch(
       `${PRIVATE}/menu-documents/:type`,
       menuGallery.update

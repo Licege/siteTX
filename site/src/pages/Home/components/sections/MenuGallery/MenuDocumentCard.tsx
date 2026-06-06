@@ -29,7 +29,9 @@ const MenuDocumentCard: FC<IProps> = ({
     [document?.files]
   );
 
-  const previewSrc = images[0] || fallbackPreview;
+  const previewSrc = document?.previewSrc
+    ? fullLink(document.previewSrc)
+    : (images[0] || fallbackPreview);
   const galleryImages = images.length ? images : fallbackImages;
 
   const onOpen = useCallback(() => {
