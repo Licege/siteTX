@@ -13,10 +13,6 @@ export type MenuDocument = {
 export const menuDocumentsAPI = {
   getAll(): Promise<MenuDocument[]> {
     return request.get(`${baseUrl}/menu-documents/`)
-      .then(payload => payload)
-      .catch(reason => {
-        console.error(reason);
-        return [];
-      });
+      .then(payload => payload);
   },
 };

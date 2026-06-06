@@ -316,15 +316,3 @@ exports.update = async (req, res) => {
   }
 }
 
-exports.getAllMenu = async (req, res) => {
-  req.params = { type: 'menu' }
-  return exports.getByType(req, res)
-}
-
-exports.getAllBar = async (req, res) => {
-  req.params = { type: 'bar' }
-  return exports.getByType(req, res)
-}
-
-exports.createOrUpdateMenu = exports.update
-exports.createOrUpdateBar = exports.update

@@ -8,31 +8,27 @@ import { MenuDocument } from '@/api/menuDocuments.api';
 
 interface IProps {
   title: string;
-  document?: MenuDocument;
-  fallbackPreview: string;
-  fallbackImages?: string[];
+  document: MenuDocument;
   withAgeGate?: boolean;
 }
 
 const MenuDocumentCard: FC<IProps> = ({
   title,
   document,
-  fallbackPreview,
-  fallbackImages = [],
   withAgeGate = false,
 }) => {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [showAgeGate, setShowAgeGate] = useState(withAgeGate);
 
   const images = useMemo(
-    () => (document?.files || []).map(fullLink),
-    [document?.files]
+    () => document.files.map(fullLink),
+    [document.files]
   );
 
-  const previewSrc = document?.previewSrc
+  const previewSrc = document.previewSrc
     ? fullLink(document.previewSrc)
-    : (images[0] || fallbackPreview);
-  const galleryImages = images.length ? images : fallbackImages;
+    : images[0];
+  const galleryImages = images;
 
   const onOpen = useCallback(() => {
     if (galleryImages.length) {
