@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 import { BREAKPOINTS } from '@/styledComponents/helpers'
+// @ts-ignore
 import { HEADER_HEIGHT } from '@/styledComponents/constants'
 
 interface IBurger {
