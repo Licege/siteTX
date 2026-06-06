@@ -1,4 +1,4 @@
-FROM node:16.1.0
+FROM node:16.20.2
 
 RUN mkdir -p /var/www/app/serverNodeTX
 WORKDIR /var/www/app/serverNodeTX

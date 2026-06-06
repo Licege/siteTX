@@ -5,11 +5,17 @@ const setupWebStreamsPolyfill = () => {
     return
   }
 
-  const {ReadableStream, TransformStream, WritableStream} = require('stream/web')
+  let streams
 
-  globalThis.ReadableStream = ReadableStream
-  globalThis.TransformStream = TransformStream
-  globalThis.WritableStream = WritableStream
+  try {
+    streams = require('stream/web')
+  } catch (error) {
+    streams = require('web-streams-polyfill/dist/ponyfill.js')
+  }
+
+  globalThis.ReadableStream = streams.ReadableStream
+  globalThis.TransformStream = streams.TransformStream
+  globalThis.WritableStream = streams.WritableStream
 }
 
 setupWebStreamsPolyfill()

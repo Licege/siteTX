@@ -50,7 +50,8 @@
     "sharp": "^0.30.3",
     "socket.io": "^4.0.1",
     "telegraf": "^4.4.1",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "web-streams-polyfill": "^4.3.0"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
