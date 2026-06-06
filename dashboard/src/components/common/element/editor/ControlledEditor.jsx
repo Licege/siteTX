@@ -5,7 +5,8 @@ import draftToHtml from 'draftjs-to-html'
 import htmlToDraft from 'html-to-draftjs'
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 import {unemojify} from 'node-emoji'
-import styled from 'styled-components';
+import styled from 'styled-components'
+import {isEditorHtmlEqual} from './normalizeEditorHtml'
 
 export default class ControlledEditor extends React.Component {
   constructor( props ) {
@@ -47,7 +48,7 @@ export default class ControlledEditor extends React.Component {
         draftToHtml(convertToRaw(editorState.getCurrentContent())),
       )
 
-      if (value !== newValue) {
+      if (!isEditorHtmlEqual(value, newValue)) {
         onChange(newValue)
       }
 

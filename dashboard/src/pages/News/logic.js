@@ -12,6 +12,18 @@ import {
 } from '../../redux/thunks/news.thunks'
 import {useFileLogic} from '../../hooks'
 
+const createNewsFormData = (news, description, imageFile) => {
+  const formData = new FormData()
+
+  if (news.title !== undefined) formData.append('title', news.title)
+  if (news.shortDescription !== undefined) formData.append('shortDescription', news.shortDescription)
+  formData.set('description', description)
+
+  if (imageFile) formData.set('image', imageFile)
+
+  return formData
+}
+
 const useNews = () => {
   const dispatch = useDispatch()
 
@@ -57,14 +69,12 @@ export const useCreateNewsLogic = () => {
   const dispatch = useDispatch()
 
   const [description, setDescription] = useState('')
-  const {file, uploadFile, createFormDataWithFile} = useFileLogic()
+  const {file, uploadFile} = useFileLogic()
 
   const changeDescription = useCallback(newDescription => setDescription(newDescription), [])
 
-  const postNews = news => {
-    const formData = createFormDataWithFile(news, 'image')
-
-    if (description) formData.append('description', description)
+  const postNews = (news, {description: newsDescription = '', file: imageFile} = {}) => {
+    const formData = createNewsFormData(news, newsDescription, imageFile)
 
     dispatch(createNewNews(formData))
     history.push('/news')
@@ -74,7 +84,7 @@ export const useCreateNewsLogic = () => {
     history.push('/news')
   }
 
-  return {file, uploadFile, postNews, changeDescription, cancel}
+  return {file, uploadFile, postNews, changeDescription, cancel, description}
 }
 
 export const useEditNewsLogic = () => {
@@ -82,17 +92,19 @@ export const useEditNewsLogic = () => {
   const dispatch = useDispatch()
 
   const currentNews = useCurrentNews()
-  const [description, setDescription] = useState(currentNews?.description)
+  const [description, setDescription] = useState('')
   const isLoading = useSelector(getNewsLoadingStatus)
 
-  const {file, uploadFile, createFormDataWithFile} = useFileLogic()
+  useEffect(() => {
+    setDescription(currentNews?.description || '')
+  }, [currentNews?.id, currentNews?.description])
+
+  const {file, uploadFile} = useFileLogic()
 
   const changeDescription = newDescription => setDescription(newDescription)
 
-  const updateNews = news => {
-    const formData = createFormDataWithFile(news, 'image')
-
-    if (description) formData.append('description', description)
+  const updateNews = (news, {description: newsDescription = '', file: imageFile} = {}) => {
+    const formData = createNewsFormData(news, newsDescription, imageFile)
 
     dispatch(updateNewsThunk({id: currentNews.id, data: formData}))
     history.push('/news')
@@ -100,5 +112,5 @@ export const useEditNewsLogic = () => {
 
   const cancel = useCallback(() => history.push('/news'), [])
 
-  return {currentNews, updateNews, isLoading, file, uploadFile, changeDescription, cancel}
+  return {currentNews, updateNews, isLoading, file, uploadFile, changeDescription, cancel, description}
 }

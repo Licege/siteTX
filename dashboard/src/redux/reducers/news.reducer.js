@@ -29,7 +29,10 @@ const newsSlice = createSlice({
       state.isFetching = false
     },
     [updateNews.fulfilled]: (state, action) => {
-      state.news = state.news.map(n => (n.id === action.currentNews.id ? action.currentNews : n))
+      state.news = state.news.map(n => (n.id === action.payload.id ? action.payload : n))
+      if (state.currentNews?.id === action.payload.id) {
+        state.currentNews = action.payload
+      }
     },
     [deleteNews.fulfilled]: (state, action) => {
       state.news = state.news.filter(n => n.id !== action.payload.id)
