@@ -1,10 +1,11 @@
-import React, {useCallback} from 'react'
+import React, {useCallback, useRef, useState} from 'react'
 import styled from 'styled-components'
 import {SortableContainer, SortableElement} from 'react-sortable-hoc'
+import MenuPagePreviewModal from './MenuPagePreviewModal'
 
-const SortablePage = SortableElement(({page, onDelete, onSelectPreview, isPreview}) => (
+const SortablePage = SortableElement(({page, onDelete, onSelectPreview, onOpenPreview, isPreview}) => (
   <PageItem>
-    <PageImage src={page.previewUrl} alt="" draggable={false} $isPreview={isPreview} />
+    <PageImage src={page.previewUrl} alt="" draggable={false} $isPreview={isPreview} onClick={() => onOpenPreview(page.orderIndex)} title="Открыть предпросмотр" />
     <PreviewButton type="button" onClick={() => onSelectPreview(page.path)} $active={isPreview}>
       {isPreview ? 'Превью' : 'Сделать превью'}
     </PreviewButton>
@@ -15,26 +16,49 @@ const SortablePage = SortableElement(({page, onDelete, onSelectPreview, isPrevie
   </PageItem>
 ))
 
-const SortablePages = SortableContainer(({pages, onDelete, onSelectPreview, previewPath}) => (
+const SortablePages = SortableContainer(({pages, onDelete, onSelectPreview, onOpenPreview, previewPath}) => (
   <PagesGrid>
     {pages.map((page, index) => (
-      <SortablePage key={page.id} index={index} page={{...page, orderIndex: index}} onDelete={onDelete} onSelectPreview={onSelectPreview} isPreview={previewPath === page.path} />
+      <SortablePage key={page.id} index={index} page={{...page, orderIndex: index}} onDelete={onDelete} onSelectPreview={onSelectPreview} onOpenPreview={onOpenPreview} isPreview={previewPath === page.path} />
     ))}
   </PagesGrid>
 ))
 
 const MenuPagesEditor = ({pages, onSortEnd, onDelete, onSelectPreview, previewPath}) => {
-  const handleSortEnd = useCallback(
-    ({oldIndex, newIndex}) => onSortEnd(oldIndex, newIndex),
-    [onSortEnd]
-  )
+  const [previewIndex, setPreviewIndex] = useState(null)
+  const wasDragging = useRef(false)
+
+  const handleSortStart = useCallback(() => {
+    wasDragging.current = true
+  }, [])
+
+  const handleSortEnd = useCallback(({oldIndex, newIndex}) => {
+    onSortEnd(oldIndex, newIndex)
+
+    setTimeout(() => {
+      wasDragging.current = false
+    }, 0)
+  }, [onSortEnd])
+
+  const onOpenPreview = useCallback((index) => {
+    if (wasDragging.current) return
+
+    setPreviewIndex(index)
+  }, [])
+
+  const onClosePreview = useCallback(() => {
+    setPreviewIndex(null)
+  }, [])
 
   if (!pages.length) {
     return <EmptyState>Загрузите PDF или изображения, чтобы добавить страницы меню</EmptyState>
   }
 
   return (
-    <SortablePages pages={pages} onDelete={onDelete} onSortEnd={handleSortEnd} onSelectPreview={onSelectPreview} previewPath={previewPath} axis="xy" distance={8} helperClass="menu-page-dragging" />
+    <>
+      <SortablePages pages={pages} onDelete={onDelete} onSortStart={handleSortStart} onSortEnd={handleSortEnd} onSelectPreview={onSelectPreview} onOpenPreview={onOpenPreview} previewPath={previewPath} axis="xy" distance={8} helperClass="menu-page-dragging" />
+      <MenuPagePreviewModal pages={pages} activeIndex={previewIndex} onClose={onClosePreview} onChangeIndex={setPreviewIndex} />
+    </>
   )
 }
 
@@ -57,6 +81,10 @@ const PageImage = styled.img`
   border: 2px solid ${({$isPreview}) => ($isPreview ? '#1f6feb' : '#ddd')};
   cursor: grab;
   background: #f5f5f5;
+
+  &:active {
+    cursor: grabbing;
+  }
 `
 
 const PreviewButton = styled.button`

@@ -358,7 +358,7 @@ const MenuDocumentCard = ({type, title, document, onSave, saving}) => {
 
         <Field>
           <FieldLabel>Страницы меню</FieldLabel>
-          <Hint>Перетаскивайте для изменения порядка. Удаляйте ненужные страницы.</Hint>
+          <Hint>Перетаскивайте страницы с зажатой кнопкой мыши. Клик по картинке — предпросмотр.</Hint>
           <MenuPagesEditor pages={pages} onSortEnd={onSortEnd} onDelete={onDelete} onSelectPreview={onSelectPreview} previewPath={pagePreviewActive ? effectivePreviewPath : null} />
         </Field>
 
