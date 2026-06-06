@@ -119,6 +119,12 @@ export const promoAPI = {
   removePromo: (id) => request.delete(`${baseUrl}/promos/${id}`)
 }
 
+export const menuDocumentsAPI = {
+  getAll: () => request.get(`${baseUrl}/menu-documents/`).then(response => response),
+  splitPdf: (formData) => request.post(`${baseUrl}/menu-documents/split-pdf`, formData, {noAutoHeaders: true}).then(response => response),
+  update: (type, pages) => request.patch(`${baseUrl}/menu-documents/${type}`, {pages}).then(response => response),
+}
+
 export const menuAPI = {
   createDish( dish ) {
     return request.post(`${baseUrl}/menu/`, dish, {noAutoHeaders: true})

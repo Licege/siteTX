@@ -16,6 +16,7 @@
   "author": "Mustafaev Mark",
   "license": "ISC",
   "dependencies": {
+    "@napi-rs/canvas": "^1.0.0",
     "admin": "file:../dashboard",
     "axios": "^1.2.2",
     "bcryptjs": "^2.4.3",
@@ -41,6 +42,7 @@
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
+    "pdfjs-dist": "^2.4.456",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.6.2",

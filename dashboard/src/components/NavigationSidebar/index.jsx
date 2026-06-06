@@ -31,6 +31,7 @@ const MainSection = () => (
     <Toggle eventKey='0' title='Ресторан' />
     <NavLink eventKey='0' to='/news' title='Новости' />
     <NavLink eventKey='0' to='/menu' title='Меню' />
+    <NavLink eventKey='0' to='/menu/documents' title='PDF-меню' />
     <NavLink eventKey='0' to='/categories' title='Категории' />
     <NavLink eventKey='0' to='/employees' title='Сотрудники' />
     <NavLink eventKey='0' to='/vacancies' title='Вакансии' />

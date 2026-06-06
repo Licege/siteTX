@@ -10,3 +10,4 @@ export * from './news.api';
 export * from './bucket.api';
 export * from './reviews.api';
 export * from './complain.api';
+export * from './menuDocuments.api';

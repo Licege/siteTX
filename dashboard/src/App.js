@@ -46,7 +46,7 @@ import EditVacancy from './pages/Vacancies/edit'
 import Categories from './pages/Categories/all'
 import CreateCategory from './pages/Categories/create'
 import EditCategory from './pages/Categories/edit'
-import MenuGallery from './pages/Menu/Gallery'
+import MenuDocuments from './pages/Menu/Documents'
 
 function App() {
   // const token = useSelector(state => state.auth.accessToken)
@@ -81,8 +81,9 @@ function App() {
           <Route exact path='/categories/new' component={CreateCategory}/>
           <Route exact path='/categories/edit/:id' component={EditCategory}/>
 
-          {/*Слайды с меню*/}
-          <Route exact path='/menu/slides' component={MenuGallery} />
+          {/*PDF-меню*/}
+          <Route exact path='/menu/documents' component={MenuDocuments} />
+          <Route exact path='/menu/slides' component={MenuDocuments} />
 
           {/*Пользователи*/}
           <Route exact path='/users' component={UsersContainer}/>

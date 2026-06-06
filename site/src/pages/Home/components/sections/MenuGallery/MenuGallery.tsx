@@ -4,9 +4,25 @@ import { SectionTitle, SectionWrapper } from '@/components/core'
 import { useQuery } from '@/hooks/useQuery';
 import { BREAKPOINTS } from '@/styledComponents/helpers'
 import CardContainer from './CardContainer'
-import MenuGallery from './Menu';
-import BarGallery from './Bar';
-import BanquetGallery from './Banquet';
+import MenuDocumentCard from './MenuDocumentCard'
+import { useMenuDocuments } from './useMenuDocuments'
+import menuImg from '@/static/img/menu.jpg'
+import barImg from '@/static/img/bar.jpg'
+import banquetImg from '@/static/img/banquet.jpg'
+
+const { hostname } = window.location
+
+const fallbackMenuImages = Array.from({ length: 9 }, (_, index) =>
+  `//${hostname}/uploads/menu-${String(index + 1).padStart(4, '0')}.webp`
+)
+
+const fallbackBarImages = Array.from({ length: 9 }, (_, index) =>
+  `//${hostname}/uploads/bar-${String(index + 1).padStart(4, '0')}.webp`
+)
+
+const fallbackBanquetImages = Array.from({ length: 10 }, (_, index) =>
+  `//${hostname}/uploads/banquet-${String(index + 1).padStart(4, '0')}.webp`
+)
 
 const useScrollToMenu = (ref: React.MutableRefObject<HTMLElement | undefined>) => {
   const query = useQuery()
@@ -22,6 +38,7 @@ const useScrollToMenu = (ref: React.MutableRefObject<HTMLElement | undefined>) =
 
 const SectionPDFMenu = () => {
   const ref = useRef<HTMLElement>();
+  const { documents } = useMenuDocuments()
 
   useScrollToMenu(ref);
   
@@ -30,15 +47,15 @@ const SectionPDFMenu = () => {
       <SectionTitle>Меню ресторана</SectionTitle>
       <SectionContent>
         <CardContainer>
-          <MenuGallery/>
+          <MenuDocumentCard title="Меню" document={documents.menu} fallbackPreview={menuImg} fallbackImages={fallbackMenuImages} />
         </CardContainer>
         <Divider/>
         <CardContainer>
-          <BarGallery/>
+          <MenuDocumentCard title="Меню бара" document={documents.bar} fallbackPreview={barImg} fallbackImages={fallbackBarImages} />
         </CardContainer>
         <Divider/>
         <CardContainer>
-          <BanquetGallery/>
+          <MenuDocumentCard title="Банкетное меню" document={documents.banquet} fallbackPreview={banquetImg} fallbackImages={fallbackBanquetImages} />
         </CardContainer>
       </SectionContent>
     </SectionWrapper>

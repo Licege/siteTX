@@ -9,6 +9,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false,
       defaultValue: []
+    },
+    pdfSrc: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    previewSrc: {
+      type: DataTypes.STRING,
+      allowNull: true
     }
+  }, {
+    tableName: 'Gallery'
   })
 }
