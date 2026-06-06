@@ -28,7 +28,7 @@ export const ActionsBlock = styled.div`
 `
 
 export const AuthButtonWrapper = styled.div`
-  height: 60px;
+  height: ${HEADER_HEIGHT};
   margin-right: 1rem;
   display: flex;
   align-items: center;

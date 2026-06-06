@@ -11,7 +11,9 @@ export default function MainLayout({ title = 'Три холма', children }) {
   return (
     <>
       <Head>
-        <link rel="icon" href='../assets/favicon.png' />
+        <link rel="icon" href="/favicon.ico" sizes="48x48" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
         <meta charSet="utf-8" />
         <title>{title}</title>
       </Head>
@@ -19,7 +21,7 @@ export default function MainLayout({ title = 'Три холма', children }) {
         <header className={classes.header}>
           <div className={classes.header__logo}>
             <a href="https://tri-xolma.ru/" target="_blank" rel="noreferrer">
-              <Image src={logo} width={96} height={64} alt="logo" />
+              <Image src={logo} width={111} height={64} alt="Три Холма" />
             </a>
           </div>
         </header>
