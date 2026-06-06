@@ -1,28 +1,22 @@
 import React, { useEffect, useRef } from 'react'
 import styled from 'styled-components'
-import { SectionTitle, SectionWrapper } from '@/components/core'
+import { Loader, SectionTitle, SectionWrapper } from '@/components/core'
 import { useQuery } from '@/hooks/useQuery';
 import { BREAKPOINTS } from '@/styledComponents/helpers'
 import CardContainer from './CardContainer'
 import MenuDocumentCard from './MenuDocumentCard'
 import { useMenuDocuments } from './useMenuDocuments'
-import menuImg from '@/static/img/menu.jpg'
-import barImg from '@/static/img/bar.jpg'
-import banquetImg from '@/static/img/banquet.jpg'
 
-const { hostname } = window.location
+const MENU_ITEMS = [
+  { type: 'menu' as const, title: 'Меню' },
+  { type: 'bar' as const, title: 'Меню бара' },
+  { type: 'banquet' as const, title: 'Банкетное меню' },
+] as const
 
-const fallbackMenuImages = Array.from({ length: 9 }, (_, index) =>
-  `//${hostname}/uploads/menu-${String(index + 1).padStart(4, '0')}.webp`
-)
-
-const fallbackBarImages = Array.from({ length: 9 }, (_, index) =>
-  `//${hostname}/uploads/bar-${String(index + 1).padStart(4, '0')}.webp`
-)
-
-const fallbackBanquetImages = Array.from({ length: 10 }, (_, index) =>
-  `//${hostname}/uploads/banquet-${String(index + 1).padStart(4, '0')}.webp`
-)
+const hasDocumentFiles = (
+  documents: ReturnType<typeof useMenuDocuments>['documents'],
+  type: typeof MENU_ITEMS[number]['type']
+) => (documents[type]?.files?.length ?? 0) > 0
 
 const useScrollToMenu = (ref: React.MutableRefObject<HTMLElement | undefined>) => {
   const query = useQuery()
@@ -38,35 +32,49 @@ const useScrollToMenu = (ref: React.MutableRefObject<HTMLElement | undefined>) =
 
 const SectionPDFMenu = () => {
   const ref = useRef<HTMLElement>();
-  const { documents } = useMenuDocuments()
+  const { documents, loading } = useMenuDocuments()
 
   useScrollToMenu(ref);
-  
+
+  const filledItems = MENU_ITEMS.filter(({ type }) => hasDocumentFiles(documents, type))
+
+  if (loading) {
+    return (
+      <SectionWrapper ref={ref}>
+        <SectionTitle>Меню ресторана</SectionTitle>
+        <LoaderWrapper>
+          <Loader />
+        </LoaderWrapper>
+      </SectionWrapper>
+    )
+  }
+
+  if (!filledItems.length) {
+    return null
+  }
+
   return (
     <SectionWrapper ref={ref}>
       <SectionTitle>Меню ресторана</SectionTitle>
-      <SectionContent>
-        <CardContainer>
-          <MenuDocumentCard title="Меню" document={documents.menu} fallbackPreview={menuImg} fallbackImages={fallbackMenuImages} />
-        </CardContainer>
-        <Divider/>
-        <CardContainer>
-          <MenuDocumentCard title="Меню бара" document={documents.bar} fallbackPreview={barImg} fallbackImages={fallbackBarImages} />
-        </CardContainer>
-        <Divider/>
-        <CardContainer>
-          <MenuDocumentCard title="Банкетное меню" document={documents.banquet} fallbackPreview={banquetImg} fallbackImages={fallbackBanquetImages} />
-        </CardContainer>
+      <SectionContent $columns={filledItems.length}>
+        {filledItems.map(({ type, title }, index) => (
+          <React.Fragment key={type}>
+            {index > 0 && <Divider />}
+            <CardContainer>
+              <MenuDocumentCard title={title} document={documents[type]!} />
+            </CardContainer>
+          </React.Fragment>
+        ))}
       </SectionContent>
     </SectionWrapper>
   )
 }
 
-const SectionContent = styled.div`
+const SectionContent = styled.div<{ $columns: number }>`
   display: grid;
   grid-gap: 32px;
   grid-auto-flow: column;
-  grid-template-columns: repeat(3, minmax(400px, max-content));
+  grid-template-columns: repeat(${({ $columns }) => $columns}, minmax(400px, max-content));
   justify-content: center;
   margin: 16px 0;
   
@@ -74,6 +82,14 @@ const SectionContent = styled.div`
     display: block;
     margin: 0;
   }
+`
+
+const LoaderWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+  margin: 16px 0;
 `
 
 const Divider = styled.div`

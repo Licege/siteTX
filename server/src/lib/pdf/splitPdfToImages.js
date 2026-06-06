@@ -69,24 +69,78 @@ exports.splitPdfToImages = async (pdfBuffer, uploadsRoot, {prefix = 'menu-page'}
   return pages
 }
 
+exports.saveImagesToTemp = async (files, uploadsRoot, {prefix = 'menu-page'} = {}) => {
+  const tempDir = path.join(uploadsRoot, 'temp')
+  await fs.mkdir(tempDir, {recursive: true})
+
+  const stamp = Date.now()
+  const pages = []
+
+  for (let index = 0; index < files.length; index += 1) {
+    const fileName = `${prefix}-${stamp}-${index + 1}.webp`
+    const fullPath = path.join(tempDir, fileName)
+
+    await sharp(files[index].buffer).webp().toFile(fullPath)
+
+    const relativePath = toRelativeUploadPath(uploadsRoot, fullPath)
+
+    pages.push({
+      id: relativePath,
+      path: relativePath
+    })
+  }
+
+  return pages
+}
+
 exports.getUploadFullPath = (uploadsRoot, relativePath) => {
   const normalized = relativePath.replace(/\\/g, '/').replace(/^uploads\/?/, '')
 
   return path.join(uploadsRoot, normalized)
 }
 
-exports.moveTempToPermanent = async (uploadsRoot, tempRelativePath) => {
-  const sourcePath = exports.getUploadFullPath(uploadsRoot, tempRelativePath)
+const findExistingMovedFile = async (uploadsRoot, tempRelativePath) => {
+  const baseName = path.basename(tempRelativePath.replace(/\\/g, '/'))
+  const entries = await fs.readdir(uploadsRoot)
 
-  if (!tempRelativePath.replace(/\\/g, '/').startsWith('uploads/temp/')) {
+  const match = entries.find((entry) => {
+    if (entry === 'temp') return false
+
+    return entry.endsWith(`-${baseName}`)
+  })
+
+  if (!match) return null
+
+  return path.join('uploads', match).replace(/\\/g, '/')
+}
+
+exports.moveTempToPermanent = async (uploadsRoot, tempRelativePath) => {
+  const normalizedTempPath = tempRelativePath.replace(/\\/g, '/')
+  const sourcePath = exports.getUploadFullPath(uploadsRoot, normalizedTempPath)
+
+  if (!normalizedTempPath.startsWith('uploads/temp/')) {
     throw new Error('Файл не находится во временной папке')
   }
 
-  const fileName = `${Date.now()}-${path.basename(tempRelativePath)}`
+  const fileName = `${Date.now()}-${path.basename(normalizedTempPath)}`
   const destinationPath = path.join(uploadsRoot, fileName)
   const relativePath = path.join('uploads', fileName).replace(/\\/g, '/')
 
-  await fs.rename(sourcePath, destinationPath)
+  try {
+    await fs.rename(sourcePath, destinationPath)
+  } catch (error) {
+    if (error.code !== 'ENOENT') {
+      throw error
+    }
+
+    const existingPath = await findExistingMovedFile(uploadsRoot, normalizedTempPath)
+
+    if (existingPath) {
+      return existingPath
+    }
+
+    throw error
+  }
 
   return relativePath
 }

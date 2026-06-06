@@ -4,6 +4,7 @@ import { useBucketInfoWrapperLogic } from '../logic'
 import Content from './Content'
 import Footer from './Footer'
 import { BREAKPOINTS } from '../../../../styledComponents/helpers';
+import { HEADER_HEIGHT } from '../../../../styledComponents/constants';
 
 interface IProps {
     isOpen: boolean
@@ -35,7 +36,7 @@ const Wrapper = styled.div`
     min-width: 570px;
     background-color: #f9f9f9;
     position: absolute;
-    top: 60px;
+    top: ${HEADER_HEIGHT};
     right: 0;
     opacity: ${(props: any) => props.isShow ? 1 : 0};
     visibility: ${(props: any) => props.isShow ? 'visible' : 'hidden'};

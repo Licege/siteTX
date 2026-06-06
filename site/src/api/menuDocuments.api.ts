@@ -7,15 +7,12 @@ export type MenuDocument = {
   id?: number;
   type: MenuDocumentType;
   files: string[];
+  previewSrc?: string;
 };
 
 export const menuDocumentsAPI = {
   getAll(): Promise<MenuDocument[]> {
     return request.get(`${baseUrl}/menu-documents/`)
-      .then(payload => payload)
-      .catch(reason => {
-        console.error(reason);
-        return [];
-      });
+      .then(payload => payload);
   },
 };

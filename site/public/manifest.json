@@ -1,11 +1,21 @@
 {
-  "short_name": "Tri xolma",
-  "name": "Tri xolma",
+  "short_name": "Три Холма",
+  "name": "Ресторанный комплекс Три Холма",
   "icons": [
     {
-      "src": "favicon.png",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "src": "favicon.ico",
+      "sizes": "48x48",
       "type": "image/x-icon"
+    },
+    {
+      "src": "favicon-48.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "favicon-96.png",
+      "type": "image/png",
+      "sizes": "96x96"
     },
     {
       "src": "logo192.png",

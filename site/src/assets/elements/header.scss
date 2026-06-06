@@ -11,7 +11,7 @@
 
   &-logo {
     height: 64px;
-    width: 96px;
+    width: auto;
     margin-left: 30px;
   }
 
@@ -51,7 +51,7 @@
     display: flex;
 
     &-button {
-      height: 60px;
+      height: 72px;
       margin-right: 1rem;
       display: flex;
       align-items: center;

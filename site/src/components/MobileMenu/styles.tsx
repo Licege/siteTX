@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 import { BREAKPOINTS } from '@/styledComponents/helpers'
+import { HEADER_HEIGHT } from '@/styledComponents/constants'
 
 interface IBurger {
   isOpen: boolean
@@ -85,8 +86,8 @@ interface IWrapper {
 
 export const Wrapper = styled.div`
   position: fixed;
-  top: 60px;
-  height: calc(100vh - 60px);
+  top: ${HEADER_HEIGHT};
+  height: calc(100vh - ${HEADER_HEIGHT});
   width: 0;
   background-color: #f5f5f7;
   // background-color: #808080;

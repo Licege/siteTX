@@ -224,22 +224,13 @@ module.exports = (io) => {
   router
     .get(`${PUBLIC}/menu-documents`, menuGallery.getAll)
     .get(`${PUBLIC}/menu-documents/:type`, menuGallery.getByType)
-    .get('/api/private/menu/gallery', menuGallery.getAllMenu)
-    .get('/api/private/bar/gallery', menuGallery.getAllBar)
     .get(`${PRIVATE}/menu-documents`, menuGallery.getAll)
     .get(`${PRIVATE}/menu-documents/:type`, menuGallery.getByType)
     .post(`${PRIVATE}/menu-documents/split-pdf`, upload.single('pdf'), menuGallery.splitPdf)
+    .post(`${PRIVATE}/menu-documents/upload-images`, upload.array('images', 50), menuGallery.uploadImages)
     .patch(
       `${PRIVATE}/menu-documents/:type`,
       menuGallery.update
-    )
-    .post(
-      '/api/private/menu/gallery',
-      menuGallery.createOrUpdateMenu
-    )
-    .post(
-      '/api/private/bar/gallery',
-      menuGallery.createOrUpdateBar
     )
 
   router
