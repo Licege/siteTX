@@ -15,7 +15,7 @@ services:
     image: postgres:15-alpine
     container_name: trixolma_db
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - ./db/pg_data:/var/lib/postgresql/data
     environment:

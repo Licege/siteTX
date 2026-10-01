@@ -1,0 +1,11 @@
+[Unit]
+Description=Check siteTX certificates every minute
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=1min
+AccuracySec=5s
+Unit=sitetx-certificates.service
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,11 @@
+[Unit]
+Description=Reload siteTX nginx when certificate files change
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/sitetx-reload-nginx-certificates
+StateDirectory=sitetx-certificates
+StateDirectoryMode=0700
+TimeoutStartSec=45

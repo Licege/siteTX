@@ -1,0 +1,40 @@
+#!/bin/sh
+set -eu
+
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export PATH
+container=${NGINX_CONTAINER:-nginx}
+# Discover the bind mount so the checkout can live anywhere on the host.
+certificate_root=$(docker inspect "$container" --format '{{range .Mounts}}{{if eq .Destination "/etc/letsencrypt"}}{{.Source}}{{end}}{{end}}')
+if [ -z "$certificate_root" ]; then
+    echo "No /etc/letsencrypt mount found in $container" >&2
+    exit 1
+fi
+certificates="$certificate_root/live"
+state=/var/lib/sitetx-certificates
+mkdir -p "$state"
+manifest=$(mktemp "$state/manifest.XXXXXX")
+trap 'rm -f "$manifest"' EXIT HUP INT TERM
+
+found=false
+for certificate in "$certificates"/*/fullchain.pem; do
+    [ -f "$certificate" ] || continue
+    directory=${certificate%/*}
+    # Detect key and intermediate-chain changes as well as certificate changes.
+    sha256sum "$certificate" "$directory/privkey.pem" "$directory/chain.pem" >> "$manifest"
+    found=true
+done
+if [ "$found" = false ]; then
+    echo "No certificates found in $certificates" >&2
+    exit 1
+fi
+
+if [ -f "$state/applied" ] && cmp -s "$manifest" "$state/applied"; then
+    exit 0
+fi
+
+# Keep the previous state on failure so the next timer run retries.
+docker exec "$container" nginx -t
+docker exec "$container" nginx -s reload
+mv "$manifest" "$state/applied"
+echo "nginx reloaded after certificate changes"
